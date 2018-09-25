@@ -51,10 +51,10 @@ format-css:
 			prettier --write --parser css "{}"; \
 		fi' ';'
 
-build:
+build: format
 	mkdir -p '$(DIST_DIR)'
 	(cd '$(MKFILE_DIR)/ROOT/' \
-		&& STASH=$$(git stash create) \
+		&& STASH=$$(git stash create) && STASH=$${STASH:=HEAD} \
 		&& git archive -v --format=zip --output '$(ZIPFILE)' "$${STASH}" ./ \
 		&& git gc --prune=now)
 
