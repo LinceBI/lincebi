@@ -1,0 +1,5668 @@
+/*
+* This program is free software; you can redistribute it and/or modify it under the
+* terms of the GNU Lesser General Public License, version 2.1 as published by the Free Software
+* Foundation.
+*
+* You should have received a copy of the GNU Lesser General Public License along with this
+* program; if not, you can obtain a copy at http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+* or from the Free Software Foundation, Inc.,
+* 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+* without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+* See the GNU Lesser General Public License for more details.
+*
+* Copyright 2005 - 2017 Hitachi Vantara.  All rights reserved.
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+html,
+body {
+	font-family: 'Titillium Web', sans-serif !important;
+}
+html,
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 14px;
+	background: transparent;
+	color: #26363d;
+	height: 100%;
+}
+
+a,
+a:visited {
+	color: #7a9e3f;
+}
+
+a,
+a:link,
+a:active,
+a:hover {
+	color: #7a9e3f;
+	text-decoration: none;
+}
+div {
+	outline: 0px;
+	hidefocus: true;
+}
+
+img {
+	outline: 0px;
+	-moz-user-focus: none;
+	user-focus: none;
+}
+
+label {
+	font-size: 13px;
+}
+
+legend {
+	color: #777;
+}
+
+fieldset,
+fieldset.xul-fieldset {
+	padding: 0px;
+	width: auto;
+	border: 1px solid #cbdde8;
+}
+
+input[type='checkbox'] {
+	border: none;
+}
+input[type='radio'] {
+	border: none;
+}
+
+.bootstrap .pentaho-dialog p {
+	margin: 0;
+}
+
+input[type='text'],
+.bootstrap .pentaho-dialog input[type='text'] {
+	border: 1px solid #cbdde8;
+	padding: 4px 2px 4px 4px;
+
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+}
+
+input[type='text']#paramNameTextBox,
+input[type='text']#paramValueTextBox {
+	height: 20px;
+}
+
+select,
+.gwt-ListBox,
+.timeZonePicker {
+	border: 1px solid #ccc;
+	padding: 0 0 0 4px;
+	font-size: 13px;
+	background: #f6f6f6;
+}
+.IE .scheduleEditor select {
+	margin: 2px;
+}
+.IE .scheduleEditor fieldset td {
+	padding-top: 0px !important;
+}
+
+*:focus {
+	outline: none;
+}
+
+select[size='1'],
+select:not([size]),
+.gwt-ListBox[size='1'],
+.gwt-ListBox:not([size]) {
+	height: 35px;
+	padding: 0 30px 0 10px;
+	background-size: 12px 12px;
+	background-position: right 8px center;
+}
+.adminField {
+	margin-left: 4px;
+}
+#ldapTreeDialogContent {
+	padding: 0 4px;
+}
+.soria .dijitTreeRowSelected {
+	background-color: #d7e9cd;
+}
+.soria .dijitTreeRowHover {
+	background-color: #dce7ed;
+}
+.dijitTreeRow {
+	padding: 4px;
+}
+.groupOption input[type='text'],
+.groupOption input[type='password'] {
+	margin-left: 0px;
+}
+.gwt-PasswordTextBox,
+input,
+input[type='password'] {
+	border: 1px solid #cbdde8;
+	padding: 4px 2px 4px 4px;
+}
+.scroll-panel {
+	position: relative;
+	overflow: auto;
+	height: 100%;
+	width: 100%;
+}
+
+.pentaho-page-background {
+	background: url('images/bg.jpg') 100% 100%;
+	background-color: #fff;
+	background-size: 100% !important;
+	background-position-x: center !important;
+}
+
+.schedule-dialog-content-crystal {
+	padding: 5px 10px 10px 10px;
+}
+
+#pucHeader {
+	display: block;
+	height: 60px;
+	background: url(images/bg.jpg) repeat;
+	-webkit-box-shadow: 0px 2px 3px rgba(50, 50, 50, 0.4);
+	-moz-box-shadow: 0px 2px 3px rgba(50, 50, 50, 0.4);
+	box-shadow: 0px 2px 3px rgba(50, 50, 50, 0.4);
+	padding: 0px 0 0px 0;
+}
+
+input.every-txtbox {
+	width: 3em;
+}
+
+/* Standard button style. Should be applied to a <button> element to get full pseudo-styles. */
+.pentaho-button,
+.IE .pentaho-button:active {
+	background: #7b9e49;
+	font-size: 15px;
+	color: #ffffff;
+	padding: 4px 14px 6px 14px;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+	/* Standard form */
+	border-radius: 3px;
+	/* Firefox */
+	-moz-border-radius: 3px;
+	/* Safari/Chrome */
+	-webkit-border-radius: 3px;
+	border: 0px solid #333;
+	white-space: nowrap;
+	/*text-shadow: 0px 0px 2px rgba(000, 000, 000, 1);*/
+	cursor: pointer;
+	/* Chrome has a default 2px margin for buttons in user agent stylesheet rule */
+	margin: 0px;
+}
+
+/* Applies the green glow to buttons */
+.pentaho-button:hover {
+	-moz-box-shadow: inset 0 0 1px #fff;
+	-webkit-box-shadow: inset 0 0 1px #fff;
+	box-shadow: inset 0 0 1px #fff;
+	background: #666; /* Old browsers */
+}
+
+/* Just lightening it up a bit */
+.pentaho-button:active,
+.IE .pentaho-button:focus {
+	background: #8ac06e; /* Old browsers */
+	background: -moz-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8ac06e), color-stop(100%, #62ab3d)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #8ac06e 0%, #62ab3d 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8ac06e', endColorstr='#62ab3d',GradientType=0 ); /* IE6-9 */
+	color: #293b44;
+}
+
+.dijitButton .pentaho-button {
+	padding: 8px 13px;
+}
+
+.dijitDisabled .pentaho-button:active,
+.IE .dijitDisabled .pentaho-button:focus {
+	background: none;
+}
+
+.IE .pentaho-button:active {
+	/*background: url('images/bg_btn_active.png') repeat-x left center;*/
+}
+
+/* lighter gray with white text */
+.pentaho-button:disabled {
+	color: #ccc;
+	background: transparent; /* Old browsers */
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	cursor: auto;
+}
+
+.IE .pentaho-button.disabled {
+	/* background: url('images/bg_btn_disabled.png') repeat-x left center;*/
+	cursor: default;
+}
+.IE .pentaho-button[disabled] {
+	/* background: url('images/bg_btn_disabled.png') repeat-x left center;*/
+	cursor: default;
+}
+
+.pentaho-toggle-button {
+	background: #005f7d; /* Old browsers */
+	background: -moz-linear-gradient(top, #005f7d 47%, #007297 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(47%, #005f7d), color-stop(100%, #007297)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #005f7d 47%, #007297 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #005f7d 47%, #007297 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #005f7d 47%, #007297 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #005f7d 47%, #007297 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#005f7d', endColorstr='#007297',GradientType=0 ); /* IE6-9 */
+
+	font-size: 12px;
+	color: #ffffff;
+	padding: 5px 14px;
+	border: 1px solid #0382ac;
+	white-space: nowrap;
+
+	text-align: center;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.pentaho-toggle-button-container .pentaho-toggle-button button,
+.pentaho-toggle-button button {
+	background: transparent;
+	border: none;
+	color: inherit;
+	cursor: pointer;
+	font-size: 12px;
+	font-family: 'Titillium Web', Sans;
+}
+
+.pentaho-toggle-button-horizontal {
+	margin: 2px 0px 2px 0px;
+}
+
+.pentaho-toggle-button-single {
+	/* Standard form */
+	border-radius: 5px 5px 5px 5px;
+	/* Firefox */
+	-moz-border-radius: 5px 5px 5px 5px;
+	/* Safari/Chrome */
+	-webkit-border-radius: 5px 5px 5px 5px;
+}
+
+.IE .pentaho-toggle-button-single {
+	/*background: url('images/bg_btn.png') repeat-x;
+  background-position: center center;*/
+}
+
+.pentaho-toggle-button-horizontal-first {
+	/* Standard form */
+	border-radius: 5px 0px 0px 5px;
+	/* Firefox */
+	-moz-border-radius: 5px 0px 0px 5px;
+	/* Safari/Chrome */
+	-webkit-border-radius: 5px 0px 0px 5px;
+}
+
+.pentaho-toggle-button-horizontal-last {
+	/* Standard form */
+	border-radius: 0px 5px 5px 0px;
+	/* Firefox */
+	-moz-border-radius: 0px 5px 5px 0px;
+	/* Safari/Chrome */
+	-webkit-border-radius: 0px 5px 5px 0px;
+}
+
+.pentaho-toggle-button-vertical {
+	margin: 0px 2px 0px 2px;
+}
+
+.pentaho-toggle-button-vertical-first {
+	margin: 2px 2px 0px 2px;
+	/* Standard form */
+	border-radius: 5px 5px 0px 0px;
+	/* Firefox */
+	-moz-border-radius: 5px 5px 0px 0px;
+	/* Safari/Chrome */
+	-webkit-border-radius: 5px 5px 0px 0px;
+}
+
+.pentaho-toggle-button-vertical-last {
+	/* Standard form */
+	border-radius: 0px 0px 5px 5px;
+	/* Firefox */
+	-moz-border-radius: 0px 0px 5px 5px;
+	/* Safari/Chrome */
+	-webkit-border-radius: 0px 0px 5px 5px;
+}
+
+/* Standard toggle button style. Should be applied to a <button> element to get full pseudo-styles. */
+.pentaho-toggle-button-up,
+.pentaho-toggle-button-up-disabled {
+}
+
+.IE .pentaho-toggle-button-up,
+.IE .pentaho-toggle-button-up-disabled {
+	/* background: url('images/bg_btn.png') repeat-x;
+   background-position: center center;*/
+}
+
+/* Applies the green glow to buttons */
+.pentaho-toggle-button-up-hovering {
+	background-color: #0085b0;
+}
+
+.IE .pentaho-toggle-button-up-hovering {
+	/*border: 0px solid #73FF02;
+  background: url('images/bg_btn.png') repeat-x;
+  background-position: center center;*/
+	background-color: #0085b0;
+}
+
+/* Standard toggle-button style. Should be applied to a <button> element to get full pseudo-styles. */
+.pentaho-toggle-button-down,
+.pentaho-toggle-button-down-disabled,
+.pentaho-toggle-button-down-hovering {
+	color: #293b44;
+	background: #8ac06e; /* Old browsers */
+	background: url('images/checkmark_16x16.png') no-repeat 3px center, -moz-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); /* FF3.6+ */
+	background: url('images/checkmark_16x16.png') no-repeat 3px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%, #62ab3d), color-stop(100%, #8ac06e)); /* Chrome,Safari4+ */
+	background: url('images/checkmark_16x16.png') no-repeat 3px center, -webkit-linear-gradient(top, #62ab3d 0%, #8ac06e 100%); /* Chrome10+,Safari5.1+ */
+	background: url('images/checkmark_16x16.png') no-repeat 3px center, -o-linear-gradient(top, #62ab3d 0%, #8ac06e 100%); /* Opera 11.10+ */
+	background: url('images/checkmark_16x16.png') no-repeat 3px center, -ms-linear-gradient(top, #62ab3d 0%, #8ac06e 100%); /* IE10+ */
+	background: url('images/checkmark_16x16.png') no-repeat 3px center, linear-gradient(to bottom, #62ab3d 0%, #8ac06e 100%); /* W3C */
+}
+
+.pentaho-toggle-button > .html-face {
+	padding: 0 6px;
+}
+
+.IE .pentaho-toggle-button-down,
+.IE .pentaho-toggle-button-down-disabled {
+	/* background: url('images/bg_btn_selected.png') repeat-x;
+   background-position: center center;*/
+}
+
+.IE .pentaho-toggle-button-down-hovering {
+	/*border: 0px solid #73FF02;
+  background: url('images/bg_btn_selected.png') repeat-x;
+  background-position: center center;*/
+}
+
+div#FilterPanel div.pentaho-toggle-button-down button {
+	color: #293b44;
+	background: transparent;
+	border: none;
+	color: inherit;
+}
+
+div#FilterPanel div.pentaho-toggle-button-up button {
+	background: transparent;
+	border: none;
+	color: inherit;
+}
+/* Note: By default there is no padding on the bottom as the button area supplies the necessary amount. If your dialog
+  has no buttons add an addition class to your element, pentaho-dialog-buttonless, to have full padding around the contents*/
+.pentaho-dialog,
+.bootstrap .modal.pentaho-dialog {
+	border: 1px solid #cbdde8;
+	z-index: 1050;
+	position: absolute;
+	background: #f5f6f8;
+	padding: 8px 8px 0px 8px;
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: moz-none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/*
+For IE 9 and IE10, need to add padding to the bottom of some dialogs generated with XUL
+*/
+.IE9 .pentaho-dialog#emailTestDialog,
+.IE10 .pentaho-dialog#emailTestDialog {
+	padding-bottom: 20px !important;
+}
+
+.bootstrap .modal.pentaho-dialog {
+	margin: auto;
+	width: auto;
+	height: auto;
+
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+	-moz-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+	box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+	-webkit-background-clip: none;
+	-moz-background-clip: none;
+	background-clip: border-box; /*default*/
+}
+
+.pentaho-dialog #override-description {
+	padding-bottom: 10px;
+}
+
+.pentaho-dialog#cannot-rename-dialog {
+	width: 310px;
+}
+
+.pentaho-dialog#dialogOverrideFolder,
+.pentaho-dialog#dialogRename {
+	width: 495px;
+}
+
+.pentaho-dialog#dialogOverrideFile {
+	width: 455px;
+}
+
+.pentaho-dialog#dialogRename input {
+	width: 100%;
+}
+
+div#data-controlproperties-spacer {
+	width: 2px;
+}
+
+.IE .pentaho-dialog {
+	/*border: 1px solid #000000;
+  background: url('../images/wt_transparent.png') repeat;*/
+}
+
+.IE8 #browse-properties-dialog.new-schedule-dialog .schedule-dialog-content {
+	height: 425px !important;
+}
+
+.IE9 #browse-properties-dialog.new-schedule-dialog {
+	height: 500px !important;
+}
+
+.IE9 #browse-properties-dialog.new-schedule-dialog .schedule-dialog-content {
+	height: 415px !important;
+}
+
+.IE9 .schedule-recurrence-dialog {
+	height: 500px !important;
+}
+
+.IE9 .schedule-recurrence-dialog .schedule-dialog-content {
+	height: 430px !important;
+}
+
+.IE9 .schedule-params-dialog {
+	height: 500px !important;
+}
+
+.IE9 .schedule-params-dialog .schedule-dialog-content {
+	height: 430px !important;
+}
+
+.IE9 .schedule-email-dialog .schedule-dialog-content {
+	height: 430px !important;
+}
+
+.IE10 #browse-properties-dialog.new-schedule-dialog {
+	height: 500px !important;
+}
+
+.IE10 .schedule-recurrence-dialog {
+	height: 500px !important;
+}
+
+.IE10 .schedule-recurrence-dialog .schedule-dialog-content {
+	height: 430px !important;
+}
+
+.IE10 .schedule-params-dialog {
+	height: 500px !important;
+}
+
+.IE10 .schedule-params-dialog .schedule-dialog-content {
+	height: 430px !important;
+}
+
+.IE10 .schedule-email-dialog .schedule-dialog-content {
+	height: 430px !important;
+}
+
+.IE .schedule-recurrence-dialog {
+	height: 500px !important;
+}
+
+.IE .schedule-params-dialog {
+	height: 500px !important;
+}
+
+.IE .schedule-email-dialog {
+	height: 500px !important;
+}
+
+/* Secondary style applied to pentaho-dialog elements to add a continuous 8px padding. */
+.pentaho-dialog-buttonless {
+	padding: 8px 8px 3px 8px;
+}
+
+.pentaho-dialog .Caption {
+	background: transparent;
+	font-size: 16px;
+	color: #7a9e3f;
+	cursor: move;
+	padding: 6px 0 2px 12px;
+	border: 0px solid black;
+	text-align: left;
+}
+
+.pentaho-dialog .Caption .dialog-close-button {
+	position: absolute;
+	top: 6px;
+	right: 6px;
+}
+
+.pentaho-dialog .button-panel.right {
+	text-align: right;
+}
+
+.pentaho-dialog .button-panel.center {
+	text-align: center;
+}
+
+.IE .pentaho-dialog .Caption {
+	/*background: url('images/bg_title.png') repeat-x;*/
+}
+
+.pentaho-dialog .button-panel {
+	padding: 12px 8px 0 0;
+	width: 100%;
+	height: auto;
+	margin: 0 0 10px 0;
+}
+
+.pentaho-dialog .dialog-content {
+	padding: 5px 10px 10px 10px;
+}
+
+.pentaho-dialog .button-panel .pentaho-button {
+	margin-left: 5px;
+}
+
+.dialog-content {
+	border: 0px;
+	background: #f5f6f8;
+}
+
+.dialog-button-panel {
+	padding: 2px 0px;
+}
+
+/* The following classes are handing tons of intermediate and extraneous elements generated by the GWT dialog implementation */
+.pentaho-dialog .dialogTopCenterInner {
+}
+
+.pentaho-dialog .dialogMiddleCenter {
+	height: 100%;
+}
+
+.pentaho-dialog .dialogMiddleCenterInner {
+	height: 100%;
+	color: #777;
+}
+
+.pentaho-dialog .dialogMiddleLeft {
+	display: none;
+}
+
+.pentaho-dialog .dialogMiddleRight {
+	display: none;
+}
+
+.pentaho-dialog .dialogTopLeft {
+	display: none;
+}
+
+.pentaho-dialog .dialogTopRight {
+	display: none;
+}
+
+.pentaho-dialog .dialogBottomLeft {
+	display: none;
+}
+
+.pentaho-dialog .dialogBottomRight {
+	display: none;
+}
+
+/* Find a home for these */
+.login-dialog {
+	z-index: 2000;
+}
+
+.error-login-dialog {
+	z-index: 2100;
+}
+
+/**/
+
+.glasspane {
+	/* Make sure to update .modal-backdrop style in bootstrap-namespaced.css with the changes below */
+
+	position: absolute;
+	background-color: #144b64; /*#809eab;*/
+	/* IE8 css hack for opacity */
+	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(opacity=80)';
+	filter: alpha(opacity = 80);
+	opacity: 0.8;
+	height: 100%;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 300;
+	margin: 0px;
+	padding: 0px;
+	display: none;
+}
+
+.pentaho-tabWidget {
+	display: inline-table;
+	background: transparent;
+	cursor: pointer;
+	margin-left: 0px;
+	padding: 6px 8px;
+}
+
+.IE .pentaho-tabWidget {
+	/* background: url('images/tab_off.png') repeat-x;*/
+}
+
+.pentaho-tabWidget .pentaho-tabWidgetLabel {
+	margin: 0px;
+	padding-bottom: 0px;
+	font-size: 16px;
+	color: #749db1;
+	white-space: nowrap;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+	padding: 0 8px;
+}
+#sidepaneltabset .pentaho-tabWidgetLabel {
+	padding: 0 4px;
+}
+.dialog-content .pentaho-tabWidget .pentaho-tabWidgetLabel {
+	font-size: 14px;
+}
+.pentaho-tabWidget-selected {
+	border-top: solid 1px #cbdde8;
+	border-left: solid 1px #cbdde8;
+	border-right: solid 1px #cbdde8;
+	-moz-border-radius-topleft: 1px;
+	-moz-border-radius-topright: 1px;
+	-webkit-border-top-left-radius: 1px;
+	-webkit-border-top-right-radius: 1px;
+	border-top-right-radius: 1px;
+	border-top-left-radius: 1px;
+	background: #fff;
+}
+#contentArea .pentaho-tabWidget,
+#editContainer .pentaho-tabWidget {
+	border-top: 4px solid transparent;
+}
+#contentArea .pentaho-tabWidget-selected,
+#editContainer .pentaho-tabWidget-selected {
+	border-top: solid 4px #f2ce17;
+}
+
+.IE .pentaho-tabWidget-selected {
+	/*background: url('images/tab_on.png') repeat-x;*/
+}
+
+.pentaho-tabWidget-selected .pentaho-tabWidgetLabel {
+	margin: 0px;
+	padding-bottom: 0px;
+	white-space: nowrap;
+	color: #26363d;
+}
+#props-deck-1 .pentaho-tabWidget {
+	padding: 2px 8px;
+}
+.pentaho-tab-panel {
+	background: url('images/bg_admin_tab_panel.png') repeat-x 0 0px;
+	height: 35px;
+}
+.pentaho-tab-bar {
+	background: url('images/bg_admin_tab_panel.png') repeat-x 0 0px;
+	min-height: 35px;
+}
+.dialog-content .pentaho-tab-bar {
+	background: url('images/bg_admin_tab_panel.png') repeat-x 0 -3px;
+	height: 32px;
+}
+
+.pentaho-tabBar {
+	background: url('images/bg_admin_tab_panel.png') repeat-x top left;
+	height: 35px;
+}
+
+#sidepanelinner .pentaho-tabBar,
+#editContainer .pentaho-tabBar {
+	background: url('images/bg_admin_tab_panel.png') repeat-x bottom left;
+	height: 38px;
+}
+
+#props-deck-1 .pentaho-tabBar {
+	background: url('images/bg_admin_tab_panel.png') repeat-x bottom left;
+	height: 18px;
+}
+
+.pentaho-tabPanel {
+	border-top: 0px solid #e8e9ea;
+	border-right: 1px solid #cbdde8;
+	border-bottom: 1px solid #cbdde8;
+	border-left: 1px solid #cbdde8;
+	clear: both;
+	background-color: #fff;
+}
+
+.pentaho-tab-deck-panel {
+	border-top: 0px solid #e8e9ea;
+	border-right: 1px solid #cbdde8;
+	border-bottom: 1px solid #cbdde8;
+	border-left: 1px solid #cbdde8;
+	height: 100%;
+	background-color: #fff;
+	position: relative;
+}
+
+/* Webkit browsers only */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+	#solutionNavigatorAndContentPanel .pentaho-tab-deck-panel > div {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		bottom: 0px;
+		right: 0px;
+	}
+}
+
+/* properties dialog panels */
+#filePropertiesPermissionsTab,
+#filePropertiesGeneralTab {
+	padding: 8px;
+}
+
+.pucContentDeck .pentaho-tab-deck-panel {
+	/*background: url('../images/tab_panel_bg.png');*/
+}
+
+.pentaho-tabWidget-close {
+	margin-left: 4px;
+}
+
+/* ======================= Behins Scrollbar Styles ========================= */
+/*
+   * CSS Styles that are needed by jScrollPane for it to operate correctly.
+   *
+   * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+   * may not operate correctly without them.
+   */
+
+.jspContainer {
+	overflow: hidden;
+	position: relative;
+}
+
+.jspPane {
+	position: absolute;
+}
+
+.jspVerticalBar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 16px;
+	height: 100%;
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#666666', endColorstr = '#666666', GradientType = 1);
+	font-size: 0px;
+}
+
+.jspHorizontalBar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 16px;
+	background: transparent;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#666666', endColorstr = '#666666', GradientType = 1);
+	font-size: 0px;
+}
+
+/*.jspVerticalBar *,
+  .jspHorizontalBar * {
+    margin: 0;
+    padding: 0;
+  }
+  */
+.jspCap {
+	display: none;
+}
+
+.jspHorizontalBar .jspCap {
+	float: left;
+}
+
+.jspTrack {
+	position: relative;
+}
+
+.jspDrag {
+	background: #bbd;
+	position: relative;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+}
+
+.jspHorizontalBar .jspTrack {
+	/* Safari/Chrome */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #333), color-stop(0.5, #777), color-stop(1, #333));
+	/* Firefox */
+	background: -moz-linear-gradient(top, #333, #777 50%, #333 100%);
+
+	border-top: 1px solid #b5b5b5;
+	border-bottom: 1px solid #b5b5b5;
+	/* Safari/Chrome */
+	-webkit-box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#777777', endColorstr = '#999999');
+}
+
+.jspVerticalBar .jspTrack {
+	/* Safari/Chrome */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0, #333), color-stop(0.5, #777), color-stop(1, #333));
+	/* Firefox */
+	background: -moz-linear-gradient(left, #333, #777 50%, #333 100%);
+
+	border-left: 1px solid #b5b5b5;
+	border-right: 1px solid #b5b5b5;
+	/* Safari/Chrome */
+	-webkit-box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+	/* Firefox */
+	-moz-box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+	/* Standard Form */
+	box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#7777777', endColorstr = '#9999999', GradientType = 1);
+}
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag {
+	float: left;
+	height: 100%;
+}
+
+.jspArrow {
+	text-indent: -20000px;
+	display: block;
+	cursor: pointer;
+}
+
+.jspArrow.jspDisabled {
+	cursor: default;
+}
+
+.jspVerticalBar .jspArrow {
+	height: 16px;
+}
+
+.jspVerticalBar .jspArrowDown {
+	/* Safari/Chrome */
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+
+	/* Firefox */
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+
+	border: 1px solid #b5b5b5;
+	/* Safari/Chrome */
+	-webkit-box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+	/* Firefox */
+	-moz-box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+	/* Standard Form */
+	box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+
+	background: url('../images/scroll_bottom_arrow.png') no-repeat center center;
+	/* Safari/Chrome */
+	background: url('../images/scroll_bottom_arrow.png') center center no-repeat, -webkit-gradient(linear, left top, right top, color-stop(0, #282828), color-stop(0.5, #353535), color-stop(1, #282828));
+	/* Firefox */
+	background: url('../images/scroll_bottom_arrow.png') no-repeat scroll center center, -moz-linear-gradient(center top, #282828, #353535 50%, #282828 100%);
+}
+
+.jspVerticalBar .jspArrowUp {
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+
+	border: 1px solid #b5b5b5;
+	/* Safari/Chrome */
+	-webkit-box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+	/* Safari/Chrome */
+	-moz-box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+	/* Standard Form */
+	box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+
+	background: url('../images/scroll_top_arrow.png') no-repeat center center;
+	/* Safari/Chrome */
+	background: url('../images/scroll_top_arrow.png') no-repeat center center, -webkit-gradient(linear, left top, right top, color-stop(0, #282828), color-stop(0.5, #353535), color-stop(1, #282828));
+	/* Firefox */
+	background: url('../images/scroll_top_arrow.png') no-repeat center center, -moz-linear-gradient(top, #282828, #353535 50%, #282828 100%);
+}
+
+.jspHorizontalBar .jspArrowLeft {
+	/* Safari/Chrome */
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+
+	/* Firefox */
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-bottomleft: 4px;
+
+	border: 1px solid #b5b5b5;
+	/* Safari/Chrome */
+	-webkit-box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+	/* Firefox */
+	-moz-box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+	/* Standard Form */
+	box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+
+	background: url('../images/scroll_left_arrow.png') no-repeat center center;
+	/* Safari/Chrome */
+	background: url('../images/scroll_left_arrow.png') no-repeat center center, -webkit-gradient(linear, left top, left bottom, color-stop(0, #282828), color-stop(0.5, #353535), color-stop(1, #282828));
+	/* Firefox */
+	background: url('../images/scroll_left_arrow.png') no-repeat center center, -moz-linear-gradient(left, #282828, #353535 50%, #282828 100%);
+}
+
+.jspHorizontalBar .jspArrowRight {
+	/* Safari/Chrome */
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+
+	/* Firefox */
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+
+	/* Firefox */
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+
+	border: 1px solid #b5b5b5;
+
+	/* Safari/Chrome */
+	-webkit-box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+	/* Firefox */
+	-moz-box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+	/* Standard Form */
+	box-shadow: black 0px 0px 1px, rgba(0, 0, 0, 0.699219) 0px 0px 1px inset;
+
+	background: url('../images/scroll_right_arrow.png') no-repeat center center;
+	background-repeat: no-repeat;
+	/* Safari/Chrome */
+	background: url('../images/scroll_right_arrow.png') no-repeat center center, -webkit-gradient(linear, left top, left bottom, color-stop(0, #282828), color-stop(0.5, #353535), color-stop(1, #282828));
+	/* Firefox */
+	background: url('../images/scroll_right_arrow.png') no-repeat center center, -moz-linear-gradient(left, #282828, #353535 50%, #282828 100%);
+}
+
+.jspHorizontalBar .jspArrow {
+	width: 16px;
+	float: left;
+	height: 16px;
+}
+
+.jspVerticalBar .jspArrow:focus {
+	outline: none;
+}
+
+.jspVerticalBar .jspDrag {
+	width: 8px;
+	/* Safari/Chrome */
+	-webkit-border-radius: 5px;
+	/* Firefox */
+	-moz-border-radius: 5px;
+	/* Standard Form */
+	border-radius: 5px;
+	border: 1px solid black;
+
+	/* Safari/Chrome */
+	-webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7), 0 0 3px rgba(255, 255, 255, 1) inset;
+	/* Firefox */
+	-moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7), 0 0 3px rgba(255, 255, 255, 1) inset;
+	/* Standard Form */
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7), 0 0 3px rgba(255, 255, 255, 1) inset;
+
+	/* Safari/Chrome */
+	background: url('../images/scroll_grabber.png') no-repeat center center, -webkit-gradient(linear, left top, right top, color-stop(0, #111), color-stop(0.5, #222), color-stop(1, #111));
+	/* Firefox */
+	background: url('../images/scroll_grabber.png') no-repeat center center, -moz-linear-gradient(left, #111, #222 50%, #111 100%);
+
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#777777', endColorstr = '#5555555', GradientType = 1);
+}
+
+.jspHorizontalBar .jspDrag {
+	height: 8px;
+	/* Safari/Chrome */
+	-webkit-border-radius: 5px;
+	/* Firefox */
+	-moz-border-radius: 5px;
+	/* Standard Form */
+	border-radius: 5px;
+	border: 1px solid black;
+
+	/* Safari/Chrome */
+	-webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7), 0 0 3px rgba(255, 255, 255, 1) inset;
+	/* Firefox */
+	-moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7), 0 0 3px rgba(255, 255, 255, 1) inset;
+	/* Standard Form */
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7), 0 0 3px rgba(255, 255, 255, 1) inset;
+
+	/* Firefox */
+	background: url('../images/scroll_grabber_horz.png') no-repeat center center, -webkit-gradient(linear, left top, left bottom, color-stop(0, #111), color-stop(0.5, #222), color-stop(1, #111));
+	/* Safari/Chrome */
+	background: url('../images/scroll_grabber_horz.png') no-repeat center center, -moz-linear-gradient(top, #111, #222 50%, #111 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#7777777', endColorstr = '#555555');
+}
+
+.jspHorizontalBar .jspTrack {
+	padding-top: 2px;
+}
+
+.jspVerticalBar .jspTrack {
+	padding-left: 2px;
+}
+
+.jspCorner {
+	background: #eeeef4;
+	float: left;
+	height: 100%;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner {
+	margin: 0 -3px 0 0;
+}
+
+/* ======================= End Scrollbar Styles ========================= */
+
+/* ======================= Toolbar Styles ========================= */
+
+.toolbar,
+table.toolbar {
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	background-color: #fff;
+	border-top: none;
+	border-left: none;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #cbdde8;
+}
+.IE .toolbar,
+.IE table.toolbar {
+	background-color: #fff;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #cbdde8;
+}
+
+.xul-editPanel-title {
+	background-color: #f1f1f1;
+	border-bottom: 1px solid #b5b5b5;
+}
+.xul-editPanel-title-label {
+	color: #26363d;
+}
+.xul-editPanel {
+	border: 1px solid #cbdde8;
+}
+.xul-editPanel .xul-editPanel-title,
+.xul-editPanel-title {
+	background-color: #fff;
+	border-bottom: 1px solid #cbdde8;
+}
+.xul-editPanel .xul-editPanel-title-label,
+.xul-editPanel-title-label {
+	color: #26363d;
+}
+.dialog-content .xul-editPanel,
+.xul-editPanel {
+	border: 1px solid #cbdde8;
+	background-color: #fff;
+	height: 468px;
+}
+
+.content-toolbar {
+	height: 32px;
+}
+
+.content-toolbar-button {
+	width: 28px;
+}
+
+.content-toolbar-separator {
+	width: 20px;
+}
+
+.toolbar-group-label-disabled {
+	color: #777;
+}
+
+.toolbar-group-label {
+	color: #000;
+}
+
+.toolbar-button {
+	background-color: transparent;
+	border: 1px solid rgba(0, 0, 0, 0);
+	margin: 0px;
+	width: 22px;
+	height: 22px;
+	-webkit-user-select: none;
+	outline: none;
+}
+
+.IE .toolbar-button {
+	border: 1px solid transparent;
+}
+
+input:focus {
+	outline: none;
+}
+
+.toolbar-button.toolbar-button-hovering {
+	border: 1px solid #3d6380;
+	background: rgba(255, 255, 255, 0.2);
+	cursor: pointer;
+	margin: 0px;
+	width: 22px;
+	height: 22px;
+	-webkit-user-select: none;
+	outline: none;
+}
+
+.IE .toolbar-button.toolbar-button-hovering {
+	background: none;
+	border: 1px solid #dce7ed;
+}
+
+.toolbar-toggle-button {
+	border: 1px solid rgba(0, 0, 0, 0);
+	margin: 0px;
+	width: 22px;
+	height: 22px;
+	-webkit-user-select: none;
+}
+
+.IE .toolbar-toggle-button {
+	border: 1px solid transparent;
+}
+
+.toolbar-toggle-button-down {
+	border: 1px solid #3d6380;
+	background-color: rgba(255, 255, 255, 0.2);
+	margin: 0px;
+	width: 22px;
+	height: 22px;
+	-webkit-user-select: none;
+}
+
+.IE .toolbar-toggle-button-down {
+	border: 1px solid #3d6380 !important; /* override the transparent value set in toolbar-toggle-button*/
+}
+
+.toolbar-toggle-button-down-hovering {
+	border: 1px solid #dce7ed;
+	background: rgba(255, 255, 255, 0.2);
+	margin: 0px;
+	cursor: pointer;
+}
+
+.IE .toolbar-toggle-button-down-hovering {
+	border: 1px solid #dce7ed !important;
+	background: none;
+	margin: 0px;
+	cursor: pointer;
+}
+
+.toolbar-toggle-button-hovering {
+	background: rgba(255, 255, 255, 0.2);
+	border: 1px solid #dce7ed;
+	cursor: pointer;
+	margin: 0px;
+}
+
+.IE .toolbar-toggle-button-hovering {
+	background: none;
+	border: 1px solid #dce7ed;
+	cursor: pointer;
+	margin: 0px;
+}
+
+.toolbar-combo-button {
+	margin: 1px;
+	padding-right: 14px;
+	background-position: right center;
+	background-repeat: no-repeat;
+	background-image: url('../images/comboArrow.png');
+	background-color: transparent;
+	width: 22px;
+	height: 22px;
+}
+
+.toolbar-combo-button-hovering {
+	background-color: #e8e8e8;
+	border: 1px solid #aaa;
+	cursor: pointer;
+	margin: 0px;
+	width: 22px;
+	height: 22px;
+}
+
+.toolbar-button-disabled {
+	background-color: transparent;
+}
+
+.toolbar-button-disabled-hovering {
+}
+
+.toolbar-combo-button-disabled {
+	margin: 1px;
+	padding-right: 14px;
+	background-color: transparent;
+	background-position: right center;
+	background-repeat: no-repeat;
+	background-image: url('../images/comboArrow.png');
+}
+
+.toolbar-combo-button-hovering {
+	border: 1px solid #aaa;
+	margin: 0px;
+}
+
+.pentaho-titled-toolbar {
+	/* background-color: #f1f1f1;*/
+}
+
+.IE .pentaho-titled-toolbar {
+	/*background: url('images/bg_title.png') repeat-x;*/
+}
+
+.pentaho-titled-toolbar .pentaho-titled-toolbar-label {
+	color: #26363d;
+	font-size: 13px;
+	white-space: nowrap;
+}
+
+.pentaho-bottom-bar {
+	background: #f1f1f1;
+}
+
+.IE .pentaho-bottom-bar {
+	/* background: url('images/bg_bottom_bar.png') repeat-x 0px -4px; */
+}
+
+.pentaho-transparent {
+	background-color: transparent;
+}
+
+.pentaho-gradient {
+	background: #f1f1f1; /* Old browsers */
+}
+
+.IE .pentaho-gradient {
+}
+
+.pentaho-rounded-panel {
+	padding: 4px 4px 4px 4px;
+}
+
+.IE .pentaho-rounded-panel {
+	/*background: url('../images/wt_transparent.png') repeat;*/
+}
+
+/* BEGIN IE FIXES Admin View
+     BISERVER-8275: The Home page in the Admin Perspective is shortened
+     if the Document Mode is Standards instead of Quirks mode.
+
+     In other browsers it works cause probably their rendering in Almost-Standards mode.
+
+     The present solution for IE/Standards mode
+     establishes intermediate coordinate systems
+     in the tables, using position:relative,
+     so that div children of that table's cells,
+     that need to assume the containing cell's height,
+     can use absolute positioning relative to its direct table.
+  */
+/* Have no other way to refer to this table */
+/* Setup 0,0 coordinates for absolute content inside the cells of the table */
+body.IE > table {
+	position: relative;
+}
+
+/* inside one of the tds of the referred table */
+.IE td #pucContent {
+	height: 100%;
+}
+
+/* Sometimes this div also has the class applicationShell */
+.IE #pucContent > div {
+	position: absolute;
+	height: auto; /* reset applicationShell 100% setting, otherwise bottom and top don't work well */
+	top: 0px;
+	bottom: 13px; /* Unfortunately, have to hardcode the effect of pentaho-rounded-panel class */
+	left: 0px;
+	right: 0px;
+}
+
+.IE #pucContent > div > div {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	width: 100%;
+}
+
+/* admin table */
+.IE #adminContentPanel {
+	position: relative; /* Start a new 0,0 coordinate system */
+	height: 100%;
+	width: 100%;
+}
+
+/* the div inside one of the table cells should take all available height */
+.IE #adminContentPanel > tbody > tr > td > div {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+/* END IE FIXES Admin View */
+
+.pentaho-shine {
+	background-color: transparent;
+}
+
+.IE .pentaho-shine {
+	/* background: url('../images/shine_bg.png') repeat;*/
+}
+
+.pentaho-background {
+	/* background-color: rgba(255, 255, 255, 0.2); */
+}
+
+.pentaho-toolbar-background {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+.IE .pentaho-background {
+	/*background: url('../images/wt_transparent.png') repeat;*/
+}
+
+.pentaho-padding-sm {
+	padding: 4px;
+}
+
+.pentaho-padding-lg {
+	padding: 8px;
+}
+
+.pentaho-tooltip-background {
+	background-color: #eff2f4;
+	border: 1px solid #cbdde8;
+	-webkit-box-shadow: 0px 3px 5px rgba(50, 50, 50, 0.6);
+	/* Firefox */
+	-moz-box-shadow: 0px 3px 5px rgba(50, 50, 50, 0.6);
+	/* Standard Form */
+	box-shadow: 0px 3px 5px rgba(50, 50, 50, 0.6);
+}
+
+.IE .pentaho-tooltip-background {
+	/*background: url('../images/wt_transparent.png') repeat;*/
+}
+
+.pentaho-tooltip-contents {
+	/*padding: 4px;
+  border: 1px solid #abc9d9;
+ background-color: #eff2f4; */
+}
+
+.pentaho-shadow {
+	/*
+ -webkit-box-shadow: 0px 3px 5px rgba(50, 50, 50, 0.3);
+ -moz-box-shadow:    0px 3px 5px rgba(50, 50, 50, 0.3);
+ box-shadow:         0px 3px 5px rgba(50, 50, 50, 0.3);*/
+}
+
+.pentaho-shadow-inset-glow {
+	/*  -moz-box-shadow: 1px 1px 5px 0px #333333, 0 0 1px 1px rgba(255, 255, 255, .6) inset;
+  -webkit-box-shadow: 1px 1px 5px 0px #333333, 0 0 1px 1px rgba(255, 255, 255, .6) inset;
+  box-shadow: 1px 1px 5px 0px #333333, 0 0 1px 1px rgba(255, 255, 255, .6) inset;*/
+}
+
+.pentaho-shadow-no-offset {
+	/*  -moz-box-shadow: 1px 1px 5px 0px #333333;
+  -webkit-box-shadow: 1px 1px 5px 0px #333333;
+  box-shadow: 1px 1px 5px 0px #333333;*/
+}
+
+.pentaho-rounded-panel2 {
+	/*border: 1px solid black;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+
+  -moz-box-shadow: 0 0 1px 1px rgba(255, 255, 255, .6) inset;
+  -webkit-box-shadow: 0 0 1px 1px rgba(255, 255, 255, .6) inset;
+  box-shadow: 0 0 1px 1px rgba(255, 255, 255, .6) inset;  */
+}
+
+.pentaho-rounded-panel2-shadowed {
+	/*  border: 1px solid black;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+
+  -moz-box-shadow: 1px 1px 5px 0px #333333, 0 0 1px 1px rgba(255, 255, 255, .6) inset;
+  -webkit-box-shadow: 1px 1px 5px 0px #333333, 0 0 1px 1px rgba(255, 255, 255, .6) inset;
+  box-shadow: 1px 1px 5px 0px #333333, 0 0 1px 1px rgba(255, 255, 255, .6) inset;*/
+}
+
+.pentaho-rounded-panel-bottom-lr {
+	/*  -moz-border-radius: 0px 0px 7px 7px;
+  -webkit-border-radius: 0px 0px 7px 7px;
+  border-radius: 0px 0px 7px 7px;*/
+}
+
+.pentaho-shadow-right-side {
+	/*  -moz-box-shadow: 2px 2px 4px 0 #333333;
+  -webkit-box-shadow: 2px 2px 4px 0 #333333;
+  box-shadow: 2px 2px 4px 0 #333333;*/
+}
+
+.pentaho-rounded-panel-right {
+	/*  border-top: 1px solid rgba(255, 255, 255, 0.59375);
+  border-right: 1px solid rgba(255, 255, 255, 0.59375);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.59375);
+  -moz-border-radius: 0px 5px 5px 0px;
+  -webkit-border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 5px 5px 0px;*/
+}
+
+.pentaho-rounded-panel-top-right {
+	/*  border-top: 1px solid rgba(255, 255, 255, 0.59375);
+  border-right: 1px solid rgba(255, 255, 255, 0.59375);
+  -moz-border-radius: 0px 5px 0px 0px;
+  -webkit-border-radius: 0px 5px 0px 0px;
+  border-radius: 0px 5px 0px 0px;*/
+}
+
+.pentaho-rounded-panel-top-left {
+	/*  border-top: 1px solid black;
+  border-left: 1px solid black;
+  -moz-border-radius: 5px 0px 0px 0px;
+  -webkit-border-radius: 5px 0px 0px 0px;
+  border-radius: 5px 0px 0px 0px;*/
+}
+
+.pentaho-disclosure-panel {
+	width: 100%;
+}
+
+.pentaho-disclosure-panel .header td {
+	text-shadow: 1px 2px 2px rgba(22, 24, 27, 0.5);
+	color: white;
+	font-size: 13px;
+}
+
+.pentaho-disclosure-panel-openicon {
+	width: 16px;
+	height: 16px;
+	background: url('../images/disclosure_open.png') no-repeat scroll transparent;
+}
+
+.pentaho-disclosure-panel-closeicon {
+	width: 16px;
+	height: 16px;
+	background: url('../images/disclosure_close.png') no-repeat scroll transparent;
+}
+
+.pentaho-disclosure-panel-open {
+	width: 100%;
+	padding: 6px 6px 0px 6px;
+}
+
+.pentaho-disclosure-panel-dropdown {
+	padding: 0px 10px 0px 10px;
+	overflow: hidden;
+}
+
+.pentaho-disclosure-panel-open .header {
+	text-decoration: none;
+	cursor: pointer;
+	cursor: hand;
+	background: black; /* Old browsers */
+	-moz-box-shadow: 2px 2px 6px 1px #333333;
+	-webkit-box-shadow: 2px 2px 6px 1px #333333;
+	box-shadow: 2px 2px 6px 1px #333333;
+	padding: 4px 4px 4px 4px;
+}
+
+.IE .pentaho-disclosure-panel-open .header {
+	border: none;
+	/*background: url("images/bg_btn.png")*/
+}
+
+.pentaho-disclosure-panel-closed {
+	width: 100%;
+	padding: 6px 6px 0px 6px;
+}
+
+.pentaho-disclosure-panel-closed .header {
+	text-decoration: none;
+	cursor: pointer;
+	cursor: hand;
+	background: black; /* Old browsers */
+	border: 1px solid rgba(255, 255, 255, 0.59375);
+	padding: 4px 4px 4px 4px;
+}
+
+.IE .pentaho-disclosure-panel-closed .header {
+	border: none;
+	/*background: url("images/bg_btn.png")*/
+}
+
+.contrast-color {
+	/* color: white; */
+}
+
+.contrast-background {
+}
+
+.section-header-outer {
+	padding: 1px;
+}
+
+.section-header-middle {
+	padding: 1px;
+}
+
+.section-header-inner {
+	vertical-align: middle;
+	padding-left: 4px;
+}
+
+/* ======================= File Chooser Styles ========================= */
+.pentaho-file-chooser-selection {
+	background-color: #dbdbdb;
+}
+
+/* ======================= Launcher Styles ========================= */
+.pentaho-launcher-panel-shadowed {
+	border: 1px solid black;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+
+	-moz-box-shadow: 1px 1px 5px 0px #333333, 0 0 1px 1px rgba(255, 255, 255, 0.6) inset;
+	-webkit-box-shadow: 1px 1px 5px 0px #333333, 0 0 1px 1px rgba(255, 255, 255, 0.6) inset;
+	box-shadow: 1px 1px 5px 0px #333333, 0 0 1px 1px rgba(255, 255, 255, 0.6) inset;
+}
+
+.IE .pentaho-launcher-panel-shadowed {
+	/* background: url('../images/wt_transparent.png') repeat;*/
+}
+
+.pentaho-launcher-shine {
+	background-color: transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.35)), to(rgba(255, 255, 255, 0.15)));
+	background: -moz-linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.15) 100%) repeat scroll 0 0 transparent;
+}
+
+.IE .pentaho-launcher-shine {
+	/*background: url('../images/container_bg.png') repeat;*/
+}
+
+/* ======================= Login Styles ========================= */
+.login-panel {
+	height: 100%;
+	width: 100%;
+	font-size: 13px;
+	text-shadow: rgba(255, 255, 255, 0.398438) 0px 1px 0px;
+	padding: 5px;
+}
+
+.login-panel-label {
+	font-size: 13px;
+	text-shadow: rgba(255, 255, 255, 0.398438) 0px 1px 0px;
+}
+
+.pentaho-light-text {
+	color: #888888;
+}
+
+.panel-content {
+	background: transparent;
+}
+
+.pentaho-listbox-tb {
+	border-top: 1px solid #9f9f9f;
+	border-bottom: 1px solid #9f9f9f;
+	background-color: white;
+}
+
+.pentaho-listbox {
+	border: 1px solid #cbdde8;
+	background-color: white;
+	overflow: auto;
+}
+
+.pentaho-listitem {
+	background-color: #ffffff;
+	color: #000000;
+	cursor: default;
+}
+
+.pentaho-listitem-selected {
+	background-color: #d7e9cd;
+	color: #000000;
+	cursor: default;
+	outline: none;
+}
+
+.pentaho-listitem-disabled {
+	background-color: #ffffff;
+	color: #808080;
+	cursor: default;
+}
+
+.pentaho-listitem-hover {
+	background-color: #dce7ed;
+	color: #000000;
+	cursor: default;
+}
+
+.pentaho-listitem-label {
+	padding-left: 4px;
+}
+
+.pentaho-menuitem {
+	background-color: #ffffff;
+	padding: 2px;
+	color: #000000;
+}
+
+.pentaho-menuitem-label {
+}
+
+.pentaho-menuitem.pentaho-menuitem-hover {
+	background-color: #dce7ed;
+	color: #000000;
+	padding: 2px;
+	cursor: default;
+}
+
+.pentaho-menu-outer {
+	background-color: #ffffff;
+	color: #000000;
+	border: 1px solid #000000;
+	padding: 2px;
+}
+
+.pentaho-menu-separator {
+	border-bottom: 2px solid white;
+	border-top: 2px solid white;
+	height: 5px;
+	padding: 0;
+}
+
+.pentaho-menu-separator-inner {
+	border-top: 1px solid #000000;
+}
+
+.pentaho-checkmenuitem {
+	width: 16px;
+	height: 16px;
+	background: url('../images/checkbox-empty.png') no-repeat center;
+}
+
+.pentaho-checkmenuitem.menuitem-checked {
+	width: 16px;
+	height: 16px;
+	background: url('../images/checkbox.png') no-repeat center;
+}
+
+.pentaho-menuitem-disabled {
+	color: #808080;
+}
+
+.pentaho-droppanel {
+	background-color: #d4d6db;
+	border: 1px solid rgba(0, 0, 0, 0.592);
+	margin: 0 10px;
+}
+
+.pentaho-savebutton-small {
+	width: 22px;
+	height: 22px;
+	background: url('images/save_22.png') no-repeat center;
+	cursor: pointer;
+}
+.pentaho-saveasbutton-small {
+	width: 22px;
+	height: 22px;
+	background: url('images/saveas_22.png') no-repeat center;
+	cursor: pointer;
+}
+.pentaho-openbutton-small {
+	width: 26px;
+	height: 22px;
+	background: url('images/open_22.png') no-repeat center;
+	cursor: pointer;
+}
+.pentaho-newbutton-small {
+	width: 22px;
+	height: 22px;
+	background: url('images/new_22.png') no-repeat center;
+	cursor: pointer;
+}
+
+.back-icon {
+	width: 22px;
+	height: 22px;
+	background: url('images/back_22.png') no-repeat center;
+	cursor: pointer;
+}
+
+#mqlFilterGroupbox #mqlFilterEditButton img.image-button-pressed,
+#mqlFilterGroupbox #mqlFilterEditButton img.image-button-over,
+#sqlFilterGroupbox #editQueryButton img.image-button-pressed,
+#sqlFilterGroupbox #editQueryButton img.image-button-over,
+#mqlFilterGroupbox #mqlFilterEditButton img.image-button,
+#sqlFilterGroupbox #editQueryButton img.image-button,
+.pentaho-editbutton {
+	width: 22px;
+	height: 22px;
+	background: url('images/edit_22.png') no-repeat center;
+	cursor: pointer;
+}
+
+#mqlFilterGroupbox #mqlFilterEditButton img.disabled-image-button-pressed,
+#mqlFilterGroupbox #mqlFilterEditButton img.disabled-image-button-over,
+#sqlFilterGroupbox #editQueryButton img.disabled-image-button-pressed,
+#sqlFilterGroupbox #editQueryButton img.disabled-image-button-over,
+#mqlFilterGroupbox #mqlFilterEditButton img.disabled-image-button,
+#sqlFilterGroupbox #editQueryButton img.disabled-image-button,
+.pentaho-editbutton.pentaho-imagebutton-disabled {
+	width: 22px;
+	height: 22px;
+	background: url('images/edit_22_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-addbutton {
+	width: 22px;
+	height: 22px;
+	background: url('images/add.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-addbutton.pentaho-imagebutton-disabled {
+	width: 22px;
+	height: 22px;
+	background: url('images/add_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-addcombobutton {
+	width: 22px;
+	height: 22px;
+	background: url('../images/add_combo.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-addcombobutton.pentaho-imagebutton-disabled {
+	width: 22px;
+	height: 22px;
+	background: url('../images/add_combo_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-exportbutton {
+	width: 22px;
+	height: 22px;
+	background: url('../images/export.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-exportbutton.pentaho-imagebutton-disabled {
+	width: 22px;
+	height: 22px;
+	background: url('../images/export_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-deletebutton {
+	width: 22px;
+	height: 22px;
+	background: url('images/remove.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-deletebutton.pentaho-imagebutton-disabled {
+	width: 22px;
+	height: 22px;
+	background: url('images/remove_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-datasourcebutton {
+	width: 22px;
+	height: 22px;
+	background: url('../images/datasource_sm.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-closebutton.pentaho-imagebutton-hover {
+	width: 13px;
+	height: 16px;
+	background: url('images/closeTab_active.png') no-repeat 0px 4px;
+	cursor: pointer;
+}
+
+.pentaho-closebutton {
+	width: 13px;
+	height: 16px;
+	background: url('images/closeTab_active.png') no-repeat 0px 4px;
+	cursor: pointer;
+}
+
+.pentaho-closebutton.pentaho-imagebutton-disabled {
+	width: 13px;
+	height: 16px;
+	background: url('images/closeTab_off.png') no-repeat 0px 4px;
+	cursor: default;
+}
+
+.pentaho-closebutton-big {
+	width: 30px;
+	height: 30px;
+	background: url('images/close_big.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-closebutton-big.pentaho-imagebutton-disabled {
+	width: 30px;
+	height: 30px;
+	background: url('images/close_big.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-closebutton-big.pentaho-imagebutton-hover {
+	width: 30px;
+	height: 30px;
+	background: url('images/close_big_hover.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-undobutton {
+	width: 16px;
+	height: 16px;
+	background: url('../images/undo.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-undobutton.disabled,
+.pentaho-undobutton.pentaho-imagebutton-disabled {
+	width: 16px;
+	height: 16px;
+	background: url('../images/undo_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-redobutton {
+	width: 16px;
+	height: 16px;
+	background: url('../images/redo.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-redobutton.disabled,
+.pentaho-redobutton.pentaho-imagebutton-disabled {
+	width: 16px;
+	height: 16px;
+	background: url('../images/redo_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-downbutton {
+	width: 16px;
+	height: 16px;
+	background: url('images/16x16_down.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-downbutton.pentaho-imagebutton-disabled {
+	width: 16px;
+	height: 16px;
+	background: url('images/16x16_down_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-upbutton {
+	width: 16px;
+	height: 16px;
+	background: url('images/16x16-up.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-upbutton.pentaho-imagebutton-disabled {
+	width: 16px;
+	height: 16px;
+	background: url('images/16x16-up_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-optionsbutton {
+	width: 16px;
+	height: 16px;
+	background: url('../images/options.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-optionsbutton.pentaho-imagebutton-disabled {
+	width: 16px;
+	height: 16px;
+	background: url('../images/options_disabled.png') no-repeat center;
+	cursor: default;
+}
+.prevTemplateIconOn,
+.pentaho-left-lgbutton {
+	width: 26px;
+	height: 33px;
+	background: url('images/lg_arrow_left_on.png') no-repeat center;
+	cursor: pointer;
+}
+.prevTemplateIconOff,
+.pentaho-left-lgbutton.pentaho-imagebutton-disabled {
+	width: 26px;
+	height: 33px;
+	background: url('images/lg_arrow_left_off.png') no-repeat center;
+	cursor: default;
+}
+.nextTemplateIconOn,
+.pentaho-right-lgbutton {
+	width: 26px;
+	height: 33px;
+	background: url('images/lg_arrow_right_on.png') no-repeat center;
+	cursor: pointer;
+}
+.nextTemplateIconOff,
+.pentaho-right-lgbutton.pentaho-imagebutton-disabled {
+	width: 26px;
+	height: 33px;
+	background: url('images/lg_arrow_right_off.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-forecolorbutton {
+	width: 16px;
+	height: 16px;
+	background: url('../images/font_color.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-forecolorbutton.pentaho-imagebutton-disabled {
+	width: 16px;
+	height: 16px;
+	background: url('../images/font_color_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-backcolorbutton {
+	width: 16px;
+	height: 16px;
+	background: url('../images/back_color.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-backcolorbutton.pentaho-imagebutton-disabled {
+	width: 16px;
+	height: 16px;
+	background: url('../images/back_color_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-filterbutton {
+	width: 16px;
+	height: 16px;
+	background: url('../images/filter.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-filterbutton.pentaho-imagebutton-disabled {
+	width: 16px;
+	height: 16px;
+	background: url('../images/filter_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-layoutbutton {
+	width: 16px;
+	height: 16px;
+	background: url('../images/field_layout.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-contextmenubutton {
+	width: 15px;
+	height: 15px;
+	background: url('../images/options_menu_arrow.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-pagebackbutton {
+	width: 18px;
+	height: 18px;
+	background: url('../images/page_back.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-pagebackbutton.pentaho-imagebutton-hover {
+	width: 18px;
+	height: 18px;
+	background: url('../images/page_back_over.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-pagebackbutton.pentaho-imagebutton-disabled {
+	width: 18px;
+	height: 18px;
+	background: url('../images/page_back_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.pentaho-pagenextbutton {
+	width: 18px;
+	height: 18px;
+	background: url('../images/page_forward.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-pagenextbutton.pentaho-imagebutton-hover {
+	width: 18px;
+	height: 18px;
+	background: url('../images/page_forward_over.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-pagenextbutton.pentaho-imagebutton-disabled {
+	width: 18px;
+	height: 18px;
+	background: url('../images/page_forward_disabled.png') no-repeat center;
+	cursor: default;
+}
+
+.trashcan,
+.pentaho-trashbutton {
+	width: 128px;
+	height: 150px;
+	background: url('images/trashcan.png') no-repeat center;
+}
+
+.trashcan:hover,
+.trashcan.dojoDndContainerOver,
+.pentaho-trashbutton.pentaho-imagebutton-hover {
+	background: url('images/trashcan_full.png') no-repeat center;
+	cursor: pointer;
+}
+
+.pentaho-toolbar-separator {
+	width: 1px;
+	height: 18px;
+	background: url('../images/toolbar_separator.png') no-repeat center;
+}
+
+.pentaho-table {
+	background: black;
+}
+
+.pentaho-table-header-cell {
+	padding: 8px;
+
+	background: #1a1a1a; /* Old browsers */
+	background: -moz-linear-gradient(top, #1a1a1a 0%, #333333 50%, #000000 51%, #000000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1a1a1a), color-stop(50%, #333333), color-stop(51%, #000000), color-stop(100%, #000000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #1a1a1a 0%, #333333 50%, #000000 51%, #000000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #1a1a1a 0%, #333333 50%, #000000 51%, #000000 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #1a1a1a 0%, #333333 50%, #000000 51%, #000000 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FF777777', endColorstr = '#FF000000');
+	zoom: 1;
+	background: linear-gradient(top, #1a1a1a 0%, #333333 50%, #000000 51%, #000000 100%); /* W3C */
+}
+
+.pentaho-table-header-cell .label {
+	color: white;
+}
+
+.pentaho-table-cell {
+	background-color: white;
+	padding: 0px 10px 0px 10px;
+}
+
+.pentaho-list-box {
+	border: 1px solid #cbdde8;
+}
+
+.categoryIndicator {
+	cursor: pointer;
+}
+
+.treenode-branch {
+	display: inline;
+}
+
+.treenode-open {
+	background: url('images/arrow_open.png');
+	width: 16px;
+	height: 16px;
+	float: left;
+	background-position: 0px 1px;
+}
+
+.treenode-closed {
+	background: url('images/arrow_closed.png');
+	width: 16px;
+	height: 16px;
+	float: left;
+	background-position: 0px 1px;
+}
+
+.treenode-leaf-label {
+	margin-left: 16px;
+	padding-left: 16px;
+	height: 16px;
+}
+
+.fieldlist-filtered-field {
+	background-image: url('../images/filter_sm.png');
+	background-repeat: no-repeat;
+	background-position: 2px 2px;
+}
+
+.dragDropAvatar {
+	padding: 4px;
+	background-color: #f5f6f8;
+	border: 1px solid #7a9e3f;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.dragDropTargetArea.highlightTarget {
+	background-color: #dce7ed;
+}
+
+.dragDropTargetArea {
+	background-color: #ffffff;
+	border: 1px solid #464f57;
+	padding: 2px;
+}
+
+.dragDropTargetAreaHint {
+	color: #898b8f;
+	font-size: 16px;
+	text-align: center;
+}
+
+/* styles for splash/logo dialogs */
+.splash-content {
+	/* fallback color */
+	background: #f5f6f8;
+	width: 460px !important;
+}
+
+.splashimage {
+	padding-top: 25px;
+}
+
+.splashtitle {
+	padding-top: 0px;
+	color: #7a9e3f;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+	font-size: 18px;
+	vertical-align: top;
+	heightx: 60px;
+}
+
+.splashtext {
+	color: #26363d;
+	padding: 10px 0 0 0;
+	vertical-align: top;
+	line-height: 2em;
+}
+
+/* this style can be used to force padding on an element so the shadow of its child element can be seen */
+.pentaho-shadow-padding {
+	padding-right: 8px;
+	padding-bottom: 8px;
+}
+
+.pentaho-dropdownbutton-outer {
+	padding: 4px;
+	background: #888;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(0.1, #888), color-stop(0.5, #3f3f3f), color-stop(0.55, #000), color-stop(0.9, #121212));
+	background: -moz-linear-gradient(#aaaaaa, #888888 10%, #3f3f3f 50%, #000000 55%, #121212 90%);
+	border: 1px outset gray;
+	cursor: pointer;
+	font-size: 0px;
+
+	zoom: 1;
+}
+
+.pentaho-dropdownbutton-outer.pentaho-disabled {
+	padding: 4px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(0.1, #888), color-stop(0.5, #8d8d8d), color-stop(0.55, #727272), color-stop(0.9, #747474));
+	background: -moz-linear-gradient(#aaa, #bbb 10%, #8d8d8d 50%, #727272 55%, #747474 90%);
+
+	border: 1px outset gray;
+	font-size: 0px;
+}
+
+.pentaho-dropdownbutton-inner {
+	background-image: url('../images/combo_drop_arrow.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	height: 8px;
+	width: 10px;
+	font-size: 0px;
+}
+
+.pentaho-dropdownbutton-inner.pentaho-disabled {
+	background-image: url('../images/combo_drop_arrow.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	height: 8px;
+	width: 10px;
+	font-size: 0px;
+}
+.tundra .dijitSelect .dijitButtonContents {
+	background: #fff;
+}
+
+.tundra .dijitArrowButtonInner {
+	background: url('images/16x16_down.png') no-repeat scroll 0px center;
+	width: 16px;
+	height: 16px;
+	margin: 0;
+}
+
+.IE .dialog-content .dijitComboBox .dijitArrowButton {
+	height: auto;
+	background-position: center center;
+}
+
+.dialog-content .dijitComboBox .dijitArrowButton input[type='text'],
+div.dijitDateTextBox.dijitComboBox .dijitArrowButton input[type='text'] {
+	border: none;
+	height: 20px !important;
+}
+
+.dijitComboBox {
+	/* Standard form */
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+	/* Firefox */
+	-moz-border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+
+	/* Safari/Chrome */
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+
+.dijitSelect {
+	/* Standard form */
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+	/* Firefox */
+	-moz-border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+
+	/* Safari/Chrome */
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+.tundra .dijitSelect {
+	border: 1px solid #cbdde8;
+}
+.tundra .dijitSelect .dijitArrowButton {
+	background: #8ab3c6;
+	font-size: 12px;
+	color: #000;
+	border: none;
+	cursor: pointer;
+}
+
+.pentaho-chart-icon-large {
+	background: url('../images/chart.png') no-repeat;
+	height: 48px;
+	width: 48px;
+}
+.pentaho-settings-icon-large {
+	background: url('../images/settings.png') no-repeat;
+	height: 48px;
+	width: 48px;
+}
+.pentaho-settings-complete-icon-large {
+	background: url('../images/settings_done.png') no-repeat;
+	height: 48px;
+	width: 48px;
+}
+.pentaho-play-icon-large {
+	background: url('../images/play.png') no-repeat;
+	height: 48px;
+	width: 48px;
+}
+.pentaho-play-complete-icon-large {
+	background: url('../images/play_done.png') no-repeat;
+	height: 48px;
+	width: 48px;
+}
+/* FieldsetPane styles - start */
+.pentaho-fieldset-pane {
+}
+.pentaho-fieldset-pane-header {
+	border-bottom: 2px #bbb solid;
+	overflow: visible;
+	height: 12px;
+	margin: 5px 0 10px 0;
+}
+.pentaho-fieldset-pane-header .pentaho-fieldset-pane-title {
+	padding: 0 5px;
+	background-color: #d4d6db;
+	font-size: 18px;
+}
+/* pentaho fieldset pane styles - end */
+
+.disabledpane {
+	top: auto;
+	left: auto;
+	position: absolute;
+	/* bg color is the same as panel-content so it will blend in */
+	background-color: #d4d6db;
+	/* IE8 css hack for opacity */
+	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(opacity=65)';
+	filter: alpha(opacity = 65);
+	opacity: 0.65;
+	height: 100%;
+	width: 100%;
+	z-index: 300;
+	margin: 0px;
+	padding: 0px;
+	display: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.tundra .dijitTabContainerTopNone {
+	margin-left: 3px;
+}
+
+.tundra .dijitTabCloseButton {
+	background: url('../images/close_sm_disabled.png') no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.tundra .dijitTabCloseButtonHover {
+	background: url('../images/close_sm.png') no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.tundra .dijitTabInnerDiv {
+	padding: 2px;
+}
+
+.pentaho-fieldgroup-major {
+	font-size: 22px;
+	color: #7a9e3f;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+	cursor: default;
+}
+.authMethod,
+.pentaho-fieldgroup-minor {
+	font-size: 16px;
+	color: #26363d;
+}
+.dialog-content .message {
+	text-align: left;
+}
+.dialog-buttons {
+	height: 30px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	padding: 10px 0 10px 0;
+}
+
+.warning {
+	background: url('images/warning-icon.png') no-repeat 30px center #fbeadc;
+	padding: 30px;
+	border-radius: 5px;
+	border-color: #ddd;
+	border-width: 1px;
+	border-style: solid;
+	width: 575px;
+}
+
+.warning .icon {
+	width: 20px;
+	height: 70px;
+	float: left;
+	padding-right: 8px;
+}
+
+.warning .warning-header {
+	font-size: 1.25em;
+	color: red;
+}
+
+/* added by Brett  */
+
+#pucContent {
+	top: 60px; /* Top must be the same as height in #puchHeader */
+}
+
+.tabpanel {
+	border: 0px solid #000000;
+}
+#sidepaneltabs {
+	width: 258px;
+	border-right: 1px solid #cbdde8;
+	border-left: 1px solid #cbdde8;
+	/* background: url('images/bg_side_panel.png') repeat-y top right; */
+}
+
+#fieldlistContainer {
+	border-top: 1px solid #cbdde8;
+	border-right: 1px solid #f1f1f1;
+	border-bottom: 0;
+	border-left: 1px solid #f1f1f1;
+	padding: 10px 4px;
+	width: 250px;
+}
+#datasourcelbl .label .contrast-color {
+	color: #26363d;
+}
+
+.plabel {
+	color: #26363d;
+}
+
+#bottompanel {
+	border: 0;
+	height: 40px;
+	padding: 4px;
+}
+
+.pentahoPropertiesPanel {
+	background-color: transparent;
+}
+
+.tundra .dijitTitlePaneContentOuter {
+	background-color: transparent;
+}
+
+/* -- new spinner stuff -- */
+.busy-indicator-container {
+	display: block;
+}
+.busy-indicator-container-wrapper {
+	display: table;
+}
+.spinner {
+}
+.spinner div > div {
+	/* spin.js uses inline styles, so we have to override those with !important to acheive theme-ability*/
+	background-color: #0560ab !important;
+}
+
+.large-spinner {
+	height: 48px;
+	width: 48px;
+}
+.medium-spinner {
+	height: 32px;
+	width: 32px;
+}
+.small-spinner {
+	height: 16px;
+	width: 16px;
+}
+.busy-indicator-spinner,
+.pentaho-busy-indicator-spinner {
+	display: table-cell;
+	width: 48px;
+	height: 48px;
+	vertical-align: middle;
+	padding: 20px;
+}
+.pentaho-busy-indicator-msg-contianer {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.waitPopup {
+	position: absolute;
+	width: 330px;
+	top: 44%;
+	right: 0px;
+	left: 0px;
+	margin: auto;
+	z-index: 20001;
+	height: auto;
+	border: 1px solid #abc9d9;
+	background: #cbdde8;
+}
+.waitPopup_title {
+	color: #0560ab;
+	font-size: 18px;
+	padding-bottom: 3px;
+	width: 262px;
+}
+
+.waitPopup_msg {
+	color: #6f777b;
+	font-weight: normal;
+	font-size: 14px;
+	white-space: normal;
+	width: 262px;
+}
+
+/* == == == == */
+.icon-small {
+	height: 16px;
+	width: 16px;
+}
+.icon-medium {
+	height: 32px;
+	width: 32px;
+}
+.icon-large {
+	height: 48px;
+	width: 48px;
+}
+
+.refresh-browse-perspective,
+.icon-small.icon-refresh {
+	background: url('images/refresh-small.png');
+	height: 22px;
+	width: 22px;
+	cursor: pointer;
+	filter: brightness(0) invert(1);
+}
+
+.icon-small.icon-refresh.disabled {
+	background: url('../images/refresh-small-disabled.png');
+}
+
+.icon-small.icon-run {
+	background: url('images/start-scheduler-small.png');
+	height: 22px;
+	width: 22px;
+}
+
+.icon-small.icon-run.disabled {
+	background: url('images/start-scheduler-small.png');
+	height: 22px;
+	width: 22px;
+}
+
+.icon-small.icon-open-folder {
+	background: url('images/open-folder.png');
+	height: 22px;
+	width: 22px;
+}
+
+.icon-small.icon-open-folder.disabled {
+	background: url('images/open-folder-disabled.png');
+	height: 22px;
+	width: 22px;
+}
+
+.icon-small.icon-update {
+	background: url('../images/update.png');
+}
+
+.icon-small.icon-update.disabled {
+	background: url('../images/updateDisabled.png');
+}
+
+.icon-small.icon-misc {
+	background: url('../images/misc-small.png');
+}
+
+.icon-small.icon-misc.disabled {
+	background: url('../images/misc-small-disabled.png');
+}
+
+.icon-small.icon-drop-valid {
+	background: url('../images/drop_valid.png');
+}
+.icon-small.icon-drop-invalid {
+	background: url('../images/drop_invalid.png');
+}
+
+.icon-small.icon-analysis {
+	background: url('images/file_analysis.png') no-repeat;
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-xaction {
+	background: url('images/file_action.png') no-repeat;
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-url {
+	background: url('images/file_url.png') no-repeat;
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-file {
+	background: url('images/file.png') no-repeat;
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-folder {
+	background: url('images/folder_closed.png') no-repeat;
+	height: 22px;
+	width: 22px;
+}
+.fileChooserCellLabel {
+	padding: 2px;
+}
+.icon-small.icon-waqr-report {
+	background: url('images/file_generic.png') no-repeat;
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-analyzer {
+	background: url('images/file_analysis.png') no-repeat;
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-pir-report {
+	background: url('images/prptiFile.png') no-repeat;
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-prpt-report {
+	background: url('images/prptFile.png') no-repeat;
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-dashboard {
+	background: url('images/file_dashboard.png') no-repeat;
+	height: 22px;
+	width: 22px;
+}
+
+.icon-small.icon-stop {
+	background: url('images/stop_scheduler.png') no-repeat;
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-stop-scheduler {
+	background: url('images/power-on.png');
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-start-scheduler {
+	background: url('images/power-off.png');
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-execute {
+	background: url('images/run-now.png');
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-filter-add {
+	background: url('images/filter-add-small.png');
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-filter-active {
+	background: url('../images/filter-active-small.png');
+	height: 22px;
+	width: 22px;
+}
+.icon-small.icon-filter-remove {
+	background: url('images/filter-remove-small.png');
+	height: 22px;
+	width: 22px;
+}
+
+.icon-medium.icon-open {
+	background: url('../images/open_32.png');
+}
+.icon-medium.icon-save {
+	background: url('../images/save_32.png');
+}
+.icon-medium.icon-save.disabled {
+	background: url('../images/save_32_disabled.png');
+}
+.icon-medium.icon-saveAs {
+	background: url('../images/saveAs_32.png');
+}
+.icon-medium.icon-saveAs.disabled {
+	background: url('../images/saveAs_32_disabled.png');
+}
+.icon-medium.icon-print {
+	background: url('../images/print_32.png');
+}
+.icon-medium.icon-print.disabled {
+	background: url('../images/print_32_disabled.png');
+}
+.icon-medium.icon-edit.disabled {
+	background: url('../images/editContent_32.png');
+}
+.icon-medium.icon-edit.disabled {
+	background: url('../images/editContent_32_disabled.png');
+}
+/* added by brett to override analyzer styles */
+.dijitTitlePane {
+	background-color: #f1f1f1;
+}
+.pentahoPropertiesPanel .dijitTitlePaneContentInner {
+	background-color: #f1f1f1;
+}
+.tundra .dijitTitlePaneTextNode {
+	font-size: 16px;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+	padding: 0 0 0 4px;
+}
+
+.icon-small.icon-accum-add {
+	background: url('images/accum_add.png');
+	height: 13px;
+	width: 14px;
+}
+.icon-small.icon-accum-add-all {
+	background: url('images/accum_add_all.png');
+	height: 13px;
+	width: 14px;
+}
+.icon-small.icon-accum-remove {
+	background: url('images/accum_remove.png');
+	height: 13px;
+	width: 14px;
+}
+.icon-small.icon-accum-remove-all {
+	background: url('images/accum_remove_all.png');
+	height: 13px;
+	width: 14px;
+}
+.icon-tree-leaf {
+	margin-left: 15px;
+}
+.icon-tree-node {
+	height: 14px;
+	width: 22px;
+}
+.icon-tree-node.icon-recycle-bin {
+	background: url('images/remove_16.png') no-repeat;
+	height: 16px;
+}
+.icon-tree-node.icon-folder {
+	background: url('images/folder_16.png') no-repeat;
+}
+
+.dijitFolderOpened,
+.dijitIconFolderOpen,
+.open > table .icon-tree-node.icon-folder {
+	background: url('images/folder_16-open.png') no-repeat;
+}
+
+.tree-item-collapsed > table > tbody > tr > td > img,
+.leaf-widget.parent-widget > table > tbody > tr > td > img {
+	background: url('images/arrow_closed.png') no-repeat !important;
+}
+.tree-item-expanded > table > tbody > tr > td > img,
+.leaf-widget.parent-widget.open > table > tbody > tr > td > img {
+	background: url('images/arrow_open.png') no-repeat !important;
+}
+
+.sidePanelIconOpen {
+	background: url('images/16x16_right.png') no-repeat;
+}
+
+.sidePanelIconClose {
+	background: url('images/16x16_left.png') no-repeat;
+}
+.fileBrowserColumn .body div.folder.open > div.element > div.icon {
+	background: url('images/folder_open.png') no-repeat;
+	width: 22px;
+}
+.fileBrowserColumn .body .file .icon {
+	background: url('images/file_generic.png') no-repeat;
+}
+.fileBrowserColumn .body div.folder > div.element > div.icon,
+.fileBrowserColumn .body div.folder.empty > div.element > div.icon,
+.fileBrowserColumn .body div.folder.open.empty > div.element > div.icon {
+	background: url('images/folder_closed.png') no-repeat;
+	width: 22px;
+}
+.fileBrowserColumn .body div.trash > div.element > div.icon,
+.fileBrowserColumn .body div.trash.empty > div.element > div.icon,
+.fileBrowserColumn .body div.trash.open.empty > div.element > div.icon {
+	background: url('images/trash.png') no-repeat;
+}
+.fileBrowserColumn .body .file .icon.url {
+	background: url('images/file_url.png') no-repeat;
+}
+
+.fileBrowserColumn .body .file .icon.xanalyzer {
+	background: url('images/file_analysis.png') no-repeat;
+}
+.fileBrowserColumn .body .file .icon.xdash,
+.fileBrowserColumn .body .file .xdash {
+	background: url('images/file_dashboard.png') no-repeat;
+}
+
+.fileBrowserColumn .body .file .icon.ktr,
+.fileBrowserColumn .body .file .ktr {
+	background: url('images/kettle_transformation.png') no-repeat 4px;
+}
+
+.fileBrowserColumn .body .file:hover .icon.ktr,
+.fileBrowserColumn .body .file:hover .ktr,
+.fileBrowserColumn .body .file.selected .icon.ktr,
+.fileBrowserColumn .body .file.selected .ktr {
+	background: url('images/kettle_transformation.png') no-repeat 4px;
+}
+
+.fileBrowserColumn .body .file .icon.kjb,
+.fileBrowserColumn .body .file .kjb {
+	background: url('images/kettle_job.png') no-repeat 4px;
+}
+
+.fileBrowserColumn .body .file:hover .icon.kjb,
+.fileBrowserColumn .body .file:hover .kjb,
+.fileBrowserColumn .body .file.selected .icon.kjb,
+.fileBrowserColumn .body .file.selected .kjb {
+	background: url('images/kettle_job.png') no-repeat 4px;
+}
+
+.fileBrowserColumn .body .file .icon.xaction,
+.fileBrowserColumn .body .file .xaction {
+	background: url('images/file_action.png') no-repeat;
+}
+.fileBrowserColumn .body .file .icon.prpt,
+.fileBrowserColumn .body .file .prpt {
+	background: url('images/prptFile.png') no-repeat;
+}
+.fileBrowserColumn .body .file .icon.prpti,
+.fileBrowserColumn .body .file .prpti {
+	background: url('images/prptiFile.png') no-repeat;
+}
+.fileBrowserColumn .body .file .icon.trashFolder {
+	background: url('images/folder_closed.png') no-repeat;
+}
+.fileBrowserColumn .body .file .icon.cda,
+.fileBrowserColumn .body .file .cda {
+	background: url('images/cda_20.png') no-repeat;
+}
+.fileBrowserColumn .body .file .icon.wcdf,
+.fileBrowserColumn .body .file .wcdf {
+	background: url('images/cde_20.png') no-repeat;
+}
+
+.fileBrowserColumn .body div.folder.open > div.element > div.expandCollapse {
+	background: url('images/arrow_open.png') no-repeat;
+	background-position: 0px 3px;
+	height: 16px;
+	width: 16px;
+}
+.fileBrowserColumn .body div.folder > div.element > div.expandCollapse {
+	background: url('images/arrow_closed.png') no-repeat;
+	background-position: 0px 3px;
+	height: 16px;
+	width: 16px;
+}
+.file-xanalyzer {
+	background: url('images/file_analysis_32.png') no-repeat;
+}
+
+.file-xdash {
+	background: url('images/file_dashboard_32.png') no-repeat;
+}
+.file-xaction {
+	background: url('images/file_action_32.png') no-repeat;
+}
+.file-ktr {
+	background: url('images/kettle_transformation_32.png') no-repeat;
+}
+
+.file-prpt {
+	background: url('images/prptFile_32.png') no-repeat;
+}
+
+.file-prpti {
+	background: url('images/prptiFile_32.png') no-repeat;
+}
+
+/* added by brett to override PIR styles */
+.styled > * #reportContent,
+#reportContent {
+	border: 1px solid rgb(224, 224, 224);
+}
+
+.pentaho-selection-dialog-outer {
+	border: 1px solid #cbdde8;
+	background: #f5f6f8;
+	padding: 8px 8px 0px 8px;
+}
+.pentaho-selection-dialog-inner {
+	background: transparent;
+}
+.fade {
+	background: transparent;
+}
+
+/* added by brett to override dashbaord styles */
+/* #d7e9cd; */
+/* #8ac06e; */
+.highlight-shadow {
+	-moz-box-shadow: 0 0 0px 2px #8ac06e;
+	-webkit-box-shadow: 0 0 0px 2px #8ac06e;
+	box-shadow: 0 0 0px 2px #8ac06e;
+}
+.panelContent {
+	background-color: #fff;
+	border: 0;
+}
+.edit-panel {
+	border-top: 0px solid #969696;
+	background: rgba(255, 255, 255, 0.2);
+	padding: 4px 4px 4px 4px;
+	overflow: hidden;
+	background-color: #e8f0f4;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+}
+
+#props-deck-1 > #propertiesPanel {
+	background: transparent;
+	padding: 4px;
+	border: 0px solid #666;
+}
+.gwt-ScrollTable .headerTable td {
+	color: #ffffff;
+	border-right: 1px solid rgb(255, 255, 255);
+	background: #8ab3c6;
+}
+.objectTree {
+	border: 1px solid #cbdde8;
+}
+
+.objectTree h2 {
+	color: #3d4a4f;
+}
+/* added by brett to override browser styles */
+.main-container {
+	margin: 0 auto;
+	width: 1230px;
+}
+
+.fileBrowserColumn .header {
+	border: 0;
+	font-size: 18px;
+	color: white;
+	padding: 0 0 20px 0;
+	cursor: default;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+	background: #a4bc81;
+	padding: 10px;
+	border: 0px;
+}
+
+#fileBrowserFiles.fileBrowserColumn .body,
+#fileBrowserFolders.fileBrowserColumn .body {
+	border: 1px solid #bfdce5;
+	top: 59px;
+}
+.fileBrowserColumn .body .folder .element {
+	padding: 6px;
+	font-size: 16px;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+}
+#fileBrowserButtons .body {
+	padding: 16px 0 0 0;
+	top: 59px;
+	background: white;
+	border: 1px #999 solid;
+	border-left: 10px #a4bc81 solid;
+}
+
+.fileBrowserColumn .body .file {
+	padding: 6px;
+	font-size: 16px;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+}
+/* remove trasnstion for preformance but will revisit */
+
+.fileBrowserColumn .body .folder.selected > .element {
+	font-weight: normal;
+	background: #d7e9cd;
+	/*      transition: all 300ms;
+-moz-transition: all 300ms;
+-webkit-transition: all 300ms;*/
+}
+
+.fileBrowserColumn .body .folder.secondarySelected > .element {
+	font-weight: normal;
+	background: #dce7ed;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
+.fileBrowserColumn .body .file.selected {
+	background: #d7e9cd;
+	font-weight: normal;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
+.fileBrowserColumn .body .file.selected {
+	font-weight: normal;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+#fileBrowserButtons {
+}
+
+.fileChooserHeader {
+	background-color: #8ab3c6;
+	border-bottom: 1px solid #bfdce5;
+	border-right: 1px solid #bfdce5;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-size: 14px;
+	color: #fff;
+	cursor: default;
+}
+
+.fileBrowserColumn .body .separator {
+	margin: 10px 0px;
+	border-top: solid 1px #bfdce5;
+}
+
+.fileChooser-scrollPanel {
+	background-color: white;
+	border: 1px solid #cbdde8;
+	height: 220px;
+}
+
+/*  end browser styles */
+#reportPageOutline {
+	-webkit-box-shadow: 0px 2px 3px 3px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 1px 6px 1px rgba(58, 58, 58, 0.1);
+	padding: 0;
+	margin-top: 4px;
+	border: 0;
+}
+.favorite-on {
+	background: url('images/favorite-on.png');
+	height: 32px;
+	width: 32px;
+}
+.favorite-off {
+	background: url('images/favorite-off.png');
+	height: 32px;
+	width: 32px;
+}
+.admin-perspective .pentaho-tab-deck-panel {
+	background-color: #fff;
+	border-top: 0px solid #e8e9ea;
+	border-right: 1px solid #cbdde8;
+	border-bottom: 1px solid #cbdde8;
+	border-left: 1px solid #cbdde8;
+}
+.admin-perspective .pentaho-tab-bar {
+	background-image: none;
+	height: 39px;
+}
+.admin-perspective .pentaho-tab-panel {
+	background: url('images/bg_admin_tab_panel.png') repeat-x 0 3px;
+	height: 39px;
+}
+.admin-perspective .pentaho-tabWidget {
+	border-top: solid 4px transparent;
+}
+.admin-perspective .pentaho-tabWidget-selected {
+	border-top: solid 4px #f2ce17;
+	border-left: solid 1px #cbdde8;
+	border-right: solid 1px #cbdde8;
+	-moz-border-radius-topleft: 1px;
+	-moz-border-radius-topright: 1px;
+	-webkit-border-top-left-radius: 1px;
+	-webkit-border-top-right-radius: 1px;
+	border-top-right-radius: 1px;
+	border-top-left-radius: 1px;
+	background: #fff;
+}
+button.adminButton {
+	background: url('images/auth.png');
+}
+.dijitFolderClosed,
+.dijitIconFolderClosed {
+	background-image: url('images/folder_16.png') !important;
+}
+.dijitFolderOpen,
+.dijitIconFolderOpen {
+	background-image: url('images/folder_16.png') !important;
+}
+
+/* added for Analyzer fix */
+#fieldListWrapperContentPane,
+#layoutPanelWrapper {
+	background-color: #fff;
+}
+#reportBtns {
+	background-color: #f1f1f1;
+	height: 30px;
+}
+#reportContainer {
+	border: solid 0px #cbdde8;
+	padding: 0;
+}
+.reportMain {
+	border: 0px solid rgb(224, 224, 224);
+}
+
+.pc_pageTotal,
+.dijitToolbar .pc_pageTotal {
+	padding: 4px 0px 0px 2px;
+}
+/*Overrides Analyzer styles for filter panels*/
+.reportArea #selectionFilterPanel {
+	margin-top: 2px;
+	padding: 0 1px 3px 0;
+	-webkit-box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.3);
+	box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.3);
+	background-color: transparent;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	opacity: 1;
+}
+/*Overrides pentaho button styles just for analyzer*/
+.reportArea #selectionFilterPanel > .btnContainer > button {
+	-webkit-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+}
+/* added by brett to for PIR  */
+#formattabpanelinner .tundra .dijitToolbar {
+	background-color: #fff;
+}
+.tundra .dijitToolbar,
+.tundra .dijitToolbar#toolbar {
+	background-color: #f1f1f1;
+	height: 30px;
+}
+.pentaho-table {
+	border-spacing: 1px;
+	background-color: #d7d7d7;
+}
+.pentaho-table th {
+	font-size: 16px;
+	border-spacing: 2px;
+	padding: 10px 10px 12px 10px;
+	font-weight: normal;
+	background-color: #8ab3c6;
+}
+.schedulesPanel .gwt-ScrollTable .dataTable td {
+	padding: 10px 10px 12px 10px;
+}
+.schedulesPanel .gwt-ScrollTable .headerTable td {
+	padding: 8px 10px 10px 10px;
+}
+.gwt-ScrollTable .dataTable td {
+	padding: 4px 10px 4px 10px;
+}
+.gwt-ScrollTable .headerTable {
+	background: #8ab3c6;
+}
+.gwt-ScrollTable {
+	border: 1px solid #d7d7d7;
+	overflow: hidden;
+}
+
+.gwt-ScrollTable .headerWrapper {
+	background: #d2d2d2 scroll left bottom;
+	padding-right: 0px;
+}
+.IE11 .gwt-ScrollTable .headerTable {
+	padding-right: 17px !important;
+}
+.IE .gwt-ScrollTable .headerTable td {
+	background-image: none;
+	background-color: #8ab3c6;
+}
+
+.gwt-ScrollTable .footerWrapper {
+	background: #858585;
+	border-top: 1px solid #d7d7d7;
+}
+.gwt-ScrollTable .headerTable td {
+	font-size: 16px;
+	border-spacing: 2px;
+	padding: 4px 10px 4px 10px;
+	font-weight: normal;
+	background-color: #8ab3c6;
+	border-right: 1px solid #d7d7d7;
+	border-bottom: 1px solid #d7d7d7;
+}
+#contentLinkingAssignmentTable .gwt-ScrollTable .headerTable td,
+#propertiesPanelParameterAssignmentTable .gwt-ScrollTable .headerTable td {
+	padding-left: 0px;
+	padding-right: 0px;
+	height: 20px;
+	font-size: 14px;
+}
+
+#contentLinkingAssignmentTable .gwt-ScrollTable .dataTable > tbody > tr > td,
+#propertiesPanelParameterAssignmentTable .gwt-ScrollTable .dataTable > tbody > tr > td {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.gwt-ScrollTable .headerTable tr > td:last-of-type {
+	border-right: 1px solid transparent;
+}
+
+.gwt-ScrollTable .headerTable-disabled td {
+	font-weight: normal;
+	color: #000000;
+	border-right: 0px;
+}
+
+.gwt-ScrollTable .dataTable tr {
+	background: white;
+}
+
+.gwt-ScrollTable .dataTable-disabled tr {
+	background: white;
+}
+
+.gwt-ScrollTable .dataTable td {
+	border-bottom: 1px solid #d7d7d7;
+	border-right: 1px solid #d7d7d7;
+}
+
+.gwt-ScrollTable .dataTable tr.hovering {
+	background: #dce7ed;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
+.gwt-ScrollTable .dataTable-disabled tr.hovering {
+	background: #dce7ed;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
+.gwt-ScrollTable .dataTable td.hovering {
+	background: #dce7ed;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
+.gwt-ScrollTable .dataTable tr.selected {
+	background: #d7e9cd;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
+.gwt-ScrollTable .dataTable tr:hover {
+	background: #dce7ed;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
+.gwt-ScrollTable .pagingOptions {
+	background: #e8e8e8 none repeat scroll 0% 0%;
+	border-right: 1px solid #848484;
+	border-top: 1px solid #848484;
+}
+
+.gwt-ScrollTable .pagingOptions .errorLabel {
+	color: red;
+}
+
+.gwt-CellEditor {
+	background: white none repeat scroll 0% 0%;
+	border: 3px solid #d7d7d7;
+}
+.gwt-Tree .gwt-TreeItem-selected {
+	background-color: #d7e9cd;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+.tree-item-custom-widget-selected {
+	background-color: #d7e9cd;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
+.tree-item-custom-widget-drop-hover {
+	border: 1px solid #8ab3c6;
+	background-color: #dce7ed;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+.tree-drop-indicator {
+	height: 1px;
+	background-color: #1973cd;
+	margin-top: 1px;
+	padding-right: 6px;
+}
+.tree-drop-indicator-symbol {
+	background-image: url('images/dropIndicator.png');
+	padding-left: 12px;
+	padding-top: 4px;
+}
+/* dojo grid styles ------------------------- */
+.soria .dojoxGrid {
+	background-color: transparent;
+	font-size: 14px;
+}
+
+/* header */
+
+.soria .dojoxGridHeader {
+	background-color: transparent;
+}
+
+.soria .dojoxGridHeader .dojoxGridCell {
+	font-size: 16px;
+	border-spacing: 2px;
+	padding: 8px 10px 10px 10px;
+	font-weight: normal;
+	background: #8ab3c6;
+	border-right: 1px solid #d7d7d7;
+	border-bottom: 1px solid #d7d7d7;
+	color: #fff;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+}
+
+/* rows */
+
+.soria .dojoxGridRow {
+	border: none;
+	background-color: white;
+}
+
+.soria .dojoxGridRowOver .dojoxGridCell {
+	background-color: #dce7ed;
+	color: #000;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
+.soria .dojoxGridRowSelected {
+	background-color: #d7e9cd !important;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
+/* cells */
+
+.soria .dojoxGridCell {
+	border: 1px solid #d7d7d7;
+	font-size: 14px;
+	padding: 10px 10px 12px 10px;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+}
+
+.soria .dojoxGridCellOver {
+	border: 1px solid #dce7ed;
+}
+
+/* ======================= custom drop down control =========================== */
+
+.custom-list {
+	border: 1px solid #8bb5c5;
+}
+
+.combo-arrow {
+	padding: 4px;
+	background: #8ab3c6;
+	border: 1px outset #d7d7d7;
+	cursor: pointer;
+	font-size: 0px;
+}
+
+.combo-arrow div {
+	background-image: url('images/arrow_down.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	height: 8px;
+	width: 10px;
+	font-size: 0px;
+}
+
+.combo-arrow-disabled {
+	padding: 4px;
+	background: #f1f1f1;
+	border: 1px outset gray;
+	font-size: 0px;
+}
+.combo-arrow-disabled div {
+	background-image: url('images/arrow_down_disabled.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	height: 8px;
+	width: 10px;
+	font-size: 0px;
+}
+.drop-popup {
+	border: 1px solid #cbdde8;
+}
+#controller_panel {
+	border: 0;
+}
+/* report tab bg change  */
+.dj_contentbox .pentaho-page-background {
+	background: transparent;
+	background-color: #fff;
+}
+/* report viewer  */
+.styled > * #reportControlPanel,
+#reportControlPanel {
+	max-height: 370px;
+	margin: 0px;
+	background-color: #f5f6f8;
+	border-top: 1px solid #abc9d9;
+	border-bottom: 1px solid #abc9d9;
+	border-left: 0px solid #abc9d9;
+	border-right: 0px solid #abc9d9;
+	width: 100%;
+}
+div.prompt-panel .pentaho-toggle-button-container {
+	margin: 2px 0;
+}
+.nonMobile.styled #reportControlPanel {
+	margin: 0px 0px 0px 0px;
+}
+div.prompt-panel .pentaho-toggle-button-container > div {
+	height: 30px;
+	padding: 3px;
+}
+
+.wrapper_license_message {
+	padding: 20px;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #fff;
+}
+.license_message_content {
+	width: 300px;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	margin: 0 auto;
+	padding: 20px;
+	/*-webkit-box-shadow: 0px 3px 5px rgba(50, 50, 50, 0.3);
+  box-shadow: 0px 3px 5px rgba(50, 50, 50, 0.3);*/
+	background: url('images/warning-icon.png') no-repeat 15px center #fbeadc;
+}
+.invalidLicense {
+	padding: 10px 0;
+}
+.license_message_title {
+	font-size: 16px;
+	color: red;
+	padding: 0 0 10px 40px;
+}
+.license_message_text {
+	font-size: 14px;
+	color: #000;
+	padding: 0 0 0 40px;
+	margin: 0;
+}
+#file-input-form-container {
+	height: 20px;
+	margin: 0;
+	padding: 0 0 4px 0;
+}
+
+/* Data Source Wizard styles */
+#addFileButton {
+	font-size: 12px;
+	padding: 4px 10px;
+}
+.IE #selectAll,
+.IE #tempPreviewButton,
+.IE #preview,
+#selectAll,
+#tempPreviewButton,
+#preview {
+	padding: 4px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	background: #f5f6f8;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); /* IE6-9 */
+	color: #7a9e3f;
+}
+
+.IE #createJoinButton,
+#createJoinButton {
+	padding: 0 0 2px 0px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	background: #f5f6f8;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); /* IE6-9 */
+	color: #7a9e3f;
+}
+
+.IE #deleteJoinButton,
+#deleteJoinButton {
+	padding: 0 0 2px 0px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	background: #f5f6f8;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); /* IE6-9 */
+	color: #7a9e3f;
+}
+
+#selectAll:hover,
+#tempPreviewButton:hover,
+#preview:hover,
+#createJoinButton:hover,
+#deleteJoinButton:hover {
+	text-decoration: underline;
+}
+
+#csvDeckPanel .custom-list-textbox,
+#datasourceName,
+#uploadedFile,
+.dataTable .gwt-HTML {
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+	font-size: 14px;
+	color: #26363d;
+}
+
+.caption .captionIcon {
+	display: inline-block;
+}
+
+/* Login page styles */
+#login-background {
+	text-align: center;
+	height: auto;
+	width: auto;
+	top: -50px;
+	padding-left: 20%;
+	margin: 0 auto;
+	position: relative;
+}
+#login-logo {
+	width: 0;
+	height: 93px;
+	left: 750px;
+	top: 90px;
+	position: relative;
+	opacity: 0.5;
+	-moz-transition: width 600ms linear, left 600ms linear, opacity 1s linear;
+	-webkit-transition: width 600ms linear, left 600ms linear, opacity 1s linear;
+	transition: width 600ms linear, left 600ms linear, opacity 1s linear;
+}
+#login-logo.afterSlide {
+	width: 560px;
+	left: 150px;
+	opacity: 1;
+}
+
+#login-input-container {
+	height: 155px;
+	top: 50%;
+	margin-top: -77px;
+	position: absolute;
+}
+#login-form-container {
+	left: 0;
+	margin-top: 21%;
+	top: 0;
+	width: 300px;
+	height: 220px;
+	background: rgba(255, 255, 255, 0.7);
+	padding: 20px;
+	border-radius: 5px;
+}
+
+#login-form-container.lang_fr #evaluationPanel {
+	width: 100%;
+}
+.lang_fr #evaluationPanel .login-value,
+.lang_de #evaluationPanel .login-value {
+	width: 30%;
+}
+.lang_fr #evaluationPanel .login-label,
+.lang_de #evaluationPanel .login-label {
+	width: 65%;
+}
+
+#login input[type='text'],
+#login input[type='password'] {
+	margin-right: 20px;
+	margin-left: 0px;
+	width: 202px;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+#login .input-container {
+	display: contents;
+}
+#login .input-container button {
+	margin-bottom: 10px;
+}
+
+#login-form-container h1 {
+	font-size: 44px;
+	line-height: 44px;
+	margin-bottom: 25px;
+}
+#login-footer-wrapper {
+	position: relative;
+	top: 100px; /* 90 from top of background image + 10*/
+	margin-left: auto;
+	margin-right: auto;
+	text-align: right;
+	left: 0px;
+	width: 1255px;
+	display: block;
+	overflow: hidden;
+}
+#login-footer {
+	float: right;
+	font-size: 13px;
+	color: #939da0;
+	white-space: nowrap;
+	width: 0px;
+	opacity: 0.5;
+	display: block;
+	-moz-transition: width 600ms linear, opacity 1s linear;
+	-webkit-transition: width 600ms linear, opacity 1s linear;
+	transition: width 600ms linear, opacity 1s linear;
+}
+#login-footer.afterSlide {
+	width: 400px;
+	opacity: 1;
+}
+
+#eval-users-toggle {
+	font-size: 13px;
+	color: #7a9e3f;
+	margin-top: 13px;
+	white-space: nowrap;
+	cursor: pointer;
+	display: inline-block;
+}
+#eval-users-toggle > div {
+	display: inline-block;
+}
+
+#animate-wrapper {
+	left: 550px;
+	width: 0;
+	overflow: hidden;
+	position: relative;
+	opacity: 0.5;
+	-moz-transition: width 600ms linear, left 600ms linear, opacity 1s linear;
+	-webkit-transition: width 600ms linear, left 600ms linear, opacity 1s linear;
+	transition: width 600ms linear, left 600ms linear, opacity 1s linear;
+}
+#animate-wrapper.afterSlide {
+	left: 0px;
+	width: 300px;
+	opacity: 1;
+}
+#login-wrapper {
+	height: 790px;
+}
+.login-role {
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+#evaluationPanel .login-label {
+	margin-bottom: 5px;
+	font-size: 14px;
+	min-height: 0px;
+}
+
+.login-role {
+	color: #777;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+}
+
+.login-label {
+	color: #777;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+}
+.login-value {
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+}
+#evaluationPanel .btn {
+	margin-top: 16px;
+}
+#login label {
+	font-size: 13px;
+	color: #777;
+}
+
+#login,
+#animate-wrapper > h1 {
+	white-space: nowrap;
+}
+#evaluationPanel {
+	position: relative;
+	top: -7px;
+	height: 180px;
+	border: 1px solid transparent;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	overflow: hidden;
+	-moz-transition: opacity 500ms ease-in-out;
+	-webkit-transition: opacity 500ms ease-in-out;
+	transition: opacity 500ms ease-in-out;
+}
+.IE8 #evaluationPanel {
+	display: none;
+}
+#evaluationPanel.afterSlide {
+	top: -7px;
+	height: 180px;
+	border: 1px solid #cbdde8;
+	opacity: 1;
+	filter: alpha(opacity=100);
+	background-color: #fff;
+}
+.IE8 #evaluationPanel.afterSlide {
+	display: block;
+}
+
+#role-business-user-panel {
+	padding-left: 10px;
+}
+
+#loginError,
+#systemDown {
+	padding-bottom: 8px;
+	width: 400px;
+	position: absolute;
+	left: 38%;
+	top: 40%;
+}
+
+#eval-arrow {
+	margin-left: 4px;
+	height: 12px;
+	width: 12px;
+	background-position: center;
+	background-repeat: no-repeat;
+	-moz-transition: all 300ms ease-in-out;
+	-webkit-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
+}
+/* end Login page styles */
+
+.custom-dropdown-arrow {
+	background-image: url('../images/dropdown_arrow_gray.png');
+	background-repeat: no-repeat;
+	height: 11px;
+	width: 17px;
+}
+
+.custom-dropdown-arrow.custom-dropdown-pressed {
+	background-image: url('../images/dropdown_arrow_blue.png');
+}
+
+.custom-dropdown-arrow.small {
+	background-image: url('../images/arrow-dark-small.png');
+	background-repeat: no-repeat;
+	height: 8px;
+	width: 12px;
+}
+
+#eval-arrow,
+.custom-dropdown-arrow.small.custom-dropdown-pressed {
+	background-image: url('../images/arrow-light-small.png');
+}
+#eval-arrow.closed {
+	background-image: url('../images/arrow-closed-light-small.png');
+	width: 12px;
+	height: 12px;
+}
+
+.custom-list-item-hover {
+	background-color: #dce7ed;
+}
+.custom-list-item-selected {
+	background-color: #d7e9cd;
+}
+.objectlist-selected a:hover {
+	color: black;
+	background-color: #dce7ed;
+}
+.objectlist-selected a {
+	cursor: pointer;
+	background-color: #d7e9cd;
+	padding-left: 3px;
+	color: black;
+	vertical-align: top;
+	font-size: 12px;
+}
+
+#launch-widget-body {
+	background-color: #f6f7f8;
+}
+
+/* analyzer disclosure panel arrow */
+.tundra .pentaho-titled-toolbar .dijitArrowNode {
+	background-image: url('../images/disclosure_open.png');
+}
+.tundra .pentaho-titled-toolbar.dijitClosed .dijitArrowNode {
+	background-image: url('../images/disclosure_close.png');
+}
+.pc_pageControlContainer,
+.dijitToolbar .pc_pageControlContainer {
+	padding: 0px 1px 0px 1px;
+	height: auto;
+	vertical-align: middle;
+}
+
+.indicator {
+	background-image: url('images/dropIndicator.png');
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+.indicator .indicatorLine {
+	background-color: #7a9e3f;
+}
+#standardDialog #dialogMessageBar .dlgInfo {
+	background: url(images/info.png) no-repeat;
+}
+
+/* Analyzer drag and drop indicators */
+.dnd-indicator-horizontal-left {
+	background: url(images/dnd_left_arrow.png) no-repeat;
+}
+.dnd-indicator-horizontal-line {
+	background: url(images/dnd_horz_line.png) repeat-x;
+	/* width will be set inline by javascript to be dynamic */
+}
+.dnd-indicator-horizontal-right {
+	background: url(images/dnd_right_arrow.png) no-repeat;
+}
+
+.dnd-indicator-vertical-top {
+	background: url(images/dnd_top_arrow.png);
+}
+.dnd-indicator-vertical-line {
+	background: url(images/dnd_vert_line.png) repeat-y;
+	/* height will be set inline by javascript to be dynamic */
+}
+.dnd-indicator-vertical-bottom {
+	background: url(images/dnd_bottom_arrow.png);
+}
+/* PIR drag and drop indicators */
+
+.dropActiveHorizontal {
+	background: transparent url(images/group_line_bg_active.png) repeat-x;
+}
+
+.dropActiveVertical {
+	background: transparent url(images/col_line_bg_active.png) repeat-y;
+}
+
+.dropHiliteHorizontal {
+	background: transparent url(images/group_line_bg_aadditional.png) repeat-x;
+}
+
+.dropHiliteVertical {
+	background: transparent url(images/col_line_bg_additional.png) repeat-y;
+}
+
+.dropLeftArrow {
+	background: transparent url(images/left_arrow.png);
+}
+
+.dropRightArrow {
+	background: transparent url(images/right_arrow.png);
+}
+
+.dropTopArrow {
+	background: transparent url(images/top_arrow.png);
+}
+
+.dropBottomArrow {
+	background: transparent url(images/bottom_arrow.png);
+}
+
+/*
+ * Toolbar buttons
+ */
+.pentaho-smallmeasurebutton {
+	width: 16px;
+	height: 16px;
+	background-image: url('images/gemBar_measure.png');
+}
+
+.pentaho-smalldimensionbutton {
+	background-image: url('images/sm_dim_icon.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-smallhierarchybutton {
+	background-image: url('images/sm_hierarchy_icon.png');
+	width: 13px;
+	height: 13px;
+}
+
+.pentaho-smalllevelbutton {
+	background-image: url('images/gemBar_level.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-smallmemberpropbutton {
+	background-image: url('images/sm_member_prop_icon.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-smallcategorybutton {
+	background-image: url('images/folder_16.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-fieldbutton {
+	background-image: url('images/list_16.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-autopopulatebutton {
+	background-image: url('images/auto_model.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-addfieldbutton {
+	background-image: url('images/add_to_model.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-refreshbutton {
+	background-image: url('../images/refresh.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-helpbutton {
+	background-image: url('../images/help_link.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-clearmodelbutton {
+	background-image: url('images/clear_model_16.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-smallremovebutton {
+	background-image: url('images/remove16x16.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-expandallbutton {
+	background-image: url('images/ExpandAll.png');
+	width: 15px;
+	height: 15px;
+}
+
+.pentaho-collapseallbutton {
+	background-image: url('images/CollapseAll.png');
+	width: 15px;
+	height: 15px;
+}
+
+.penatho-smalleditbutton {
+	background-image: url('images/edit_16.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-warningbutton {
+	background-image: url('../images/warning.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-updatebutton {
+	background-image: url('images/edit_22.png');
+	width: 22px;
+	height: 22px;
+}
+
+.pentaho-smallmodelbutton {
+	background-image: url('../images/sm_model_icon.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-column {
+	background-image: url('images/column.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-updatebutton.pentaho-imagebutton-disabled {
+	background-image: url('../images/updateDisabled.png');
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-movearrowbutton {
+	background-image: url('images/accum_add.png');
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-movearrowbackbutton {
+	background-image: url('images/accum_remove.png');
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.pentaho-chevron {
+	background-image: url('images/16x16_right.png');
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	background-position: 0px 2px;
+}
+
+.pentaho-filechooseupbutton {
+	background-image: url('images/up.png');
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+	padding: 4px;
+	background-repeat: no-repeat;
+	background-position: 2px 4px;
+}
+
+.IE #browse-properties-dialog {
+	height: 500px;
+}
+
+.IE #browse-properties-dialog > div > table {
+	height: 465px !important;
+}
+
+.IE #browse-properties-dialog .dialogContent {
+	position: relative;
+}
+
+.IE #browse-properties-dialog .pentaho-tab-panel {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: auto !important;
+}
+
+.reportMain .trashcan {
+	background: url('images/trashcan.png') no-repeat 4px 2px;
+}
+
+.reportMain .trashActive {
+	background: url('images/trashcan_full.png') no-repeat 4px 2px;
+}
+/* analyzer icons  */
+.gem-bar-level {
+	background: url('images/gemBar_level.png') no-repeat;
+	height: 16px;
+	width: 16px;
+}
+.gem-bar-measure {
+	background: url('images/gemBar_measure.png') no-repeat;
+	height: 16px;
+	width: 16px;
+}
+.gem-bar-filter {
+	background: url('images/gemBar_filter.png') no-repeat;
+	width: 35px;
+}
+.pentaho-undobutton {
+	background: url('images/undo.png') no-repeat;
+	width: 22px;
+	height: 22px;
+}
+.pentaho-undobutton.disabled,
+.pentaho-undobutton.pentaho-imagebutton-disabled {
+	background: url('images/undo_disable.png') no-repeat;
+	width: 22px;
+	height: 22px;
+}
+.pentaho-redobutton.disabled,
+.pentaho-redobutton.pentaho-imagebutton-disabled {
+	background: url('images/redo-disabled.png') no-repeat;
+	width: 22px;
+	height: 22px;
+}
+.pentaho-redobutton {
+	background: url('images/redo.png') no-repeat;
+	width: 22px;
+	height: 22px;
+}
+.field-panel-icon {
+	background: url('images/field_panel.png') no-repeat;
+	width: 22px;
+	height: 22px;
+}
+.field-layout-icon {
+	background: url('images/layoutpanel.png') no-repeat;
+	width: 22px;
+	height: 22px;
+}
+.pentaho-filterbutton {
+	background: url('images/filter.png') no-repeat;
+	width: 22px;
+	height: 22px;
+}
+.auto-refresh-icon {
+	background: url('images/autoRefresh.png') no-repeat;
+	width: 22px;
+	height: 22px;
+}
+.more-menu-icon {
+	background: url('images/more_menu.png') no-repeat;
+	width: 22px;
+	height: 22px;
+}
+.show-pivot-icon {
+	background: url('images/btn_table.png') no-repeat;
+	width: 22px;
+	height: 22px;
+	border: 1px solid transparent;
+}
+.show-chart-icon {
+	background: url('images/btn_chart.png') no-repeat;
+	width: 22px;
+	height: 22px;
+	border: 1px solid transparent;
+}
+
+.textfield-icon {
+	background: url('images/prompt_controls/textfield.png') no-repeat;
+	width: 32px;
+	height: 32px;
+}
+
+.format-wrapper .textfield-icon {
+	background-position: -4px -4px;
+	width: 24px;
+	height: 24px;
+}
+#arrow-menu,
+.arrow-menu-icon {
+	background: url('images/arrow_menu.png') no-repeat;
+}
+.tundra .pentaho-titled-toolbar.dijitClosed .dijitArrowNode,
+.filterPaneToggle {
+	background: url('images/arrow_closed.png') no-repeat;
+}
+.tundra .pentaho-titled-toolbar .dijitArrowNode,
+.filterSummary .hide {
+	background: url('images/arrow_open.png') no-repeat center left;
+}
+.fieldListTree .folder {
+	padding-left: 15px;
+}
+.folderClose {
+	background: url('images/arrow_closed.png') no-repeat;
+}
+.folderOpen {
+	background: url('images/arrow_open.png') no-repeat;
+}
+.helpIcon {
+	background: url('images/help_link.png') no-repeat;
+}
+/* ---------- PIR icons ----------  */
+.tundra .dijitEditorIcon.dijitEditorIconUndo {
+	background: url('images/undo.png');
+	width: 22px;
+	height: 22px;
+}
+.tundra .dijitDisabled .dijitEditorIconUndo {
+	background: url('images/undo_disable.png');
+	width: 22px;
+	height: 22px;
+}
+.tundra .dijitEditorIcon.dijitEditorIconRedo {
+	background: url('images/redo.png');
+	width: 22px;
+	height: 22px;
+}
+.tundra .dijitDisabled .dijitEditorIconRedo {
+	background: url('images/redo-disabled.png');
+	width: 22px;
+	height: 22px;
+}
+.tundra .dijitEditorIconIndent {
+	background-image: url(images/indicator_ball.gif);
+	background-position: 0;
+	height: 22px;
+	width: 22px;
+}
+.tundra .dijitEditorIcon.dijitEditorIconBold {
+	background: url('images/bold.png') no-repeat;
+}
+.tundra .dijitDisabled .dijitEditorIconBold {
+	background: url('images/bold_disabled.png') no-repeat;
+}
+
+.tundra .dijitEditorIcon.dijitEditorIconItalic {
+	background: url('images/italic.png') no-repeat;
+}
+.tundra .dijitDisabled .dijitEditorIconItalic {
+	background: url('images/italic_disabled.png') no-repeat;
+}
+
+.tundra .dijitEditorIcon.dijitEditorIconForeColor {
+	background: url('images/font_color.png') no-repeat;
+}
+.tundra .dijitDisabled .dijitEditorIconForeColor {
+	background: url('images/font_color_disabled.png') no-repeat;
+}
+
+.tundra .dijitEditorIcon.dijitEditorIconBackColor {
+	background: url('images/back_color.png') no-repeat;
+}
+.tundra .dijitDisabled .dijitEditorIconBackColor {
+	background: url('images/back_color_disabled.png') no-repeat;
+}
+
+.tundra .dijitEditorIcon.dijitEditorIconCopy {
+	background: url('images/copy_format.png') no-repeat;
+}
+.tundra .dijitDisabled .dijitEditorIconCopy {
+	background: url('images/copy_format_disabled.png') no-repeat;
+}
+
+.tundra .dijitEditorIcon.dijitEditorIconPaste {
+	background: url('images/paste_format.png') no-repeat;
+}
+.tundra .dijitDisabled .dijitEditorIconPaste {
+	background: url('images/paste_format_disabled.png') no-repeat;
+}
+
+.tundra .dijitEditorIcon.dijitEditorIconDelete {
+	background: url('images/remove_format.png') no-repeat;
+}
+.tundra .dijitDisabled .dijitEditorIconDelete {
+	background: url('images/remove_format_disabled.png') no-repeat;
+}
+.tundra .dijitEditorIcon.dijitEditorIconJustifyLeft {
+	background: url('images/align_left.png') no-repeat;
+}
+.tundra .dijitDisabled .dijitEditorIconJustifyLeft {
+	background: url('images/align_left_disabled.png') no-repeat;
+}
+.tundra .dijitEditorIcon.dijitEditorIconJustifyCenter {
+	background: url('images/align_center.png') no-repeat;
+}
+.tundra .dijitDisabled .dijitEditorIconJustifyCenter {
+	background: url('images/align_center_disabled.png') no-repeat;
+}
+.tundra .dijitEditorIcon.dijitEditorIconJustifyRight {
+	background: url('images/align_right.png') no-repeat;
+}
+.tundra .dijitDisabled .dijitEditorIconJustifyRight {
+	background: url('images/align_right_disabled.png') no-repeat;
+}
+
+.tundra .dijitEditorIcon.dijitEditorIconSelectAll {
+	background: url('images/select_all.png');
+	width: 22px;
+	height: 22px;
+}
+.tundra .dijitEditorIcon.dijitEditorIconFilter {
+	background: url('images/filter.png');
+	width: 22px;
+	height: 22px;
+}
+.tundra .dijitEditorIcon.dijitEditorIconCut {
+	background: url('images/layoutpanel.png');
+	width: 22px;
+	height: 22px;
+}
+.filterIndicatorBackground_1 {
+	background: url('images/filter_indicators/num_filter_bg_1.png') no-repeat;
+}
+.filterIndicatorBackground_2 {
+	background: url('images/filter_indicators/num_filter_bg_2.png') no-repeat;
+}
+.filterIndicatorBackground_3 {
+	background: url('images/filter_indicators/num_filter_bg_3.png') no-repeat;
+}
+.filterIndicatorBackground_4 {
+	background: url('images/filter_indicators/num_filter_bg_4.png') no-repeat;
+}
+.filterIndicatorBackground_5 {
+	background: url('images/filter_indicators/num_filter_bg_5.png') no-repeat;
+}
+.filterIndicatorBackground_6 {
+	background: url('images/filter_indicators/num_filter_bg_6.png') no-repeat;
+}
+.filterIndicatorBackground_7 {
+	background: url('images/filter_indicators/num_filter_bg_7.png') no-repeat;
+}
+.filterIndicatorBackground_8 {
+	background: url('images/filter_indicators/num_filter_bg_8.png') no-repeat;
+}
+.filterIndicatorBackground_9 {
+	background: url('images/filter_indicators/num_filter_bg_9.png') no-repeat;
+}
+.filterIndicatorBackground_9_plus {
+	background: url('images/filter_indicators/num_filter_bg_9p.png') no-repeat;
+}
+.tundra .dijitDisabled .dijitEditorIconIndent {
+	background-image: url('images/indicator_circle_ball_stop.png');
+	background-position: 0;
+	height: 22px;
+	width: 22px;
+}
+.pentaho_dijitEditorIconExport {
+	background: url('images/file_export.png') no-repeat;
+	height: 22px;
+	width: 22px;
+}
+.dijitTooltipBelow .dijitTooltipConnector {
+	background: url('images/connector_top.png') no-repeat top left;
+}
+.closeIcon {
+	background: url('images/closeTab_off.png') no-repeat top left;
+}
+.closeIcon:hover {
+	background: url('images/closeTab_active.png') no-repeat top left;
+}
+.tundra .dijitTooltipContainer .pentaho-tabWidget {
+	padding: 2px 8px;
+}
+
+.pc_pagePrev,
+.dijitToolbar .pc_pagePrev {
+	background: url('images/page_back.png') no-repeat !important;
+	background-position: 1px 3px !important;
+	height: 22px;
+	width: 22px;
+}
+.pc_pagePrevDisabled,
+.dijitToolbar .pc_pagePrevDisabled {
+	background: url('images/page_back_disabled.png') no-repeat !important;
+	background-position: 1px 3px !important;
+	height: 22px;
+	width: 22px;
+}
+.pc_pageNext,
+.dijitToolbar .pc_pageNext {
+	background: url('images/page_forward.png') no-repeat !important;
+	background-position: 1px 3px !important;
+	height: 22px;
+	width: 22px;
+}
+.pc_pageNextDisabled,
+.dijitToolbar .pc_pageNextDisabled {
+	background: url('images/page_forward_disabled.png') no-repeat !important;
+	background-position: 1px 3px !important;
+	height: 22px;
+	width: 22px;
+}
+.pentaho-optionsbutton {
+	background: url('images/options.png') no-repeat !important;
+	height: 22px;
+	width: 22px;
+}
+.pentaho-optionsdatasourcebutton {
+	width: 32px;
+	height: 32px;
+	background: url('images/options.png') no-repeat center;
+	cursor: pointer;
+}
+.dijitEditorIconParameters,
+.dijitToolbar .dijitEditorIconParameters {
+	background: url('images/list_22x22.png') no-repeat !important;
+	height: 22px !important;
+	width: 22px !important;
+}
+.dijitEditorIconParameters,
+.dijitToolbar .dijitEditorIconRefresh {
+	background: url('images/refresh_report.png') no-repeat !important;
+	height: 22px !important;
+	width: 22px !important;
+}
+.tundra .dijitToolbar .dijitButtonChecked,
+.tundra .dijitToolbar .dijitToggleButtonChecked,
+.tundra .dijitToolbar#toolbar .dijitButtonChecked,
+.tundra .dijitToolbar#toolbar .dijitToggleButtonChecked {
+	background-color: rgba(255, 255, 255, 0.2);
+	border: 1px solid #3d6380;
+}
+.tundra .dijitToolbar .dijitButtonHover,
+.tundra .dijitToolbar .dijitToggleButtonHover,
+.tundra .dijitToolbar .dijitDropDownButtonHover,
+.tundra .dijitToolbar .dijitComboButton .dijitButtonContentsHover,
+.tundra .dijitToolbar .dijitComboButton .dijitDownArrowButtonHover,
+.tundra .dijitToolbar#toolbar .dijitButtonHover,
+.tundra .dijitToolbar#toolbar .dijitToggleButtonHover,
+.tundra .dijitToolbar#toolbar .dijitDropDownButtonHover,
+.tundra .dijitToolbar#toolbar .dijitComboButton .dijitButtonContentsHover,
+.tundra .dijitToolbar#toolbar .dijitComboButton .dijitDownArrowButtonHover {
+	/* TODO: change this from Hover to Selected so that button is still highlighted while drop down is being used */
+	background-color: rgba(255, 255, 255, 0.2);
+	border: 1px solid #3d6380;
+}
+
+.pentaho-datasourcebutton {
+	background: url('images/database.png') no-repeat;
+}
+#toolbar2a {
+	background-color: #fff;
+}
+.pageSetupDialogLandscape {
+	background: url('images/landscape_off.png') no-repeat;
+}
+.pageSetupDialogLandscape:hover {
+	background-image: url(images/landscape_on.png);
+}
+.pageSetupDialogLandscapeSelected {
+	background: url('images/landscape_on.png') no-repeat;
+}
+.pageSetupDialogPortrait {
+	background: url('images/portrait_off.png') no-repeat;
+}
+.pageSetupDialogPortrait:hover {
+	background-image: url(images/portrait_on.png);
+}
+.pageSetupDialogPortraitSelected {
+	background: url('images/portrait_on.png') no-repeat;
+}
+
+/* ----------  data access ----------  */
+.pentaho-exportbutton {
+	background: url('images/file_export.png') no-repeat;
+}
+.pentaho-exportbutton.pentaho-imagebutton-disabled {
+	background: url('images/export_disabled.png') no-repeat;
+}
+.pentaho-addcombobutton {
+	background: url('images/add_combo.png') no-repeat;
+}
+
+#filterTypeDeck #staticSelectionTableEditSelected img.disabled-image-button-pressed,
+#filterTypeDeck #staticSelectionTableEditSelected img.disabled-image-button-over,
+#filterTypeDeck #staticSelectionTableEditSelected img.disabled-image-button,
+#editPovContainerPanel #povTableEditSelected img.disabled-image-button-pressed,
+#editPovContainerPanel #povTableEditSelected img.disabled-image-button-over,
+#editPovContainerPanel #povTableEditSelected img.disabled-image-button {
+	background: url('images/edit_16_disabled.png') no-repeat;
+}
+#filterTypeDeck #staticSelectionTableEditSelected img.image-button-pressed,
+#filterTypeDeck #staticSelectionTableEditSelected img.image-button-over,
+#filterTypeDeck #staticSelectionTableEditSelected img.image-button,
+#editPovContainerPanel #povTableEditSelected img.image-button-pressed,
+#editPovContainerPanel #povTableEditSelected img.image-button-over,
+#editPovContainerPanel #povTableEditSelected img.image-button {
+	background: url('images/edit_16.png') no-repeat;
+}
+#filterTypeDeck #staticSelectionTableAdd img.image-button-pressed,
+#filterTypeDeck #staticSelectionTableAdd img.image-button-over,
+#filterTypeDeck #staticSelectionTableAdd img.image-button,
+#editPovContainerPanel #povTableAdd img.image-button-pressed,
+#editPovContainerPanel #povTableAdd img.image-button-over,
+#editPovContainerPanel #povTableAdd img.image-button {
+	background: url('images/add_16.png') no-repeat;
+}
+#standardDialog .filterConditionDelete,
+#filterTypeDeck #staticSelectionTableRemoveSelected img.image-button-pressed,
+#filterTypeDeck #staticSelectionTableRemoveSelected img.image-button-over,
+#filterTypeDeck #staticSelectionTableRemoveSelected img.image-button,
+#editPovContainerPanel #povTableRemoveSelected img.image-button-pressed,
+#editPovContainerPanel #povTableRemoveSelected img.image-button-over,
+#editPovContainerPanel #povTableRemoveSelected img.image-button {
+	background: url('images/remove_16.png') no-repeat;
+}
+#filterTypeDeck #staticSelectionTableRemoveSelected img.disabled-image-button-pressed,
+#filterTypeDeck #staticSelectionTableRemoveSelected img.disabled-image-button-over,
+#filterTypeDeck #staticSelectionTableRemoveSelected img.disabled-image-button,
+#editPovContainerPanel #povTableRemoveSelected img.disabled-image-button-pressed,
+#editPovContainerPanel #povTableRemoveSelected img.disabled-image-button-over,
+#editPovContainerPanel #povTableRemoveSelected img.disabled-image-button {
+	background: url('images/remove_16_disabled.png') no-repeat;
+}
+#filterTypeDeck #staticSelectionTableMoveSelectedDown img.disabled-image-button-pressed,
+#filterTypeDeck #staticSelectionTableMoveSelectedDown img.disabled-image-button-over,
+#filterTypeDeck #staticSelectionTableMoveSelectedDown img.disabled-image-button,
+#editPovContainerPanel #povTableMoveSelectedDown img.disabled-image-button-pressed,
+#editPovContainerPanel #povTableMoveSelectedDown img.disabled-image-button-over,
+#editPovContainerPanel #povTableMoveSelectedDown img.disabled-image-button {
+	background: url('images/16x16_down_disabled.png') no-repeat;
+}
+#editPovContainerPanel #povTableMoveSelectedDown img.image-button-pressed,
+#editPovContainerPanel #povTableMoveSelectedDown img.image-button-over,
+#editPovContainerPanel #povTableMoveSelectedDown img.image-button,
+#filterTypeDeck #staticSelectionTableMoveSelectedDown img.image-button-pressed,
+#filterTypeDeck #staticSelectionTableMoveSelectedDown img.image-button-over,
+#filterTypeDeck #staticSelectionTableMoveSelectedDown img.image-button {
+	background: url('images/16x16_down.png') no-repeat;
+}
+#filterTypeDeck #staticSelectionTableMoveSelectedUp img.disabled-image-button-pressed,
+#filterTypeDeck #staticSelectionTableMoveSelectedUp img.disabled-image-button-over,
+#filterTypeDeck #staticSelectionTableMoveSelectedUp img.disabled-image-button,
+#editPovContainerPanel #povTableMoveSelectedUp img.disabled-image-button-pressed,
+#editPovContainerPanel #povTableMoveSelectedUp img.disabled-image-button-over,
+#editPovContainerPanel #povTableMoveSelectedUp img.disabled-image-button {
+	background: url('images/16x16-up_disabled.png') no-repeat;
+}
+#filterTypeDeck #staticSelectionTableMoveSelectedUp img.image-button-pressed,
+#filterTypeDeck #staticSelectionTableMoveSelectedUp img.image-button-over,
+#filterTypeDeck #staticSelectionTableMoveSelectedUp img.image-button,
+#editPovContainerPanel #povTableMoveSelectedUp img.image-button-pressed,
+#editPovContainerPanel #povTableMoveSelectedUp img.image-button-over,
+#editPovContainerPanel #povTableMoveSelectedUp img.image-button {
+	background: url('images/16x16-up.png') no-repeat;
+}
+#schemaNameLabel,
+#uploadFileLabel {
+	border: 1px solid #cbdde8;
+	vertical-align: middle;
+	height: 18px !important;
+	width: 365px !important;
+	overflow: hidden;
+	padding: 5px;
+}
+#propertiesPanelTitle {
+	width: 200px !important;
+}
+#propertiesPanelRefreshPeriod {
+	width: 30px !important;
+}
+.flag {
+	background: transparent url('images/flag-right.png') no-repeat scroll top right;
+}
+#toppanelinner {
+	padding: 0 4px 0 0;
+}
+.trashcan {
+	background: url('images/trashcan.png') no-repeat;
+}
+#datasource-button-bar {
+	padding: 0 10px;
+}
+.trashcan:hover {
+	background: url('images/trashcan_full.png') no-repeat scroll;
+}
+.colorpickertabs.tabpanel {
+	padding: 0px;
+	height: 230px;
+	width: 222px;
+	display: block;
+	border: 1px solid #cbdde8;
+	background-color: #fff;
+}
+.clickable {
+	cursor: pointer;
+}
+#modelSelectDialog div.dijitSelect {
+	display: inline-table;
+	width: 345px !important;
+}
+
+div.listbox {
+	display: inline-table;
+	width: 345px !important;
+	height: 100px !important;
+	border: 1px solid #cbdde8;
+	margin: 0.2em;
+	border-collapse: collapse;
+}
+
+div.listbox .pentaho-listbox {
+	width: 345px !important;
+	height: 100px !important;
+}
+/* Dashboard prompt controls */
+
+#filterControlsGroupbox #dropDownFilterButton img.image-button-pressed,
+#filterControlsGroupbox #dropDownFilterButton img.image-button-over,
+#filterControlsGroupbox #dropDownFilterButton img.image-button {
+	background: url('images/prompt_controls/dropdown.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+#filterControlsGroupbox #dropDownFilterButton img.disabled-image-button-pressed,
+#filterControlsGroupbox #dropDownFilterButton img.disabled-image-button-over,
+#filterControlsGroupbox #dropDownFilterButton img.disabled-image-button {
+	background: url('images/prompt_controls/dropdown_selected.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+
+#filterControlsGroupbox #listFilterButton img.image-button-pressed,
+#filterControlsGroupbox #listFilterButton img.image-button-over,
+#filterControlsGroupbox #listFilterButton img.image-button {
+	background: url('images/prompt_controls/list.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+#filterControlsGroupbox #listFilterButton img.disabled-image-button-pressed,
+#filterControlsGroupbox #listFilterButton img.disabled-image-button-over,
+#filterControlsGroupbox #listFilterButton img.disabled-image-button {
+	background: url('images/prompt_controls/list_selected.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+
+#filterControlsGroupbox #radioFilterButton img.image-button-pressed,
+#filterControlsGroupbox #radioFilterButton img.image-button-over,
+#filterControlsGroupbox #radioFilterButton img.image-button {
+	background: url('images/prompt_controls/radio.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+#filterControlsGroupbox #radioFilterButton img.disabled-image-button-pressed,
+#filterControlsGroupbox #radioFilterButton img.disabled-image-button-over,
+#filterControlsGroupbox #radioFilterButton img.disabled-image-button {
+	background: url('images/prompt_controls/radio_selected.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+
+#filterControlsGroupbox #checkboxFilterButton img.image-button-pressed,
+#filterControlsGroupbox #checkboxFilterButton img.image-button-over,
+#filterControlsGroupbox #checkboxFilterButton img.image-button {
+	background: url('images/prompt_controls/checkbox.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+#filterControlsGroupbox #checkboxFilterButton img.disabled-image-button-pressed,
+#filterControlsGroupbox #checkboxFilterButton img.disabled-image-button-over,
+#filterControlsGroupbox #checkboxFilterButton img.disabled-image-button {
+	background: url('images/prompt_controls/checkbox_selected.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+
+#filterControlsGroupbox #buttonFilterButton img.image-button-pressed,
+#filterControlsGroupbox #buttonFilterButton img.image-button-over,
+#filterControlsGroupbox #buttonFilterButton img.image-button {
+	background: url('images/prompt_controls/button.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+#filterControlsGroupbox #buttonFilterButton img.disabled-image-button-pressed,
+#filterControlsGroupbox #buttonFilterButton img.disabled-image-button-over,
+#filterControlsGroupbox #buttonFilterButton img.disabled-image-button {
+	background: url('images/prompt_controls/button_selected.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+
+#filterControlsGroupbox #textfieldFilterButton img.image-button-pressed,
+#filterControlsGroupbox #textfieldFilterButton img.image-button-over,
+#filterControlsGroupbox #textfieldFilterButton img.image-button {
+	background: url('images/prompt_controls/textfield.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+#filterControlsGroupbox #textfieldFilterButton img.disabled-image-button-pressed,
+#filterControlsGroupbox #textfieldFilterButton img.disabled-image-button-over,
+#filterControlsGroupbox #textfieldFilterButton img.disabled-image-button {
+	background: url('images/prompt_controls/textfield_selected.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+
+#filterControlsGroupbox #datepickerFilterButton img.image-button-pressed,
+#filterControlsGroupbox #datepickerFilterButton img.image-button-over,
+#filterControlsGroupbox #datepickerFilterButton img.image-button {
+	background: url('images/prompt_controls/datepicker.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+#filterControlsGroupbox #datepickerFilterButton img.disabled-image-button-pressed,
+#filterControlsGroupbox #datepickerFilterButton img.disabled-image-button-over,
+#filterControlsGroupbox #datepickerFilterButton img.disabled-image-button {
+	background: url('images/prompt_controls/datepicker_selected.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 32px;
+}
+#stepsPanel {
+	border-right: 0px solid black;
+	background-image: url(images/bg_steps.png);
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+/* instaview fiel type icon? */
+.pentaho-selectlist-item-data {
+	background-image: url('images/database.png');
+	background-repeat: no-repeat;
+	background-position: left center;
+	height: 22px;
+}
+
+/* layout panel gem styling */
+.gem {
+	height: 17px;
+	border-radius: 0px;
+	padding: 1px 5px;
+	margin-bottom: 4px;
+	min-width: 120px;
+	background: #fdf296;
+	border: 1px solid #d6b225;
+}
+
+.IE .gem {
+	background: #fdf296;
+}
+
+.IE .propPanel_gemBar.number .gem {
+	background: #ddf4fc;
+}
+
+.propPanel_gemBar {
+	background: #f5f6f8;
+	border: 0px;
+}
+
+.propPanel_gemBar.number .gem {
+	background: #ddf4fc;
+	border: 1px solid #7ec9f2;
+}
+
+.propPanel_gemBar.number .gem.over {
+	background: #d7e9cd;
+	border: 1px solid #8ac06e;
+	-moz-box-shadow: #f2fbe8 0px 0px 1px 1px inset;
+	-webkit-box-shadow: #f2fbe8 0px 0px 1px 1px inset;
+}
+
+.gem.over {
+	background: #cbefa3;
+	border: 1px solid #87df27;
+	-moz-box-shadow: #f2fbe8 0px 0px 1px 1px inset;
+	-webkit-box-shadow: #f2fbe8 0px 0px 1px 1px inset;
+}
+.gem .gemMenuHandle {
+	float: right;
+	background-image: url('images/16x16_down.png');
+}
+
+.gem.over .gemMenuHandle {
+	background-image: url('images/16x16_down.png');
+}
+.gem.over .gemMenuHandle.over {
+	background-image: url('images/16x16_down.png');
+}
+
+#getting-started-message-content #title {
+	font-size: 22px;
+	font-family: Titillium Web;
+	line-height: 30px;
+	padding-bottom: 10px;
+	width: 300px;
+}
+
+#getting-started-message-content #message {
+	font-size: 16px;
+	line-height: 22px;
+	width: 300px;
+}
+
+.welcome-img {
+	padding: 0 10px 0 0;
+}
+
+#video-container {
+	padding: 4px 4px 0 0;
+}
+
+#getting-started .card {
+	display: block;
+	border-top: 2px solid transparent;
+	border-bottom: 1px solid transparent;
+	border-left: 1px solid #c1d7e1;
+	border-right: 1px solid transparent;
+	padding: 10px;
+}
+
+#launch-widget .card {
+	border-bottom: 2px solid transparent;
+	border-left: 1px solid transparent;
+	border-top: 1px solid #c1d7e1;
+	border-right: 1px solid transparent;
+	padding: 10px;
+}
+
+#launch-widget .tutorial-card {
+	width: 300px;
+}
+
+#launch-widget .sample-card {
+	width: 500px;
+}
+
+#launch-widget .selected {
+	background-color: #fff;
+	border-bottom: 2px solid #f2ce17;
+	border-left: 1px solid #c1d7e1;
+	border-top: 1px solid #fff;
+	border-right: 1px solid #c1d7e1;
+}
+
+#getting-started .selected {
+	background-color: #fff;
+	border-top: 2px solid #f2ce17;
+	border-bottom: 1px solid #c1d7e1;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #c1d7e1;
+}
+
+#getting-started .card-img,
+#launch-widget .card-img {
+	width: 150px;
+	height: 100px;
+}
+
+#getting-started .selector-column {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 190px;
+	height: 381px;
+}
+
+#launch-widget .horizontal-selector {
+	overflow-x: auto;
+	overflow-y: hidden;
+	position: absolute;
+	bottom: 0;
+}
+
+#getting-started .vertical-selector {
+	display: block;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 100%;
+}
+
+#launch-widget .horizontal-selector,
+#getting-started .vertical-selector {
+	background-color: #f5f6f8;
+	padding: 0px;
+	font-size: 12px;
+	border-top: 0px solid #c1d7e1;
+}
+
+#launch-widget.widget-panel .tab-content {
+	padding-left: 0px;
+}
+
+#getting-started #tab2 .details-img {
+	width: 644px;
+	height: 299px;
+	position: absolute;
+	bottom: 4px;
+}
+#getting-started #tab3 .details-img {
+	width: 644px;
+	height: 299px;
+	position: absolute;
+	bottom: 8px;
+}
+
+#getting-started .details-content {
+	width: 400px;
+}
+
+.details-content {
+	padding: 20px 0 0 20px;
+}
+
+#getting-started .detail-title {
+	padding: 0 0 20px 0;
+}
+
+#launch-widget .detail-title {
+	padding: 0 0 10px 0;
+}
+
+.detail-title {
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+	font-size: 22px;
+	color: #26363d;
+}
+
+.detail-description {
+	padding: 0 0 20px 0;
+	font-size: 14px;
+	color: #26363d;
+}
+
+#getting-started .detail-description {
+	font-size: 16px;
+	line-height: 22px;
+	display: none;
+}
+
+#getting-started .button-container {
+	position: absolute;
+	z-index: 1;
+	top: 200px;
+	left: 250px;
+}
+
+#getting-started-media-content {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#getting-started .pentaho-button {
+	font-size: 18px;
+	padding-right: 35px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
+	background: url('images/open_new_window.png') no-repeat right center, -moz-linear-gradient(top, #007297 47%, #005f7d 100%); /* FF3.6+ */
+	background: url('images/open_new_window.png') no-repeat right center, -webkit-gradient(linear, left top, left bottom, color-stop(47%, #007297), color-stop(100%, #005f7d)); /* Chrome,Safari4+ */
+	background: url('images/open_new_window.png') no-repeat right center, -webkit-linear-gradient(top, #007297 47%, #005f7d 100%); /* Chrome10+,Safari5.1+ */
+	background: url('images/open_new_window.png') no-repeat rightcenter, -o-linear-gradient(top, #007297 47%, #005f7d 100%); /* Opera 11.10+ */
+	background: url('images/open_new_window.png') no-repeat right center, -ms-linear-gradient(top, #007297 47%, #005f7d 100%); /* IE10+ */
+	background: url('images/open_new_window.png') no-repeat right center, linear-gradient(to bottom, #007297 47%, #005f7d 100%); /* W3C */
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	width: 220px;
+}
+
+#getting-started .pentaho-button:hover {
+	-moz-box-shadow: inset 0 0 1px #fff;
+	-webkit-box-shadow: inset 0 0 1px #fff;
+	box-shadow: inset 0 0 1px #fff;
+	background: url('images/open_new_window.png') no-repeat right center, #0085b0; /* Old browsers */
+}
+
+#launch-widget #sample-container {
+	height: 462px;
+	padding: 0 20px;
+}
+
+#sample-sub-container {
+	border: 1px solid #c1d7e1;
+	width: 100%;
+	height: 100%;
+}
+
+#launch-widget .detail-title {
+	padding: 0 0 10px 0;
+}
+
+#launch-widget .tab-pane {
+	height: 1000px;
+}
+
+#launch-widget #tab1,
+#launch-widget #tab2,
+#launch-widget #tab3 {
+	height: 760px;
+	position: relative;
+}
+
+#getting-started #welcome-video {
+	padding: 31px 0 0 0;
+}
+
+#launch-widget #welcome-video {
+	padding: 98px 0 0 0;
+}
+
+#launch-widget #sample {
+	height: 480px;
+}
+
+#launch-widget-container.main-container {
+	padding-top: 0px;
+}
+
+#launch-widget {
+	padding-top: 0px;
+}
+
+#launch-widget-title-row-span {
+	padding: 0 19px;
+}
+
+#launch-widget-title-row #logo {
+	background-image: url('../images/logo.png');
+	width: 185px;
+	height: 50px;
+	float: right;
+	margin: 10px 0;
+}
+
+#launch-widget-title-row #launch-widget-title {
+	float: left;
+	margin-top: 25px;
+}
+
+.file-unknown {
+	background: url('images/file_generic_32.png');
+}
+
+.file-url {
+	background: url('images/file_url_32.png');
+}
+
+#eval-users-toggle {
+	font-size: 13px;
+	color: #7a9e3f;
+	margin-top: 13px;
+	white-space: nowrap;
+	cursor: pointer;
+	display: inline-block;
+	background: url(images/login_yellow_bar.png) no-repeat;
+	background-position: bottom left;
+	padding: 0 0 10px 0;
+}
+
+.resize-wrapper-top,
+.resize-wrapper-inner {
+	background: #144b64;
+}
+
+.icon-table {
+	height: 16px;
+	width: 16px;
+	background: url('images/table.png');
+}
+.icon-fact-table {
+	height: 16px;
+	width: 16px;
+	background: url('images/table_fact.png');
+}
+
+.fileBrowserColumn .body .file .icon.cda,
+.fileBrowserColumn .body .file .cda {
+	background: url('../images/cda_20.png') no-repeat;
+}
+.fileBrowserColumn .body .file .icon.wcdf,
+.fileBrowserColumn .body .file .wcdf {
+	background: url('../images/cde_20.png') no-repeat;
+}
+
+.file-cda {
+	background: url('../images/cda_32.png') no-repeat;
+}
+
+.file-wcdf {
+	background: url('../images/cde_32.png') no-repeat;
+}
+
+/********** angular-directives **********/
+.bootstrap .accordion-wizard .accordion-title .accordion-heading-content {
+	color: #0088cc;
+}
+.bootstrap .accordion-wizard .summary-label {
+	color: #bbb;
+}
+.bootstrap .accordion-wizard .accordion-group {
+	background-color: #fff;
+}
+.bootstrap .accordion-wizard .accordion-group.accordion-group-active {
+	background-color: #f8f8f8;
+}
+/********** /angular-directives **********/
+
+.dijitPopup.dijitCalendarPopup .dijitCalendarContainer .dijitDownArrowButton .dijitArrowButtonInner {
+	background: url('images/16x16_down.png') no-repeat scroll center;
+	width: 16px;
+	height: 16px;
+	margin: 0;
+}
+
+.dijitPopup .dijitCalendarContainer .dijitCalendarIncrementControl.dijitCalendarDecrease {
+	background: url('images/16x16_left.png') no-repeat scroll center;
+	width: 16px;
+	height: 16px;
+	margin: 0;
+}
+
+.dijitPopup .dijitCalendarContainer .dijitCalendarIncrementControl.dijitCalendarIncrease {
+	background: url('images/16x16_right.png') no-repeat scroll center;
+	width: 16px;
+	height: 16px;
+	margin: 0;
+}
+
+.dijitPopup.dijitCalendarPopup .dijitCalendarContainer {
+	border: 2px solid #cbdde8;
+	background-color: #fff;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.dijitCalendarContainer .dijitCalendarMonthContainer .dijitDropDownButton {
+	border: 2px solid #cbdde8;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 97%;
+}
+
+.dijitCalendarPopup.dijitPopup .dijitCalendarContainer * {
+	background-color: #ffffff;
+	background-image: none;
+}
+
+.dijitCalendarContainer .dijitCalendarSelectedDate,
+.dijitCalendarContainer .dijitCalendarSelectedDate .dijitCalendarDateLabel,
+.dijitCalendarContainer .dijitCalendarSelectedYear {
+	background-color: #cbdde8 !important;
+}
+
+.dijitCalendarMonthMenu.dijitMenu {
+	background-color: #fff;
+	border: 2px solid #cbdde8;
+	border-top: none;
+}
+
+.dijitCalendarMonthMenu.dijitMenu .dijitCalendarMonthLabel,
+.dijitCalendarContainer .dijitDropDownButton .dijitButtonText,
+.dijitCalendarPopup.dijitPopup .dijitCalendarContainer {
+	font-family: Titillium Web;
+	font-weight: normal;
+}
+
+.dijitCalendarMonthMenu.dijitMenu .dijitCalendarMonthLabelHover {
+	background-color: #cbdde8;
+	color: #144b64;
+}
+
+.dijitCalendarMonthMenu.dijitMenu .dijitCalendarMonthLabelHover:active {
+	background-color: #cbefa3;
+}
+
+.dijitCalendarContainer .dijitCalendarDayLabelTemplate {
+	border-top: none;
+	border-bottom: solid 1px #cbdde8;
+	color: #7a9e3f;
+}
+
+.dijitCalendarContainer .dijitCalendarYearLabel {
+	border-top: solid 1px #cbdde8;
+}
+
+.dijitCalendarContainer .dijitCalendarDateTemplate {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 0px;
+	padding-right: 0px;
+
+	text-align: center;
+}
+
+.dijitCalendarContainer [widgetid*='lookup_popup_mddb'] {
+	position: relative;
+	left: -2px;
+}
+
+[id*='DP'] .dijitDownArrowButton,
+div.dijitDateTextBox .dijitDownArrowButton {
+	height: 20px;
+	background-image: none !important;
+}
+
+[id*='DP'] .dijitDownArrowButton input,
+div.dijitDateTextBox .dijitDownArrowButton input {
+	padding: 0px;
+}
+
+#widget_DP_range1_lookup,
+#widget_DP_range2_lookup,
+div.dijitDateTextBox {
+	height: 20px;
+	width: 120px;
+}
+
+#date-picker-dlg-wrapper {
+	width: 100%;
+}
+
+.dialog-content #date-picker-dlg-wrapper .dijitComboBox .dijitArrowButton,
+div.dijitDateTextBox.dijitComboBox .dijitArrowButton {
+	border: none;
+	box-shadow: none;
+}
+
+#date-picker-dlg-wrapper .dijitComboBox,
+div.dijitDateTextBox.dijitComboBox {
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+#date-picker-dlg-wrapper #DP_range1,
+#date-picker-dlg-wrapper #DP_range2 {
+	text-align: center;
+}
+
+#DP_range1 #widget_DP_range1_lookup,
+div.dijitDateTextBox.dijitTextBox {
+	margin: auto;
+}
+
+#DP_range1_lookup,
+#DP_range2_lookup,
+div.dijitDateTextBox input.dijitInputInner[type='text'] {
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-left: 5px !important;
+	padding-bottom: 0px;
+	text-align: left;
+}
+
+#widget_DP_range1_lookup_dropdown,
+#widget_DP_range2_lookup_dropdown {
+	margin-top: 10px !important;
+	margin-left: -34px !important;
+}
+
+div.dijitPopup.dijitCalendarPopup {
+	margin-top: 3px !important;
+}
+
+#date-picker-dlg-wrapper .example-calendar {
+	width: 184px;
+	height: 191px;
+	background-image: url('images/calendar_example.png');
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
+
+#widget_DP_range1_lookup .dijitArrowButtonInner,
+#widget_DP_range2_lookup .dijitArrowButtonInner,
+div.dijitDateTextBox .dijitArrowButtonInner {
+	background-image: url('images/calendar_icon.png') !important;
+}
+
+#widget_DP_range1_lookup,
+div.dijitDateTextBox.dijitTextBox {
+	border-color: #cbdde8;
+	background-image: none;
+}
+
+/*Angular Tree control directive*/
+
+[treecontrol] .treeControlView,
+treecontrol .treeControlView {
+	border: 1px solid #0088cc;
+	background-color: #ffffff;
+	height: 100%;
+	overflow: auto;
+}
+
+[treecontrol] .arrow-expanded,
+treecontrol .arrow-expanded {
+	padding: 1px 10px;
+	background: url('images/arrow_open.png') no-repeat;
+}
+
+[treecontrol] .arrow-collapsed,
+treecontrol .arrow-collapsed {
+	padding: 1px 10px;
+	background: url('images/arrow_closed.png') no-repeat;
+}
+
+[treecontrol] .blank,
+treecontrol .blank {
+	padding: 1px 10px;
+}
+
+/* classic tree css */
+[treecontrol].tree-classic li.tree-expanded i,
+treecontrol.tree-classic li.tree-expanded i {
+	padding: 1px 10px;
+	background: url('images/folder_open.png') no-repeat;
+	width: 22px;
+}
+
+[treecontrol].tree-classic li.tree-collapsed i,
+treecontrol.tree-classic li.tree-collapsed i {
+	padding: 1px 10px;
+	background: url('images/folder_closed.png') no-repeat;
+	width: 22px;
+}
+
+[treecontrol].tree-classic li.tree-normal i,
+treecontrol.tree-classic li.tree-normal i {
+	padding: 1px 10px;
+	background: url('images/file_generic.png') no-repeat;
+	width: 22px;
+}
+
+[treecontrol].tree-classic li .tree-selected,
+treecontrol.tree-classic li .tree-selected {
+	background-color: #d7e9cd;
+}
+
+.bootstrap .pentaho-toggle .btn.toggle-on.active {
+}
+.bootstrap .pentaho-toggle .btn.toggle-on.inactive {
+	background-image: none;
+	background-color: #fff;
+	color: #fff;
+	text-shadow: none;
+}
+
+.bootstrap .pentaho-toggle .btn.toggle-off.active {
+	background-image: none;
+	background-color: #f8f8f8;
+	color: #000;
+	text-shadow: none;
+}
+
+.bootstrap .pentaho-toggle .btn.toggle-off.inactive {
+	background-image: none;
+	background-color: #fff;
+	color: #fff;
+	text-shadow: none;
+}
+
+.pentaho-calendar-icon,
+.angular-dojo.dateTimePicker .pentaho-dropdownbutton-outer {
+	padding: 6px;
+	background: none;
+	width: 16px;
+	border: none;
+	margin-left: 4px;
+}
+
+.angular-dojo.dateTimePicker .pentaho-dropdownbutton-inner {
+	background-image: url('images/calendar_icon.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	height: 17px;
+	width: 16px;
+	font-size: 0px;
+}
+.angular-dojo.dateTimePicker .pentaho-dropdownbutton-inner.disabled {
+	background-image: url('images/calendar_icon_disabled.png');
+}
+
+.tundra .dijitDownArrowButton input[type='text'].dijitArrowButtonInner {
+	border: none;
+}
+
+.tundra table.dijitValidationTextBox .dijitButtonContents,
+.tundra table.dijitValidationTextBox .dijitArrowButtonInner {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.schedule-dialog-button-panel tr td button.pentaho-button {
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.bootstrap div select {
+	border: 1px solid #cbdde8;
+	--webkit-border-radius: 0px;
+	--moz-border-radius: 0px;
+	border-radius: 0px !important;
+	--webkit-box-shadow: none;
+	--moz-box-shadow: none;
+	box-shadow: none;
+}
+
+#standardDialog .dialogMessageBar span.dlgError {
+	background-image: url('images/no.png');
+	vertical-align: middle;
+	height: auto;
+	padding-left: 29px;
+	padding-top: 0px;
+	color: #333;
+	font-size: 13px;
+	overflow: hidden;
+	max-height: 57px;
+	line-height: 19px;
+}
+
+#standardDialog #dialogMessageBar2 {
+	padding: 12px;
+	height: auto;
+	background-color: #fefde7;
+	border-color: #cacacb;
+	margin-top: 10px;
+}
+
+#sharePanelRemoveButton {
+	margin-left: 5px;
+}
+
+/* Folder tree styles */
+.leaf-widget {
+	/*font-size: 13px;*/
+}
+
+.leaf-widget .gwt-TreeItem > table {
+	color: #777;
+}
+
+.leaf-widget .gwt-TreeItem-selected > table {
+	background-color: #d7e9cd;
+}
+
+.leaf-widget .leaf-widget-hidden .gwt-TreeItem > table {
+	width: 100%;
+	opacity: 0.7;
+	font-style: italic;
+	background-color: #ffffff;
+}
+
+.leaf-widget .leaf-widget-hidden .gwt-TreeItem-selected > table {
+	width: 100%;
+	opacity: 0.7;
+	font-style: italic;
+	background-color: #dbdbdb;
+}
+
+.select-folder-tree {
+	height: 360px;
+	overflow: auto;
+	width: 380px;
+	border: 1px solid #cbdde8;
+	background-color: white;
+}
+
+#sidepanel #sidepaneltabset > div > span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+}
+
+#sidepanel #sidepaneltabset > div[tabid='datatab'] > span {
+	max-width: 48px;
+}
+
+#sidepanel #sidepaneltabset > div[tabid='formattab'] > span {
+	max-width: 80px;
+}
+
+#sidepanel #sidepaneltabset > div[tabid='generaltab'] > span {
+	max-width: 62px;
+}
+
+.fieldListTree .attribute {
+	background: url('images/gemBar_level.png') no-repeat;
+}
+
+.fieldListTree .measure {
+	background: url('images/gemBar_measure.png') no-repeat;
+}
+
+/* styling for formatCombo */
+.dijitMenuItemHover {
+	background-color: #dce7ed;
+}
+.dijitMenuItemSelected {
+	background-color: #dce7ed;
+}
+.pentahoFormatCombo .dijitPlaceHolder {
+	padding-top: 3px;
+	padding-left: 4px;
+}
+.pentahoFormatCombo input.dijitInputInner {
+	padding-left: 4px !important; /* only doing this to get past dojo's usage of !important */
+	height: 15px;
+}
+
+.dijitMenu.dijitComboBoxMenu {
+	background-color: #ffffff;
+	padding: 2px;
+}
+
+.tundra .pentahoFormatCombo.dijitComboBox,
+.tundra .pentahoFormatCombo.dijitComboBox .dijitButtonNode {
+	border-color: #cbdde8;
+	border-radius: 0;
+	background-color: #ffffff;
+}
+
+.tundra .pentahoFormatCombo.dijitTextBox {
+	background-image: none;
+	margin: 0px;
+}
+.tundra .pentahoFormatCombo.dijitComboBox .dijitArrowButton input[type='text'] {
+	border: none;
+	height: 15px !important;
+}
+
+/* end styling for formatCombo */
+
+/* begin BACKLOG-8759 Makes usage of colons in property labels theme dependent */
+.pentahoPropertiesPanel .dijitTitlePane:last-child .caption-text::after {
+	/* the labels of properties that have dropdowns should have a colon */
+	content: ':';
+}
+/* end BACKLOG-8759 Makes usage of colons in property labels theme dependent */
+
+#protocolPanel tr td {
+	display: block;
+}
+
+#protocolPanel select {
+	width: 228px;
+	height: 23px;
+}
+
+#standardDialog select#MT_trendFields,
+#standardDialog select#MT_trendType,
+#standardDialog select#MT_formatScale {
+	height: 26px;
+}
+
+.form-control:focus {
+	border-color: rgb(121, 158, 63);
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(121, 158, 63, 0.6);
+}
