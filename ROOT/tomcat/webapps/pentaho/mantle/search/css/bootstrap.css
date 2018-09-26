@@ -115,77 +115,77 @@
 }
 
 /*
-   Corner arrow styles.
-  .tipsy-nww .tipsy-arrow { left: 0; top: 10px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent;  }
-  .tipsy-nee .tipsy-arrow { right: 0; top: 10px; border-left-style: solid; border-right: none; border-top-color: transparent; border-bottom-color: transparent; }
-  .tipsy-sww .tipsy-arrow { right: 0; top: 10px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent;    }
-  .tipsy-see .tipsy-arrow { right: 0; bottom: -10px; border-left-style: solid; border-right: none; border-top-color: transparent; border-bottom-color: transparent;}
-  */
+  Corner arrow styles.
+ .tipsy-nww .tipsy-arrow { left: 0; top: 10px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent;  }
+ .tipsy-nee .tipsy-arrow { right: 0; top: 10px; border-left-style: solid; border-right: none; border-top-color: transparent; border-bottom-color: transparent; }
+ .tipsy-sww .tipsy-arrow { right: 0; top: 10px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent;    }
+ .tipsy-see .tipsy-arrow { right: 0; bottom: -10px; border-left-style: solid; border-right: none; border-top-color: transparent; border-bottom-color: transparent;}
+ */
 
 /* <Debug>
-    .tipsy-arrow { border-color: green; }
-    .tipsy { border-width: 1px; border-style:solid; border-color:red;}
-    </Debug>
-  */
+   .tipsy-arrow { border-color: green; }
+   .tipsy { border-width: 1px; border-style:solid; border-color:red;}
+   </Debug>
+ */
 
 /* Data Summary Tooltip
 
-   HTML Structure Template
+  HTML Structure Template
 
-   <div class="ccc-tt">
-       <table class="ccc-tt-ds ..." data-ccc-color="rgb(10,20,30)">
-            * ccc-tt-{plot,legend,cart-axis} Indicates this is a plot, legend or cartesian-axis tooltip
-            * ccc-tt-plot-<plot type>
-            * ccc-tt-chartOrient-{h,v} Chart vertical or horizontal orientation.
+  <div class="ccc-tt">
+	  <table class="ccc-tt-ds ..." data-ccc-color="rgb(10,20,30)">
+		   * ccc-tt-{plot,legend,cart-axis} Indicates this is a plot, legend or cartesian-axis tooltip
+		   * ccc-tt-plot-<plot type>
+		   * ccc-tt-chartOrient-{h,v} Chart vertical or horizontal orientation.
 
-            <tr class="ccc-tt-trendLabel ...">
-                * ccc-tt-trend-<trend type>
+		   <tr class="ccc-tt-trendLabel ...">
+			   * ccc-tt-trend-<trend type>
 
-                <td><span>Trend type label</span></td>
-            </tr>
+			   <td><span>Trend type label</span></td>
+		   </tr>
 
-            <tr class="ccc-tt-dim ...">
-                 * ccc-tt-dimValueType-{Any,Number,String,Date,Object,Boolean}
-                 * ccc-tt-dimDiscrete, ccc-tt-dimContinuous
-                 * ccc-tt-dim-<dimension name>
-                 * ccc-tt-dimAggr Indicates the value is the result of a specific aggregation.
-                 * ccc-tt-dimAggr-sum Indicates the aggregation type.
+		   <tr class="ccc-tt-dim ...">
+				* ccc-tt-dimValueType-{Any,Number,String,Date,Object,Boolean}
+				* ccc-tt-dimDiscrete, ccc-tt-dimContinuous
+				* ccc-tt-dim-<dimension name>
+				* ccc-tt-dimAggr Indicates the value is the result of a specific aggregation.
+				* ccc-tt-dimAggr-sum Indicates the aggregation type.
 
-                 <td class="dimDimLabel">
-                    <!-- This strange setup allows hiding the label and still insert content using css
-                         in the parent element... -->
-                    <span>Sales</span>
-                 </td>
+				<td class="dimDimLabel">
+				   <!-- This strange setup allows hiding the label and still insert content using css
+						in the parent element... -->
+				   <span>Sales</span>
+				</td>
 
-                 <td class="ccc-tt-dimRoles">
-                    <span class="ccc-tt-role ...">
-                        * ccc-tt-role-<role name>
-                        <span class="ccc-tt-roleIcon"></span>
-                        <span class="ccc-tt-roleLabel">Value</span>
-                    </span>
-                    ...
-                 </td>
+				<td class="ccc-tt-dimRoles">
+				   <span class="ccc-tt-role ...">
+					   * ccc-tt-role-<role name>
+					   <span class="ccc-tt-roleIcon"></span>
+					   <span class="ccc-tt-roleLabel">Value</span>
+				   </span>
+				   ...
+				</td>
 
-                 <td class="ccc-tt-dimValue ...">
-                    * ccc-tt-valueNull When the value is null (pct is suppressed)
+				<td class="ccc-tt-dimValue ...">
+				   * ccc-tt-valueNull When the value is null (pct is suppressed)
 
-                    <span class="ccc-tt-value">1,276</span>
-                    <!-- When visual role is "percentual": -->
-                    <span class="ccc-tt-valuePct">20%</span>
-                    <!-- When interpolated -->
-                    <span class="ccc-tt-interp ccc-tt-interp-{linear,zero}">Linear</span>
-                 </td>
-            </tr>
+				   <span class="ccc-tt-value">1,276</span>
+				   <!-- When visual role is "percentual": -->
+				   <span class="ccc-tt-valuePct">20%</span>
+				   <!-- When interpolated -->
+				   <span class="ccc-tt-interp ccc-tt-interp-{linear,zero}">Linear</span>
+				</td>
+		   </tr>
 
-            <tr class="ccc-tt-dimSep">
-                <td colspan="3"><hr/></td>
-            </tr>
+		   <tr class="ccc-tt-dimSep">
+			   <td colspan="3"><hr/></td>
+		   </tr>
 
-            <tr class="ccc-tt-datumCount">
-                <td colspan="3"><span>12</span></td>
-            </tr>
-       </div>
-   </div>
+		   <tr class="ccc-tt-datumCount">
+			   <td colspan="3"><span>12</span></td>
+		   </tr>
+	  </div>
+  </div>
 */
 
 .ccc-tt {
@@ -209,8 +209,8 @@
 }
 
 /* ----------------
-     dimLabel
-   ---------------- */
+	dimLabel
+  ---------------- */
 .ccc-tt-ds .ccc-tt-dimLabel {
 	font-weight: 600;
 	color: darkgray;
@@ -235,8 +235,8 @@
 }
 
 /* ----------------
-     dimDatumCount
-   ---------------- */
+	dimDatumCount
+  ---------------- */
 .ccc-tt-ds .ccc-tt-datumCount span:before {
 	content: '\0023\00a0'; /* 0023 - number sign; followed by nbsp */
 	color: darkgray;
@@ -245,8 +245,8 @@
 }
 
 /* ----------------
-     trendLabel
-   ---------------- */
+	trendLabel
+  ---------------- */
 .ccc-tt-ds .ccc-tt-trendLabel {
 	font-size: 1.2em;
 	font-weight: bold;
@@ -257,8 +257,8 @@
 }
 
 /* ----------------
-     dimRoleLabel
-   ---------------- */
+	dimRoleLabel
+  ---------------- */
 
 .ccc-tt-ds .ccc-tt-dimRoles {
 	text-align: center;
@@ -299,14 +299,14 @@
 
 /* No browser support yet for second argument of attr function.
 .ccc-tt-ds .ccc-tt-role-color .ccc-tt-roleIcon:after {
-    content: "\25a3";
-    color:   attr(data-ccc-color color);
+   content: "\25a3";
+   color:   attr(data-ccc-color color);
 }
 */
 
 /* ----------------
-     dimValue
-   ---------------- */
+	dimValue
+  ---------------- */
 .ccc-tt-ds .ccc-tt-dimValue {
 	padding-left: 0.3em;
 	text-align: left;
@@ -521,7 +521,7 @@ ul.jd_menu_slate ul li.jd_menu_hover a.jd_menu_hover {
 
 /*
 ------------------------------
-	Impromptu's
+   Impromptu's
 ------------------------------
 */
 .jqiwarning .jqi {
@@ -565,7 +565,7 @@ div.jqi button {
 
 /*
 ------------------------------
-	impromptu
+   impromptu
 ------------------------------
 */
 .impromptuwarning .impromptu {
@@ -609,7 +609,7 @@ div.impromptu button {
 
 /*
 ------------------------------
-	columns ex
+   columns ex
 ------------------------------
 */
 .colsJqifadewarning .colsJqi {
@@ -665,7 +665,7 @@ div.colsJqi button:hover {
 
 /*
 ------------------------------
-	brown theme
+   brown theme
 ------------------------------
 */
 .brownJqiwarning .brownJqi {
@@ -791,21 +791,21 @@ div.cleanblue button:hover {
 	border: solid 1px #d4d4d4;
 }
 /*
- * FancyBox - jQuery Plugin
- * Simple and fancy lightbox alternative
- *
- * Examples and documentation at: http://fancybox.net
- * 
- * Copyright (c) 2008 - 2010 Janis Skarnelis
- * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
- * 
- * Version: 1.3.4 (11/11/2010)
- * Requires: jQuery v1.3+
- *
- * Dual licensed under the MIT and GPL licenses:
- *   http://www.opensource.org/licenses/mit-license.php
- *   http://www.gnu.org/licenses/gpl.html
- */
+* FancyBox - jQuery Plugin
+* Simple and fancy lightbox alternative
+*
+* Examples and documentation at: http://fancybox.net
+* 
+* Copyright (c) 2008 - 2010 Janis Skarnelis
+* That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
+* 
+* Version: 1.3.4 (11/11/2010)
+* Requires: jQuery v1.3+
+*
+* Dual licensed under the MIT and GPL licenses:
+*   http://www.opensource.org/licenses/mit-license.php
+*   http://www.gnu.org/licenses/gpl.html
+*/
 
 #fancybox-loading {
 	position: fixed;
@@ -1151,33 +1151,30 @@ div.cleanblue button:hover {
 	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/pentaho/api/repos/pentaho-cdf/js/fancybox/../fancybox/fancy_title_right.png', sizingMethod='scale');
 }
 
-.fancybox-ie6 #fancybox-bg-w,
-.fancybox-ie6 #fancybox-bg-e,
-.fancybox-ie6 #fancybox-left,
-.fancybox-ie6 #fancybox-right,
-#fancybox-hide-sel-frame {
-	height: expression(this.parentNode.clientHeight + 'px');
+/*
+.fancybox-ie6 #fancybox-bg-w, .fancybox-ie6 #fancybox-bg-e, .fancybox-ie6 #fancybox-left, .fancybox-ie6 #fancybox-right, #fancybox-hide-sel-frame {
+   height: expression(this.parentNode.clientHeight + "px");
 }
+*/
 
+/*
 #fancybox-loading.fancybox-ie6 {
-	position: absolute;
-	margin-top: 0;
-	top: expression(
-		(
-				-20 + (document.documentElement.clientHeight ? document.documentElement.clientHeight/2: document.body.clientHeight/2) + (ignoreMe = document.documentElement.scrollTop ?
-							document.documentElement.scrollTop: document.body.scrollTop)
-			) + 'px'
-	);
+   position: absolute; margin-top: 0;
+   top: expression( (-20 + (document.documentElement.clientHeight ? document.documentElement.clientHeight/2 : document.body.clientHeight/2 ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop )) + 'px');
 }
+*/
+
 #fancybox-loading.fancybox-ie6 div {
 	background: transparent;
 	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/pentaho/api/repos/pentaho-cdf/js/fancybox/../fancybox/fancy_loading.png', sizingMethod='scale');
 }
 
-/* IE6, IE7, IE8
+/* IE6, IE7, IE8 */
+
 .fancybox-ie .fancybox-bg {
 	background: transparent !important;
 }
+
 .fancybox-ie #fancybox-bg-n {
 	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/pentaho/api/repos/pentaho-cdf/js/fancybox/../fancybox/fancy_shadow_n.png', sizingMethod='scale');
 }
@@ -1206,10 +1203,12 @@ div.cleanblue button:hover {
 	background: #eee;
 	border: 1px outset white;
 }
+
 .pentaho-toggle-button-down button {
 	background: silver;
 	border: 1px inset gray;
 }
+
 .boxshadow .pentaho-toggle-button-up button {
 	background: #eee;
 	border: 1px solid gray;
@@ -1219,6 +1218,7 @@ div.cleanblue button:hover {
 	-o-box-shadow: inset 1px 1px 4px white, inset -1px -1px 3px silver;
 	-ms-box-shadow: inset 1px 1px 4px white, inset -1px -1px 3px silver;
 }
+
 .boxshadow .pentaho-toggle-button-down button {
 	background: silver;
 	border: 1px solid black;
@@ -1228,24 +1228,29 @@ div.cleanblue button:hover {
 	-o-box-shadow: inset 1px 1px 1px gray;
 	-ms-box-shadow: inset 1px 1px 1px gray;
 }
+
 .tableComponent {
 	margin-bottom: 0em;
 }
+
 .tableComponent th {
 	text-align: center;
 }
+
 .tableComponent td.numeric {
 	text-align: right;
 	font-family: monospace;
 }
+
 .tableComponent td.string {
 	text-align: left;
 }
+
 .tableComponent td.sparkline {
 	text-align: center;
 }
 
-/* Overriding jquery.dataTable.css table.dataTable box-sizing style
+/* Overriding jquery.dataTable.css table.dataTable box-sizing style*/
 .dataTables_wrapper table.dataTable,
 .dataTables_wrapper table.dataTable th,
 .dataTables_wrapper table.dataTable td {
@@ -1253,12 +1258,13 @@ div.cleanblue button:hover {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
+
 .dataTables_wrapper table.dataTable thead th,
 .dataTables_wrapper table.dataTable thead td {
 	border-bottom: 0;
 }
 
-/* Two-Button Classic Pagination
+/* Two-Button Classic Pagination */
 .paginate_disabled_previous,
 .paginate_enabled_previous,
 .paginate_disabled_next,
@@ -1281,6 +1287,7 @@ div.cleanblue button:hover {
 .paginate_enabled_next:active {
 	outline: none;
 }
+
 .paginate_disabled_previous,
 .paginate_disabled_next {
 	color: #666;
@@ -1294,28 +1301,36 @@ div.cleanblue button:hover {
 	padding-right: 23px;
 	margin-left: 10px;
 }
+
 .paginate_disabled_previous {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/dataTables/images/back_disabled.png') no-repeat top left;
 }
+
 .paginate_enabled_previous {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/dataTables/images/back_enabled.png') no-repeat top left;
 }
 .paginate_enabled_previous:hover {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/dataTables/images/back_enabled_hover.png') no-repeat top left;
 }
+
 .paginate_disabled_next {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/dataTables/images/forward_disabled.png') no-repeat top right;
 }
+
 .paginate_enabled_next {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/dataTables/images/forward_enabled.png') no-repeat top right;
 }
 .paginate_enabled_next:hover {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/dataTables/images/forward_enabled_hover.png') no-repeat top right;
 }
-/* ************* */
+
+/**************
+*/
+
 .cdfClickable {
 	cursor: pointer;
 }
+
 #GB_window {
 	left: 0;
 	top: 0;
@@ -1324,6 +1339,7 @@ div.cleanblue button:hover {
 	overflow: visible;
 	z-index: 1500;
 }
+
 a.resetFilterButton {
 	color: #0000ff;
 	font-weight: bold;
@@ -1332,13 +1348,15 @@ a.resetFilterButton {
 	text-decoration: none;
 }
 
-/* Overriding the inner .containers that are generated by widgets
+/* Overriding the inner .containers that are generated by widgets */
 .container .container {
 	width: auto;
 }
-/* ******
+
+/*******
 DateRangeInput Component
-******* */
+********/
+
 .ui-daterangepicker button.btnCancel {
 	margin: 0px 5px 5px 0px;
 	position: absolute;
@@ -1350,9 +1368,11 @@ DateRangeInput Component
 	cursor: pointer;
 	font-size: 1.1em;
 }
-/* ******
+
+/*******
 Comments Component
-******* */
+********/
+
 .commentComponent .commentsBody {
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -1363,13 +1383,16 @@ Comments Component
 	border-radius: 2px;
 	margin: 2px 0px;
 }
+
 .commentComponent .comment {
 	padding: 5px 5px;
 	width: 90%;
 }
+
 .commentComponent .operation {
 	float: right;
 }
+
 .commentComponent .operation div {
 	padding: 2px 0px;
 	margin: 5px 5px;
@@ -1383,25 +1406,31 @@ Comments Component
 	width: 100%;
 	background-color: #eee;
 }
+
 .commentComponent .comment,
 .commentComponent .operation {
 	vertical-align: top;
 	display: inline-block;
 }
+
 .commentComponent .commentsBody:hover {
 }
+
 .commentComponent .operation div:hover {
 	color: red;
 	border: 1px solid red;
 }
+
 .commentComponent .commentsBody:hover .operation div {
 	visibility: visible;
 }
+
 .commentComponent .commentsDetails {
 	font-size: 10px;
 	color: #777;
 	text-align: right;
 }
+
 .commentComponent .addComment {
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -1417,20 +1446,25 @@ Comments Component
 	margin-top: 20px;
 	background-color: #eee;
 }
+
 .commentComponent .addComment:hover {
 	border: 1px solid #aaa;
 	background-color: #ccc;
 }
+
 .commentComponent .commentsBody:hover .operation {
 	display: inline-block;
 }
+
 .commentComponent .commentsBody,
 .commentsGroup .operation {
 	display: inline-block;
 }
+
 .commentComponent .addCommentWrapper {
 	display: none;
 }
+
 .commentComponent .addCommentText {
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -1443,6 +1477,7 @@ Comments Component
 	border-radius: 2px;
 	resize: none;
 }
+
 .commentComponent .saveComment,
 .commentComponent .cancelComment {
 	display: inline-block;
@@ -1456,13 +1491,16 @@ Comments Component
 	cursor: pointer;
 	background-color: #eee;
 }
+
 .commentsAdd .commentsButtons div:hover {
 	border: 1px solid #aaa;
 	background-color: #ccc;
 }
+
 .commentComponent .paginate {
 	float: right;
 }
+
 .commentComponent .paginate div {
 	display: inline-block;
 	text-align: center;
@@ -1476,24 +1514,29 @@ Comments Component
 	cursor: pointer;
 	background-color: #eee;
 }
+
 .commentComponent .paginate div span {
 	color: red;
 	font-size: 10px;
 }
+
 .commentComponent .paginate div:hover {
 	border: 1px solid #aaa;
 	background-color: #ccc;
 }
+
 .commentComponent .paginate div.disabled {
 	color: #aaa;
 }
+
 .commentComponent .paginate div:hover.disabled {
 	border: 1px solid #ccc;
 	background-color: #eee;
 	cursor: default;
 }
 
-/* Popups
+/* Popups */
+
 .cdfPopupContainer * {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -1551,12 +1594,14 @@ Comments Component
 	color: #ffffff;
 }
 
-/* Notifications
+/* Notifications */
+
 .cdfNotification.component * {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 }
+
 .cdfNotification.component {
 	text-align: center;
 	padding: 10px;
@@ -1589,29 +1634,35 @@ Comments Component
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
 .cdfNotification.small {
 	padding: 5px;
 }
+
 .cdfNotification.small .cdfNotificationBody {
 	display: inline-block;
 	padding-left: 17px;
 	text-align: left;
 	min-height: 15px;
 }
+
 .cdfNotification.small .cdfNotificationImg {
 	height: 15px;
 	width: 15px;
 }
+
 .cdfNotification.small .cdfNotificationTitle {
 	font-size: 11px;
 	line-height: 1.1;
 	white-space: nowrap;
 }
+
 .cdfNotification.small .cdfNotificationDesc {
 	font-size: 9px;
 	line-height: 1.1;
 	white-space: nowrap;
 }
+
 .cdfNotificationContainer {
 	z-index: 2100;
 	position: fixed;
@@ -1619,9 +1670,11 @@ Comments Component
 	right: 0px;
 	width: 100%;
 }
+
 .cdfNotificationContainer .cdfNotification.growl {
 	float: right;
 }
+
 button.scheduler_button {
 	-webkit-box-shadow: inset 0px 0px 2px 0px #0b4978;
 	-moz-box-shadow: inset 0px 0px 2px 0px #0b4978;
@@ -1639,15 +1692,17 @@ button.scheduler_button {
 	background: #137bca url('/pentaho/api/repos/pentaho-cdf/js/images/open-dialog.png') no-repeat right 15px center;
 	margin: 20px 0px 0px;
 }
+
 .scheduler_button:hover {
 	background-color: #1887db;
 	transition: all 0.25s linear 0s;
 }
 
-/* dialog box
+/* dialog box */
 .scheduler .jqifade {
 	opacity: 0.8 !important;
 }
+
 .scheduler div#jqi.jqi {
 	border: 1px solid #dadada;
 	border-top: 1px #fff solid;
@@ -1660,14 +1715,17 @@ button.scheduler_button {
 	overflow: hidden;
 	top: 10% !important;
 }
+
 .scheduler div#jqi.jqi,
 .scheduler div.jqi .jqicontainer {
 	padding: 0px;
 }
+
 .scheduler div#jqistates {
 	background: #f5f5f5;
 	overflow: hidden;
 }
+
 .scheduler .jqi_state {
 	color: #222;
 	font-weight: 500;
@@ -1677,6 +1735,7 @@ button.scheduler_button {
 	overflow: hidden;
 	padding: 0px;
 }
+
 div.scheduler .jqimessage {
 	background: #f5f5f5 !important;
 	border-radius: 6px;
@@ -1684,9 +1743,11 @@ div.scheduler .jqimessage {
 	-webkit-border-radius: 6px;
 	padding: 15px;
 }
+
 .scheduler .jqiclose {
 	visibility: hidden;
 }
+
 .scheduler .jqiclose:before {
 	content: '';
 	position: absolute;
@@ -1698,10 +1759,12 @@ div.scheduler .jqimessage {
 	visibility: visible;
 	transition: background 0.25s linear 0s;
 }
+
 .scheduler .jqiclose:hover:before {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/images/close-dialog.png');
 	transition: background 0.25s linear 0s;
 }
+
 .scheduler form input[type='text'] {
 	padding: 5px;
 	border-radius: 3px;
@@ -1712,24 +1775,30 @@ div.scheduler .jqimessage {
 	margin-right: 5px;
 	width: 250px;
 }
+
 .scheduler form input[type='checkbox'] {
 	margin: 5px 0px 5px 8px;
 }
+
 .scheduler form input[type='text']:focus {
 	border: 1px solid #137bca;
 }
+
 .scheduler textarea:focus {
 	border: 1px solid #137bca;
 }
+
 .scheduler textarea {
 	width: 100%;
 	height: auto;
 }
+
 div.scheduler label {
 	color: #137bca;
 	font-size: 13px;
 	line-height: 25px;
 }
+
 .scheduler select {
 	padding: 5px;
 	border-radius: 3px;
@@ -1738,12 +1807,15 @@ div.scheduler label {
 	border: 1px solid rgb(187, 187, 187);
 	margin-right: 5px;
 }
+
 .scheduler select:focus {
 	border: 1px solid #137bca;
 }
+
 .scheduler .jqibuttons {
 	margin-top: 20px;
 }
+
 .scheduler .jqibuttons button {
 	color: #fff;
 	font-weight: 500;
@@ -1752,11 +1824,13 @@ div.scheduler label {
 	background: #137bca;
 	font-size: 14px;
 }
+
 .scheduler .jqibuttons button:hover {
 	background-color: #1887db;
 	transition: all 0.25s linear 0s;
 	cursor: pointer;
 }
+
 .scheduler #jqi_basicState_buttonCancel,
 #jqi_mailState_buttonBack {
 	width: 30%;
@@ -1767,11 +1841,13 @@ div.scheduler label {
 	border: none;
 	background-color: #333;
 }
+
 .scheduler #jqi_basicState_buttonCancel:hover,
 #jqi_mailState_buttonBack:hover {
 	background-color: #555;
 	transition: all 0.25s linear 0s;
 }
+
 .scheduler #jqi_basicState_buttonOk,
 #jqi_mailState_buttonOk {
 	width: 70%;
@@ -1781,11 +1857,13 @@ div.scheduler label {
 	padding: 15px 0px;
 	border: none;
 }
+
 .scheduler .dialog-title {
 	color: #137bca;
 	font-size: 14px;
 	font-weight: 500;
 }
+
 .scheduler .dialog-label {
 	display: inline-block;
 	width: 100px;
@@ -1793,22 +1871,25 @@ div.scheduler label {
 	font-size: 14px;
 	font-weight: 500;
 }
+
 .img {
 	/* img class for divs posing as img ( TODO: use an alt-text replacement? ) */
 	display: inline-block;
 }
-/* *
- * Dashboards.Legacy.js
- * */
+
+/**
+* Dashboards.Legacy.js
+**/
 .errorMessageTable .errorIcon {
 	background-image: url('/pentaho/api/repos/pentaho-cdf/js/../resources/style/images/error.png');
 	height: 16px;
 	width: 16px;
 	display: inline-block;
 }
-/* *
- * Block UI
- * */
+
+/**
+* Block UI
+**/
 .blockUIDefaultImg {
 	background-image: url('/pentaho/api/repos/pentaho-cdf/js/../resources/style/images/processing_transparent.gif');
 	padding: 0px;
@@ -1816,14 +1897,15 @@ div.scheduler label {
 	width: 32px;
 	display: inline-block;
 }
-/* ******************
- * 
- * jfreecharts.js
- * 
- * */
-/* *
- * TrafficComponent
- * */
+
+/*******************
+* 
+* jfreecharts.js
+* 
+**/
+/**
+* TrafficComponent
+**/
 .trafficGreen {
 	background-image: url('/pentaho/api/repos/pentaho-cdf/js/../resources/style/images/traffic_green.png');
 	width: 28px;
@@ -1839,9 +1921,9 @@ div.scheduler label {
 	width: 28px;
 	height: 39px;
 }
-/* *
- * JFreeChartComponent
- * */
+/**
+* JFreeChartComponent
+**/
 .jfExcelIcon {
 	background-image: url('/pentaho/api/repos/pentaho-cdf/js/../resources/style/images/excel_icon.png');
 	width: 34px;
@@ -1872,16 +1954,21 @@ div.scheduler label {
 	width: 32px;
 	height: 32px;
 }
-}
-/***************** /* * Table styles */
+/*******************/ /*
+* Table styles
+*/
 table.dataTable {
 	width: 100%;
 	margin: 0 auto;
 	clear: both;
 	border-collapse: separate;
 	border-spacing: 0;
-	/* * Header and footer styles */
-	/* * Body styles */
+	/*
+  * Header and footer styles
+  */
+	/*
+  * Body styles
+  */
 }
 table.dataTable thead th,
 table.dataTable thead td,
@@ -2099,6 +2186,7 @@ table.dataTable.order-column.hover tbody tr.odd:hover.selected > .sorting_3,
 table.dataTable.order-column.hover tbody tr.even:hover.selected > .sorting_3 {
 	background-color: #a4b2cb;
 }
+
 table.dataTable,
 table.dataTable th,
 table.dataTable td {
@@ -2106,7 +2194,10 @@ table.dataTable td {
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
 }
-/* * Control feature layout */
+
+/*
+* Control feature layout
+*/
 .dataTables_wrapper {
 	position: relative;
 	clear: both;
@@ -2216,6 +2307,7 @@ table.dataTable td {
 	clear: both;
 	height: 0;
 }
+
 @media screen and (max-width: 767px) {
 	.dataTables_wrapper .dataTables_length,
 	.dataTables_wrapper .dataTables_filter,
@@ -2229,15 +2321,21 @@ table.dataTable td {
 		margin-top: 0.5em;
 	}
 }
-/* * Table styles */
+/*
+* Table styles
+*/
 table.dataTable {
 	width: 100%;
 	margin: 0 auto;
 	clear: both;
 	border-collapse: separate;
 	border-spacing: 0;
-	/* * Header and footer styles */
-	/* * Body styles */
+	/*
+  * Header and footer styles
+  */
+	/*
+  * Body styles
+  */
 }
 table.dataTable thead th,
 table.dataTable tfoot th {
@@ -2539,6 +2637,7 @@ table.dataTable tbody th.dt-body-nowrap,
 table.dataTable tbody td.dt-body-nowrap {
 	white-space: nowrap;
 }
+
 table.dataTable,
 table.dataTable th,
 table.dataTable td {
@@ -2546,7 +2645,10 @@ table.dataTable td {
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
 }
-/* * Control feature layout */
+
+/*
+* Control feature layout
+*/
 .dataTables_wrapper {
 	position: relative;
 	clear: both;
@@ -2715,6 +2817,7 @@ table.dataTable td {
 	clear: both;
 	height: 0;
 }
+
 @media screen and (max-width: 767px) {
 	.dataTables_wrapper .dataTables_info,
 	.dataTables_wrapper .dataTables_paginate {
@@ -2735,6 +2838,7 @@ table.dataTable td {
 		margin-top: 0.5em;
 	}
 }
+
 .caption-top,
 .caption-bottom {
 	color: #000000;
@@ -2748,12 +2852,15 @@ table.dataTable td {
 	border: 0px solid #334143;
 	background: #000000;
 }
+
 .caption-top {
 	border-width: 0px 0px 8px 0px;
 }
+
 br.c {
 	clear: both;
 }
+
 .caption-bottom .options {
 	text-decoration: none;
 	font-size: 11px;
@@ -2762,9 +2869,11 @@ br.c {
 	border-left: 5px solid #7f7f7f;
 	position: relative;
 }
+
 .caption-bottom .options .img {
 	border: 5px solid #00ff00;
 }
+
 .caption-bottom .title {
 	text-decoration: none;
 	font-size: 17px;
@@ -2772,6 +2881,7 @@ br.c {
 	display: inline;
 	float: left;
 }
+
 .caption-details {
 	color: #ffffff;
 	background: #000000;
@@ -2804,10 +2914,9 @@ br.c {
 	box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
 	z-index: 999;
 }
-}
-/* @end
+/* @end */
 
-/* @group Single Chosen
+/* @group Single Chosen */
 .chzn-container-single .chzn-single {
 	background-color: #fff;
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eeeeee), color-stop(0.5, white));
@@ -2901,10 +3010,9 @@ br.c {
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
 }
-}
-/* @end
+/* @end */
 
-/* @group Multi Chosen
+/* @group Multi Chosen */
 .chzn-container-multi .chzn-choices {
 	background-color: #fff;
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.85, white), color-stop(0.99, #eeeeee));
@@ -2991,10 +3099,9 @@ br.c {
 .chzn-container-multi .chzn-choices .search-choice-focus .search-choice-close {
 	background-position: right -9px;
 }
-}
-/* @end
+/* @end */
 
-/* @group Results
+/* @group Results */
 .chzn-container .chzn-results {
 	margin: 0 4px 4px 0;
 	max-height: 190px;
@@ -3041,10 +3148,9 @@ br.c {
 .chzn-container-multi .chzn-drop .result-selected {
 	display: none;
 }
-}
-/* @end
+/* @end */
 
-/* @group Active
+/* @group Active  */
 .chzn-container-active .chzn-single {
 	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
@@ -3090,10 +3196,9 @@ br.c {
 .chzn-container-active .chzn-choices .search-field input {
 	color: #111 !important;
 }
-}
-/* @end
+/* @end */
 
-/* @group Right to Left
+/* @group Right to Left */
 .chzn-rtl {
 	direction: rtl;
 	text-align: right;
@@ -3152,8 +3257,9 @@ br.c {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/chosen/chosen-sprite.png') no-repeat -38px -20px, linear-gradient(top, #ffffff 85%, #eeeeee 99%);
 	padding: 4px 5px 4px 20px;
 }
-}
-/* @end /* Version: 3.5.0 Timestamp: Mon Jun 16 19:29:44 EDT 2014 */
+/* @end */ /*
+Version: 3.5.0 Timestamp: Mon Jun 16 19:29:44 EDT 2014
+*/
 .select2-container {
 	margin: 0;
 	position: relative;
@@ -3163,35 +3269,44 @@ br.c {
 	*display: inline;
 	vertical-align: middle;
 }
+
 .select2-container,
 .select2-drop,
 .select2-search,
 .select2-search input {
-	/* Force border-box so that % widths fit the parent
-    container without overlap because of margin/padding.
-    More Info : http://www.quirksmode.org/css/box.html */
+	/*
+   Force border-box so that % widths fit the parent
+   container without overlap because of margin/padding.
+   More Info : http://www.quirksmode.org/css/box.html
+ */
 	-webkit-box-sizing: border-box; /* webkit */
 	-moz-box-sizing: border-box; /* firefox */
 	box-sizing: border-box; /* css3 */
 }
+
 .select2-container .select2-choice {
 	display: block;
 	height: 26px;
 	padding: 0 0 0 8px;
 	overflow: hidden;
 	position: relative;
+
 	border: 1px solid #aaa;
 	white-space: nowrap;
 	line-height: 26px;
 	color: #444;
 	text-decoration: none;
+
 	border-radius: 4px;
+
 	background-clip: padding-box;
+
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+
 	background-color: #fff;
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee), color-stop(0.5, #fff));
 	background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 50%);
@@ -3199,34 +3314,44 @@ br.c {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#eeeeee', GradientType = 0);
 	background-image: linear-gradient(to top, #eee 0%, #fff 50%);
 }
+
 html[dir='rtl'] .select2-container .select2-choice {
 	padding: 0 8px 0 0;
 }
+
 .select2-container.select2-drop-above .select2-choice {
 	border-bottom-color: #aaa;
+
 	border-radius: 0 0 4px 4px;
+
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee), color-stop(0.9, #fff));
 	background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 90%);
 	background-image: -moz-linear-gradient(center bottom, #eee 0%, #fff 90%);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0);
 	background-image: linear-gradient(to bottom, #eee 0%, #fff 90%);
 }
+
 .select2-container.select2-allowclear .select2-choice .select2-chosen {
 	margin-right: 42px;
 }
+
 .select2-container .select2-choice > .select2-chosen {
 	margin-right: 26px;
 	display: block;
 	overflow: hidden;
+
 	white-space: nowrap;
+
 	text-overflow: ellipsis;
 	float: none;
 	width: auto;
 }
+
 html[dir='rtl'] .select2-container .select2-choice > .select2-chosen {
 	margin-left: 26px;
 	margin-right: 0;
 }
+
 .select2-container .select2-choice abbr {
 	display: none;
 	width: 12px;
@@ -3234,20 +3359,25 @@ html[dir='rtl'] .select2-container .select2-choice > .select2-chosen {
 	position: absolute;
 	right: 24px;
 	top: 8px;
+
 	font-size: 1px;
 	text-decoration: none;
+
 	border: 0;
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') right top no-repeat;
 	cursor: pointer;
 	outline: 0;
 }
+
 .select2-container.select2-allowclear .select2-choice abbr {
 	display: inline-block;
 }
+
 .select2-container .select2-choice abbr:hover {
 	background-position: right -11px;
 	cursor: pointer;
 }
+
 .select2-drop-mask {
 	border: 0;
 	margin: 0;
@@ -3265,42 +3395,54 @@ html[dir='rtl'] .select2-container .select2-choice > .select2-chosen {
 	background-color: #fff;
 	filter: alpha(opacity=0);
 }
+
 .select2-drop {
 	width: 100%;
 	margin-top: -1px;
 	position: absolute;
 	z-index: 9999;
 	top: 100%;
+
 	background: #fff;
 	color: #000;
 	border: 1px solid #aaa;
 	border-top: 0;
+
 	border-radius: 0 0 4px 4px;
+
 	-webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
 	box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
 }
+
 .select2-drop.select2-drop-above {
 	margin-top: 1px;
 	border-top: 1px solid #aaa;
 	border-bottom: 0;
+
 	border-radius: 4px 4px 0 0;
+
 	-webkit-box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.15);
 	box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.15);
 }
+
 .select2-drop-active {
 	border: 1px solid #5897fb;
 	border-top: none;
 }
+
 .select2-drop.select2-drop-above.select2-drop-active {
 	border-top: 1px solid #5897fb;
 }
+
 .select2-drop-auto-width {
 	border-top: 1px solid #aaa;
 	width: auto;
 }
+
 .select2-drop-auto-width .select2-search {
 	padding-top: 4px;
 }
+
 .select2-container .select2-choice .select2-arrow {
 	display: inline-block;
 	width: 18px;
@@ -3308,9 +3450,12 @@ html[dir='rtl'] .select2-container .select2-choice > .select2-chosen {
 	position: absolute;
 	right: 0;
 	top: 0;
+
 	border-left: 1px solid #aaa;
 	border-radius: 0 4px 4px 0;
+
 	background-clip: padding-box;
+
 	background: #ccc;
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ccc), color-stop(0.6, #eee));
 	background-image: -webkit-linear-gradient(center bottom, #ccc 0%, #eee 60%);
@@ -3318,22 +3463,27 @@ html[dir='rtl'] .select2-container .select2-choice > .select2-chosen {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#eeeeee', endColorstr = '#cccccc', GradientType = 0);
 	background-image: linear-gradient(to top, #ccc 0%, #eee 60%);
 }
+
 html[dir='rtl'] .select2-container .select2-choice .select2-arrow {
 	left: 0;
 	right: auto;
+
 	border-left: none;
 	border-right: 1px solid #aaa;
 	border-radius: 4px 0 0 4px;
 }
+
 .select2-container .select2-choice .select2-arrow b {
 	display: block;
 	width: 100%;
 	height: 100%;
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') no-repeat 0 1px;
 }
+
 html[dir='rtl'] .select2-container .select2-choice .select2-arrow b {
 	background-position: 2px 1px;
 }
+
 .select2-search {
 	display: inline-block;
 	width: 100%;
@@ -3341,40 +3491,51 @@ html[dir='rtl'] .select2-container .select2-choice .select2-arrow b {
 	margin: 0;
 	padding-left: 4px;
 	padding-right: 4px;
+
 	position: relative;
 	z-index: 10000;
+
 	white-space: nowrap;
 }
+
 .select2-search input {
 	width: 100%;
 	height: auto !important;
 	min-height: 26px;
 	padding: 4px 20px 4px 5px;
 	margin: 0;
+
 	outline: 0;
 	font-family: sans-serif;
 	font-size: 1em;
+
 	border: 1px solid #aaa;
 	border-radius: 0;
+
 	-webkit-box-shadow: none;
 	box-shadow: none;
+
 	background: #fff url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') no-repeat 100% -22px;
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') no-repeat 100% -22px, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, #fff), color-stop(0.99, #eee));
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') no-repeat 100% -22px, -webkit-linear-gradient(center bottom, #fff 85%, #eee 99%);
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') no-repeat 100% -22px, -moz-linear-gradient(center bottom, #fff 85%, #eee 99%);
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') no-repeat 100% -22px, linear-gradient(to bottom, #fff 85%, #eee 99%) 0 0;
 }
+
 html[dir='rtl'] .select2-search input {
 	padding: 4px 5px 4px 20px;
+
 	background: #fff url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') no-repeat -37px -22px;
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') no-repeat -37px -22px, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, #fff), color-stop(0.99, #eee));
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') no-repeat -37px -22px, -webkit-linear-gradient(center bottom, #fff 85%, #eee 99%);
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') no-repeat -37px -22px, -moz-linear-gradient(center bottom, #fff 85%, #eee 99%);
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') no-repeat -37px -22px, linear-gradient(to bottom, #fff 85%, #eee 99%) 0 0;
 }
+
 .select2-drop.select2-drop-above .select2-search input {
 	margin-top: 4px;
 }
+
 .select2-search input.select2-active {
 	background: #fff url('/pentaho/api/repos/pentaho-cdf/js/select2/select2-spinner.gif') no-repeat 100%;
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2-spinner.gif') no-repeat 100%, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, #fff), color-stop(0.99, #eee));
@@ -3382,19 +3543,24 @@ html[dir='rtl'] .select2-search input {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2-spinner.gif') no-repeat 100%, -moz-linear-gradient(center bottom, #fff 85%, #eee 99%);
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2-spinner.gif') no-repeat 100%, linear-gradient(to bottom, #fff 85%, #eee 99%) 0 0;
 }
+
 .select2-container-active .select2-choice,
 .select2-container-active .select2-choices {
 	border: 1px solid #5897fb;
 	outline: none;
+
 	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
+
 .select2-dropdown-open .select2-choice {
 	border-bottom-color: transparent;
 	-webkit-box-shadow: 0 1px 0 #fff inset;
 	box-shadow: 0 1px 0 #fff inset;
+
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
+
 	background-color: #eee;
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #fff), color-stop(0.5, #eee));
 	background-image: -webkit-linear-gradient(center bottom, #fff 0%, #eee 50%);
@@ -3402,16 +3568,19 @@ html[dir='rtl'] .select2-search input {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0);
 	background-image: linear-gradient(to top, #fff 0%, #eee 50%);
 }
+
 .select2-dropdown-open.select2-drop-above .select2-choice,
 .select2-dropdown-open.select2-drop-above .select2-choices {
 	border: 1px solid #5897fb;
 	border-top-color: transparent;
+
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(0.5, #eee));
 	background-image: -webkit-linear-gradient(center top, #fff 0%, #eee 50%);
 	background-image: -moz-linear-gradient(center top, #fff 0%, #eee 50%);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0);
 	background-image: linear-gradient(to bottom, #fff 0%, #eee 50%);
 }
+
 .select2-dropdown-open .select2-choice .select2-arrow {
 	background: transparent;
 	border-left: none;
@@ -3420,12 +3589,15 @@ html[dir='rtl'] .select2-search input {
 html[dir='rtl'] .select2-dropdown-open .select2-choice .select2-arrow {
 	border-right: none;
 }
+
 .select2-dropdown-open .select2-choice .select2-arrow b {
 	background-position: -18px 1px;
 }
+
 html[dir='rtl'] .select2-dropdown-open .select2-choice .select2-arrow b {
 	background-position: -16px 1px;
 }
+
 .select2-hidden-accessible {
 	border: 0;
 	clip: rect(0 0 0 0);
@@ -3437,7 +3609,7 @@ html[dir='rtl'] .select2-dropdown-open .select2-choice .select2-arrow b {
 	width: 1px;
 }
 
-/* results
+/* results */
 .select2-results {
 	max-height: 200px;
 	padding: 0 0 0 4px;
@@ -3447,33 +3619,41 @@ html[dir='rtl'] .select2-dropdown-open .select2-choice .select2-arrow b {
 	overflow-y: auto;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 html[dir='rtl'] .select2-results {
 	padding: 0 4px 0 0;
 	margin: 4px 0 4px 4px;
 }
+
 .select2-results ul.select2-result-sub {
 	margin: 0;
 	padding-left: 0;
 }
+
 .select2-results li {
 	list-style: none;
 	display: list-item;
 	background-image: none;
 }
+
 .select2-results li.select2-result-with-children > .select2-result-label {
 	font-weight: bold;
 }
+
 .select2-results .select2-result-label {
 	padding: 3px 7px 4px;
 	margin: 0;
 	cursor: pointer;
+
 	min-height: 1em;
+
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
 }
+
 .select2-results-dept-1 .select2-result-label {
 	padding-left: 20px;
 }
@@ -3495,21 +3675,26 @@ html[dir='rtl'] .select2-results {
 .select2-results-dept-7 .select2-result-label {
 	padding-left: 120px;
 }
+
 .select2-results .select2-highlighted {
 	background: #3875d7;
 	color: #fff;
 }
+
 .select2-results li em {
 	background: #feffde;
 	font-style: normal;
 }
+
 .select2-results .select2-highlighted em {
 	background: transparent;
 }
+
 .select2-results .select2-highlighted ul {
 	background: #fff;
 	color: #000;
 }
+
 .select2-results .select2-no-results,
 .select2-results .select2-searching,
 .select2-results .select2-selection-limit {
@@ -3517,7 +3702,10 @@ html[dir='rtl'] .select2-results {
 	display: list-item;
 	padding-left: 5px;
 }
-/* disabled look for disabled choices in the results dropdown */
+
+/*
+disabled look for disabled choices in the results dropdown
+*/
 .select2-results .select2-disabled.select2-highlighted {
 	color: #666;
 	background: #f4f4f4;
@@ -3529,61 +3717,75 @@ html[dir='rtl'] .select2-results {
 	display: list-item;
 	cursor: default;
 }
+
 .select2-results .select2-selected {
 	display: none;
 }
+
 .select2-more-results.select2-active {
 	background: #f4f4f4 url('/pentaho/api/repos/pentaho-cdf/js/select2/select2-spinner.gif') no-repeat 100%;
 }
+
 .select2-more-results {
 	background: #f4f4f4;
 	display: list-item;
 }
 
-/* disabled styles
+/* disabled styles */
+
 .select2-container.select2-container-disabled .select2-choice {
 	background-color: #f4f4f4;
 	background-image: none;
 	border: 1px solid #ddd;
 	cursor: default;
 }
+
 .select2-container.select2-container-disabled .select2-choice .select2-arrow {
 	background-color: #f4f4f4;
 	background-image: none;
 	border-left: 0;
 }
+
 .select2-container.select2-container-disabled .select2-choice abbr {
 	display: none;
 }
 
-/* multiselect
+/* multiselect */
+
 .select2-container-multi .select2-choices {
 	height: auto !important;
 	height: 1%;
 	margin: 0;
 	padding: 0 5px 0 0;
 	position: relative;
+
 	border: 1px solid #aaa;
 	cursor: text;
 	overflow: hidden;
+
 	background-color: #fff;
 	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eee), color-stop(15%, #fff));
 	background-image: -webkit-linear-gradient(top, #eee 1%, #fff 15%);
 	background-image: -moz-linear-gradient(top, #eee 1%, #fff 15%);
 	background-image: linear-gradient(to bottom, #eee 1%, #fff 15%);
 }
+
 html[dir='rtl'] .select2-container-multi .select2-choices {
 	padding: 0 0 0 5px;
 }
+
 .select2-locked {
 	padding: 3px 5px 3px 5px !important;
 }
+
 .select2-container-multi .select2-choices {
 	min-height: 26px;
 }
+
 .select2-container-multi.select2-container-active .select2-choices {
 	border: 1px solid #5897fb;
 	outline: none;
+
 	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
@@ -3599,9 +3801,11 @@ html[dir='rtl'] .select2-container-multi .select2-choices li {
 	padding: 0;
 	white-space: nowrap;
 }
+
 .select2-container-multi .select2-choices .select2-search-field input {
 	padding: 5px;
 	margin: 1px 0;
+
 	font-family: sans-serif;
 	font-size: 100%;
 	color: #666;
@@ -3611,29 +3815,38 @@ html[dir='rtl'] .select2-container-multi .select2-choices li {
 	box-shadow: none;
 	background: transparent !important;
 }
+
 .select2-container-multi .select2-choices .select2-search-field input.select2-active {
 	background: #fff url('/pentaho/api/repos/pentaho-cdf/js/select2/select2-spinner.gif') no-repeat 100% !important;
 }
+
 .select2-default {
 	color: #999 !important;
 }
+
 .select2-container-multi .select2-choices .select2-search-choice {
 	padding: 3px 5px 3px 18px;
 	margin: 3px 0 3px 5px;
 	position: relative;
+
 	line-height: 13px;
 	color: #333;
 	cursor: default;
 	border: 1px solid #aaaaaa;
+
 	border-radius: 3px;
+
 	-webkit-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0, 0, 0, 0.05);
 	box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+
 	background-clip: padding-box;
+
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+
 	background-color: #e4e4e4;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#f4f4f4', GradientType=0);
 	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), color-stop(100%, #eee));
@@ -3651,6 +3864,7 @@ html[dir='rtl'] .select2-container-multi .select2-choices .select2-search-choice
 .select2-container-multi .select2-choices .select2-search-choice-focus {
 	background: #d4d4d4;
 }
+
 .select2-search-choice-close {
 	display: block;
 	width: 12px;
@@ -3658,6 +3872,7 @@ html[dir='rtl'] .select2-container-multi .select2-choices .select2-search-choice
 	position: absolute;
 	right: 3px;
 	top: 4px;
+
 	font-size: 1px;
 	outline: none;
 	background: url('/pentaho/api/repos/pentaho-cdf/js/select2/select2.png') right top no-repeat;
@@ -3666,13 +3881,16 @@ html[dir='rtl'] .select2-search-choice-close {
 	right: auto;
 	left: 3px;
 }
+
 .select2-container-multi .select2-search-choice-close {
 	left: 3px;
 }
+
 html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	left: auto;
 	right: 2px;
 }
+
 .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:hover {
 	background-position: right -11px;
 }
@@ -3680,29 +3898,32 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	background-position: right -11px;
 }
 
-/* disabled styles
+/* disabled styles */
 .select2-container-multi.select2-container-disabled .select2-choices {
 	background-color: #f4f4f4;
 	background-image: none;
 	border: 1px solid #ddd;
 	cursor: default;
 }
+
 .select2-container-multi.select2-container-disabled .select2-choices .select2-search-choice {
 	padding: 3px 5px 3px 5px;
 	border: 1px solid #ddd;
 	background-image: none;
 	background-color: #f4f4f4;
 }
+
 .select2-container-multi.select2-container-disabled .select2-choices .select2-search-choice .select2-search-choice-close {
 	display: none;
 	background: none;
 }
-}
-/* end multiselect
+/* end multiselect */
+
 .select2-result-selectable .select2-match,
 .select2-result-unselectable .select2-match {
 	text-decoration: underline;
 }
+
 .select2-offscreen,
 .select2-offscreen:focus {
 	clip: rect(0 0 0 0) !important;
@@ -3717,9 +3938,11 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	left: 0px !important;
 	top: 0px !important;
 }
+
 .select2-display-none {
 	display: none;
 }
+
 .select2-measure-scrollbar {
 	position: absolute;
 	top: -10000px;
@@ -3729,7 +3952,8 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	overflow: scroll;
 }
 
-/* Retina-ize icons
+/* Retina-ize icons */
+
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 2dppx) {
 	.select2-search input,
 	.select2-search-choice-close,
@@ -3739,6 +3963,7 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 		background-repeat: no-repeat !important;
 		background-size: 60px 40px !important;
 	}
+
 	.select2-search input {
 		background-position: 100% -21px !important;
 	}
@@ -3747,24 +3972,30 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	border: 0;
 	border-radius: 2px;
 }
+
 .form-control .select2-choice .select2-arrow {
 	border-radius: 0 2px 2px 0;
 }
+
 .form-control.select2-container {
 	height: auto !important;
 	padding: 0;
 }
+
 .form-control.select2-container.select2-dropdown-open {
 	border-color: #5897fb;
 	border-radius: 3px 3px 0 0;
 }
+
 .form-control .select2-container.select2-dropdown-open .select2-choices {
 	border-radius: 3px 3px 0 0;
 }
+
 .form-control.select2-container .select2-choices {
 	border: 0 !important;
 	border-radius: 3px;
 }
+
 .control-group.warning .select2-container .select2-choice,
 .control-group.warning .select2-container .select2-choices,
 .control-group.warning .select2-container-active .select2-choice,
@@ -3774,10 +4005,12 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 .control-group.warning .select2-container-multi.select2-container-active .select2-choices {
 	border: 1px solid #c09853 !important;
 }
+
 .control-group.warning .select2-container .select2-choice div {
 	border-left: 1px solid #c09853 !important;
 	background: #fcf8e3 !important;
 }
+
 .control-group.error .select2-container .select2-choice,
 .control-group.error .select2-container .select2-choices,
 .control-group.error .select2-container-active .select2-choice,
@@ -3787,10 +4020,12 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 .control-group.error .select2-container-multi.select2-container-active .select2-choices {
 	border: 1px solid #b94a48 !important;
 }
+
 .control-group.error .select2-container .select2-choice div {
 	border-left: 1px solid #b94a48 !important;
 	background: #f2dede !important;
 }
+
 .control-group.info .select2-container .select2-choice,
 .control-group.info .select2-container .select2-choices,
 .control-group.info .select2-container-active .select2-choice,
@@ -3800,10 +4035,12 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 .control-group.info .select2-container-multi.select2-container-active .select2-choices {
 	border: 1px solid #3a87ad !important;
 }
+
 .control-group.info .select2-container .select2-choice div {
 	border-left: 1px solid #3a87ad !important;
 	background: #d9edf7 !important;
 }
+
 .control-group.success .select2-container .select2-choice,
 .control-group.success .select2-container .select2-choices,
 .control-group.success .select2-container-active .select2-choice,
@@ -3813,6 +4050,7 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 .control-group.success .select2-container-multi.select2-container-active .select2-choices {
 	border: 1px solid #468847 !important;
 }
+
 .control-group.success .select2-container .select2-choice div {
 	border-left: 1px solid #468847 !important;
 	background: #dff0d8 !important;
@@ -3832,6 +4070,7 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 .ui-multiselect-single .ui-multiselect-checkboxes label {
 	padding: 5px !important;
 }
+
 .ui-multiselect-header {
 	margin-bottom: 3px;
 	padding: 3px 0 3px 4px;
@@ -3857,6 +4096,7 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	text-align: right;
 	padding-right: 0;
 }
+
 .ui-multiselect-menu {
 	display: none;
 	padding: 3px;
@@ -3894,19 +4134,22 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	text-decoration: none;
 }
 
-/* remove label borders in IE6 because IE6 does not support transparency
+/* remove label borders in IE6 because IE6 does not support transparency */
 * html .ui-multiselect-checkboxes label {
 	border: none;
 }
-/* * jQuery UI CSS Framework 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Theming/API */
+/*
+* jQuery UI CSS Framework 1.8.14
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Theming/API
+*/
+
 /* Layout helpers
----------------------------------- */
+----------------------------------*/
 .ui-helper-hidden {
 	display: none;
 }
@@ -3935,15 +4178,14 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 .ui-helper-clearfix {
 	display: inline-block;
 }
-/* required comment for clearfix to work in Opera \ */
+/* required comment for clearfix to work in Opera \*/
 * html .ui-helper-clearfix {
 	height: 1%;
 }
 .ui-helper-clearfix {
 	display: block;
 }
-}
-/* end clearfix
+/* end clearfix */
 .ui-helper-zfix {
 	width: 100%;
 	height: 100%;
@@ -3953,25 +4195,28 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	opacity: 0;
 	filter: Alpha(Opacity=0);
 }
+
 /* Interaction Cues
----------------------------------- */
+----------------------------------*/
 .ui-state-disabled {
 	cursor: default !important;
 }
-/* Icons
----------------------------------- */
 
-/* states and images
+/* Icons
+----------------------------------*/
+
+/* states and images */
 .ui-icon {
 	display: block;
 	text-indent: -99999px;
 	overflow: hidden;
 	background-repeat: no-repeat;
 }
-/* Misc visuals
----------------------------------- */
 
-/* Overlays
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
 .ui-widget-overlay {
 	position: absolute;
 	top: 0;
@@ -3979,17 +4224,21 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	width: 100%;
 	height: 100%;
 }
-/* * jQuery UI CSS Framework 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Theming/API
- *
- * To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Lucida%20Grande,%20Lucida%20Sans,%20Arial,%20sans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=6px&bgColorHeader=deedf7&bgTextureHeader=03_highlight_soft.png&bgImgOpacityHeader=100&borderColorHeader=aed0ea&fcHeader=222222&iconColorHeader=72a7cf&bgColorContent=f2f5f7&bgTextureContent=04_highlight_hard.png&bgImgOpacityContent=100&borderColorContent=dddddd&fcContent=362b36&iconColorContent=72a7cf&bgColorDefault=d7ebf9&bgTextureDefault=02_glass.png&bgImgOpacityDefault=80&borderColorDefault=aed0ea&fcDefault=2779aa&iconColorDefault=3d80b3&bgColorHover=e4f1fb&bgTextureHover=02_glass.png&bgImgOpacityHover=100&borderColorHover=74b2e2&fcHover=0070a3&iconColorHover=2694e8&bgColorActive=3baae3&bgTextureActive=02_glass.png&bgImgOpacityActive=50&borderColorActive=2694e8&fcActive=ffffff&iconColorActive=ffffff&bgColorHighlight=ffef8f&bgTextureHighlight=03_highlight_soft.png&bgImgOpacityHighlight=25&borderColorHighlight=f9dd34&fcHighlight=363636&iconColorHighlight=2e83ff&bgColorError=cd0a0a&bgTextureError=01_flat.png&bgImgOpacityError=15&borderColorError=cd0a0a&fcError=ffffff&iconColorError=ffffff&bgColorOverlay=eeeeee&bgTextureOverlay=08_diagonals_thick.png&bgImgOpacityOverlay=90&opacityOverlay=80&bgColorShadow=000000&bgTextureShadow=04_highlight_hard.png&bgImgOpacityShadow=70&opacityShadow=30&thicknessShadow=7px&offsetTopShadow=-7px&offsetLeftShadow=-7px&cornerRadiusShadow=8px */
+
+/*
+* jQuery UI CSS Framework 1.8.14
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Theming/API
+*
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Lucida%20Grande,%20Lucida%20Sans,%20Arial,%20sans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=6px&bgColorHeader=deedf7&bgTextureHeader=03_highlight_soft.png&bgImgOpacityHeader=100&borderColorHeader=aed0ea&fcHeader=222222&iconColorHeader=72a7cf&bgColorContent=f2f5f7&bgTextureContent=04_highlight_hard.png&bgImgOpacityContent=100&borderColorContent=dddddd&fcContent=362b36&iconColorContent=72a7cf&bgColorDefault=d7ebf9&bgTextureDefault=02_glass.png&bgImgOpacityDefault=80&borderColorDefault=aed0ea&fcDefault=2779aa&iconColorDefault=3d80b3&bgColorHover=e4f1fb&bgTextureHover=02_glass.png&bgImgOpacityHover=100&borderColorHover=74b2e2&fcHover=0070a3&iconColorHover=2694e8&bgColorActive=3baae3&bgTextureActive=02_glass.png&bgImgOpacityActive=50&borderColorActive=2694e8&fcActive=ffffff&iconColorActive=ffffff&bgColorHighlight=ffef8f&bgTextureHighlight=03_highlight_soft.png&bgImgOpacityHighlight=25&borderColorHighlight=f9dd34&fcHighlight=363636&iconColorHighlight=2e83ff&bgColorError=cd0a0a&bgTextureError=01_flat.png&bgImgOpacityError=15&borderColorError=cd0a0a&fcError=ffffff&iconColorError=ffffff&bgColorOverlay=eeeeee&bgTextureOverlay=08_diagonals_thick.png&bgImgOpacityOverlay=90&opacityOverlay=80&bgColorShadow=000000&bgTextureShadow=04_highlight_hard.png&bgImgOpacityShadow=70&opacityShadow=30&thicknessShadow=7px&offsetTopShadow=-7px&offsetLeftShadow=-7px&cornerRadiusShadow=8px
+*/
+
 /* Component containers
----------------------------------- */
+----------------------------------*/
 .ui-widget {
 	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
 	font-size: 1.1em;
@@ -4021,8 +4270,9 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 .ui-widget-header a {
 	color: #222222;
 }
+
 /* Interaction states
----------------------------------- */
+----------------------------------*/
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
@@ -4070,8 +4320,9 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 .ui-widget :active {
 	outline: none;
 }
+
 /* Interaction Cues
----------------------------------- */
+----------------------------------*/
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
@@ -4120,10 +4371,11 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	filter: Alpha(Opacity=35);
 	background-image: none;
 }
-/* Icons
----------------------------------- */
 
-/* states and images
+/* Icons
+----------------------------------*/
+
+/* states and images */
 .ui-icon {
 	width: 16px;
 	height: 16px;
@@ -4153,7 +4405,7 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	background-image: url(/pentaho/api/repos/pentaho-cdf/js/theme/cupertino/images/ui-icons_ffffff_256x240.png);
 }
 
-/* positioning
+/* positioning */
 .ui-icon-carat-1-n {
 	background-position: 0 0;
 }
@@ -4562,8 +4814,7 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 .ui-icon-seek-start {
 	background-position: -80px -160px;
 }
-}
-/* ui-icon-seek-first is deprecated, use ui-icon-seek-start instead
+/* ui-icon-seek-first is deprecated, use ui-icon-seek-start instead */
 .ui-icon-seek-first {
 	background-position: -80px -160px;
 }
@@ -4678,10 +4929,11 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 .ui-icon-grip-diagonal-se {
 	background-position: -80px -224px;
 }
-/* Misc visuals
----------------------------------- */
 
-/* Corner radius
+/* Misc visuals
+----------------------------------*/
+
+/* Corner radius */
 .ui-corner-all,
 .ui-corner-top,
 .ui-corner-left,
@@ -4719,7 +4971,7 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	border-bottom-right-radius: 6px;
 }
 
-/* Overlays
+/* Overlays */
 .ui-widget-overlay {
 	background: #eeeeee url(/pentaho/api/repos/pentaho-cdf/js/theme/cupertino/images/ui-bg_diagonals-thick_90_eeeeee_40x40.png) 50% 50% repeat;
 	opacity: 0.8;
@@ -4735,13 +4987,15 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	-khtml-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
-} /* * jQuery UI Resizable 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Resizable#theming */
+} /*
+* jQuery UI Resizable 1.8.14
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Resizable#theming
+*/
 .ui-resizable {
 	position: relative;
 }
@@ -4810,25 +5064,29 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	height: 9px;
 	right: -5px;
 	top: -5px;
-} /* * jQuery UI Selectable 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Selectable#theming */
+} /*
+* jQuery UI Selectable 1.8.14
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Selectable#theming
+*/
 .ui-selectable-helper {
 	position: absolute;
 	z-index: 100;
 	border: 1px dotted black;
 }
-/* * jQuery UI Accordion 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Accordion#theming */
+/*
+* jQuery UI Accordion 1.8.14
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Accordion#theming
+*/
 /* IE/Win - Fix animation bug - #4615 */
 .ui-accordion {
 	width: 100%;
@@ -4873,29 +5131,34 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 .ui-accordion .ui-accordion-content-active {
 	display: block;
 }
-/* * jQuery UI Autocomplete 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Autocomplete#theming */
+/*
+* jQuery UI Autocomplete 1.8.14
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Autocomplete#theming
+*/
 .ui-autocomplete {
 	position: absolute;
 	cursor: default;
 }
 
-/* workarounds
+/* workarounds */
 * html .ui-autocomplete {
 	width: 1px;
 } /* without this, the menu expands to 100% in IE6 */
-/* * jQuery UI Menu 1.8.14
- *
- * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Menu#theming */
+
+/*
+* jQuery UI Menu 1.8.14
+*
+* Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Menu#theming
+*/
 .ui-menu {
 	list-style: none;
 	padding: 2px;
@@ -4926,13 +5189,15 @@ html[dir='rtl'] .select2-container-multi .select2-search-choice-close {
 	font-weight: normal;
 	margin: -1px;
 }
-/* * jQuery UI Button 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Button#theming */
+/*
+* jQuery UI Button 1.8.14
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Button#theming
+*/
 .ui-button {
 	display: inline-block;
 	position: relative;
@@ -4957,7 +5222,7 @@ button.ui-button-icons-only {
 	width: 3.7em;
 }
 
-/*button text element
+/*button text element */
 .ui-button .ui-button-text {
 	display: block;
 	line-height: 1.4;
@@ -4982,13 +5247,12 @@ button.ui-button-icons-only {
 	padding-left: 2.1em;
 	padding-right: 2.1em;
 }
-}
-/* no icon support for input elements, provide padding by default
+/* no icon support for input elements, provide padding by default */
 input.ui-button {
 	padding: 0.4em 1em;
 }
 
-/*button icon element(s)
+/*button icon element(s) */
 .ui-button-icon-only .ui-icon,
 .ui-button-text-icon-primary .ui-icon,
 .ui-button-text-icon-secondary .ui-icon,
@@ -5017,7 +5281,7 @@ input.ui-button {
 	right: 0.5em;
 }
 
-/*button sets
+/*button sets*/
 .ui-buttonset {
 	margin-right: 7px;
 }
@@ -5026,18 +5290,20 @@ input.ui-button {
 	margin-right: -0.3em;
 }
 
-/* workarounds
+/* workarounds */
 button.ui-button::-moz-focus-inner {
 	border: 0;
 	padding: 0;
 } /* reset extra padding in Firefox */
-/* * jQuery UI Dialog 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Dialog#theming */
+/*
+* jQuery UI Dialog 1.8.14
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Dialog#theming
+*/
 .ui-dialog {
 	position: absolute;
 	padding: 0.2em;
@@ -5100,13 +5366,15 @@ button.ui-button::-moz-focus-inner {
 .ui-draggable .ui-dialog-titlebar {
 	cursor: move;
 }
-/* * jQuery UI Slider 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Slider#theming */
+/*
+* jQuery UI Slider 1.8.14
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Slider#theming
+*/
 .ui-slider {
 	position: relative;
 	text-align: left;
@@ -5126,6 +5394,7 @@ button.ui-button::-moz-focus-inner {
 	border: 0;
 	background-position: 0 0;
 }
+
 .ui-slider-horizontal {
 	height: 0.8em;
 }
@@ -5143,6 +5412,7 @@ button.ui-button::-moz-focus-inner {
 .ui-slider-horizontal .ui-slider-range-max {
 	right: 0;
 }
+
 .ui-slider-vertical {
 	width: 0.8em;
 	height: 100px;
@@ -5161,13 +5431,15 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-slider-vertical .ui-slider-range-max {
 	top: 0;
-} /* * jQuery UI Tabs 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Tabs#theming */
+} /*
+* jQuery UI Tabs 1.8.14
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Tabs#theming
+*/
 .ui-tabs {
 	position: relative;
 	padding: 0.2em;
@@ -5214,13 +5486,15 @@ button.ui-button::-moz-focus-inner {
 .ui-tabs .ui-tabs-hide {
 	display: none !important;
 }
-/* * jQuery UI Datepicker 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Datepicker#theming */
+/*
+* jQuery UI Datepicker 1.8.14
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Datepicker#theming
+*/
 .ui-datepicker {
 	width: 17em;
 	padding: 0.2em 0.2em 0;
@@ -5321,7 +5595,7 @@ button.ui-button::-moz-focus-inner {
 	float: left;
 }
 
-/* with multiple calendars
+/* with multiple calendars */
 .ui-datepicker.ui-datepicker-multi {
 	width: auto;
 }
@@ -5356,7 +5630,7 @@ button.ui-button::-moz-focus-inner {
 	font-size: 0em;
 }
 
-/* RTL support
+/* RTL support */
 .ui-datepicker-rtl {
 	direction: rtl;
 }
@@ -5397,25 +5671,26 @@ button.ui-button::-moz-focus-inner {
 	border-left-width: 1px;
 }
 
-/* IE6 IFRAME FIX (taken from datepicker 1.5.3
+/* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
 .ui-datepicker-cover {
-	display: none; /* sorry for IE5 */
-	display/**/: block; /* sorry for IE5 */
-	position: absolute; /* must have */
-	z-index: -1; /* must have */
-	filter: mask(); /* must have */
-	top: -4px; /* must have */
-	left: -4px; *must have*/
-	width: 200px; must have*/
-
-	height: 200px; *must have*/
-} /* * jQuery UI Progressbar 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Progressbar#theming */
+	display: none; /*sorry for IE5*/
+	display/**/: block; /*sorry for IE5*/
+	position: absolute; /*must have*/
+	z-index: -1; /*must have*/
+	filter: mask(); /*must have*/
+	top: -4px; /*must have*/
+	left: -4px; /*must have*/
+	width: 200px; /*must have*/
+	height: 200px; /*must have*/
+} /*
+* jQuery UI Progressbar 1.8.14
+*
+* Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+* http://docs.jquery.com/UI/Progressbar#theming
+*/
 .ui-progressbar {
 	height: 2em;
 	text-align: left;
@@ -5427,9 +5702,11 @@ button.ui-button::-moz-focus-inner {
 .trendArrow {
 	text-align: right;
 }
+
 .trendArrow > div {
 	display: inline-block;
 }
+
 .trend {
 	width: 10px;
 	height: 10px;
@@ -5438,11 +5715,14 @@ button.ui-button::-moz-focus-inner {
 .trend.up.good {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/addIns/img/up-good.png');
 }
+
 .trend.neutral {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/addIns/img/neutral.png');
 }
+
 .trend.invalid {
 }
+
 .trend.down.good {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/addIns/img/down-good.png');
 }
@@ -5452,8 +5732,10 @@ button.ui-button::-moz-focus-inner {
 .trend.down.bad {
 	background: url('/pentaho/api/repos/pentaho-cdf/js/addIns/img/down-bad.png');
 }
+
 a.hiperlinkAddIn {
 }
+
 .dataBarContainer {
 	position: relative;
 	width: 100%;
@@ -5466,6 +5748,7 @@ a.hiperlinkAddIn {
 	float: right;
 	z-index: 100;
 }
+
 .hiddenCol {
 	display: none;
 }
@@ -5481,16 +5764,18 @@ a.hiperlinkAddIn {
 .groupHeader.group2 {
 	background: #ddddff;
 }
+
 .clippedText {
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
-/* !
- * Bootstrap v3.1.1 (http://getbootstrap.com)
- * Copyright 2011-2014 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE) */
+/*!
+* Bootstrap v3.1.1 (http://getbootstrap.com)
+* Copyright 2011-2014 Twitter, Inc.
+* Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+*/
 
-/*! normalize.css v3.0.0 | MIT License | git.io/normalize
+/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
 	font-family: sans-serif;
 	-ms-text-size-adjust: 100%;
@@ -11402,9 +11687,10 @@ button.close {
 	.hidden-print {
 		display: none !important;
 	}
-} /* !
- *  Font Awesome 4.0.3 by @davegandy - http://fontawesome.io - @fontawesome
- *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License) */
+} /*!
+*  Font Awesome 4.0.3 by @davegandy - http://fontawesome.io - @fontawesome
+*  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+*/
 @font-face {
 	font-family: 'FontAwesome';
 	src: url('/pentaho/api/repos/pentaho-cdf/js/bootstrap/font-awesome/css/../fonts/fontawesome-webfont.eot?v=4.0.3');
