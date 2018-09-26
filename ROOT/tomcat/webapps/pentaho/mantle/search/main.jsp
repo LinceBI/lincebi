@@ -314,11 +314,11 @@ width: 25px;
             </div>
 
             <div class="col-md-4 col-xs-4" style=" background:#f6f6f6; text-align:center;border: 1px #ccc solid;font-size: 25px;color: #666;width: auto;float: right;margin-right: 15px;">
-                <img id="filtro_olap" title="Vistas OLAP" class="fa fa-cube filtro_activo" src="../images/stpivot_icon_c.png" onclick="filtro_extension(this);">
-                <img id="filtro_report" title="Informes" class="fa fa-file-o filtro_activo" src="../images/streport_icon_c.png" onclick="filtro_extension(this);">
-                <img id="filtro_dashboard" title="STDashboard CDM" class="fa fa-pie-chart filtro_activo" src="../images/stdashboard_icon_c.png" onclick="filtro_extension(this);">
-                <img id="filtro_stagile" title="STAgile CDM" class="fa fa-file-o filtro_activo" src="../images/stagile_icon_c.png" onclick="filtro_extension(this);">
-                <img id="filtro_cde" title="Custom CDM" class="fa fa-file-o filtro_activo" src="../images/cde_icon_c.png" onclick="filtro_extension(this);">
+                <img id="filtro_olap" title="Vistas OLAP" class="fa fa-cube filtro_activo" src="../themes/stratebi/images/stpivot_icon_c.png" onclick="filtro_extension(this);">
+                <img id="filtro_report" title="Informes" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/streport_icon_c.png" onclick="filtro_extension(this);">
+                <img id="filtro_dashboard" title="STDashboard CDM" class="fa fa-pie-chart filtro_activo" src="../themes/stratebi/images/stdashboard_icon_c.png" onclick="filtro_extension(this);">
+                <img id="filtro_stagile" title="STAgile CDM" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/stagile_icon_c.png" onclick="filtro_extension(this);">
+                <img id="filtro_cde" title="Custom CDM" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/cde_icon_c.png" onclick="filtro_extension(this);">
             </div>
             <div class="col-md-1" style="  text-align:right;margin-left: -15px;float:right;">
               <span class="input-group-addon" id="reset_filters" onClick="reset_filters();">

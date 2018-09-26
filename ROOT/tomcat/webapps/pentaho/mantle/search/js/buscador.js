@@ -391,7 +391,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 												aPath.replace(/\//g, ':') +
 												':' +
 												items[i].name +
-												"' style='margin-left:0px;border-bottom:1px #eee solid'>											<div data-sort='olap' class='col-md-1'><img src='../images/stpivot_icon_c.png'></div><div data-sort='" +
+												"' style='margin-left:0px;border-bottom:1px #eee solid'>											<div data-sort='olap' class='col-md-1'><img src='../themes/stratebi/images/stpivot_icon_c.png'></div><div data-sort='" +
 												titulo +
 												"' class='col-md-11' style='padding-left: 0;'><a class='titulos' href='#' onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" +
 												titulo +
@@ -434,7 +434,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 												aPath.replace(/\//g, ':') +
 												':' +
 												items[i].name +
-												"' style='margin-left:0px;border-bottom:1px #eee solid'>											<div data-sort='dashboard' class='col-md-1'><img src='../images/stdashboard_icon_c.png'></div><div data-sort='" +
+												"' style='margin-left:0px;border-bottom:1px #eee solid'>											<div data-sort='dashboard' class='col-md-1'><img src='../themes/stratebi/images/stdashboard_icon_c.png'></div><div data-sort='" +
 												titulo +
 												"' class='col-md-11' style='padding-left: 0;'><a class='titulos' href='#' onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" +
 												titulo +
@@ -478,7 +478,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 												aPath.replace(/\//g, ':') +
 												':' +
 												items[i].name +
-												"' style='margin-left:0px;border-bottom:1px #eee solid'>											<div data-sort='report' class='col-md-1'><img src='../images/streport_icon_c.png'></div><div data-sort='" +
+												"' style='margin-left:0px;border-bottom:1px #eee solid'>											<div data-sort='report' class='col-md-1'><img src='../themes/stratebi/images/streport_icon_c.png'></div><div data-sort='" +
 												titulo +
 												"' class='col-md-11' style='padding-left: 0;'><a class='titulos' href='#' onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" +
 												titulo +

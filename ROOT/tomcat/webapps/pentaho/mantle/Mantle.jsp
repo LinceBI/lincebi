@@ -499,14 +499,14 @@ text-align: left;
             <div id="pucToolBar" style="display:none;z-index: 3; position: fixed;top: 95px;right: 10px;"></div>
         </div>
         <div class="pucProfile2 col-md-6" style="text-align:center">  
-         <img src="mantle/images/logo_stratebi.svg" style="height: 50px;margin-top: 3px;">
+        <img src="mantle/themes/stratebi/images/logo_stratebi.svg" style="height: 50px;margin-top: 3px;">
       <div id="pucMenuBar" style="display:none"></div>
       <div id="pucPerspectives" style="display:none"></div>    
          </div> 
         <div class="pucProfile3 col-md-3">      
         <input name="buscador" id="buscador" type="text" placeholder="Search" /> 
         <i id="boton_buscar" class="fa fa-search" aria-hidden="true"></i>   
-        <img src="mantle/images/sttoolbox_icon_c.png" style="height: 25px;padding-left: 20px;margin-top: -2px;">
+        <img src="mantle/themes/stratebi/images/sttoolbox_icon_c.png" style="height: 25px;padding-left: 20px;margin-top: -2px;">
         </div>
         </div>
     <div id="menu_sidebar">
@@ -515,11 +515,11 @@ text-align: left;
    <li class='' onclick="window.parent.mantle_setPerspective('home.perspective')"><a href='#'><i class="fa fa-home" aria-hidden="true"></i></a></li>
    <li class='active'><a href='#'><i class="fa fa-plus" aria-hidden="true"></i></a>
       <ul>
-         <li id="stpivot"><a href='#'><div onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STPivot", "tooltip", "plugin/jpivot/AnalysisViewService?component=newView");' class="btn btn-large btn-block new_olap"><img src="mantle/images/stpivot_icon.png"> Analysis</div>    </a>         </li>
-         <li id="stdashboard"><a href='#'><div onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STDashboard", "tooltip", "content/stdashboard?solution=system&amp;path=temp&amp;action=true");' class="btn btn-large btn-block new_dash"><img src="mantle/images/stdashboard_icon.png"> Dashboard</div>     </a>         </li>
-         <li id="stcard"><a href='#'><div  onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STCard", "tooltip", "stcard/menu/STCard.jsp");' class="btn btn-large btn-block new_score"><img src="mantle/images/stcard_icon.png"> Scorecard</div>        </a>         </li>
-         <li id="streport"><a href='#'><div onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STReport", "tooltip", "content/saiku-adhoc/web/index.html?biplugin=true");' class="btn btn-large btn-block new_report"><img src="mantle/images/streport_icon.png"> Report</div>         </a>         </li>
-         <li id="stagile"><a href='#'><div onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STAgile", "tooltip", "content/stagile/ui/index.html#!/new");' class="btn btn-large btn-block new_agile"><img src="mantle/images/stagile_icon.png"> Agile Dashboard</div>         </a>         </li>
+         <li id="stpivot"><a href='#'><div onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STPivot", "tooltip", "plugin/jpivot/AnalysisViewService?component=newView");' class="btn btn-large btn-block new_olap"><img src="mantle/themes/stratebi/images/stpivot_icon.png"> Analysis</div>    </a>         </li>
+         <li id="stdashboard"><a href='#'><div onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STDashboard", "tooltip", "content/stdashboard?solution=system&amp;path=temp&amp;action=true");' class="btn btn-large btn-block new_dash"><img src="mantle/themes/stratebi/images/stdashboard_icon.png"> Dashboard</div>     </a>         </li>
+         <li id="stcard"><a href='#'><div  onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STCard", "tooltip", "stcard/menu/STCard.jsp");' class="btn btn-large btn-block new_score"><img src="mantle/themes/stratebi/images/stcard_icon.png"> Scorecard</div>        </a>         </li>
+         <li id="streport"><a href='#'><div onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STReport", "tooltip", "content/saiku-adhoc/web/index.html?biplugin=true");' class="btn btn-large btn-block new_report"><img src="mantle/themes/stratebi/images/streport_icon.png"> Report</div>         </a>         </li>
+         <li id="stagile"><a href='#'><div onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STAgile", "tooltip", "content/stagile/ui/index.html#!/new");' class="btn btn-large btn-block new_agile"><img src="mantle/themes/stratebi/images/stagile_icon.png"> Agile Dashboard</div>         </a>         </li>
       </ul>
    </li>   
    <li class='' onclick="window.parent.mantle_setPerspective('opened.perspective')"><a href='#'><i class="fa fa-window-maximize" aria-hidden="true"></i></a></li>

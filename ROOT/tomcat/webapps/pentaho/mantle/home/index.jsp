@@ -26,7 +26,7 @@
 body{
   width: 100%;
   min-height: 500px;
-  background: url('../images/bg.jpg') 100% 100% no-repeat;
+  background: url('../themes/stratebi/images/bg.jpg') 100% 100% no-repeat;
 }
 * {
     margin: 0px;
