@@ -593,7 +593,7 @@ function browsePath(aPath) {
 								new Date().getTime() +
 								'","' +
 								items[i].path +
-								"\")'><img src='../images/" +
+								"\")'><img src='../themes/stratebi/images/" +
 								_class +
 								".png'><span>" +
 								items[i].title +

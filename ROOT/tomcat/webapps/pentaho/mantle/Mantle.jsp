@@ -124,7 +124,7 @@
   <!-- ANGULAR INCLUDES -->
   <link rel='stylesheet' href='content/common-ui/resources/themes/css/angular-animations.css'/>
   <script language="javascript" type="text/javascript" src="webcontext.js?context=mantle"></script>
-  <link rel='stylesheet' href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">  
+  <link rel='stylesheet' href="mantle/css/font-awesome/css/font-awesome.min.css">  
 
   <script type="text/javascript" src="mantle/nativeScripts.js"></script>
   <script type="text/javascript">
