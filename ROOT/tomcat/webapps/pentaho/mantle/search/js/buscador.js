@@ -384,6 +384,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 								if (extension == '.xjpivot') {
 									url = '/' + contexto_pentaho + visor_olap + '?solution=&path=' + items[i].path + '&action=' + items[i].title + '.xjpivot';
 									if (fecha_filtro_ms >= desde && fecha_filtro_ms <= hasta) {
+										// prettier-ignore
 										$('#repository_browser_buscar').append(
 											"<div class='col-xs-12 col-md-6 buscar_olap resultado_buscar'>" +
 												"<div class='col-md-3 col-lg-2'>" +
@@ -419,6 +420,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 									url = url.replace(/%2F/g, '%3A');
 									url = '/' + contexto_pentaho + '/api/repos/' + url + '/generatedContent';
 									if (fecha_filtro_ms >= desde && fecha_filtro_ms <= hasta) {
+										// prettier-ignore
 										$('#repository_browser_buscar').append(
 											"<div class='col-xs-12 col-md-6 buscar_dashboard resultado_buscar'>" +
 												"<div class='col-md-3 col-lg-2'>" +
@@ -454,6 +456,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 									url = url.replace(/%2F/g, '%3A');
 									url = '/' + contexto_pentaho + '/api/repos/' + url + '/generatedContent';
 									if (fecha_filtro_ms >= desde && fecha_filtro_ms <= hasta) {
+										// prettier-ignore
 										$('#repository_browser_buscar').append(
 											"<div class='col-xs-12 col-md-6 buscar_report resultado_buscar'>" +
 												"<div class='col-md-3 col-lg-2'>" +
