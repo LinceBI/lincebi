@@ -784,6 +784,23 @@ div#data-controlproperties-spacer {
 	position: relative;
 }
 
+.pentaho-tab-deck-panel > div:empty {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+
+.pentaho-tab-deck-panel > div:empty:before {
+	display: block;
+	font-family: FontAwesome;
+	font-size: 100px;
+	color: #adadad;
+	content: '\f0f6';
+}
+
 /* Webkit browsers only */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
 	#solutionNavigatorAndContentPanel .pentaho-tab-deck-panel > div {
