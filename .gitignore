@@ -55,6 +55,8 @@
 
 !/ROOT/tomcat/webapps/pentaho/mantle/css/
 
+!/ROOT/tomcat/webapps/pentaho/mantle/fragments/
+
 /ROOT/tomcat/webapps/pentaho/mantle/home/*
 !/ROOT/tomcat/webapps/pentaho/mantle/home/
 !/ROOT/tomcat/webapps/pentaho/mantle/home/index.jsp
