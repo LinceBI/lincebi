@@ -491,28 +491,13 @@ text-align: left;
   <div ng-show="viewContainer === 'PUC'" 
     class="ng-app-element deny-animation-change" animate="fade" 
     id="pucWrapper" cellspacing="0" cellpadding="0" style="width: 100%; height: 100%;">
-    
-    <div id="pucHeader" cellspacing="0" cellpadding="0">
 
-      <div class="pucProfile1 col-lg-3 hidden-md hidden-sm hidden-xs">
-            <div style="width:86px;height:86px; color:white;position:fixed"></div> 
-    	      <h3 style="margin-left:100px;padding-left:20px;margin-top:0px;padding-top:15px">Welcome <span id="mantle_username" style="color:white;"></span></h3>
-            <div id="pucUserDropDown" style="display:none"></div>
-            <div id="pucToolBar" style="display:none;z-index: 3; position: fixed;top: 95px;right: 10px;"></div>
-        </div>
-        <div class="pucProfile2 col-lg-6 col-xs-3" style="text-align:center">  
-        <img src="mantle/themes/stratebi/images/logo_stratebi.svg" style="height: 50px;margin-top: 3px;">
-      <div id="pucMenuBar" style="display:none"></div>
-      <div id="pucPerspectives" style="display:none"></div>    
-         </div> 
-        <div class="pucProfile3 col-lg-3 col-xs-9">      
-        <input name="buscador" id="buscador" type="text" placeholder="Search" /> 
-        <i id="boton_buscar" class="fa fa-search" aria-hidden="true"></i>   
-        <img src="mantle/themes/stratebi/images/sttoolbox_icon_c.png" style="height: 25px;padding-left: 20px;margin-top: -2px;">
-        </div>
-        </div>
-	<%@ include file="./fragments/SideBar.jspf" %>
+    <%@ include file="./fragments/Header.jspf" %>
+
+    <%@ include file="./fragments/SideBar.jspf" %>
+
     <div id="pucContent"></div>
+
   </div>
 
   <div ng-view ng-show="viewContainer === 'ngView'" class="ng-app-view ng-app-element"></div>
