@@ -385,39 +385,31 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 									url = '/' + contexto_pentaho + visor_olap + '?solution=&path=' + items[i].path + '&action=' + items[i].title + '.xjpivot';
 									if (fecha_filtro_ms >= desde && fecha_filtro_ms <= hasta) {
 										$('#repository_browser_buscar').append(
-											"<div class='col-md-6 buscar_olap resultado_buscar'><div class='col-md-2'><img class='thumb_result' src='" +
-												image +
-												"'></div><div class='col-md-10'><div  id='" +
-												aPath.replace(/\//g, ':') +
-												':' +
-												items[i].name +
-												"' style='margin-left:0px;border-bottom:1px #eee solid'>											<div data-sort='olap' class='col-md-1'><img src='../themes/stratebi/images/stpivot_icon_c.png'></div><div data-sort='" +
-												titulo +
-												"' class='col-md-11' style='padding-left: 0;'><a class='titulos' href='#' onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" +
-												titulo +
-												"', 'tooltip', '" +
-												url +
-												'\')"> ' +
-												titulo +
-												"</a></div><div class='description'>" +
-												description +
-												"</div><div class='col-md-12 tags' style='color:grey;'><i  onClick='funcion_tags(\"" +
-												items[i].title +
-												'","' +
-												description +
-												'","' +
-												image +
-												'","' +
-												aPath +
-												'","' +
-												items[i].name +
-												'","' +
-												tags_array +
-												"\")'class='fa " +
-												icon +
-												"' aria-hidden='true'></i>" +
-												tags +
-												'</div></div></div></div>'
+											"<div class='col-xs-12 col-md-6 buscar_olap resultado_buscar'>" +
+												"<div class='col-md-3 col-lg-2'>" +
+													"<img class='thumb_result' src='" + image + "'>" +
+												"</div>" +
+												"<div class='col-md-9 col-lg-10'>" +
+													"<div id='" + aPath.replace(/\//g, ':') + ':' + items[i].name + "'>" +
+														"<div data-sort='" + titulo + "' class='col-md-12' style='padding-left: 0;'>" +
+															"<img data-sort='olap' class='type_result' src='../themes/stratebi/images/stpivot_icon_c.png'>" +
+															"<a class='titulos' href='#' " +
+																"onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "', 'tooltip', '" + url + '\')"> ' +
+																titulo +
+															"</a>" +
+														"</div>" +
+														"<div class='col-md-12 description' style='padding-left: 0;'>" +
+															description +
+														"</div>" +
+														"<div class='col-md-12 tags' style='color: grey;'>" +
+															"<i class='fa " + icon + "' aria-hidden='true' " +
+																" onClick='funcion_tags(\"" + items[i].title + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+															"</i>" +
+															tags +
+														"</div>" +
+													"</div>" +
+												"</div>" +
+											"</div>"
 										);
 									}
 								}
@@ -428,39 +420,31 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 									url = '/' + contexto_pentaho + '/api/repos/' + url + '/generatedContent';
 									if (fecha_filtro_ms >= desde && fecha_filtro_ms <= hasta) {
 										$('#repository_browser_buscar').append(
-											"<div class='col-md-6 buscar_dashboard resultado_buscar'><div class='col-md-2'><img class='thumb_result' src='" +
-												image +
-												"'></div><div class='col-md-10'><div  id='" +
-												aPath.replace(/\//g, ':') +
-												':' +
-												items[i].name +
-												"' style='margin-left:0px;border-bottom:1px #eee solid'>											<div data-sort='dashboard' class='col-md-1'><img src='../themes/stratebi/images/stdashboard_icon_c.png'></div><div data-sort='" +
-												titulo +
-												"' class='col-md-11' style='padding-left: 0;'><a class='titulos' href='#' onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" +
-												titulo +
-												"', 'tooltip', '" +
-												url +
-												'\')"> ' +
-												titulo +
-												"</a></div><div class='description'>" +
-												description +
-												"</div><div class='col-md-12 tags' style='color:grey;'><i  onClick='funcion_tags(\"" +
-												items[i].title +
-												'","' +
-												description +
-												'","' +
-												image +
-												'","' +
-												aPath +
-												'","' +
-												items[i].name +
-												'","' +
-												tags_array +
-												"\")'class='fa " +
-												icon +
-												"' aria-hidden='true'></i>" +
-												tags +
-												'</div></div></div></div>'
+											"<div class='col-xs-12 col-md-6 buscar_dashboard resultado_buscar'>" +
+												"<div class='col-md-3 col-lg-2'>" +
+													"<img class='thumb_result' src='" + image + "'>" +
+												"</div>" +
+												"<div class='col-md-9 col-lg-10'>" +
+													"<div id='" + aPath.replace(/\//g, ':') + ':' + items[i].name + "'>" +
+														"<div data-sort='" + titulo + "' class='col-md-12' style='padding-left: 0;'>" +
+															"<img data-sort='dashboard' class='type_result' src='../themes/stratebi/images/stdashboard_icon_c.png'>" +
+															"<a class='titulos' href='#' " +
+																"onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "', 'tooltip', '" + url + '\')"> ' +
+																titulo +
+															"</a>" +
+														"</div>" +
+														"<div class='col-md-12 description' style='padding-left: 0;'>" +
+															description +
+														"</div>" +
+														"<div class='col-md-12 tags' style='color: grey;'>" +
+															"<i class='fa " + icon + "' aria-hidden='true' " +
+																" onClick='funcion_tags(\"" + items[i].title + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+															"</i>" +
+															tags +
+														"</div>" +
+													"</div>" +
+												"</div>" +
+											"</div>"
 										);
 									}
 								}
@@ -470,41 +454,32 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 									url = url.replace(/%2F/g, '%3A');
 									url = '/' + contexto_pentaho + '/api/repos/' + url + '/generatedContent';
 									if (fecha_filtro_ms >= desde && fecha_filtro_ms <= hasta) {
-										//$("#repository_browser").append("<tr class='buscar_report'><td data-sort='report' class='column0' style='margin-left: 0px;'><i class='fa fa-file-o fa-lg fa-2x' style='color:"+color_principal+"; margin-top:15px' ></i></td><td data-sort='"+titulo+"' class='col-md-3 column1'><a class='titulos' href='#' onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "', 'tooltip', '" + url + "')\"> " + titulo + "</a></td><td class='column2 ruta' style='color:grey;padding-top:15px'>" + ruta + "</td><td class='column3 ruta' style='color:grey;padding-top:15px'>" + fecha_creacion + "</td></tr>");
 										$('#repository_browser_buscar').append(
-											"<div class='col-md-6 buscar_report resultado_buscar'><div class='col-md-2'><img class='thumb_result' src='" +
-												image +
-												"'></div><div class='col-md-10'><div  id='" +
-												aPath.replace(/\//g, ':') +
-												':' +
-												items[i].name +
-												"' style='margin-left:0px;border-bottom:1px #eee solid'>											<div data-sort='report' class='col-md-1'><img src='../themes/stratebi/images/streport_icon_c.png'></div><div data-sort='" +
-												titulo +
-												"' class='col-md-11' style='padding-left: 0;'><a class='titulos' href='#' onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" +
-												titulo +
-												"', 'tooltip', '" +
-												url +
-												'\')"> ' +
-												titulo +
-												"</a></div><div class='description'>" +
-												description +
-												"</div><div class='col-md-12 tags' style='color:grey;'><i  onClick='funcion_tags(\"" +
-												items[i].title +
-												'","' +
-												description +
-												'","' +
-												image +
-												'","' +
-												aPath +
-												'","' +
-												items[i].name +
-												'","' +
-												tags_array +
-												"\")'class='fa " +
-												icon +
-												"' aria-hidden='true'></i>" +
-												tags +
-												'</div></div></div></div>'
+											"<div class='col-xs-12 col-md-6 buscar_report resultado_buscar'>" +
+												"<div class='col-md-3 col-lg-2'>" +
+													"<img class='thumb_result' src='" + image + "'>" +
+												"</div>" +
+												"<div class='col-md-9 col-lg-10'>" +
+													"<div id='" + aPath.replace(/\//g, ':') + ':' + items[i].name + "'>" +
+														"<div data-sort='" + titulo + "' class='col-md-12' style='padding-left: 0;'>" +
+															"<img data-sort='report' class='type_result' src='../themes/stratebi/images/streport_icon_c.png'>" +
+															"<a class='titulos' href='#' " +
+																"onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "', 'tooltip', '" + url + '\')"> ' +
+																titulo +
+															"</a>" +
+														"</div>" +
+														"<div class='col-md-12 description' style='padding-left: 0;'>" +
+															description +
+														"</div>" +
+														"<div class='col-md-12 tags' style='color: grey;'>" +
+															"<i class='fa " + icon + "' aria-hidden='true' " +
+																" onClick='funcion_tags(\"" + items[i].title + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+															"</i>" +
+															tags +
+														"</div>" +
+													"</div>" +
+												"</div>" +
+											"</div>"
 										);
 									}
 								}

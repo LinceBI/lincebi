@@ -302,10 +302,14 @@ input[type='submit'] {
 	transition: all 0.2s ease-in-out;
 }
 .thumb_result {
-	height: 100px !important;
+	width: 100%;
+	height: auto !important;
 	border: 1px #ccc solid;
 }
-
+.type_result {
+	width: 25px;
+	height: 25px;
+}
 .buscar_olap {
 	margin-left: 0px;
 	border-left: 6px solid #afb837;
@@ -380,7 +384,7 @@ input[type='submit'] {
 	color: #ed7c36;
 }
 .resultado_buscar .description {
-	min-height: 55px;
+	min-height: 20px;
 	color: #999;
 	font-style: italic;
 }

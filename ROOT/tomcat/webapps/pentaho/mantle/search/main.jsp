@@ -211,9 +211,9 @@ a{
   margin-top: 5px;
 }
 .resultado_buscar{
-  padding:15px;
+  padding: 15px 15px 40px 15px;
   min-height: 140px;
-  margin-top:25px;
+  margin-top: 25px;
 }
 .col-md-12.title,.col-md-10.title {
     border-left: 6px #ccc solid;
