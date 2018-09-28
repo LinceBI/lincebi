@@ -156,10 +156,12 @@ input[type='password'] {
 }
 
 .pentaho-page-background {
-	background: url('images/bg.jpg') 100% 100%;
+	background: url('images/bg.jpg');
 	background-color: #fff;
-	background-size: 100% !important;
-	background-position-x: center !important;
+	background-size: cover !important;
+	background-repeat: no-repeat;
+	background-position: center center !important;
+	background-attachment: fixed;
 }
 
 .schedule-dialog-content-crystal {
@@ -738,6 +740,7 @@ div#data-controlproperties-spacer {
 }
 .pentaho-tab-panel {
 	background: url('images/bg_admin_tab_panel.png') repeat-x 0 0px;
+	width: 100% !important;
 	height: 35px;
 }
 .pentaho-tab-bar {

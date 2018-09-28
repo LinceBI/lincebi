@@ -19,31 +19,14 @@ List<String> pluginIds = PentahoSystem.get(IPluginManager.class, PentahoSessionH
 		<meta charset="UTF-8"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link rel="stylesheet" href="../../css/bootstrap.css">
-		<link rel="stylesheet" href="../../css/main.css">
-		<link href="../../css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<script src="../../js/jquery-3.3.1.min.js"></script>
 		<script src="js/translate.administracion.js"></script>
 		<style>
-			@font-face {
-			  font-family: 'Roboto';
-			  src:url('../../fonts/Roboto-Regular.ttf') format('truetype');
-			  font-weight: normal;
-			  font-style: normal;
-			}
 			
 			html,body {
 			  padding-top: 9px;
 			  padding-bottom: 40px;
-			  background: #fff;
-			  font-family: 'Roboto' !important;
-			}   
-			
-			body {
-			}    
-			
-			.box{
-			  border-top: 1px #ccc solid;
+			  background: transparent;
+			  font-family: 'Titillium Web', sans-serif;
 			}
 			
 			.box .box_element{
@@ -84,21 +67,21 @@ List<String> pluginIds = PentahoSystem.get(IPluginManager.class, PentahoSessionH
 			  padding-left: 10px;
 			  color: black !important;
 			  text-decoration: underline #f5f5f5;
-			  border-right: 6px solid #00ccff;
-			  border-left: 6px solid #00ccff;
+			  border-right: 6px solid #7A9E3F; 
+			  /* border-left: 6px solid #7A9E3F; */
 			}
 		</style>	
 	</head>
 
 	<body style="overflow:auto">
 	
-		<div class="row" style="width: 955px;margin: auto;background: white;padding: 20px;padding-bottom: 90px;border-radius: 5px;">
+		<div class="row" style="width: 955px;margin: auto;background: white;border-radius: 5px; background: #f5f5f5; border-left: 10px #7A9E3F solid; box-shadow: 5px 10px 18px #888888;">
 			<div class="col-md-5 col-xs-5">
 				<div class="box row">
 					<!--<div class="box_element  btn" onClick="parent.executeCommand('OpenFileCommand')">
 						<i class="fa fa-sign-out" aria-hidden="true" style="float:left;margin-left:10px;margin-top: 3px;"></i><span>Open File</span>
 					</div>    -->
-					<div class="box_element  btn" onClick="window.parent.executeCommand('ManageDatasourcesCommand')">
+					<div class="box_element  btn" style="border-top: 1px #ccc solid;" onClick="window.parent.executeCommand('ManageDatasourcesCommand')">
 						<i class="fa fa-database" aria-hidden="true" style="float:left;margin-left:10px;margin-top: 3px;"></i><span id="mds">Manage Data Sources</span>
 					</div>  
 					<div class="box_element  btn" onClick="window.parent.mantle_setPerspective('admin.perspective')">
