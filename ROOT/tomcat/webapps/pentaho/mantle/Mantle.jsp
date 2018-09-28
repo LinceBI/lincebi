@@ -118,13 +118,15 @@
   <link rel='stylesheet' href='mantle/MantleStyle.css'/>
   <%if ( hasDataAccessPlugin ) {%>
   <link rel="stylesheet" href="content/data-access/resources/gwt/datasourceEditorDialog.css"/>
-  <link rel="stylesheet" href="mantle/css/bootstrap.min.css"/>
   <%}%>
 
   <!-- ANGULAR INCLUDES -->
-  <link rel='stylesheet' href='content/common-ui/resources/themes/css/angular-animations.css'/>
+  <link rel="stylesheet" href="content/common-ui/resources/themes/css/angular-animations.css">
   <script language="javascript" type="text/javascript" src="webcontext.js?context=mantle"></script>
-  <link rel='stylesheet' href="mantle/css/font-awesome/css/font-awesome.min.css">  
+
+  <script src="mantle/themes/stratebi/vendor/bootstrap/js/bootstrap.min.js" async></script>
+  <link rel="stylesheet" href="mantle/themes/stratebi/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="mantle/themes/stratebi/vendor/font-awesome/css/font-awesome.min.css">
 
   <script type="text/javascript" src="mantle/nativeScripts.js"></script>
   <script type="text/javascript">
