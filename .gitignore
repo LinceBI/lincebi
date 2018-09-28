@@ -53,8 +53,6 @@
 !/ROOT/tomcat/webapps/pentaho/mantle/browser/css/
 !/ROOT/tomcat/webapps/pentaho/mantle/browser/css/browser.css
 
-!/ROOT/tomcat/webapps/pentaho/mantle/css/
-
 !/ROOT/tomcat/webapps/pentaho/mantle/fragments/
 
 /ROOT/tomcat/webapps/pentaho/mantle/home/*
