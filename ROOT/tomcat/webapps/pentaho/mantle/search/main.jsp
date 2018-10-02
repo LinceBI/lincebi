@@ -292,43 +292,52 @@ width: 25px;
     </div>
 
         <div class="row">
-            <div class="col-md-12"  style='padding: 0px 30px;'> 
+            <div class="col-md-12" style='padding: 0px 30px;'> 
               <h2 class="header">Resultados</h2>
             </div>
-            <div class="col-md-6">
-                    <div id="datepicker_desde" class="col-md-4 input-group date">
-                            <input type='text' class="form-control" placeholder="Desde" style="border: 1px #ccc solid !important;" />
-                            <span class="input-group-addon">
-                                <span class="fa fa-calendar"></span>
-                            </span>                         
-                    </div>
-                    <div id="datepicker_hasta" class="col-md-4 input-group date">
-                            <input type='text' class="form-control" placeholder="Hasta" style="border: 1px #ccc solid !important;"/>
-                            <span class="input-group-addon">
-                                <span class="fa fa-calendar"></span>
-                            </span>
-                    </div>
-                    <div class="col-md-4">
-                          <select id="datepicker_filtro" ><option value="creacion">Create date</option><option value="modificacion">Modified date</option></select>
-                    </div>
-            </div>
 
-            <div class="col-md-4 col-xs-4" style=" background:#f6f6f6; text-align:center;border: 1px #ccc solid;font-size: 25px;color: #666;width: auto;float: right;margin-right: 15px;">
-                <img id="filtro_olap" title="Vistas OLAP" class="fa fa-cube filtro_activo" src="../themes/stratebi/images/stpivot_icon_c.png" onclick="filtro_extension(this);">
-                <img id="filtro_report" title="Informes" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/streport_icon_c.png" onclick="filtro_extension(this);">
-                <img id="filtro_dashboard" title="STDashboard CDM" class="fa fa-pie-chart filtro_activo" src="../themes/stratebi/images/stdashboard_icon_c.png" onclick="filtro_extension(this);">
-                <img id="filtro_stagile" title="STAgile CDM" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/stagile_icon_c.png" onclick="filtro_extension(this);">
-                <img id="filtro_cde" title="Custom CDM" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/cde_icon_c.png" onclick="filtro_extension(this);">
-            </div>
-            <div class="col-md-1" style="  text-align:right;margin-left: -15px;float:right;">
-              <span class="input-group-addon" id="reset_filters" onClick="reset_filters();">
+            <div class="col-md-12">
+              <div class="col-md-2 search-filter-box">
+                <div id="datepicker_desde" class="input-group date">
+                  <input type='text' class="form-control" placeholder="Desde" style="border: 1px #ccc solid !important;" />
+                  <span class="input-group-addon">
+                    <span class="fa fa-calendar"></span>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-2 search-filter-box">
+                <div id="datepicker_hasta" class="input-group date">
+                  <input type='text' class="form-control" placeholder="Hasta" style="border: 1px #ccc solid !important;"/>
+                  <span class="input-group-addon">
+                    <span class="fa fa-calendar"></span>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-2 search-filter-box">
+                <select id="datepicker_filtro" class="input-group">
+                  <option value="creacion">Create date</option>
+                  <option value="modificacion">Modified date</option>
+                </select>
+              </div>
+              <div class="col-md-3 search-filter-box">
+                <div style="background:#f6f6f6; text-align:center;border: 1px #ccc solid;font-size: 25px;color: #666;width: auto;">
+                    <img id="filtro_olap" title="Vistas OLAP" class="fa fa-cube filtro_activo" src="../themes/stratebi/images/stpivot_icon_c.png" onclick="filtro_extension(this);">
+                    <img id="filtro_report" title="Informes" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/streport_icon_c.png" onclick="filtro_extension(this);">
+                    <img id="filtro_dashboard" title="STDashboard CDM" class="fa fa-pie-chart filtro_activo" src="../themes/stratebi/images/stdashboard_icon_c.png" onclick="filtro_extension(this);">
+                    <img id="filtro_stagile" title="STAgile CDM" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/stagile_icon_c.png" onclick="filtro_extension(this);">
+                    <img id="filtro_cde" title="Custom CDM" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/cde_icon_c.png" onclick="filtro_extension(this);">
+                </div>
+              </div>
+              <div class="col-md-3 search-filter-box">
+                <div class="pull-right">
+                  <span class="search-form-btn input-group-addon" id="reset_filters" onClick="reset_filters();">
                     <span class="fa fa-refresh"></span>
-              </span>
-            </div>            
-            <div class="col-md-1" style="  text-align:right;float:right;">
-              <span class="input-group-addon" id="show_repository" onClick="reset();">
+                  </span>
+                  <span class="search-form-btn input-group-addon" id="show_repository" onClick="reset();">
                     <span class="fa fa-folder"></span>
-              </span>
+                  </span>
+                </div>
+              </div>
             </div>
         </div>
 

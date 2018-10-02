@@ -189,14 +189,17 @@
     require(['mantle/puc-api/pucAngularApi']);
     $( document ).ready(function() {
 
-    $('#buscador').on('keyup', function(e) {
-      if (e.keyCode == 13) {
-        window.parent.mantle_setPerspective('search.perspective');       
-        var palabra = $('#buscador', window.parent.document)[0].value;      
-        document.getElementById('search.perspective').contentWindow.accion_buscar(palabra);
+    (function() {
+      var buscar = function() {
+          window.parent.mantle_setPerspective('search.perspective');
+          var palabra = $('#buscador', window.parent.document)[0].value;
+          var contentWindow = document.getElementById('search.perspective').contentWindow;
+          if (contentWindow.accion_buscar) contentWindow.accion_buscar(palabra);
+      };
+      $('#buscar').on('click', buscar);
+      $('#buscador').on('keyup', function(e) { if (e.keyCode == 13) buscar(); });
+    })();
 
-      }
-  });
   });
 
   </script>
@@ -219,13 +222,14 @@
 #menu_sidebar .fa{
 font-size: 25px;
 }
-.btn {
+#menu_sidebar .btn,
+#pucContent .btn {
     background: #769D49;
 
     padding: 13px 20px;
     border-radius: 0px;
 }
-  .new_olap:hover{
+#menu_sidebar .new_olap:hover{
     background: #b0b916;
     color:white;
     border-radius: 0px !important;
@@ -234,7 +238,7 @@ font-size: 25px;
   -ms-transition: all .2s ease;
   transition: all .2s ease;    
   }
-  .new_score:hover{
+#menu_sidebar .new_score:hover{
     background: #066653;    
         color:white;
     -webkit-transition: all .2s ease;
@@ -243,7 +247,7 @@ font-size: 25px;
   transition: all .2s ease;
     border-radius: 0px !important;
   }
-  .new_report:hover{
+#menu_sidebar .new_report:hover{
     background: #e67d21;
         color:white;
     -webkit-transition: all .2s ease;
@@ -252,7 +256,7 @@ font-size: 25px;
   transition: all .2s ease;
     border-radius: 0px !important;
   }
-.new_agile:hover{
+#menu_sidebar .new_agile:hover{
     background: #ff0000;
         color:white;
     -webkit-transition: all .2s ease;
@@ -261,7 +265,7 @@ font-size: 25px;
   transition: all .2s ease;
     border-radius: 0px !important;
   }
-  .new_dash:hover{
+#menu_sidebar .new_dash:hover{
     background: #2a80b8;
         color:white;
     -webkit-transition: all .2s ease;
@@ -484,7 +488,6 @@ font-size: 25px;
 #cssmenu .btn{
 text-align: left;
 }
-
 </style>
 </head>
 

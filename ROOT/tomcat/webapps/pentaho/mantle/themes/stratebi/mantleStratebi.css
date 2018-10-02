@@ -302,7 +302,7 @@
 }
 
 #mainToolbar {
-	padding: 0px 0px 0px 0px;
+	padding: 0px 0px 10px 0px;
 }
 
 .puc-horizontal-split-panel {
@@ -897,11 +897,6 @@ a:hover {
 	width: 380px;
 }
 
-#pucHeader {
-	/* moved to global crystal */
-	min-width: 820px;
-}
-
 #pucHeader .gwt-MenuBar-horizontal .gwt-MenuItem {
 	color: #777;
 	font-size: 13px;
@@ -1055,50 +1050,54 @@ a:hover {
 }
 
 /* == == == */
+#mainToolbar .toolbar-button img {
+	filter: brightness(0%) opacity(70%);
+}
+
 #mainToolbar #openButton .toolbar-button img {
-	background: url('../../../content/common-ui/resources/themes/crystal/images/open_32.png');
+	background: url('../../../content/common-ui/resources/themes/stratebi/images/open_32.png');
 	height: 32px;
 	width: 32px;
 }
 
 #mainToolbar #newButton .toolbar-button img {
-	background: url('../../../content/common-ui/resources/themes/crystal/images/new_32.png');
+	background: url('../../../content/common-ui/resources/themes/stratebi/images/new_32.png');
 	height: 32px;
 	width: 32px;
 }
 
 #mainToolbar #editContentButton .toolbar-toggle-button img {
-	background: url('../../../content/common-ui/resources/themes/crystal/images/editContent_32.png');
+	background: url('../../../content/common-ui/resources/themes/stratebi/images/editContent_32.png');
 	height: 32px;
 	width: 32px;
 }
 
 #mainToolbar #editContentButton .toolbar-toggle-button-disabled img {
-	background: url('../../../content/common-ui/resources/themes/crystal/images/editContent_32_disabled.png');
+	background: url('../../../content/common-ui/resources/themes/stratebi/images/editContent_32_disabled.png');
 	height: 32px;
 	width: 32px;
 }
 
 #mainToolbar #saveButton .toolbar-button img {
-	background: url('../../../content/common-ui/resources/themes/crystal/images/save_32.png');
+	background: url('../../../content/common-ui/resources/themes/stratebi/images/save_32.png');
 	height: 32px;
 	width: 32px;
 }
 
 #mainToolbar #saveButton .toolbar-button-disabled img {
-	background: url('../../../content/common-ui/resources/themes/crystal/images/save_32_disabled.png');
+	background: url('../../../content/common-ui/resources/themes/stratebi/images/save_32_disabled.png');
 	height: 32px;
 	width: 32px;
 }
 
 #mainToolbar #saveAsButton .toolbar-button img {
-	background: url('../../../content/common-ui/resources/themes/crystal/images/saveAs_32.png');
+	background: url('../../../content/common-ui/resources/themes/stratebi/images/saveAs_32.png');
 	height: 32px;
 	width: 32px;
 }
 
 #mainToolbar #saveAsButton .toolbar-button-disabled img {
-	background: url('../../../content/common-ui/resources/themes/crystal/images/saveAs_32_disabled.png');
+	background: url('../../../content/common-ui/resources/themes/stratebi/images/saveAs_32_disabled.png');
 	height: 32px;
 	width: 32px;
 }
@@ -1116,19 +1115,19 @@ a:hover {
 }
 
 #mainToolbar #newAnalysisButton_img .gwt-Image {
-	background: url('../../../content/common-ui/resources/themes/crystal/images/dashbaord_32.png');
+	background: url('../../../content/common-ui/resources/themes/stratebi/images/dashbaord_32.png');
 	height: 32px;
 	width: 32px;
 }
 
 #mainToolbar #printButton .toolbar-button img {
-	background: url('../../../content/common-ui/resources/themes/crystal/images/print_32.png');
+	background: url('../../../content/common-ui/resources/themes/stratebi/images/print_32.png');
 	height: 32px;
 	width: 32px;
 }
 
 #mainToolbar #printButton .toolbar-button-disabled img {
-	background: url('../../../content/common-ui/resources/themes/crystal/images/print_32_disabled.png');
+	background: url('../../../content/common-ui/resources/themes/stratebi/images/print_32_disabled.png');
 	height: 32px;
 	width: 32px;
 }
@@ -1340,23 +1339,12 @@ a:hover {
 .newToolbarDropdown {
 	border: 1px solid #8bb5c5;
 	border: 1px solid rgba(139, 181, 197, 0.2);
-	background-color: #dce7ed;
 
-	/* Standard form */
-	border-radius: 6px;
-	/* Firefox */
-	-moz-border-radius: 6px;
-	/* Safari/Chrome */
-	-webkit-border-radius: 6px;
 	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-left: 10px;
-	padding-right: 10px;
-	z-index: 100;
+	z-index: 16777271 !important;
 }
 
 .newToolbarDropdownButton {

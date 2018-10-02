@@ -43,6 +43,7 @@
 /ROOT/tomcat/webapps/pentaho/mantle/*
 !/ROOT/tomcat/webapps/pentaho/mantle/
 !/ROOT/tomcat/webapps/pentaho/mantle/Mantle.jsp
+!/ROOT/tomcat/webapps/pentaho/mantle/themes.xml
 
 !/ROOT/tomcat/webapps/pentaho/mantle/administration/
 

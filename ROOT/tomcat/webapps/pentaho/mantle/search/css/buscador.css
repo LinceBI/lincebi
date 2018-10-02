@@ -74,8 +74,8 @@
 #filtro_report,
 #filtro_stagile,
 #filtro_cde {
-	-webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
+	-webkit-filter: brightness(0%) opacity(50%);
+	filter: brightness(0%) opacity(50%);
 	-webkit-transition: all 0.5s ease;
 	transition: all 0.5s ease;
 	font-size: 20px;
@@ -260,6 +260,7 @@ input[type='submit'] {
 }
 #datepicker_filtro {
 	height: 40px;
+	width: 100%;
 }
 #dialog {
 	display: none;
@@ -283,23 +284,14 @@ input[type='submit'] {
 	color: #666;
 	background: #f6f6f6;
 	cursor: pointer;
-	-webkit-transition: all 0.2s ease-in-out;
-	-moz-transition: all 0.2s ease-in-out;
-	-o-transition: all 0.2s ease-in-out;
-	transition: all 0.2s ease-in-out;
 }
 #show_repository:hover,
 #reset_filters:hover,
 #show_repository .active {
 	border: 1px #ccc solid;
-	font-size: 25px;
 	color: #666;
 	background: #ddd;
 	cursor: pointer;
-	-webkit-transition: all 0.2s ease-in-out;
-	-moz-transition: all 0.2s ease-in-out;
-	-o-transition: all 0.2s ease-in-out;
-	transition: all 0.2s ease-in-out;
 }
 .thumb_result {
 	width: 100%;
@@ -441,4 +433,16 @@ ul.tagit li.tagit-choice-editable {
 #repository_browser_buscar,
 #repository_browser {
 	padding-right: 0;
+}
+
+.search-form-btn {
+	display: inline-block;
+	width: 70px;
+	border-radius: 0;
+}
+.search-form-btn:not(:first-child) {
+	margin-left: 10px;
+}
+.search-filter-box {
+	margin-bottom: 10px;
 }

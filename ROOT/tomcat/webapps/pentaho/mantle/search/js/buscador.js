@@ -261,6 +261,9 @@ function reset() {
 }
 
 function reset_filters() {
+	window.parent.$('#buscador').val('');
+	$('#datepicker_desde').datepicker('setDate', null);
+	$('#datepicker_hasta').datepicker('setDate', null);
 	accion_buscar('');
 }
 

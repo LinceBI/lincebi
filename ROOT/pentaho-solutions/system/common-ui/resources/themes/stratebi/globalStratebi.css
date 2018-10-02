@@ -1210,7 +1210,7 @@ input:focus {
 }
 
 .toolbar-button.toolbar-button-hovering {
-	border: 1px solid #3d6380;
+	border: 1px solid #8c8c8c;
 	background: rgba(255, 255, 255, 0.2);
 	cursor: pointer;
 	margin: 0px;
