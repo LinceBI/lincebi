@@ -4,42 +4,119 @@
 <div id="menu_sidebar">
 	<div id='cssmenu'>
 		<ul>
-			<li onclick="window.parent.mantle_setPerspective('home.perspective')"><a href='#'><i class="fa fa-home" aria-hidden="true"></i></a></li>
-			<li class='active'><a href='#'><i class="fa fa-plus" aria-hidden="true"></i></a>
+			<li>
+				<a href="#" onclick="window.parent.mantle_setPerspective('home.perspective')">
+					<i class="fa fa-home"></i>
+				</a>
 				<ul>
-					<% if (pluginList.contains("jpivot")) { %>
-						<li id="stpivot"><a href='#'><div onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STPivot", "tooltip", "plugin/jpivot/AnalysisViewService?component=newView");' class="btn btn-large btn-block new_olap"><img src="mantle/themes/stratebi/images/stpivot_icon.png"> Analysis</div></a></li>
-					<% } 
-					   if (pluginList.contains("stdashboard")) { %>
-					<li id="stdashboard"><a href='#'><div onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STDashboard", "tooltip", "content/stdashboard?solution=system&amp;path=temp&amp;action=true");' class="btn btn-large btn-block new_dash"><img src="mantle/themes/stratebi/images/stdashboard_icon.png"> Dashboard</div></a></li>
-					<% }
-					   if (pluginList.contains("stcard")) { %>
-					<li id="stcard"><a href='#'><div  onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STCard", "tooltip", "stcard/menu/STCard.jsp");' class="btn btn-large btn-block new_score"><img src="mantle/themes/stratebi/images/stcard_icon.png"> Scorecard</div></a></li>
-					<% }
-					   if (pluginList.contains("saiku-adhoc")) { %>
-					<li id="streport"><a href='#'><div onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STReport", "tooltip", "content/saiku-adhoc/web/index.html?biplugin=true");' class="btn btn-large btn-block new_report"><img src="mantle/themes/stratebi/images/streport_icon.png"> Report</div></a></li>
-					<% }
-					   if (pluginList.contains("stagile")) { %>
-					<li id="stagile"><a href='#'><div onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STAgile", "tooltip", "content/stagile/ui/index.html#!/new");' class="btn btn-large btn-block new_agile"><img src="mantle/themes/stratebi/images/stagile_icon.png"> Agile Dashboard</div></a></li>
+					<% if (canAdminister) { %>
+						<li>
+							<a href="#" onclick="window.parent.mantle_setPerspective('stadmin.perspective')">
+								<div class="btn btn-large btn-block">
+									<i class="fa fa-fw fa-wrench"></i> STAdmin
+								</div>
+							</a>
+						</li>
 					<% } %>
 				</ul>
-			</li>   
-			<li onclick="window.parent.mantle_setPerspective('opened.perspective')"><a href='#'><i class="fa fa-window-maximize" aria-hidden="true"></i></a></li>
-			<li onclick="window.parent.mantle_setPerspective('browser.perspective')"><a href='#'> <i class="fa fa-folder-open" aria-hidden="true"></i></a></li>
-			<li onclick="window.parent.mantle_setPerspective('search.perspective')"><a href='#'><i class="fa fa-search" aria-hidden="true"></i></a></li>
-			<li onclick="window.parent.mantle_setPerspective('search.perspective')"><a href='#'><i class="fa fa-star" aria-hidden="true"></i></a></li>
-			<li onclick="window.parent.mantle_setPerspective('search.perspective')"><a href='#'><i class="fa fa-clock-o" aria-hidden="true"></i></a></li>
-			<li onclick="window.top.mantle_setPerspective('administration.perspective')"><a href='#'><i class="fa fa-unlock-alt" aria-hidden="true"></i></a></li>  
-			<li class='active'><a href='#' style="font-size: 12px;">[ES]</a>
+			</li>
+			<li class='active'>
+				<a href="#">
+					<i class="fa fa-plus"></i>
+				</a>
 				<ul>
-					<li><a href='#'><div onclick='' class="btn btn-large btn-block">[ ES ]</div></a></li>
-					<li><a href='#'><div onclick='' class="btn btn-large btn-block">[ EN ]</div></a></li>
-					<li><a href='#'><div onclick='' class="btn btn-large btn-block">[ FR ]</div></a></li>
-					<li><a href='#'><div onclick='' class="btn btn-large btn-block">[ ITA ]</div></a></li>
-					<li><a href='#'><div onclick='' class="btn btn-large btn-block">[ PR ]</div></a></li>
+					<% if (pluginList.contains("jpivot")) { %>
+						<li id="stpivot">
+							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STPivot", "tooltip", "plugin/jpivot/AnalysisViewService?component=newView");'>
+								<div class="btn btn-large btn-block new_olap">
+									<img src="mantle/themes/stratebi/images/stpivot_icon.png"> Analysis
+								</div>
+							</a>
+						</li>
+					<% } %>
+					<% if (pluginList.contains("stdashboard")) { %>
+						<li id="stdashboard">
+							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STDashboard", "tooltip", "content/stdashboard?solution=system&amp;path=temp&amp;action=true");'>
+								<div class="btn btn-large btn-block new_dash">
+									<img src="mantle/themes/stratebi/images/stdashboard_icon.png"> Dashboard
+								</div>
+							</a>
+						</li>
+					<% } %>
+					<% if (pluginList.contains("stcard")) { %>
+						<li id="stcard">
+							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STCard", "tooltip", "stcard/menu/STCard.jsp");'>
+								<div class="btn btn-large btn-block new_score">
+									<img src="mantle/themes/stratebi/images/stcard_icon.png"> Scorecard
+								</div>
+							</a>
+						</li>
+					<% } %>
+					<% if (pluginList.contains("saiku-adhoc")) { %>
+						<li id="streport">
+							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STReport", "tooltip", "content/saiku-adhoc/web/index.html?biplugin=true");'>
+								<div class="btn btn-large btn-block new_report">
+									<img src="mantle/themes/stratebi/images/streport_icon.png"> Report
+								</div>
+							</a>
+						</li>
+					<% } %>
+					<% if (pluginList.contains("stagile")) { %>
+						<li id="stagile">
+							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STAgile", "tooltip", "content/stagile/ui/index.html#!/new");'>
+								<div class="btn btn-large btn-block new_agile">
+									<img src="mantle/themes/stratebi/images/stagile_icon.png"> Agile Dashboard
+								</div>
+							</a>
+						</li>
+					<% } %>
 				</ul>
 			</li>
-			<li><a href='/pentaho/Logout'><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+			<li>
+				<a href="#" onclick="window.parent.mantle_setPerspective('opened.perspective')">
+					<i class="fa fa-window-maximize"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#" onclick="window.parent.mantle_setPerspective('browser.perspective')">
+					<i class="fa fa-folder-open"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#" onclick="window.parent.mantle_setPerspective('search.perspective')">
+					<i class="fa fa-search"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#" onclick="window.parent.mantle_setPerspective('search.perspective')">
+					<i class="fa fa-star"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#" onclick="window.parent.mantle_setPerspective('search.perspective')">
+					<i class="fa fa-clock-o"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#" onclick="window.top.mantle_setPerspective('administration.perspective')">
+					<i class="fa fa-unlock-alt"></i>
+				</a>
+			</li>
+			<li class='active'>
+				<a href="#" style="font-size: 12px;">[ES]</a>
+				<ul>
+					<li><a href="#" onclick=''><div class="btn btn-large btn-block">[ ES ]</div></a></li>
+					<li><a href="#" onclick=''><div class="btn btn-large btn-block">[ EN ]</div></a></li>
+					<li><a href="#" onclick=''><div class="btn btn-large btn-block">[ FR ]</div></a></li>
+					<li><a href="#" onclick=''><div class="btn btn-large btn-block">[ ITA ]</div></a></li>
+					<li><a href="#" onclick=''><div class="btn btn-large btn-block">[ PR ]</div></a></li>
+				</ul>
+			</li>
+			<li>
+				<a href='/pentaho/Logout'>
+					<i class="fa fa-sign-out"></i>
+				</a>
+			</li>
 		</ul>
 	</div>
 </div>

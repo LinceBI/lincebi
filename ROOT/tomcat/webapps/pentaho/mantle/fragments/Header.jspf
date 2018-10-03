@@ -31,10 +31,17 @@
 							<input id="buscador" type="text" class="form-control" placeholder="Search">
 						</div>
 						<span class="input-group-btn">
-							<button id="buscar" class="btn btn-default" type="button">
+							<button id="buscar" class="btn btn-success" type="button">
 								<i class="fa fa-search"></i>
 							</button>
 						</span>
+					</div>
+					<div class="btn-group">
+						<% if (canAdminister) { %>
+							<button type="button" class="btn btn-default" onclick="window.parent.mantle_setPerspective('stadmin.perspective')">
+								<i class="fa fa-fw fa-wrench"></i>
+							</button>
+						<% } %>
 					</div>
 				</form>
 			</div>

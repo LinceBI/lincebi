@@ -67,6 +67,8 @@
 
 !/ROOT/tomcat/webapps/pentaho/mantle/search/
 
+!/ROOT/tomcat/webapps/pentaho/mantle/stadmin/
+
 /ROOT/tomcat/webapps/pentaho/mantle/themes/*
 !/ROOT/tomcat/webapps/pentaho/mantle/themes/
 

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Home Page</title>
+	<title>STAdmin Page</title>
 	<style>
 		html, body, iframe {
 			height: 100%;
@@ -16,6 +16,6 @@
 	<script type="text/javascript" src="webcontext.js?context=mantle&cssOnly=true"></script>
 </head>
 <body class="pentaho-page-background">
-	<iframe src="/pentaho/api/repos/:public:PUC:Home:Default:home_default.wcdf/generatedContent"></iframe>
+	<iframe src="/pentaho/api/repos/:public:PUC:STAdmin:Default:home_default.wcdf/generatedContent"></iframe>
 </body>
 </html>

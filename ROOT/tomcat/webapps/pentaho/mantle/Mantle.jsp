@@ -22,19 +22,24 @@
     import="org.apache.commons.lang.StringUtils,
             org.owasp.encoder.Encode,
             org.pentaho.platform.util.messages.LocaleHelper,
-            java.util.Locale,
             java.net.URL,
             java.net.URLClassLoader,
             java.util.ArrayList,
             java.util.Iterator,
             java.util.LinkedHashMap,
             java.util.List,
+            java.util.Locale,
             java.util.Map,
             java.util.ResourceBundle,
-            org.pentaho.platform.engine.core.system.PentahoSystem,
+            org.pentaho.platform.api.engine.IAuthorizationPolicy,
             org.pentaho.platform.api.engine.IPluginManager,
-            org.pentaho.platform.engine.core.system.PentahoSessionHolder"%>
+            org.pentaho.platform.engine.core.system.PentahoSessionHolder,
+            org.pentaho.platform.engine.core.system.PentahoSystem,
+            org.pentaho.platform.security.policy.rolebased.actions.AdministerSecurityAction,
+            org.pentaho.platform.security.policy.rolebased.actions.RepositoryCreateAction"%>
 <%
+  boolean canCreateContent = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed(RepositoryCreateAction.NAME);
+  boolean canAdminister = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed(AdministerSecurityAction.NAME);
   boolean hasDataAccessPlugin = PentahoSystem.get( IPluginManager.class, PentahoSessionHolder.getSession() ).getRegisteredPlugins().contains( "data-access" );
 
   Locale effectiveLocale = request.getLocale();
@@ -221,6 +226,9 @@
 }
 #menu_sidebar .fa{
 font-size: 25px;
+}
+#menu_sidebar .btn.btn-large.btn-block .fa{
+font-size: 20px;
 }
 #menu_sidebar .btn,
 #pucContent .btn {
@@ -455,18 +463,6 @@ font-size: 25px;
   left: 100%;
   opacity: 1;
   transform: rotate3d(0, 0, 0, 0);
-}
-#cssmenu ul ul::after {
-  position: absolute;
-  left: -8px;
-  top: 14px;
-  z-index: 5;
-  display: block;
-  width: 0;
-  height: 0;
-  border: 4px solid transparent;
-  border-right-color: #2e353b;
-  content: "";
 }
 #cssmenu ul ul a {
   font-size: 12px;
