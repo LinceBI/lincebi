@@ -665,7 +665,7 @@ div#data-controlproperties-spacer {
 	/* Make sure to update .modal-backdrop style in bootstrap-namespaced.css with the changes below */
 
 	position: absolute;
-	background-color: #144b64; /*#809eab;*/
+	background-color: #333333; /*#809eab;*/
 	/* IE8 css hack for opacity */
 	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(opacity=80)';
 	filter: alpha(opacity = 80);
@@ -677,7 +677,7 @@ div#data-controlproperties-spacer {
 	z-index: 300;
 	margin: 0px;
 	padding: 0px;
-	display: none;
+	display: block;
 }
 
 /* Tabs */
@@ -2665,7 +2665,7 @@ div.dijitDateTextBox.dijitComboBox .dijitArrowButton input[type='text'] {
 }
 .spinner div > div {
 	/* spin.js uses inline styles, so we have to override those with !important to acheive theme-ability*/
-	background-color: #0560ab !important;
+	background-color: #7b9e49 !important;
 }
 
 .large-spinner {
@@ -2687,10 +2687,18 @@ div.dijitDateTextBox.dijitComboBox .dijitArrowButton input[type='text'] {
 	height: 48px;
 	vertical-align: middle;
 	padding: 20px;
+	padding-left: 60px;
 }
+
+.pentaho-busy-indicator-spinner .large-spinner {
+	left: -20px !important;
+	top: 24px !important;
+}
+
 .pentaho-busy-indicator-msg-contianer {
 	display: table-cell;
 	vertical-align: middle;
+	padding-left: 15px;
 }
 
 .waitPopup {
@@ -2702,11 +2710,11 @@ div.dijitDateTextBox.dijitComboBox .dijitArrowButton input[type='text'] {
 	margin: auto;
 	z-index: 20001;
 	height: auto;
-	border: 1px solid #abc9d9;
-	background: #cbdde8;
+	border: 1px solid #b5d9ab;
+	background: #e3ecde;
 }
 .waitPopup_title {
-	color: #0560ab;
+	color: #496525;
 	font-size: 18px;
 	padding-bottom: 3px;
 	width: 262px;
