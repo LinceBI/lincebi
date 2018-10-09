@@ -82,7 +82,7 @@ input[type='radio'] {
 
 input[type='text'],
 .bootstrap .pentaho-dialog input[type='text'] {
-	border: 1px solid #cbdde8;
+	border: 1px solid #cedacb;
 	padding: 4px 2px 4px 4px;
 
 	-webkit-border-radius: 0px;
@@ -92,7 +92,7 @@ input[type='text'],
 
 input[type='text']#paramNameTextBox,
 input[type='text']#paramValueTextBox {
-	height: 20px;
+	/* height: 20px; */
 }
 
 select,
@@ -209,21 +209,21 @@ input.every-txtbox {
 	-moz-box-shadow: inset 0 0 1px #fff;
 	-webkit-box-shadow: inset 0 0 1px #fff;
 	box-shadow: inset 0 0 1px #fff;
-	background: #666; /* Old browsers */
+	background: #9ecc5c; /* Old browsers */
 }
 
 /* Just lightening it up a bit */
 .pentaho-button:active,
 .IE .pentaho-button:focus {
-	background: #8ac06e; /* Old browsers */
-	background: -moz-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8ac06e), color-stop(100%, #62ab3d)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); /* IE10+ */
-	background: linear-gradient(to bottom, #8ac06e 0%, #62ab3d 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8ac06e', endColorstr='#62ab3d',GradientType=0 ); /* IE6-9 */
-	color: #293b44;
+	background: #5f8e46; /* Old browsers */
+	/* background: -moz-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); FF3.6+ */
+	/*  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8ac06e), color-stop(100%, #62ab3d)); Chrome,Safari4+ */
+	/*  background: -webkit-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); Chrome10+,Safari5.1+ */
+	/*  background: -o-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); Opera 11.10+ */
+	/*  background: -ms-linear-gradient(top, #8ac06e 0%, #62ab3d 100%); IE10+ */
+	/*  background: linear-gradient(to bottom, #8ac06e 0%, #62ab3d 100%); W3C */
+	/*  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8ac06e', endColorstr='#62ab3d',GradientType=0 ); IE6-9 */
+	/*  color: #293b44; */
 }
 
 .dijitButton .pentaho-button {
@@ -241,12 +241,14 @@ input.every-txtbox {
 
 /* lighter gray with white text */
 .pentaho-button:disabled {
-	color: #ccc;
-	background: transparent; /* Old browsers */
+	/* color: #ccc; */
+	background: #7b9e49; /* Old browsers */
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
 	cursor: auto;
+	filter: alpha(opacity = 60);
+	opacity: 0.6;
 }
 
 .IE .pentaho-button.disabled {
@@ -413,6 +415,7 @@ div#FilterPanel div.pentaho-toggle-button-up button {
 	border: none;
 	color: inherit;
 }
+
 /* Note: By default there is no padding on the bottom as the button area supplies the necessary amount. If your dialog
   has no buttons add an addition class to your element, pentaho-dialog-buttonless, to have full padding around the contents*/
 .pentaho-dialog,
@@ -731,8 +734,8 @@ div#data-controlproperties-spacer {
 }
 
 /* Tabs Decorator */
-.pentaho-tabWidget .pentaho-tabWidgetLabel::before,
-.pentaho-tabWidget .pentaho-tabWidgetLabel::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidget .pentaho-tabWidgetLabel::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidget .pentaho-tabWidgetLabel::after {
     display: block;
     content: '';
     position: absolute;
@@ -743,18 +746,18 @@ div#data-controlproperties-spacer {
 	border-bottom: 5px solid #9E9E9E;
 }
 
-.pentaho-tabWidget .pentaho-tabWidgetLabel::before {
+#solutionNavigatorAndContentPanel .pentaho-tabWidget .pentaho-tabWidgetLabel::before {
     left: -8px;
 	width: 100%;
 }
 
-.pentaho-tabWidget .pentaho-tabWidgetLabel::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidget .pentaho-tabWidgetLabel::after {
     right: -25px;
 	width: 33px;
 }
 
-.pentaho-tabWidget-selected .pentaho-tabWidgetLabel::before,
-.pentaho-tabWidget-selected .pentaho-tabWidgetLabel::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidget-selected .pentaho-tabWidgetLabel::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidget-selected .pentaho-tabWidgetLabel::after {
 	opacity: 1;
     filter: alpha(opacity=100); /* For IE8 and earlier */
 }
@@ -3138,7 +3141,7 @@ div.dijitDateTextBox.dijitComboBox .dijitArrowButton input[type='text'] {
 .gwt-ScrollTable .headerTable td {
 	color: #ffffff;
 	border-right: 1px solid rgb(255, 255, 255);
-	background: #8ab3c6;
+	background: #a4bc81;
 }
 .objectTree {
 	border: 1px solid #cbdde8;
@@ -3388,7 +3391,7 @@ button.adminButton {
 }
 .IE .gwt-ScrollTable .headerTable td {
 	background-image: none;
-	background-color: #8ab3c6;
+	background-color: #a4bc81;
 }
 
 .gwt-ScrollTable .footerWrapper {
@@ -3400,7 +3403,7 @@ button.adminButton {
 	border-spacing: 2px;
 	padding: 4px 10px 4px 10px;
 	font-weight: normal;
-	background-color: #8ab3c6;
+	background-color: #a4bc81;
 	border-right: 1px solid #d7d7d7;
 	border-bottom: 1px solid #d7d7d7;
 }
@@ -3573,15 +3576,28 @@ button.adminButton {
 /* ======================= custom drop down control =========================== */
 
 .custom-list {
-	border: 1px solid #8bb5c5;
+	border: 1px solid #cedacb;
 }
 
 .combo-arrow {
 	padding: 4px;
-	background: #8ab3c6;
-	border: 1px outset #d7d7d7;
+	background: #7b9e49;
+	/* border: 1px outset #d7d7d7; */
 	cursor: pointer;
 	font-size: 0px;
+	height: 31px;
+	width: 38px;
+	border-radius: 3px;
+	position: relative;
+	margin-left: -15px;
+}
+
+.combo-arrow:hover {
+	background: #9ecc5c;
+}
+
+.combo-arrow:active, .IE .combo-arrow:focus {
+	background: #5f8e46;
 }
 
 .combo-arrow div {
@@ -3589,9 +3605,9 @@ button.adminButton {
 	background-position: center center;
 	background-repeat: no-repeat;
 	cursor: pointer;
-	height: 8px;
-	width: 10px;
+	height: 100%;
 	font-size: 0px;
+	filter: brightness(0) invert(1);
 }
 
 .combo-arrow-disabled {
@@ -4745,12 +4761,13 @@ div.prompt-panel .pentaho-toggle-button-container > div {
 }
 #schemaNameLabel,
 #uploadFileLabel {
-	border: 1px solid #cbdde8;
+	border: 1px solid #cedacb;
 	vertical-align: middle;
-	height: 18px !important;
+	/* height: 18px !important; */
 	width: 365px !important;
 	overflow: hidden;
 	padding: 5px;
+	height: 100%;
 }
 #propertiesPanelTitle {
 	width: 200px !important;
@@ -5776,4 +5793,48 @@ treecontrol.tree-classic li .tree-selected {
 	outline: 0;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(121, 158, 63, 0.6);
+}
+
+/* Administration Windows */
+img.image-button {
+	filter: brightness(0%) opacity(70%);
+}
+
+/* Manage Data Sources */
+#newDataSourceButton {
+	margin-right: -9px;
+}
+
+#datasourceAdminDialog_cancel {
+	margin-right: -2px;
+}
+
+/* Import Analysis/Metadata */
+span.gwt-RadioButton {
+	margin-left: 20px;
+}
+
+span.gwt-RadioButton > label {
+	padding-left: 0 !important;
+}
+
+#connectionList .gwt-Label {
+	padding: 5px;
+}
+
+#domainIdText {
+	width: 402px !important;
+	height: inherit !important;
+}
+
+#metadataImportCard #localizationBundlesLabel {
+	margin-right: 14px;
+}
+
+#importDialog_cancel, #analysisParametersDialog_cancel {
+	margin-right: 7px;
+}
+
+#paramNameTextBox, #uploadFileLabel, #domainIdText {
+	margin-bottom: 10px;
 }
