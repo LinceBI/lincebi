@@ -1005,20 +1005,19 @@ a:hover {
 
 .gwt-MenuBar-vertical tr:hover .gwt-MenuItem-selected,
 .gwt-MenuBar-vertical tr:hover .subMenuIcon-selected {
-	background-color: #dce7ed;
+	background-color: #d7e9cd;
 }
 
 .gwt-MenuBar-vertical .gwt-MenuItem-selected:hover {
-	background-color: #dce7ed;
+	background-color: #d7e9cd;
 }
 
 .gwt-MenuBar-vertical .subMenuIcon-selected {
-	background-color: #d7e9cd;
+	background-color: #bcd49a;
 }
 
 .gwt-MenuBar-vertical .gwt-MenuItem-selected {
-	background-color: #d7e9cd;
-	color: #293b46;
+	background-color: #bcd49a;
 	vertical-align: bottom;
 }
 

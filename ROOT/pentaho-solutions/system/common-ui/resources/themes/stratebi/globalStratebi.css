@@ -3634,7 +3634,7 @@ button.adminButton {
 	font-size: 0px;
 }
 .drop-popup {
-	border: 1px solid #cbdde8;
+	/* border: 1px solid #cbdde8; */
 	z-index: 1000000000;
 }
 #controller_panel {
@@ -4021,18 +4021,18 @@ div.prompt-panel .pentaho-toggle-button-container > div {
 }
 
 .custom-list-item-hover {
-	background-color: #dce7ed;
+	background-color: #d7e9cd;
 }
 .custom-list-item-selected {
-	background-color: #d7e9cd;
+	background-color: #bcd49a;
 }
 .objectlist-selected a:hover {
 	color: black;
-	background-color: #dce7ed;
+	background-color: #d7e9cd;
 }
 .objectlist-selected a {
 	cursor: pointer;
-	background-color: #d7e9cd;
+	background-color: #bcd49a;
 	padding-left: 3px;
 	color: black;
 	vertical-align: top;
@@ -4771,11 +4771,11 @@ div.prompt-panel .pentaho-toggle-button-container > div {
 #uploadFileLabel {
 	border: 1px solid #cedacb;
 	vertical-align: middle;
-	/* height: 18px !important; */
+	height: 31px !important;
 	width: 365px !important;
 	overflow: hidden;
 	padding: 5px;
-	height: 100%;
+	margin-bottom: 10px !important;
 }
 #propertiesPanelTitle {
 	width: 200px !important;
@@ -5818,12 +5818,33 @@ img.image-button {
 }
 
 /* Import Analysis/Metadata */
-span.gwt-RadioButton {
-	margin-left: 20px;
+.radio, .checkbox {
+	margin-bottom: 0 !important;
+	margin-top: 0 !important;
 }
 
-span.gwt-RadioButton > label {
-	padding-left: 0 !important;
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+	position: relative !important;
+	margin-left: 0 !important;
+	vertical-align: top !important;
+}
+
+.radio label, .checkbox label {
+	padding-left: 10px !important;
+}
+
+.drop-popup .popupContent > div > div > table {
+	background-color: white;
+	border: 1px solid #d8e4c5;
+}
+
+.drop-popup .popupContent td {
+	background: transparent !important;
+	padding: 0px !important;
+}
+
+.drop-popup .popupContent td .gwt-Label {
+	padding: 3px 10px;
 }
 
 #connectionList .gwt-Label {
@@ -5843,6 +5864,6 @@ span.gwt-RadioButton > label {
 	margin-right: 7px;
 }
 
-#paramNameTextBox, #uploadFileLabel, #domainIdText {
+#paramNameTextBox, #uploadFileLabel, #domainIdText, #analysisPreferencesRadioGroup {
 	margin-bottom: 10px;
 }
