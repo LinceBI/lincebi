@@ -27,7 +27,7 @@
 				<ul>
 					<% if (pluginList.contains("jpivot")) { %>
 						<li id="stpivot">
-							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STPivot", "tooltip", "plugin/jpivot/AnalysisViewService?component=newView");'>
+							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STPivot", "STPivot", "plugin/jpivot/AnalysisViewService?component=newView");'>
 								<div class="btn btn-large btn-block new_olap">
 									<img src="mantle/themes/stratebi/images/stpivot_icon.png"> Analysis
 								</div>
@@ -36,7 +36,7 @@
 					<% } %>
 					<% if (pluginList.contains("stdashboard")) { %>
 						<li id="stdashboard">
-							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STDashboard", "tooltip", "content/stdashboard?solution=system&amp;path=temp&amp;action=true");'>
+							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STDashboard", "STDashboard", "content/stdashboard?solution=system&amp;path=temp&amp;action=true");'>
 								<div class="btn btn-large btn-block new_dash">
 									<img src="mantle/themes/stratebi/images/stdashboard_icon.png"> Dashboard
 								</div>
@@ -45,7 +45,7 @@
 					<% } %>
 					<% if (pluginList.contains("stcard")) { %>
 						<li id="stcard">
-							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STCard", "tooltip", "stcard/menu/STCard.jsp");'>
+							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STCard", "STCard", "stcard/menu/STCard.jsp");'>
 								<div class="btn btn-large btn-block new_score">
 									<img src="mantle/themes/stratebi/images/stcard_icon.png"> Scorecard
 								</div>
@@ -54,7 +54,7 @@
 					<% } %>
 					<% if (pluginList.contains("saiku-adhoc")) { %>
 						<li id="streport">
-							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STReport", "tooltip", "content/saiku-adhoc/web/index.html?biplugin=true");'>
+							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STReport", "STReport", "content/saiku-adhoc/web/index.html?biplugin=true");'>
 								<div class="btn btn-large btn-block new_report">
 									<img src="mantle/themes/stratebi/images/streport_icon.png"> Report
 								</div>
@@ -63,7 +63,7 @@
 					<% } %>
 					<% if (pluginList.contains("stagile")) { %>
 						<li id="stagile">
-							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STAgile", "tooltip", "content/stagile/ui/index.html#!/new");'>
+							<a href="#" onclick='parent.mantle_setPerspective("opened.perspective"); window.parent.openURL("STAgile", "STAgile", "content/stagile/ui/index.html#!/new");'>
 								<div class="btn btn-large btn-block new_agile">
 									<img src="mantle/themes/stratebi/images/stagile_icon.png"> Agile Dashboard
 								</div>

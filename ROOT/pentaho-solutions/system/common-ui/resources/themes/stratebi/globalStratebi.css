@@ -677,16 +677,39 @@ div#data-controlproperties-spacer {
 	display: none;
 }
 
+/* Tabs */
 .pentaho-tabWidget {
 	display: inline-table;
-	background: transparent;
+	background: #F3F3F3AA;
 	cursor: pointer;
 	margin-left: 0px;
 	padding: 6px 8px;
+	border-right: solid 1px #cbdde8;
 }
 
 .IE .pentaho-tabWidget {
 	/* background: url('images/tab_off.png') repeat-x;*/
+}
+
+.pentaho-tabWidget-selected {
+	border-top: solid 1px #cbdde8 !important;
+	border-left: 0 !important;
+	border-right: solid 1px #cbdde8 !important;
+	-moz-border-radius-topleft: 1px;
+	-moz-border-radius-topright: 1px;
+	-webkit-border-top-left-radius: 1px;
+	-webkit-border-top-right-radius: 1px;
+	border-top-right-radius: 1px;
+	border-top-left-radius: 1px;
+	background: #FFF;
+}
+
+.pentaho-tab-bar .pentaho-tabWidget:first-child { 
+    border-left: solid 1px #cbdde8 !important;
+}
+
+.IE .pentaho-tabWidget-selected {
+	/*background: url('images/tab_on.png') repeat-x;*/
 }
 
 .pentaho-tabWidget .pentaho-tabWidgetLabel {
@@ -697,25 +720,100 @@ div#data-controlproperties-spacer {
 	white-space: nowrap;
 	font-family: 'Titillium Web', Helvetica, Arial, Sans serif;
 	padding: 0 8px;
+	position: relative;
 }
+
+.pentaho-tabWidget-selected .pentaho-tabWidgetLabel {
+	margin: 0px;
+	padding-bottom: 0px;
+	white-space: nowrap;
+	color: #26363d;
+}
+
+/* Tabs Decorator */
+.pentaho-tabWidget .pentaho-tabWidgetLabel::before,
+.pentaho-tabWidget .pentaho-tabWidgetLabel::after {
+    display: block;
+    content: '';
+    position: absolute;
+    height: 35px;
+    top: -6px;
+	opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+	border-bottom: 5px solid #9E9E9E;
+}
+
+.pentaho-tabWidget .pentaho-tabWidgetLabel::before {
+    left: -8px;
+	width: 100%;
+}
+
+.pentaho-tabWidget .pentaho-tabWidgetLabel::after {
+    right: -25px;
+	width: 33px;
+}
+
+.pentaho-tabWidget-selected .pentaho-tabWidgetLabel::before,
+.pentaho-tabWidget-selected .pentaho-tabWidgetLabel::after {
+	opacity: 1;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+/* Tabs (New Views) */
+.pentaho-tabWidgetLabel[title*="STPivot"]::before,
+.pentaho-tabWidgetLabel[title*="STPivot"]::after {
+	border-bottom: 5px solid #AFB837;
+}
+
+.pentaho-tabWidgetLabel[title*="STDashboard"]::before,
+.pentaho-tabWidgetLabel[title*="STDashboard"]::after {
+	border-bottom: 5px solid #097FB4;
+}
+
+.pentaho-tabWidgetLabel[title*="STCard"]::before,
+.pentaho-tabWidgetLabel[title*="STCard"]::after {
+	border-bottom: 5px solid #036856;
+}
+
+.pentaho-tabWidgetLabel[title*="STReport"]::before,
+.pentaho-tabWidgetLabel[title*="STReport"]::after {
+	border-bottom: 5px solid #ED7C36;
+}
+
+.pentaho-tabWidgetLabel[title*="STAgile"]::before,
+.pentaho-tabWidgetLabel[title*="STAgile"]::after {
+	border-bottom: 5px solid #BF1B25;
+}
+
+/* Tabs (Files) */
+.pentaho-tabWidgetLabel[title*=".xjpivot"]::before,
+.pentaho-tabWidgetLabel[title*=".xjpivot"]::after {
+	border-bottom: 5px solid #AFB837;
+}
+
+.pentaho-tabWidgetLabel[title*=".std"]::before,
+.pentaho-tabWidgetLabel[title*=".std"]::after {
+	border-bottom: 5px solid #097FB4;
+}
+
+.pentaho-tabWidgetLabel[title*=".adhoc"]::before,
+.pentaho-tabWidgetLabel[title*=".adhoc"]::after {
+	border-bottom: 5px solid #ED7C36;
+}
+
+.pentaho-tabWidgetLabel[title*=".sta"]::before,
+.pentaho-tabWidgetLabel[title*=".sta"]::after {
+	border-bottom: 5px solid #BF1B25;
+}
+
 #sidepaneltabset .pentaho-tabWidgetLabel {
 	padding: 0 4px;
 }
+
 .dialog-content .pentaho-tabWidget .pentaho-tabWidgetLabel {
 	font-size: 14px;
 }
-.pentaho-tabWidget-selected {
-	border-top: solid 1px #cbdde8;
-	border-left: solid 1px #cbdde8;
-	border-right: solid 1px #cbdde8;
-	-moz-border-radius-topleft: 1px;
-	-moz-border-radius-topright: 1px;
-	-webkit-border-top-left-radius: 1px;
-	-webkit-border-top-right-radius: 1px;
-	border-top-right-radius: 1px;
-	border-top-left-radius: 1px;
-	background: #fff;
-}
+
 #contentArea .pentaho-tabWidget,
 #editContainer .pentaho-tabWidget {
 	border-top: 4px solid transparent;
@@ -725,16 +823,6 @@ div#data-controlproperties-spacer {
 	border-top: solid 4px #f2ce17;
 }
 
-.IE .pentaho-tabWidget-selected {
-	/*background: url('images/tab_on.png') repeat-x;*/
-}
-
-.pentaho-tabWidget-selected .pentaho-tabWidgetLabel {
-	margin: 0px;
-	padding-bottom: 0px;
-	white-space: nowrap;
-	color: #26363d;
-}
 #props-deck-1 .pentaho-tabWidget {
 	padding: 2px 8px;
 }
@@ -827,6 +915,8 @@ div#data-controlproperties-spacer {
 
 .pentaho-tabWidget-close {
 	margin-left: 4px;
+	vertical-align: top;
+	position: relative;
 }
 
 /* ======================= Behins Scrollbar Styles ========================= */
