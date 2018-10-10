@@ -26,6 +26,7 @@
             java.net.URLClassLoader,
             java.util.ArrayList,
             java.util.Iterator,
+            java.util.HashMap,
             java.util.LinkedHashMap,
             java.util.List,
             java.util.Locale,
@@ -33,28 +34,14 @@
             java.util.ResourceBundle,
             org.pentaho.platform.api.engine.IAuthorizationPolicy,
             org.pentaho.platform.api.engine.IPluginManager,
+            org.pentaho.platform.api.usersettings.IUserSettingService,
+            org.pentaho.platform.api.usersettings.pojo.IUserSetting,
             org.pentaho.platform.engine.core.system.PentahoSessionHolder,
             org.pentaho.platform.engine.core.system.PentahoSystem,
             org.pentaho.platform.security.policy.rolebased.actions.AdministerSecurityAction,
             org.pentaho.platform.security.policy.rolebased.actions.RepositoryCreateAction"%>
-<%
-  boolean canCreateContent = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed(RepositoryCreateAction.NAME);
-  boolean canAdminister = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed(AdministerSecurityAction.NAME);
-  boolean hasDataAccessPlugin = PentahoSystem.get( IPluginManager.class, PentahoSessionHolder.getSession() ).getRegisteredPlugins().contains( "data-access" );
 
-  Locale effectiveLocale = request.getLocale();
-  if ( !StringUtils.isEmpty( request.getParameter( "locale" ) ) ) {
-    request.getSession().setAttribute( "locale_override", request.getParameter( "locale" ) );
-    LocaleHelper.parseAndSetLocaleOverride( request.getParameter( "locale" ) );
-  } else {
-    request.getSession().setAttribute( "locale_override", null );
-    LocaleHelper.setLocaleOverride( null );
-  }
-
-  URLClassLoader loader = new URLClassLoader( new URL[] { application.getResource( "/mantle/messages/" ) } );
-  ResourceBundle properties = ResourceBundle.getBundle( "mantleMessages", request.getLocale(), loader );
-
-%>
+<%@ include file="./fragments/Settings.jspf" %>
 
 <html>
 <head>

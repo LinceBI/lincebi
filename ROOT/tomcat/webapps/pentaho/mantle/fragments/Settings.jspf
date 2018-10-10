@@ -1,0 +1,27 @@
+<%
+
+boolean canCreateContent = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed(RepositoryCreateAction.NAME);
+boolean canAdminister = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed(AdministerSecurityAction.NAME);
+boolean hasDataAccessPlugin = PentahoSystem.get(IPluginManager.class, PentahoSessionHolder.getSession()).getRegisteredPlugins().contains("data-access");
+
+Locale effectiveLocale = request.getLocale();
+if (!StringUtils.isEmpty(request.getParameter("locale"))) {
+	request.getSession().setAttribute("locale_override", request.getParameter("locale"));
+	LocaleHelper.parseAndSetLocaleOverride( request.getParameter("locale"));
+} else {
+	request.getSession().setAttribute("locale_override", null);
+	LocaleHelper.setLocaleOverride(null);
+}
+
+URLClassLoader loader = new URLClassLoader(new URL[] {application.getResource("/mantle/messages/")});
+ResourceBundle properties = ResourceBundle.getBundle("mantleMessages", request.getLocale(), loader);
+
+List<String> pluginList = PentahoSystem.get(IPluginManager.class, PentahoSessionHolder.getSession()).getRegisteredPlugins();
+
+IUserSettingService settingsService = PentahoSystem.get(IUserSettingService.class, PentahoSessionHolder.getSession());
+Map<String, String> userSettings = new HashMap<String, String>();
+for (IUserSetting userSetting : settingsService.getUserSettings()) {
+	userSettings.put(userSetting.getSettingName(), userSetting.getSettingValue());
+}
+
+%>

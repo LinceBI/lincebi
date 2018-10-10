@@ -37,10 +37,22 @@
 						</span>
 					</div>
 					<div class="btn-group">
-						<% if (canAdminister) { %>
-							<button type="button" class="btn btn-default" onclick="window.parent.mantle_setPerspective('stadmin.perspective')">
-								<i class="fa fa-fw fa-wrench"></i>
-							</button>
+						<% if (canAdminister || true /* Enabled for demo */ ) { %>
+							<div class="btn-group">
+								<button id="stadmin-perspective-btn" type="button" class="btn btn-default">
+									<i class="fa fa-fw fa-wrench"></i>
+								</button>
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+									<span class="caret"></span>
+								</button>
+								<div class="dropdown-menu">
+									<li class="
+										<%= userSettings.get("MANTLE_SHOW_HIDDEN_FILES").equals("true") ? "active" : "" %>
+									">
+										<a id="show-hidden-files-toggle" href="#">Show Hidden Files</a>
+									</li>
+								</div>
+							</div>
 						<% } %>
 					</div>
 				</form>
@@ -49,3 +61,34 @@
 	</div>
 
 </div>
+
+<script>
+(function () {
+	'use strict';
+
+	document.querySelector('#stadmin-perspective-btn').addEventListener('click', function () {
+		window.parent.mantle_setPerspective('stadmin.perspective');
+	});
+
+	document.querySelector('#show-hidden-files-toggle').addEventListener('click', function (event) {
+		var parentElement = event.target.parentElement;
+		var isActive = parentElement.classList.toggle('active');
+
+		var perspectiveElement = document.getElementById('browser.perspective');
+
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', CONTEXT_PATH + 'api/user-settings/MANTLE_SHOW_HIDDEN_FILES', true);
+
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				parentElement.classList.toggle('active', xhr.responseText === 'true');
+				if (perspectiveElement && 'contentWindow' in perspectiveElement) {
+					perspectiveElement.contentWindow.location.reload();
+				}
+			}
+		}
+
+		xhr.send(isActive ? 'true' : 'false');
+	});
+})();
+</script>

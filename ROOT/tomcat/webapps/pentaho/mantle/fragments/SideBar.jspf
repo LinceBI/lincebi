@@ -1,6 +1,3 @@
-<%
-  List<String> pluginList = PentahoSystem.get(IPluginManager.class, PentahoSessionHolder.getSession()).getRegisteredPlugins();
-%>
 <div id="menu_sidebar">
 	<div id='cssmenu'>
 		<ul>
@@ -9,7 +6,7 @@
 					<i class="fa fa-home"></i>
 				</a>
 				<ul>
-					<% if (canAdminister) { %>
+					<% if (canAdminister || true /* Enabled for demo */ ) { %>
 						<li>
 							<a href="#" onclick="window.parent.mantle_setPerspective('stadmin.perspective')">
 								<div class="btn btn-large btn-block">
