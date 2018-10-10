@@ -352,12 +352,12 @@
 
 a,
 a:visited {
-	color: #7a9e3f !important;
+	color: #7a9e3f;
 }
 
 a:active,
 a:hover {
-	color: #9ecc5c !important;
+	color: #9ecc5c;
 }
 
 .filePropertyTabContent {
