@@ -99,10 +99,22 @@ select,
 .gwt-ListBox,
 .timeZonePicker {
 	border: 1px solid #ccc;
-	padding: 0 0 0 4px;
 	font-size: 13px;
 	background: #f6f6f6;
 }
+
+select option,
+.gwt-ListBox option,
+.timeZonePicker option {
+	padding: 1px 0 1px 4px;
+}
+
+select option:hover,
+.gwt-ListBox option:hover,
+.timeZonePicker option:hover {
+	background: #d7e9cd;
+}
+
 .IE .scheduleEditor select {
 	margin: 2px;
 }
@@ -707,7 +719,7 @@ div#data-controlproperties-spacer {
 	background: #FFF;
 }
 
-.pentaho-tab-bar .pentaho-tabWidget:first-child { 
+#solutionNavigatorAndContentPanel .pentaho-tab-bar .pentaho-tabWidget:first-child { 
     border-left: solid 1px #cbdde8 !important;
 }
 
@@ -763,49 +775,49 @@ div#data-controlproperties-spacer {
 }
 
 /* Tabs (New Views) */
-.pentaho-tabWidgetLabel[title*="STPivot"]::before,
-.pentaho-tabWidgetLabel[title*="STPivot"]::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STPivot"]::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STPivot"]::after {
 	border-bottom: 5px solid #AFB837;
 }
 
-.pentaho-tabWidgetLabel[title*="STDashboard"]::before,
-.pentaho-tabWidgetLabel[title*="STDashboard"]::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STDashboard"]::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STDashboard"]::after {
 	border-bottom: 5px solid #097FB4;
 }
 
-.pentaho-tabWidgetLabel[title*="STCard"]::before,
-.pentaho-tabWidgetLabel[title*="STCard"]::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STCard"]::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STCard"]::after {
 	border-bottom: 5px solid #036856;
 }
 
-.pentaho-tabWidgetLabel[title*="STReport"]::before,
-.pentaho-tabWidgetLabel[title*="STReport"]::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STReport"]::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STReport"]::after {
 	border-bottom: 5px solid #ED7C36;
 }
 
-.pentaho-tabWidgetLabel[title*="STAgile"]::before,
-.pentaho-tabWidgetLabel[title*="STAgile"]::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STAgile"]::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STAgile"]::after {
 	border-bottom: 5px solid #BF1B25;
 }
 
 /* Tabs (Files) */
-.pentaho-tabWidgetLabel[title*=".xjpivot"]::before,
-.pentaho-tabWidgetLabel[title*=".xjpivot"]::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".xjpivot"]::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".xjpivot"]::after {
 	border-bottom: 5px solid #AFB837;
 }
 
-.pentaho-tabWidgetLabel[title*=".std"]::before,
-.pentaho-tabWidgetLabel[title*=".std"]::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".std"]::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".std"]::after {
 	border-bottom: 5px solid #097FB4;
 }
 
-.pentaho-tabWidgetLabel[title*=".adhoc"]::before,
-.pentaho-tabWidgetLabel[title*=".adhoc"]::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".adhoc"]::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".adhoc"]::after {
 	border-bottom: 5px solid #ED7C36;
 }
 
-.pentaho-tabWidgetLabel[title*=".sta"]::before,
-.pentaho-tabWidgetLabel[title*=".sta"]::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".sta"]::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".sta"]::after {
 	border-bottom: 5px solid #BF1B25;
 }
 
@@ -839,8 +851,8 @@ div#data-controlproperties-spacer {
 	min-height: 35px;
 }
 .dialog-content .pentaho-tab-bar {
-	background: url('images/bg_admin_tab_panel.png') repeat-x 0 -3px;
-	height: 32px;
+	background: url('images/bg_admin_tab_panel.png') repeat-x 0 0px;
+	height: 35px;
 }
 
 .pentaho-tabBar {
@@ -3443,6 +3455,10 @@ button.adminButton {
 	background: white;
 }
 
+.gwt-ScrollTable .dataTable tr.cellTableOddRow {
+	background: #f1f1f1;
+}
+
 .gwt-ScrollTable .dataTable-disabled tr {
 	background: white;
 }
@@ -3453,31 +3469,31 @@ button.adminButton {
 }
 
 .gwt-ScrollTable .dataTable tr.hovering {
-	background: #dce7ed;
-	-moz-transition: all 600ms;
-	-webkit-transition: all 600ms;
-}
-
-.gwt-ScrollTable .dataTable-disabled tr.hovering {
-	background: #dce7ed;
-	-moz-transition: all 600ms;
-	-webkit-transition: all 600ms;
-}
-
-.gwt-ScrollTable .dataTable td.hovering {
-	background: #dce7ed;
-	-moz-transition: all 600ms;
-	-webkit-transition: all 600ms;
-}
-
-.gwt-ScrollTable .dataTable tr.selected {
 	background: #d7e9cd;
 	-moz-transition: all 600ms;
 	-webkit-transition: all 600ms;
 }
 
+.gwt-ScrollTable .dataTable-disabled tr.hovering {
+	background: #d7e9cd;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
+.gwt-ScrollTable .dataTable td.hovering {
+	background: #d7e9cd;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
+.gwt-ScrollTable .dataTable tr.selected {
+	background: #bcd49a;
+	-moz-transition: all 600ms;
+	-webkit-transition: all 600ms;
+}
+
 .gwt-ScrollTable .dataTable tr:hover {
-	background: #dce7ed;
+	background: #d7e9cd;
 	-moz-transition: all 600ms;
 	-webkit-transition: all 600ms;
 }
@@ -4273,7 +4289,7 @@ div.prompt-panel .pentaho-toggle-button-container > div {
 	background-repeat: no-repeat;
 	width: 16px;
 	height: 16px;
-	background-position: 0px 2px;
+	background-position-y: -2px;
 }
 
 .pentaho-filechooseupbutton {
@@ -5803,21 +5819,11 @@ treecontrol.tree-classic li .tree-selected {
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(121, 158, 63, 0.6);
 }
 
-/* Administration Windows */
-img.image-button {
+/* Administration/File Browser Windows */
+img.image-button, img.xul-image {
 	filter: brightness(0%) opacity(70%);
 }
 
-/* Manage Data Sources */
-#newDataSourceButton {
-	margin-right: -9px;
-}
-
-#datasourceAdminDialog_cancel {
-	margin-right: -2px;
-}
-
-/* Import Analysis/Metadata */
 .radio, .checkbox {
 	margin-bottom: 0 !important;
 	margin-top: 0 !important;
@@ -5833,6 +5839,87 @@ img.image-button {
 	padding-left: 10px !important;
 }
 
+.custom-list-item .gwt-Label {
+	padding: 5px;
+}
+
+/* File Browser */
+.fileBrowserColumn .body .folder {
+	margin-top: 0 !important;
+}
+
+#dialogOverrideFolder, #dialogOverrideFile {
+	visibility: visible;
+	position: absolute;
+	overflow: visible;
+	width: 455px;
+	height: 180px;
+	display: initial;
+	margin: 0;
+}
+
+#browse-properties-dialog .pentaho-tabWidget {
+	border-right: 0;
+	height: 33px;
+}
+
+#browse-properties-dialog .pentaho-tabWidget-selected {
+	border-left: solid 1px #cbdde8 !important;
+	height: 35px;
+}
+
+#browse-properties-dialog .pentaho-tab-deck-panel {
+    padding: 10px;
+}
+
+.gwt-DisclosurePanel {
+	margin-top: 10px;
+}
+
+.gwt-DisclosurePanel table.gwt-Label {
+	margin-bottom: 5px;
+}
+
+.gwt-DisclosurePanel .custom-list table:not(.custom-list-item) {
+	width: 250px !important;
+	margin-right: 2px;
+}
+
+#sharePanelUsersAndRolesList, .gwt-DisclosurePanel .custom-list {
+	margin-bottom: 10px;
+}
+
+#do-not-show {
+	margin-left: -20px !important;
+}
+
+#filePropertiesCancelButton {
+	margin-right: 9px;
+}
+
+#cancelButton, #filePropertiesCancelButton {
+	margin-right: 8px;
+}
+
+/* Manage Data Sources */
+#datasourcesListTable {
+	width: 100% !important;
+}
+
+#newDataSourceButton {
+	margin-right: 11px;
+}
+
+#datasourceAdminDialog_cancel {
+	margin-right: 18px;
+	margin-top: 5px;
+}
+
+#datasourcesListTable .dataWrapper {
+	overflow-x: hidden !important;
+}
+
+/* Import Analysis/Metadata */
 .drop-popup .popupContent > div > div > table {
 	background-color: white;
 	border: 1px solid #d8e4c5;
@@ -5847,10 +5934,6 @@ img.image-button {
 	padding: 3px 10px;
 }
 
-#connectionList .gwt-Label {
-	padding: 5px;
-}
-
 #domainIdText {
 	width: 402px !important;
 	height: inherit !important;
@@ -5860,10 +5943,47 @@ img.image-button {
 	margin-right: 14px;
 }
 
-#importDialog_cancel, #analysisParametersDialog_cancel {
+#importDialog_cancel {
+	margin-right: 9px;
+}
+
+#analysisParametersDialog_cancel {
 	margin-right: 7px;
 }
 
 #paramNameTextBox, #uploadFileLabel, #domainIdText, #analysisPreferencesRadioGroup {
+	margin-bottom: 10px;
+}
+
+/* Data Source Wizard */
+#datatypeMenuList {
+	margin-bottom: 15px;
+}
+
+#connectionsLbl, #connectionList {
+	margin-bottom: 10px;
+}
+
+#datasourceName {
+	width: 208px !important;
+	margin-bottom: 10px;
+}
+
+#joinSelectionWindow #addButton, #joinSelectionWindow #removeButton {
+	background: #7b9e49;
+	margin: 2px 8px;
+	border-radius: 3px;
+	width: 32px;
+	height: 31px;
+}
+
+#joinSelectionWindow #addButton img, #joinSelectionWindow #removeButton img {
+	width: 100%;
+	height: 100%;
+	background-position: center;
+	filter: brightness(0%) invert(1);
+}
+
+#leftTables, #rightTables {
 	margin-bottom: 10px;
 }

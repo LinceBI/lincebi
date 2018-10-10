@@ -262,7 +262,11 @@
 }
 
 .permissionsTable {
-	border: 1px solid #7f9db9;
+	border: 1px solid #8d908996;
+}
+
+.permissionsTable td {
+	padding: 5px 0 0 7px;
 }
 
 .filesPanelMenuLabel {
@@ -348,12 +352,12 @@
 
 a,
 a:visited {
-	color: #1973bc;
+	color: #7a9e3f !important;
 }
 
 a:active,
 a:hover {
-	color: #1973bc;
+	color: #9ecc5c !important;
 }
 
 .filePropertyTabContent {
