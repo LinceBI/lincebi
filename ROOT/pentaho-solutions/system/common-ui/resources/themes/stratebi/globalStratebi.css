@@ -5996,6 +5996,80 @@ legend {
 	margin-bottom: 10px;
 }
 
+/* Database Connection */
+#deck-options-list {
+	height: 430px !important;
+}
+
+#dialog-panel-deck {
+	margin-left: 10px;
+}
+
+#connection-access-list-box,
+#sql-label {
+	margin-top: 10px;
+}
+
+#general-settings-box > table {
+	margin: 10px;
+}
+
+#access-type-label {
+	margin-top: 30px;
+}
+
+#database-options-box {
+	width: 280px !important;
+	margin-left: 7px;
+}
+
+#database-options-box > table {
+	margin-left: 9px;
+}
+
+#context_help {
+	color: #7b9e49;
+}
+
+#sql-text {
+	resize: none;
+}
+
+#advanced-group-box,
+#identifier-group-box,
+#options-group-box,
+#pooling-size-group {
+	padding: 10px;
+}
+
+#pooling-size-group > table {
+	margin-top: -12px;
+}
+
+#pool-parameter-description-label,
+#help-button {
+	margin-top: 10px;
+}
+
+#pooling-description {
+	resize: none;
+	height: 50px !important;
+	margin-top: 10px !important;
+}
+
+#restore-defaults-button {
+	margin: 5px 0;
+}
+
+#test-button {
+	margin-top: 10px;
+	width: 100px;
+}
+
+button[id="general-datasource-window_ cancel"] {
+	margin-right: 8px;
+}
+	
 /* Data Source Wizard */
 .overflowHide {
 	overflow: hidden;
