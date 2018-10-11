@@ -18,6 +18,7 @@
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
 				<form class="navbar-form navbar-left">
 					<div class="hidden"><div id="pucUserDropDown"></div></div>
 					<div class="hidden"><div id="pucMenuBar"></div></div>
@@ -26,6 +27,35 @@
 						<div id="pucToolBar"></div>
 					</div>
 				</form>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-lg fa-fw fa-cog"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<% if (canAdminister || true /* Enabled for demo */ ) { %>
+							<li>
+								<a id="stadmin-perspective-btn" href="#">
+									STAdmin
+								</a>
+							</li>
+							<li class="divider"></li>
+							<% } %>
+							<li class="<%= UserSettings.equals("MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS", "true") ? "active" : "" %>">
+								<a id="show-descriptions-for-tooltips" data-setting="MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS" href="#">
+									<%= customProperties.getString("showDescriptionsForTooltips") %>
+								</a>
+							</li>
+							<li class="<%= UserSettings.equals("MANTLE_SHOW_HIDDEN_FILES", "true") ? "active" : "" %>">
+								<a id="show-hidden-files-toggle" data-setting="MANTLE_SHOW_HIDDEN_FILES" href="#">
+									<%= customProperties.getString("showHiddenFiles") %>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
 				<form class="navbar-form navbar-right">
 					<div class="input-group">
 						<div class="form-group">
@@ -37,24 +67,8 @@
 							</button>
 						</span>
 					</div>
-					<div class="btn-group">
-						<% if (canAdminister || true /* Enabled for demo */ ) { %>
-							<div class="btn-group">
-								<button id="stadmin-perspective-btn" type="button" class="btn btn-default">
-									<i class="fa fa-fw fa-wrench"></i>
-								</button>
-								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-									<span class="caret"></span>
-								</button>
-								<div class="dropdown-menu">
-									<li class="<%= UserSettings.equals("MANTLE_SHOW_HIDDEN_FILES", "true") ? "active" : "" %>">
-										<a id="show-hidden-files-toggle" href="#"><%= customProperties.getString("showHiddenFiles") %></a>
-									</li>
-								</div>
-							</div>
-						<% } %>
-					</div>
 				</form>
+
 			</div>
 		</div>
 	</div>
@@ -65,18 +79,14 @@
 (function () {
 	'use strict';
 
-	document.querySelector('#stadmin-perspective-btn').addEventListener('click', function () {
-		window.parent.mantle_setPerspective('stadmin.perspective');
-	});
-
-	document.querySelector('#show-hidden-files-toggle').addEventListener('click', function (event) {
-		var parentElement = event.target.parentElement;
+	function toggleSettingHandler() {
+		var parentElement = this.parentElement;
 		var isActive = parentElement.classList.toggle('active');
 
 		var perspectiveElement = document.getElementById('browser.perspective');
 
 		var xhr = new XMLHttpRequest();
-		xhr.open('POST', CONTEXT_PATH + 'api/user-settings/MANTLE_SHOW_HIDDEN_FILES', true);
+		xhr.open('POST', CONTEXT_PATH + 'api/user-settings/' + this.dataset.setting, true);
 
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4 && xhr.status === 200) {
@@ -88,6 +98,14 @@
 		}
 
 		xhr.send(isActive ? 'true' : 'false');
+	}
+
+	document.querySelector('#stadmin-perspective-btn').addEventListener('click', function () {
+		window.parent.mantle_setPerspective('stadmin.perspective');
 	});
+
+	document.querySelector('#show-descriptions-for-tooltips').addEventListener('click', toggleSettingHandler);
+
+	document.querySelector('#show-hidden-files-toggle').addEventListener('click', toggleSettingHandler);
 })();
 </script>
