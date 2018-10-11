@@ -46,9 +46,7 @@
 									<span class="caret"></span>
 								</button>
 								<div class="dropdown-menu">
-									<li class="
-										<%= userSettings.get("MANTLE_SHOW_HIDDEN_FILES").equals("true") ? "active" : "" %>
-									">
+									<li class="<%= UserSettings.equals("MANTLE_SHOW_HIDDEN_FILES", "true") ? "active" : "" %>">
 										<a id="show-hidden-files-toggle" href="#">Show Hidden Files</a>
 									</li>
 								</div>

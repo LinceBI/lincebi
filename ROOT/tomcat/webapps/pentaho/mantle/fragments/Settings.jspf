@@ -17,11 +17,26 @@ URLClassLoader loader = new URLClassLoader(new URL[] {application.getResource("/
 ResourceBundle properties = ResourceBundle.getBundle("mantleMessages", request.getLocale(), loader);
 
 List<String> pluginList = PentahoSystem.get(IPluginManager.class, PentahoSessionHolder.getSession()).getRegisteredPlugins();
+%>
 
-IUserSettingService settingsService = PentahoSystem.get(IUserSettingService.class, PentahoSessionHolder.getSession());
-Map<String, String> userSettings = new HashMap<String, String>();
-for (IUserSetting userSetting : settingsService.getUserSettings()) {
-	userSettings.put(userSetting.getSettingName(), userSetting.getSettingValue());
+<%!
+private static class UserSettings {
+	private static final IUserSettingService settingsService = PentahoSystem.get(IUserSettingService.class, PentahoSessionHolder.getSession());
+
+	public static String get(String key) {
+		return UserSettings.get(key, null);
+	}
+
+	public static String get(String key, String defaultValue) {
+		String defaultSystemValue = PentahoSystem.getSystemSetting(key, defaultValue);
+		return settingsService.getUserSetting(key, defaultSystemValue).getSettingValue();
+	}
+
+	public static boolean equals(String key, String value) {
+		String responseValue = UserSettings.get(key);
+		return responseValue != null
+			? value.equals(responseValue)
+			: false;
+	}
 }
-
 %>
