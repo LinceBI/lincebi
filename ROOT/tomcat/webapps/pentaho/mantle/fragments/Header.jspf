@@ -1,3 +1,4 @@
+<!-- Content -->
 <div id="pucHeader" cellspacing="0" cellpadding="0">
 
 	<div class="navbar navbar-default navbar-static-top">
@@ -37,17 +38,18 @@
 							<% if (canAdminister || true /* Enabled for demo */ ) { %>
 							<li>
 								<a id="stadmin-perspective-btn" href="#">
+									<i class="fa fa-fw fa-wrench"></i>
 									STAdmin
 								</a>
 							</li>
 							<li class="divider"></li>
 							<% } %>
-							<li class="<%= UserSettings.equals("MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS", "true") ? "active" : "" %>">
+							<li class="toggle <%= UserSettings.equals("MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS", "true") ? "active" : "" %>">
 								<a id="show-descriptions-for-tooltips" data-setting="MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS" href="#">
 									<%= customProperties.getString("showDescriptionsForTooltips") %>
 								</a>
 							</li>
-							<li class="<%= UserSettings.equals("MANTLE_SHOW_HIDDEN_FILES", "true") ? "active" : "" %>">
+							<li class="toggle <%= UserSettings.equals("MANTLE_SHOW_HIDDEN_FILES", "true") ? "active" : "" %>">
 								<a id="show-hidden-files-toggle" data-setting="MANTLE_SHOW_HIDDEN_FILES" href="#">
 									<%= customProperties.getString("showHiddenFiles") %>
 								</a>
@@ -75,6 +77,27 @@
 
 </div>
 
+<!-- Styles -->
+<style>
+	#pucHeader .dropdown > .dropdown-menu .toggle > a {
+		color: #333;
+		background-color: transparent;
+	}
+
+	#pucHeader .dropdown > .dropdown-menu .toggle > a::before {
+		display: inline-block;
+		margin-left: 3px;
+		margin-right: 5px;
+		font: normal normal normal 14px/1 FontAwesome;
+		content: "\f096";
+	}
+
+	#pucHeader .dropdown > .dropdown-menu .toggle.active > a::before {
+		content: "\f046";
+	}
+</style>
+
+<!-- Scripts -->
 <script>
 (function () {
 	'use strict';
