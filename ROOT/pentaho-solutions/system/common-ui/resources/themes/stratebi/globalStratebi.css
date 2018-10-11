@@ -3599,7 +3599,8 @@ button.adminButton {
 
 /* ======================= custom drop down control =========================== */
 
-.custom-list {
+.custom-list,
+.custom-list-disabled {
 	border: 1px solid #cedacb;
 }
 
@@ -3637,19 +3638,25 @@ button.adminButton {
 
 .combo-arrow-disabled {
 	padding: 4px;
-	background: #f1f1f1;
-	border: 1px outset gray;
+	background: #d0deba;
+	height: 31px;
+	width: 38px;
+	border-radius: 3px;
+	/* border: 1px outset gray; */
 	font-size: 0px;
+	position: relative;
+	margin-left: -15px;
 }
+
 .combo-arrow-disabled div {
 	background-image: url('images/arrow_down_disabled.png');
 	background-position: center center;
 	background-repeat: no-repeat;
-	cursor: pointer;
-	height: 8px;
-	width: 10px;
+	height: 100%;
 	font-size: 0px;
+	filter: brightness(0) invert(1);
 }
+
 .drop-popup {
 	/* border: 1px solid #cbdde8; */
 	z-index: 1000000000;
@@ -3726,44 +3733,54 @@ div.prompt-panel .pentaho-toggle-button-container > div {
 
 /* Data Source Wizard styles */
 #addFileButton {
-	font-size: 12px;
-	padding: 4px 10px;
+	font-size: inherit;
+	padding: 4px 14px 6px 14px;
 }
 .IE #selectAll,
 .IE #tempPreviewButton,
-.IE #preview,
 #selectAll,
-#tempPreviewButton,
-#preview {
-	padding: 4px;
+#tempPreviewButton {
+	/* padding: 4px;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
 	background: #f5f6f8;
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); /* IE6-9 */
-	color: #7a9e3f;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); IE6-9
+	color: #7a9e3f; */
+}
+
+.IE #selectAll,
+#selectAll {
+	margin-left: 5px;
+}
+
+.IE #tempPreviewButton,
+#tempPreviewButton {
+	margin-right: 2px;
 }
 
 .IE #createJoinButton,
 #createJoinButton {
-	padding: 0 0 2px 0px;
+	/* padding: 0 0 2px 0px;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
 	background: #f5f6f8;
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); /* IE6-9 */
-	color: #7a9e3f;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); IE6-9
+	color: #7a9e3f; */
+	margin-right: 3px;
 }
 
 .IE #deleteJoinButton,
 #deleteJoinButton {
-	padding: 0 0 2px 0px;
+	/* padding: 0 0 2px 0px;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
 	background: #f5f6f8;
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); /* IE6-9 */
-	color: #7a9e3f;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); IE6-9
+	color: #7a9e3f; */
+	margin-right: 3px;
 }
 
 #selectAll:hover,
@@ -5850,6 +5867,13 @@ img.xul-image {
 	padding: 5px;
 }
 
+legend {
+	width: initial !important;
+	margin-bottom: 5px !important;
+	margin-left: 5px !important;
+	border-bottom: 0 !important;
+}
+
 /* File Browser */
 .fileBrowserColumn .body .folder {
 	margin-top: 0 !important;
@@ -5930,6 +5954,10 @@ img.xul-image {
 }
 
 /* Import Analysis/Metadata */
+.drop-popup .popupContent > div {
+	max-height: 250px;
+}
+
 .drop-popup .popupContent > div > div > table {
 	background-color: white;
 	border: 1px solid #d8e4c5;
@@ -5969,6 +5997,11 @@ img.xul-image {
 }
 
 /* Data Source Wizard */
+.overflowHide {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 #datatypeMenuList {
 	margin-bottom: 15px;
 }
@@ -5981,6 +6014,81 @@ img.xul-image {
 #datasourceName {
 	width: 208px !important;
 	margin-bottom: 10px;
+}
+
+#fileLabel {
+	margin-right: 11px;
+}
+
+#uploadedFile {
+	height: initial !important;
+	margin-bottom: 10px;
+}
+
+#encodingTypeMenuList div[tabIndex="0"] tr > td:nth-child(1) > div {
+	width: 204px !important;
+}
+
+.custom-list-textbox {
+	height: 31px;
+	border: none !important;
+}
+
+#filesPropertiesBox fieldset {
+    height: 100px !important;
+}
+
+#enclosureRadioGroup,
+#delimiterRadioGroup {
+	margin-left: 10px;
+}
+
+#otherRadio input {
+	vertical-align: middle !important;
+}
+
+#otherRadio label {
+	vertical-align: text-top;
+	margin-top: 4px;
+}
+
+#otherRadio .gwt-TextBox {
+	width: 140px !important;
+	margin-right: 10px;
+	height: 25px;
+}
+
+#csvDeckPanel > tbody > tr:nth-child(7) fieldset {
+	height: 265px !important;
+	margin-bottom: 25px;
+}
+
+#csvTextPreview,
+#csvTextPreview div,
+#csvTextPreview pre {
+	height: 225px !important;
+	margin: auto;
+}
+
+#csvColumnsBox #csvColumnsContent {
+	height: 430px !important;
+}
+
+#csvModelDataTable > table {
+	width: 747px !important;
+}
+
+#fileUpload > tbody > tr > td > form {
+	height: initial !important;
+}
+
+#gwt_FileUpload_uploadTextBox {
+	height: 31px !important;
+	width: 433px !important;
+}
+
+#controller_panel button {
+	margin-left: 5px;
 }
 
 #joinSelectionWindow #addButton,
@@ -6000,7 +6108,73 @@ img.xul-image {
 	filter: brightness(0%) invert(1);
 }
 
+#joinDefinitionWindow > tbody > tr:nth-child(2) table.hbox {
+	width: 100%;
+	margin-bottom: -20px;
+}
+
+#joinDefinitionWindow > tbody > tr:nth-child(2) table.hbox > tbody > tr > td:nth-child(1) > div > table {
+	margin-right: 140px;
+}
+
+#joinDefinitionWindow > tbody > tr:nth-child(2) table.hbox > tbody > tr > td:nth-child(1) > div > table::after {
+	position: absolute;
+	display: block;
+	font-family: FontAwesome;
+	font-size: 60px;
+	content: '\f0c1';
+	color: #b3b3b39c;
+	top: 200px;
+	left: 515px;
+}
+
 #leftTables,
 #rightTables {
 	margin-bottom: 10px;
+}
+
+#joins {
+	margin-bottom: -20px;
+}
+
+#joins,
+#joins div[tabIndex="0"],
+#joins div[tabIndex="0"] > div {
+	width: 745px !important;
+	height: 160px !important;
+}
+ 
+#queryBox {
+	height: inherit !important;
+}
+
+#queryBox #query {
+	height: 327px !important;
+	resize: none;
+	margin-top: 5px;
+}
+
+#queryBox tr:nth-child(3) > td tr > td:nth-child(2) {
+	vertical-align: middle !important;
+}
+
+#queryBox tr:nth-child(3) > td tr > td:nth-child(2) > div {
+	height: initial !important;
+	margin-right: 5px;
+}
+
+#previewLimit {
+	width: 80px !important;
+}
+
+#main_wizard_window_cancel {
+	margin-right: 10px;
+}
+
+#previewResultsDialog_accept, #csvPreviewDialog_accept {
+	margin-right: 8px;
+}
+
+#preview {
+	margin-left: 5px;
 }
