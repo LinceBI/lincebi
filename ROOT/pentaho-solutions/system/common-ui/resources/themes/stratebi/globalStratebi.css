@@ -695,7 +695,7 @@ div#data-controlproperties-spacer {
 /* Tabs */
 .pentaho-tabWidget {
 	display: inline-table;
-	background: #F3F3F3AA;
+	background: #f3f3f3aa;
 	cursor: pointer;
 	margin-left: 0px;
 	padding: 6px 8px;
@@ -716,11 +716,11 @@ div#data-controlproperties-spacer {
 	-webkit-border-top-right-radius: 1px;
 	border-top-right-radius: 1px;
 	border-top-left-radius: 1px;
-	background: #FFF;
+	background: #fff;
 }
 
-#solutionNavigatorAndContentPanel .pentaho-tab-bar .pentaho-tabWidget:first-child { 
-    border-left: solid 1px #cbdde8 !important;
+#solutionNavigatorAndContentPanel .pentaho-tab-bar .pentaho-tabWidget:first-child {
+	border-left: solid 1px #cbdde8 !important;
 }
 
 .IE .pentaho-tabWidget-selected {
@@ -748,77 +748,77 @@ div#data-controlproperties-spacer {
 /* Tabs Decorator */
 #solutionNavigatorAndContentPanel .pentaho-tabWidget .pentaho-tabWidgetLabel::before,
 #solutionNavigatorAndContentPanel .pentaho-tabWidget .pentaho-tabWidgetLabel::after {
-    display: block;
-    content: '';
-    position: absolute;
-    height: 35px;
-    top: -6px;
+	display: block;
+	content: '';
+	position: absolute;
+	height: 35px;
+	top: -6px;
 	opacity: 0.5;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
-	border-bottom: 5px solid #9E9E9E;
+	filter: alpha(opacity=50); /* For IE8 and earlier */
+	border-bottom: 5px solid #9e9e9e;
 }
 
 #solutionNavigatorAndContentPanel .pentaho-tabWidget .pentaho-tabWidgetLabel::before {
-    left: -8px;
+	left: -8px;
 	width: 100%;
 }
 
 #solutionNavigatorAndContentPanel .pentaho-tabWidget .pentaho-tabWidgetLabel::after {
-    right: -25px;
+	right: -25px;
 	width: 33px;
 }
 
 #solutionNavigatorAndContentPanel .pentaho-tabWidget-selected .pentaho-tabWidgetLabel::before,
 #solutionNavigatorAndContentPanel .pentaho-tabWidget-selected .pentaho-tabWidgetLabel::after {
 	opacity: 1;
-    filter: alpha(opacity=100); /* For IE8 and earlier */
+	filter: alpha(opacity=100); /* For IE8 and earlier */
 }
 
 /* Tabs (New Views) */
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STPivot"]::before,
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STPivot"]::after {
-	border-bottom: 5px solid #AFB837;
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='STPivot']::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='STPivot']::after {
+	border-bottom: 5px solid #afb837;
 }
 
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STDashboard"]::before,
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STDashboard"]::after {
-	border-bottom: 5px solid #097FB4;
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='STDashboard']::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='STDashboard']::after {
+	border-bottom: 5px solid #097fb4;
 }
 
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STCard"]::before,
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STCard"]::after {
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='STCard']::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='STCard']::after {
 	border-bottom: 5px solid #036856;
 }
 
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STReport"]::before,
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STReport"]::after {
-	border-bottom: 5px solid #ED7C36;
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='STReport']::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='STReport']::after {
+	border-bottom: 5px solid #ed7c36;
 }
 
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STAgile"]::before,
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*="STAgile"]::after {
-	border-bottom: 5px solid #BF1B25;
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='STAgile']::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='STAgile']::after {
+	border-bottom: 5px solid #bf1b25;
 }
 
 /* Tabs (Files) */
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".xjpivot"]::before,
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".xjpivot"]::after {
-	border-bottom: 5px solid #AFB837;
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='.xjpivot']::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='.xjpivot']::after {
+	border-bottom: 5px solid #afb837;
 }
 
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".std"]::before,
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".std"]::after {
-	border-bottom: 5px solid #097FB4;
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='.std']::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='.std']::after {
+	border-bottom: 5px solid #097fb4;
 }
 
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".adhoc"]::before,
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".adhoc"]::after {
-	border-bottom: 5px solid #ED7C36;
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='.adhoc']::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='.adhoc']::after {
+	border-bottom: 5px solid #ed7c36;
 }
 
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".sta"]::before,
-#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*=".sta"]::after {
-	border-bottom: 5px solid #BF1B25;
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='.sta']::before,
+#solutionNavigatorAndContentPanel .pentaho-tabWidgetLabel[title*='.sta']::after {
+	border-bottom: 5px solid #bf1b25;
 }
 
 #sidepaneltabset .pentaho-tabWidgetLabel {
@@ -3620,7 +3620,8 @@ button.adminButton {
 	background: #9ecc5c;
 }
 
-.combo-arrow:active, .IE .combo-arrow:focus {
+.combo-arrow:active,
+.IE .combo-arrow:focus {
 	background: #5f8e46;
 }
 
@@ -5820,22 +5821,28 @@ treecontrol.tree-classic li .tree-selected {
 }
 
 /* Administration/File Browser Windows */
-img.image-button, img.xul-image {
+img.image-button,
+img.xul-image {
 	filter: brightness(0%) opacity(70%);
 }
 
-.radio, .checkbox {
+.radio,
+.checkbox {
 	margin-bottom: 0 !important;
 	margin-top: 0 !important;
 }
 
-.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+.radio input[type='radio'],
+.radio-inline input[type='radio'],
+.checkbox input[type='checkbox'],
+.checkbox-inline input[type='checkbox'] {
 	position: relative !important;
 	margin-left: 0 !important;
 	vertical-align: top !important;
 }
 
-.radio label, .checkbox label {
+.radio label,
+.checkbox label {
 	padding-left: 10px !important;
 }
 
@@ -5848,7 +5855,8 @@ img.image-button, img.xul-image {
 	margin-top: 0 !important;
 }
 
-#dialogOverrideFolder, #dialogOverrideFile {
+#dialogOverrideFolder,
+#dialogOverrideFile {
 	visibility: visible;
 	position: absolute;
 	overflow: visible;
@@ -5869,7 +5877,7 @@ img.image-button, img.xul-image {
 }
 
 #browse-properties-dialog .pentaho-tab-deck-panel {
-    padding: 10px;
+	padding: 10px;
 }
 
 .gwt-DisclosurePanel {
@@ -5885,7 +5893,8 @@ img.image-button, img.xul-image {
 	margin-right: 2px;
 }
 
-#sharePanelUsersAndRolesList, .gwt-DisclosurePanel .custom-list {
+#sharePanelUsersAndRolesList,
+.gwt-DisclosurePanel .custom-list {
 	margin-bottom: 10px;
 }
 
@@ -5897,7 +5906,8 @@ img.image-button, img.xul-image {
 	margin-right: 9px;
 }
 
-#cancelButton, #filePropertiesCancelButton {
+#cancelButton,
+#filePropertiesCancelButton {
 	margin-right: 8px;
 }
 
@@ -5951,7 +5961,10 @@ img.image-button, img.xul-image {
 	margin-right: 7px;
 }
 
-#paramNameTextBox, #uploadFileLabel, #domainIdText, #analysisPreferencesRadioGroup {
+#paramNameTextBox,
+#uploadFileLabel,
+#domainIdText,
+#analysisPreferencesRadioGroup {
 	margin-bottom: 10px;
 }
 
@@ -5960,7 +5973,8 @@ img.image-button, img.xul-image {
 	margin-bottom: 15px;
 }
 
-#connectionsLbl, #connectionList {
+#connectionsLbl,
+#connectionList {
 	margin-bottom: 10px;
 }
 
@@ -5969,7 +5983,8 @@ img.image-button, img.xul-image {
 	margin-bottom: 10px;
 }
 
-#joinSelectionWindow #addButton, #joinSelectionWindow #removeButton {
+#joinSelectionWindow #addButton,
+#joinSelectionWindow #removeButton {
 	background: #7b9e49;
 	margin: 2px 8px;
 	border-radius: 3px;
@@ -5977,13 +5992,15 @@ img.image-button, img.xul-image {
 	height: 31px;
 }
 
-#joinSelectionWindow #addButton img, #joinSelectionWindow #removeButton img {
+#joinSelectionWindow #addButton img,
+#joinSelectionWindow #removeButton img {
 	width: 100%;
 	height: 100%;
 	background-position: center;
 	filter: brightness(0%) invert(1);
 }
 
-#leftTables, #rightTables {
+#leftTables,
+#rightTables {
 	margin-bottom: 10px;
 }
