@@ -15,6 +15,7 @@ if (!StringUtils.isEmpty(request.getParameter("locale"))) {
 
 URLClassLoader loader = new URLClassLoader(new URL[] {application.getResource("/mantle/messages/")});
 ResourceBundle properties = ResourceBundle.getBundle("mantleMessages", request.getLocale(), loader);
+ResourceBundle customProperties = ResourceBundle.getBundle("mantleCustomMessages", request.getLocale(), loader);
 
 List<String> pluginList = PentahoSystem.get(IPluginManager.class, PentahoSessionHolder.getSession()).getRegisteredPlugins();
 %>

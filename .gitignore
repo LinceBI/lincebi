@@ -65,6 +65,11 @@
 
 !/ROOT/tomcat/webapps/pentaho/mantle/images/stratebi/
 
+/ROOT/tomcat/webapps/pentaho/mantle/messages/*
+!/ROOT/tomcat/webapps/pentaho/mantle/messages/
+!/ROOT/tomcat/webapps/pentaho/mantle/messages/mantleCustomMessages.properties
+!/ROOT/tomcat/webapps/pentaho/mantle/messages/mantleCustomMessages_*.properties
+
 !/ROOT/tomcat/webapps/pentaho/mantle/search/
 
 !/ROOT/tomcat/webapps/pentaho/mantle/stadmin/

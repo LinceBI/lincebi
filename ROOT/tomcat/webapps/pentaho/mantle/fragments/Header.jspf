@@ -12,7 +12,8 @@
 					<img alt="Stratebi" src="mantle/themes/stratebi/images/logo_stratebi.svg" style="position: relative; top: -10px; height: 45px;">
 				</span>
 				<span class="navbar-brand hidden-md hidden-sm hidden-xs">
-					Welcome <span id="mantle_username"></span>
+					<%= customProperties.getString("welcome") %>
+					<span id="mantle_username"></span>
 				</span>
 			</div>
 
@@ -28,7 +29,7 @@
 				<form class="navbar-form navbar-right">
 					<div class="input-group">
 						<div class="form-group">
-							<input id="buscador" type="text" class="form-control" placeholder="Search">
+							<input id="buscador" type="text" class="form-control" placeholder="<%= customProperties.getString("search") %>">
 						</div>
 						<span class="input-group-btn">
 							<button id="buscar" class="btn btn-success" type="button">
@@ -47,7 +48,7 @@
 								</button>
 								<div class="dropdown-menu">
 									<li class="<%= UserSettings.equals("MANTLE_SHOW_HIDDEN_FILES", "true") ? "active" : "" %>">
-										<a id="show-hidden-files-toggle" href="#">Show Hidden Files</a>
+										<a id="show-hidden-files-toggle" href="#"><%= customProperties.getString("showHiddenFiles") %></a>
 									</li>
 								</div>
 							</div>
