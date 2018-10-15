@@ -4,6 +4,8 @@ boolean canCreateContent = PentahoSystem.get(IAuthorizationPolicy.class, Pentaho
 boolean canAdminister = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed(AdministerSecurityAction.NAME);
 boolean hasDataAccessPlugin = PentahoSystem.get(IPluginManager.class, PentahoSessionHolder.getSession()).getRegisteredPlugins().contains("data-access");
 
+String userName = PentahoSessionHolder.getSession().getName();
+
 Locale effectiveLocale = request.getLocale();
 if (!StringUtils.isEmpty(request.getParameter("locale"))) {
 	request.getSession().setAttribute("locale_override", request.getParameter("locale"));

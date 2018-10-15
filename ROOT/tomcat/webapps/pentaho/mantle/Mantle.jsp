@@ -17,8 +17,7 @@
 
 <!DOCTYPE html>
 <%@page pageEncoding="UTF-8" %>
-<%@
-    page language="java"
+<%@page language="java"
     import="org.apache.commons.lang.StringUtils,
             org.owasp.encoder.Encode,
             org.pentaho.platform.util.messages.LocaleHelper,

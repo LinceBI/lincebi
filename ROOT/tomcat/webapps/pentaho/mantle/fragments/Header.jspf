@@ -14,7 +14,7 @@
 				</span>
 				<span class="navbar-brand hidden-md hidden-sm hidden-xs">
 					<%= customProperties.getString("welcome") %>
-					<span id="mantle_username"></span>
+					<span id="mantle_username"><%= userName %></span>
 				</span>
 			</div>
 
