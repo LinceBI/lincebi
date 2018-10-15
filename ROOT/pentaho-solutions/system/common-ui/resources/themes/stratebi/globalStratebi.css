@@ -3289,6 +3289,7 @@ div.dijitDateTextBox.dijitComboBox .dijitArrowButton input[type='text'] {
 	border-right: 1px solid #cbdde8;
 	border-bottom: 1px solid #cbdde8;
 	border-left: 1px solid #cbdde8;
+	position: initial;
 }
 .admin-perspective .pentaho-tab-bar {
 	background-image: none;
@@ -3299,12 +3300,13 @@ div.dijitDateTextBox.dijitComboBox .dijitArrowButton input[type='text'] {
 	height: 39px;
 }
 .admin-perspective .pentaho-tabWidget {
-	border-top: solid 4px transparent;
+	border-top: solid 3px transparent;
+	border-right: 0px;
 }
 .admin-perspective .pentaho-tabWidget-selected {
-	border-top: solid 4px #f2ce17;
-	border-left: solid 1px #cbdde8;
-	border-right: solid 1px #cbdde8;
+	border-top: solid 1px #cbdde8 !important;
+	border-left: solid 1px #cbdde8 !important;
+	border-right: solid 1px #cbdde8 !important;
 	-moz-border-radius-topleft: 1px;
 	-moz-border-radius-topright: 1px;
 	-webkit-border-top-left-radius: 1px;
@@ -3312,6 +3314,7 @@ div.dijitDateTextBox.dijitComboBox .dijitArrowButton input[type='text'] {
 	border-top-right-radius: 1px;
 	border-top-left-radius: 1px;
 	background: #fff;
+	height: 37px !important;
 }
 button.adminButton {
 	background: url('images/auth.png');
@@ -5820,8 +5823,9 @@ treecontrol.tree-classic li .tree-selected {
 }
 
 #protocolPanel select {
-	width: 228px;
-	height: 23px;
+	width: 220px;
+	height: 30px;
+	background: white;
 }
 
 #standardDialog select#MT_trendFields,

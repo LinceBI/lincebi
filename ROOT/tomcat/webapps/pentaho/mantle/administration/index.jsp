@@ -30,13 +30,17 @@ List<String> pluginIds = PentahoSystem.get(IPluginManager.class, PentahoSessionH
 			  font-family: 'Titillium Web', sans-serif;
 			}
 			
+			body {
+			  margin: 20px;
+			}
+			
 			.admin-container {
-				min-width: 250px;
-				max-width: 900px;
-				margin: 20px auto;
-				background: #f5f5f5;
-				border-left: 10px #a4bc81 solid; 
-				box-shadow: 5px 10px 18px #888888;
+			  min-width: 250px;
+			  max-width: 900px;
+			  margin: 0 auto;
+			  background: #f5f5f5;
+			  border-left: 10px #a4bc81 solid; 
+			  box-shadow: 5px 10px 18px #88888855;
 			}
 			
 			.box .box_element {
@@ -80,10 +84,9 @@ List<String> pluginIds = PentahoSystem.get(IPluginManager.class, PentahoSessionH
 			}
 			
 			.btn:hover {
-			  background: #f3fbec;
+			  background: #eaeaea;
 			  font-weight: bold;
 			  color: black !important;
-			  text-decoration: underline #f5f5f5;
 			}
 		</style>	
 	</head>

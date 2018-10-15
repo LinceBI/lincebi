@@ -2,10 +2,6 @@
 	background: transparent;
 }
 
-#adminContentPanel {
-	padding-left: 40px;
-}
-
 #adminContentPanel.vbox > tbody > tr > td {
 	height: 100%;
 }
@@ -46,12 +42,16 @@
 }
 
 .admin-perspective {
-	padding-top: 40px;
-	padding-left: 40px;
 	background: transparent;
-	height: 100%;
-	width: 1230px;
-	margin: 0 auto;
+	margin: 20px auto;
+	width: 50%;
+	background: #f5f5f5;
+	box-shadow: 5px 10px 18px #88888855;
+	border-left: 10px #a4bc81 solid;
+}
+
+#adminCatTree {
+	width: 250px;
 }
 
 #adminCatTree .tree-scroll-panel {
@@ -62,31 +62,23 @@
 	font-size: 16px;
 	color: #5c5c5c;
 	cursor: pointer;
-	cursor: hand;
-	height: 26px;
-	padding-top: 10px;
-	padding-left: 10px;
-	padding-bottom: 5px;
+	padding: 10px;
 	background: url('images/16x16_right.png');
 	background-position: 95% center;
 	background-repeat: no-repeat;
 	font-family: OpenSansLight, Helvetica, Arial, Sans serif;
 }
 
-.ie #adminCatTree .gwt-Label {
-	height: 36px;
-}
-
 #adminCatTree .gwt-TreeItem-selected .gwt-Label {
-	color: #1973bc;
-	cursor: pointer;
-	cursor: hand;
-	background-image: none;
+	color: #292929;
 }
 
 #adminCatTree .tree-item-custom-widget-selected {
-	border: 0px solid transparent;
-	background: #c1d7e1;
+	background-color: #d7e9cd;
+}
+
+#adminCatTree .tree-item-custom-widget:not(.tree-item-custom-widget-selected):hover {
+	background-color: #eaeaea;
 }
 
 #adminCatTree .tree-item-custom-widget {
@@ -96,7 +88,7 @@
 }
 
 .adminCatTreeItem {
-	border-top: 1px solid #dfdfdf;
+	border-bottom: 1px solid #dfdfdf;
 }
 
 .adminCatTreeItemLast {
@@ -111,6 +103,53 @@
 	cursor: hand;
 	white-space: nowrap;
 	border-top: 2px solid black;
+}
+
+#adminContentPanel {
+	border-left: 1px solid #dfdfdf;
+}
+
+#userRolesAdminPanel,
+#emailAdminPanel {
+	padding: 20px;
+}
+
+#admin-users-panel,
+#admin-roles-panel,
+#admin-system-roles-panel {
+	margin-bottom: 15px;
+}
+
+#admin-users-panel .users-roles-list {
+	height: 501px;
+}
+
+#admin-roles-panel .users-roles-list {
+	height: 535px;
+}
+
+#admin-system-roles-panel .users-roles-list {
+	height: 400px;
+}
+
+#admin-users-panel .users-roles-selection-list,
+#admin-roles-panel .users-roles-selection-list {
+	height: 300px;
+}
+
+#admin-users-panel .scrollable-horizontally,
+#admin-roles-panel .scrollable-horizontally,
+#admin-system-roles-panel .scrollable-horizontally {
+	overflow-x: auto;
+}
+
+#contentCleanerPanel {
+	border-collapse: separate;
+	border-spacing: 20px;
+}
+
+#contentCleanerPanel .gwt-TextBox {
+	width: 60px !important;
 }
 
 .mantle-perspective-toggle-up {
@@ -1304,8 +1343,7 @@ a:hover {
 
 .pentaho-tab-panel,
 #userRolesAdminPanel .pentaho-tab-panel {
-	width: 715px;
-	height: 510px;
+	width: 705px !important;
 }
 
 /* targetting IE 10 only */
