@@ -478,17 +478,9 @@ For IE 9 and IE10, need to add padding to the bottom of some dialogs generated w
 	width: 310px;
 }
 
-.pentaho-dialog#dialogOverrideFolder,
-.pentaho-dialog#dialogRename {
-	width: 495px;
-}
-
-.pentaho-dialog#dialogOverrideFile {
-	width: 455px;
-}
-
 .pentaho-dialog#dialogRename input {
 	width: 100%;
+	height: 35px;
 }
 
 div#data-controlproperties-spacer {
@@ -5884,7 +5876,8 @@ legend {
 }
 
 #dialogOverrideFolder,
-#dialogOverrideFile {
+#dialogOverrideFile,
+#dialogRename {
 	visibility: visible;
 	position: absolute;
 	overflow: visible;

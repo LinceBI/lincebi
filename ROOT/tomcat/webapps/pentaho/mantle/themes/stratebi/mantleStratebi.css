@@ -152,6 +152,24 @@
 	width: 60px !important;
 }
 
+.pentaho-schedule-create .gwt-Label,
+.pentaho-schedule-create .startLabel,
+.pentaho-schedule-create .endLabel,
+.pentaho-schedule-create label {
+	line-height: 2em;
+	vertical-align: top;
+}
+
+.pentaho-schedule-create input[type="radio"] {
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+#wizard-finish-button,
+#wizard-cancel-button {
+	margin: 8px 3px;
+}
+
 .mantle-perspective-toggle-up {
 	color: #e3e3e3;
 }
