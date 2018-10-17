@@ -20,7 +20,7 @@ List<String> pluginIds = PentahoSystem.get(IPluginManager.class, PentahoSessionH
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<link rel="stylesheet" href="../themes/stratebi/vendor/font-awesome/css/font-awesome.min.css">
-		<script src="../search/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../themes/stratebi/vendor/jquery/js/jquery-3.3.1.min.js"></script>
 		<script src="../themes/stratebi/vendor/bootstrap/js/bootstrap.min.js" async></script>
 		<script src="js/translate.administracion.js"></script>
 		<style>

@@ -27,53 +27,33 @@
 
 <%@ include file="./../fragments/Settings.jspf" %>
 
-<html lang="en">
+<html lang="<%= effectiveLocale.getLanguage() %>">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>STSearch</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+	
+	<!-- Styles -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web">
+	<link rel="stylesheet" href="../themes/stratebi/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../themes/stratebi/vendor/jquery-ui/css/jquery-ui.min.css">
+	<link rel="stylesheet" href="../themes/stratebi/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../themes/stratebi/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" />
+	<link rel="stylesheet" href="../themes/stratebi/vendor/bootstrap-tagsinput/css/bootstrap-tagsinput.css" />
+	<link rel="stylesheet" href="css/home.css">
 	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
-	<!-- Le styles -->
-	<link href="css/home.css" rel="stylesheet">
-
-	<!-- We need web context for requirejs and css -->
-	<script type="text/javascript" src="webcontext.js?context=mantle&cssOnly=true"></script>
-	<!--<script language='JavaScript' type='text/javascript' src='http://admin.brightcove.com/js/BrightcoveExperiences.js'></script>-->
-
-	<!-- Avoid 'console' errors in browsers that lack a console. -->
-	<script type="text/javascript">
-		if (!(window.console && console.log)) {
-			(function() {
-				var noop = function() {};
-				var methods = ['assert', 'debug', 'error', 'info', 'log', 'trace', 'warn'];
-				var length = methods.length;
-				var console = window.console = {};
-				while (length--) {
-					console[methods[length]] = noop;
-				}
-			}());
-		}
-	</script>
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
-	<link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
-	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
 	<link href="http://aehlke.github.io/tag-it/css/jquery.tagit.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="css/buscador.css">
 	
-	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+	<!-- Javascript -->
+	<script type="text/javascript" src="../themes/stratebi/vendor/jquery/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../themes/stratebi/vendor/jquery-ui/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../themes/stratebi/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../themes/stratebi/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript" src="../themes/stratebi/vendor/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
 	<script type="text/javascript" src="js/tag-it.min.js"></script>
-	
 	<script type="text/javascript" src="js/buscador.js"></script>
+	
 	<!-- Require Home -->
 	<script type="text/javascript">
 		$( document ).ready(function() {
@@ -116,6 +96,10 @@
 				$("#modal-tag").val("");
 			});
 
+			/*$('#tag-input').tagsinput({
+				tagClass: 'element-tag'
+			});*/
+			
 			$("#modal-tag").tagit({maxLength: 3});
 			/*autocomplete: {delay: 0, minLength: 2},
 			availableTags: ["c++", "java", "php", "javascript","javaasdasdscript","javascripasdasdsadt", "ruby", "python", "c"]*/
@@ -131,6 +115,7 @@
 			$('#borrar_tags').on('click', function(e) {
 				$('#tags_actuales').empty();    
 				$("#modal-tag").val("");
+				$('.bootstrap-tagsinput .tag').remove();
 				$('#tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable').remove();
 				set_info("true");
 				accion_buscar();
@@ -154,6 +139,7 @@
 	<style>
 	    body {
 			padding-bottom: 40px;
+			font-family: 'Titillium Web', sans-serif;
 		}
     
 		.popup {
@@ -161,7 +147,7 @@
 			width: 100%;
 			position: fixed;
 			background: rgba(0,0,0,0.5);
-			z-index: 999;
+			z-index: 110;
 			display:table;
 			top:0;
 		}
@@ -200,11 +186,11 @@
 			margin-bottom: 15px;
 			display: none;
 			position: fixed;
-			z-index: 9999;
+			z-index: 120;
 		}
 		
 		.column0 img {
-			height:30px;
+			height: 30px;
 		}
 		
 		a {
@@ -251,125 +237,124 @@
 	</style>
 </head>
 
-<body style="overflow:auto">
+<body>
     <div id="dialog-bg"></div>
-		<div id="mainPanel" class="row">
-		
-			<!-- Warning Dialog -->
-			<div id="error_msg" class="alert warning">
-				<span class="closebtn">&times;</span>
-				<strong>No se han actualizado los Tags!</strong> Este usuario no tiene permisos de edici&oacute;n.
-			</div>
-		
-			<!-- File Metadata -->
-			<div id="dialog" title="Dialog Form">
-				
-				<!-- First column -->
-				<div class="col-md-4 col-xs-12">
-					<div style="text-align:center">
-						<img id="modal-imagen-thumb" src="https://www.jetstereo.com/images/no_image.png" style="max-height:230px;max-width:300px;margin-top: 15px;">
-					</div>
-					<div class="row">
-						<div class="col-md-10 col-md-offset-1 title" style="margin-bottom: 50px;">
-							<span><%= customProperties.getString("tags") %><input id="borrar_tags" value="X" title="<%= customProperties.getString("deleteTags") %>" type="button" style="background: #da6666;"></span>
-						</div>            
-					</div>            
-					<div id="tags_actuales"></div>
-				</div>
-				
-				<!-- Second column -->
-				<div class="col-md-8 col-xs-12">
-					<form action="" method="post">
-						<div class="row hidden-xs hidden-sm"><div class="col-md-6"><div class="col-md-12 title"><%= customProperties.getString("file") %></div><div class="col-md-12" id="modal_archivo"></div></div><div class="col-md-6"><div class="col-md-12 title"><%= customProperties.getString("path") %></div><div class="col-md-12" id="modal_ruta"></div></div></div>
-						<div class="row hidden-xs hidden-sm"><div class="col-md-12 title"><%= customProperties.getString("title") %></div><div class="col-md-12"><input id="modal-titulo" name="titulo" type="text"></div></div>
-						<div class="row hidden-xs hidden-sm"><div class="col-md-12 title"><%= customProperties.getString("image") %></div><div class="col-md-12"><input id="modal-imagen" name="imagen" type="text"></div></div>
-						<div class="row hidden-xs hidden-sm"><div class="col-md-12 title"><%= customProperties.getString("description") %></div><div class="col-md-12"><textarea id="modal-descripcion" name="descripcion" rows="5"></textarea></div></div>
-						<div class="row">
-							<div class="col-md-12 title"><%= customProperties.getString("addTags") %></div>
-							<div class="col-md-12">
-								<input id="modal-tag" name="tag" type="text">
-							</div>
-						</div>
-          
-						<div class="row" style="border-bottom:0px #ccc solid">
-							<div class="col-md-6 col-xs-6"></div>
-							<div class="col-md-6 col-xs-6" style="text-align:right; float:right">
-								<input id="set_info" value="<%= customProperties.getString("ok") %>" type="button" style="width:100px" >                
-								<input id="exit_dialog" value="<%= customProperties.getString("cancel") %>" type="button" style="width:100px">
-							</div>
-						</div>
-					</form>
-				</div>
-				
-			</div>
-
-			<!-- Search Header -->
-			<div class="row">
+	<div id="mainPanel" class="row">
+	
+		<!-- Warning Dialog -->
+		<div id="error_msg" class="alert warning">
+			<span class="closebtn">&times;</span>
+			<strong>No se han actualizado los Tags!</strong> Este usuario no tiene permisos de edici&oacute;n.
+		</div>
+	
+		<!-- File Metadata -->
+		<div id="dialog" title="Dialog Form">
 			
-				<!-- Title -->
-				<div class="col-md-12" style='padding: 0px 30px;'> 
-					<h2 class="header"><%= customProperties.getString("results") %></h2>
+			<!-- First column -->
+			<div class="col-md-4 col-xs-12">
+				<div style="text-align:center">
+					<img id="modal-imagen-thumb" src="https://www.jetstereo.com/images/no_image.png" style="max-height:230px;max-width:300px;margin-top: 15px;">
 				</div>
-				
-				<!-- Filters -->
-				<div class="col-md-12">
-					<div class="col-md-2 search-filter-box">
-						<div id="datepicker_desde" class="input-group date">
-							<input type='text' class="form-control" placeholder="<%= customProperties.getString("startDate") %>" style="border: 1px #ccc solid !important;" />
-							<span class="input-group-addon"><span class="fa fa-calendar"></span>							</span>
-						</div>
-					</div>
-					
-					<div class="col-md-2 search-filter-box">
-						<div id="datepicker_hasta" class="input-group date">
-							<input type='text' class="form-control" placeholder="<%= customProperties.getString("endDate") %>" style="border: 1px #ccc solid !important;"/>
-							<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-						</div>
-					</div>
-					
-					<div class="col-md-2 search-filter-box">
-						<select id="datepicker_filtro" class="input-group">
-							<option value="creacion"><%= customProperties.getString("creationDate") %></option>
-							<option value="modificacion"><%= customProperties.getString("modificationDate") %></option>
-						</select>
-					</div>
-					
-					<div class="col-md-3 search-filter-box">
-						<div style="background:#f6f6f6; text-align:center;border: 1px #ccc solid;font-size: 25px;color: #666;width: auto;">
-							<img id="filtro_olap" title="<%= customProperties.getString("olapViews") %>" class="fa fa-cube filtro_activo" src="../themes/stratebi/images/stpivot_icon_c.png" onclick="filtro_extension(this);">
-							<img id="filtro_report" title="<%= customProperties.getString("reports") %>" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/streport_icon_c.png" onclick="filtro_extension(this);">
-							<img id="filtro_dashboard" title="STDashboard CDM" class="fa fa-pie-chart filtro_activo" src="../themes/stratebi/images/stdashboard_icon_c.png" onclick="filtro_extension(this);">
-							<img id="filtro_stagile" title="STAgile CDM" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/stagile_icon_c.png" onclick="filtro_extension(this);">
-							<img id="filtro_cde" title="Custom CDM" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/cde_icon_c.png" onclick="filtro_extension(this);">
-						</div>
-					</div>
-              
-					<div class="col-md-3 search-filter-box">
-						<div class="pull-right">
-							<span class="search-form-btn input-group-addon" id="reset_filters" onClick="reset_filters();">
-								<span class="fa fa-refresh"></span>
-							</span>
-							<span class="search-form-btn input-group-addon" id="show_repository" onClick="reset();">
-								<span class="fa fa-folder"></span>
-							</span>
-						</div>
-					</div>
-				</div>
-				
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 title" style="margin-bottom: 50px;">
+						<span><%= customProperties.getString("tags") %><input id="borrar_tags" value="X" title="<%= customProperties.getString("deleteTags") %>" type="button" style="background: #da6666;"></span>
+					</div>            
+				</div>            
+				<div id="tags_actuales"></div>
 			</div>
-
-			<!-- Loading icon -->
-			<div id="cargando"></div>
-
-			<!-- Folder selector -->
-			<div class="row" style="margin-top:5px;margin-left:initial">  
-				<div id="path" class="row container" style="width:100%"> </div>
-				<div id="repository_browser" class="row container" style="width:100%"> </div>
-				<div id="repository_browser_buscar" class="row container" style="width:100%"> </div>
+			
+			<!-- Second column -->
+			<div class="col-md-8 col-xs-12">
+				<form action="" method="post">
+					<div class="row hidden-xs hidden-sm"><div class="col-md-6"><div class="col-md-12 title"><%= customProperties.getString("file") %></div><div class="col-md-12" id="modal_archivo"></div></div><div class="col-md-6"><div class="col-md-12 title"><%= customProperties.getString("path") %></div><div class="col-md-12" id="modal_ruta"></div></div></div>
+					<div class="row hidden-xs hidden-sm"><div class="col-md-12 title"><%= customProperties.getString("title") %></div><div class="col-md-12"><input id="modal-titulo" name="titulo" type="text"></div></div>
+					<div class="row hidden-xs hidden-sm"><div class="col-md-12 title"><%= customProperties.getString("image") %></div><div class="col-md-12"><input id="modal-imagen" name="imagen" type="text"></div></div>
+					<div class="row hidden-xs hidden-sm"><div class="col-md-12 title"><%= customProperties.getString("description") %></div><div class="col-md-12"><textarea id="modal-descripcion" name="descripcion" rows="5"></textarea></div></div>
+					<div class="row">
+						<div class="col-md-12 title"><%= customProperties.getString("addTags") %></div>
+						<div class="col-md-12">
+							<input id="modal-tag" name="tag" type="text">
+						</div>
+					</div>
+      
+					<div class="row" style="border-bottom:0px #ccc solid">
+						<div class="col-md-6 col-xs-6"></div>
+						<div class="col-md-6 col-xs-6" style="text-align:right; float:right">
+							<input id="set_info" value="<%= customProperties.getString("ok") %>" type="button" style="width:100px" >                
+							<input id="exit_dialog" value="<%= customProperties.getString("cancel") %>" type="button" style="width:100px">
+						</div>
+					</div>
+				</form>
 			</div>
 			
 		</div>
-    </div>
+
+		<!-- Search Header -->
+		<div class="row">
+		
+			<!-- Title -->
+			<div class="col-md-12" style='padding: 0px 30px;'> 
+				<h2 class="header"><%= customProperties.getString("results") %></h2>
+			</div>
+			
+			<!-- Filters -->
+			<div class="col-md-12">
+				<div class="col-md-2 search-filter-box">
+					<div id="datepicker_desde" class="input-group date">
+						<input type='text' class="form-control" placeholder="<%= customProperties.getString("startDate") %>" style="border: 1px #ccc solid !important;" />
+						<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+					</div>
+				</div>
+				
+				<div class="col-md-2 search-filter-box">
+					<div id="datepicker_hasta" class="input-group date">
+						<input type='text' class="form-control" placeholder="<%= customProperties.getString("endDate") %>" style="border: 1px #ccc solid !important;"/>
+						<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+					</div>
+				</div>
+				
+				<div class="col-md-2 search-filter-box">
+					<select id="datepicker_filtro" class="input-group">
+						<option value="creacion"><%= customProperties.getString("creationDate") %></option>
+						<option value="modificacion"><%= customProperties.getString("modificationDate") %></option>
+					</select>
+				</div>
+				
+				<div class="col-md-3 search-filter-box">
+					<div style="background:#f6f6f6; text-align:center;border: 1px #ccc solid;font-size: 25px;color: #666;width: auto;">
+						<img id="filtro_olap" title="<%= customProperties.getString("olapViews") %>" class="fa fa-cube filtro_activo" src="../themes/stratebi/images/stpivot_icon_c.png" onclick="filtro_extension(this);">
+						<img id="filtro_report" title="<%= customProperties.getString("reports") %>" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/streport_icon_c.png" onclick="filtro_extension(this);">
+						<img id="filtro_dashboard" title="STDashboard CDM" class="fa fa-pie-chart filtro_activo" src="../themes/stratebi/images/stdashboard_icon_c.png" onclick="filtro_extension(this);">
+						<img id="filtro_stagile" title="STAgile CDM" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/stagile_icon_c.png" onclick="filtro_extension(this);">
+						<img id="filtro_cde" title="Custom CDM" class="fa fa-file-o filtro_activo" src="../themes/stratebi/images/cde_icon_c.png" onclick="filtro_extension(this);">
+					</div>
+				</div>
+          
+				<div class="col-md-3 search-filter-box">
+					<div class="pull-right">
+						<span class="search-form-btn input-group-addon" id="reset_filters" onClick="reset_filters();">
+							<span class="fa fa-refresh"></span>
+						</span>
+						<span class="search-form-btn input-group-addon" id="show_repository" onClick="reset();">
+							<span class="fa fa-folder"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+		<!-- Loading icon -->
+		<div id="cargando"></div>
+
+		<!-- Folder selector -->
+		<div class="row" style="margin-top:5px;margin-left:initial">  
+			<div id="path" class="row container" style="width:100%"> </div>
+			<div id="repository_browser" class="row container" style="width:100%"> </div>
+			<div id="repository_browser_buscar" class="row container" style="width:100%"> </div>
+		</div>
+		
+	</div>
 </body>
 </html>
 

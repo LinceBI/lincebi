@@ -96,7 +96,7 @@ function set_info(borrar_locale) {
 	var tag_element = [];
 	var tags = [];
 
-	var tag_element = $('#tags_actuales .tag_element');
+	var tag_element = $('#tags_actuales .element-tag');
 
 	for (i = 0; i < tag_element.length; i++) {
 		if (tag_element[i].outerText != '') {
@@ -162,7 +162,7 @@ function funcion_tags(titulo, descripcion, imagen, ruta, fichero, tags_array) {
 		} else {
 			aux = tags_array[i];
 		}
-		$('#tags_actuales').prepend('<div class="tag_element">' + aux + '</div>');
+		$('#tags_actuales').prepend('<div class="element-tag">' + aux + '</div>');
 	}
 	$('#modal-titulo').val(titulo);
 	$('#modal-imagen').val(imagen);
@@ -180,7 +180,7 @@ function funcion_tags(titulo, descripcion, imagen, ruta, fichero, tags_array) {
 	$('#dialog')
 		.parent()
 		.fadeIn();
-	$('#dialog-bg').css('z-index', 999);
+	$('#dialog-bg').css('z-index', 100);
 	$('#dialog-bg').css('opacity', 0.5);
 }
 
@@ -361,14 +361,14 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 							tags = arrayUnique(tags);
 							for (var n = 0; n < tags_array.length; n++) {
 								if (tags[n] != '' && tags[n] != 'undefined') {
-									tags[n] = '<span class="tag_element" onClick="accion_buscar(this.innerText)">' + tags[n] + '</span>';
+									tags[n] = '<span class="element-tag" onClick="accion_buscar(this.innerText)">' + tags[n] + '</span>';
 								}
 							}
 							if (tags_array[0]) {
 								icon = 'fa-pencil-square-o';
 								tags = tags.toString();
 								tags = tags.replace(/,/g, '');
-								tags = tags.replace(/<span class="tag_element" onclick="accion_buscar(this.innerText)"> <\/span>/g, '');
+								tags = tags.replace(/<span class="element-tag" onclick="accion_buscar(this.innerText)"> <\/span>/g, '');
 							} else {
 								icon = 'fa-plus';
 							}
