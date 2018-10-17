@@ -7,17 +7,25 @@ boolean hasDataAccessPlugin = PentahoSystem.get(IPluginManager.class, PentahoSes
 String userName = PentahoSessionHolder.getSession().getName();
 
 Locale effectiveLocale = request.getLocale();
+boolean isPerspective = request.getRequestURI().contains("/mantle/");
+
 if (!StringUtils.isEmpty(request.getParameter("locale"))) {
 	request.getSession().setAttribute("locale_override", request.getParameter("locale"));
-	LocaleHelper.parseAndSetLocaleOverride( request.getParameter("locale"));
+	LocaleHelper.parseAndSetLocaleOverride(request.getParameter("locale"));
+	effectiveLocale = LocaleHelper.getLocaleOverride();
+	UserSettings.set("locale", effectiveLocale.getLanguage());
+} else if (isPerspective && UserSettings.get("locale") != null) {
+	effectiveLocale = new Locale(UserSettings.get("locale"));
 } else {
 	request.getSession().setAttribute("locale_override", null);
 	LocaleHelper.setLocaleOverride(null);
+	effectiveLocale = LocaleHelper.getLocale();
+	UserSettings.set("locale", effectiveLocale.getLanguage());	
 }
 
 URLClassLoader loader = new URLClassLoader(new URL[] {application.getResource("/mantle/messages/")});
-ResourceBundle properties = ResourceBundle.getBundle("mantleMessages", request.getLocale(), loader);
-ResourceBundle customProperties = ResourceBundle.getBundle("mantleCustomMessages", request.getLocale(), loader);
+ResourceBundle properties = ResourceBundle.getBundle("mantleMessages", effectiveLocale, loader);
+ResourceBundle customProperties = ResourceBundle.getBundle("mantleCustomMessages", effectiveLocale, loader);
 
 List<String> pluginList = PentahoSystem.get(IPluginManager.class, PentahoSessionHolder.getSession()).getRegisteredPlugins();
 %>
@@ -34,12 +42,20 @@ private static class UserSettings {
 		String defaultSystemValue = PentahoSystem.getSystemSetting(key, defaultValue);
 		return settingsService.getUserSetting(key, defaultSystemValue).getSettingValue();
 	}
+	
+	public static void set(String key, String settingValue) {
+		settingsService.setUserSetting(key, settingValue);
+	}
 
 	public static boolean equals(String key, String value) {
 		String responseValue = UserSettings.get(key);
 		return responseValue != null
 			? value.equals(responseValue)
 			: false;
+	}
+
+	public static void delete() {
+		settingsService.deleteUserSettings();
 	}
 }
 %>
