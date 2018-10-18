@@ -98,11 +98,13 @@
 					</a>
 				</li>
 			<% } %>
-			<li>
-				<a href="#" onclick="window.top.mantle_setPerspective('administration.perspective')">
-					<i class="fa fa-unlock-alt"></i>
-				</a>
-			</li>
+			<% if (canAdminister || hasDataAccess ) { %>
+				<li>
+					<a href="#" onclick="window.top.mantle_setPerspective('administration.perspective')">
+						<i class="fa fa-unlock-alt"></i>
+					</a>
+				</li>
+			<% } %>
 			<li class='active'>
 				<a href="#" style="font-size: 12px;">[ES]</a>
 				<ul>

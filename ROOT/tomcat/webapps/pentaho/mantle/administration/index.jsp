@@ -1,20 +1,34 @@
 <!DOCTYPE html>
-<%@page import="org.pentaho.platform.api.engine.IPluginManager"%>
-<%@page import="org.pentaho.platform.security.policy.rolebased.actions.RepositoryCreateAction"%>
-<%@page import="org.pentaho.platform.security.policy.rolebased.actions.AdministerSecurityAction"%>
-<%@page import="org.pentaho.platform.engine.core.system.PentahoSessionHolder"%>
-<%@page import="org.pentaho.platform.api.engine.IAuthorizationPolicy"%>
-<%@page import="org.pentaho.platform.engine.core.system.PentahoSystem"%>
-<%@page import="org.pentaho.platform.engine.core.system.PentahoSystem"%>
-<%@page import="java.util.List"%>
+<%@page pageEncoding="UTF-8" %>
+<%@page session="true"  
+	contentType="text/html; charset=UTF-8"
+    language="java"
+    import="org.apache.commons.lang.StringUtils,
+            org.owasp.encoder.Encode,
+            org.pentaho.platform.util.messages.LocaleHelper,
+            java.net.URL,
+            java.net.URLClassLoader,
+            java.util.ArrayList,
+            java.util.Iterator,
+            java.util.HashMap,
+            java.util.LinkedHashMap,
+            java.util.List,
+            java.util.Locale,
+            java.util.Map,
+            java.util.ResourceBundle,
+            org.pentaho.platform.api.engine.IAuthorizationPolicy,
+            org.pentaho.platform.api.engine.IPluginManager,
+            org.pentaho.platform.api.usersettings.IUserSettingService,
+            org.pentaho.platform.api.usersettings.pojo.IUserSetting,
+            org.pentaho.platform.engine.core.system.PentahoSessionHolder,
+            org.pentaho.platform.engine.core.system.PentahoSystem,
+            org.pentaho.platform.security.policy.rolebased.actions.AdministerSecurityAction,
+            org.pentaho.platform.security.policy.rolebased.actions.RepositoryReadAction,
+            org.pentaho.platform.security.policy.rolebased.actions.RepositoryCreateAction"%>
 
-<%
-boolean canCreateContent = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed(RepositoryCreateAction.NAME);
-boolean canAdminister = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed(AdministerSecurityAction.NAME);
-List<String> pluginIds = PentahoSystem.get(IPluginManager.class, PentahoSessionHolder.getSession()).getRegisteredPlugins();
-%>
+<%@ include file="./../fragments/Settings.jspf" %>
 
-<html lang="en" style="width:100%;height:100%;">
+<html lang="<%= effectiveLocale.getLanguage() %>" style="width:100%;height:100%;">
 	<head>
 		<meta charset="UTF-8"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -22,7 +36,6 @@ List<String> pluginIds = PentahoSystem.get(IPluginManager.class, PentahoSessionH
 		<link rel="stylesheet" href="../themes/stratebi/vendor/font-awesome/css/font-awesome.min.css">
 		<script type="text/javascript" src="../themes/stratebi/vendor/jquery/js/jquery-3.3.1.min.js"></script>
 		<script src="../themes/stratebi/vendor/bootstrap/js/bootstrap.min.js" async></script>
-		<script src="js/translate.administracion.js"></script>
 		<style>
 			
 			html,body {
@@ -96,40 +109,43 @@ List<String> pluginIds = PentahoSystem.get(IPluginManager.class, PentahoSessionH
 		<div class="row admin-container">
 			<div class="col-md-5 col-xs-5">
 				<div class="box row">
-					<!--<div class="box_element  btn" onClick="parent.executeCommand('OpenFileCommand')">
-						<i class="fa fa-sign-out" aria-hidden="true" style="float:left;margin-left:10px;margin-top: 3px;"></i><span>Open File</span>
-					</div>    -->
-					<div class="box_element btn btn-first" onClick="window.parent.executeCommand('ManageDatasourcesCommand')">
-						<i class="fa fa-database" aria-hidden="true"></i><span id="mds">Manage Data Sources</span>
-					</div>  
-					<div class="box_element btn" onClick="window.parent.mantle_setPerspective('admin.perspective')">
-						<i class="fa fa-unlock-alt" aria-hidden="true"></i><span id="biAdministracion">BI Administration</span>
-					</div>    
+					<% if (hasDataAccess) { %>
+						<div class="box_element btn btn-first" onClick="window.parent.executeCommand('ManageDatasourcesCommand')">
+							<i class="fa fa-database" aria-hidden="true"></i><span id="mds"><%= customProperties.getString("manageDataSources") %></span>
+						</div> 
+					<% } %>
+					<% if (canAdminister) { %>
+						<div class="box_element btn" onClick="window.parent.mantle_setPerspective('admin.perspective')">
+							<i class="fa fa-unlock-alt" aria-hidden="true"></i><span id="biAdministracion"><%= customProperties.getString("biAdministration") %></span>
+						</div>
+					<% } %>					
 				</div>
 			</div>
 
-			<div class="col-md-5 col-xs-5 col-md-offset-2 col-xs-offset-2">
-				<div class="box row">
-					<div class="box_element btn" onClick="parent.executeCommand('RefreshSystemSettingsCommand')">
-						<i class="fa fa-refresh" aria-hidden="true"></i><span id="refreshSystem">Refresh System Settings</span>
+			<% if (canAdminister) { %>
+				<div class="col-md-5 col-xs-5 col-md-offset-2 col-xs-offset-2">
+					<div class="box row">
+						<div class="box_element btn" onClick="parent.executeCommand('RefreshSystemSettingsCommand')">
+							<i class="fa fa-refresh" aria-hidden="true"></i><span id="refreshSystem"><%= customProperties.getString("refreshSystemSettings") %></span>
+						</div>
+						<div class="box_element btn" onClick="parent.executeCommand('RefreshMetaDataCommand')">
+							<i class="fa fa-refresh" aria-hidden="true"></i><span id="refreshReportingMetadata"><%= customProperties.getString("refreshReportingMetadata") %></span>
+						</div>
+						<div class="box_element  btn" onClick="parent.executeCommand('ExecuteGlobalActionsCommand')">
+							<i class="fa fa-refresh" aria-hidden="true"></i><span id="refreshGlobal"><%= customProperties.getString("refreshGlobalVariables") %></span>
+						</div>
+						<div class="box_element btn" onClick="parent.executeCommand('PurgeMondrianSchemaCacheCommand')">
+							<i class="fa fa-refresh" aria-hidden="true"></i><span id="refreshMondrianSchema"><%= customProperties.getString("refreshMondrianSchema") %></span>
+						</div>   
+						<div class="box_element btn" onClick="parent.executeCommand('PurgeReportingDataCacheCommand')">
+							<i class="fa fa-refresh" aria-hidden="true"></i><span id="refreshReportingData"><%= customProperties.getString("refreshReportingData") %></span>
+						</div>            
+						<div class="box_element btn" onClick="parent.openURL('CDA Cache', 'CDA Cache', 'plugin/cda/api/clearCache');">
+							<i class="fa fa-refresh" aria-hidden="true"></i><span id="refreshCDA"><%= customProperties.getString("refreshCdaCache") %></span>
+						</div>                
 					</div>
-					<div class="box_element btn" onClick="parent.executeCommand('RefreshMetaDataCommand')">
-						<i class="fa fa-refresh" aria-hidden="true"></i><span id="refreshReportingMetadata">Refresh Reporting Metadata</span>
-					</div>
-					<div class="box_element  btn" onClick="parent.executeCommand('ExecuteGlobalActionsCommand')">
-						<i class="fa fa-refresh" aria-hidden="true"></i><span id="refreshGlobal">Refresh Global Variables</span>
-					</div>
-					<div class="box_element btn" onClick="parent.executeCommand('PurgeMondrianSchemaCacheCommand')">
-						<i class="fa fa-refresh" aria-hidden="true"></i><span id="refreshReportingData">Refresh Reporting Data Cache</span>
-					</div>            
-					<div class="box_element btn" onClick="parent.executeCommand('PurgeReportingDataCacheCommand')">
-						<i class="fa fa-refresh" aria-hidden="true"></i><span id="refreshCDA">Refresh CDA Cache</span>
-					</div>                
 				</div>
-			</div>
+			<% } %>	
 		</div>
-		<script type="text/javascript">
-			translateAdministracion();
-		</script>
 	</body>
 </html>
