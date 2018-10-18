@@ -362,10 +362,6 @@
 	background-color: white;
 }
 
-#mainToolbar {
-	padding: 0px 0px 10px 0px;
-}
-
 .puc-horizontal-split-panel {
 }
 
@@ -883,89 +879,9 @@ a:hover {
 	font-family: OpenSansLight, Helvetica, Arial, Sans serif;
 }
 
-#pucUserDropDown {
-	float: right;
-	display: block;
-	margin-right: 20px;
-}
-
-#pucUserDropDown .custom-dropdown {
-	width: 105px;
-	min-width: 105px;
-	padding-top: 10px;
-}
-
-#pucUserDropDown .custom-dropdown-arrow {
-	width: 30px;
-	background-image: url('images/arrow-dark-small.png');
-	background-position: 5px 8px;
-}
-
-#pucUserDropDown .custom-dropdown-label {
-	text-align: right;
-	font-size: 18px;
-}
-
-#pucUserDropDown .custom-dropdown-pressed .custom-dropdown-arrow {
-	background-image: url('images/arrow-light-small.png');
-}
-
-#pucUserDropDown .custom-dropdown-arrow .gwt-Label {
-	width: 30px;
-}
-
-#pucPerspectives .custom-dropdown {
-	width: 130px;
-	min-width: 130px;
-}
-
-#pucPerspectives .custom-dropdown-arrow {
-	width: 30px;
-	background-image: url('images/dropdown_arrow_gray.png');
-}
-
-#pucPerspectives .custom-dropdown-label {
-	text-align: left;
-	font-size: 24px;
-}
-
-#pucPerspectives .custom-dropdown-pressed .custom-dropdown-arrow {
-	background-image: url('images/dropdown_arrow_blue.png');
-}
-
-#pucPerspectives .custom-dropdown-arrow .gwt-Label {
-	width: 40px;
-}
-
 #customDropdownPopupMinor .gwt-MenuBar-vertical .gwt-MenuItem {
 	padding: 10px 5px 10px 5px;
 	text-align: left;
-}
-
-#pucPerspectives {
-	padding-left: 15px;
-	display: block;
-	float: left;
-}
-
-#pucMenuBar {
-	display: block;
-}
-
-#pucToolBar {
-	display: block;
-	float: left;
-	width: 380px;
-}
-
-#pucHeader .gwt-MenuBar-horizontal .gwt-MenuItem {
-	color: #777;
-	font-size: 13px;
-	padding: 4px 12px;
-}
-
-#pucContent {
-	/*  box-shadow: 0px 0px 1px 2px #a9a2ad; */
 }
 
 .custom-dropdown-popup {
@@ -1401,7 +1317,15 @@ a:hover {
 	z-index: 16777271 !important;
 }
 
-.newToolbarDropdownButton {
+.newToolbarDropdown .popupContent td {
+	height: 0;
+}
+
+.newToolbarDropdown .popupContent hr {
+	margin: 2px 0 2px 0;
+}
+
+.newToolbarDropdown .newToolbarDropdownButton {
 	width: 100%;
 	margin-top: 5px;
 	margin-bottom: 5px;

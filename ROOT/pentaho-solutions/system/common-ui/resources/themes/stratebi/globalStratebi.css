@@ -84,10 +84,6 @@ input[type='text'],
 .bootstrap .pentaho-dialog input[type='text'] {
 	border: 1px solid #cedacb;
 	padding: 4px 2px 4px 4px;
-
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	border-radius: 0px;
 }
 
 input[type='text']#paramNameTextBox,
