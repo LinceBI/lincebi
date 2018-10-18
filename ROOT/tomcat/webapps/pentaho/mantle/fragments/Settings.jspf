@@ -1,8 +1,13 @@
 <%
-
+boolean canReadContent = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed(RepositoryReadAction.NAME);
 boolean canCreateContent = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed(RepositoryCreateAction.NAME);
 boolean canAdminister = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed(AdministerSecurityAction.NAME);
 boolean hasDataAccessPlugin = PentahoSystem.get(IPluginManager.class, PentahoSessionHolder.getSession()).getRegisteredPlugins().contains("data-access");
+boolean hasDataAccess = false;
+
+if (hasDataAccessPlugin) {
+	hasDataAccess = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession()).isAllowed("org.pentaho.platform.dataaccess.datasource.security.manage");
+}
 
 String userName = PentahoSessionHolder.getSession().getName();
 

@@ -38,6 +38,7 @@
             org.pentaho.platform.engine.core.system.PentahoSessionHolder,
             org.pentaho.platform.engine.core.system.PentahoSystem,
             org.pentaho.platform.security.policy.rolebased.actions.AdministerSecurityAction,
+            org.pentaho.platform.security.policy.rolebased.actions.RepositoryReadAction,
             org.pentaho.platform.security.policy.rolebased.actions.RepositoryCreateAction"%>
 
 <%@ include file="./fragments/Settings.jspf" %>

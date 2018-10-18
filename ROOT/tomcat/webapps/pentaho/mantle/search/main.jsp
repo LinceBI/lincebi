@@ -23,6 +23,7 @@
             org.pentaho.platform.engine.core.system.PentahoSessionHolder,
             org.pentaho.platform.engine.core.system.PentahoSystem,
             org.pentaho.platform.security.policy.rolebased.actions.AdministerSecurityAction,
+            org.pentaho.platform.security.policy.rolebased.actions.RepositoryReadAction,
             org.pentaho.platform.security.policy.rolebased.actions.RepositoryCreateAction"%>
 
 <%@ include file="./../fragments/Settings.jspf" %>
@@ -50,6 +51,8 @@
 	<script type="text/javascript" src="../themes/stratebi/vendor/jquery-ui/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="../themes/stratebi/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../themes/stratebi/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript" src="../themes/stratebi/vendor/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.min.js"></script>
+	<script type="text/javascript" src="../themes/stratebi/vendor/bootstrap-datepicker/js/locales/bootstrap-datepicker.ca.min.js"></script>
 	<script type="text/javascript" src="../themes/stratebi/vendor/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
 	<script type="text/javascript" src="js/tag-it.min.js"></script>
 	<script type="text/javascript" src="js/buscador.js"></script>
@@ -59,7 +62,7 @@
 		$( document ).ready(function() {
 			var palabra = $('#buscador', window.parent.document)[0].value;
 			accion_buscar(palabra);
-			declaracion();
+			declaracion("<%= effectiveLocale.getLanguage() %>");
 
 			/*
 			var iframe = window.top;
@@ -141,7 +144,7 @@
 			padding-bottom: 40px;
 			font-family: 'Titillium Web', sans-serif;
 		}
-    
+
 		.popup {
 			height: 100%;
 			width: 100%;
@@ -151,7 +154,7 @@
 			display:table;
 			top:0;
 		}
-    
+
 		.alert.warning {
 			padding: 30px;
 			padding-left: 67px;
@@ -176,7 +179,7 @@
 		.closebtn:hover {
 			color: black;
 		}
-		
+
 		.alert {
 			padding: 20px;
 			background-color: #f44336;
@@ -188,22 +191,22 @@
 			position: fixed;
 			z-index: 120;
 		}
-		
+
 		.column0 img {
 			height: 30px;
 		}
-		
+
 		a {
 			height: 45px;
 			margin-top: 5px;
 		}
-		
+
 		.resultado_buscar {
 			padding: 15px 15px 40px 15px;
 			min-height: 140px;
 			margin-top: 25px;
 		}
-		
+
 		.col-md-12.title,.col-md-10.title {
 			border-left: 6px #ccc solid;
 			margin-top: 15px;
@@ -214,7 +217,7 @@
 			padding-top: 5px;
 			padding-bottom: 5px;
 		}
-		
+
 		#dialog-bg {
 			background: rgb(0,0,0);
 			width: 100%;
@@ -225,7 +228,7 @@
 			transition: opacity 0.3s;
 		
 		}
-		
+
 		#borrar_tags {
 			width: 25px;
 			position: absolute;
@@ -240,16 +243,16 @@
 <body>
     <div id="dialog-bg"></div>
 	<div id="mainPanel" class="row">
-	
+
 		<!-- Warning Dialog -->
 		<div id="error_msg" class="alert warning">
 			<span class="closebtn">&times;</span>
 			<strong>No se han actualizado los Tags!</strong> Este usuario no tiene permisos de edici&oacute;n.
 		</div>
-	
+
 		<!-- File Metadata -->
 		<div id="dialog" title="Dialog Form">
-			
+
 			<!-- First column -->
 			<div class="col-md-4 col-xs-12">
 				<div style="text-align:center">

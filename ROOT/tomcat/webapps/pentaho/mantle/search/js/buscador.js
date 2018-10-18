@@ -43,14 +43,16 @@ function onready() {
 	filtro_extension();
 }
 
-function declaracion() {
+function declaracion(locale) {
 	$('#datepicker_desde').datepicker({
 		autoclose: true,
-		format: 'dd/mm/yyyy'
+		format: 'dd/mm/yyyy',
+		language: locale
 	});
 	$('#datepicker_hasta').datepicker({
 		autoclose: true,
-		format: 'dd/mm/yyyy'
+		format: 'dd/mm/yyyy',
+		language: locale
 	});
 }
 
