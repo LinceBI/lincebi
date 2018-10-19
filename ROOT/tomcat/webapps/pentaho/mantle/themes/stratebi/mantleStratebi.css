@@ -1346,25 +1346,25 @@ a:hover {
 }
 
 .lang-ca:before {
-	background-image: url("images/flags/CA.png");
+	background-image: url('images/flags/CA.png');
 }
 
 .lang-de:before {
-	background-image: url("images/flags/DE.png");
+	background-image: url('images/flags/DE.png');
 }
 
 .lang-en:before {
-	background-image: url("images/flags/EN.png");
+	background-image: url('images/flags/EN.png');
 }
 
 .lang-es:before {
-	background-image: url("images/flags/ES.png");
+	background-image: url('images/flags/ES.png');
 }
 
 .lang-fr:before {
-	background-image: url("images/flags/FR.png");
+	background-image: url('images/flags/FR.png');
 }
 
 .lang-pt:before {
-	background-image: url("images/flags/PT.png");
+	background-image: url('images/flags/PT.png');
 }
