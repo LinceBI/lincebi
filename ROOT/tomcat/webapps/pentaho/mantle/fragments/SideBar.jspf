@@ -98,7 +98,7 @@
 					</a>
 				</li>
 			<% } %>
-			<% if (canAdminister || hasDataAccess ) { %>
+			<% if (canAdminister || hasDataAccess) { %>
 				<li>
 					<a href="#" onclick="window.top.mantle_setPerspective('administration.perspective')">
 						<i class="fa fa-unlock-alt"></i>
@@ -106,13 +106,30 @@
 				</li>
 			<% } %>
 			<li class='active'>
-				<a href="#" style="font-size: 12px;">[ES]</a>
+				<a href="#">
+					<i class="fa fa-globe"></i>
+				</a>
 				<ul>
-					<li><a href="#" onclick=''><div class="btn btn-large btn-block">[ ES ]</div></a></li>
-					<li><a href="#" onclick=''><div class="btn btn-large btn-block">[ EN ]</div></a></li>
-					<li><a href="#" onclick=''><div class="btn btn-large btn-block">[ FR ]</div></a></li>
-					<li><a href="#" onclick=''><div class="btn btn-large btn-block">[ ITA ]</div></a></li>
-					<li><a href="#" onclick=''><div class="btn btn-large btn-block">[ PR ]</div></a></li>
+					<%
+					ResourceBundle languagesBundle = ResourceBundle.getBundle("mantleCustomMessages_supported_languages", effectiveLocale, loader);
+					Enumeration<String> supportedLanguages = languagesBundle.getKeys();
+					List<String> languageList = Collections.list(supportedLanguages);
+					Collections.sort(languageList);
+					for (String language : languageList) {
+						if (!language.equals(effectiveLocale.getLanguage())) {
+							String languageValue = languagesBundle.getString(language);
+					%>
+							<li class="lang-item">
+								<a href="?locale=<%= language %>" onclick=''>
+									<div class="btn btn-large btn-block">
+										<i class="lang lang-<%= language %>"></i> <%= languageValue %>
+									</div>
+								</a>
+							</li>
+					<%
+						}
+					}
+					%>
 				</ul>
 			</li>
 			<li>

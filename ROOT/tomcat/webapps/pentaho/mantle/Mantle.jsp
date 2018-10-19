@@ -24,6 +24,8 @@
             java.net.URL,
             java.net.URLClassLoader,
             java.util.ArrayList,
+            java.util.Collections,
+            java.util.Enumeration,
             java.util.Iterator,
             java.util.HashMap,
             java.util.LinkedHashMap,
@@ -337,7 +339,6 @@ font-size: 20px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background:#769D49;
   color:white;
   -webkit-transition: all .4s ease;
   -o-transition: all .4s ease;

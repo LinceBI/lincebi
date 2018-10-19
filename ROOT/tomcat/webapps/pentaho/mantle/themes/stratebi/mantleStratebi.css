@@ -1330,3 +1330,57 @@ a:hover {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+
+/* Language */
+.lang:before {
+	display: inline-flex;
+	background-size: 100% 100%;
+	content: '';
+	width: 25px;
+	height: 25px;
+	vertical-align: bottom;
+}
+
+.lang-item .lang:before {
+	margin: 0 5px -2px 0;
+}
+
+.lang-ca:before {
+	background-image: url("images/flags/CA.png");
+}
+
+.lang-de:before {
+	background-image: url("images/flags/DE.png");
+}
+
+.lang-en:before {
+	background-image: url("images/flags/EN.png");
+}
+
+.lang-es:before {
+	background-image: url("images/flags/ES.png");
+}
+
+.lang-fr:before {
+	background-image: url("images/flags/FR.png");
+}
+
+.lang-pt:before {
+	background-image: url("images/flags/PT.png");
+}
+
+.scrollbar
+{
+	margin-left: 22px;
+	float: left;
+	height: 300px;
+	width: 65px;
+	background: #F5F5F5;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+
+.force-overflow
+{
+	min-height: 450px;
+}
