@@ -1,0 +1,25 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - make
+  tags:
+    - nix*
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - dist/
+
+deploy:
+  stage: deploy
+  only:
+    - master
+  tags:
+    - nix*
+  dependencies:
+    - build
+  script:
+    - make DEPLOY_USER="${DEPLOY_USER}" DEPLOY_PASS="${DEPLOY_PASS}" deploy
