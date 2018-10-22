@@ -184,6 +184,11 @@ input[type='password'] {
 	-moz-box-shadow: 0px 2px 3px rgba(50, 50, 50, 0.4);
 	box-shadow: 0px 2px 3px rgba(50, 50, 50, 0.4);
 	padding: 0px 0 0px 0;
+	z-index: 2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
 }
 
 input.every-txtbox {
@@ -2611,7 +2616,17 @@ div.dijitDateTextBox.dijitComboBox .dijitArrowButton input[type='text'] {
 /* added by Brett  */
 
 #pucContent {
+	position: fixed;
 	top: 60px; /* Top must be the same as height in #puchHeader */
+}
+
+#pucContent #solutionNavigatorAndContentPanel {
+	height: initial !important;
+	position: fixed !important;
+	top: 60px;
+	bottom: 0;
+	left: 50px;
+	right: 0;
 }
 
 .tabpanel {

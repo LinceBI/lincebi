@@ -199,7 +199,7 @@
   </script>
 <style>
 #pucContent{
-  left:50px;
+  left: 50px;
 }
 #menu_sidebar{
   width:50px;
@@ -207,8 +207,11 @@
   color:white;
   min-height:200px;
   height:100%;
-  position: absolute;
-  z-index:1;
+  z-index: 1;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  bottom: 0;
 }
 #menu_sidebar .btn:hover {
   position: relative;
@@ -216,7 +219,7 @@
 #menu_sidebar .fa{
 font-size: 25px;
 }
-#menu_sidebar .btn.btn-large.btn-block .fa{
+#menu_sidebar .btn.btn-large. btn-block .fa{
 font-size: 20px;
 }
 #menu_sidebar .btn,
