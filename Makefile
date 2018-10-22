@@ -62,8 +62,8 @@ format-css:
 		fi' ';'
 
 build:
-	mkdir -p '$(DIST_DIR)'
-	(cd '$(MKFILE_DIR)/ROOT/' \
+	@mkdir -p '$(DIST_DIR)'
+	@(cd '$(MKFILE_DIR)/ROOT/' \
 		&& STASH=$$(git stash create) && STASH=$${STASH:=HEAD} \
 		&& git archive \
 			--verbose \
