@@ -8,7 +8,7 @@ DIST_DIR := $(MKFILE_DIR)/dist
 
 DEPLOY_USER := user
 DEPLOY_PASS := password
-DEPLOY_URL := http://devel.local.stratebi.com:8081/repository/stratebi-raw/customizations/sttools-customization-root.zip
+DEPLOY_URL := http://devel.local.stratebi.com:8081/repository/stratebi-raw/customizations/sttools-customization-root.tgz
 
 .PHONY: all \
 	format format-encoding format-xml format-json format-js format-css \
@@ -67,8 +67,8 @@ build:
 		&& STASH=$$(git stash create) && STASH=$${STASH:=HEAD} \
 		&& git archive \
 			--verbose \
-			--format=zip \
-			--output '$(DIST_DIR)/sttools-customization-root.zip' \
+			--format=tar.gz \
+			--output '$(DIST_DIR)/sttools-customization-root.tgz' \
 			"$${STASH}" ./ \
 		&& git gc --prune=now)
 
@@ -76,8 +76,8 @@ deploy:
 	@curl \
 		--verbose \
 		--user '$(DEPLOY_USER):$(DEPLOY_PASS)' \
-		--header 'Content-Type: application/zip' \
-		--upload-file '$(DIST_DIR)/sttools-customization-root.zip' \
+		--header 'Content-Type: application/gzip' \
+		--upload-file '$(DIST_DIR)/sttools-customization-root.tgz' \
 		'$(DEPLOY_URL)' 2>&1 >/dev/null | grep -v '> Authorization: '
 
 clean:
