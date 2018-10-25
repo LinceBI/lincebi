@@ -6,9 +6,10 @@ MKFILE_DIR := $(shell dirname -- '$(MKFILE_ABSPATH)')
 
 DIST_DIR := $(MKFILE_DIR)/dist
 
-DEPLOY_USER := user
-DEPLOY_PASS := password
-DEPLOY_URL := http://devel.local.stratebi.com:8081/repository/stratebi-raw/customizations/sttools-customization-root.tgz
+DEPLOY_USER ?= user
+DEPLOY_PASS ?= password
+DEPLOY_URL_BASE ?= https://repo.stratebi.com
+DEPLOY_URL ?= $(DEPLOY_URL_BASE)/repository/stratebi-raw/customizations/sttools-customization-root.tgz
 
 .PHONY: all \
 	format format-encoding format-xml format-json format-js format-css \

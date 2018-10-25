@@ -9,9 +9,9 @@ build:
   tags:
     - nix*
   artifacts:
-    expire_in: 1 hour
+    expire_in: 15 mins
     paths:
-      - dist/
+      - dist/sttools-customization-root.tgz
 
 deploy:
   stage: deploy
@@ -22,4 +22,4 @@ deploy:
   dependencies:
     - build
   script:
-    - make DEPLOY_USER="${DEPLOY_USER}" DEPLOY_PASS="${DEPLOY_PASS}" deploy
+    - make deploy
