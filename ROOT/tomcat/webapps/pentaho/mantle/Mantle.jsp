@@ -327,7 +327,7 @@ font-size: 20px;
 /********************************************/
 
 
-@import url(http://fonts.googleapis.com/css?family=Roboto:700);
+@import url(//fonts.googleapis.com/css?family=Roboto:700);
 #cssmenu,
 #cssmenu ul,
 #cssmenu ul li,

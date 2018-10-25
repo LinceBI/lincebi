@@ -171,7 +171,7 @@ function funcion_tags(titulo, descripcion, imagen, ruta, fichero, tags_array) {
 	if (imagen != '') {
 		document.getElementById('modal-imagen-thumb').src = imagen;
 	} else {
-		document.getElementById('modal-imagen-thumb').src = 'https://www.jetstereo.com/images/no_image.png';
+		document.getElementById('modal-imagen-thumb').src = '//www.jetstereo.com/images/no_image.png';
 	}
 
 	$('#modal-descripcion').val(descripcion);
@@ -326,7 +326,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 							var tags = [];
 
 							var titulo = items[i].title;
-							var image = 'https://www.jetstereo.com/images/no_image.png';
+							var image = '//www.jetstereo.com/images/no_image.png';
 							var description = '';
 							if (items[i].description) {
 								var description = items[i].description;

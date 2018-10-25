@@ -35,7 +35,7 @@
 	<title>STSearch</title>
 	
 	<!-- Styles -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Titillium+Web">
 	<link rel="stylesheet" href="../themes/stratebi/vendor/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../themes/stratebi/vendor/jquery-ui/css/jquery-ui.min.css">
 	<link rel="stylesheet" href="../themes/stratebi/vendor/bootstrap/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 	<link rel="stylesheet" href="../themes/stratebi/vendor/bootstrap-tagsinput/css/bootstrap-tagsinput.css" />
 	<link rel="stylesheet" href="css/home.css">
 	<link rel="stylesheet" href="css/main.css">
-	<link href="http://aehlke.github.io/tag-it/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+	<link href="//aehlke.github.io/tag-it/css/jquery.tagit.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="css/buscador.css">
 	
 	<!-- Javascript -->
@@ -256,7 +256,7 @@
 			<!-- First column -->
 			<div class="col-md-4 col-xs-12">
 				<div style="text-align:center">
-					<img id="modal-imagen-thumb" src="https://www.jetstereo.com/images/no_image.png" style="max-height:230px;max-width:300px;margin-top: 15px;">
+					<img id="modal-imagen-thumb" src="//www.jetstereo.com/images/no_image.png" style="max-height:230px;max-width:300px;margin-top: 15px;">
 				</div>
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 title" style="margin-bottom: 50px;">
