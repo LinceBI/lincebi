@@ -23,6 +23,7 @@ if (visor_olap == 'stpivot') {
 var aPath_base = '/';
 var aPath = '/';
 var loading_var = 0;
+var favoritesList;
 
 function arrayUnique(array) {
 	var a = array.concat();
@@ -227,6 +228,8 @@ function accion_buscar(tag) {
 	hasta = new Date(hasta);
 	hasta = hasta.getTime() + 86400000;
 
+	getFavorites();
+	
 	$('#repository_browser_buscar').empty();
 
 	if ($('#datepicker_desde input')[0].value != '' || $('#datepicker_hasta input')[0].value != '') {
@@ -387,7 +390,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 								description.toLowerCase().includes(palabra.toLowerCase())
 							) {
 								if (extension == '.xjpivot') {
-									url = '/' + contexto_pentaho + visor_olap + '?solution=&path=' + items[i].path + '&action=' + items[i].title + '.xjpivot';
+									url = '/' + contexto_pentaho + visor_olap + '?solution=&path=' + items[i].path + '&action=' + items[i].name;
 									if (fecha_filtro_ms >= desde && fecha_filtro_ms <= hasta) {
 										// prettier-ignore
 										$('#repository_browser_buscar').append(
@@ -397,12 +400,15 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 												"</div>" +
 												"<div class='col-md-9 col-lg-10'>" +
 													"<div id='" + aPath.replace(/\//g, ':') + ':' + items[i].name + "'>" +
-														"<div data-sort='" + titulo + "' class='col-md-12' style='padding-left: 0;'>" +
+														"<div data-sort='" + titulo + "' class='col-xs-11' style='padding-left: 0;'>" +
 															"<img data-sort='olap' class='type_result' src='../themes/stratebi/images/stpivot_icon_c.png'>" +
 															"<a class='titulos' href='#' " +
-																"onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "', 'tooltip', '" + url + '\')"> ' +
+																"onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "','" + titulo + "','" + url + '\')"> ' +
 																titulo +
 															"</a>" +
+														"</div>" +
+														"<div class='col-xs-1' style='padding-left: 0;'>" +
+														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + items[i].title + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
 														"</div>" +
 														"<div class='col-md-12 description' style='padding-left: 0;'>" +
 															description +
@@ -433,12 +439,15 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 												"</div>" +
 												"<div class='col-md-9 col-lg-10'>" +
 													"<div id='" + aPath.replace(/\//g, ':') + ':' + items[i].name + "'>" +
-														"<div data-sort='" + titulo + "' class='col-md-12' style='padding-left: 0;'>" +
+														"<div data-sort='" + titulo + "' class='col-xs-11' style='padding-left: 0;'>" +
 															"<img data-sort='dashboard' class='type_result' src='../themes/stratebi/images/stdashboard_icon_c.png'>" +
 															"<a class='titulos' href='#' " +
-																"onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "', 'tooltip', '" + url + '\')"> ' +
+																"onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "','" + titulo + "','" + url + '\')"> ' +
 																titulo +
 															"</a>" +
+														"</div>" +
+														"<div class='col-xs-1' style='padding-left: 0;'>" +
+														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + items[i].title + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
 														"</div>" +
 														"<div class='col-md-12 description' style='padding-left: 0;'>" +
 															description +
@@ -469,12 +478,15 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 												"</div>" +
 												"<div class='col-md-9 col-lg-10'>" +
 													"<div id='" + aPath.replace(/\//g, ':') + ':' + items[i].name + "'>" +
-														"<div data-sort='" + titulo + "' class='col-md-12' style='padding-left: 0;'>" +
+														"<div data-sort='" + titulo + "' class='col-xs-11' style='padding-left: 0;'>" +
 															"<img data-sort='report' class='type_result' src='../themes/stratebi/images/streport_icon_c.png'>" +
 															"<a class='titulos' href='#' " +
-																"onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "', 'tooltip', '" + url + '\')"> ' +
+																"onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "','" + titulo + "','" + url + '\')"> ' +
 																titulo +
 															"</a>" +
+														"</div>" +
+														"<div class='col-xs-1' style='padding-left: 0;'>" +
+														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + items[i].title + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
 														"</div>" +
 														"<div class='col-md-12 description' style='padding-left: 0;'>" +
 															description +
@@ -618,4 +630,41 @@ function preCreatePopover() {
 		};
 		popup_init = true;
 	}
+}
+
+function getFavorites() {
+	favoritesList = [];
+
+	$.ajax({
+		url: '../../api/user-settings/favorites',
+		dataType: 'json',
+		success: function(response) {
+			if (response) {
+				favoritesList = response;
+			}
+		}
+	});
+}
+
+function getFavoriteIconState(path) {
+	for (let i in favoritesList) {
+		if (favoritesList[i]['fullPath'] == path) {
+			return 'fa-star';
+		}
+	}
+	
+	return 'fa-star-o';
+}
+
+function toggleFavorite(favButton, path, title) {
+	var icon = favButton.querySelector('i');
+
+	if (icon.classList.contains('fa-star-o')) {
+		window.parent.mantle_addFavorite(path, title);
+	} else {
+		window.parent.mantle_removeFavorite(path); 
+	}
+
+	icon.classList.toggle('fa-star');
+	icon.classList.toggle('fa-star-o');
 }

@@ -411,6 +411,15 @@ ul.tagit li.tagit-choice-editable {
 	margin-bottom: 10px;
 }
 
+/* Favorite */
+.favorite-button {
+	cursor: pointer;
+}
+
+.favorite-button .fa-star {
+	color: gold;
+}
+
 /* Tags */
 .element-tag,
 .tag.element-tag {
