@@ -636,6 +636,7 @@ function getFavorites() {
 	favoritesList = [];
 
 	$.ajax({
+		async: false,
 		url: '../../api/user-settings/favorites',
 		dataType: 'json',
 		success: function(response) {

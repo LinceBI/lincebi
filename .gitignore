@@ -54,6 +54,8 @@
 !/ROOT/tomcat/webapps/pentaho/mantle/browser/css/
 !/ROOT/tomcat/webapps/pentaho/mantle/browser/css/browser.css
 
+!/ROOT/tomcat/webapps/pentaho/mantle/favorites/
+
 !/ROOT/tomcat/webapps/pentaho/mantle/fragments/
 
 /ROOT/tomcat/webapps/pentaho/mantle/home/*
@@ -69,6 +71,8 @@
 !/ROOT/tomcat/webapps/pentaho/mantle/messages/
 !/ROOT/tomcat/webapps/pentaho/mantle/messages/mantleCustomMessages.properties
 !/ROOT/tomcat/webapps/pentaho/mantle/messages/mantleCustomMessages_*.properties
+
+!/ROOT/tomcat/webapps/pentaho/mantle/recents/
 
 !/ROOT/tomcat/webapps/pentaho/mantle/search/
 

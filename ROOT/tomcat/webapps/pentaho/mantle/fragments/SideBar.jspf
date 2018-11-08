@@ -88,12 +88,12 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" onclick="window.parent.mantle_setPerspective('search.perspective')">
+					<a href="#" onclick="window.parent.mantle_setPerspective('favorites.perspective')">
 						<i class="fa fa-star"></i>
 					</a>
 				</li>
 				<li>
-					<a href="#" onclick="window.parent.mantle_setPerspective('search.perspective')">
+					<a href="#" onclick="window.parent.mantle_setPerspective('recents.perspective')">
 						<i class="fa fa-clock-o"></i>
 					</a>
 				</li>
