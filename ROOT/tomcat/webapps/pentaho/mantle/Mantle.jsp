@@ -189,6 +189,9 @@
           var palabra = $('#buscador', window.parent.document)[0].value;
           var contentWindow = document.getElementById('search.perspective').contentWindow;
           if (contentWindow.accion_buscar) contentWindow.accion_buscar(palabra);
+          document.querySelectorAll('#tag-dropdown a').forEach((element) => {
+            element.classList.remove('active');
+			    });
       };
       $('#buscar').on('click', buscar);
       $('#buscador').on('keyup', function(e) { if (e.keyCode == 13) buscar(); });

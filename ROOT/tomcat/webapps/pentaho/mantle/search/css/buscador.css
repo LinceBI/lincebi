@@ -7,6 +7,12 @@
 	border-radius: 0px;
 	width: 500px;
 }
+
+#filter-panel,
+#tag-header {
+	display: none;
+}
+
 #filtro_extension {
 	padding-bottom: 30px;
 	padding: 0px;
@@ -462,4 +468,144 @@ span[data-role='remove']:after {
 	width: auto !important;
 	padding: 2px 10px;
 	margin: 4px;
+}
+
+/* Tag header */
+#tag-header {
+    justify-content: center;
+	align-items: center;
+	padding: 10px;
+}
+
+.backgroundBI {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 180px;
+    min-width: 180px;
+    border-radius: 50%;
+	background-color: #fff;
+	margin-right: 15px;
+}
+
+.backgroundBI > img {
+	width: 75%;
+}
+
+.titleBI {
+	font-size: 15px;
+	color: #666;
+	line-height: 22px;
+	background: white;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.subtitleBI {
+	font-size: 20px;
+	font-weight: Bold;
+}
+
+.marketing-tag {
+	color: #ff7058;
+}
+
+.retail-tag {
+	color: #962a2a;
+}
+
+.finance-tag {
+	color: #aa6455;
+}
+
+.ngo-tag {
+	color: #657c48;
+}
+
+.public-admin-tag {
+	color: #d87395;
+}
+
+.e-commerce-tag {
+	color: #d19d09;
+}
+
+.telco-tag {
+	color: #0c4384;
+}
+
+.utilities-tag {
+	color: #805a8e;
+}
+
+.tourism-tag {
+	color: #98bc00;
+}
+
+.education-tag {
+	color: #0da6c9;
+}
+
+.health-tag {
+	color: #408974;
+}
+
+.rrhh-tag {
+	color: #ff016a;
+}
+
+.pharma-tag {
+	color: #7878d1;
+}
+
+.marketing-background {
+	background-color: #ff7058;
+}
+
+.retail-background {
+	background-color: #962a2a;
+}
+
+.finance-background {
+	background-color: #aa6455;
+}
+
+.ngo-background {
+	background-color: #657c48;
+}
+
+.public-admin-background {
+	background-color: #d87395;
+}
+
+.e-commerce-background {
+	background-color: #d19d09;
+}
+
+.telco-background {
+	background-color: #0c4384;
+}
+
+.utilities-background {
+	background-color: #805a8e;
+}
+
+.tourism-background {
+	background-color: #98bc00;
+}
+
+.education-background {
+	background-color: #0da6c9;
+}
+
+.health-background {
+	background-color: #408974;
+}
+
+.rrhh-background {
+	background-color: #ff016a;
+}
+
+.pharma-background {
+	background-color: #7878d1;
 }

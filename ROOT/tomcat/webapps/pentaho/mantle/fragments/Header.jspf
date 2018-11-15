@@ -72,6 +72,69 @@
 					</div>
 				</form>
 
+				<ul class="nav navbar-form navbar-nav navbar-right">
+					<li class="dropdown">
+						<button id="tag-button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+							<%= customProperties.getString("categories") %>
+							<span class="caret"></span>
+						</button>
+						<div id="tag-dropdown" class="list-group row dropdown-menu">
+							<a class="list-group-item col-xs-6" data-tag="Marketing" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/marketing.svg"/>
+								Marketing
+							</a>
+							<a class="list-group-item col-xs-6" data-tag="Retail" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/retail.svg"/>
+								Retail
+							</a>
+							<a class="list-group-item col-xs-6" data-tag="Finance" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/finance.svg"/>
+								Finance
+							</a>
+							<a class="list-group-item col-xs-6" data-tag="NGO" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/ngo.svg"/>
+								NGO
+							</a>
+							<a class="list-group-item col-xs-6" data-tag="Public Admin" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/public-admin.svg"/>
+								Public Admin
+							</a>
+							<a class="list-group-item col-xs-6" data-tag="e-Commerce" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/e-commerce.svg"/>
+								e-Commerce
+							</a>
+							<a class="list-group-item col-xs-6" data-tag="Telco" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/telco.svg"/>
+								Telco
+							</a>
+							<a class="list-group-item col-xs-6" data-tag="Utilities" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/utilities.svg"/>
+								Utilities
+							</a>
+							<a class="list-group-item col-xs-6" data-tag="Tourism" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/tourism.svg"/>
+								Tourism
+							</a>
+							<a class="list-group-item col-xs-6" data-tag="Education" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/education.svg"/>
+								Education
+							</a>
+							<a class="list-group-item col-xs-6" data-tag="Health" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/health.svg"/>
+								Health
+							</a>
+							<a class="list-group-item col-xs-6" data-tag="RRHH" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/rrhh.svg"/>
+								RRHH
+							</a>
+							<a class="list-group-item col-xs-6" data-tag="Pharma" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/pharma.svg"/>
+								Pharma
+							</a>
+						</div>
+					</li>
+				</ul>
+
 			</div>
 
 		</div>
@@ -96,6 +159,30 @@
 
 	#pucHeader .dropdown > .dropdown-menu .toggle.active > a::before {
 		content: "\f046";
+	}
+
+	#tag-button {
+		width: 100%;
+		min-width: 200px;
+	}
+
+	#tag-dropdown {
+		padding: 0;
+		border: 0;
+		margin-bottom: 0;
+		min-width: 320px
+	}
+
+	#tag-dropdown a {
+		min-width: 160px;
+	    border-radius: 0;
+	}
+
+	.menu-icon {
+		width: 30px;
+		height: auto;
+		display: inline-block;
+		margin-right: 8px;
 	}
 </style>
 
@@ -125,6 +212,24 @@
 		xhr.send(isActive ? 'true' : 'false');
 	}
 
+	function searchTag() {
+		var isActive = this.classList.contains('active');
+		var searchPerspective = document.getElementById('search.perspective');
+
+		window.parent.mantle_setPerspective('search.perspective');
+
+		if (!isActive) {
+			document.querySelectorAll('#tag-dropdown a').forEach((element) => {
+				element.classList.remove('active');
+			});
+			this.classList.add('active');
+
+			if (searchPerspective && 'contentWindow' in searchPerspective) {
+				searchPerspective.contentWindow.accion_buscar(this.dataset.tag, true);
+			}
+		}
+	}
+
 	document.querySelector('#stadmin-perspective-btn').addEventListener('click', function () {
 		window.parent.mantle_setPerspective('stadmin.perspective');
 	});
@@ -132,5 +237,9 @@
 	document.querySelector('#show-descriptions-for-tooltips').addEventListener('click', toggleSettingHandler);
 
 	document.querySelector('#show-hidden-files-toggle').addEventListener('click', toggleSettingHandler);
+
+	document.querySelectorAll('#tag-dropdown a').forEach((element) => {
+		element.addEventListener('click', searchTag);
+	});
 })();
 </script>

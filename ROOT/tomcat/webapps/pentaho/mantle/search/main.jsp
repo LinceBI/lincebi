@@ -61,7 +61,17 @@
 	<script type="text/javascript">
 		$( document ).ready(function() {
 			var palabra = $('#buscador', window.parent.document)[0].value;
-			accion_buscar(palabra);
+			
+			var onlyTags = false;
+
+			window.parent.document.querySelectorAll('#tag-dropdown a').forEach((element) => {
+				if (element.classList.contains('active')) {
+					onlyTags = true;
+					palabra = element.dataset.tag;
+				}
+			});
+
+			accion_buscar(palabra, onlyTags);
 			declaracion("<%= effectiveLocale.getLanguage() %>");
 
 			/*
@@ -292,8 +302,21 @@
 			
 		</div>
 
+
+		<!-- Tag header -->
+		<div id="tag-header">
+			<div class="backgroundBI">
+					<img class="imageBI" title="Big Data - BI" />
+			</div>
+			<div>
+				<h5 class="titleBI">BI - Big Data Analytics<br>
+					<span class="subtitleBI"></span>
+				</h5>
+			</div>
+		</div>
+
 		<!-- Search Header -->
-		<div class="row">
+		<div id="filter-panel" class="row">
 		
 			<!-- Title -->
 			<div class="col-md-12" style='padding: 0px 30px;'> 

@@ -209,12 +209,16 @@ function filtro_extension(id) {
 	}
 }
 
-function accion_buscar(tag) {
+function accion_buscar(tag, onlyTags) {
 	if (tag != null) {
 		var palabra = tag;
 	} else {
 		var palabra = $('#buscador').val();
 	}
+
+	setHeader(tag, onlyTags);
+
+	getFavorites();
 
 	var desde = $('#datepicker_desde input').val();
 	desde = desde.split(/[\s/]+/);
@@ -228,8 +232,6 @@ function accion_buscar(tag) {
 	hasta = new Date(hasta);
 	hasta = hasta.getTime() + 86400000;
 
-	getFavorites();
-	
 	$('#repository_browser_buscar').empty();
 
 	if ($('#datepicker_desde input')[0].value != '' || $('#datepicker_hasta input')[0].value != '') {
@@ -241,9 +243,9 @@ function accion_buscar(tag) {
 		}
 
 		var creacion_modificacion = document.getElementById('datepicker_filtro').value;
-		buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion);
+		buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion, onlyTags);
 	} else {
-		buscar(aPath_base, aPath, palabra, 0, 9999999999999999999, creacion_modificacion);
+		buscar(aPath_base, aPath, palabra, 0, 9999999999999999999, creacion_modificacion, onlyTags);
 	}
 }
 
@@ -293,7 +295,7 @@ function debug(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion, 
 	console.log('---------------------------------------');
 }
 
-function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion) {
+function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion, onlyTags) {
 	loading_var++;
 	$('#cargando').addClass('loader');
 	$.ajax({
@@ -322,7 +324,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 						fecha_filtro_ms = fecha_modificacion_ms;
 					}
 					if (items[i].folder.toLowerCase() == 'true') {
-						buscar(aPath_base, items[i].path, palabra, desde, hasta, creacion_modificacion);
+						buscar(aPath_base, items[i].path, palabra, desde, hasta, creacion_modificacion, onlyTags);
 					} else {
 						if (items[i].path.includes(aPath_base)) {
 							var tags_array = [];
@@ -382,12 +384,12 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion)
 								palabra = '';
 							}
 							if (
-								titulo.toLowerCase().includes(palabra.toLowerCase()) ||
+								titulo.toLowerCase().includes(palabra.toLowerCase()) && !onlyTags ||
 								tags
 									.toString()
 									.toLowerCase()
 									.includes(palabra.toLowerCase()) ||
-								description.toLowerCase().includes(palabra.toLowerCase())
+								description.toLowerCase().includes(palabra.toLowerCase()) && !onlyTags
 							) {
 								if (extension == '.xjpivot') {
 									url = '/' + contexto_pentaho + visor_olap + '?solution=&path=' + items[i].path + '&action=' + items[i].name;
@@ -653,7 +655,7 @@ function getFavoriteIconState(path) {
 			return 'fa-star';
 		}
 	}
-	
+
 	return 'fa-star-o';
 }
 
@@ -663,9 +665,38 @@ function toggleFavorite(favButton, path, title) {
 	if (icon.classList.contains('fa-star-o')) {
 		window.parent.mantle_addFavorite(path, title);
 	} else {
-		window.parent.mantle_removeFavorite(path); 
+		window.parent.mantle_removeFavorite(path);
 	}
 
 	icon.classList.toggle('fa-star');
 	icon.classList.toggle('fa-star-o');
+}
+
+function setHeader(tag, onlyTags) {
+	var tagHeader = document.querySelector('#tag-header');
+
+	document.querySelector('#filter-panel').style.display = onlyTags ? 'none': 'block';
+	tagHeader.style.display = onlyTags ? 'flex': 'none';
+
+	if (onlyTags) {
+		var tagValue = tag.toLowerCase().replace(' ', '-');
+		var tagClass = tagValue + '-tag';
+		var backgroundClass = tagValue + '-background';
+
+		tagHeader.className = '';
+		tagHeader.classList.add(backgroundClass);
+
+		var imageNode = tagHeader.querySelector('#tag-header .backgroundBI > img');
+		imageNode.title = 'Big Data ' + tag + ' - BI ' + tag;
+		imageNode.src = '../themes/stratebi/images/verticales/' + tagValue + '.svg';
+
+		var subtitleNode = tagHeader.querySelector('#tag-header .subtitleBI');
+		subtitleNode.textContent = tag;
+		subtitleNode.className = ''
+		subtitleNode.classList.add('subtitleBI');
+		subtitleNode.classList.add(tagClass);
+
+
+		
+	}
 }
