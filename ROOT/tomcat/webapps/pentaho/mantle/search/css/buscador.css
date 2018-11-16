@@ -109,7 +109,9 @@
 }
 .buscar_olap,
 .buscar_dashboard,
-.buscar_report {
+.buscar_report,
+.buscar_stagile,
+.buscar_cde {
 	display: none;
 	min-height: 40px;
 }
@@ -296,6 +298,22 @@ input[type='submit'] {
 	background: #f1f1f1;
 	color: #ed7c36 !important;
 }
+.buscar_stagile {
+	margin-left: 0px;
+	border-left: 6px solid #de0000;
+	display: block;
+	height: 100px;
+	background: #f1f1f1;
+	color: #de0000 !important;
+}
+.buscar_cde {
+	margin-left: 0px;
+	border-left: 6px solid #d6a0ce;
+	display: block;
+	height: 100px;
+	background: #f1f1f1;
+	color: #d6a0ce !important;
+}
 .titulos {
 	font-size: 20px;
 }
@@ -345,6 +363,12 @@ input[type='submit'] {
 .buscar_report .titulos {
 	color: #ed7c36;
 }
+.buscar_stagile .titulos {
+	color: #de0000;
+}
+.buscar_cde .titulos {
+	color: #d6a0ce;
+}
 .resultado_buscar .description {
 	min-height: 20px;
 	color: #999;
@@ -376,6 +400,14 @@ input[type='submit'] {
 .buscar_report .tags i {
 	background: #ed7c36;
 	border: 1px #ed7c36 solid;
+}
+.buscar_stagile .tags i {
+	background: #de0000;
+	border: 1px #de0000 solid;
+}
+.buscar_cde .tags i {
+	background: #d6a0ce;
+	border: 1px #d6a0ce solid;
 }
 .repository_style {
 	border-left: 0px solid #ed7c36 !important;
@@ -472,18 +504,18 @@ span[data-role='remove']:after {
 
 /* Tag header */
 #tag-header {
-    justify-content: center;
+	justify-content: center;
 	align-items: center;
 	padding: 10px;
 }
 
 .backgroundBI {
 	display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 180px;
-    min-width: 180px;
-    border-radius: 50%;
+	justify-content: center;
+	align-items: center;
+	min-height: 180px;
+	min-width: 180px;
+	border-radius: 50%;
 	background-color: #fff;
 	margin-right: 15px;
 }

@@ -193,19 +193,26 @@ function filtro_extension(id) {
 		$('.buscar_olap').css('display', 'table');
 	} else {
 		$('.buscar_olap').fadeOut();
-		$('.buscar_dashboard').css('display', 'none');
 	}
 	if ($('#filtro_dashboard').hasClass('filtro_activo')) {
 		$('.buscar_dashboard').css('display', 'table');
 	} else {
 		$('.buscar_dashboard').fadeOut();
-		$('.buscar_dashboard').css('display', 'none');
 	}
 	if ($('#filtro_report').hasClass('filtro_activo')) {
 		$('.buscar_report').css('display', 'table');
 	} else {
 		$('.buscar_report').fadeOut();
-		$('.buscar_report').css('display', 'none');
+	}
+	if ($('#filtro_stagile').hasClass('filtro_activo')) {
+		$('.buscar_stagile').css('display', 'table');
+	} else {
+		$('.buscar_stagile').fadeOut();
+	}
+	if ($('#filtro_cde').hasClass('filtro_activo')) {
+		$('.buscar_cde').css('display', 'table');
+	} else {
+		$('.buscar_cde').fadeOut();
 	}
 }
 
@@ -384,12 +391,12 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 								palabra = '';
 							}
 							if (
-								titulo.toLowerCase().includes(palabra.toLowerCase()) && !onlyTags ||
+								(titulo.toLowerCase().includes(palabra.toLowerCase()) && !onlyTags) ||
 								tags
 									.toString()
 									.toLowerCase()
 									.includes(palabra.toLowerCase()) ||
-								description.toLowerCase().includes(palabra.toLowerCase()) && !onlyTags
+								(description.toLowerCase().includes(palabra.toLowerCase()) && !onlyTags)
 							) {
 								if (extension == '.xjpivot') {
 									url = '/' + contexto_pentaho + visor_olap + '?solution=&path=' + items[i].path + '&action=' + items[i].name;
@@ -427,7 +434,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 										);
 									}
 								}
-								if (extension == '.wcdf' || extension == '.std') {
+								if (extension == '.std') {
 									url = items[i].path;
 									url = encodeURIComponent(url);
 									url = url.replace(/%2F/g, '%3A');
@@ -482,6 +489,78 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 													"<div id='" + aPath.replace(/\//g, ':') + ':' + items[i].name + "'>" +
 														"<div data-sort='" + titulo + "' class='col-xs-11' style='padding-left: 0;'>" +
 															"<img data-sort='report' class='type_result' src='../themes/stratebi/images/streport_icon_c.png'>" +
+															"<a class='titulos' href='#' " +
+																"onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "','" + titulo + "','" + url + '\')"> ' +
+																titulo +
+															"</a>" +
+														"</div>" +
+														"<div class='col-xs-1' style='padding-left: 0;'>" +
+														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + items[i].title + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
+														"</div>" +
+														"<div class='col-md-12 description' style='padding-left: 0;'>" +
+															description +
+														"</div>" +
+														"<div class='col-md-12 tags' style='color: grey;'>" +
+															"<i class='fa " + icon + "' aria-hidden='true' " +
+																" onClick='funcion_tags(\"" + items[i].title + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+															"</i>" +
+															tags +
+														"</div>" +
+													"</div>" +
+												"</div>" +
+											"</div>"
+										);
+									}
+								}
+								if (extension == '.sta') {
+									url = '/' + contexto_pentaho + visor_olap + '?solution=&path=' + items[i].path + '&action=' + items[i].name;
+									if (fecha_filtro_ms >= desde && fecha_filtro_ms <= hasta) {
+										// prettier-ignore
+										$('#repository_browser_buscar').append(
+											"<div class='col-xs-12 col-md-6 buscar_stagile resultado_buscar'>" +
+												"<div class='col-md-3 col-lg-2'>" +
+													"<img class='thumb_result' src='" + image + "'>" +
+												"</div>" +
+												"<div class='col-md-9 col-lg-10'>" +
+													"<div id='" + aPath.replace(/\//g, ':') + ':' + items[i].name + "'>" +
+														"<div data-sort='" + titulo + "' class='col-xs-11' style='padding-left: 0;'>" +
+															"<img data-sort='stagile' class='type_result' src='../themes/stratebi/images/stagile_icon_c.png'>" +
+															"<a class='titulos' href='#' " +
+																"onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "','" + titulo + "','" + url + '\')"> ' +
+																titulo +
+															"</a>" +
+														"</div>" +
+														"<div class='col-xs-1' style='padding-left: 0;'>" +
+														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + items[i].title + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
+														"</div>" +
+														"<div class='col-md-12 description' style='padding-left: 0;'>" +
+															description +
+														"</div>" +
+														"<div class='col-md-12 tags' style='color: grey;'>" +
+															"<i class='fa " + icon + "' aria-hidden='true' " +
+																" onClick='funcion_tags(\"" + items[i].title + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+															"</i>" +
+															tags +
+														"</div>" +
+													"</div>" +
+												"</div>" +
+											"</div>"
+										);
+									}
+								}
+								if (extension == '.wcdf') {
+									url = '/' + contexto_pentaho + visor_olap + '?solution=&path=' + items[i].path + '&action=' + items[i].name;
+									if (fecha_filtro_ms >= desde && fecha_filtro_ms <= hasta) {
+										// prettier-ignore
+										$('#repository_browser_buscar').append(
+											"<div class='col-xs-12 col-md-6 buscar_cde resultado_buscar'>" +
+												"<div class='col-md-3 col-lg-2'>" +
+													"<img class='thumb_result' src='" + image + "'>" +
+												"</div>" +
+												"<div class='col-md-9 col-lg-10'>" +
+													"<div id='" + aPath.replace(/\//g, ':') + ':' + items[i].name + "'>" +
+														"<div data-sort='" + titulo + "' class='col-xs-11' style='padding-left: 0;'>" +
+															"<img data-sort='cde' class='type_result' src='../themes/stratebi/images/cde_icon_c.png'>" +
 															"<a class='titulos' href='#' " +
 																"onClick=\"parent.mantle_setPerspective('opened.perspective'); window.parent.openURL('" + titulo + "','" + titulo + "','" + url + '\')"> ' +
 																titulo +
@@ -566,11 +645,11 @@ function browsePath(aPath) {
 						);
 						$('#repository_browser').append(_b);
 					} else {
-						var _class = 'streport_icon_c';
-						var _class_buscar = 'buscar_report repository_style';
-						if (/^.*\.wcdf$/.test(items[i].path)) {
-							_class = 'stdashboard_icon_c';
-							_class_buscar = 'buscar_dashboard repository_style';
+						var _class = 'cde_icon_c';
+						var _class_buscar = 'buscar_cde repository_style';
+						if (/^.*\.adhoc$/.test(items[i].path) || /^.*\.prpt$/.test(items[i].path)) {
+							_class = 'report_icon_c';
+							_class_buscar = 'buscar_report repository_style';
 						}
 						if (/^.*\.std$/.test(items[i].path)) {
 							_class = 'stdashboard_icon_c';
@@ -579,6 +658,10 @@ function browsePath(aPath) {
 						if (/^.*\.xjpivot$/.test(items[i].path)) {
 							_class = 'stpivot_icon_c';
 							_class_buscar = 'buscar_olap repository_style';
+						}
+						if (/^.*\.sta$/.test(items[i].path)) {
+							_class = 'stagile_icon_c';
+							_class_buscar = 'buscar_stagile repository_style';
 						}
 
 						var _c = $(
@@ -675,8 +758,8 @@ function toggleFavorite(favButton, path, title) {
 function setHeader(tag, onlyTags) {
 	var tagHeader = document.querySelector('#tag-header');
 
-	document.querySelector('#filter-panel').style.display = onlyTags ? 'none': 'block';
-	tagHeader.style.display = onlyTags ? 'flex': 'none';
+	document.querySelector('#filter-panel').style.display = onlyTags ? 'none' : 'block';
+	tagHeader.style.display = onlyTags ? 'flex' : 'none';
 
 	if (onlyTags) {
 		var tagValue = tag.toLowerCase().replace(' ', '-');
@@ -692,11 +775,8 @@ function setHeader(tag, onlyTags) {
 
 		var subtitleNode = tagHeader.querySelector('#tag-header .subtitleBI');
 		subtitleNode.textContent = tag;
-		subtitleNode.className = ''
+		subtitleNode.className = '';
 		subtitleNode.classList.add('subtitleBI');
 		subtitleNode.classList.add(tagClass);
-
-
-		
 	}
 }
