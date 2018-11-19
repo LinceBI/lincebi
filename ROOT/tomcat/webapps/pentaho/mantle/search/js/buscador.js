@@ -513,7 +513,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 									}
 								}
 								if (extension == '.sta') {
-									url = '/' + contexto_pentaho + visor_olap + '?solution=&path=' + items[i].path + '&action=' + items[i].name;
+									url = '/' + contexto_pentaho + '/content/stagile/ui/index.html#!/view/' + items[i].path.replace(/\//g, ':');
 									if (fecha_filtro_ms >= desde && fecha_filtro_ms <= hasta) {
 										// prettier-ignore
 										$('#repository_browser_buscar').append(
@@ -549,7 +549,10 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 									}
 								}
 								if (extension == '.wcdf') {
-									url = '/' + contexto_pentaho + visor_olap + '?solution=&path=' + items[i].path + '&action=' + items[i].name;
+									url = items[i].path;
+									url = encodeURIComponent(url);
+									url = url.replace(/%2F/g, '%3A');
+									url = '/' + contexto_pentaho + '/api/repos/' + url + '/generatedContent';
 									if (fecha_filtro_ms >= desde && fecha_filtro_ms <= hasta) {
 										// prettier-ignore
 										$('#repository_browser_buscar').append(
