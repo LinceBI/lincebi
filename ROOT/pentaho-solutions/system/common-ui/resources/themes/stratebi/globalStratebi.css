@@ -745,7 +745,7 @@ div#data-controlproperties-spacer {
 	content: '';
 	position: absolute;
 	height: 35px;
-	top: -6px;
+	top: -37px;
 	opacity: 0.5;
 	filter: alpha(opacity=50); /* For IE8 and earlier */
 	border-bottom: 5px solid #9e9e9e;
