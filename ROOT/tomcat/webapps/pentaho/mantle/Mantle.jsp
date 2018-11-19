@@ -191,7 +191,8 @@
           if (contentWindow.accion_buscar) contentWindow.accion_buscar(palabra);
           document.querySelectorAll('#tag-dropdown a').forEach((element) => {
             element.classList.remove('active');
-			    });
+          });
+          document.querySelector('#tag-button > .tag-label').innerHTML = '<%= customProperties.getString("categories") %>';
       };
       $('#buscar').on('click', buscar);
       $('#buscador').on('keyup', function(e) { if (e.keyCode == 13) buscar(); });

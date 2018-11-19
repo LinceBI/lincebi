@@ -75,7 +75,7 @@
 				<ul class="nav navbar-form navbar-nav navbar-right">
 					<li class="dropdown">
 						<button id="tag-button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-							<%= customProperties.getString("categories") %>
+							<span class="tag-label"><%= customProperties.getString("categories") %></span>
 							<span class="caret"></span>
 						</button>
 						<div id="tag-dropdown" class="list-group row dropdown-menu">
@@ -184,6 +184,10 @@
 		display: inline-block;
 		margin-right: 8px;
 	}
+
+	#tag-button .menu-icon {
+		width: 19px;
+	}
 </style>
 
 <!-- Scripts -->
@@ -215,6 +219,7 @@
 	function searchTag() {
 		var isActive = this.classList.contains('active');
 		var searchPerspective = document.getElementById('search.perspective');
+		var tagButtonLabel = document.querySelector('#tag-button > .tag-label');
 
 		window.parent.mantle_setPerspective('search.perspective');
 
@@ -223,6 +228,8 @@
 				element.classList.remove('active');
 			});
 			this.classList.add('active');
+
+			tagButtonLabel.innerHTML = this.innerHTML;
 
 			if (searchPerspective && 'contentWindow' in searchPerspective) {
 				searchPerspective.contentWindow.accion_buscar(this.dataset.tag, true);
