@@ -95,9 +95,9 @@
 								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/ngo.svg"/>
 								NGO
 							</a>
-							<a class="list-group-item col-xs-6" data-tag="Public Admin" href="#">
-								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/public-admin.svg"/>
-								Public Admin
+							<a class="list-group-item col-xs-6" data-tag="GOV" href="#">
+								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/gov.svg"/>
+								GOV
 							</a>
 							<a class="list-group-item col-xs-6" data-tag="e-Commerce" href="#">
 								<img class="menu-icon" src="mantle/themes/stratebi/images/verticales/e-commerce.svg"/>
