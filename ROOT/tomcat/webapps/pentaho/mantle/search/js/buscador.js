@@ -107,6 +107,7 @@ function set_info(borrar_locale) {
 			console.log('tags_nuevos[i]: ' + tag_element[i].outerText);
 		}
 	}
+
 	var tags_actuales = get_info();
 	tags = arrayUnique(tags_actuales.concat(tags_nuevos));
 
@@ -165,7 +166,8 @@ function funcion_tags(titulo, descripcion, imagen, ruta, fichero, tags_array) {
 		} else {
 			aux = tags_array[i];
 		}
-		$('#tags_actuales').prepend('<div class="element-tag">' + aux + '</div>');
+		if (aux !== '')
+			$('#tags_actuales').prepend('<div class="element-tag">' + aux + '</div>');
 	}
 	$('#modal-titulo').val(titulo);
 	$('#modal-imagen').val(imagen);
