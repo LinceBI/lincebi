@@ -11,6 +11,7 @@ var contexto_pentaho = 'pentaho';
 var visor_olap = 'stpivot'; //stpivot - jpivot
 var color_principal = '#9DC221';
 var color_rotulos = '#1973bc';
+var CUSTOM_PROPERTIES_EXT = '.stproperties';
 
 /******************************/
 
@@ -65,7 +66,7 @@ function delete_info(guardar) {
 
 		success: function(data) {
 			if (guardar == 'true') {
-				set_info(meta_url);
+				set_info();
 				console.log('Información añadida');
 			}
 			console.log('Borrado con exito');
@@ -93,65 +94,157 @@ function get_meta_url() {
 	meta_url = meta_url + ':' + fichero;
 	return meta_url;
 }
-function set_info(borrar_locale) {
-	var meta_url = get_meta_url();
-	var tags_nuevos = [];
-	var tag_element = [];
-	var tags = [];
 
-	var tag_element = $('#tags_actuales .element-tag');
+function getPropertiesId(path) {
+	var id = '';
 
-	for (i = 0; i < tag_element.length; i++) {
-		if (tag_element[i].outerText != '') {
-			tags_nuevos.push(tag_element[i].outerText);
-			console.log('tags_nuevos[i]: ' + tag_element[i].outerText);
-		}
-	}
-
-	var tags_actuales = get_info();
-	tags = arrayUnique(tags_actuales.concat(tags_nuevos));
-
-	var url_ajax = '';
-	var req_xml = '';
-	var titulo = $('#modal-titulo').val();
-	var descripcion = $('#modal-descripcion').val();
-	var image = $('#modal-imagen').val();
-	if (borrar_locale == 'true') {
-		url_ajax = '../../api/repo/files/' + meta_url + '/deleteLocale?locale=default';
-		borrar_locale = 'false';
-	} else {
-		url_ajax = '../../api/repo/files/' + meta_url + '/localeProperties?locale=default';
-
-		req_xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><stringKeyStringValueDtoes>';
-		for (i = 0; i < tags.length; i++) {
-			req_xml += '<stringKeyStringValueDto><key>tag' + i + '</key><value>' + tags[i] + '</value></stringKeyStringValueDto>';
-		}
-		req_xml += '<stringKeyStringValueDto><key>file.image</key><value>' + image + '</value></stringKeyStringValueDto>';
-		req_xml +=
-			'<stringKeyStringValueDto><key>file.title</key><value>' +
-			titulo +
-			'</value></stringKeyStringValueDto><stringKeyStringValueDto><key>file.description</key><value>' +
-			descripcion +
-			'</value></stringKeyStringValueDto></stringKeyStringValueDtoes>';
-		borrar_locale = 'end';
-	}
 	$.ajax({
-		type: 'PUT',
-		url: url_ajax,
-		contentType: 'application/xml',
-		data: req_xml,
-		success: function() {
-			if (borrar_locale == 'false') {
-				set_info(borrar_locale);
-			} else {
-				console.log('Informacion almacenada con exito');
-			}
-		},
-		error: function() {
-			console.log('error');
-			$('#error_msg').fadeIn();
+		url: '../../api/repo/files/' + path.replace(/\//g, ':') + CUSTOM_PROPERTIES_EXT + '/properties',
+		dataType: 'json',
+		async: false,
+		success: function(r) {
+			if (r && r.id) id = r.id;
 		}
 	});
+
+	return id;
+}
+
+function getProperties(path) {
+	var properties = {};
+	
+	$.ajax({
+		url: '../../api/repo/files/' + path.replace(/\//g, ':') + CUSTOM_PROPERTIES_EXT + '/metadata',
+		async: false,
+		statusCode: {
+            200: function() {
+                $.ajax({
+					url: '../../api/repo/files/' + path.replace(/\//g, ':') + CUSTOM_PROPERTIES_EXT,
+					dataType: 'json',
+					async: false,
+					success: function(data) {
+						if (data) properties = data;
+					}
+				});
+            }
+        }
+	});
+
+	return properties;
+}
+
+function deleteProperties(custom) {
+	var meta_url = get_meta_url();
+	var url_properties = '../../api/repo/files/';
+	var data = '';
+	var success = false;
+
+	if (custom === true) {
+		url_properties += 'deletepermanent';
+		data = getPropertiesId(meta_url);
+	} else {
+		url_properties += meta_url + '/deleteLocale?locale=default';
+	}
+
+	if (!custom || custom && data !== '') {
+		$.ajax({
+			type: 'PUT',
+			url: url_properties,
+			async: false,
+			data: data,
+			success: function() {
+				if (custom) {
+					success = true;
+				} else {
+					success = deleteProperties(true);
+				}
+			}
+		});
+	} else {
+		success = true;
+	}
+	
+	return success;
+}
+
+function addProperties(title, description, image, tags, custom) {
+	var meta_url = get_meta_url();
+	var url_properties = '../../api/repo/files/';
+	var data;
+	var success = false;
+	var contentType = 'application/xml';
+
+	if (custom === true) {
+		url_properties += get_meta_url() + CUSTOM_PROPERTIES_EXT;
+		data = {
+			'image': image,
+			'tags': tags
+		}
+		data = JSON.stringify(data);
+		contentType = 'application/json';
+	} else {
+		url_properties += meta_url + '/localeProperties?locale=default';
+		data = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+				'<stringKeyStringValueDtoes>' +
+					'<stringKeyStringValueDto>' +
+						'<key>file.title</key><value>' + title + '</value>' +
+					'</stringKeyStringValueDto>' +
+					'<stringKeyStringValueDto>' +
+						'<key>jcr:primaryType</key><value>nt:unstructured</value>' +
+					'</stringKeyStringValueDto>' +
+					'<stringKeyStringValueDto>' +
+						'<key>file.description</key><value>' + description + '</value>' +
+					'</stringKeyStringValueDto>' +
+				'</stringKeyStringValueDtoes>'.trim();
+	}
+
+	$.ajax({
+		type: 'PUT',
+		url: url_properties,
+		contentType: contentType,
+		async: false,
+		data: data,
+		success: function() {
+			if (custom) {
+				success = true;
+			} else {
+				success = addProperties(title, description, image, tags, true);
+			}
+		}
+	});
+
+	return success;
+}
+
+function set_info() {
+	var success = false;
+
+	// Delete properties and add the new ones
+	if (deleteProperties()) {
+		var title = $('#modal-titulo').val();
+		var description = $('#modal-descripcion').val();
+		var image = $('#modal-imagen').val();
+
+		// Tags
+		var tags_nuevos = [];
+		var tag_element = [];
+		var tags = [];
+		var tag_element = $('#tags_actuales .element-tag');
+		for (i = 0; i < tag_element.length; i++) {
+			if (tag_element[i].outerText != '') {
+				tags_nuevos.push(tag_element[i].outerText);
+			}
+		}
+		var tags_actuales = get_info();
+		tags = arrayUnique(tags_actuales.concat(tags_nuevos));
+
+		success = addProperties(title, description, image, tags);
+	}
+	
+	if (!success) {
+		console.log('error');
+		$('#error_msg').fadeIn();
+	}
 }
 
 function funcion_tags(titulo, descripcion, imagen, ruta, fichero, tags_array) {
@@ -336,44 +429,27 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 						buscar(aPath_base, items[i].path, palabra, desde, hasta, creacion_modificacion, onlyTags);
 					} else {
 						if (items[i].path.includes(aPath_base)) {
-							var tags_array = [];
-							var tags = [];
-
 							var titulo = items[i].title;
-							var image = '//www.jetstereo.com/images/no_image.png';
 							var description = '';
 							if (items[i].description) {
-								var description = items[i].description;
+								description = items[i].description;
 							}
+
 							var extension = items[i].name;
 							extension = extension.split(/[\s.]+/);
 							extension = '.' + extension[extension.length - 1];
 							var ruta = items[i].path.replace(items[i].name, '');
-							var tags = [];
-							if (items[i].localePropertiesMapEntries) {
-								for (j = 0; j < items[i].localePropertiesMapEntries[0].properties.length; j++) {
-									var aux = items[i].localePropertiesMapEntries[0].properties[j].key;
-									var aux2 = items[i].localePropertiesMapEntries[0].properties[j].value;
 
-									if (aux.includes('tag')) {
-										if (aux2.length > 15) {
-											aux2 = aux2.substring(0, 15);
-											aux2 += '...';
-										}
-										tags.push(aux2);
-										tags_array.push(aux2);
-									}
-									//if (aux == 'file.title') {
-									//	titulo = aux2;
-									//}
-									if (aux == 'file.image') {
-										image = aux2;
-									}
-									//if (aux == 'file.description') {
-									//	description = aux2;
-									//}
-								}
+							var customProperties = getProperties(items[i].path);
+							var image = customProperties && customProperties.image ? customProperties.image : '//www.jetstereo.com/images/no_image.png';
+
+							var tags_array = [];
+							var tags = [];
+							if (customProperties && customProperties.tags) {
+								tags = customProperties.tags;
+								tags_array = customProperties.tags;
 							}
+
 							tags = arrayUnique(tags);
 							for (var n = 0; n < tags_array.length; n++) {
 								if (tags[n] != '' && tags[n] != 'undefined') {
