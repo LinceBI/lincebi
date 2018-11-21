@@ -125,11 +125,11 @@ function set_info(borrar_locale) {
 		for (i = 0; i < tags.length; i++) {
 			req_xml += '<stringKeyStringValueDto><key>tag' + i + '</key><value>' + tags[i] + '</value></stringKeyStringValueDto>';
 		}
-		req_xml += '<stringKeyStringValueDto><key>image</key><value>' + image + '</value></stringKeyStringValueDto>';
+		req_xml += '<stringKeyStringValueDto><key>file.image</key><value>' + image + '</value></stringKeyStringValueDto>';
 		req_xml +=
-			'<stringKeyStringValueDto><key>title</key><value>' +
+			'<stringKeyStringValueDto><key>file.title</key><value>' +
 			titulo +
-			'</value></stringKeyStringValueDto><stringKeyStringValueDto><key>description</key><value>' +
+			'</value></stringKeyStringValueDto><stringKeyStringValueDto><key>file.description</key><value>' +
 			descripcion +
 			'</value></stringKeyStringValueDto></stringKeyStringValueDtoes>';
 		borrar_locale = 'end';
@@ -361,15 +361,15 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 										tags.push(aux2);
 										tags_array.push(aux2);
 									}
-									if (aux == 'title') {
-										titulo = aux2;
-									}
-									if (aux == 'image') {
+									//if (aux == 'file.title') {
+									//	titulo = aux2;
+									//}
+									if (aux == 'file.image') {
 										image = aux2;
 									}
-									if (aux == 'description') {
-										description = aux2;
-									}
+									//if (aux == 'file.description') {
+									//	description = aux2;
+									//}
 								}
 							}
 							tags = arrayUnique(tags);
@@ -417,14 +417,14 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 															"</a>" +
 														"</div>" +
 														"<div class='col-xs-1' style='padding-left: 0;'>" +
-														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + items[i].title + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
+														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + titulo + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
 														"</div>" +
 														"<div class='col-md-12 description' style='padding-left: 0;'>" +
 															description +
 														"</div>" +
 														"<div class='col-md-12 tags' style='color: grey;'>" +
 															"<i class='fa " + icon + "' aria-hidden='true' " +
-																" onClick='funcion_tags(\"" + items[i].title + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+																" onClick='funcion_tags(\"" + titulo + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
 															"</i>" +
 															tags +
 														"</div>" +
@@ -456,14 +456,14 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 															"</a>" +
 														"</div>" +
 														"<div class='col-xs-1' style='padding-left: 0;'>" +
-														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + items[i].title + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
+														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + titulo + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
 														"</div>" +
 														"<div class='col-md-12 description' style='padding-left: 0;'>" +
 															description +
 														"</div>" +
 														"<div class='col-md-12 tags' style='color: grey;'>" +
 															"<i class='fa " + icon + "' aria-hidden='true' " +
-																" onClick='funcion_tags(\"" + items[i].title + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+																" onClick='funcion_tags(\"" + titulo + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
 															"</i>" +
 															tags +
 														"</div>" +
@@ -495,14 +495,14 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 															"</a>" +
 														"</div>" +
 														"<div class='col-xs-1' style='padding-left: 0;'>" +
-														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + items[i].title + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
+														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + titulo + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
 														"</div>" +
 														"<div class='col-md-12 description' style='padding-left: 0;'>" +
 															description +
 														"</div>" +
 														"<div class='col-md-12 tags' style='color: grey;'>" +
 															"<i class='fa " + icon + "' aria-hidden='true' " +
-																" onClick='funcion_tags(\"" + items[i].title + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+																" onClick='funcion_tags(\"" + titulo + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
 															"</i>" +
 															tags +
 														"</div>" +
@@ -531,14 +531,14 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 															"</a>" +
 														"</div>" +
 														"<div class='col-xs-1' style='padding-left: 0;'>" +
-														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + items[i].title + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
+														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + titulo + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
 														"</div>" +
 														"<div class='col-md-12 description' style='padding-left: 0;'>" +
 															description +
 														"</div>" +
 														"<div class='col-md-12 tags' style='color: grey;'>" +
 															"<i class='fa " + icon + "' aria-hidden='true' " +
-																" onClick='funcion_tags(\"" + items[i].title + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+																" onClick='funcion_tags(\"" + titulo + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
 															"</i>" +
 															tags +
 														"</div>" +
@@ -570,14 +570,14 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 															"</a>" +
 														"</div>" +
 														"<div class='col-xs-1' style='padding-left: 0;'>" +
-														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + items[i].title + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
+														"<span onClick='toggleFavorite(this, \"" + items[i].path + "\",\"" + titulo + "\")' class=\"button favorite-button\"><i class=\"fa " + getFavoriteIconState(items[i].path) + " fa-lg\" aria-hidden=\"true\"></i></span>" + 
 														"</div>" +
 														"<div class='col-md-12 description' style='padding-left: 0;'>" +
 															description +
 														"</div>" +
 														"<div class='col-md-12 tags' style='color: grey;'>" +
 															"<i class='fa " + icon + "' aria-hidden='true' " +
-																" onClick='funcion_tags(\"" + items[i].title + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+																" onClick='funcion_tags(\"" + titulo + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
 															"</i>" +
 															tags +
 														"</div>" +
