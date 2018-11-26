@@ -47,9 +47,22 @@ private static class UserSettings {
 		String defaultSystemValue = PentahoSystem.getSystemSetting(key, defaultValue);
 		return settingsService.getUserSetting(key, defaultSystemValue).getSettingValue();
 	}
-	
+
+	public static String getGlobal(String key) {
+		return UserSettings.getGlobal(key, null);
+	}
+
+	public static String getGlobal(String key, String defaultValue) {
+		String defaultSystemValue = PentahoSystem.getSystemSetting(key, defaultValue);
+		return settingsService.getGlobalUserSetting(key, defaultSystemValue).getSettingValue();
+	}
+
 	public static void set(String key, String settingValue) {
 		settingsService.setUserSetting(key, settingValue);
+	}
+
+	public static void setGlobal(String key, String settingValue) {
+		settingsService.setGlobalUserSetting(key, settingValue);
 	}
 
 	public static boolean equals(String key, String value) {
