@@ -59,6 +59,8 @@
 	
 	<!-- Require Home -->
 	<script type="text/javascript">
+		var checkBox = null;
+
 		$( document ).ready(function() {
 			var palabra = $('#buscador', window.parent.document)[0].value;
 			
@@ -109,6 +111,8 @@
 				$("#modal-tag").val("");
 			});
 
+			checkBox = $('#home-item-check');
+
 			/*$('#tag-input').tagsinput({
 				tagClass: 'element-tag'
 			});*/
@@ -120,6 +124,13 @@
 			$('#set_info').on('click', function(e) {
 				$('#dialog .tagit-choice').remove();    
 				set_info("false");
+				if (checkBox) {
+
+					if (checkBox.is(":checked")) {
+						var item = createHomeGlobalSetting();
+						setHomeGlobalSetting(item);
+					}
+				}
 				accion_buscar();
 				$("#dialog").parent().fadeOut();
 				$("#dialog-bg").css("z-index",-1);$("#dialog-bg").css("opacity",0);
@@ -146,6 +157,20 @@
 				$("#dialog-bg").css("z-index",-1);$("#dialog-bg").css("opacity",0);
 
 			});
+
+			if (checkBox) {
+				checkBox.on( "click", function() {
+					
+					if (this.checked) {
+						var item = createHomeGlobalSetting();
+						setHomeGlobalSetting(item);
+					} else {
+						var path = $('#modal-path').html();
+						removeHomeGlobalSetting(path);
+					}
+
+				});
+			}
 		});
 	</script>
 
@@ -265,9 +290,25 @@
 
 			<!-- First column -->
 			<div class="col-md-4 col-xs-12">
-				<div style="text-align:center">
-					<img id="modal-imagen-thumb" src="//www.jetstereo.com/images/no_image.png" style="max-height:230px;max-width:300px;margin-top: 15px;">
+				<div class="row">
+					<div class="col-md-12" style="text-align:center">
+						<img id="modal-imagen-thumb" src="//www.jetstereo.com/images/no_image.png" style="max-height:230px;max-width:300px;margin-top: 15px;">
+					</div>
 				</div>
+				<% if (canAdminister) { %>
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 title">
+							<%= customProperties.getString("options") %>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1">
+							<div class="checkbox">
+								<label><input id="home-item-check" type="checkbox" value=""><%= customProperties.getString("addToHome") %></label>
+							</div>
+						</div>
+					</div>
+				<% } %>
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 title" style="margin-bottom: 50px;">
 						<span><%= customProperties.getString("tags") %><input id="borrar_tags" value="X" title="<%= customProperties.getString("deleteTags") %>" type="button" style="background: #da6666;"></span>
@@ -279,7 +320,8 @@
 			<!-- Second column -->
 			<div class="col-md-8 col-xs-12">
 				<form action="" method="post">
-					<div class="row hidden-xs hidden-sm"><div class="col-md-6"><div class="col-md-12 title"><%= customProperties.getString("file") %></div><div class="col-md-12" id="modal_archivo"></div></div><div class="col-md-6"><div class="col-md-12 title"><%= customProperties.getString("path") %></div><div class="col-md-12" id="modal_ruta"></div></div></div>
+					<div id="modal-path" class="hidden"></div>
+					<div class="row hidden-xs hidden-sm"><div class="col-md-6"><div class="row"><div class="col-md-12 title"><%= customProperties.getString("file") %></div><div class="col-md-12" id="modal_archivo"></div></div></div><div class="col-md-6"><div class="row"><div class="col-md-12 title"><%= customProperties.getString("path") %></div><div class="col-md-12" id="modal_ruta"></div></div></div></div>
 					<div class="row hidden-xs hidden-sm"><div class="col-md-12 title"><%= customProperties.getString("title") %></div><div class="col-md-12"><input id="modal-titulo" name="titulo" type="text"></div></div>
 					<div class="row hidden-xs hidden-sm"><div class="col-md-12 title"><%= customProperties.getString("image") %></div><div class="col-md-12"><input id="modal-imagen" name="imagen" type="text"></div></div>
 					<div class="row hidden-xs hidden-sm"><div class="col-md-12 title"><%= customProperties.getString("description") %></div><div class="col-md-12"><textarea id="modal-descripcion" name="descripcion" rows="5"></textarea></div></div>

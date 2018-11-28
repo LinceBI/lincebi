@@ -112,13 +112,13 @@ function getPropertiesId(path) {
 
 function getProperties(path) {
 	var properties = {};
-	
+
 	$.ajax({
 		url: '../../api/repo/files/' + path.replace(/\//g, ':') + CUSTOM_PROPERTIES_EXT + '/metadata',
 		async: false,
 		statusCode: {
-            200: function() {
-                $.ajax({
+			200: function() {
+				$.ajax({
 					url: '../../api/repo/files/' + path.replace(/\//g, ':') + CUSTOM_PROPERTIES_EXT,
 					dataType: 'json',
 					async: false,
@@ -126,8 +126,8 @@ function getProperties(path) {
 						if (data) properties = data;
 					}
 				});
-            }
-        }
+			}
+		}
 	});
 
 	return properties;
@@ -146,7 +146,7 @@ function deleteProperties(custom) {
 		url_properties += meta_url + '/deleteLocale?locale=default';
 	}
 
-	if (!custom || custom && data !== '') {
+	if (!custom || (custom && data !== '')) {
 		$.ajax({
 			type: 'PUT',
 			url: url_properties,
@@ -163,7 +163,7 @@ function deleteProperties(custom) {
 	} else {
 		success = true;
 	}
-	
+
 	return success;
 }
 
@@ -177,25 +177,30 @@ function addProperties(title, description, image, tags, custom) {
 	if (custom === true) {
 		url_properties += get_meta_url() + CUSTOM_PROPERTIES_EXT;
 		data = {
-			'image': image,
-			'tags': tags
-		}
+			image: image,
+			tags: tags
+		};
 		data = JSON.stringify(data);
 		contentType = 'application/json';
 	} else {
 		url_properties += meta_url + '/localeProperties?locale=default';
-		data = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
-				'<stringKeyStringValueDtoes>' +
-					'<stringKeyStringValueDto>' +
-						'<key>file.title</key><value>' + title + '</value>' +
-					'</stringKeyStringValueDto>' +
-					'<stringKeyStringValueDto>' +
-						'<key>jcr:primaryType</key><value>nt:unstructured</value>' +
-					'</stringKeyStringValueDto>' +
-					'<stringKeyStringValueDto>' +
-						'<key>file.description</key><value>' + description + '</value>' +
-					'</stringKeyStringValueDto>' +
-				'</stringKeyStringValueDtoes>'.trim();
+		data =
+			'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+			'<stringKeyStringValueDtoes>' +
+			'<stringKeyStringValueDto>' +
+			'<key>file.title</key><value>' +
+			title +
+			'</value>' +
+			'</stringKeyStringValueDto>' +
+			'<stringKeyStringValueDto>' +
+			'<key>jcr:primaryType</key><value>nt:unstructured</value>' +
+			'</stringKeyStringValueDto>' +
+			'<stringKeyStringValueDto>' +
+			'<key>file.description</key><value>' +
+			description +
+			'</value>' +
+			'</stringKeyStringValueDto>' +
+			'</stringKeyStringValueDtoes>'.trim();
 	}
 
 	$.ajax({
@@ -240,7 +245,7 @@ function set_info() {
 
 		success = addProperties(title, description, image, tags);
 	}
-	
+
 	if (!success) {
 		console.log('error');
 		$('#error_msg').fadeIn();
@@ -259,8 +264,7 @@ function funcion_tags(titulo, descripcion, imagen, ruta, fichero, tags_array) {
 		} else {
 			aux = tags_array[i];
 		}
-		if (aux !== '')
-			$('#tags_actuales').prepend('<div class="element-tag">' + aux + '</div>');
+		if (aux !== '') $('#tags_actuales').prepend('<div class="element-tag">' + aux + '</div>');
 	}
 	$('#modal-titulo').val(titulo);
 	$('#modal-imagen').val(imagen);
@@ -275,11 +279,112 @@ function funcion_tags(titulo, descripcion, imagen, ruta, fichero, tags_array) {
 	$('#modal_ruta').html(ruta);
 	$('#modal_archivo').html(fichero);
 
+	var modalPath = ruta + '/' + fichero;
+	$('#modal-path').html(modalPath);
+
+	if (checkBox) {
+		if (isInHomeGlobalSetting(modalPath) > -1) {
+			checkBox.prop("checked", true);
+		} else {
+			checkBox.prop("checked", false);
+		}
+	}
+
 	$('#dialog')
 		.parent()
 		.fadeIn();
 	$('#dialog-bg').css('z-index', 100);
 	$('#dialog-bg').css('opacity', 0.5);
+}
+
+var homeItems = [];
+
+function createHomeGlobalSetting() {
+	var path = $('#modal-path').html();
+	var title = $('#modal-titulo').val();
+	var description = $('#modal-descripcion').val();
+	var extension =$('#modal_archivo').html();
+	extension = extension.split(/[\s.]+/);
+	extension = extension[extension.length - 1];
+	var image = $('#modal-imagen').val();
+	var tags = [];
+						
+	$('#tags_actuales > .element-tag').each(function (index, item) {
+		tags.push(item.innerHTML);
+  	});
+
+	var item = {};
+	item.path = path;
+	item.title = title;
+	item.description = description;
+	item.extension = extension;
+	item.image = image;
+	item.tags = tags;
+
+	return item;
+}
+
+function updateHomeGlobalSetting() {
+	$.ajax({
+		type: 'POST',
+		data: JSON.stringify(homeItems),
+		url: '../../plugin/global-settings/api/home-items',
+		dataType: 'json',
+		async: false,
+		success: function() {
+			getHomeGlobalSetting();
+			return true;
+		}
+	});
+
+	return false;
+}
+
+function setHomeGlobalSetting(item) {
+	if (isInHomeGlobalSetting(item['path']) != -1) {
+		removeHomeGlobalSetting(item['path']);
+	}
+
+	homeItems.push(item);
+	updateHomeGlobalSetting();
+
+	return false;
+}
+
+function removeHomeGlobalSetting(path) {
+	var index = isInHomeGlobalSetting(path);
+
+	if (index > -1) {
+		homeItems.splice(index, 1);
+		updateHomeGlobalSetting();
+	}
+
+	return false;
+}
+
+function getHomeGlobalSetting() {	
+	$.ajax({
+		url: '../../api/user-settings/home-items',
+		dataType: 'json',
+		async: false,
+		success: function(r) {
+			if (r) homeItems = r;
+		}
+	});
+
+	return homeItems;
+}
+
+function isInHomeGlobalSetting(path) {
+	getHomeGlobalSetting();
+
+	for (var i = 0; i < homeItems.length; i++) {
+		if (homeItems[i]['path'].localeCompare(path) == 0) {
+			return i;
+		}
+	}
+
+	return -1;
 }
 
 function filtro_extension(id) {
@@ -433,6 +538,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 							var description = '';
 							if (items[i].description) {
 								description = items[i].description;
+								description = description.replace(/'/g, '');
 							}
 
 							var extension = items[i].name;
@@ -502,7 +608,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 														"</div>" +
 														"<div class='col-md-12 tags' style='color: grey;'>" +
 															"<i class='fa " + icon + "' aria-hidden='true' " +
-																" onClick='funcion_tags(\"" + titulo + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+																" onClick='funcion_tags(\"" + titulo + "\",\"" + description + "\",\"" + image + "\",\"" + aPath + "\",\"" + items[i].name + "\",\"" + tags_array + "\")'>" +
 															"</i>" +
 															tags +
 														"</div>" +
@@ -541,7 +647,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 														"</div>" +
 														"<div class='col-md-12 tags' style='color: grey;'>" +
 															"<i class='fa " + icon + "' aria-hidden='true' " +
-																" onClick='funcion_tags(\"" + titulo + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+																" onClick='funcion_tags(\"" + titulo + "\",\"" + description + "\",\"" + image + "\",\"" + aPath + "\",\"" + items[i].name + "\",\"" + tags_array + "\")'>" +
 															"</i>" +
 															tags +
 														"</div>" +
@@ -580,7 +686,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 														"</div>" +
 														"<div class='col-md-12 tags' style='color: grey;'>" +
 															"<i class='fa " + icon + "' aria-hidden='true' " +
-																" onClick='funcion_tags(\"" + titulo + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+																" onClick='funcion_tags(\"" + titulo + "\",\"" + description + "\",\"" + image + "\",\"" + aPath + "\",\"" + items[i].name + "\",\"" + tags_array + "\")'>" +
 															"</i>" +
 															tags +
 														"</div>" +
@@ -616,7 +722,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 														"</div>" +
 														"<div class='col-md-12 tags' style='color: grey;'>" +
 															"<i class='fa " + icon + "' aria-hidden='true' " +
-																" onClick='funcion_tags(\"" + titulo + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+																" onClick='funcion_tags(\"" + titulo + "\",\"" + description + "\",\"" + image + "\",\"" + aPath + "\",\"" + items[i].name + "\",\"" + tags_array + "\")'>" +
 															"</i>" +
 															tags +
 														"</div>" +
@@ -655,7 +761,7 @@ function buscar(aPath_base, aPath, palabra, desde, hasta, creacion_modificacion,
 														"</div>" +
 														"<div class='col-md-12 tags' style='color: grey;'>" +
 															"<i class='fa " + icon + "' aria-hidden='true' " +
-																" onClick='funcion_tags(\"" + titulo + '","' + description + '","' + image + '","' + aPath + '","' + items[i].name + '","' + tags_array + "\")'>" +
+																" onClick='funcion_tags(\"" + titulo + "\",\"" + description + "\",\"" + image + "\",\"" + aPath + "\",\"" + items[i].name + "\",\"" + tags_array + "\")'>" +
 															"</i>" +
 															tags +
 														"</div>" +
