@@ -11,16 +11,13 @@ DEPLOY_PASS ?= password
 DEPLOY_URL_BASE ?= https://repo.stratebi.com
 DEPLOY_URL ?= $(DEPLOY_URL_BASE)/repository/stratebi-raw/customizations/sttools-customization-root.tgz
 
-.PHONY: all \
-	format format-encoding format-xml format-json format-js format-css \
-	build \
-	deploy \
-	clean
-
+.PHONY: all
 all: format build
 
+.PHONY: format
 format: format-encoding format-xml format-json format-js format-css
 
+.PHONY: format-encoding
 format-encoding:
 	@find '$(MKFILE_DIR)/ROOT/' -type f \
 		-exec sh -c 'if ! git check-ignore -q "{}" && grep -qI "" "{}"; then \
@@ -28,6 +25,7 @@ format-encoding:
 			dos2unix "{}"; \
 		fi' ';'
 
+.PHONY: format-xml
 format-xml:
 	@XMLLINT_INDENT="$$(printf '\t')" \
 	find '$(MKFILE_DIR)/ROOT/' -type f \
@@ -38,6 +36,7 @@ format-xml:
 			printf "%s\n" "{}"; \
 		fi' ';'
 
+.PHONY: format-json
 format-json:
 	@find '$(MKFILE_DIR)/ROOT/' -type f \
 		'(' -not -iregex '.*\.min\.[a-z0-9]+' ')' \
@@ -46,6 +45,7 @@ format-json:
 			prettier --write --parser json "{}"; \
 		fi' ';'
 
+.PHONY: format-js
 format-js:
 	@find '$(MKFILE_DIR)/ROOT/' -type f \
 		'(' -not -iregex '.*\.min\.[a-z0-9]+' ')' \
@@ -54,6 +54,7 @@ format-js:
 			prettier --write --parser babylon "{}"; \
 		fi' ';'
 
+.PHONY: format-css
 format-css:
 	@find '$(MKFILE_DIR)/ROOT/' -type f \
 		'(' -not -iregex '.*\.min\.[a-z0-9]+' ')' \
@@ -62,6 +63,7 @@ format-css:
 			prettier --write --parser css "{}"; \
 		fi' ';'
 
+.PHONY: build
 build:
 	@mkdir -p '$(DIST_DIR)'
 	@(cd '$(MKFILE_DIR)/ROOT/' \
@@ -73,6 +75,7 @@ build:
 			"$${STASH}" ./ \
 		&& git gc --prune=now)
 
+.PHONY: deploy
 deploy:
 	@curl \
 		--verbose \
@@ -81,5 +84,6 @@ deploy:
 		--upload-file '$(DIST_DIR)/sttools-customization-root.tgz' \
 		'$(DEPLOY_URL)' 2>&1 >/dev/null | grep -v '> Authorization: '
 
+.PHONY: clean
 clean:
 	rm -rf '$(DIST_DIR)'
