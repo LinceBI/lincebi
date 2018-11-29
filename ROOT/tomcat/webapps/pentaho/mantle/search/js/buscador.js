@@ -313,6 +313,10 @@ function createHomeGlobalSetting() {
 		tags.push(item.innerHTML);
   	});
 
+	$('ul.tagit > .tagit-choice > .tagit-label').each(function (index, item) {
+		tags.push(item.innerHTML);
+	});
+	
 	var item = {};
 	item.path = path;
 	item.title = title;

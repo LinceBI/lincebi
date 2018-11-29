@@ -122,8 +122,6 @@
 			availableTags: ["c++", "java", "php", "javascript","javaasdasdscript","javascripasdasdsadt", "ruby", "python", "c"]*/
 
 			$('#set_info').on('click', function(e) {
-				$('#dialog .tagit-choice').remove();    
-				set_info("false");
 				if (checkBox) {
 
 					if (checkBox.is(":checked")) {
@@ -131,6 +129,8 @@
 						setHomeGlobalSetting(item);
 					}
 				}
+				$('#dialog .tagit-choice').remove();    
+				set_info("false");
 				accion_buscar();
 				$("#dialog").parent().fadeOut();
 				$("#dialog-bg").css("z-index",-1);$("#dialog-bg").css("opacity",0);
