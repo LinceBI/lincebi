@@ -429,6 +429,10 @@ function accion_buscar(tag, onlyTags) {
 
 	setHeader(tag, onlyTags);
 
+	if (onlyTags) {
+		reset();
+	}
+	
 	getFavorites();
 
 	var desde = $('#datepicker_desde input').val();
