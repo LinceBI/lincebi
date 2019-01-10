@@ -62,11 +62,6 @@
 !/ROOT/tomcat/webapps/pentaho/mantle/home/
 !/ROOT/tomcat/webapps/pentaho/mantle/home/index.jsp
 
-/ROOT/tomcat/webapps/pentaho/mantle/images/*
-!/ROOT/tomcat/webapps/pentaho/mantle/images/
-
-!/ROOT/tomcat/webapps/pentaho/mantle/images/stratebi/
-
 /ROOT/tomcat/webapps/pentaho/mantle/messages/*
 !/ROOT/tomcat/webapps/pentaho/mantle/messages/
 !/ROOT/tomcat/webapps/pentaho/mantle/messages/mantleCustomMessages.properties
