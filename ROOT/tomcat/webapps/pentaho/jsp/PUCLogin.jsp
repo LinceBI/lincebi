@@ -154,11 +154,8 @@
 %>
 
 <meta name="gwt:property" content="locale=<%=Encode.forHtmlAttribute(request.getLocale().toString())%>">
-<link rel="icon" href="/pentaho-style/favicon.ico"/>
-<link rel="apple-touch-icon" sizes="180x180" href="/pentaho-style/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/pentaho-style/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/pentaho-style/favicon-16x16.png">
-<link rel="mask-icon" href="/pentaho-style/safari-pinned-tab.svg" color="#cc0000">
+<link rel="icon" type="image/png" sizes="16x16 24x24 32x32" href="mantle/themes/stratebi/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64 96x96 128x128" href="mantle/themes/stratebi/images/favicon-128.png">
 
 <style type="text/css">
   #login-background,
