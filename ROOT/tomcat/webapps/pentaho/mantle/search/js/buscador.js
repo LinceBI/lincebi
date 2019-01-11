@@ -284,9 +284,9 @@ function funcion_tags(titulo, descripcion, imagen, ruta, fichero, tags_array) {
 
 	if (checkBox) {
 		if (isInHomeGlobalSetting(modalPath) > -1) {
-			checkBox.prop("checked", true);
+			checkBox.prop('checked', true);
 		} else {
-			checkBox.prop("checked", false);
+			checkBox.prop('checked', false);
 		}
 	}
 
@@ -303,20 +303,20 @@ function createHomeGlobalSetting() {
 	var path = $('#modal-path').html();
 	var title = $('#modal-titulo').val();
 	var description = $('#modal-descripcion').val();
-	var extension =$('#modal_archivo').html();
+	var extension = $('#modal_archivo').html();
 	extension = extension.split(/[\s.]+/);
 	extension = extension[extension.length - 1];
 	var image = $('#modal-imagen').val();
 	var tags = [];
-						
-	$('#tags_actuales > .element-tag').each(function (index, item) {
-		tags.push(item.innerHTML);
-  	});
 
-	$('ul.tagit > .tagit-choice > .tagit-label').each(function (index, item) {
+	$('#tags_actuales > .element-tag').each(function(index, item) {
 		tags.push(item.innerHTML);
 	});
-	
+
+	$('ul.tagit > .tagit-choice > .tagit-label').each(function(index, item) {
+		tags.push(item.innerHTML);
+	});
+
 	var item = {};
 	item.path = path;
 	item.title = title;
@@ -366,7 +366,7 @@ function removeHomeGlobalSetting(path) {
 	return false;
 }
 
-function getHomeGlobalSetting() {	
+function getHomeGlobalSetting() {
 	$.ajax({
 		url: '../../api/user-settings/home-items',
 		dataType: 'json',
@@ -432,7 +432,7 @@ function accion_buscar(tag, onlyTags) {
 	if (onlyTags) {
 		reset();
 	}
-	
+
 	getFavorites();
 
 	var desde = $('#datepicker_desde input').val();

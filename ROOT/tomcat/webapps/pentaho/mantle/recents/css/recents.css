@@ -1,17 +1,17 @@
 body {
-    font-family: 'Titillium Web', sans-serif;
-    background: transparent;
+	font-family: 'Titillium Web', sans-serif;
+	background: transparent;
 }
 
 .flex-column {
 	display: flex;
-    align-items: center;
-    justify-content: center;
+	align-items: center;
+	justify-content: center;
 }
 
 .flex-column-vertical {
 	justify-content: flex-start;
-	height: 100%
+	height: 100%;
 }
 
 .panel-heading > .row {
@@ -22,10 +22,9 @@ body {
 	text-align: center;
 }
 
-
 .favorite-button {
 	cursor: pointer;
 }
 .fa-star {
-    color: gold;
+	color: gold;
 }
