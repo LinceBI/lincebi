@@ -308,11 +308,11 @@ input[type='submit'] {
 }
 .buscar_cde {
 	margin-left: 0px;
-	border-left: 6px solid #d6a0ce;
+	border-left: 6px solid #ff66ad;
 	display: block;
 	height: 100px;
 	background: #f1f1f1;
-	color: #d6a0ce !important;
+	color: #ff66ad !important;
 }
 .titulos {
 	font-size: 20px;
@@ -367,7 +367,7 @@ input[type='submit'] {
 	color: #de0000;
 }
 .buscar_cde .titulos {
-	color: #d6a0ce;
+	color: #ff66ad;
 }
 .resultado_buscar .description {
 	min-height: 20px;
@@ -406,8 +406,8 @@ input[type='submit'] {
 	border: 1px #de0000 solid;
 }
 .buscar_cde .tags i {
-	background: #d6a0ce;
-	border: 1px #d6a0ce solid;
+	background: #ff66ad;
+	border: 1px #ff66ad solid;
 }
 .repository_style {
 	border-left: 0px solid #ed7c36 !important;
