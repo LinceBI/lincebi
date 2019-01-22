@@ -3081,7 +3081,32 @@ div.dijitDateTextBox.dijitComboBox .dijitArrowButton input[type='text'] {
 .fileBrowserColumn .body .file .wcdf {
 	background: url('images/cde_20.png') no-repeat;
 }
-
+/* START STTOOLS ICONS */
+.fileBrowserColumn .body .file .icon.adhoc,
+.fileBrowserColumn .body .file .adhoc {
+	background-image: url('images/sttool_adhoc_48.png');
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+}
+.fileBrowserColumn .body .file .icon.sta,
+.fileBrowserColumn .body .file .sta {
+	background-image: url('images/sttool_sta_48.png');
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+}
+.fileBrowserColumn .body .file .icon.std,
+.fileBrowserColumn .body .file .std {
+	background-image: url('images/sttool_std_48.png');
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+}
+.fileBrowserColumn .body .file .icon.xjpivot,
+.fileBrowserColumn .body .file .xjpivot {
+	background-image: url('images/sttool_xjpivot_48.png');
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+}
+/* END STTOOLS ICONS */
 .fileBrowserColumn .body div.folder.open > div.element > div.expandCollapse {
 	background: url('images/arrow_open.png') no-repeat;
 	background-position: 0px 3px;
