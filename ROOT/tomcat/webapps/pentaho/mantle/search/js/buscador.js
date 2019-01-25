@@ -332,7 +332,7 @@ function updateHomeGlobalSetting() {
 	$.ajax({
 		type: 'POST',
 		data: JSON.stringify(homeItems),
-		url: '../../plugin/global-settings/api/home-items',
+		url: '../../plugin/global-user-settings/api/home-items',
 		dataType: 'json',
 		async: false,
 		success: function() {
