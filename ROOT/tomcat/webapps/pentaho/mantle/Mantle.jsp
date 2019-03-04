@@ -230,6 +230,15 @@ font-size: 20px;
     padding: 13px 20px;
     border-radius: 0px;
 }
+#menu_sidebar .stadmin:hover{
+    background: #4B4B4B;
+    color:white;
+    border-radius: 0px !important;
+    -webkit-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  transition: all .2s ease;    
+  }
 #menu_sidebar .new_olap:hover{
     background: #b0b916;
     color:white;

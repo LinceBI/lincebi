@@ -33,13 +33,13 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-lg fa-fw fa-cog"></i>
+							<i class="icon icon-stadmin"></i>
 						</a>
 						<ul class="dropdown-menu">
 							<% if (canAdminister || true /* Enabled for demo */ ) { %>
 							<li>
 								<a id="stadmin-perspective-btn" href="#">
-									<i class="fa fa-fw fa-wrench"></i>
+									<i class="icon icon-stadmin"></i>
 									STAdmin
 								</a>
 							</li>
@@ -144,6 +144,10 @@
 
 <!-- Styles -->
 <style>
+	#pucHeader {
+		font-size: 16px;
+	}
+
 	#pucHeader .dropdown > .dropdown-menu .toggle > a {
 		color: #333;
 		background-color: transparent;

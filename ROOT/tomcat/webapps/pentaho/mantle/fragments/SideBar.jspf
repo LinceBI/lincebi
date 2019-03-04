@@ -9,8 +9,8 @@
 					<% if (canAdminister || true /* Enabled for demo */ ) { %>
 						<li>
 							<a href="#" onclick="window.parent.mantle_setPerspective('stadmin.perspective')">
-								<div class="btn btn-large btn-block">
-									<i class="fa fa-fw fa-wrench"></i> STAdmin
+								<div class="btn btn-large btn-block stadmin">
+									<img src="mantle/themes/stratebi/images/stadmin_icon_white.svg"> STAdmin
 								</div>
 							</a>
 						</li>
