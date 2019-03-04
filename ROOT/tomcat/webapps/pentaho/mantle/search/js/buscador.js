@@ -958,6 +958,13 @@ function setHeader(tag, onlyTags) {
 
 	if (onlyTags) {
 		var tagValue = tag.toLowerCase().replace(' ', '-');
+
+		var imageNode = tagHeader.querySelector('#tag-header .backgroundBI > img');
+		imageNode.title = 'Big Data ' + tag + ' - BI ' + tag;
+		imageNode.src = '../themes/stratebi/images/verticales/' + tagValue + '.png';
+
+		/*
+		var tagValue = tag.toLowerCase().replace(' ', '-');
 		var tagClass = tagValue + '-tag';
 		var backgroundClass = tagValue + '-background';
 
@@ -973,5 +980,6 @@ function setHeader(tag, onlyTags) {
 		subtitleNode.className = '';
 		subtitleNode.classList.add('subtitleBI');
 		subtitleNode.classList.add(tagClass);
+		*/
 	}
 }

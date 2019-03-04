@@ -348,13 +348,13 @@
 		<!-- Tag header -->
 		<div id="tag-header">
 			<div class="backgroundBI">
-					<img class="imageBI" title="Big Data - BI" />
+				<img class="imageBI" title="Big Data - BI" />
 			</div>
-			<div>
+			<!--div>
 				<h5 class="titleBI">BI - Big Data Analytics<br>
 					<span class="subtitleBI"></span>
 				</h5>
-			</div>
+			</div-->
 		</div>
 
 		<!-- Search Header -->

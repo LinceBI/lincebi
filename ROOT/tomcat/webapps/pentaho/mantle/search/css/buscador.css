@@ -507,6 +507,7 @@ span[data-role='remove']:after {
 	justify-content: center;
 	align-items: center;
 	padding: 10px;
+	background: #fff;
 }
 
 .backgroundBI {
@@ -521,7 +522,7 @@ span[data-role='remove']:after {
 }
 
 .backgroundBI > img {
-	width: 75%;
+	width: 100%;
 }
 
 .titleBI {
