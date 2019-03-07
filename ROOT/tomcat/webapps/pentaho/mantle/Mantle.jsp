@@ -181,18 +181,20 @@
     $( document ).ready(function() {
 
     (function() {
-      var buscar = function() {
-          window.parent.mantle_setPerspective('search.perspective');
-          var palabra = $('#buscador', window.parent.document)[0].value;
-          var contentWindow = document.getElementById('search.perspective').contentWindow;
-          if (contentWindow.accion_buscar) contentWindow.accion_buscar(palabra);
-          document.querySelectorAll('#tag-dropdown a').forEach((element) => {
-            element.classList.remove('active');
-          });
-          document.querySelector('#tag-button > .tag-label').innerHTML = '<%= customProperties.getString("categories") %>';
+      var search = function() {
+          window.parent.mantle_setPerspective('stsearch.perspective');
+          var contentWindow = document.getElementById('stsearch.perspective').contentWindow;
+          var searchTerms = $('#buscador', window.parent.document)[0].value;
+
+          var loadSearchParams = function () {
+            contentWindow.location.search = 'search-terms=' + encodeURIComponent(searchTerms);
+          }
+
+          if (contentWindow.location.href.includes('/stsearch/')) loadSearchParams();
+          else contentWindow.addEventListener('DOMContentLoaded', loadSearchParams);
       };
-      $('#buscar').on('click', buscar);
-      $('#buscador').on('keyup', function(e) { if (e.keyCode == 13) buscar(); });
+      $('#buscar').on('click', search);
+      $('#buscador').on('keyup', function(e) { if (e.keyCode == 13) search(); });
     })();
 
   });

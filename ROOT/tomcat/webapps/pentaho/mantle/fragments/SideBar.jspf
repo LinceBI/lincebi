@@ -83,7 +83,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" onclick="window.parent.mantle_setPerspective('search.perspective')">
+					<a href="#" onclick="window.parent.mantle_setPerspective('stsearch.perspective')">
 						<i class="fa fa-search"></i>
 					</a>
 				</li>

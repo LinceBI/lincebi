@@ -220,27 +220,6 @@
 		xhr.send(isActive ? 'true' : 'false');
 	}
 
-	function searchTag() {
-		var isActive = this.classList.contains('active');
-		var searchPerspective = document.getElementById('search.perspective');
-		var tagButtonLabel = document.querySelector('#tag-button > .tag-label');
-
-		window.parent.mantle_setPerspective('search.perspective');
-
-		if (!isActive) {
-			document.querySelectorAll('#tag-dropdown a').forEach((element) => {
-				element.classList.remove('active');
-			});
-			this.classList.add('active');
-
-			tagButtonLabel.innerHTML = this.innerHTML;
-
-			if (searchPerspective && 'contentWindow' in searchPerspective) {
-				searchPerspective.contentWindow.accion_buscar(this.dataset.tag, true);
-			}
-		}
-	}
-
 	document.querySelector('#stadmin-perspective-btn').addEventListener('click', function () {
 		window.parent.mantle_setPerspective('stadmin.perspective');
 	});
@@ -249,8 +228,41 @@
 
 	document.querySelector('#show-hidden-files-toggle').addEventListener('click', toggleSettingHandler);
 
-	document.querySelectorAll('#tag-dropdown a').forEach((element) => {
-		element.addEventListener('click', searchTag);
-	});
+	(function() {
+		var searchTag = function() {
+			window.parent.mantle_setPerspective('stsearch.perspective');
+			var contentWindow = document.getElementById('stsearch.perspective').contentWindow;
+
+			var tag = this.dataset.tag;
+			var bannerTitle = 'Big Data ' + tag + ' - BI ' + tag;
+			var bannerSrcBase = '../../../../mantle/themes/stratebi/images/verticales/';
+			var bannerSrc = bannerSrcBase + tag.toLowerCase().replace(' ', '-') + '.png';
+			var searchTerms = tag;
+
+			var loadSearchParams = function () {
+				contentWindow.location.search = [
+					'enable-banner=true',
+					'enable-filters=false',
+					'enable-file-tags=false',
+					'enable-file-edit=false',
+					'enable-file-home=false',
+					'enable-file-favorite=false',
+					'banner-title=' + encodeURIComponent(bannerTitle),
+					'banner-src=' + encodeURIComponent(bannerSrc),
+					'search-terms=' + encodeURIComponent(searchTerms),
+					'search-in-title=false',
+					'search-in-description=false',
+					'search-in-tags=true'
+				].join('&');
+			}
+
+			if (contentWindow.location.href.includes('/stsearch/')) loadSearchParams();
+			else contentWindow.addEventListener('DOMContentLoaded', loadSearchParams);
+		};
+
+		document.querySelectorAll('#tag-dropdown a').forEach((element) => {
+			element.addEventListener('click', searchTag);
+		});
+	})();
 })();
 </script>
