@@ -11,7 +11,6 @@
 	<perspective id="stadmin.perspective" title="STAdmin" layout-priority="-1" resourcebundle="content/default-plugin/resources/messages/messages" content-url="mantle/stadmin"/>
 	<perspective id="browser.perspective" title="${browse}" layout-priority="-1" required-security-action="org.pentaho.repository.read" resourcebundle="content/default-plugin/resources/messages/messages" content-url="mantle/browser"/>
 	<perspective id="administration.perspective" title="ToolBox" layout-priority="-1" resourcebundle="content/default-plugin/resources/messages/messages" content-url="mantle/administration"/>
-	<perspective id="search.perspective" title="Buscador" layout-priority="-1" resourcebundle="content/default-plugin/resources/messages/messages" content-url="mantle/search"/>
 	<perspective id="favorites.perspective" title="Favoritos" layout-priority="-1" resourcebundle="content/default-plugin/resources/messages/messages" content-url="mantle/favorites"/>
 	<perspective id="recents.perspective" title="Recientes" layout-priority="-1" resourcebundle="content/default-plugin/resources/messages/messages" content-url="mantle/recents"/>
 	<perspective id="opened.perspective" title="${opened}" layout-priority="-1" resourcebundle="content/default-plugin/resources/messages/messages">
