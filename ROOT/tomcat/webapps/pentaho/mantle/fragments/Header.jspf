@@ -11,11 +11,12 @@
 					<span class="icon-bar"></span>
 				</button>
 				<span class="navbar-brand">
-					<img alt="Stratebi" src="mantle/themes/stratebi/images/logo_stratebi.svg" style="position: relative; top: -10px; height: 45px;">
-				</span>
-				<span class="navbar-brand hidden-md hidden-sm hidden-xs">
+					<img id="mantle_avatar" src="mantle/themes/stratebi/images/avatar_placeholder.png">
 					<%= customProperties.getString("welcome") %>
 					<span id="mantle_username"><%= userName %></span>
+				</span>
+				<span class="navbar-brand navbar-brand-center hidden-xs hidden-sm hidden-md">
+					<img alt="Stratebi" src="mantle/themes/stratebi/images/logo_stratebi.svg" style="position: relative; top: -10px; height: 45px;">
 				</span>
 			</div>
 
@@ -34,6 +35,7 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="icon icon-stadmin"></i>
+							<span class="hidden-sm hidden-md hidden-lg">Opciones</span>
 						</a>
 						<ul class="dropdown-menu">
 							<% if (canAdminister || true /* Enabled for demo */ ) { %>
@@ -148,6 +150,18 @@
 		font-size: 16px;
 	}
 
+	#pucHeader .navbar {
+		position: relative;
+	}
+
+	#pucHeader .navbar-brand-center {
+		position: absolute;
+		left: 50%;
+		/* 50% of logo width */
+		margin-left: -80px !important;
+		display: block;
+	}
+
 	#pucHeader .dropdown > .dropdown-menu .toggle > a {
 		color: #333;
 		background-color: transparent;
@@ -191,6 +205,14 @@
 
 	#tag-button .menu-icon {
 		width: 19px;
+	}
+
+	#mantle_avatar {
+		display: inline-block;
+		margin: -23px 10px -23px -10px;
+		padding: 2px;
+		height: 46px;
+		width: 46px;
 	}
 </style>
 
