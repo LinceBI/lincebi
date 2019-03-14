@@ -482,7 +482,9 @@ font-size: 20px;
   color: #dddddd;
 }
 #cssmenu .btn.btn-large.btn-block img {
+    margin-right: 6px;
     height: 18px;
+    vertical-align: top;
 }
 #cssmenu .btn{
 text-align: left;
