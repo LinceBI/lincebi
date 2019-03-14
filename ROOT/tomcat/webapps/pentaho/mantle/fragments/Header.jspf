@@ -10,13 +10,13 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
+				<span class="navbar-brand hidden-xs hidden-sm hidden-md">
+					<img alt="Stratebi" src="mantle/themes/stratebi/images/logo_stratebi.svg" style="position: relative; top: -10px; height: 45px;">
+				</span>
 				<span class="navbar-brand">
-					<img id="mantle_avatar" src="mantle/themes/stratebi/images/avatar_placeholder.png">
 					<%= customProperties.getString("welcome") %>
 					<span id="mantle_username"><%= userName %></span>
-				</span>
-				<span class="navbar-brand navbar-brand-center hidden-xs hidden-sm hidden-md">
-					<img alt="Stratebi" src="mantle/themes/stratebi/images/logo_stratebi.svg" style="position: relative; top: -10px; height: 45px;">
+					<img id="mantle_avatar" src="mantle/themes/stratebi/images/avatar_placeholder_<%= userName %>.png">
 				</span>
 			</div>
 
@@ -181,7 +181,7 @@
 
 	#tag-button {
 		width: 100%;
-		min-width: 200px;
+		min-width: 150px;
 	}
 
 	#tag-dropdown {
@@ -209,7 +209,7 @@
 
 	#mantle_avatar {
 		display: inline-block;
-		margin: -23px 10px -23px -10px;
+		margin: -23px 10px -23px 10px;
 		padding: 2px;
 		height: 46px;
 		width: 46px;
