@@ -16,7 +16,7 @@
 				<span class="navbar-brand">
 					<%= customProperties.getString("welcome") %>
 					<span id="mantle_username"><%= userName %></span>
-					<img id="mantle_avatar" src="mantle/themes/stratebi/images/avatar_placeholder_<%= userName %>.png">
+					<img id="mantle_avatar" src="">
 				</span>
 			</div>
 
@@ -39,6 +39,12 @@
 						</a>
 						<ul class="dropdown-menu">
 							<% if (canAdminister || true /* Enabled for demo */ ) { %>
+							<li>
+								<a id="stprofile-perspective-btn" href="#">
+									<i class="icon icon-stprofile"></i>
+									STProfile
+								</a>
+							</li>
 							<li>
 								<a id="stadmin-perspective-btn" href="#">
 									<i class="icon icon-stadmin"></i>
@@ -212,7 +218,8 @@
 		margin: -23px 10px -23px 10px;
 		padding: 2px;
 		height: 46px;
-		width: 46px;
+		width: auto;
+		cursor: pointer;
 	}
 </style>
 
@@ -241,6 +248,39 @@
 
 		xhr.send(isActive ? 'true' : 'false');
 	}
+
+	(function() {
+		var stprofileBtnEl = document.getElementById('stprofile-perspective-btn');
+		var avatarImgEl = document.getElementById('mantle_avatar');
+
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', CONTEXT_PATH + 'api/user-settings/avatar', true);
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				avatarImgEl.src = xhr.responseText;
+			}
+		}
+		xhr.send();
+
+		var clickHandler = function () {
+			window.parent.mantle_setPerspective('stprofile.perspective');
+			var contentWindow = document.getElementById('stprofile.perspective').contentWindow;
+			if (!contentWindow['stprofile.form.save-added']) {
+				contentWindow['stprofile.form.save-added'] = true;
+				contentWindow.addEventListener('stprofile.form.save', function (event) {
+					var avatar = event.detail.results.find(function (p) { return p[0] === 'avatar'; });
+					if (avatar) avatarImgEl.src = avatar[1];
+				});
+			}
+		};
+		stprofileBtnEl.addEventListener('click', clickHandler);
+		avatarImgEl.addEventListener('click', clickHandler);
+
+		avatarImgEl.addEventListener('error', function () {
+			// Smallest valid PNG image
+			this.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQAB';
+		})
+	})();
 
 	document.querySelector('#stadmin-perspective-btn').addEventListener('click', function () {
 		window.parent.mantle_setPerspective('stadmin.perspective');

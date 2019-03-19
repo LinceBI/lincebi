@@ -1382,6 +1382,10 @@ a:hover {
 	content: '';
 }
 
+.icon.icon-stprofile::before {
+	background-image: url('images/stprofile_icon.svg');
+}
+
 .icon.icon-stadmin::before {
 	background-image: url('images/stadmin_icon.svg');
 }
