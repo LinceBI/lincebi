@@ -12,6 +12,10 @@
 /ROOT/tomcat/webapps/pentaho/*
 !/ROOT/tomcat/webapps/pentaho/
 
+/ROOT/tomcat/webapps/pentaho/mantle/*
+!/ROOT/tomcat/webapps/pentaho/mantle/
+!/ROOT/tomcat/webapps/pentaho/mantle/MantleBridge.jsp
+
 /ROOT/tomcat/webapps/pentaho/WEB-INF/*
 !/ROOT/tomcat/webapps/pentaho/WEB-INF/
 !/ROOT/tomcat/webapps/pentaho/WEB-INF/web.xml
