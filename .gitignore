@@ -2,3 +2,16 @@
 
 /ROOT/*
 !/ROOT/
+
+/ROOT/tomcat/*
+!/ROOT/tomcat/
+
+/ROOT/tomcat/webapps/*
+!/ROOT/tomcat/webapps/
+
+/ROOT/tomcat/webapps/pentaho/*
+!/ROOT/tomcat/webapps/pentaho/
+
+/ROOT/tomcat/webapps/pentaho/WEB-INF/*
+!/ROOT/tomcat/webapps/pentaho/WEB-INF/
+!/ROOT/tomcat/webapps/pentaho/WEB-INF/web.xml
