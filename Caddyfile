@@ -1,0 +1,16 @@
+http://*:2015 {
+	# Pentaho BI Server
+	proxy /pentaho 127.0.0.1:8080 {
+		transparent
+	}
+	# Webpack Dev Server
+	proxy /pentaho/Home 127.0.0.1:9000 {
+		without /pentaho/Home
+		transparent
+	}
+	redir 302 {
+		if {path} is /
+		/ /pentaho
+	}
+	log / stdout
+}

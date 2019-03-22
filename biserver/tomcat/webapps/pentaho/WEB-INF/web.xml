@@ -276,7 +276,7 @@
 
   <servlet>
     <servlet-name>Home</servlet-name>
-    <jsp-file>/mantle/Mantle.jsp</jsp-file>
+    <jsp-file>/customization/index.html</jsp-file>
   </servlet>
 
   <servlet>

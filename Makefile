@@ -1,89 +1,136 @@
 #!/usr/bin/make -f
 
-MKFILE_RELPATH := $(shell printf -- '%s' '$(MAKEFILE_LIST)' | sed 's|^\ ||')
-MKFILE_ABSPATH := $(shell readlink -f -- '$(MKFILE_RELPATH)')
-MKFILE_DIR := $(shell dirname -- '$(MKFILE_ABSPATH)')
+SHELL := /bin/sh
+.SHELLFLAGS = -eu -c
 
-DIST_DIR := $(MKFILE_DIR)/dist
+DOCKER := $(shell command -v docker 2>/dev/null)
+GIT := $(shell command -v git 2>/dev/null)
+JQ := $(shell command -v jq 2>/dev/null)
+MVN := $(shell command -v mvn 2>/dev/null)
+NPM := $(shell command -v npm 2>/dev/null)
 
-DEPLOY_USER ?= user
-DEPLOY_PASS ?= password
-DEPLOY_URL_BASE ?= https://repo.stratebi.com
-DEPLOY_URL ?= $(DEPLOY_URL_BASE)/repository/stratebi-raw/customizations/sttools-customization-root.tgz
+PACKAGE_NAME := $(shell '$(JQ)' -r '.name' ./package.json)
+PACKAGE_VERSION := $(shell '$(JQ)' -r '.version' ./package.json)
+PACKAGE_VERSION_EXTRA :=
+
+MAVEN_GROUP := com.stratebi.pentaho
+MAVEN_SNAPSHOT_REPOSITORY_ID := stratebi-snapshot
+MAVEN_SNAPSHOT_REPOSITORY_URL := https://repo.stratebi.com/repository/stratebi-mvn-snapshot
+MAVEN_RELEASE_REPOSITORY_ID := stratebi-releases
+MAVEN_RELEASE_REPOSITORY_URL := https://repo.stratebi.com/repository/stratebi-mvn-releases
+
+DIST_DIR := ./dist
+DIST_BISERVER_DIR := $(DIST_DIR)/biserver
+DIST_DEV_DIR := $(DIST_DIR)/dev
+DIST_PROD_DIR := $(DIST_DIR)/prod
+DIST_DEV_PACKAGE := $(DIST_DIR)/$(PACKAGE_NAME)-dev.tgz
+DIST_PROD_PACKAGE := $(DIST_DIR)/$(PACKAGE_NAME)-prod.tgz
+
+##################################################
+## "all" target
+##################################################
 
 .PHONY: all
-all: format build
+all: build
 
-.PHONY: format
-format: format-encoding format-xml format-json format-js format-css
+##################################################
+## "start-*" targets
+##################################################
 
-.PHONY: format-encoding
-format-encoding:
-	@find '$(MKFILE_DIR)/ROOT/' -type f \
-		-exec sh -c 'if ! git check-ignore -q "{}" && grep -qI "" "{}"; then \
-			iconv -f "$$(uchardet "{}")" -t UTF-8 -o "{}.tmp" "{}" 2>/dev/null && mv -f "{}.tmp" "{}"; \
-			dos2unix "{}"; \
-		fi' ';'
+.PHONY: start-caddy
+start-caddy:
+	'$(DOCKER)' run --interactive --tty --rm --network host \
+		--mount type=bind,src='$(MKFILE_DIR)'/Caddyfile,dst=/etc/caddy/Caddyfile,ro \
+		hectormolinero/caddy:latest
 
-.PHONY: format-xml
-format-xml:
-	@XMLLINT_INDENT="$$(printf '\t')" \
-	find '$(MKFILE_DIR)/ROOT/' -type f \
-		'(' -not -iregex '.*\.min\.[a-z0-9]+' ')' \
-		'(' -iname '*.xml' -or -iname '*.wcdf' ')' \
-		-exec sh -c 'if ! git check-ignore -q "{}" && grep -qI "" "{}"; then \
-			xmllint --format --noblanks --output "{}" "{}"; \
-			printf "%s\n" "{}"; \
-		fi' ';'
+.PHONY: start-webpack
+start-webpack:
+	'$(NPM)' run serve
 
-.PHONY: format-json
-format-json:
-	@find '$(MKFILE_DIR)/ROOT/' -type f \
-		'(' -not -iregex '.*\.min\.[a-z0-9]+' ')' \
-		'(' -iname '*.json' -or -iname '*.cdfde' ')' \
-		-exec sh -c 'if ! git check-ignore -q "{}" && grep -qI "" "{}"; then \
-			prettier --write --parser json "{}"; \
-		fi' ';'
+.PHONY: start-pentaho
+start-pentaho:
+	(cd ./biserver/ \
+		&& export CATALINA_PID="$$(readlink -f .)/catalina.pid" \
+		&& (pkill --pidfile "$${CATALINA_PID}" && sleep 5 ||:) \
+		&& rm -rf ./pentaho-solutions/system/karaf/caches/* \
+		&& rm -rf ./tomcat/logs/* ./tomcat/temp/* ./tomcat/work/* \
+		&& ./start-pentaho.sh && tail -f ./tomcat/logs/catalina.out)
 
-.PHONY: format-js
-format-js:
-	@find '$(MKFILE_DIR)/ROOT/' -type f \
-		'(' -not -iregex '.*\.min\.[a-z0-9]+' ')' \
-		'(' -iname '*.js' ')' \
-		-exec sh -c 'if ! git check-ignore -q "{}" && grep -qI "" "{}"; then \
-			prettier --write --parser babylon "{}"; \
-		fi' ';'
-
-.PHONY: format-css
-format-css:
-	@find '$(MKFILE_DIR)/ROOT/' -type f \
-		'(' -not -iregex '.*\.min\.[a-z0-9]+' ')' \
-		'(' -iname '*.css' ')' \
-		-exec sh -c 'if ! git check-ignore -q "{}" && grep -qI "" "{}"; then \
-			prettier --write --parser css "{}"; \
-		fi' ';'
+##################################################
+## "build-*" target
+##################################################
 
 .PHONY: build
-build:
-	@mkdir -p '$(DIST_DIR)'
-	@(cd '$(MKFILE_DIR)/ROOT/' \
-		&& STASH=$$(git stash create) && STASH=$${STASH:=HEAD} \
-		&& git archive \
-			--verbose \
-			--format=tar.gz \
-			--output '$(DIST_DIR)/sttools-customization-root.tgz' \
-			"$${STASH}" ./ \
-		&& git gc --prune=now)
+build: build-dev
+
+.PHONY: build-dev
+build-dev: $(DIST_DEV_PACKAGE)
+
+.PHONY: build-prod
+build-prod: $(DIST_PROD_PACKAGE)
+
+$(DIST_BISERVER_DIR):
+	(cd ./biserver/ \
+		&& OUT='$(shell readlink -m '$@')' \
+		&& STASH=$$('$(GIT)' stash create) && STASH=$${STASH:=HEAD} \
+		&& rm -rf "$${OUT}" && mkdir -p "$${OUT}" \
+		&& '$(GIT)' archive --format=tar "$${STASH}" ./ | tar -xf- -C "$${OUT}" \
+		&& '$(GIT)' gc --prune=now)
+
+$(DIST_DEV_DIR):
+	@'$(NPM)' run lint
+	@'$(NPM)' run build:dev
+
+$(DIST_PROD_DIR):
+	@'$(NPM)' run lint
+	@'$(NPM)' run build:prod
+
+$(DIST_DEV_PACKAGE): $(DIST_BISERVER_DIR) $(DIST_DEV_DIR)
+	tar -czf '$@' \
+		--exclude=biserver/tomcat/webapps/pentaho/customization \
+		--transform='s|^biserver||;s|^dev|tomcat/webapps/pentaho/customization|' \
+		--directory='$(DIST_DIR)' biserver/ dev/
+
+$(DIST_PROD_PACKAGE): $(DIST_BISERVER_DIR) $(DIST_PROD_DIR)
+	tar -czf '$@' \
+		--exclude=biserver/tomcat/webapps/pentaho/customization \
+		--transform='s|^biserver||;s|^prod|tomcat/webapps/pentaho/customization|' \
+		--directory='$(DIST_DIR)' biserver/ prod/
+
+##################################################
+## "deploy-*" target
+##################################################
 
 .PHONY: deploy
-deploy:
-	@curl \
-		--verbose \
-		--user '$(DEPLOY_USER):$(DEPLOY_PASS)' \
-		--header 'Content-Type: application/gzip' \
-		--upload-file '$(DIST_DIR)/sttools-customization-root.tgz' \
-		'$(DEPLOY_URL)' 2>&1 >/dev/null | grep -v '> Authorization: '
+deploy: deploy-dev
+
+.PHONY: deploy-dev
+deploy-dev: $(DIST_DEV_PACKAGE)
+	mvn deploy:deploy-file \
+		-Dpackaging=tar.gz \
+		-Dfile='$(DIST_DEV_PACKAGE)' \
+		-DgroupId='$(MAVEN_GROUP)' \
+		-DartifactId='$(PACKAGE_NAME)' \
+		-Dversion='$(PACKAGE_VERSION)$(PACKAGE_VERSION_EXTRA)-SNAPSHOT' \
+		-DrepositoryId=$(MAVEN_SNAPSHOT_REPOSITORY_ID) \
+		-Durl='$(MAVEN_SNAPSHOT_REPOSITORY_URL)'
+
+.PHONY: deploy-prod
+deploy-prod: $(DIST_PROD_PACKAGE)
+	mvn deploy:deploy-file \
+		-Dpackaging=tar.gz \
+		-Dfile='$(DIST_PROD_PACKAGE)' \
+		-DgroupId='$(MAVEN_GROUP)' \
+		-DartifactId='$(PACKAGE_NAME)' \
+		-Dversion='$(PACKAGE_VERSION)$(PACKAGE_VERSION_EXTRA)' \
+		-DrepositoryId='$(MAVEN_RELEASE_REPOSITORY_ID)' \
+		-Durl='$(MAVEN_RELEASE_REPOSITORY_URL)'
+
+##################################################
+## "clean" target
+##################################################
 
 .PHONY: clean
 clean:
-	rm -rf '$(DIST_DIR)'
+	rm -rf $(addprefix ', $(addsuffix ', $(DIST_BISERVER_DIR) $(DIST_DEV_DIR) $(DIST_PROD_DIR) $(DIST_DEV_PACKAGE) $(DIST_PROD_PACKAGE)))
+	if [ -d '$(DIST_DIR)' ] && [ -z "$$(ls -A '$(DIST_DIR)')" ]; then rmdir '$(DIST_DIR)'; fi

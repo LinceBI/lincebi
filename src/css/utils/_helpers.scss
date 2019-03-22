@@ -1,0 +1,9 @@
+/* "env" variable is defined dynamically by sass-loader */
+$env: development !default;
+
+/* Hide element in production builds */
+@if $env == 'production' {
+	.hide-in-production:not(.godmode) {
+		display: none !important;
+	}
+}

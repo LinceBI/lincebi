@@ -2,24 +2,74 @@ stages:
   - build
   - deploy
 
-build:
+.develop_variables: &develop_variables
+  MAVEN_OPTS: -Dmaven.repo.local="${CI_PROJECT_DIR}"/.m2
+  PACKAGE_VERSION_EXTRA: .${CI_COMMIT_REF_SLUG}
+
+.production_variables: &production_variables
+  MAVEN_OPTS: -Dmaven.repo.local="${CI_PROJECT_DIR}"/.m2
+
+.global_cache_paths:
+  - &global_cache_paths
+    .m2/
+    node_modules/
+
+.release_regex:
+  - &release_regex
+    /^v\d+\.\d+\.\d+(?:-[\dA-Za-z-.]+)?\+PE\d+(?:\.[\dA-Za-z-]+)?$/
+
+build:develop:
   stage: build
+  variables:
+    <<: *develop_variables
   script:
-    - make
-  tags:
-    - nix*
+    - make build-dev
   artifacts:
     expire_in: 15 mins
     paths:
-      - dist/sttools-customization-root.tgz
+      - dist/
+  cache:
+    paths:
+      - *global_cache_paths
+  except:
+    - *release_regex
 
-deploy:
-  stage: deploy
-  only:
-    - master
-  tags:
-    - nix*
-  dependencies:
-    - build
+build:production:
+  stage: build
+  variables:
+    <<: *production_variables
   script:
-    - make deploy
+    - make build-prod
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - dist/
+  cache:
+    paths:
+      - *global_cache_paths
+  only:
+    - *release_regex
+
+deploy:develop:
+  stage: deploy
+  variables:
+    <<: *develop_variables
+  script:
+    - make deploy-dev
+  cache:
+    paths:
+      - *global_cache_paths
+  except:
+    - *release_regex
+
+deploy:production:
+  stage: deploy
+  variables:
+    <<: *production_variables
+  script:
+    - make deploy-prod
+  cache:
+    paths:
+      - *global_cache_paths
+  only:
+    - *release_regex

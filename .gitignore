@@ -1,21 +1,28 @@
+node_modules/
+npm-debug.log*
+
 /dist/
 
-/ROOT/*
-!/ROOT/
+/biserver/*
+!/biserver/
 
-/ROOT/tomcat/*
-!/ROOT/tomcat/
+/biserver/tomcat/*
+!/biserver/tomcat/
 
-/ROOT/tomcat/webapps/*
-!/ROOT/tomcat/webapps/
+/biserver/tomcat/webapps/*
+!/biserver/tomcat/webapps/
 
-/ROOT/tomcat/webapps/pentaho/*
-!/ROOT/tomcat/webapps/pentaho/
+/biserver/tomcat/webapps/pentaho/*
+!/biserver/tomcat/webapps/pentaho/
 
-/ROOT/tomcat/webapps/pentaho/mantle/*
-!/ROOT/tomcat/webapps/pentaho/mantle/
-!/ROOT/tomcat/webapps/pentaho/mantle/MantleBridge.jsp
+/biserver/tomcat/webapps/pentaho/customization/*
+!/biserver/tomcat/webapps/pentaho/customization/
+!/biserver/tomcat/webapps/pentaho/customization/index.html
 
-/ROOT/tomcat/webapps/pentaho/WEB-INF/*
-!/ROOT/tomcat/webapps/pentaho/WEB-INF/
-!/ROOT/tomcat/webapps/pentaho/WEB-INF/web.xml
+/biserver/tomcat/webapps/pentaho/mantle/*
+!/biserver/tomcat/webapps/pentaho/mantle/
+!/biserver/tomcat/webapps/pentaho/mantle/MantleBridge.jsp
+
+/biserver/tomcat/webapps/pentaho/WEB-INF/*
+!/biserver/tomcat/webapps/pentaho/WEB-INF/
+!/biserver/tomcat/webapps/pentaho/WEB-INF/web.xml

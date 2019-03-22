@@ -1,0 +1,72 @@
+{
+  "private": true,
+  "name": "stratebi-biserver-customization",
+  "version": "1.0.0+PE81",
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "lint": "eslint ./",
+    "build": "npm run build:dev",
+    "build:dev": "webpack --display-reasons",
+    "build:prod": "webpack --display-reasons --mode=production",
+    "serve": "npm run serve:dev",
+    "serve:dev": "webpack-dev-server",
+    "serve:prod": "webpack-dev-server --mode=production"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "~5.8.0",
+    "@fortawesome/fontawesome-svg-core": "~1.2.16",
+    "@fortawesome/free-brands-svg-icons": "~5.8.0",
+    "@fortawesome/free-regular-svg-icons": "~5.8.0",
+    "@fortawesome/free-solid-svg-icons": "~5.8.0",
+    "bootstrap": "~4.3.1",
+    "jquery": "~3.3.1",
+    "lodash": "~4.17.11",
+    "popper.js": "~1.14.7",
+    "unfetch": "~4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "~7.4.0",
+    "@babel/preset-env": "~7.4.2",
+    "autoprefixer": "~9.5.0",
+    "babel-loader": "~8.0.5",
+    "chai": "~4.2.0",
+    "clean-webpack-plugin": "~2.0.1",
+    "copy-webpack-plugin": "~5.0.1",
+    "css-loader": "~2.1.1",
+    "cssnano": "~4.1.10",
+    "eslint": "~5.15.3",
+    "eslint-config-xo": "~0.26.0",
+    "eslint-config-zant": "~2.1.0",
+    "eslint-plugin-import": "~2.16.0",
+    "eslint-plugin-unicorn": "~7.1.0",
+    "exports-loader": "~0.7.0",
+    "html-webpack-plugin": "~3.2.0",
+    "mini-css-extract-plugin": "~0.5.0",
+    "mocha": "~6.0.2",
+    "node-sass": "~4.11.0",
+    "postcss-loader": "~3.0.0",
+    "sass-loader": "~7.1.0",
+    "svg-url-loader": "~2.3.2",
+    "svgo-loader": "~2.2.0",
+    "terser-webpack-plugin": "~1.2.3",
+    "webpack": "~4.29.6",
+    "webpack-cli": "~3.3.0",
+    "webpack-dev-server": "~3.2.1"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "browserslist": [
+    "Firefox ESR",
+    "Last 2 Chrome versions",
+    "Last 2 Edge versions",
+    "Last 2 Firefox versions",
+    "Last 2 iOS versions",
+    "Last 2 Opera versions",
+    "Last 2 Safari versions"
+  ]
+}
