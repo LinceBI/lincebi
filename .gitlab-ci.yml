@@ -3,11 +3,11 @@ stages:
   - deploy
 
 .develop_variables: &develop_variables
-  MAVEN_OPTS: -Dmaven.repo.local="${CI_PROJECT_DIR}"/.m2
+  MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2
   PACKAGE_VERSION_EXTRA: ${CI_COMMIT_REF_SLUG}
 
 .production_variables: &production_variables
-  MAVEN_OPTS: -Dmaven.repo.local="${CI_PROJECT_DIR}"/.m2
+  MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2
 
 .global_cache_paths:
   - &mvn_cache_path ./.m2/
