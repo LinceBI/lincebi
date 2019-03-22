@@ -22,6 +22,8 @@ build:develop:
   stage: build
   variables:
     <<: *develop_variables
+  before_script:
+    - npm install
   script:
     - make build-dev
   artifacts:
@@ -38,6 +40,8 @@ build:production:
   stage: build
   variables:
     <<: *production_variables
+  before_script:
+    - npm install
   script:
     - make build-prod
   artifacts:
