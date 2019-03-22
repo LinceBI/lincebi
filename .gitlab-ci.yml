@@ -10,13 +10,11 @@ stages:
   MAVEN_OPTS: -Dmaven.repo.local="${CI_PROJECT_DIR}"/.m2
 
 .global_cache_paths:
-  - &global_cache_paths
-    .m2/
-    node_modules/
+  - &mvn_cache_path ./.m2/
+  - &npm_cache_path ./node_modules/
 
-.release_regex:
-  - &release_regex
-    /^v\d+\.\d+\.\d+(?:-[\dA-Za-z-.]+)?\+PE\d+(?:\.[\dA-Za-z-]+)?$/
+.ref_patterns:
+  - &release_regex /^v\d+\.\d+\.\d+(?:-[\dA-Za-z-.]+)?\+PE\d+(?:\.[\dA-Za-z-]+)?$/
 
 build:develop:
   stage: build
@@ -32,7 +30,8 @@ build:develop:
       - dist/
   cache:
     paths:
-      - *global_cache_paths
+      - *mvn_cache_path
+      - *npm_cache_path
   except:
     - *release_regex
 
@@ -50,7 +49,8 @@ build:production:
       - dist/
   cache:
     paths:
-      - *global_cache_paths
+      - *mvn_cache_path
+      - *npm_cache_path
   only:
     - *release_regex
 
@@ -62,7 +62,8 @@ deploy:develop:
     - make deploy-dev
   cache:
     paths:
-      - *global_cache_paths
+      - *mvn_cache_path
+      - *npm_cache_path
   except:
     - *release_regex
 
@@ -74,6 +75,7 @@ deploy:production:
     - make deploy-prod
   cache:
     paths:
-      - *global_cache_paths
+      - *mvn_cache_path
+      - *npm_cache_path
   only:
     - *release_regex
