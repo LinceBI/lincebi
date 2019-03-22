@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 SHELL := /bin/sh
-.SHELLFLAGS = -eu -c
+.SHELLFLAGS := -eu -c
 
 DOCKER := $(shell command -v docker 2>/dev/null)
 GIT := $(shell command -v git 2>/dev/null)
@@ -9,15 +9,15 @@ JQ := $(shell command -v jq 2>/dev/null)
 MVN := $(shell command -v mvn 2>/dev/null)
 NPM := $(shell command -v npm 2>/dev/null)
 
-PACKAGE_NAME := $(shell '$(JQ)' -r '.name' ./package.json)
-PACKAGE_VERSION := $(shell '$(JQ)' -r '.version' ./package.json)
-PACKAGE_VERSION_EXTRA :=
+PACKAGE_NAME ?= $(shell '$(JQ)' -r '.name' ./package.json)
+PACKAGE_VERSION ?= $(shell '$(JQ)' -r '.version' ./package.json)
+PACKAGE_VERSION_EXTRA := $(if $(PACKAGE_VERSION_EXTRA),.$(PACKAGE_VERSION_EXTRA),)
 
-MAVEN_GROUP := com.stratebi.pentaho
-MAVEN_SNAPSHOT_REPOSITORY_ID := stratebi-snapshot
-MAVEN_SNAPSHOT_REPOSITORY_URL := https://repo.stratebi.com/repository/stratebi-mvn-snapshot
-MAVEN_RELEASE_REPOSITORY_ID := stratebi-releases
-MAVEN_RELEASE_REPOSITORY_URL := https://repo.stratebi.com/repository/stratebi-mvn-releases
+MAVEN_GROUP ?= com.stratebi.pentaho
+MAVEN_SNAPSHOT_REPOSITORY_ID ?= stratebi-snapshot
+MAVEN_SNAPSHOT_REPOSITORY_URL ?= https://repo.stratebi.com/repository/stratebi-mvn-snapshot
+MAVEN_RELEASE_REPOSITORY_ID ?= stratebi-releases
+MAVEN_RELEASE_REPOSITORY_URL ?= https://repo.stratebi.com/repository/stratebi-mvn-releases
 
 DIST_DIR := ./dist
 DIST_BISERVER_DIR := $(DIST_DIR)/biserver
