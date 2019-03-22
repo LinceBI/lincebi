@@ -9,7 +9,7 @@ stages:
 .production_variables: &production_variables
   MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2
 
-.global_cache_paths:
+.cache_paths:
   - &mvn_cache_path ./.m2/
   - &npm_cache_path ./node_modules/
 
