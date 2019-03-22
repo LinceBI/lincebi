@@ -40,7 +40,7 @@ all: build
 .PHONY: start-caddy
 start-caddy:
 	'$(DOCKER)' run --interactive --tty --rm --network host \
-		--mount type=bind,src='$(MKFILE_DIR)'/Caddyfile,dst=/etc/caddy/Caddyfile,ro \
+		--mount type=bind,src="$$(pwd)/Caddyfile",dst=/etc/caddy/Caddyfile,ro \
 		hectormolinero/caddy:latest
 
 .PHONY: start-webpack
@@ -50,7 +50,7 @@ start-webpack:
 .PHONY: start-pentaho
 start-pentaho:
 	(cd ./biserver/ \
-		&& export CATALINA_PID="$$(readlink -f .)/catalina.pid" \
+		&& export CATALINA_PID="$$(pwd)/catalina.pid" \
 		&& (pkill --pidfile "$${CATALINA_PID}" && sleep 5 ||:) \
 		&& rm -rf ./pentaho-solutions/system/karaf/caches/* \
 		&& rm -rf ./tomcat/logs/* ./tomcat/temp/* ./tomcat/work/* \
