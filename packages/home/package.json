@@ -1,0 +1,52 @@
+{
+  "private": true,
+  "name": "stratebi-biserver-customization-home",
+  "version": "0.0.0",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "latest",
+    "@vue/cli-plugin-eslint": "latest"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/prettier"
+    ],
+    "rules": {
+      "prettier/prettier": ["error", {
+        "singleQuote": true,
+        "useTabs": true
+      }]
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "Firefox ESR",
+    "Last 2 Chrome versions",
+    "Last 2 Edge versions",
+    "Last 2 Firefox versions",
+    "Last 2 iOS versions",
+    "Last 2 Opera versions",
+    "Last 2 Safari versions"
+  ]
+}

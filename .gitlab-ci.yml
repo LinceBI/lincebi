@@ -3,10 +3,16 @@ stages:
   - deploy
 
 .develop_variables: &develop_variables
+  MAVEN_GROUP: com.stratebi.pentaho
+  MAVEN_REPOSITORY_ID: stratebi-snapshot
+  MAVEN_REPOSITORY_URL: https://repo.stratebi.com/repository/stratebi-mvn-snapshot
   MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2
-  PACKAGE_VERSION_EXTRA: ${CI_COMMIT_REF_SLUG}
+  PACKAGE_VERSION_EXTRA: ${CI_COMMIT_REF_SLUG}-SNAPSHOT
 
 .production_variables: &production_variables
+  MAVEN_GROUP: com.stratebi.pentaho
+  MAVEN_REPOSITORY_ID: stratebi-releases
+  MAVEN_REPOSITORY_URL: https://repo.stratebi.com/repository/stratebi-mvn-releases
   MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2
 
 .cache_paths:
@@ -23,7 +29,7 @@ build:develop:
   before_script:
     - npm install
   script:
-    - make build-dev
+    - make build
   artifacts:
     expire_in: 15 mins
     paths:
@@ -42,7 +48,7 @@ build:production:
   before_script:
     - npm install
   script:
-    - make build-prod
+    - make build
   artifacts:
     expire_in: 1 day
     paths:
@@ -59,7 +65,7 @@ deploy:develop:
   variables:
     <<: *develop_variables
   script:
-    - make deploy-dev
+    - make deploy
   cache:
     paths:
       - *mvn_cache_path
@@ -72,7 +78,7 @@ deploy:production:
   variables:
     <<: *production_variables
   script:
-    - make deploy-prod
+    - make deploy
   cache:
     paths:
       - *mvn_cache_path

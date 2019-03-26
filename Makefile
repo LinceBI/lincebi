@@ -4,27 +4,23 @@ SHELL := /bin/sh
 .SHELLFLAGS := -eu -c
 
 DOCKER := $(shell command -v docker 2>/dev/null)
-GIT := $(shell command -v git 2>/dev/null)
 JQ := $(shell command -v jq 2>/dev/null)
 MVN := $(shell command -v mvn 2>/dev/null)
-NPM := $(shell command -v npm 2>/dev/null)
 
 PACKAGE_NAME ?= $(shell '$(JQ)' -r '.name' ./package.json)
 PACKAGE_VERSION ?= $(shell '$(JQ)' -r '.version' ./package.json)
 PACKAGE_VERSION_EXTRA := $(if $(PACKAGE_VERSION_EXTRA),.$(PACKAGE_VERSION_EXTRA),)
 
-MAVEN_GROUP ?= com.stratebi.pentaho
-MAVEN_SNAPSHOT_REPOSITORY_ID ?= stratebi-snapshot
-MAVEN_SNAPSHOT_REPOSITORY_URL ?= https://repo.stratebi.com/repository/stratebi-mvn-snapshot
-MAVEN_RELEASE_REPOSITORY_ID ?= stratebi-releases
-MAVEN_RELEASE_REPOSITORY_URL ?= https://repo.stratebi.com/repository/stratebi-mvn-releases
+MAVEN_GROUP ?= UNDEFINED
+MAVEN_REPOSITORY_ID ?= UNDEFINED
+MAVEN_REPOSITORY_URL ?= UNDEFINED
 
 DIST_DIR := ./dist
-DIST_BISERVER_DIR := $(DIST_DIR)/biserver
-DIST_DEV_DIR := $(DIST_DIR)/dev
-DIST_PROD_DIR := $(DIST_DIR)/prod
-DIST_DEV_PACKAGE := $(DIST_DIR)/$(PACKAGE_NAME)-dev.tgz
-DIST_PROD_PACKAGE := $(DIST_DIR)/$(PACKAGE_NAME)-prod.tgz
+DIST_TARBALL := $(DIST_DIR)/$(PACKAGE_NAME).tgz
+
+BISERVER_DIST_DIR := ./biserver/dist
+PACKAGE_LOGIN_DIST_DIR := ./packages/login/dist
+PACKAGE_HOME_DIST_DIR := ./packages/home/dist
 
 ##################################################
 ## "all" target
@@ -37,94 +33,64 @@ all: build
 ## "start-*" targets
 ##################################################
 
-.PHONY: start-caddy
-start-caddy:
+.PHONY: start-proxy
+start-proxy:
 	'$(DOCKER)' run --interactive --tty --rm --network host \
 		--mount type=bind,src="$$(pwd)/Caddyfile",dst=/etc/caddy/Caddyfile,ro \
 		hectormolinero/caddy:latest
 
-.PHONY: start-webpack
-start-webpack:
-	'$(NPM)' run serve
+.PHONY: start-biserver
+start-biserver:
+	cd ./biserver && '$(MAKE)' start
 
-.PHONY: start-pentaho
-start-pentaho:
-	(cd ./biserver/ \
-		&& export CATALINA_PID="$$(pwd)/catalina.pid" \
-		&& (pkill --pidfile "$${CATALINA_PID}" && sleep 5 ||:) \
-		&& rm -rf ./pentaho-solutions/system/karaf/caches/* \
-		&& rm -rf ./tomcat/logs/* ./tomcat/temp/* ./tomcat/work/* \
-		&& ./start-pentaho.sh && tail -f ./tomcat/logs/catalina.out)
+.PHONY: start-package-login
+start-package-login:
+	cd ./packages/login && '$(MAKE)' start
+
+.PHONY: start-package-home
+start-package-home:
+	cd ./packages/home && '$(MAKE)' start
 
 ##################################################
-## "build-*" target
+## "build" target
 ##################################################
 
 .PHONY: build
-build: build-dev
+build: $(DIST_TARBALL)
 
-.PHONY: build-dev
-build-dev: $(DIST_DEV_PACKAGE)
+$(BISERVER_DIST_DIR):
+	cd ./biserver && '$(MAKE)' build
 
-.PHONY: build-prod
-build-prod: $(DIST_PROD_PACKAGE)
+$(PACKAGE_LOGIN_DIST_DIR):
+	cd ./packages/login && '$(MAKE)' build
 
-$(DIST_BISERVER_DIR):
-	(cd ./biserver/ \
-		&& OUT='$(shell readlink -m '$@')' \
-		&& STASH=$$('$(GIT)' stash create) && STASH=$${STASH:=HEAD} \
-		&& rm -rf "$${OUT}" && mkdir -p "$${OUT}" \
-		&& '$(GIT)' archive --format=tar "$${STASH}" ./ | tar -xf- -C "$${OUT}" \
-		&& '$(GIT)' gc --prune=now)
+$(PACKAGE_HOME_DIST_DIR):
+	cd ./packages/home && '$(MAKE)' build
 
-$(DIST_DEV_DIR):
-	@'$(NPM)' run lint
-	@'$(NPM)' run build:dev
-
-$(DIST_PROD_DIR):
-	@'$(NPM)' run lint
-	@'$(NPM)' run build:prod
-
-$(DIST_DEV_PACKAGE): $(DIST_BISERVER_DIR) $(DIST_DEV_DIR)
+$(DIST_TARBALL): $(BISERVER_DIST_DIR) $(PACKAGE_LOGIN_DIST_DIR) $(PACKAGE_HOME_DIST_DIR)
+	mkdir -p '$(DIST_DIR)'
 	tar -czf '$@' \
-		--exclude=biserver/tomcat/webapps/pentaho/customization \
-		--transform='s|^biserver||;s|^dev|tomcat/webapps/pentaho/customization|' \
-		--directory='$(DIST_DIR)' biserver/ dev/
-
-$(DIST_PROD_PACKAGE): $(DIST_BISERVER_DIR) $(DIST_PROD_DIR)
-	tar -czf '$@' \
-		--exclude=biserver/tomcat/webapps/pentaho/customization \
-		--transform='s|^biserver||;s|^prod|tomcat/webapps/pentaho/customization|' \
-		--directory='$(DIST_DIR)' biserver/ prod/
+		--transform='s|^$(BISERVER_DIST_DIR)||' \
+		--exclude='$(BISERVER_DIST_DIR)/tomcat/webapps/pentaho/Login' \
+		--transform='s|^$(PACKAGE_LOGIN_DIST_DIR)|tomcat/webapps/pentaho/Login|' \
+		--exclude='$(BISERVER_DIST_DIR)/tomcat/webapps/pentaho/Home' \
+		--transform='s|^$(PACKAGE_HOME_DIST_DIR)|tomcat/webapps/pentaho/Home|' \
+		'$(BISERVER_DIST_DIR)' '$(PACKAGE_LOGIN_DIST_DIR)' '$(PACKAGE_HOME_DIST_DIR)'
 
 ##################################################
 ## "deploy-*" target
 ##################################################
 
 .PHONY: deploy
-deploy: deploy-dev
-
-.PHONY: deploy-dev
-deploy-dev: $(DIST_DEV_PACKAGE)
+deploy: $(DIST_TARBALL)
 	mvn deploy:deploy-file \
 		-Dpackaging=tar.gz \
-		-Dfile='$(DIST_DEV_PACKAGE)' \
-		-DgroupId='$(MAVEN_GROUP)' \
-		-DartifactId='$(PACKAGE_NAME)' \
-		-Dversion='$(PACKAGE_VERSION)$(PACKAGE_VERSION_EXTRA)-SNAPSHOT' \
-		-DrepositoryId=$(MAVEN_SNAPSHOT_REPOSITORY_ID) \
-		-Durl='$(MAVEN_SNAPSHOT_REPOSITORY_URL)'
-
-.PHONY: deploy-prod
-deploy-prod: $(DIST_PROD_PACKAGE)
-	mvn deploy:deploy-file \
-		-Dpackaging=tar.gz \
-		-Dfile='$(DIST_PROD_PACKAGE)' \
+		-Dfile='$(DIST_TARBALL)' \
 		-DgroupId='$(MAVEN_GROUP)' \
 		-DartifactId='$(PACKAGE_NAME)' \
 		-Dversion='$(PACKAGE_VERSION)$(PACKAGE_VERSION_EXTRA)' \
-		-DrepositoryId='$(MAVEN_RELEASE_REPOSITORY_ID)' \
-		-Durl='$(MAVEN_RELEASE_REPOSITORY_URL)'
+		-DrepositoryId=$(MAVEN_REPOSITORY_ID) \
+		-Durl='$(MAVEN_REPOSITORY_URL)'
 
 ##################################################
 ## "clean" target
@@ -132,5 +98,7 @@ deploy-prod: $(DIST_PROD_PACKAGE)
 
 .PHONY: clean
 clean:
-	rm -rf $(addprefix ', $(addsuffix ', $(DIST_BISERVER_DIR) $(DIST_DEV_DIR) $(DIST_PROD_DIR) $(DIST_DEV_PACKAGE) $(DIST_PROD_PACKAGE)))
-	if [ -d '$(DIST_DIR)' ] && [ -z "$$(ls -A '$(DIST_DIR)')" ]; then rmdir '$(DIST_DIR)'; fi
+	rm -rf '$(DIST_DIR)'
+	cd ./biserver && '$(MAKE)' clean
+	cd ./packages/login && '$(MAKE)' clean
+	cd ./packages/home && '$(MAKE)' clean
