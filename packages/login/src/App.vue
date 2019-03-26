@@ -1,41 +1,29 @@
 <template>
 	<div id="app">
-		<div id="nav">
-			<router-link to="/">Home</router-link> |
-			<router-link to="/about">About</router-link>
-		</div>
-		<router-view />
+		<LoginForm />
 	</div>
 </template>
 
+<script>
+import LoginForm from './components/LoginForm.vue';
+
+export default {
+	name: 'app',
+	components: {
+		LoginForm
+	}
+};
+</script>
+
 <style lang="scss">
-@import 'css/variables';
-
-@import '~bootstrap/scss/bootstrap';
-@import '~bootstrap-vue/src/variables';
-@import '~bootstrap-vue/src/utilities';
-@import '~bootstrap-vue/src/components/index';
-
-@import 'css/em';
-@import 'css/fonts';
-
 #app {
+	height: 100vh;
+	width: 100vw;
 	font-family: 'Titillium Web', $system-sans-serif;
 	font-size: $em-base + 0px;
-	text-align: center;
-	color: #2c3e50;
-}
-
-#nav {
-	padding: 30px;
-
-	a {
-		font-weight: bold;
-		color: #2c3e50;
-
-		&.router-link-exact-active {
-			color: #42b983;
-		}
-	}
+	background-image: url('./assets/background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 </style>

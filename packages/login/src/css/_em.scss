@@ -1,9 +1,0 @@
-$em-base: 16 !default;
-
-@function em($pxval, $base: $em-base) {
-	@return ($pxval / $base) * 1em;
-}
-
-@function rem($pxval, $base: $em-base) {
-	@return ($pxval / $base) * 1rem;
-}

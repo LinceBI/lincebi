@@ -9,16 +9,6 @@
 </template>
 
 <style lang="scss">
-@import 'css/variables';
-
-@import '~bootstrap/scss/bootstrap';
-@import '~bootstrap-vue/src/variables';
-@import '~bootstrap-vue/src/utilities';
-@import '~bootstrap-vue/src/components/index';
-
-@import 'css/em';
-@import 'css/fonts';
-
 #app {
 	font-family: 'Titillium Web', $system-sans-serif;
 	font-size: $em-base + 0px;
