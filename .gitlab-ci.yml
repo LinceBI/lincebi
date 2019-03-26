@@ -34,6 +34,8 @@ build:develop:
     expire_in: 15 mins
     paths:
       - dist/
+      - packages/login/dist/
+      - packages/home/dist/
   cache:
     paths:
       - *mvn_cache_path
@@ -53,6 +55,8 @@ build:production:
     expire_in: 1 day
     paths:
       - dist/
+      - packages/login/dist/
+      - packages/home/dist/
   cache:
     paths:
       - *mvn_cache_path
