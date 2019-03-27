@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+
+  proxy:
+    image: hectormolinero/caddy:latest
+    network_mode: "host"
+    volumes:
+      - "./Caddyfile:/etc/caddy/Caddyfile:ro"

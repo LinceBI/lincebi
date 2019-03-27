@@ -4,8 +4,10 @@ SHELL := /bin/sh
 .SHELLFLAGS := -eu -c
 
 DOCKER := $(shell command -v docker 2>/dev/null)
+DOCKER_COMPOSE := $(shell command -v docker-compose 2>/dev/null)
 JQ := $(shell command -v jq 2>/dev/null)
 MVN := $(shell command -v mvn 2>/dev/null)
+TMUX := $(shell command -v tmux 2>/dev/null)
 
 PACKAGE_NAME ?= $(shell '$(JQ)' -r '.name' ./package.json)
 PACKAGE_VERSION ?= $(shell '$(JQ)' -r '.version' ./package.json)
@@ -33,23 +35,19 @@ all: build
 ## "start-*" targets
 ##################################################
 
-.PHONY: start-proxy
-start-proxy:
-	'$(DOCKER)' run --interactive --tty --rm --network host \
-		--mount type=bind,src="$$(pwd)/Caddyfile",dst=/etc/caddy/Caddyfile,ro \
-		hectormolinero/caddy:latest
-
 .PHONY: start-biserver
 start-biserver:
-	cd ./biserver && '$(MAKE)' start
+	'$(TMUX)' \
+		new-session 'cd ./biserver; $(MAKE) start' ';' \
+		split-window '$(DOCKER_COMPOSE) up' ';' \
+		select-layout even-horizontal
 
-.PHONY: start-package-login
-start-package-login:
-	cd ./packages/login && '$(MAKE)' start
-
-.PHONY: start-package-home
-start-package-home:
-	cd ./packages/home && '$(MAKE)' start
+.PHONY: start-vue-serve
+start-vue-serve:
+	'$(TMUX)' \
+		new-session 'cd ./packages/login; $(MAKE) start' ';' \
+		split-window 'cd ./packages/home; $(MAKE) start' ';' \
+		select-layout even-horizontal
 
 ##################################################
 ## "build" target
@@ -78,7 +76,7 @@ $(DIST_TARBALL): $(BISERVER_DIST_DIR) $(PACKAGE_LOGIN_DIST_DIR) $(PACKAGE_HOME_D
 		'$(BISERVER_DIST_DIR)' '$(PACKAGE_LOGIN_DIST_DIR)' '$(PACKAGE_HOME_DIST_DIR)'
 
 ##################################################
-## "deploy-*" target
+## "deploy" target
 ##################################################
 
 .PHONY: deploy
