@@ -1,51 +1,53 @@
 <template>
-	<div class="form">
+	<div class="LoginForm p-4 rounded">
 		<b-form @submit="onSubmit">
-			<b-form-group label="Username:" label-for="fieldUsername">
-				<b-form-input
-					id="fieldUsername"
-					type="text"
-					v-model="form.username"
-					required
-				/>
+			<h2 class="text-center">Login</h2>
+			<b-form-group label="Username:">
+				<b-form-input type="text" v-model="form.j_username" required />
 			</b-form-group>
-
-			<b-form-group label="Password:" label-for="fieldPassword">
-				<b-form-input
-					id="fieldPassword"
-					type="text"
-					v-model="form.password"
-					required
-				/>
+			<b-form-group label="Password:">
+				<b-form-input type="password" v-model="form.j_password" required />
 			</b-form-group>
-
-			<b-button type="submit" variant="primary">Login</b-button>
+			<LoginError />
+			<div class="float-right">
+				<b-button type="submit" variant="primary">Sign in</b-button>
+			</div>
 		</b-form>
 	</div>
 </template>
 
 <script>
+import fetch from 'unfetch';
+import { searchParams } from '@@/helpers';
+import LoginError from '@/components/LoginError.vue';
+
 export default {
 	name: 'LoginForm',
-	data() {
-		return {
-			form: {
-				username: '',
-				password: ''
-			}
-		};
+	components: {
+		LoginError
 	},
+	data: () => ({
+		form: {
+			j_username: '',
+			j_password: ''
+		}
+	}),
 	methods: {
-		onSubmit(evt) {
-			evt.preventDefault();
-			alert(JSON.stringify(this.form));
+		async onSubmit(event) {
+			event.preventDefault();
+			let response = await fetch('../j_spring_security_check', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				body: searchParams.stringify(this.form)
+			});
+			window.location.replace(response.url);
 		}
 	}
 };
 </script>
 
 <style scoped lang="scss">
-.form {
+.LoginForm {
 	background: rgba(map-get($theme-colors, 'light'), 0.85);
 }
 </style>
