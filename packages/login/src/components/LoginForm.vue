@@ -18,7 +18,7 @@
 
 <script>
 import fetch from 'unfetch';
-import { searchParams } from '@stratebi/biserver-customization-common/src/helpers';
+import searchParams from '@stratebi/biserver-customization-common/src/searchParams';
 import LoginError from '@/components/LoginError.vue';
 
 export default {

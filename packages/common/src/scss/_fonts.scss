@@ -6,7 +6,7 @@ $system-monospace: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono',
 $unicode-range-latin: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD !default;
 $unicode-range-latin-ext: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF !default;
 
-$font-path: '~@stratebi/biserver-customization-common/src/assets/fonts';
+$common-font-path: '../assets/fonts' !default;
 
 /* https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,700,700i&amp;subset=latin-ext */
 /* titillium-web-regular-normal-latin */
@@ -15,7 +15,7 @@ $font-path: '~@stratebi/biserver-customization-common/src/assets/fonts';
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
-	src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'), url('#{$font-path}/titillium-web-regular-normal-latin.woff2') format('woff2');
+	src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'), url('#{$common-font-path}/titillium-web-regular-normal-latin.woff2') format('woff2');
 	unicode-range: $unicode-range-latin;
 }
 /* titillium-web-regular-normal-latin-ext */
@@ -24,7 +24,7 @@ $font-path: '~@stratebi/biserver-customization-common/src/assets/fonts';
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
-	src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'), url('#{$font-path}/titillium-web-regular-normal-latin-ext.woff2') format('woff2');
+	src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'), url('#{$common-font-path}/titillium-web-regular-normal-latin-ext.woff2') format('woff2');
 	unicode-range: $unicode-range-latin-ext;
 }
 /* titillium-web-regular-italic-latin */
@@ -33,7 +33,7 @@ $font-path: '~@stratebi/biserver-customization-common/src/assets/fonts';
 	font-style: italic;
 	font-weight: 400;
 	font-display: swap;
-	src: local('Titillium Web Italic'), local('TitilliumWeb-Italic'), url('#{$font-path}/titillium-web-regular-italic-latin.woff2') format('woff2');
+	src: local('Titillium Web Italic'), local('TitilliumWeb-Italic'), url('#{$common-font-path}/titillium-web-regular-italic-latin.woff2') format('woff2');
 	unicode-range: $unicode-range-latin;
 }
 /* titillium-web-regular-italic-latin-ext */
@@ -42,7 +42,7 @@ $font-path: '~@stratebi/biserver-customization-common/src/assets/fonts';
 	font-style: italic;
 	font-weight: 400;
 	font-display: swap;
-	src: local('Titillium Web Italic'), local('TitilliumWeb-Italic'), url('#{$font-path}/titillium-web-regular-italic-latin-ext.woff2') format('woff2');
+	src: local('Titillium Web Italic'), local('TitilliumWeb-Italic'), url('#{$common-font-path}/titillium-web-regular-italic-latin-ext.woff2') format('woff2');
 	unicode-range: $unicode-range-latin-ext;
 }
 /* titillium-web-bold-normal-latin */
@@ -51,7 +51,7 @@ $font-path: '~@stratebi/biserver-customization-common/src/assets/fonts';
 	font-style: normal;
 	font-weight: 700;
 	font-display: swap;
-	src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'), url('#{$font-path}/titillium-web-bold-normal-latin.woff2') format('woff2');
+	src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'), url('#{$common-font-path}/titillium-web-bold-normal-latin.woff2') format('woff2');
 	unicode-range: $unicode-range-latin;
 }
 /* titillium-web-bold-normal-latin-ext */
@@ -60,7 +60,7 @@ $font-path: '~@stratebi/biserver-customization-common/src/assets/fonts';
 	font-style: normal;
 	font-weight: 700;
 	font-display: swap;
-	src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'), url('#{$font-path}/titillium-web-bold-normal-latin-ext.woff2') format('woff2');
+	src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'), url('#{$common-font-path}/titillium-web-bold-normal-latin-ext.woff2') format('woff2');
 	unicode-range: $unicode-range-latin-ext;
 }
 /* titillium-web-bold-italic-latin */
@@ -69,7 +69,7 @@ $font-path: '~@stratebi/biserver-customization-common/src/assets/fonts';
 	font-style: italic;
 	font-weight: 700;
 	font-display: swap;
-	src: local('Titillium Web Bold Italic'), local('TitilliumWeb-BoldItalic'), url('#{$font-path}/titillium-web-bold-italic-latin.woff2') format('woff2');
+	src: local('Titillium Web Bold Italic'), local('TitilliumWeb-BoldItalic'), url('#{$common-font-path}/titillium-web-bold-italic-latin.woff2') format('woff2');
 	unicode-range: $unicode-range-latin;
 }
 /* titillium-web-bold-italic-latin-ext */
@@ -78,6 +78,6 @@ $font-path: '~@stratebi/biserver-customization-common/src/assets/fonts';
 	font-style: italic;
 	font-weight: 700;
 	font-display: swap;
-	src: local('Titillium Web Bold Italic'), local('TitilliumWeb-BoldItalic'), url('#{$font-path}/titillium-web-bold-italic-latin-ext.woff2') format('woff2');
+	src: local('Titillium Web Bold Italic'), local('TitilliumWeb-BoldItalic'), url('#{$common-font-path}/titillium-web-bold-italic-latin-ext.woff2') format('woff2');
 	unicode-range: $unicode-range-latin-ext;
 }
