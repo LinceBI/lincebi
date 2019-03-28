@@ -15,7 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "~5.8.1",
     "@stratebi/biserver-customization-common": "file:../common",
     "bootstrap": "~4.3.1",
-    "bootstrap-vue": "~2.0.0-rc.15",
+    "bootstrap-vue": "~2.0.0-rc.16",
     "lodash": "~4.17.11",
     "unfetch": "~4.1.0",
     "vue": "~2.6.10",
