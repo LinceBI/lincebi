@@ -1,34 +1,6 @@
-const path = require('path');
-const root = path.resolve(__dirname, '../../src');
+const merge = require('lodash/merge');
+const vueConfigCommon = require('@stratebi/biserver-customization-common/vue.config.common.js');
 
-module.exports = {
-	publicPath: './',
-	indexPath: 'index.jsp',
-	devServer: {
-		port: 8081,
-		historyApiFallback: false
-	},
-	configureWebpack: {
-		resolve: {
-			alias: {
-				'@@': root
-			}
-		}
-	},
-	css: {
-		loaderOptions: {
-			sass: {
-				data: `
-					@import '${root}/scss/variables';
-					@import '${root}/scss/em';
-					@import '${root}/scss/fonts';
-					@import '${root}/scss/helpers';
-					@import '~bootstrap/scss/bootstrap';
-					@import '~bootstrap-vue/src/variables';
-					@import '~bootstrap-vue/src/utilities';
-					@import '~bootstrap-vue/src/components/index';
-				`
-			}
-		}
-	}
-};
+module.exports = merge(vueConfigCommon, {
+	devServer: { port: 8081 }
+});

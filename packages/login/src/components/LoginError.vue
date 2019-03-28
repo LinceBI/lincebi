@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { getParameterOrDefault } from '@@/helpers';
+import { getParameterOrDefault } from '@stratebi/biserver-customization-common/src/helpers';
 
 export default {
 	name: 'LoginError',

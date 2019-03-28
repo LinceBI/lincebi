@@ -1,26 +1,16 @@
 {
   "private": true,
-  "name": "@stratebi/biserver-customization-home",
+  "name": "@stratebi/biserver-customization-common",
   "version": "1.0.0+PE81",
   "scripts": {
-    "lint": "vue-cli-service lint",
-    "build": "vue-cli-service build",
-    "serve": "vue-cli-service serve"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "~5.8.1",
-    "@fortawesome/fontawesome-svg-core": "~1.2.17",
-    "@fortawesome/free-brands-svg-icons": "~5.8.1",
-    "@fortawesome/free-regular-svg-icons": "~5.8.1",
-    "@fortawesome/free-solid-svg-icons": "~5.8.1",
-    "@stratebi/biserver-customization-common": "file:../common",
     "bootstrap": "~4.3.1",
     "bootstrap-vue": "~2.0.0-rc.15",
     "lodash": "~4.17.11",
     "unfetch": "~4.1.0",
-    "vue": "~2.6.10",
-    "vue-router": "~3.0.2",
-    "vuex": "~3.1.0"
+    "vue": "~2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~3.5.3",

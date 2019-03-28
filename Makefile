@@ -7,10 +7,11 @@ DOCKER := $(shell command -v docker 2>/dev/null)
 DOCKER_COMPOSE := $(shell command -v docker-compose 2>/dev/null)
 JQ := $(shell command -v jq 2>/dev/null)
 MVN := $(shell command -v mvn 2>/dev/null)
+NPM := $(shell command -v npm 2>/dev/null)
 TMUX := $(shell command -v tmux 2>/dev/null)
 
-PACKAGE_NAME ?= $(shell '$(JQ)' -r '.name' ./package.json)
-PACKAGE_VERSION ?= $(shell '$(JQ)' -r '.version' ./package.json)
+PACKAGE_NAME ?= $(shell '$(JQ)' -r '.name' ./package.json | sed -r 's|^@([^/]+)/|\1-|')
+PACKAGE_VERSION ?= $(shell '$(JQ)' -r '.version' ./lerna.json)
 PACKAGE_VERSION_EXTRA := $(if $(PACKAGE_VERSION_EXTRA),.$(PACKAGE_VERSION_EXTRA),)
 
 MAVEN_GROUP ?= UNDEFINED
@@ -38,16 +39,13 @@ all: build
 .PHONY: start-biserver
 start-biserver:
 	'$(TMUX)' \
-		new-session 'cd ./biserver; $(MAKE) start' ';' \
-		split-window '$(DOCKER_COMPOSE) up' ';' \
+		new-session 'cd ./biserver/; $(MAKE) start' ';' \
+		split-window 'cd ./docker/; $(DOCKER_COMPOSE) up' ';' \
 		select-layout even-horizontal
 
-.PHONY: start-vue-serve
-start-vue-serve:
-	'$(TMUX)' \
-		new-session 'cd ./packages/login; $(MAKE) start' ';' \
-		split-window 'cd ./packages/home; $(MAKE) start' ';' \
-		select-layout even-horizontal
+.PHONY: start-devserver
+start-devserver:
+	'$(NPM)' run serve
 
 ##################################################
 ## "build" target
@@ -59,11 +57,8 @@ build: $(DIST_TARBALL)
 $(BISERVER_DIST_DIR):
 	cd ./biserver && '$(MAKE)' build
 
-$(PACKAGE_LOGIN_DIST_DIR):
-	cd ./packages/login && '$(MAKE)' build
-
-$(PACKAGE_HOME_DIST_DIR):
-	cd ./packages/home && '$(MAKE)' build
+$(PACKAGE_LOGIN_DIST_DIR) $(PACKAGE_HOME_DIST_DIR):
+	'$(NPM)' run build
 
 $(DIST_TARBALL): $(BISERVER_DIST_DIR) $(PACKAGE_LOGIN_DIST_DIR) $(PACKAGE_HOME_DIST_DIR)
 	mkdir -p '$(DIST_DIR)'
@@ -96,7 +91,4 @@ deploy: $(DIST_TARBALL)
 
 .PHONY: clean
 clean:
-	rm -rf '$(DIST_DIR)'
-	cd ./biserver && '$(MAKE)' clean
-	cd ./packages/login && '$(MAKE)' clean
-	cd ./packages/home && '$(MAKE)' clean
+	rm -rf '$(DIST_DIR)' '$(PACKAGE_LOGIN_DIST_DIR)' '$(PACKAGE_HOME_DIST_DIR)'

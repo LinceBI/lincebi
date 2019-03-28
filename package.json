@@ -1,76 +1,22 @@
 {
   "private": true,
-  "name": "stratebi-biserver-customization",
-  "version": "1.0.0+PE81",
+  "name": "@stratebi/biserver-customization",
   "scripts": {
-    "postinstall": "link-parent-bin"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "~5.8.1",
-    "@fortawesome/fontawesome-svg-core": "~1.2.17",
-    "@fortawesome/free-brands-svg-icons": "~5.8.1",
-    "@fortawesome/free-regular-svg-icons": "~5.8.1",
-    "@fortawesome/free-solid-svg-icons": "~5.8.1",
-    "bootstrap": "~4.3.1",
-    "bootstrap-vue": "~2.0.0-rc.15",
-    "lodash": "~4.17.11",
-    "unfetch": "~4.1.0",
-    "vue": "~2.6.10",
-    "vue-router": "~3.0.2",
-    "vuex": "~3.1.0"
+    "lint": "lerna run --stream lint",
+    "build": "lerna run --stream build",
+    "serve": "lerna run --stream serve",
+    "upgradedeps": "run-s upgradedeps:root upgradedeps:packages",
+    "upgradedeps:root": "ncu --upgrade",
+    "upgradedeps:packages": "lerna exec --stream --concurrency 1 -- ncu --upgrade",
+    "cleandeps": "run-s cleandeps:packages cleandeps:root",
+    "cleandeps:root": "rimraf ./node_modules/ ./package-lock.json",
+    "cleandeps:packages": "lerna exec -- rimraf ./node_modules/ ./package-lock.json",
+    "postinstall": "lerna exec --stream --concurrency 1 -- npm install"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~3.5.1",
-    "@vue/cli-plugin-eslint": "~3.5.1",
-    "@vue/cli-service": "~3.5.1",
-    "@vue/eslint-config-prettier": "~4.0.1",
-    "babel-eslint": "~10.0.1",
-    "eslint": "~5.15.3",
-    "eslint-plugin-vue": "~5.2.2",
-    "fibers": "~3.1.1",
-    "link-parent-bin": "~1.0.0",
+    "lerna": "~3.13.1",
+    "npm-check-updates": "~3.1.2",
     "npm-run-all": "~4.1.5",
-    "sass": "~1.17.3",
-    "sass-loader": "~7.1.0",
-    "vue-template-compiler": "~2.6.10"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/prettier"
-    ],
-    "rules": {
-      "no-console": ["off"],
-      "prettier/prettier": ["error", {
-        "singleQuote": true,
-        "useTabs": true
-      }]
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "babel": {
-    "presets": [
-      "@vue/app"
-    ]
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "Firefox ESR",
-    "Last 2 Chrome versions",
-    "Last 2 Edge versions",
-    "Last 2 Firefox versions",
-    "Last 2 iOS versions",
-    "Last 2 Opera versions",
-    "Last 2 Safari versions"
-  ]
+    "rimraf": "~2.6.3"
+  }
 }

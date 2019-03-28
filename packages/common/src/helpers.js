@@ -74,6 +74,7 @@ export const safeJSON = {
 		try {
 			return JSON.parse(str);
 		} catch (error) {
+			/* eslint-disable no-console */
 			console.error(error, str);
 		}
 
@@ -83,6 +84,7 @@ export const safeJSON = {
 		try {
 			return JSON.stringify(obj);
 		} catch (error) {
+			/* eslint-disable no-console */
 			console.error(error, obj);
 		}
 
