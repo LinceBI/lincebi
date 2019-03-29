@@ -1,5 +1,6 @@
 import './scss/main.scss';
 
+export { default as getUnicodeCharacter } from './fac/getUnicodeCharacter';
 export { default as formData } from './formData';
 export { default as getParameterOrDefault } from './getParameterOrDefault';
 export { default as safeJSON } from './safeJSON';
