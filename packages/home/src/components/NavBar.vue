@@ -22,8 +22,15 @@
 							<template slot="button-content">
 								Categories
 							</template>
-							<b-dropdown-item class="category-item" v-for="category in categories" :key="category.id">
-								<b-img class="category-img" :src="require(`@/assets/img/categories/${category.id}.svg`)"></b-img>
+							<b-dropdown-item
+								class="category-item"
+								v-for="category in categories"
+								:key="category.id"
+							>
+								<b-img
+									class="category-img"
+									:src="require(`@/assets/img/categories/${category.id}.svg`)"
+								></b-img>
 								<span class="category-text">{{ category.name }}</span>
 							</b-dropdown-item>
 						</b-dropdown>
@@ -40,7 +47,11 @@
 						</b-input-group>
 					</b-nav-form>
 
-					<b-nav-item-dropdown class="nav-element settings-dropdown" right no-caret>
+					<b-nav-item-dropdown
+						class="nav-element settings-dropdown"
+						right
+						no-caret
+					>
 						<template slot="button-content">
 							<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
 						</template>
@@ -73,21 +84,21 @@ export default {
 	name: 'NavBar',
 	data: () => ({
 		categories: [
-			{id: 'marketing', name: 'Marketing'},
-			{id: 'retail', name: 'Retail'},
-			{id: 'finance', name: 'Finance'},
-			{id: 'ngo', name: 'NGO'},
-			{id: 'gov', name: 'GOV'},
-			{id: 'e-commerce', name: 'e-Commerce'},
-			{id: 'telco', name: 'Telco'},
-			{id: 'utilities', name: 'Utilities'},
-			{id: 'tourism', name: 'Tourism'},
-			{id: 'education', name: 'Education'},
-			{id: 'health', name: 'Health'},
-			{id: 'rrhh', name: 'RRHH'},
-			{id: 'pharma', name: 'Pharma'},
+			{ id: 'marketing', name: 'Marketing' },
+			{ id: 'retail', name: 'Retail' },
+			{ id: 'finance', name: 'Finance' },
+			{ id: 'ngo', name: 'NGO' },
+			{ id: 'gov', name: 'GOV' },
+			{ id: 'e-commerce', name: 'e-Commerce' },
+			{ id: 'telco', name: 'Telco' },
+			{ id: 'utilities', name: 'Utilities' },
+			{ id: 'tourism', name: 'Tourism' },
+			{ id: 'education', name: 'Education' },
+			{ id: 'health', name: 'Health' },
+			{ id: 'rrhh', name: 'RRHH' },
+			{ id: 'pharma', name: 'Pharma' }
 		]
-	}),
+	})
 };
 </script>
 
