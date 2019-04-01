@@ -11,11 +11,11 @@ Vue.component('font-awesome-layers', FontAwesomeLayers);
 Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
 
 import {
+	faAngleDoubleRight,
 	faDatabase,
 	faFolder,
 	faFolderOpen,
 	faGlobeEurope,
-	faHome,
 	faLock,
 	faPencilAlt,
 	faPlus,
@@ -42,12 +42,15 @@ import {
 	faToolStagile,
 	faToolStcard,
 	faToolStdashboard,
+	faToolSthome,
 	faToolStpivot,
 	faToolStprofile,
-	faToolStreport
+	faToolStreport,
+	faToolStsearch
 } from '@stratebi/biserver-customization-common/src/fac/index';
 
 library.add(
+	faAngleDoubleRight,
 	faCheckSquare,
 	faClock,
 	faDatabase,
@@ -56,7 +59,6 @@ library.add(
 	faFolder,
 	faFolderOpen,
 	faGlobeEurope,
-	faHome,
 	faLock,
 	faPencilAlt,
 	faPlus,
@@ -71,9 +73,11 @@ library.add(
 	faToolStagile,
 	faToolStcard,
 	faToolStdashboard,
+	faToolSthome,
 	faToolStpivot,
 	faToolStprofile,
 	faToolStreport,
+	faToolStsearch,
 	faUser,
 	faWindowMaximize
 );
