@@ -2,6 +2,7 @@
 	<b-nav-item-dropdown class="NavBarSettings" right no-caret>
 		<template slot="button-content">
 			<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
+			<span class="lbl d-md-none">Options</span>
 		</template>
 		<b-dropdown-item href="#">
 			<font-awesome-icon :icon="['fac', 'tool-stprofile']" />
@@ -14,13 +15,13 @@
 		<b-dropdown-divider />
 		<b-dropdown-item href="#">
 			<font-awesome-icon
-				:icon="['far', tooltipDescriptionsEnabled ? 'check-square' : 'square']"
+				:icon="['far', settings.tooltipDescriptionsEnabled ? 'check-square' : 'square']"
 			/>
 			<span class="lbl">Use descriptions for tooltips</span>
 		</b-dropdown-item>
 		<b-dropdown-item href="#">
 			<font-awesome-icon
-				:icon="['far', showHiddenFilesEnabled ? 'check-square' : 'square']"
+				:icon="['far', settings.showHiddenFilesEnabled ? 'check-square' : 'square']"
 			/>
 			<span class="lbl">Show hidden files</span>
 		</b-dropdown-item>
@@ -30,9 +31,10 @@
 <script>
 export default {
 	name: 'NavBarSettings',
-	data: () => ({
-		tooltipDescriptionsEnabled: true,
-		showHiddenFilesEnabled: false
-	})
+	computed: {
+		settings() {
+			return this.$store.state.settings;
+		}
+	}
 };
 </script>

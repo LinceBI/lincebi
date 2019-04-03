@@ -1,6 +1,6 @@
 <template>
 	<b-nav-form class="NavBarSearch">
-		<b-input-group>
+		<b-input-group class="search-input-group">
 			<b-form-input></b-form-input>
 			<b-input-group-append>
 				<b-button variant="primary">
@@ -16,3 +16,11 @@ export default {
 	name: 'NavBarSearch'
 };
 </script>
+
+<style scoped lang="scss">
+.NavBarSearch {
+	.search-input-group {
+		width: 100%;
+	}
+}
+</style>

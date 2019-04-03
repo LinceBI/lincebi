@@ -5,6 +5,18 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
+		user: {
+			nickname: 'admin',
+			fullname: 'Administrator',
+			email: 'admin@example.com',
+			phone: '+00000000000',
+			address: '742 Evergreen Terrace',
+			avatar: require('@/assets/img/noavatar.svg')
+		},
+		settings: {
+			tooltipDescriptionsEnabled: true,
+			showHiddenFilesEnabled: false
+		},
 		categories: [
 			{
 				id: 'marketing',

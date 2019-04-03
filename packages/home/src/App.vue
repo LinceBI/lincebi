@@ -1,6 +1,6 @@
 <template>
 	<div class="App">
-		<NavBar />
+		<NavBar class="page-navbar" />
 		<b-container class="page-container" fluid>
 			<b-row class="page-row">
 				<b-col class="page-col sidebar">
@@ -31,24 +31,33 @@ export default {
 body {
 	margin: 0;
 	height: 100vh;
-	width: 100vw;
 	font-family: 'Titillium Web', $system-sans-serif;
 	font-size: $em-base + 0px;
 }
 
 .App {
+	display: flex;
+	flex-direction: column;
 	height: 100%;
-	width: 100%;
 
-	.page-container,
-	.page-row,
-	.page-col {
-		height: calc(100vh - #{$nav-link-height} - #{$nav-link-padding-y * 2});
+	.page-navbar {
+		display: flex;
+		flex-direction: row;
 	}
 
-	.page-col.sidebar {
-		flex: 0 0 rem(50);
-		padding: 0;
+	.page-container {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+
+		.page-row {
+			height: 100%;
+
+			.page-col.sidebar {
+				flex: 0 0 rem(50);
+				padding: 0;
+			}
+		}
 	}
 }
 </style>

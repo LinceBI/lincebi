@@ -36,6 +36,7 @@ export default {
 <style scoped lang="scss">
 .SideBarItem {
 	::v-deep .nav-link {
+		padding: rem(8) 0;
 		font-size: rem(20);
 		text-align: center;
 		color: map-get($theme-colors, 'light');

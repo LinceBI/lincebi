@@ -30,6 +30,8 @@ export default {
 <style scoped lang="scss">
 .NavBarCategories {
 	.categories-dropdown {
+		width: 100%;
+
 		::v-deep .dropdown-menu {
 			width: rem(280);
 			padding: 0;
