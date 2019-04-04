@@ -15,7 +15,7 @@
 			:item="subitem"
 		/>
 	</b-nav-item-dropdown>
-	<b-nav-item v-else class="SideBarItem">
+	<b-nav-item v-else class="SideBarItem" :to="item.to">
 		<font-awesome-icon v-if="item.icon" class="item-icon" :icon="item.icon" />
 		<b-img v-else class="item-img" :src="item.img"></b-img>
 	</b-nav-item>

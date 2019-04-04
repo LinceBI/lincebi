@@ -7,7 +7,9 @@
 					<SideBar />
 				</b-col>
 				<b-col class="page-col content">
-					<router-view />
+					<keep-alive include="Perspective">
+						<router-view />
+					</keep-alive>
 				</b-col>
 			</b-row>
 		</b-container>
@@ -43,6 +45,7 @@ body {
 	.page-navbar {
 		display: flex;
 		flex-direction: row;
+		z-index: 1000;
 	}
 
 	.page-container {
@@ -56,6 +59,12 @@ body {
 			.page-col.sidebar {
 				flex: 0 0 rem(50);
 				padding: 0;
+				z-index: 500;
+			}
+
+			.page-col.content {
+				padding: 0;
+				z-index: 0;
 			}
 		}
 	}

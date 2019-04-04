@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/views/Home.vue';
+import Perspective from '@/views/Perspective.vue';
 
 Vue.use(Router);
 
@@ -9,13 +9,26 @@ export default new Router({
 		{
 			path: '/',
 			name: 'home',
-			component: Home
+			component: Perspective
 		},
 		{
-			path: '/about',
-			name: 'about',
-			component: () => {
-				return import(/* webpackChunkName: "about" */ '@/views/About.vue');
+			path: '/p/:perspective',
+			name: 'perspective',
+			component: Perspective,
+			props: route => ({ perspective: route.params.perspective })
+		},
+		{
+			path: '/login',
+			name: 'login',
+			beforeEnter() {
+				location.href = '../Login';
+			}
+		},
+		{
+			path: '/logout',
+			name: 'logout',
+			beforeEnter() {
+				location.href = '../Logout';
 			}
 		}
 	]

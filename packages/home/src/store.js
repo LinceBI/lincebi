@@ -94,13 +94,19 @@ export default new Vuex.Store({
 						id: 'sthome',
 						name: 'STHome',
 						icon: ['fac', 'tool-sthome'],
-						perspective: 'sthome.perspective'
+						to: {
+							name: 'perspective',
+							params: { perspective: 'sthome.perspective' }
+						}
 					},
 					{
 						id: 'stadmin',
 						name: 'STAdmin',
 						icon: ['fac', 'tool-stadmin'],
-						perspective: 'stadmin.perspective'
+						to: {
+							name: 'perspective',
+							params: { perspective: 'stadmin.perspective' }
+						}
 					}
 				]
 			},
@@ -113,63 +119,98 @@ export default new Vuex.Store({
 						id: 'stpivot',
 						name: 'STPivot',
 						icon: ['fac', 'tool-stpivot'],
-						perspective: 'opened.perspective'
+						to: {
+							name: 'perspective',
+							params: { perspective: 'opened.perspective' },
+							query: { tool: 'stpivot' }
+						}
 					},
 					{
 						id: 'stdashboard',
 						name: 'STDashboard',
 						icon: ['fac', 'tool-stdashboard'],
-						perspective: 'opened.perspective'
+						to: {
+							name: 'perspective',
+							params: { perspective: 'opened.perspective' },
+							query: { tool: 'stdashboard' }
+						}
 					},
 					{
 						id: 'stcard',
 						name: 'STCard',
 						icon: ['fac', 'tool-stcard'],
-						perspective: 'opened.perspective'
+						to: {
+							name: 'perspective',
+							params: { perspective: 'opened.perspective' },
+							query: { tool: 'stcard' }
+						}
 					},
 					{
 						id: 'streport',
 						name: 'STReport',
 						icon: ['fac', 'tool-streport'],
-						perspective: 'opened.perspective'
+						to: {
+							name: 'perspective',
+							params: { perspective: 'opened.perspective' },
+							query: { tool: 'streport' }
+						}
 					},
 					{
 						id: 'stagile',
 						name: 'STAgile',
 						icon: ['fac', 'tool-stagile'],
-						perspective: 'opened.perspective'
+						to: {
+							name: 'perspective',
+							params: { perspective: 'opened.perspective' },
+							query: { tool: 'stagile' }
+						}
 					}
 				]
 			},
 			{
 				id: 'opened',
 				name: 'Opened',
-				perspective: 'opened.perspective',
-				icon: ['far', 'window-maximize']
+				icon: ['far', 'window-maximize'],
+				to: {
+					name: 'perspective',
+					params: { perspective: 'opened.perspective' }
+				}
 			},
 			{
 				id: 'browser',
 				name: 'Browser',
-				perspective: 'browser.perspective',
-				icon: ['fas', 'folder-open']
+				icon: ['fas', 'folder-open'],
+				to: {
+					name: 'perspective',
+					params: { perspective: 'browser.perspective' }
+				}
 			},
 			{
 				id: 'stsearch',
 				name: 'STSearch',
-				perspective: 'stsearch.perspective',
-				icon: ['fac', 'tool-stsearch']
+				icon: ['fac', 'tool-stsearch'],
+				to: {
+					name: 'perspective',
+					params: { perspective: 'stsearch.perspective' }
+				}
 			},
 			{
 				id: 'favorites',
 				name: 'Favorites',
-				perspective: 'favorites.perspective',
-				icon: ['fas', 'star']
+				icon: ['fas', 'star'],
+				to: {
+					name: 'perspective',
+					params: { perspective: 'favorites.perspective' }
+				}
 			},
 			{
 				id: 'recents',
 				name: 'Recents',
-				perspective: 'recents.perspective',
-				icon: ['far', 'clock']
+				icon: ['far', 'clock'],
+				to: {
+					name: 'perspective',
+					params: { perspective: 'recents.perspective' }
+				}
 			},
 			{
 				id: 'language',
@@ -180,13 +221,13 @@ export default new Vuex.Store({
 						id: 'english',
 						name: 'English',
 						img: require('@/assets/img/flags/uk.svg'),
-						link: '?locale=en_US'
+						to: { name: 'home', query: { locale: 'en_US' } }
 					},
 					{
 						id: 'Spanish',
 						name: 'Spanish',
 						img: require('@/assets/img/flags/es.svg'),
-						link: '?locale=es_ES'
+						to: { name: 'home', query: { locale: 'es_ES' } }
 					}
 				]
 			},
@@ -194,7 +235,7 @@ export default new Vuex.Store({
 				id: 'logout',
 				name: 'Logout',
 				icon: ['fas', 'sign-out-alt'],
-				link: '../Logout'
+				to: { name: 'logout' }
 			}
 		]
 	},
