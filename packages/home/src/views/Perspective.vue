@@ -1,5 +1,9 @@
 <template>
-	<iframe class="Perspective" ref="mantle" :src="`../BridgeHome?${searchParams}`" />
+	<iframe
+		class="Perspective"
+		ref="mantle"
+		:src="`../BridgeHome?${searchParams}`"
+	/>
 </template>
 
 <script>
@@ -12,12 +16,14 @@ export default {
 	data() {
 		return {
 			searchParams: searchParams.stringify({
-				...insertIf(typeof this.perspective !== 'undefined', {perspective: this.perspective})
+				...insertIf(typeof this.perspective !== 'undefined', {
+					perspective: this.perspective
+				})
 			})
 		};
 	},
 	watch: {
-		perspective(newPerspective, oldPerspective) {
+		perspective(newPerspective) {
 			this.$refs.mantle.contentWindow.mantle_setPerspective(newPerspective);
 		}
 	}

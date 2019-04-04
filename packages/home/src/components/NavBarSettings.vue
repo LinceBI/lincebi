@@ -15,13 +15,19 @@
 		<b-dropdown-divider />
 		<b-dropdown-item href="#">
 			<font-awesome-icon
-				:icon="['far', settings.tooltipDescriptionsEnabled ? 'check-square' : 'square']"
+				:icon="[
+					'far',
+					settings.tooltipDescriptionsEnabled ? 'check-square' : 'square'
+				]"
 			/>
 			<span class="lbl">Use descriptions for tooltips</span>
 		</b-dropdown-item>
 		<b-dropdown-item href="#">
 			<font-awesome-icon
-				:icon="['far', settings.showHiddenFilesEnabled ? 'check-square' : 'square']"
+				:icon="[
+					'far',
+					settings.showHiddenFilesEnabled ? 'check-square' : 'square'
+				]"
 			/>
 			<span class="lbl">Show hidden files</span>
 		</b-dropdown-item>
