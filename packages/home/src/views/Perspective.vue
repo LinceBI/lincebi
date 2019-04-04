@@ -31,7 +31,7 @@ export default {
 			invokeWhen(
 				() => {
 					let mantleWindow = this.retrieveMantleWindow();
-					return mantleWindow && typeof mantleWindow[funcName] !== 'undefined'
+					return mantleWindow && typeof mantleWindow[funcName] !== 'undefined';
 				},
 				() => {
 					let mantleWindow = this.retrieveMantleWindow();
