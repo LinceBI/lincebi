@@ -8,6 +8,7 @@
 
 <script>
 import insertIf from '@stratebi/biserver-customization-common/src/insertIf';
+import invokeWhen from '@stratebi/biserver-customization-common/src/invokeWhen';
 import searchParams from '@stratebi/biserver-customization-common/src/searchParams';
 
 export default {
@@ -22,9 +23,26 @@ export default {
 			})
 		};
 	},
+	methods: {
+		retrieveMantleWindow() {
+			return this.$refs.mantle.contentWindow.mantleWindow;
+		},
+		invokeMantleWindowFunction(funcName, ...args) {
+			invokeWhen(
+				() => {
+					let mantleWindow = this.retrieveMantleWindow();
+					return mantleWindow && typeof mantleWindow[funcName] !== 'undefined'
+				},
+				() => {
+					let mantleWindow = this.retrieveMantleWindow();
+					mantleWindow[funcName](...args);
+				}
+			);
+		}
+	},
 	watch: {
 		perspective(newPerspective) {
-			this.$refs.mantle.contentWindow.mantle_setPerspective(newPerspective);
+			this.invokeMantleWindowFunction('mantle_setPerspective', newPerspective);
 		}
 	}
 };

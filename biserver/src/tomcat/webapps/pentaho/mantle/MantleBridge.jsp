@@ -55,23 +55,16 @@
 			mantleWindow.document.write(mantleTemplate.innerHTML);
 			mantleWindow.document.close();
 
-			// Export Mantle properties
+			// Export mantleIFrame and mantleWindow
+			window.mantleIFrame = mantleIFrame;
+			window.mantleWindow = mantleWindow;
+
+			// Fire "mantle.loaded" event
 			mantleWindow.addEventListener('load', () => {
-				let propRegex = /^(CONTEXT_PATH|FULL_QUALIFIED_URL|mantle_.+)$/;
-
-				for (let propName in mantleWindow) {
-					if (propRegex.test(propName)) {
-						window[propName] = mantleWindow[propName];
-					}
-				}
-
 				window.dispatchEvent(new CustomEvent('mantle.loaded', {
 					detail: {window: mantleWindow}
 				}));
 			});
-
-			// Export mantleIFrame
-			window.mantleIFrame = mantleIFrame;
 
 			// Set perspective from parameter
 			(function () {
