@@ -1,5 +1,9 @@
 <template>
-	<b-dropdown-item class="SideBarSubitem shadow-sm" :to="item.to">
+	<b-dropdown-item
+		class="SideBarSubitem shadow-sm"
+		:to="item.to"
+		@click="item.click"
+	>
 		<font-awesome-icon v-if="item.icon" class="item-icon" :icon="item.icon" />
 		<b-img v-else class="item-img" :src="item.img"></b-img>
 		<span class="lbl"> {{ item.name }} </span>

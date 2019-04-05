@@ -9,13 +9,18 @@ export default new Router({
 		{
 			path: '/',
 			name: 'home',
-			component: Perspective
+			component: Perspective,
+			props: () => ({
+				perspective: 'home.perspective'
+			})
 		},
 		{
 			path: '/p/:perspective',
 			name: 'perspective',
 			component: Perspective,
-			props: route => ({ perspective: route.params.perspective })
+			props: route => ({
+				perspective: route.params.perspective
+			})
 		},
 		{
 			path: '/login',

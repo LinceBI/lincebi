@@ -19,10 +19,13 @@
 <script>
 export default {
 	name: 'NavBarCategories',
-	computed: {
-		categories() {
-			return this.$store.state.categories;
-		}
+	data() {
+		return {
+			categories: []
+		};
+	},
+	async created() {
+		this.categories = await this.$store.getters.categories;
 	}
 };
 </script>

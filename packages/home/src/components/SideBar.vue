@@ -12,10 +12,13 @@ export default {
 	components: {
 		SideBarItem
 	},
-	computed: {
-		sidebar() {
-			return this.$store.state.sidebar;
-		}
+	data() {
+		return {
+			sidebar: []
+		};
+	},
+	async created() {
+		this.sidebar = await this.$store.getters.sidebar;
 	}
 };
 </script>

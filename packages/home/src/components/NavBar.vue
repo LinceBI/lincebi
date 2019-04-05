@@ -1,6 +1,6 @@
 <template>
 	<b-navbar class="NavBar shadow-sm" toggleable="lg" variant="light">
-		<b-navbar-brand class="navbar-logo" href="#">
+		<b-navbar-brand class="navbar-logo" :to="{ name: 'home' }">
 			<b-img
 				class="h-100 w-auto"
 				src="@/assets/img/stratebi.svg"
