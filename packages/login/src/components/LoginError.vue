@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import getParameterOrDefault from '@stratebi/biserver-customization-common/src/getParameterOrDefault';
+import getParameter from '@stratebi/biserver-customization-common/src/getParameter';
 
 export default {
 	name: 'LoginError',
 	data: () => ({
-		code: getParameterOrDefault('login_error'),
+		code: getParameter('login_error'),
 		messages: {
 			// authenticationFailure
 			'1': 'A login error occurred. Please try again.',
