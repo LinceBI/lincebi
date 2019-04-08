@@ -7,9 +7,10 @@
 			<b-dropdown-item
 				class="category-item border-collapse"
 				v-for="category in categories"
+				@click="openCategory(category)"
 				:key="category.id"
 			>
-				<b-img class="category-img" :src="category.img"></b-img>
+				<b-img class="category-icon" :src="category.icon"></b-img>
 				<span class="category-text">{{ category.name }}</span>
 			</b-dropdown-item>
 		</b-dropdown>
@@ -17,6 +18,9 @@
 </template>
 
 <script>
+import router from '@/router';
+import eventBus from '@/eventBus';
+
 export default {
 	name: 'NavBarCategories',
 	data() {
@@ -26,6 +30,22 @@ export default {
 	},
 	async created() {
 		this.categories = await this.$store.getters.categories;
+	},
+	methods: {
+		openCategory(category) {
+			eventBus.$emit('mantle.invoke', () => {
+				router.push({
+					name: 'perspective',
+					params: { perspective: 'search.perspective' }
+				});
+				eventBus.$emit('mantle.perspective.params', 'search.perspective', {
+					'preset': 'category',
+					'banner-title': category.name,
+					'banner-src': `${location.origin}${location.pathname}${category.banner}`,
+					'search-terms': category.id
+				});
+			});
+		}
 	}
 };
 </script>
@@ -49,7 +69,7 @@ export default {
 			padding: rem(10);
 			@include border-collapse();
 
-			.category-img {
+			.category-icon {
 				height: 80%;
 				width: auto;
 				margin-right: rem(8);

@@ -77,78 +77,91 @@ export default new Vuex.Store({
 					enabled: true,
 					id: 'marketing',
 					name: 'Marketing',
-					img: require('@/assets/img/categories/marketing.svg')
+					icon: require('@/assets/img/categories/icons/marketing.svg'),
+					banner: require('@/assets/img/categories/banners/marketing.png')
 				},
 				{
 					enabled: true,
 					id: 'retail',
 					name: 'Retail',
-					img: require('@/assets/img/categories/retail.svg')
+					icon: require('@/assets/img/categories/icons/retail.svg'),
+					banner: require('@/assets/img/categories/banners/retail.png')
 				},
 				{
 					enabled: true,
 					id: 'finance',
 					name: 'Finance',
-					img: require('@/assets/img/categories/finance.svg')
+					icon: require('@/assets/img/categories/icons/finance.svg'),
+					banner: require('@/assets/img/categories/banners/finance.png')
 				},
 				{
 					enabled: true,
 					id: 'ngo',
 					name: 'NGO',
-					img: require('@/assets/img/categories/ngo.svg')
+					icon: require('@/assets/img/categories/icons/ngo.svg'),
+					banner: require('@/assets/img/categories/banners/ngo.png')
 				},
 				{
 					enabled: true,
 					id: 'gov',
 					name: 'GOV',
-					img: require('@/assets/img/categories/gov.svg')
+					icon: require('@/assets/img/categories/icons/gov.svg'),
+					banner: require('@/assets/img/categories/banners/gov.png')
 				},
 				{
 					enabled: true,
 					id: 'e-commerce',
 					name: 'e-Commerce',
-					img: require('@/assets/img/categories/e-commerce.svg')
+					icon: require('@/assets/img/categories/icons/e-commerce.svg'),
+					banner: require('@/assets/img/categories/banners/e-commerce.png')
 				},
 				{
 					id: 'telco',
 					name: 'Telco',
-					img: require('@/assets/img/categories/telco.svg')
+					icon: require('@/assets/img/categories/icons/telco.svg'),
+					banner: require('@/assets/img/categories/banners/telco.png')
 				},
 				{
 					enabled: true,
 					id: 'utilities',
 					name: 'Utilities',
-					img: require('@/assets/img/categories/utilities.svg')
+					icon: require('@/assets/img/categories/icons/utilities.svg'),
+					banner: require('@/assets/img/categories/banners/utilities.png')
 				},
 				{
 					enabled: true,
 					id: 'tourism',
 					name: 'Tourism',
-					img: require('@/assets/img/categories/tourism.svg')
+					icon: require('@/assets/img/categories/icons/tourism.svg'),
+					banner: require('@/assets/img/categories/banners/tourism.png')
 				},
 				{
 					enabled: true,
 					id: 'education',
 					name: 'Education',
-					img: require('@/assets/img/categories/education.svg')
+					icon: require('@/assets/img/categories/icons/education.svg'),
+					banner: require('@/assets/img/categories/banners/education.png')
 				},
 				{
 					enabled: true,
 					id: 'health',
 					name: 'Health',
-					img: require('@/assets/img/categories/health.svg')
+					icon: require('@/assets/img/categories/icons/health.svg'),
+					banner: require('@/assets/img/categories/banners/health.png')
 				},
 				{
 					enabled: true,
 					id: 'rrhh',
 					name: 'RRHH',
-					img: require('@/assets/img/categories/rrhh.svg')
+					icon: require('@/assets/img/categories/icons/rrhh.svg'),
+					banner: require('@/assets/img/categories/banners/rrhh.png')
 				},
 				{
 					enabled: true,
 					id: 'pharma',
 					name: 'Pharma',
-					img: require('@/assets/img/categories/pharma.svg')
+					icon: require('@/assets/img/categories/icons/pharma.svg'),
+					banner: require('@/assets/img/categories/banners/pharma.png')
 				}
 			].filter(category => category.enabled);
 		},
@@ -230,11 +243,18 @@ export default new Vuex.Store({
 					id: 'stsearch',
 					name: 'STSearch',
 					icon: ['fac', 'tool-stsearch'],
-					to: {
-						name: 'perspective',
-						params: { perspective: 'search.perspective' }
-					},
-					click() {}
+					to: undefined,
+					click() {
+						router.push({
+							name: 'perspective',
+							params: { perspective: 'search.perspective' }
+						});
+						eventBus.$emit(
+							'mantle.perspective.params',
+							'search.perspective',
+							{}
+						);
+					}
 				},
 				{
 					enabled: true,
