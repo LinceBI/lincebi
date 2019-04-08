@@ -6,11 +6,11 @@
 		</template>
 		<b-dropdown-item href="#">
 			<font-awesome-icon :icon="['fac', 'tool-stprofile']" />
-			<span class="lbl">STProfile</span>
+			<span class="lbl">Profile</span>
 		</b-dropdown-item>
 		<b-dropdown-item href="#">
 			<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
-			<span class="lbl">STAdmin</span>
+			<span class="lbl">Administration</span>
 		</b-dropdown-item>
 		<b-dropdown-divider />
 		<b-dropdown-item href="#">

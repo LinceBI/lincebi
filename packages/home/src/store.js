@@ -175,7 +175,7 @@ export default new Vuex.Store({
 					subitems: [
 						{
 							id: 'sthome',
-							name: 'STHome',
+							name: 'Home',
 							icon: ['fac', 'tool-sthome'],
 							to: {
 								name: 'perspective',
@@ -185,7 +185,7 @@ export default new Vuex.Store({
 						},
 						{
 							id: 'stadmin',
-							name: 'STAdmin',
+							name: 'Administration',
 							icon: ['fac', 'tool-stadmin'],
 							to: {
 								name: 'perspective',
