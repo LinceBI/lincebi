@@ -40,9 +40,9 @@ export default {
 					params: { perspective: 'search.perspective' }
 				});
 				eventBus.$emit('mantle.perspective.params', 'search.perspective', {
-					'preset': 'category',
+					preset: 'category',
 					'banner-title': category.name,
-					'banner-src': `${location.origin}${location.pathname}${category.banner}`,
+					'banner-src': `${location.pathname}${category.banner}`,
 					'search-terms': category.id
 				});
 			});
