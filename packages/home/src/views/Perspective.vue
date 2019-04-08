@@ -39,7 +39,7 @@ export default {
 		invokeInMantleWindow(fn, reqFns = this.wellKnownMantleFunctions) {
 			invokeWhen(
 				() => {
-					let mantleWindow = this.retrieveMantleWindow();
+					const mantleWindow = this.retrieveMantleWindow();
 					if (
 						typeof mantleWindow !== 'undefined' &&
 						reqFns.every(reqFn => isFunction(mantleWindow[reqFn]))
@@ -56,7 +56,7 @@ export default {
 			this.invokeInMantleWindow(mantleWindow => {
 				invokeWhen(
 					() => {
-						let perspectiveIframe = mantleWindow.document.querySelector(
+						const perspectiveIframe = mantleWindow.document.querySelector(
 							`iframe[id="${perspective}"]`
 						);
 						if (perspectiveIframe !== null && perspectiveIframe.contentWindow) {

@@ -35,7 +35,7 @@ export default {
 	methods: {
 		async onSubmit(event) {
 			event.preventDefault();
-			let response = await fetch('../j_spring_security_check', {
+			const response = await fetch('../j_spring_security_check', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 				body: searchParams.stringify(this.form)

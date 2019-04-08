@@ -7,21 +7,21 @@ export default {
 		return formData.objectify(new URLSearchParams(str), defaultValues);
 	},
 	stringify: obj => {
-		let params = [];
+		const params = [];
 
 		Object.entries(obj).forEach(entry => {
-			let key = entry[0];
-			let value = entry[1];
+			const key = entry[0];
+			const value = entry[1];
 
 			if (typeof value === 'string') {
 				params.push(`${key}=${encodeURIComponent(value)}`);
 			} else if (Array.isArray(value)) {
-				let arrKey = `${key}[]`;
+				const arrKey = `${key}[]`;
 				value.forEach(arrValue => {
 					params.push(`${arrKey}=${encodeURIComponent(arrValue)}`);
 				});
 			} else {
-				let objValue = safeJSON.stringify(value, value);
+				const objValue = safeJSON.stringify(value, value);
 				params.push(`${key}=${encodeURIComponent(objValue)}`);
 			}
 		});
