@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import store from '@/store';
 import SideBarItem from '@/components/SideBarItem.vue';
 
 export default {
@@ -18,7 +19,7 @@ export default {
 		};
 	},
 	async created() {
-		this.sidebar = await this.$store.getters.sidebar;
+		this.sidebar = await store.getters.sidebar;
 	}
 };
 </script>

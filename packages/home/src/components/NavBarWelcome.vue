@@ -6,11 +6,13 @@
 </template>
 
 <script>
+import store from '@/store';
+
 export default {
 	name: 'NavBarWelcome',
 	computed: {
 		user() {
-			return this.$store.state.user;
+			return store.state.user;
 		}
 	}
 };

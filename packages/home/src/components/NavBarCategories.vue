@@ -19,6 +19,7 @@
 
 <script>
 import router from '@/router';
+import store from '@/store';
 import eventBus from '@/eventBus';
 
 export default {
@@ -29,7 +30,7 @@ export default {
 		};
 	},
 	async created() {
-		this.categories = await this.$store.getters.categories;
+		this.categories = await store.getters.categories;
 	},
 	methods: {
 		openCategory(category) {

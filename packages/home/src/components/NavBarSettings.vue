@@ -35,11 +35,13 @@
 </template>
 
 <script>
+import store from '@/store';
+
 export default {
 	name: 'NavBarSettings',
 	computed: {
 		settings() {
-			return this.$store.state.settings;
+			return store.state.settings;
 		}
 	}
 };
