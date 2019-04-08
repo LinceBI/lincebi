@@ -1,3 +1,5 @@
+const isProduction = process.env.NODE_ENV === 'production';
+
 module.exports = {
 	root: true,
 	env: {
@@ -5,8 +7,8 @@ module.exports = {
 	},
 	extends: ['plugin:vue/essential', '@vue/prettier'],
 	rules: {
-		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
-		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+		'no-console': [isProduction ? 'error' : 'warn', { allow: ['warn', 'error'] }],
+		'no-debugger': [isProduction ? 'error' : 'warn'],
 		'prettier/prettier': ['error', { 'singleQuote': true, 'useTabs': true }]
 	},
 	parserOptions: {
