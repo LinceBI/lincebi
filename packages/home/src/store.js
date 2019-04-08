@@ -288,6 +288,39 @@ export default new Vuex.Store({
 					}
 				},
 				{
+					enabled: false,
+					id: 'schedules',
+					name: 'Schedules',
+					icon: ['fas', 'hourglass-half'],
+					to: {
+						name: 'perspective',
+						params: { perspective: 'schedules.perspective' }
+					},
+					click() {}
+				},
+				{
+					enabled: false,
+					id: 'admin',
+					name: 'Admin',
+					icon: ['fas', 'tools'],
+					to: {
+						name: 'perspective',
+						params: { perspective: 'admin.perspective' }
+					},
+					click() {}
+				},
+				{
+					enabled: false,
+					id: 'marketplace',
+					name: 'Marketplace',
+					icon: ['fas', 'store'],
+					to: {
+						name: 'perspective',
+						params: { perspective: 'marketplace.perspective.osgi' }
+					},
+					click() {}
+				},
+				{
 					enabled: true,
 					id: 'language',
 					name: 'Language',

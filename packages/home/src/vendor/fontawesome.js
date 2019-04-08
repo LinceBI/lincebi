@@ -16,6 +16,7 @@ import {
 	faFolder,
 	faFolderOpen,
 	faGlobeEurope,
+	faHourglassHalf,
 	faLock,
 	faPencilAlt,
 	faPlus,
@@ -23,8 +24,10 @@ import {
 	faSearch,
 	faSignOutAlt,
 	faStar,
+	faStore,
 	faSync,
 	faTimes,
+	faTools,
 	faUser
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -59,6 +62,7 @@ library.add(
 	faFolder,
 	faFolderOpen,
 	faGlobeEurope,
+	faHourglassHalf,
 	faLock,
 	faPencilAlt,
 	faPlus,
@@ -67,6 +71,7 @@ library.add(
 	faSignOutAlt,
 	faSquare,
 	faStar,
+	faStore,
 	faSync,
 	faTimes,
 	faToolStadmin,
@@ -78,6 +83,7 @@ library.add(
 	faToolStprofile,
 	faToolStreport,
 	faToolStsearch,
+	faTools,
 	faUser,
 	faWindowMaximize
 );
