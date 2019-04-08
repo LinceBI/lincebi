@@ -7,9 +7,7 @@
 					<SideBar />
 				</b-col>
 				<b-col class="page-col content">
-					<keep-alive include="Perspective">
-						<router-view />
-					</keep-alive>
+					<router-multi-view class="page-router" />
 				</b-col>
 			</b-row>
 		</b-container>
@@ -66,6 +64,10 @@ body {
 				padding: 0;
 				z-index: 0;
 			}
+		}
+
+		.page-router {
+			height: 100%;
 		}
 	}
 }

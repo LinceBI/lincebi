@@ -20,6 +20,7 @@
     "unfetch": "~4.1.0",
     "vue": "~2.6.10",
     "vue-router": "~3.0.2",
+    "vue-router-multi-view": "~0.1.0",
     "vuex": "~3.1.0"
   },
   "devDependencies": {
