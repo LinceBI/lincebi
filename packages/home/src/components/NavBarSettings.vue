@@ -4,11 +4,16 @@
 			<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
 			<span class="lbl d-md-none">Options</span>
 		</template>
-		<b-dropdown-item href="#">
+		<b-dropdown-item :to="{ name: 'profile' }">
 			<font-awesome-icon :icon="['fac', 'tool-stprofile']" />
 			<span class="lbl">Profile</span>
 		</b-dropdown-item>
-		<b-dropdown-item href="#">
+		<b-dropdown-item
+			:to="{
+				name: 'perspective',
+				params: { perspective: 'stadmin.perspective' }
+			}"
+		>
 			<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
 			<span class="lbl">Administration</span>
 		</b-dropdown-item>

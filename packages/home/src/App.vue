@@ -17,12 +17,23 @@
 <script>
 import NavBar from '@/components/NavBar.vue';
 import SideBar from '@/components/SideBar.vue';
+import store from '@/store';
 
 export default {
 	name: 'App',
 	components: {
 		NavBar,
 		SideBar
+	},
+	async created() {
+		store.dispatch('fetchUserSettings', [
+			'nickname',
+			'fullname',
+			'email',
+			'phone',
+			'address',
+			'avatar'
+		]);
 	}
 };
 </script>

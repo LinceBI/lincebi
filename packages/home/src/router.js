@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Profile from '@/views/Profile.vue';
 import Perspective from '@/views/Perspective.vue';
 
 Vue.use(Router);
@@ -9,10 +10,15 @@ export default new Router({
 		{
 			path: '/',
 			name: 'home',
-			component: Perspective,
-			props: () => ({
-				perspective: 'home.perspective'
-			})
+			redirect: {
+				name: 'perspective',
+				params: { perspective: 'home.perspective' }
+			}
+		},
+		{
+			path: '/profile',
+			name: 'profile',
+			component: Profile
 		},
 		{
 			path: '/p/:perspective',
