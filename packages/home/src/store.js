@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import router from '@/router';
 import eventBus from '@/eventBus';
+import canAdminister from '@stratebi/biserver-customization-common/src/canAdminister';
 
 Vue.use(Vuex);
 
@@ -288,7 +289,7 @@ export default new Vuex.Store({
 					}
 				},
 				{
-					enabled: false,
+					enabled: await canAdminister(),
 					id: 'schedules',
 					name: 'Schedules',
 					icon: ['fas', 'hourglass-half'],
@@ -299,7 +300,7 @@ export default new Vuex.Store({
 					click() {}
 				},
 				{
-					enabled: false,
+					enabled: await canAdminister(),
 					id: 'admin',
 					name: 'Admin',
 					icon: ['fas', 'tools'],
@@ -310,7 +311,7 @@ export default new Vuex.Store({
 					click() {}
 				},
 				{
-					enabled: false,
+					enabled: await canAdminister(),
 					id: 'marketplace',
 					name: 'Marketplace',
 					icon: ['fas', 'store'],
