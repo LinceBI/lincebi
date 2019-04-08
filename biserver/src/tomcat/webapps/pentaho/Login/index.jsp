@@ -25,13 +25,6 @@
 			</tr>
 		</table>
 	</form>
-	<script>
-		(function () {
-			var req = new XMLHttpRequest();
-			req.open('GET', '../Logout');
-			req.send();
-		})();
-	</script>
 </body>
 
 </html>
