@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import isFunction from 'lodash/isFunction';
 import insertIf from '@stratebi/biserver-customization-common/src/insertIf';
 import invokeWhen from '@stratebi/biserver-customization-common/src/invokeWhen';
 import searchParams from '@stratebi/biserver-customization-common/src/searchParams';
@@ -26,11 +27,10 @@ export default {
 		};
 	},
 	async created() {
-		eventBus.$on('mantle.open-url', tool => {
-			this.invokeInMantleWindow(function(window) {
-				window.openURL(tool.name, tool.name, tool.url);
-			});
-		});
+		eventBus.$on('mantle.invoke', this.invokeInMantleWindow);
+		eventBus.$on('mantle.perspective.invoke', this.invokeInPerspectiveWindow);
+		eventBus.$on('mantle.perspective.reload', this.reloadPerspective);
+		eventBus.$on('mantle.perspective.params', this.changePerspectiveParams);
 	},
 	methods: {
 		retrieveMantleWindow() {
@@ -40,23 +40,53 @@ export default {
 			invokeWhen(
 				() => {
 					let mantleWindow = this.retrieveMantleWindow();
-					return (
+					if (
 						typeof mantleWindow !== 'undefined' &&
-						reqFns.every(reqFn => typeof mantleWindow[reqFn] !== 'undefined')
-					);
+						reqFns.every(reqFn => isFunction(mantleWindow[reqFn]))
+					) {
+						return mantleWindow;
+					}
 				},
-				() => {
-					let mantleWindow = this.retrieveMantleWindow();
+				mantleWindow => {
 					fn.call(mantleWindow, mantleWindow);
 				}
 			);
+		},
+		invokeInPerspectiveWindow(perspective, fn) {
+			this.invokeInMantleWindow(mantleWindow => {
+				invokeWhen(
+					() => {
+						let perspectiveIframe = mantleWindow.document.querySelector(
+							`iframe[id="${perspective}"]`
+						);
+						if (perspectiveIframe !== null && perspectiveIframe.contentWindow) {
+							return perspectiveIframe.contentWindow;
+						}
+					},
+					perspectiveWindow => {
+						fn.call(perspectiveWindow, perspectiveWindow);
+					}
+				);
+			});
+		},
+		reloadPerspective(perspective) {
+			this.invokeInPerspectiveWindow(perspective, perspectiveWindow => {
+				perspectiveWindow.location.reload();
+			});
+		},
+		changePerspectiveParams(perspective, params = {}) {
+			this.invokeInPerspectiveWindow(perspective, perspectiveWindow => {
+				perspectiveWindow.location.search = searchParams.stringify(params);
+			});
 		}
 	},
 	watch: {
 		async perspective(perspective) {
-			this.invokeInMantleWindow(function(window) {
-				if (!perspective) perspective = window.mantle_getPerspectives()[0];
-				window.mantle_setPerspective(perspective);
+			this.invokeInMantleWindow(mantleWindow => {
+				if (!perspective) {
+					perspective = mantleWindow.mantle_getPerspectives()[0];
+				}
+				mantleWindow.mantle_setPerspective(perspective);
 			});
 		}
 	}

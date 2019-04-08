@@ -197,7 +197,9 @@ export default new Vuex.Store({
 								name: 'perspective',
 								params: { perspective: 'opened.perspective' }
 							});
-							eventBus.$emit('mantle.open-url', tool);
+							eventBus.$emit('mantle.invoke', mantleWindow => {
+								mantleWindow.openURL(tool.name, tool.name, tool.url);
+							});
 						}
 					}))
 				},
@@ -230,7 +232,7 @@ export default new Vuex.Store({
 					icon: ['fac', 'tool-stsearch'],
 					to: {
 						name: 'perspective',
-						params: { perspective: 'stsearch.perspective' }
+						params: { perspective: 'search.perspective' }
 					},
 					click() {}
 				},
@@ -239,22 +241,31 @@ export default new Vuex.Store({
 					id: 'favorites',
 					name: 'Favorites',
 					icon: ['fas', 'star'],
-					to: {
-						name: 'perspective',
-						params: { perspective: 'favorites.perspective' }
-					},
-					click() {}
+					to: undefined,
+					click() {
+						router.push({
+							name: 'perspective',
+							params: { perspective: 'favorites.perspective' }
+						});
+						eventBus.$emit(
+							'mantle.perspective.reload',
+							'favorites.perspective'
+						);
+					}
 				},
 				{
 					enabled: true,
 					id: 'recents',
 					name: 'Recents',
 					icon: ['far', 'clock'],
-					to: {
-						name: 'perspective',
-						params: { perspective: 'recents.perspective' }
-					},
-					click() {}
+					to: undefined,
+					click() {
+						router.push({
+							name: 'perspective',
+							params: { perspective: 'recents.perspective' }
+						});
+						eventBus.$emit('mantle.perspective.reload', 'recents.perspective');
+					}
 				},
 				{
 					enabled: true,
