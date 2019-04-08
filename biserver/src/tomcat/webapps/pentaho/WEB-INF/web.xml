@@ -274,12 +274,10 @@
     <servlet-class>org.pentaho.platform.web.servlet.PluginDispatchServlet</servlet-class>
   </servlet>
 
-  <!--
   <servlet>
-    <servlet-name>Home</servlet-name>
+    <servlet-name>OldHome</servlet-name>
     <jsp-file>/mantle/Mantle.jsp</jsp-file>
   </servlet>
-  -->
 
   <servlet>
     <servlet-name>DebugHome</servlet-name>
@@ -466,12 +464,10 @@
     <url-pattern>/content/getImage</url-pattern>
   </servlet-mapping>
 
-  <!--
   <servlet-mapping>
-    <servlet-name>Home</servlet-name>
-    <url-pattern>/Home</url-pattern>
+    <servlet-name>OldHome</servlet-name>
+    <url-pattern>/OldHome</url-pattern>
   </servlet-mapping>
-  -->
 
   <servlet-mapping>
     <servlet-name>DebugHome</servlet-name>
