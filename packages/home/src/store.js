@@ -5,18 +5,19 @@ import eventBus from '@/eventBus';
 import canAdminister from '@stratebi/biserver-customization-common/src/canAdminister';
 import setUserSetting from '@stratebi/biserver-customization-common/src/setUserSetting';
 import getUserSetting from '@stratebi/biserver-customization-common/src/getUserSetting';
+import blankSvg from '@stratebi/biserver-customization-common/src/blankSvg';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+	strict: process.env.NODE_ENV !== 'production',
 	state: () => ({
 		user: {
-			nickname: 'admin',
-			fullname: 'Administrator',
-			email: 'admin@example.com',
-			phone: '+00000000000',
-			address: '742 Evergreen Terrace',
-			avatar: require('@/assets/img/noavatar.svg')
+			name: '',
+			email: '',
+			phone: '',
+			address: '',
+			avatar: blankSvg
 		},
 		settings: {
 			tooltipDescriptionsEnabled: true,
@@ -32,16 +33,16 @@ export default new Vuex.Store({
 		async fetchUserSettings({ commit }, keys) {
 			if (!Array.isArray(keys)) keys = [keys];
 			keys.forEach(async key => {
-				const result = await getUserSetting(key);
-				if (result !== null) {
-					commit('setUserSetting', { key, result });
+				const value = await getUserSetting(key);
+				if (value !== null) {
+					commit('setUserSetting', { key, value });
 				}
 			});
 		},
 		async setUserSetting({ commit }, { key, value }) {
 			const result = await setUserSetting(key, value);
 			if (result !== null) {
-				commit('setUserSetting', { key, result });
+				commit('setUserSetting', { key, value });
 			}
 		}
 	},

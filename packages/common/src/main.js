@@ -1,8 +1,10 @@
 import './scss/main.scss';
 
+export { default as blankSvg } from './blankSvg';
 export { default as canAdminister } from './canAdminister';
 export { default as fileToDataURI } from './fileToDataURI';
 export { default as formData } from './formData';
+export { default as generateAvatar } from './generateAvatar';
 export { default as getContextPath } from './getContextPath';
 export { default as getParameter } from './getParameter';
 export { default as getUnicodeCharacter } from './fac/getUnicodeCharacter';

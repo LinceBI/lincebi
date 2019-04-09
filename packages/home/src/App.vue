@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import generateAvatar from '@stratebi/biserver-customization-common/src/generateAvatar';
 import NavBar from '@/components/NavBar.vue';
 import SideBar from '@/components/SideBar.vue';
 import store from '@/store';
@@ -26,14 +27,13 @@ export default {
 		SideBar
 	},
 	async created() {
-		store.dispatch('fetchUserSettings', [
-			'nickname',
-			'fullname',
-			'email',
-			'phone',
-			'address',
-			'avatar'
-		]);
+		await store.dispatch('fetchUserSettings', Object.keys(store.state.user));
+		if (store.state.user.avatar.length === 0) {
+			await store.dispatch('setUserSetting', {
+				key: 'avatar',
+				value: generateAvatar(store.state.user.name)
+			});
+		}
 	}
 };
 </script>
