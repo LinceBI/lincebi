@@ -45,6 +45,7 @@
 
 <script>
 import store from '@/store';
+import eventBus from '@/eventBus';
 
 export default {
 	name: 'NavBarSettings',
@@ -57,9 +58,10 @@ export default {
 		getBoolUserSetting(key) {
 			return this.userSettings[key] === 'true';
 		},
-		toggleBoolUserSetting(key) {
+		async toggleBoolUserSetting(key) {
 			const value = this.userSettings[key] === 'true' ? 'false' : 'true';
-			store.dispatch('setUserSetting', { key, value });
+			await store.dispatch('setUserSetting', { key, value });
+			eventBus.$emit('mantle.perspective.reload', 'browser.perspective');
 		}
 	}
 };
