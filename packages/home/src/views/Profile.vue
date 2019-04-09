@@ -2,20 +2,18 @@
 	<b-form class="Profile py-5 px-2" @submit="onSubmit">
 		<b-container>
 			<b-row>
-				<b-col lg="4">
+				<b-col lg="4" class="d-flex justify-content-center align-items-center">
 					<label class="avatar">
 						<b-img class="avatar-image" :src="user.avatar"></b-img>
+						<div class="avatar-overlay">
+							<font-awesome-icon class="icon" :icon="['fas', 'pencil-alt']" />
+						</div>
 						<input
 							class="avatar-input"
 							type="file"
 							name="avatar"
 							accept="image/jpeg, image/png, image/gif"
 						/>
-						<div class="triangle">
-							<div class="edit">
-								<font-awesome-icon class="icon" :icon="['fas', 'pencil-alt']" />
-							</div>
-						</div>
 					</label>
 				</b-col>
 				<b-col lg="8">
@@ -97,45 +95,53 @@ export default {
 
 <style scoped lang="scss">
 .Profile {
+	min-width: rem(256);
+
 	.avatar {
 		display: block;
 		position: relative;
-		margin: 0 auto rem(20) auto;
-		max-height: rem(256);
-		max-width: rem(256);
+		margin: 0 auto rem(40) auto;
+		height: rem(256);
+		width: rem(256);
 		cursor: pointer;
+
+		@include media-breakpoint-down(sm) {
+			height: rem(192);
+			width: rem(192);
+		}
 
 		.avatar-image {
 			display: block;
 			width: 100%;
+			height: 100%;
+			border: rem(2) solid rgba(map-get($theme-colors, 'dark'), 0.5);
+			border-radius: 50%;
+			object-fit: cover;
+		}
+
+		.avatar-overlay {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			font-size: rem(50);
+			border-radius: 50%;
+			color: rgba(255, 255, 255, 0);
+			background-color: rgba(0, 0, 0, 0);
+			transition: color 0.1s ease-out, background-color 0.1s ease-out;
+		}
+
+		&:hover .avatar-overlay {
+			color: rgba(255, 255, 255, 0.8);
+			background-color: rgba(0, 0, 0, 0.4);
 		}
 
 		.avatar-input {
 			display: none;
-		}
-
-		.triangle {
-			position: absolute;
-			top: 0;
-			right: 0;
-			width: 0;
-			height: 0;
-			border-style: solid;
-			border-width: 0 3em 3em 0;
-			border-color: transparent rgba(map-get($theme-colors, 'dark'), 0.6)
-				transparent transparent;
-			color: $yiq-text-light;
-
-			.edit {
-				padding: 0.3em;
-				width: 3em;
-				height: 3em;
-				text-align: right;
-
-				.icon {
-					vertical-align: top;
-				}
-			}
 		}
 	}
 }
