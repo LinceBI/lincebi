@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import router from '@/router';
 import eventBus from '@/eventBus';
+import canCreate from '@stratebi/biserver-customization-common/src/canCreate';
 import canAdminister from '@stratebi/biserver-customization-common/src/canAdminister';
 import setUserSetting from '@stratebi/biserver-customization-common/src/setUserSetting';
 import getUserSetting from '@stratebi/biserver-customization-common/src/getUserSetting';
@@ -221,7 +222,7 @@ export default new Vuex.Store({
 					]
 				},
 				{
-					enabled: true,
+					enabled: await canCreate(),
 					id: 'tools',
 					name: 'Tools',
 					icon: ['fas', 'plus'],
