@@ -27,11 +27,15 @@ export default {
 		SideBar
 	},
 	async created() {
-		await store.dispatch('fetchUserSettings', Object.keys(store.state.user));
-		if (store.state.user.avatar.length === 0) {
+		await store.dispatch(
+			'fetchUserSettings',
+			Object.keys(store.state.userSettings)
+		);
+
+		if (store.state.userSettings.avatar.length === 0) {
 			await store.dispatch('setUserSetting', {
 				key: 'avatar',
-				value: generateAvatar(store.state.user.name)
+				value: generateAvatar(store.state.userSettings.name)
 			});
 		}
 	}

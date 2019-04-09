@@ -12,21 +12,19 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	strict: process.env.NODE_ENV !== 'production',
 	state: () => ({
-		user: {
+		userSettings: {
 			name: '',
 			email: '',
 			phone: '',
 			address: '',
-			avatar: blankSvg
-		},
-		settings: {
-			tooltipDescriptionsEnabled: true,
-			showHiddenFilesEnabled: false
+			avatar: blankSvg,
+			MANTLE_SHOW_HIDDEN_FILES: 'false',
+			MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS: 'false'
 		}
 	}),
 	mutations: {
 		setUserSetting(state, { key, value }) {
-			state.user[key] = value;
+			state.userSettings[key] = value;
 		}
 	},
 	actions: {

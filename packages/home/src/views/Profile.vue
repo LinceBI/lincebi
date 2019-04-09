@@ -4,7 +4,7 @@
 			<b-row>
 				<b-col lg="4" class="d-flex justify-content-center align-items-center">
 					<label class="avatar">
-						<b-img class="avatar-image" :src="user.avatar"></b-img>
+						<b-img class="avatar-image" :src="userSettings.avatar"></b-img>
 						<div class="avatar-overlay">
 							<font-awesome-icon class="icon" :icon="['fas', 'pencil-alt']" />
 						</div>
@@ -22,7 +22,7 @@
 							type="text"
 							name="name"
 							placeholder="Name..."
-							:value="user.name"
+							:value="userSettings.name"
 						></b-form-input>
 					</b-form-group>
 					<b-form-group label="Email:">
@@ -30,7 +30,7 @@
 							type="text"
 							name="email"
 							placeholder="Email..."
-							:value="user.email"
+							:value="userSettings.email"
 						></b-form-input>
 					</b-form-group>
 					<b-form-group label="Phone:">
@@ -38,7 +38,7 @@
 							type="text"
 							name="phone"
 							placeholder="Phone..."
-							:value="user.phone"
+							:value="userSettings.phone"
 						></b-form-input>
 					</b-form-group>
 					<b-form-group label="Address:">
@@ -46,7 +46,7 @@
 							type="text"
 							name="address"
 							placeholder="Address..."
-							:value="user.address"
+							:value="userSettings.address"
 						></b-form-input>
 					</b-form-group>
 					<b-button type="submit" variant="primary" class="float-right">
@@ -67,8 +67,8 @@ export default {
 	name: 'Profile',
 	props: { perspective: String },
 	computed: {
-		user() {
-			return store.state.user;
+		userSettings() {
+			return store.state.userSettings;
 		}
 	},
 	methods: {

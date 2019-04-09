@@ -18,23 +18,27 @@
 			<span class="lbl">Administration</span>
 		</b-dropdown-item>
 		<b-dropdown-divider />
-		<b-dropdown-item href="#">
+		<b-dropdown-item
+			href="#"
+			@click="toggleBoolUserSetting('MANTLE_SHOW_HIDDEN_FILES')"
+		>
 			<font-awesome-icon
-				:icon="[
-					'far',
-					settings.tooltipDescriptionsEnabled ? 'check-square' : 'square'
-				]"
+				v-if="getBoolUserSetting('MANTLE_SHOW_HIDDEN_FILES')"
+				:icon="['far', 'check-square']"
 			/>
-			<span class="lbl">Use descriptions for tooltips</span>
-		</b-dropdown-item>
-		<b-dropdown-item href="#">
-			<font-awesome-icon
-				:icon="[
-					'far',
-					settings.showHiddenFilesEnabled ? 'check-square' : 'square'
-				]"
-			/>
+			<font-awesome-icon v-else :icon="['far', 'square']" />
 			<span class="lbl">Show hidden files</span>
+		</b-dropdown-item>
+		<b-dropdown-item
+			href="#"
+			@click="toggleBoolUserSetting('MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS')"
+		>
+			<font-awesome-icon
+				v-if="getBoolUserSetting('MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS')"
+				:icon="['far', 'check-square']"
+			/>
+			<font-awesome-icon v-else :icon="['far', 'square']" />
+			<span class="lbl">Use descriptions for tooltips</span>
 		</b-dropdown-item>
 	</b-nav-item-dropdown>
 </template>
@@ -45,8 +49,17 @@ import store from '@/store';
 export default {
 	name: 'NavBarSettings',
 	computed: {
-		settings() {
-			return store.state.settings;
+		userSettings() {
+			return store.state.userSettings;
+		}
+	},
+	methods: {
+		getBoolUserSetting(key) {
+			return this.userSettings[key] === 'true';
+		},
+		toggleBoolUserSetting(key) {
+			const value = this.userSettings[key] === 'true' ? 'false' : 'true';
+			store.dispatch('setUserSetting', { key, value });
 		}
 	}
 };

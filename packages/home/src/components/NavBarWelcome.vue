@@ -1,10 +1,10 @@
 <template>
 	<b-nav-text class="NavBarWelcome">
 		<b-link :to="{ name: 'profile' }">
-			<b-img class="user-avatar" :src="user.avatar"></b-img>
+			<b-img class="user-avatar" :src="userSettings.avatar"></b-img>
 		</b-link>
 		<span class="user-text">{{
-			user.name ? `Welcome ${user.name}` : 'Welcome'
+			userSettings.name ? `Welcome ${userSettings.name}` : 'Welcome'
 		}}</span>
 	</b-nav-text>
 </template>
@@ -15,8 +15,8 @@ import store from '@/store';
 export default {
 	name: 'NavBarWelcome',
 	computed: {
-		user() {
-			return store.state.user;
+		userSettings() {
+			return store.state.userSettings;
 		}
 	}
 };
