@@ -30,12 +30,12 @@ export default new Vuex.Store({
 	actions: {
 		async fetchUserSettings({ commit }, keys) {
 			if (!Array.isArray(keys)) keys = [keys];
-			keys.forEach(async key => {
+			for await (let key of keys) {
 				const value = await getUserSetting(key);
 				if (value !== null) {
 					commit('setUserSetting', { key, value });
 				}
-			});
+			}
 		},
 		async setUserSetting({ commit }, { key, value }) {
 			const result = await setUserSetting(key, value);
@@ -140,6 +140,7 @@ export default new Vuex.Store({
 					banner: require('@/assets/img/categories/banners/e-commerce.png')
 				},
 				{
+					enabled: true,
 					id: 'telco',
 					name: 'Telco',
 					icon: require('@/assets/img/categories/icons/telco.svg'),
@@ -193,12 +194,12 @@ export default new Vuex.Store({
 			return [
 				{
 					enabled: true,
-					id: 'home',
+					id: 'sthome',
 					name: 'Home',
-					icon: ['fas', 'angle-double-right'],
+					icon: ['fac', 'tool-sthome'],
 					subitems: [
 						{
-							id: 'sthome',
+							id: 'sthome.home',
 							name: 'Home',
 							icon: ['fac', 'tool-sthome'],
 							to: {
@@ -208,7 +209,7 @@ export default new Vuex.Store({
 							click() {}
 						},
 						{
-							id: 'stadmin',
+							id: 'sthome.administration',
 							name: 'Administration',
 							icon: ['fac', 'tool-stadmin'],
 							to: {
@@ -225,7 +226,7 @@ export default new Vuex.Store({
 					name: 'Tools',
 					icon: ['fas', 'plus'],
 					subitems: (await getters.tools).map(tool => ({
-						id: tool.id,
+						id: `tools.${tool.id}`,
 						name: tool.name,
 						icon: ['fac', `tool-${tool.id}`],
 						to: undefined,
@@ -265,84 +266,97 @@ export default new Vuex.Store({
 				{
 					enabled: true,
 					id: 'stsearch',
-					name: 'STSearch',
+					name: 'Search',
 					icon: ['fac', 'tool-stsearch'],
-					to: undefined,
-					click() {
-						router.push({
-							name: 'perspective',
-							params: { perspective: 'search.perspective' }
-						});
-						eventBus.$emit(
-							'mantle.perspective.params',
-							'search.perspective',
-							{}
-						);
-					}
-				},
-				{
-					enabled: true,
-					id: 'favorites',
-					name: 'Favorites',
-					icon: ['fas', 'star'],
-					to: undefined,
-					click() {
-						router.push({
-							name: 'perspective',
-							params: { perspective: 'favorites.perspective' }
-						});
-						eventBus.$emit(
-							'mantle.perspective.reload',
-							'favorites.perspective'
-						);
-					}
-				},
-				{
-					enabled: true,
-					id: 'recents',
-					name: 'Recents',
-					icon: ['far', 'clock'],
-					to: undefined,
-					click() {
-						router.push({
-							name: 'perspective',
-							params: { perspective: 'recents.perspective' }
-						});
-						eventBus.$emit('mantle.perspective.reload', 'recents.perspective');
-					}
-				},
-				{
-					enabled: await canAdminister(),
-					id: 'schedules',
-					name: 'Schedules',
-					icon: ['fas', 'hourglass-half'],
-					to: {
-						name: 'perspective',
-						params: { perspective: 'schedules.perspective' }
-					},
-					click() {}
+					subitems: [
+						{
+							id: 'stsearch.search',
+							name: 'Search',
+							icon: ['fac', 'tool-stsearch'],
+							to: undefined,
+							click() {
+								router.push({
+									name: 'perspective',
+									params: { perspective: 'search.perspective' }
+								});
+								eventBus.$emit(
+									'mantle.perspective.params',
+									'search.perspective',
+									{}
+								);
+							}
+						},
+						{
+							id: 'stsearch.favorites',
+							name: 'Favorites',
+							icon: ['fas', 'star'],
+							to: undefined,
+							click() {
+								router.push({
+									name: 'perspective',
+									params: { perspective: 'favorites.perspective' }
+								});
+								eventBus.$emit(
+									'mantle.perspective.reload',
+									'favorites.perspective'
+								);
+							}
+						},
+						{
+							id: 'stsearch.recents',
+							name: 'Recents',
+							icon: ['far', 'clock'],
+							to: undefined,
+							click() {
+								router.push({
+									name: 'perspective',
+									params: { perspective: 'recents.perspective' }
+								});
+								eventBus.$emit(
+									'mantle.perspective.reload',
+									'recents.perspective'
+								);
+							}
+						}
+					]
 				},
 				{
 					enabled: await canAdminister(),
-					id: 'admin',
-					name: 'Admin',
+					id: 'administration',
+					name: 'Administration',
 					icon: ['fas', 'tools'],
-					to: {
-						name: 'perspective',
-						params: { perspective: 'admin.perspective' }
-					},
-					click() {}
-				},
-				{
-					enabled: await canAdminister(),
-					id: 'marketplace',
-					name: 'Marketplace',
-					icon: ['fas', 'store'],
-					to: {
-						name: 'perspective',
-						params: { perspective: 'marketplace.perspective.osgi' }
-					},
-					click() {}
+					subitems: [
+						{
+							id: 'administration.admin',
+							name: 'Administration',
+							icon: ['fas', 'tools'],
+							to: {
+								name: 'perspective',
+								params: { perspective: 'admin.perspective' }
+							},
+							click() {}
+						},
+						{
+							id: 'administration.schedules',
+							name: 'Schedules',
+							icon: ['fas', 'hourglass-half'],
+							to: {
+								name: 'perspective',
+								params: { perspective: 'schedules.perspective' }
+							},
+							click() {}
+						},
+						{
+							id: 'administration.marketplace',
+							name: 'Marketplace',
+							icon: ['fas', 'store'],
+							to: {
+								name: 'perspective',
+								params: { perspective: 'marketplace.perspective.osgi' }
+							},
+							click() {}
+						}
+					]
 				},
 				{
 					enabled: true,
@@ -350,7 +364,7 @@ export default new Vuex.Store({
 					name: 'Language',
 					icon: ['fas', 'globe-europe'],
 					subitems: (await getters.languages).map(lang => ({
-						id: lang.id,
+						id: `language.${lang.id}`,
 						name: lang.name,
 						img: lang.img,
 						to: { name: 'home', query: { locale: lang.id } },

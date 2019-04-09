@@ -33,7 +33,7 @@ export default {
 		);
 
 		if (store.state.userSettings.avatar.length === 0) {
-			await store.dispatch('setUserSetting', {
+			store.commit('setUserSetting', {
 				key: 'avatar',
 				value: generateAvatar(store.state.userSettings.name)
 			});

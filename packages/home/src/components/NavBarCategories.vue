@@ -1,5 +1,5 @@
 <template>
-	<b-nav-form class="NavBarCategories">
+	<b-nav-form class="NavBarCategories" v-show="categories.length > 0">
 		<b-dropdown class="categories-dropdown" variant="primary" right>
 			<template slot="button-content">
 				Categories
