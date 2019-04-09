@@ -330,13 +330,10 @@ export default new Vuex.Store({
 					icon: ['fas', 'tools'],
 					subitems: [
 						{
-							id: 'administration.admin',
+							id: 'administration.administration',
 							name: 'Administration',
 							icon: ['fas', 'tools'],
-							to: {
-								name: 'perspective',
-								params: { perspective: 'admin.perspective' }
-							},
+							to: { name: 'administration' },
 							click() {}
 						},
 						{

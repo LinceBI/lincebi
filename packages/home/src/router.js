@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Profile from '@/views/Profile.vue';
+import Administration from '@/views/Administration.vue';
 import Perspective from '@/views/Perspective.vue';
+import Profile from '@/views/Profile.vue';
 
 Vue.use(Router);
 
@@ -20,6 +21,11 @@ export default new Router({
 			path: '/profile',
 			name: 'profile',
 			component: Profile
+		},
+		{
+			path: '/administration',
+			name: 'administration',
+			component: Administration
 		},
 		{
 			path: '/p/:perspective',
