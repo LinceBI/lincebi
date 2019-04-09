@@ -1,5 +1,5 @@
 <template>
-	<b-navbar class="NavBar shadow-sm" toggleable="lg" variant="light">
+	<b-navbar class="NavBar shadow" toggleable="lg" variant="light">
 		<b-navbar-brand class="navbar-logo" :to="{ name: 'home' }">
 			<b-img
 				class="h-100 w-auto"

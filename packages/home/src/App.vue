@@ -60,10 +60,11 @@ body {
 	.page-container {
 		display: flex;
 		flex-direction: column;
-		height: 100%;
+		flex-grow: 1;
 
 		.page-row {
-			height: 100%;
+			flex-wrap: nowrap;
+			flex-grow: 1;
 
 			.page-col.sidebar {
 				flex: 0 0 rem(50);
