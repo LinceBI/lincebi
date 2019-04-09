@@ -18,9 +18,9 @@
 </template>
 
 <script>
+import eventBus from '@/eventBus';
 import router from '@/router';
 import store from '@/store';
-import eventBus from '@/eventBus';
 
 export default {
 	name: 'NavBarCategories',

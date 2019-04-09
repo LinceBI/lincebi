@@ -11,6 +11,18 @@ Vue.component('font-awesome-layers', FontAwesomeLayers);
 Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
 
 import {
+	faToolStadmin,
+	faToolStagile,
+	faToolStcard,
+	faToolStdashboard,
+	faToolSthome,
+	faToolStpivot,
+	faToolStprofile,
+	faToolStreport,
+	faToolStsearch
+} from '@stratebi/biserver-customization-common/src/fac/index';
+
+import {
 	faAngleDoubleRight,
 	faDatabase,
 	faFolder,
@@ -39,18 +51,6 @@ import {
 	faSquare,
 	faWindowMaximize
 } from '@fortawesome/free-regular-svg-icons';
-
-import {
-	faToolStadmin,
-	faToolStagile,
-	faToolStcard,
-	faToolStdashboard,
-	faToolSthome,
-	faToolStpivot,
-	faToolStprofile,
-	faToolStreport,
-	faToolStsearch
-} from '@stratebi/biserver-customization-common/src/fac/index';
 
 library.add(
 	faAngleDoubleRight,

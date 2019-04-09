@@ -4,9 +4,11 @@
 
 <script>
 import isFunction from 'lodash/isFunction';
+
 import insertIf from '@stratebi/biserver-customization-common/src/insertIf';
 import invokeWhen from '@stratebi/biserver-customization-common/src/invokeWhen';
 import searchParams from '@stratebi/biserver-customization-common/src/searchParams';
+
 import eventBus from '@/eventBus.js';
 
 export default {

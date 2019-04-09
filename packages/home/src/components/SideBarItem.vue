@@ -6,7 +6,11 @@
 		no-caret
 	>
 		<template slot="button-content">
-			<font-awesome-icon v-if="item.icon" class="item-icon fa-fw" :icon="item.icon" />
+			<font-awesome-icon
+				v-if="item.icon"
+				class="item-icon fa-fw"
+				:icon="item.icon"
+			/>
 			<b-img v-else class="item-img" :src="item.img"></b-img>
 		</template>
 		<SideBarSubitem
@@ -16,7 +20,11 @@
 		/>
 	</b-nav-item-dropdown>
 	<b-nav-item v-else class="SideBarItem" :to="item.to" @click="item.click">
-		<font-awesome-icon v-if="item.icon" class="item-icon fa-fw" :icon="item.icon" />
+		<font-awesome-icon
+			v-if="item.icon"
+			class="item-icon fa-fw"
+			:icon="item.icon"
+		/>
 		<b-img v-else class="item-img" :src="item.img"></b-img>
 	</b-nav-item>
 </template>

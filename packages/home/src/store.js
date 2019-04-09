@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+
+import blankSvg from '@stratebi/biserver-customization-common/src/blankSvg';
+import canAdminister from '@stratebi/biserver-customization-common/src/biserver/canAdminister';
+import canCreate from '@stratebi/biserver-customization-common/src/biserver/canCreate';
+import getUserSetting from '@stratebi/biserver-customization-common/src/biserver/getUserSetting';
+import setUserSetting from '@stratebi/biserver-customization-common/src/biserver/setUserSetting';
+
 import router from '@/router';
 import eventBus from '@/eventBus';
-import canCreate from '@stratebi/biserver-customization-common/src/canCreate';
-import canAdminister from '@stratebi/biserver-customization-common/src/canAdminister';
-import setUserSetting from '@stratebi/biserver-customization-common/src/setUserSetting';
-import getUserSetting from '@stratebi/biserver-customization-common/src/getUserSetting';
-import blankSvg from '@stratebi/biserver-customization-common/src/blankSvg';
 
 Vue.use(Vuex);
 

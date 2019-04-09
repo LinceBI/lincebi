@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+
 import Profile from '@/views/Profile.vue';
 import Perspective from '@/views/Perspective.vue';
 

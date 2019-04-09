@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import router from '@/router';
 import eventBus from '@/eventBus';
+import router from '@/router';
 
 export default {
 	name: 'NavBarSearch',

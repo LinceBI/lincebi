@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import NavBarWelcome from '@/components/NavBarWelcome.vue';
 import NavBarCategories from '@/components/NavBarCategories.vue';
 import NavBarSearch from '@/components/NavBarSearch.vue';
 import NavBarSettings from '@/components/NavBarSettings.vue';
+import NavBarWelcome from '@/components/NavBarWelcome.vue';
 
 export default {
 	name: 'NavBar',

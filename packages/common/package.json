@@ -3,8 +3,7 @@
   "name": "@stratebi/biserver-customization-common",
   "version": "1.0.0+PE81",
   "scripts": {
-    "lint": "vue-cli-service lint",
-    "build": "vue-cli-service build --target lib --name common ./src/main.js"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "~1.2.17",

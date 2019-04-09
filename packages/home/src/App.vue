@@ -16,6 +16,7 @@
 
 <script>
 import generateAvatar from '@stratebi/biserver-customization-common/src/generateAvatar';
+
 import NavBar from '@/components/NavBar.vue';
 import SideBar from '@/components/SideBar.vue';
 import store from '@/store';

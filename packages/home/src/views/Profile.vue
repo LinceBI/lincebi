@@ -61,6 +61,7 @@
 
 <script>
 import imageToDataURI from '@stratebi/biserver-customization-common/src/imageToDataURI';
+
 import store from '@/store';
 
 export default {
