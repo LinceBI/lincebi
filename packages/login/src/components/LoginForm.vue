@@ -3,7 +3,12 @@
 		<b-form @submit="onSubmit">
 			<h2 class="text-center">Login</h2>
 			<b-form-group label="Username:">
-				<b-form-input type="text" v-model="form.j_username" autofocus required />
+				<b-form-input
+					type="text"
+					v-model="form.j_username"
+					autofocus
+					required
+				/>
 			</b-form-group>
 			<b-form-group label="Password:">
 				<b-form-input type="password" v-model="form.j_password" required />
