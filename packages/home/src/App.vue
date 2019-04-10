@@ -8,11 +8,7 @@
 				</b-col>
 				<b-col class="page-col content">
 					<router-multi-view class="page-router" />
-					<notifications
-						class="page-notifications"
-						:classes="['vue-notification', 'rounded', 'shadow']"
-						:max="3"
-					/>
+					<BNotifications class="page-notifications" />
 				</b-col>
 			</b-row>
 		</b-container>
@@ -20,15 +16,18 @@
 </template>
 
 <script>
+import BNotifications from '@stratebi/biserver-customization-common/src/components/BNotifications.vue';
 import generateAvatar from '@stratebi/biserver-customization-common/src/generateAvatar';
+
+import store from '@/store';
 
 import NavBar from '@/components/NavBar.vue';
 import SideBar from '@/components/SideBar.vue';
-import store from '@/store';
 
 export default {
 	name: 'App',
 	components: {
+		BNotifications,
 		NavBar,
 		SideBar
 	},
@@ -95,14 +94,6 @@ body {
 		.page-notifications {
 			position: absolute;
 			padding-top: rem(10);
-
-			.notification-wrapper {
-				padding: 0 rem(10);
-			}
-
-			.notification-wrapper:last-child {
-				padding-bottom: rem(20);
-			}
 		}
 	}
 }
