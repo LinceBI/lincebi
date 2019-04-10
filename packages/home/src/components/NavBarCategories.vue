@@ -55,7 +55,7 @@ export default {
 		width: 100%;
 
 		::v-deep .dropdown-menu {
-			width: rem(280);
+			width: rem(300);
 			padding: 0;
 			border-top: 0;
 			border-left: 0;
@@ -65,7 +65,7 @@ export default {
 			display: inline-block;
 			height: rem(45);
 			width: 50%;
-			padding: rem(10);
+			padding: rem(10) rem(15);
 			@include border-collapse();
 
 			.category-icon {
