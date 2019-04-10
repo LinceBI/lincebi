@@ -53,6 +53,9 @@ body {
 	height: 100vh;
 	font-family: 'Titillium Web', $system-sans-serif;
 	font-size: $em-base + 0px;
+	background-image: url('~@/assets/img/background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .App {
