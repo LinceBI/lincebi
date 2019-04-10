@@ -2,6 +2,7 @@ import Vue from 'vue';
 
 import '@/vendor/bootstrap';
 import '@/vendor/fontawesome';
+import '@/vendor/vue-notification';
 import '@/vendor/vue-router-multi-view';
 
 import App from '@/App.vue';

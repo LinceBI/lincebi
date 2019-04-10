@@ -8,6 +8,11 @@
 				</b-col>
 				<b-col class="page-col content">
 					<router-multi-view class="page-router" />
+					<notifications
+						class="page-notifications"
+						:classes="['vue-notification', 'rounded', 'shadow']"
+						:max="3"
+					/>
 				</b-col>
 			</b-row>
 		</b-container>
@@ -85,6 +90,19 @@ body {
 
 		.page-router {
 			height: 100%;
+		}
+
+		.page-notifications {
+			position: absolute;
+			padding-top: rem(10);
+
+			.notification-wrapper {
+				padding: 0 rem(10);
+			}
+
+			.notification-wrapper:last-child {
+				padding-bottom: rem(20);
+			}
 		}
 	}
 }
