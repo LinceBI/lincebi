@@ -1,14 +1,8 @@
 <template>
-	<notifications
-		class="BNotifications"
-		classes="alert shadow"
-		:max="3"
-	/>
+	<notifications class="BNotifications" classes="alert shadow" :max="3" />
 </template>
 
 <script>
-import Vue from 'vue';
-
 export default {
 	name: 'BNotifications'
 };
