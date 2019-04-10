@@ -1,32 +1,29 @@
 <template>
-	<b-nav-item-dropdown
-		v-if="Array.isArray(item.subitems)"
-		class="SideBarItem"
-		dropright
-		no-caret
-	>
-		<template slot="button-content">
+	<div class="SideBarItem" :title="item.name">
+		<b-nav-item-dropdown v-if="Array.isArray(item.subitems)" dropright no-caret>
+			<template slot="button-content">
+				<font-awesome-icon
+					v-if="item.icon"
+					class="item-icon fa-fw"
+					:icon="item.icon"
+				/>
+				<b-img v-else class="item-img" :src="item.img"></b-img>
+			</template>
+			<SideBarSubitem
+				v-for="subitem in item.subitems"
+				:key="subitem.id"
+				:item="subitem"
+			/>
+		</b-nav-item-dropdown>
+		<b-nav-item v-else :to="item.to" @click="item.click">
 			<font-awesome-icon
 				v-if="item.icon"
 				class="item-icon fa-fw"
 				:icon="item.icon"
 			/>
 			<b-img v-else class="item-img" :src="item.img"></b-img>
-		</template>
-		<SideBarSubitem
-			v-for="subitem in item.subitems"
-			:key="subitem.id"
-			:item="subitem"
-		/>
-	</b-nav-item-dropdown>
-	<b-nav-item v-else class="SideBarItem" :to="item.to" @click="item.click">
-		<font-awesome-icon
-			v-if="item.icon"
-			class="item-icon fa-fw"
-			:icon="item.icon"
-		/>
-		<b-img v-else class="item-img" :src="item.img"></b-img>
-	</b-nav-item>
+		</b-nav-item>
+	</div>
 </template>
 
 <script>

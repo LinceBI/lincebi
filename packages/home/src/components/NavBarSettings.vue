@@ -2,7 +2,7 @@
 	<b-nav-item-dropdown class="NavBarSettings" right no-caret>
 		<template slot="button-content">
 			<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
-			<span class="lbl d-md-none">Options</span>
+			<span class="lbl d-lg-none">Options</span>
 		</template>
 		<b-dropdown-item :to="{ name: 'profile' }">
 			<font-awesome-icon :icon="['fac', 'tool-stprofile']" />
