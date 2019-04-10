@@ -34,17 +34,15 @@ export default {
 	},
 	methods: {
 		openCategory(category) {
-			eventBus.$emit('mantle.invoke', () => {
-				router.push({
-					name: 'perspective',
-					params: { perspective: 'search.perspective' }
-				});
-				eventBus.$emit('mantle.perspective.params', 'search.perspective', {
-					preset: 'category',
-					'banner-title': category.name,
-					'banner-src': `${location.pathname}${category.banner}`,
-					'search-terms': category.id
-				});
+			router.push({
+				name: 'perspective',
+				params: { perspective: 'search.perspective' }
+			});
+			eventBus.$emitWhen('mantle.perspective.params', 'search.perspective', {
+				preset: 'category',
+				'banner-title': category.name,
+				'banner-src': `${location.pathname}${category.banner}`,
+				'search-terms': category.id
 			});
 		}
 	}

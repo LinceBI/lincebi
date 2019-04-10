@@ -238,7 +238,7 @@ export default new Vuex.Store({
 								name: 'perspective',
 								params: { perspective: 'opened.perspective' }
 							});
-							eventBus.$emit('mantle.invoke', mantleWindow => {
+							eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 								mantleWindow.openURL(tool.name, tool.name, tool.url);
 							});
 						}
@@ -283,9 +283,13 @@ export default new Vuex.Store({
 									params: { perspective: 'search.perspective' }
 								});
 								eventBus.$emit(
-									'mantle.perspective.params',
+									'mantle.perspective.invoke',
 									'search.perspective',
-									{}
+									perspectiveWindow => {
+										if (perspectiveWindow.STSearch) {
+											perspectiveWindow.STSearch.doRefresh();
+										}
+									}
 								);
 							}
 						},
@@ -300,8 +304,13 @@ export default new Vuex.Store({
 									params: { perspective: 'favorites.perspective' }
 								});
 								eventBus.$emit(
-									'mantle.perspective.reload',
-									'favorites.perspective'
+									'mantle.perspective.invoke',
+									'favorites.perspective',
+									perspectiveWindow => {
+										if (perspectiveWindow.STSearch) {
+											perspectiveWindow.STSearch.doRefresh();
+										}
+									}
 								);
 							}
 						},
@@ -316,8 +325,13 @@ export default new Vuex.Store({
 									params: { perspective: 'recents.perspective' }
 								});
 								eventBus.$emit(
-									'mantle.perspective.reload',
-									'recents.perspective'
+									'mantle.perspective.invoke',
+									'recents.perspective',
+									perspectiveWindow => {
+										if (perspectiveWindow.STSearch) {
+											perspectiveWindow.STSearch.doRefresh();
+										}
+									}
 								);
 							}
 						}

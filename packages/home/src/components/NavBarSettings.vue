@@ -61,7 +61,7 @@ export default {
 		async toggleBoolUserSetting(key) {
 			const value = this.userSettings[key] === 'true' ? 'false' : 'true';
 			await store.dispatch('setUserSetting', { key, value });
-			eventBus.$emit('mantle.perspective.reload', 'browser.perspective');
+			eventBus.$emitWhen('mantle.perspective.reload', 'browser.perspective');
 		}
 	}
 };

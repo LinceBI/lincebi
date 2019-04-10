@@ -1,5 +1,5 @@
 <template>
-	<b-nav-form class="NavBarSearch" @submit="onSubmit">
+	<b-nav-form class="NavBarSearch" @submit="onSubmit" @reset="onReset">
 		<b-input-group class="search-input-group">
 			<b-form-input
 				v-model="searchTerms"
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import invokeWhen from '@stratebi/biserver-customization-common/src/invokeWhen';
+
 import eventBus from '@/eventBus';
 import router from '@/router';
 
@@ -28,16 +30,29 @@ export default {
 	methods: {
 		onSubmit(event) {
 			event.preventDefault();
-			event.target.reset();
-			eventBus.$emit('mantle.invoke', () => {
-				router.push({
-					name: 'perspective',
-					params: { perspective: 'search.perspective' }
-				});
-				eventBus.$emit('mantle.perspective.params', 'search.perspective', {
-					'search-terms': this.searchTerms
-				});
+
+			router.push({
+				name: 'perspective',
+				params: { perspective: 'search.perspective' }
 			});
+			eventBus.$emitWhen(
+				'mantle.perspective.invoke',
+				'search.perspective',
+				perspectiveWindow => {
+					invokeWhen(
+						() => perspectiveWindow.STSearch,
+						STSearch => {
+							STSearch.doSearch(this.searchTerms);
+							event.target.reset();
+						}
+					);
+				}
+			);
+		},
+		onReset(event) {
+			event.preventDefault();
+
+			this.searchTerms = '';
 		}
 	}
 };

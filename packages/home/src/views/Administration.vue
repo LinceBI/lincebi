@@ -68,7 +68,7 @@ export default {
 				name: 'perspective',
 				params: { perspective: 'admin.perspective' }
 			});
-			eventBus.$emit('mantle.invoke', mantleWindow => {
+			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 				mantleWindow.executeCommand('ManageDatasourcesCommand');
 			});
 		},
@@ -89,7 +89,7 @@ export default {
 				name: 'perspective',
 				params: { perspective: 'opened.perspective' }
 			});
-			eventBus.$emit('mantle.invoke', mantleWindow => {
+			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 				mantleWindow.openURL(
 					'CDA cache manager',
 					'CDA cache manager',
