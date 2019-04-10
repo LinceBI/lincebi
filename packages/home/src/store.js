@@ -328,35 +328,8 @@ export default new Vuex.Store({
 					id: 'administration',
 					name: 'Administration',
 					icon: ['fas', 'tools'],
-					subitems: [
-						{
-							id: 'administration.administration',
-							name: 'Administration',
-							icon: ['fas', 'tools'],
-							to: { name: 'administration' },
-							click() {}
-						},
-						{
-							id: 'administration.schedules',
-							name: 'Schedules',
-							icon: ['fas', 'hourglass-half'],
-							to: {
-								name: 'perspective',
-								params: { perspective: 'schedules.perspective' }
-							},
-							click() {}
-						},
-						{
-							id: 'administration.marketplace',
-							name: 'Marketplace',
-							icon: ['fas', 'store'],
-							to: {
-								name: 'perspective',
-								params: { perspective: 'marketplace.perspective.osgi' }
-							},
-							click() {}
-						}
-					]
+					to: { name: 'administration' },
+					click() {}
 				},
 				{
 					enabled: true,

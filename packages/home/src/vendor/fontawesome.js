@@ -1,10 +1,10 @@
 import Vue from 'vue';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import {
 	FontAwesomeIcon,
 	FontAwesomeLayers,
 	FontAwesomeLayersText
 } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('font-awesome-layers', FontAwesomeLayers);
@@ -38,6 +38,7 @@ import {
 	faStar,
 	faStore,
 	faSync,
+	faTable,
 	faTimes,
 	faTools,
 	faUser
@@ -73,6 +74,7 @@ library.add(
 	faStar,
 	faStore,
 	faSync,
+	faTable,
 	faTimes,
 	faToolStadmin,
 	faToolStagile,
