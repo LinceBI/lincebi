@@ -3,6 +3,24 @@
 /src/*
 !/src/
 
+/src/pentaho-solutions/*
+!/src/pentaho-solutions/
+
+/src/pentaho-solutions/system/*
+!/src/pentaho-solutions/system/
+!/src/pentaho-solutions/system/pentaho.xml
+
+/src/pentaho-solutions/system/common-ui/*
+!/src/pentaho-solutions/system/common-ui/
+!/src/pentaho-solutions/system/common-ui/themes.xml
+
+/src/pentaho-solutions/system/common-ui/resources/*
+!/src/pentaho-solutions/system/common-ui/resources/
+
+/src/pentaho-solutions/system/common-ui/resources/themes/*
+!/src/pentaho-solutions/system/common-ui/resources/themes/
+!/src/pentaho-solutions/system/common-ui/resources/themes/stratebi/
+
 /src/tomcat/*
 !/src/tomcat/
 
@@ -18,6 +36,11 @@
 /src/tomcat/webapps/pentaho/mantle/*
 !/src/tomcat/webapps/pentaho/mantle/
 !/src/tomcat/webapps/pentaho/mantle/MantleBridge.jsp
+!/src/tomcat/webapps/pentaho/mantle/themes.xml
+
+/src/tomcat/webapps/pentaho/mantle/themes/*
+!/src/tomcat/webapps/pentaho/mantle/themes/
+!/src/tomcat/webapps/pentaho/mantle/themes/stratebi/
 
 /src/tomcat/webapps/pentaho/WEB-INF/*
 !/src/tomcat/webapps/pentaho/WEB-INF/

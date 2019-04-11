@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<themes root-folder="themes">
+  <stratebi>
+    <file>mantleStratebi.css</file>
+  </stratebi>
+  <onyx>
+    <file>mantleOnyx.css</file>
+  </onyx>
+  <slate>
+    <file>mantleSlate.css</file>
+  </slate>
+  <crystal>
+    <file>mantleCrystal.css</file>
+  </crystal>
+  <sapphire>
+    <file>mantleSapphire.css</file>
+  </sapphire>
+  <ruby>
+    <file>mantleRuby.css</file>
+  </ruby>
+</themes>
