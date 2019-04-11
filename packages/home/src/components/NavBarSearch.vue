@@ -41,7 +41,8 @@ export default {
 				perspectiveWindow => {
 					invokeWhen(
 						() => perspectiveWindow.STSearch,
-						STSearch => {
+						async STSearch => {
+							await STSearch.doRefresh();
 							STSearch.doSearch(this.searchTerms);
 							event.target.reset();
 						}
