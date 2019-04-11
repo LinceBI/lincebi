@@ -7,6 +7,8 @@ export default (condFunc, invokeFunc, { wait = 100, timeout = 10000 } = {}) => {
 			const condResult = condFunc();
 			if (condResult) invokeFunc(condResult);
 			else tryInvoke();
+		} else {
+			console.warn('[invokeWhen] Timeout:', condFunc, invokeFunc);
 		}
 	}, wait);
 
