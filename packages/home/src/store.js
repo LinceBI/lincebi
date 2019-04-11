@@ -5,6 +5,7 @@ import blankSvg from '@stratebi/biserver-customization-common/src/blankSvg';
 import canAdminister from '@stratebi/biserver-customization-common/src/biserver/canAdminister';
 import canCreate from '@stratebi/biserver-customization-common/src/biserver/canCreate';
 import getUserSetting from '@stratebi/biserver-customization-common/src/biserver/getUserSetting';
+import invokeWhen from '@stratebi/biserver-customization-common/src/invokeWhen';
 import setUserSetting from '@stratebi/biserver-customization-common/src/biserver/setUserSetting';
 
 import router from '@/router';
@@ -302,16 +303,19 @@ export default new Vuex.Store({
 							click() {
 								router.push({
 									name: 'perspective',
-									params: { perspective: 'favorites.perspective' }
+									params: { perspective: 'search.perspective' }
 								});
-								eventBus.$emit(
+								eventBus.$emitWhen(
 									'mantle.perspective.invoke',
-									'favorites.perspective',
+									'search.perspective',
 									async perspectiveWindow => {
-										if (perspectiveWindow.STSearch) {
-											perspectiveWindow.STSearch.resetConfig();
-											await perspectiveWindow.STSearch.doRefresh();
-										}
+										invokeWhen(
+											() => perspectiveWindow.STSearch,
+											async STSearch => {
+												STSearch.applyPreset('favorites');
+												await STSearch.doRefresh();
+											}
+										);
 									}
 								);
 							}
@@ -324,16 +328,19 @@ export default new Vuex.Store({
 							click() {
 								router.push({
 									name: 'perspective',
-									params: { perspective: 'recents.perspective' }
+									params: { perspective: 'search.perspective' }
 								});
-								eventBus.$emit(
+								eventBus.$emitWhen(
 									'mantle.perspective.invoke',
-									'recents.perspective',
+									'search.perspective',
 									async perspectiveWindow => {
-										if (perspectiveWindow.STSearch) {
-											perspectiveWindow.STSearch.resetConfig();
-											await perspectiveWindow.STSearch.doRefresh();
-										}
+										invokeWhen(
+											() => perspectiveWindow.STSearch,
+											async STSearch => {
+												STSearch.applyPreset('recents');
+												await STSearch.doRefresh();
+											}
+										);
 									}
 								);
 							}
