@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import invokeWhen from '@stratebi/biserver-customization-common/src/invokeWhen';
+
 import eventBus from '@/eventBus';
 import router from '@/router';
 import store from '@/store';
@@ -38,12 +40,24 @@ export default {
 				name: 'perspective',
 				params: { perspective: 'search.perspective' }
 			});
-			eventBus.$emitWhen('mantle.perspective.params', 'search.perspective', {
-				preset: 'category',
-				'banner-title': category.name,
-				'banner-src': `${location.pathname}${category.banner}`,
-				'search-terms': category.id
-			});
+			eventBus.$emitWhen(
+				'mantle.perspective.invoke',
+				'search.perspective',
+				perspectiveWindow => {
+					invokeWhen(
+						() => perspectiveWindow.STSearch,
+						async STSearch => {
+							STSearch.applyPreset('category');
+							STSearch.applyConfig({
+								'banner-title': category.name,
+								'banner-src': `${location.pathname}${category.banner}`,
+								'search-terms': category.id
+							});
+							await STSearch.doRefresh();
+						}
+					);
+				}
+			);
 		}
 	}
 };

@@ -285,9 +285,10 @@ export default new Vuex.Store({
 								eventBus.$emit(
 									'mantle.perspective.invoke',
 									'search.perspective',
-									perspectiveWindow => {
+									async perspectiveWindow => {
 										if (perspectiveWindow.STSearch) {
-											perspectiveWindow.STSearch.doRefresh();
+											perspectiveWindow.STSearch.resetConfig();
+											await perspectiveWindow.STSearch.doRefresh();
 										}
 									}
 								);
@@ -306,9 +307,10 @@ export default new Vuex.Store({
 								eventBus.$emit(
 									'mantle.perspective.invoke',
 									'favorites.perspective',
-									perspectiveWindow => {
+									async perspectiveWindow => {
 										if (perspectiveWindow.STSearch) {
-											perspectiveWindow.STSearch.doRefresh();
+											perspectiveWindow.STSearch.resetConfig();
+											await perspectiveWindow.STSearch.doRefresh();
 										}
 									}
 								);
@@ -327,9 +329,10 @@ export default new Vuex.Store({
 								eventBus.$emit(
 									'mantle.perspective.invoke',
 									'recents.perspective',
-									perspectiveWindow => {
+									async perspectiveWindow => {
 										if (perspectiveWindow.STSearch) {
-											perspectiveWindow.STSearch.doRefresh();
+											perspectiveWindow.STSearch.resetConfig();
+											await perspectiveWindow.STSearch.doRefresh();
 										}
 									}
 								);
