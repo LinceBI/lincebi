@@ -6,8 +6,8 @@
 import isFunction from 'lodash/isFunction';
 
 import insertIf from '@stratebi/biserver-customization-common/src/insertIf';
-import invokeWhen from '@stratebi/biserver-customization-common/src/invokeWhen';
 import searchParams from '@stratebi/biserver-customization-common/src/searchParams';
+import waitFor from '@stratebi/biserver-customization-common/src/waitFor';
 
 import eventBus from '@/eventBus.js';
 
@@ -38,37 +38,29 @@ export default {
 		retrieveMantleWindow() {
 			return this.$refs.mantle.contentWindow.mantleWindow;
 		},
-		invokeInMantleWindow(fn, reqFns = this.wellKnownMantleFunctions) {
-			invokeWhen(
-				() => {
-					const mantleWindow = this.retrieveMantleWindow();
-					if (
-						typeof mantleWindow !== 'undefined' &&
-						reqFns.every(reqFn => isFunction(mantleWindow[reqFn]))
-					) {
-						return mantleWindow;
-					}
-				},
-				mantleWindow => {
-					fn.call(mantleWindow, mantleWindow);
+		async invokeInMantleWindow(fn, reqFns = this.wellKnownMantleFunctions) {
+			const mantleWindow = await waitFor(() => {
+				const mantleWindow = this.retrieveMantleWindow();
+				if (
+					typeof mantleWindow !== 'undefined' &&
+					reqFns.every(reqFn => isFunction(mantleWindow[reqFn]))
+				) {
+					return mantleWindow;
 				}
-			);
+			});
+			fn.call(mantleWindow, mantleWindow);
 		},
-		invokeInPerspectiveWindow(perspective, fn) {
-			this.invokeInMantleWindow(mantleWindow => {
-				invokeWhen(
-					() => {
-						const perspectiveIframe = mantleWindow.document.querySelector(
-							`iframe[id="${perspective}"]`
-						);
-						if (perspectiveIframe !== null && perspectiveIframe.contentWindow) {
-							return perspectiveIframe.contentWindow;
-						}
-					},
-					perspectiveWindow => {
-						fn.call(perspectiveWindow, perspectiveWindow);
+		async invokeInPerspectiveWindow(perspective, fn) {
+			this.invokeInMantleWindow(async mantleWindow => {
+				const perspectiveWindow = await waitFor(() => {
+					const perspectiveIframe = mantleWindow.document.querySelector(
+						`iframe[id="${perspective}"]`
+					);
+					if (perspectiveIframe !== null && perspectiveIframe.contentWindow) {
+						return perspectiveIframe.contentWindow;
 					}
-				);
+				});
+				fn.call(perspectiveWindow, perspectiveWindow);
 			});
 		},
 		reloadPerspective(perspective) {

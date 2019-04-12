@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import invokeWhen from '@stratebi/biserver-customization-common/src/invokeWhen';
+import waitFor from '@stratebi/biserver-customization-common/src/waitFor';
 
 import eventBus from '@/eventBus';
 import router from '@/router';
@@ -38,17 +38,11 @@ export default {
 			eventBus.$emitWhen(
 				'mantle.perspective.invoke',
 				'search.perspective',
-				perspectiveWindow => {
-					invokeWhen(
-						() => perspectiveWindow.STSearch,
-						async STSearch => {
-							perspectiveWindow.STSearch.resetConfig();
-							await STSearch.doRefresh();
-							STSearch.doSearch(this.searchTerms);
+				async perspectiveWindow => {
+					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
+					(await STSearch.resetConfig().doRefresh()).doSearch(this.searchTerms);
 
-							event.target.reset();
-						}
-					);
+					event.target.reset();
 				}
 			);
 		},
