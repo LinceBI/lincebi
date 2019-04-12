@@ -80,7 +80,6 @@ export default {
 			height: rem(45);
 			width: 50%;
 			padding: rem(10) rem(15);
-			@include border-collapse();
 
 			.category-icon {
 				height: 80%;
