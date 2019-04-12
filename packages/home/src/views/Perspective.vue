@@ -1,5 +1,10 @@
 <template>
-	<iframe class="perspective" ref="mantle" :src="`../BridgeHome?${search}`" />
+	<iframe
+		class="perspective"
+		ref="mantle"
+		:src="`../BridgeHome?${search}`"
+		:sandbox="isSanboxed ? sandboxAllowed.join(' ') : false"
+	/>
 </template>
 
 <script>
@@ -21,8 +26,18 @@ export default {
 					perspective: this.perspective
 				})
 			}),
-			wellKnownMantleFunctions: [
+			isSanboxed: false,
+			sandboxAllowed: [
+				'allow-forms',
+				'allow-modals',
+				'allow-popups',
+				'allow-same-origin',
+				'allow-scripts'
+			],
+			mantleWindowProperties: [
+				'enableSave',
 				'mantle_getPerspectives',
+				'mantle_initialized',
 				'mantle_setPerspective',
 				'openURL'
 			]
@@ -33,17 +48,25 @@ export default {
 		eventBus.$on('mantle.perspective.invoke', this.invokeInPerspectiveWindow);
 		eventBus.$on('mantle.perspective.reload', this.reloadPerspective);
 		eventBus.$on('mantle.perspective.params', this.changePerspectiveParams);
+
+		this.invokeInMantleWindow(mantleWindow => {
+			this.mantleWindowProperties.forEach(prop => {
+				window.top[prop] = mantleWindow[prop];
+			});
+		});
 	},
 	methods: {
 		retrieveMantleWindow() {
-			return this.$refs.mantle.contentWindow.mantleWindow;
+			if (this.$refs.mantle && this.$refs.mantle.contentWindow) {
+				return this.$refs.mantle.contentWindow;
+			}
 		},
-		async invokeInMantleWindow(fn, reqFns = this.wellKnownMantleFunctions) {
+		async invokeInMantleWindow(fn, reqFns = this.mantleWindowProperties) {
 			const mantleWindow = await waitFor(() => {
 				const mantleWindow = this.retrieveMantleWindow();
 				if (
 					typeof mantleWindow !== 'undefined' &&
-					reqFns.every(reqFn => isFunction(mantleWindow[reqFn]))
+					reqFns.every(reqFn => reqFn in mantleWindow)
 				) {
 					return mantleWindow;
 				}
