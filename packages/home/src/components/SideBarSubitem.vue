@@ -1,5 +1,9 @@
 <template>
-	<b-dropdown-item class="SideBarSubitem" :to="item.to" @click="item.click">
+	<b-dropdown-item
+		class="SideBarSubitem"
+		:to="item.to"
+		@click="e => item.click && item.click(e)"
+	>
 		<font-awesome-icon
 			v-if="item.icon"
 			class="item-icon fa-fw"

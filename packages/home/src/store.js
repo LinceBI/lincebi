@@ -209,8 +209,7 @@ export default new Vuex.Store({
 							to: {
 								name: 'perspective',
 								params: { perspective: 'sthome.perspective' }
-							},
-							click() {}
+							}
 						},
 						{
 							id: 'sthome.administration',
@@ -219,8 +218,7 @@ export default new Vuex.Store({
 							to: {
 								name: 'perspective',
 								params: { perspective: 'stadmin.perspective' }
-							},
-							click() {}
+							}
 						}
 					]
 				},
@@ -233,7 +231,6 @@ export default new Vuex.Store({
 						id: `tools.${tool.id}`,
 						name: tool.name,
 						icon: ['fac', `tool-${tool.id}`],
-						to: undefined,
 						click() {
 							router.push({
 								name: 'perspective',
@@ -253,8 +250,7 @@ export default new Vuex.Store({
 					to: {
 						name: 'perspective',
 						params: { perspective: 'opened.perspective' }
-					},
-					click() {}
+					}
 				},
 				{
 					enabled: true,
@@ -264,8 +260,7 @@ export default new Vuex.Store({
 					to: {
 						name: 'perspective',
 						params: { perspective: 'browser.perspective' }
-					},
-					click() {}
+					}
 				},
 				{
 					enabled: true,
@@ -277,7 +272,6 @@ export default new Vuex.Store({
 							id: 'stsearch.search',
 							name: 'Search',
 							icon: ['fac', 'tool-stsearch'],
-							to: undefined,
 							click() {
 								router.push({
 									name: 'perspective',
@@ -299,7 +293,6 @@ export default new Vuex.Store({
 							id: 'stsearch.favorites',
 							name: 'Favorites',
 							icon: ['fas', 'star'],
-							to: undefined,
 							click() {
 								router.push({
 									name: 'perspective',
@@ -321,7 +314,6 @@ export default new Vuex.Store({
 							id: 'stsearch.recents',
 							name: 'Recents',
 							icon: ['far', 'clock'],
-							to: undefined,
 							click() {
 								router.push({
 									name: 'perspective',
@@ -346,8 +338,7 @@ export default new Vuex.Store({
 					id: 'administration',
 					name: 'Administration',
 					icon: ['fas', 'tools'],
-					to: { name: 'administration' },
-					click() {}
+					to: { name: 'administration' }
 				},
 				{
 					enabled: true,
@@ -358,8 +349,7 @@ export default new Vuex.Store({
 						id: `language.${lang.id}`,
 						name: lang.name,
 						img: lang.img,
-						to: { name: 'home', query: { locale: lang.id } },
-						click() {}
+						to: { name: 'home', query: { locale: lang.id } }
 					}))
 				},
 				{
@@ -367,8 +357,7 @@ export default new Vuex.Store({
 					id: 'logout',
 					name: 'Logout',
 					icon: ['fas', 'sign-out-alt'],
-					to: { name: 'logout' },
-					click() {}
+					to: { name: 'logout' }
 				}
 			].filter(item => item.enabled);
 		}
