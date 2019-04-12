@@ -1,5 +1,5 @@
 <template>
-	<b-container class="Administration py-5 px-4">
+	<b-container class="administration py-5 px-4">
 		<b-list-group class="mb-4">
 			<b-list-group-item button @click="openAdministration()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'tools']" />
@@ -118,7 +118,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.Administration {
+.administration {
 	min-width: rem(256);
 }
 </style>

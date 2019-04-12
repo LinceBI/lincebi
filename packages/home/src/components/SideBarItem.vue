@@ -1,5 +1,5 @@
 <template>
-	<div class="SideBarItem" :title="item.name">
+	<div class="side-bar-item" :title="item.name">
 		<b-nav-item-dropdown v-if="Array.isArray(item.subitems)" dropright no-caret>
 			<template slot="button-content">
 				<font-awesome-icon
@@ -9,7 +9,7 @@
 				/>
 				<b-img v-else class="item-img" :src="item.img"></b-img>
 			</template>
-			<SideBarSubitem
+			<side-bar-subitem
 				v-for="subitem in item.subitems"
 				:key="subitem.id"
 				:item="subitem"
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.SideBarItem {
+.side-bar-item {
 	::v-deep .nav-link {
 		padding: rem(8) 0;
 		font-size: rem(20);

@@ -1,5 +1,5 @@
 <template>
-	<iframe class="Perspective" ref="mantle" :src="`../BridgeHome?${search}`" />
+	<iframe class="perspective" ref="mantle" :src="`../BridgeHome?${search}`" />
 </template>
 
 <script>
@@ -88,7 +88,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.Perspective {
+.perspective {
 	display: block;
 	height: 100%;
 	width: 100%;

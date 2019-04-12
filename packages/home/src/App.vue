@@ -1,14 +1,14 @@
 <template>
-	<div class="App">
-		<NavBar class="page-navbar" />
+	<div class="app">
+		<nav-bar class="page-navbar" />
 		<b-container class="page-container" fluid>
 			<b-row class="page-row">
 				<b-col class="page-col sidebar">
-					<SideBar />
+					<side-bar />
 				</b-col>
 				<b-col class="page-col content">
 					<router-multi-view class="page-router" />
-					<BNotifications class="page-notifications" />
+					<b-notifications class="page-notifications" />
 				</b-col>
 			</b-row>
 		</b-container>
@@ -58,7 +58,7 @@ body {
 	background-repeat: no-repeat;
 }
 
-.App {
+.app {
 	display: flex;
 	flex-direction: column;
 	height: 100%;

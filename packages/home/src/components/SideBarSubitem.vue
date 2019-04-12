@@ -1,6 +1,6 @@
 <template>
 	<b-dropdown-item
-		class="SideBarSubitem"
+		class="side-bar-subitem"
 		:to="item.to"
 		@click="e => item.click && item.click(e)"
 	>
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.SideBarSubitem {
+.side-bar-subitem {
 	&.dropdown-item {
 		display: flex;
 		align-items: center;

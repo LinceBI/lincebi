@@ -1,5 +1,5 @@
 <template>
-	<b-navbar class="NavBar shadow" toggleable="lg" variant="light">
+	<b-navbar class="nav-bar shadow" toggleable="lg" variant="light">
 		<b-navbar-brand class="navbar-logo" :to="{ name: 'home' }">
 			<b-img
 				class="h-100 w-auto"
@@ -10,12 +10,12 @@
 		<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 		<b-collapse id="nav-collapse" is-nav>
 			<b-navbar-nav class="nav-section">
-				<NavBarWelcome class="nav-element" />
+				<nav-bar-welcome class="nav-element" />
 			</b-navbar-nav>
 			<b-navbar-nav class="nav-section ml-auto">
-				<NavBarCategories class="nav-element" />
-				<NavBarSearch class="nav-element" />
-				<NavBarSettings class="nav-element" />
+				<nav-bar-categories class="nav-element" />
+				<nav-bar-search class="nav-element" />
+				<nav-bar-settings class="nav-element" />
 			</b-navbar-nav>
 		</b-collapse>
 	</b-navbar>
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.NavBar {
+.nav-bar {
 	.navbar-logo {
 		height: rem(40);
 		padding: 0;

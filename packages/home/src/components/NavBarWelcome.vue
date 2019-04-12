@@ -1,5 +1,5 @@
 <template>
-	<b-nav-text class="NavBarWelcome">
+	<b-nav-text class="nav-bar-welcome">
 		<b-link :to="{ name: 'profile' }">
 			<b-img class="user-avatar" :src="userSettings.avatar"></b-img>
 		</b-link>
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.NavBarWelcome {
+.nav-bar-welcome {
 	.user-avatar {
 		height: rem(32);
 		width: rem(32);

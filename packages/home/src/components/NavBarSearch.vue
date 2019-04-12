@@ -1,5 +1,5 @@
 <template>
-	<b-nav-form class="NavBarSearch" @submit="onSubmit" @reset="onReset">
+	<b-nav-form class="nav-bar-search" @submit="onSubmit" @reset="onReset">
 		<b-input-group class="search-input-group">
 			<b-form-input
 				v-model="searchTerms"
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.NavBarSearch {
+.nav-bar-search {
 	.search-input-group {
 		width: 100%;
 	}

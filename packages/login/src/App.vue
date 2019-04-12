@@ -1,6 +1,6 @@
 <template>
-	<div class="App d-flex align-items-center justify-content-center">
-		<LoginForm class="LoginForm" />
+	<div class="app d-flex align-items-center justify-content-center">
+		<login-form class="login-form" />
 	</div>
 </template>
 
@@ -28,11 +28,11 @@ body {
 	background-position: center;
 }
 
-.App {
+.app {
 	height: 100%;
 	width: 100%;
 
-	.LoginForm {
+	.login-form {
 		margin: 0 rem(10);
 		position: relative;
 		width: 100%;

@@ -1,6 +1,6 @@
 <template>
-	<b-nav class="SideBar shadow" vertical>
-		<SideBarItem v-for="item in sidebar" :key="item.id" :item="item" />
+	<b-nav class="side-bar shadow" vertical>
+		<side-bar-item v-for="item in sidebar" :key="item.id" :item="item" />
 	</b-nav>
 </template>
 
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.SideBar {
+.side-bar {
 	display: block;
 	height: 100%;
 	width: 100%;

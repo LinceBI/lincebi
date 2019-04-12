@@ -1,5 +1,5 @@
 <template>
-	<b-nav-form class="NavBarCategories" v-show="categories.length > 0">
+	<b-nav-form class="nav-bar-categories" v-show="categories.length > 0">
 		<b-dropdown class="categories-dropdown" variant="primary" right>
 			<template slot="button-content">
 				Categories
@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.NavBarCategories {
+.nav-bar-categories {
 	.categories-dropdown {
 		width: 100%;
 

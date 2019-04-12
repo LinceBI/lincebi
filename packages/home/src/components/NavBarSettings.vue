@@ -1,5 +1,5 @@
 <template>
-	<b-nav-item-dropdown class="NavBarSettings" right no-caret>
+	<b-nav-item-dropdown class="nav-bar-settings" right no-caret>
 		<template slot="button-content">
 			<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
 			<span class="lbl d-lg-none">Options</span>

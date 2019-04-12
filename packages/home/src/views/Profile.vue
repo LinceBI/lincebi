@@ -1,5 +1,5 @@
 <template>
-	<b-form class="Profile py-5 px-4" @submit="onSubmit">
+	<b-form class="profile py-5 px-4" @submit="onSubmit">
 		<b-container>
 			<b-row>
 				<b-col lg="4" class="d-flex justify-content-center align-items-center">
@@ -95,7 +95,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.Profile {
+.profile {
 	min-width: rem(256);
 
 	.avatar {

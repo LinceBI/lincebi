@@ -1,5 +1,5 @@
 <template>
-	<div class="LoginError">
+	<div class="login-error">
 		<b-alert variant="danger" dismissible v-model="showAlert">
 			{{ messages[code] }}
 		</b-alert>
@@ -10,7 +10,7 @@
 import getParameter from '@stratebi/biserver-customization-common/src/getParameter';
 
 export default {
-	name: 'LoginError',
+	name: 'login-error',
 	data: () => ({
 		code: getParameter('login_error'),
 		messages: {

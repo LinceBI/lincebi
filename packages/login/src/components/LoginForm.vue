@@ -1,5 +1,5 @@
 <template>
-	<div class="LoginForm p-4 rounded">
+	<div class="login-form p-4 rounded">
 		<b-form @submit="onSubmit">
 			<h2 class="text-center">Login</h2>
 			<b-form-group label="Username:">
@@ -13,7 +13,7 @@
 			<b-form-group label="Password:">
 				<b-form-input type="password" v-model="form.j_password" required />
 			</b-form-group>
-			<LoginError />
+			<login-error />
 			<div class="float-right">
 				<b-button type="submit" variant="primary">Sign in</b-button>
 			</div>
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.LoginForm {
+.login-form {
 	background: rgba(map-get($theme-colors, 'light'), 0.85);
 }
 </style>
