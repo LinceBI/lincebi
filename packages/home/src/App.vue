@@ -51,11 +51,13 @@ export default {
 body {
 	margin: 0;
 	height: 100vh;
+	width: 100vw;
 	font-family: 'Titillium Web', $system-sans-serif;
 	font-size: $em-base + 0px;
 	background-image: url('~@/assets/img/background.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .app {
