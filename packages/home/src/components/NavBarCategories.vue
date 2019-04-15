@@ -1,12 +1,12 @@
 <template>
-	<b-nav-form class="nav-bar-categories" v-show="categories.length > 0">
+	<b-nav-form class="nav-bar-categories" v-if="categories.some(c => c.enabled)">
 		<b-dropdown class="categories-dropdown" variant="primary" right>
 			<template slot="button-content">
-				Categories
+				{{ $t('navbar.categories') }}
 			</template>
 			<b-dropdown-item
 				class="category-item border-collapse"
-				v-for="category in categories"
+				v-for="category in categories.filter(c => c.enabled)"
 				@click="openCategory(category)"
 				:key="category.id"
 			>
@@ -18,11 +18,12 @@
 </template>
 
 <script>
+import fetch from 'unfetch';
+
 import waitFor from '@stratebi/biserver-customization-common/src/waitFor';
 
 import eventBus from '@/eventBus';
 import router from '@/router';
-import store from '@/store';
 
 export default {
 	name: 'NavBarCategories',
@@ -32,7 +33,14 @@ export default {
 		};
 	},
 	async created() {
-		this.categories = await store.getters.categories;
+		const response = await fetch('./categories/categories.json', {
+			method: 'GET',
+			headers: { 'Content-Type': 'application/json' }
+		});
+
+		if (response.status === 200) {
+			this.categories = await response.json();
+		}
 	},
 	methods: {
 		openCategory(category) {

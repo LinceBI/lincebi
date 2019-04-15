@@ -1,0 +1,12 @@
+{
+  "welcome": "Bienvenido",
+  "username": { "label": "Usuario:" },
+  "password": { "label": "Contraseña:" },
+  "getCredentialsHere": "Obtenga su usuario y contraseña aquí.",
+  "signIn": "Iniciar sesión",
+  "errors": {
+    "unknownError": "Se ha producido un error en el inicio de sesión. Por favor, inténtelo de nuevo.",
+    "authenticationFailure": "Se ha producido un error en el inicio de sesión. Por favor, inténtelo de nuevo.",
+    "sessionReuseDetected": "Se ha producido un error en el inicio de sesión. Por favor, inténtelo de nuevo."
+  }
+}

@@ -1,28 +1,44 @@
 <template>
-	<div class="side-bar-item" :title="item.name">
-		<b-nav-item-dropdown v-if="Array.isArray(item.subitems)" dropright no-caret>
-			<template slot="button-content">
+	<div class="side-bar-item" v-if="item.enabled" :title="item.name">
+		<div v-if="Array.isArray(item.subitems)">
+			<b-nav-item-dropdown
+				v-if="item.subitems.some(i => i.enabled)"
+				dropright
+				no-caret
+			>
+				<template slot="button-content">
+					<font-awesome-icon
+						v-if="typeof item.icon !== 'undefined'"
+						class="item-icon fa-fw"
+						:icon="item.icon"
+					/>
+					<b-img
+						v-else-if="typeof item.img !== 'undefined'"
+						class="item-img"
+						:src="item.img"
+					></b-img>
+				</template>
+				<side-bar-subitem
+					v-for="subitem in item.subitems"
+					:key="subitem.id"
+					:item="subitem"
+				/>
+			</b-nav-item-dropdown>
+		</div>
+		<div v-else>
+			<b-nav-item :to="item.to" @click="onClick">
 				<font-awesome-icon
-					v-if="item.icon"
+					v-if="typeof item.icon !== 'undefined'"
 					class="item-icon fa-fw"
 					:icon="item.icon"
 				/>
-				<b-img v-else class="item-img" :src="item.img"></b-img>
-			</template>
-			<side-bar-subitem
-				v-for="subitem in item.subitems"
-				:key="subitem.id"
-				:item="subitem"
-			/>
-		</b-nav-item-dropdown>
-		<b-nav-item v-else :to="item.to" @click="e => item.click && item.click(e)">
-			<font-awesome-icon
-				v-if="item.icon"
-				class="item-icon fa-fw"
-				:icon="item.icon"
-			/>
-			<b-img v-else class="item-img" :src="item.img"></b-img>
-		</b-nav-item>
+				<b-img
+					v-else-if="typeof item.img !== 'undefined'"
+					class="item-img"
+					:src="item.img"
+				></b-img>
+			</b-nav-item>
+		</div>
 	</div>
 </template>
 
@@ -34,7 +50,14 @@ export default {
 	components: {
 		SideBarSubitem
 	},
-	props: { item: Object }
+	props: { item: Object },
+	methods: {
+		onClick(event) {
+			if (typeof this.item.click !== 'undefined') {
+				this.item.click.call(this, event);
+			}
+		}
+	}
 };
 </script>
 

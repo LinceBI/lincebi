@@ -2,66 +2,77 @@
 	<b-nav-item-dropdown class="nav-bar-settings" right no-caret>
 		<template slot="button-content">
 			<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
-			<span class="lbl d-lg-none">Options</span>
+			<span class="lbl d-lg-none">{{ $t('navbar.settings') }}</span>
 		</template>
-		<b-dropdown-item :to="{ name: 'profile' }">
-			<font-awesome-icon :icon="['fac', 'tool-stprofile']" />
-			<span class="lbl">Profile</span>
-		</b-dropdown-item>
-		<b-dropdown-item
-			:to="{
-				name: 'perspective',
-				params: { perspective: 'stadmin.perspective' }
-			}"
-		>
-			<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
-			<span class="lbl">Administration</span>
-		</b-dropdown-item>
+		<nav-bar-dropdown-item
+			:text="$t('navbar.profile')"
+			:icon="['fas', 'user']"
+			:to="{ name: 'profile' }"
+		/>
 		<b-dropdown-divider />
-		<b-dropdown-item
-			href="#"
-			@click="toggleBoolUserSetting('MANTLE_SHOW_HIDDEN_FILES')"
-		>
-			<font-awesome-icon
-				v-if="getBoolUserSetting('MANTLE_SHOW_HIDDEN_FILES')"
-				:icon="['far', 'check-square']"
-			/>
-			<font-awesome-icon v-else :icon="['far', 'square']" />
-			<span class="lbl">Show hidden files</span>
-		</b-dropdown-item>
-		<b-dropdown-item
-			href="#"
-			@click="toggleBoolUserSetting('MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS')"
-		>
-			<font-awesome-icon
-				v-if="getBoolUserSetting('MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS')"
-				:icon="['far', 'check-square']"
-			/>
-			<font-awesome-icon v-else :icon="['far', 'square']" />
-			<span class="lbl">Use descriptions for tooltips</span>
-		</b-dropdown-item>
+		<nav-bar-dropdown-item
+			:text="$t('navbar.showMenuBar')"
+			:enabled="getUserSetting('custom_field_show_menu_bar')"
+			@click="toggleUserSetting('custom_field_show_menu_bar')"
+		/>
+		<nav-bar-dropdown-item
+			:text="$t('navbar.showToolBar')"
+			:enabled="getUserSetting('custom_field_show_tool_bar')"
+			@click="toggleUserSetting('custom_field_show_tool_bar')"
+		/>
+		<nav-bar-dropdown-item
+			:text="$t('navbar.showHiddenFiles')"
+			:enabled="
+				getUserSetting('MANTLE_SHOW_HIDDEN_FILES', 'browser.perspective')
+			"
+			@click="
+				toggleUserSetting('MANTLE_SHOW_HIDDEN_FILES', 'browser.perspective')
+			"
+		/>
+		<nav-bar-dropdown-item
+			:text="$t('navbar.useDescriptionsForTooltips')"
+			:enabled="
+				getUserSetting(
+					'MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS',
+					'browser.perspective'
+				)
+			"
+			@click="
+				toggleUserSetting(
+					'MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS',
+					'browser.perspective'
+				)
+			"
+		/>
 	</b-nav-item-dropdown>
 </template>
 
 <script>
+import NavBarDropdownItem from '@/components/NavBarDropdownItem.vue';
+
 import store from '@/store';
 import eventBus from '@/eventBus';
 
 export default {
 	name: 'NavBarSettings',
+	components: {
+		NavBarDropdownItem
+	},
 	computed: {
 		userSettings() {
 			return store.state.userSettings;
 		}
 	},
 	methods: {
-		getBoolUserSetting(key) {
+		getUserSetting(key) {
 			return this.userSettings[key] === 'true';
 		},
-		async toggleBoolUserSetting(key) {
+		async toggleUserSetting(key, perspectiveToReload) {
 			const value = this.userSettings[key] === 'true' ? 'false' : 'true';
 			await store.dispatch('setUserSetting', { key, value });
-			eventBus.$emitWhen('mantle.perspective.reload', 'browser.perspective');
+			if (perspectiveToReload) {
+				eventBus.$emitWhen('mantle.perspective.reload', perspectiveToReload);
+			}
 		}
 	}
 };

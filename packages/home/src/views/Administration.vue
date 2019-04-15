@@ -3,45 +3,65 @@
 		<b-list-group class="mb-4">
 			<b-list-group-item button @click="openAdministration()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'tools']" />
-				<span class="lbl">Administration</span>
+				<span class="lbl">
+					{{ $t('administration.administration') }}
+				</span>
 			</b-list-group-item>
-			<b-list-group-item button @click="openDatasources()">
+			<b-list-group-item button @click="openManageDatasources()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'database']" />
-				<span class="lbl">Manage datasources</span>
+				<span class="lbl">
+					{{ $t('administration.manageDatasources') }}
+				</span>
 			</b-list-group-item>
 			<b-list-group-item button @click="openSchedules()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'hourglass-half']" />
-				<span class="lbl">Schedules</span>
+				<span class="lbl">
+					{{ $t('administration.schedules') }}
+				</span>
 			</b-list-group-item>
 			<b-list-group-item button @click="openMarketplace()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'store']" />
-				<span class="lbl">Marketplace</span>
+				<span class="lbl">
+					{{ $t('administration.marketplace') }}
+				</span>
 			</b-list-group-item>
-			<b-list-group-item button @click="openCdaCacheManager()">
+			<b-list-group-item button @click="openManageCdaCache()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'table']" />
-				<span class="lbl">CDA cache manager</span>
+				<span class="lbl">
+					{{ $t('administration.manageCdaCache') }}
+				</span>
 			</b-list-group-item>
 		</b-list-group>
 		<b-list-group class="mb-4">
 			<b-list-group-item button @click="systemRefresh('systemSettings')">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
-				<span class="lbl">Refresh system settings</span>
+				<span class="lbl">
+					{{ $t('administration.refreshSystemSettings') }}
+				</span>
 			</b-list-group-item>
 			<b-list-group-item button @click="systemRefresh('metadata')">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
-				<span class="lbl">Refresh reporting metadata</span>
+				<span class="lbl">
+					{{ $t('administration.refreshReportingMetadata') }}
+				</span>
 			</b-list-group-item>
 			<b-list-group-item button @click="systemRefresh('globalActions')">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
-				<span class="lbl">Refresh global variables</span>
+				<span class="lbl">
+					{{ $t('administration.refreshGlobalVariables') }}
+				</span>
 			</b-list-group-item>
 			<b-list-group-item button @click="systemRefresh('mondrianSchemaCache')">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
-				<span class="lbl">Refresh Mondrian schema cache</span>
+				<span class="lbl">
+					{{ $t('administration.refreshMondrianSchemaCache') }}
+				</span>
 			</b-list-group-item>
 			<b-list-group-item button @click="clearCdaCache()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
-				<span class="lbl">Clear CDA cache</span>
+				<span class="lbl">
+					{{ $t('administration.clearCdaCache') }}
+				</span>
 			</b-list-group-item>
 		</b-list-group>
 	</b-container>
@@ -63,7 +83,7 @@ export default {
 				params: { perspective: 'admin.perspective' }
 			});
 		},
-		async openDatasources() {
+		async openManageDatasources() {
 			router.push({
 				name: 'perspective',
 				params: { perspective: 'admin.perspective' }
@@ -84,7 +104,7 @@ export default {
 				params: { perspective: 'marketplace.perspective.osgi' }
 			});
 		},
-		async openCdaCacheManager() {
+		async openManageCdaCache() {
 			router.push({
 				name: 'perspective',
 				params: { perspective: 'opened.perspective' }
@@ -98,20 +118,30 @@ export default {
 			});
 		},
 		async systemRefresh(resource) {
-			const success = await systemRefresh(resource);
-			this.$notify(
-				success
-					? { type: 'success', text: 'Resource successfully refreshed' }
-					: { type: 'error', text: 'Error while refreshing resource' }
-			);
+			if (await systemRefresh(resource)) {
+				this.$notify({
+					type: 'success',
+					text: this.$t('administration.resourceRefreshSuccess')
+				});
+			} else {
+				this.$notify({
+					type: 'error',
+					text: this.$t('administration.resourceRefreshError')
+				});
+			}
 		},
 		async clearCdaCache() {
-			const success = await clearCdaCache();
-			this.$notify(
-				success
-					? { type: 'success', text: 'Cache successfully cleared' }
-					: { type: 'error', text: 'Error while clearing cache' }
-			);
+			if (await clearCdaCache()) {
+				this.$notify({
+					type: 'success',
+					text: this.$t('administration.cacheClearSuccess')
+				});
+			} else {
+				this.$notify({
+					type: 'error',
+					text: this.$t('administration.cacheClearError')
+				});
+			}
 		}
 	}
 };

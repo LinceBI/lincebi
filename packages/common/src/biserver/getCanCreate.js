@@ -1,4 +1,5 @@
 import fetch from 'unfetch';
+
 import getContextPath from './getContextPath';
 
 let canCreate = null;
@@ -18,7 +19,7 @@ export default async () => {
 	if (response.status === 200) {
 		canCreate = (await response.text()) === 'true';
 	} else {
-		console.warn('Using predefined "canCreate" value');
+		console.warn('Falling back to default "canCreate" value');
 		canCreate = false;
 	}
 

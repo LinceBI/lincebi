@@ -1,57 +1,61 @@
 <template>
-	<b-form class="profile py-5 px-4" @submit="onSubmit">
+	<b-form class="profile py-5 px-4" @submit.prevent="onSubmit">
 		<b-container>
 			<b-row>
 				<b-col lg="4" class="d-flex justify-content-center align-items-center">
 					<label class="avatar">
-						<b-img class="avatar-image" :src="userSettings.avatar"></b-img>
+						<b-img
+							class="avatar-image"
+							:src="userSettings.custom_field_avatar"
+						></b-img>
 						<div class="avatar-overlay">
 							<font-awesome-icon class="icon" :icon="['fas', 'pencil-alt']" />
 						</div>
 						<input
 							class="avatar-input"
 							type="file"
-							name="avatar"
+							name="custom_field_avatar"
 							accept="image/jpeg, image/png, image/gif"
+							@change="onAvatarChange"
 						/>
 					</label>
 				</b-col>
 				<b-col lg="8">
-					<b-form-group label="Name:">
+					<b-form-group :label="$t('profile.name.label')">
 						<b-form-input
 							type="text"
-							name="name"
-							placeholder="Name..."
-							:value="userSettings.name"
+							name="custom_field_name"
+							:placeholder="$t('profile.name.placeholder')"
+							:value="userSettings.custom_field_name"
 						></b-form-input>
 					</b-form-group>
-					<b-form-group label="Email:">
+					<b-form-group :label="$t('profile.email.label')">
 						<b-form-input
 							type="text"
-							name="email"
-							placeholder="Email..."
-							:value="userSettings.email"
+							name="custom_field_email"
+							:placeholder="$t('profile.email.placeholder')"
+							:value="userSettings.custom_field_email"
 						></b-form-input>
 					</b-form-group>
-					<b-form-group label="Phone:">
+					<b-form-group :label="$t('profile.phone.label')">
 						<b-form-input
 							type="text"
-							name="phone"
-							placeholder="Phone..."
-							:value="userSettings.phone"
+							name="custom_field_phone"
+							:placeholder="$t('profile.phone.placeholder')"
+							:value="userSettings.custom_field_phone"
 						></b-form-input>
 					</b-form-group>
-					<b-form-group label="Address:">
+					<b-form-group :label="$t('profile.address.label')">
 						<b-form-input
 							type="text"
-							name="address"
-							placeholder="Address..."
-							:value="userSettings.address"
+							name="custom_field_address"
+							:placeholder="$t('profile.address.placeholder')"
+							:value="userSettings.custom_field_address"
 						></b-form-input>
 					</b-form-group>
 					<b-button type="submit" variant="primary" class="float-right">
 						<font-awesome-icon :icon="['fas', 'save']" />
-						<span class="lbl">Save</span>
+						<span class="lbl">{{ $t('profile.save') }}</span>
 					</b-button>
 				</b-col>
 			</b-row>
@@ -74,20 +78,31 @@ export default {
 	},
 	methods: {
 		async onSubmit(event) {
-			event.preventDefault();
-
 			const formData = new FormData(event.target);
 
 			try {
 				// User avatar must be converted to a data URI.
-				const avatar = formData.get('avatar');
-				formData.set('avatar', await imageToDataURI(avatar));
+				const avatar = formData.get('custom_field_avatar');
+				formData.set('custom_field_avatar', await imageToDataURI(avatar));
 			} catch (error) {
-				formData.delete('avatar');
+				formData.delete('custom_field_avatar');
 			}
 
 			for (const [key, value] of formData.entries()) {
 				store.dispatch('setUserSetting', { key, value });
+			}
+		},
+		async onAvatarChange(event) {
+			if (event.target.files.length > 0) {
+				const avatar = event.target.files[0];
+				if (avatar instanceof File && avatar.size > 0) {
+					// Note that "commit" is called instead of "dispatch", so the avatar
+					// will not be saved on the server until the user submits the form.
+					store.commit('setUserSetting', {
+						key: 'custom_field_avatar',
+						value: await imageToDataURI(avatar)
+					});
+				}
 			}
 		}
 	}

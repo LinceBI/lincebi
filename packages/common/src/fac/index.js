@@ -4,6 +4,5 @@ export { faToolStcard } from './faToolStcard';
 export { faToolStdashboard } from './faToolStdashboard';
 export { faToolSthome } from './faToolSthome';
 export { faToolStpivot } from './faToolStpivot';
-export { faToolStprofile } from './faToolStprofile';
 export { faToolStreport } from './faToolStreport';
 export { faToolStsearch } from './faToolStsearch';

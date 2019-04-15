@@ -1,4 +1,5 @@
 import Compressor from 'compressorjs';
+
 import fileToDataURI from './fileToDataURI';
 
 export default async (image, options = {}) => {

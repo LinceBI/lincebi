@@ -1,5 +1,4 @@
-import searchParams from './searchParams';
-
-export default (name, defaultValue = '') => {
-	return searchParams.parse(location.search, { [name]: defaultValue })[name];
+export default (key, defaultValue = '') => {
+	const params = new URLSearchParams(location.search);
+	return params.has(key) ? params.get(key) : defaultValue;
 };

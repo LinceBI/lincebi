@@ -17,7 +17,6 @@ import {
 	faToolStdashboard,
 	faToolSthome,
 	faToolStpivot,
-	faToolStprofile,
 	faToolStreport,
 	faToolStsearch
 } from '@stratebi/biserver-customization-common/src/fac/index';
@@ -82,7 +81,6 @@ library.add(
 	faToolStdashboard,
 	faToolSthome,
 	faToolStpivot,
-	faToolStprofile,
 	faToolStreport,
 	faToolStsearch,
 	faTools,

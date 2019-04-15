@@ -1,0 +1,56 @@
+{
+  "locales": {
+    "english": "Inglés",
+    "spanish": "Español",
+    "french": "Francés",
+    "german": "Alemán"
+  },
+  "navbar": {
+    "welcome": "Bienvenido {name}",
+    "categories": "Categorías",
+    "search": { "label": "Buscar:", "placeholder": "Buscar..." },
+    "settings": "Opciones",
+    "profile": "Perfil",
+    "showMenuBar": "Mostrar barra de menú",
+    "showToolBar": "Mostrar barra de herramientas",
+    "showHiddenFiles": "Mostrar archivos ocultos",
+    "useDescriptionsForTooltips": "Utilizar descripciones para los tooltips"
+  },
+  "sidebar": {
+    "sthome": "Inicio",
+    "stadmin": "Administración",
+    "tools": "Herramientas",
+    "opened": "Abiertos",
+    "browser": "Explorador",
+    "search": "Buscador",
+    "favorites": "Favoritos",
+    "recents": "Recientes",
+    "administration": "Administración",
+    "locales": "Idiomas",
+    "logout": "Salir"
+  },
+  "profile": {
+    "name": { "label": "Nombre:", "placeholder": "Nombre..." },
+    "email": { "label": "Email:", "placeholder": "Email..." },
+    "phone": { "label": "Teléfono:", "placeholder": "Teléfono..." },
+    "address": { "label": "Dirección:", "placeholder": "Dirección..." },
+    "avatar": { "label": "Foto:", "placeholder": "Foto..." },
+    "save": "Guardar"
+  },
+  "administration": {
+    "administration": "Administración",
+    "manageDatasources": "Gestionar fuentes de datos",
+    "schedules": "Programaciones",
+    "marketplace": "Marketplace",
+    "manageCdaCache": "Administar caché de CDA",
+    "refreshSystemSettings": "Actualizar configuración del sistema",
+    "refreshReportingMetadata": "Actualizar reporte de metadatos",
+    "refreshGlobalVariables": "Actualizar variables globales",
+    "refreshMondrianSchemaCache": "Actualizar caché de los esquemas de Mondrian",
+    "clearCdaCache": "Vaciar caché de CDA",
+    "resourceRefreshSuccess": "Recurso actualizado con éxito",
+    "resourceRefreshError": "Error al actualizar el recurso",
+    "cacheClearSuccess": "Caché vaciada con éxito",
+    "cacheClearError": "Error al vaciar la caché"
+  }
+}

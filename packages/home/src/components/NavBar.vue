@@ -13,8 +13,14 @@
 				<nav-bar-welcome class="nav-element" />
 			</b-navbar-nav>
 			<b-navbar-nav class="nav-section ml-auto">
-				<nav-bar-categories class="nav-element" />
-				<nav-bar-search class="nav-element" />
+				<nav-bar-categories
+					class="nav-element"
+					v-if="installedPlugins.includes('stsearch')"
+				/>
+				<nav-bar-search
+					class="nav-element"
+					v-if="installedPlugins.includes('stsearch')"
+				/>
 				<nav-bar-settings class="nav-element" />
 			</b-navbar-nav>
 		</b-collapse>
@@ -27,6 +33,8 @@ import NavBarSearch from '@/components/NavBarSearch.vue';
 import NavBarSettings from '@/components/NavBarSettings.vue';
 import NavBarWelcome from '@/components/NavBarWelcome.vue';
 
+import store from '@/store';
+
 export default {
 	name: 'NavBar',
 	components: {
@@ -34,6 +42,11 @@ export default {
 		NavBarCategories,
 		NavBarSearch,
 		NavBarSettings
+	},
+	computed: {
+		installedPlugins() {
+			return store.state.installedPlugins;
+		}
 	}
 };
 </script>

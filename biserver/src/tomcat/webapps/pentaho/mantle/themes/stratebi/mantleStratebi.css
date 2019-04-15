@@ -135,6 +135,10 @@ input.end-date-picker:disabled,
 	border-bottom: none !important;
 }
 
+.gwt-MenuBarPopup table {
+	border-collapse: collapse;
+}
+
 .invisible-font {
 	visibility: hidden !important;
 }

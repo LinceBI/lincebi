@@ -1,17 +1,13 @@
 <template>
 	<div class="app">
 		<nav-bar class="page-navbar" />
-		<b-container class="page-container" fluid>
-			<b-row class="page-row">
-				<b-col class="page-col sidebar">
-					<side-bar />
-				</b-col>
-				<b-col class="page-col content">
-					<router-multi-view class="page-router" />
-					<b-notifications class="page-notifications" />
-				</b-col>
-			</b-row>
-		</b-container>
+		<div class="page-container">
+			<side-bar class="page-sidebar" />
+			<div class="page-content">
+				<router-multi-view class="page-router" />
+				<b-notifications class="page-notifications" />
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -31,27 +27,38 @@ export default {
 		NavBar,
 		SideBar
 	},
-	async created() {
-		await store.dispatch(
-			'fetchUserSettings',
-			Object.keys(store.state.userSettings)
-		);
-
-		if (store.state.userSettings.avatar.length === 0) {
-			store.commit('setUserSetting', {
-				key: 'avatar',
-				value: generateAvatar(store.state.userSettings.name)
+	created() {
+		store.dispatch('fetchCanCreate');
+		store.dispatch('fetchCanAdminister');
+		store.dispatch('fetchInstalledPlugins');
+		store.dispatch('fetchSupportedLocales').then(() => {
+			store.dispatch('fetchLocale');
+		});
+		store
+			.dispatch('fetchUserSettings', Object.keys(store.state.userSettings))
+			.then(() => {
+				if (store.state.userSettings.custom_field_avatar.length === 0) {
+					store.commit('setUserSetting', {
+						key: 'custom_field_avatar',
+						value: generateAvatar(store.state.userSettings.custom_field_name)
+					});
+				}
 			});
-		}
 	}
 };
 </script>
 
 <style lang="scss">
 body {
+	display: flex;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: auto;
+	flex-direction: column;
+
 	margin: 0;
-	height: 100vh;
-	width: 100vw;
+	min-height: 100vh;
+
 	font-family: 'Titillium Web', $system-sans-serif;
 	font-size: $em-base + 0px;
 	background-image: url('~@/assets/img/background.jpg');
@@ -62,44 +69,69 @@ body {
 
 .app {
 	display: flex;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: auto;
 	flex-direction: column;
-	height: 100%;
 
-	.page-navbar {
+	> .page-navbar {
 		display: flex;
+		flex-grow: 0;
+		flex-shrink: 1;
+		flex-basis: auto;
 		flex-direction: row;
+		flex-wrap: wrap;
+
 		z-index: 1000;
 	}
 
-	.page-container {
+	> .page-container {
 		display: flex;
-		flex-direction: column;
 		flex-grow: 1;
+		flex-shrink: 1;
+		flex-basis: auto;
+		flex-direction: row;
+		flex-wrap: nowrap;
 
-		.page-row {
-			flex-wrap: nowrap;
+		> .page-sidebar {
+			display: flex;
+			flex-grow: 0;
+			flex-shrink: 0;
+			flex-basis: rem(50);
+			flex-direction: column;
+
+			overflow: visible;
+			padding: 0;
+			z-index: 500;
+		}
+
+		> .page-content {
+			display: flex;
 			flex-grow: 1;
+			flex-shrink: 1;
+			flex-basis: auto;
+			flex-direction: column;
 
-			.page-col.sidebar {
-				flex: 0 0 rem(50);
-				padding: 0;
-				z-index: 500;
+			position: relative;
+			overflow: auto;
+			padding: 0;
+			z-index: 0;
+
+			> .page-router {
+				height: 100%;
 			}
 
-			.page-col.content {
-				padding: 0;
-				z-index: 0;
+			> .page-notifications {
+				position: absolute;
+				padding-top: rem(10);
 			}
-		}
-
-		.page-router {
-			height: 100%;
-		}
-
-		.page-notifications {
-			position: absolute;
-			padding-top: rem(10);
 		}
 	}
+}
+
+// Pentaho BI Server injects these elements into "window.top".
+.glasspane,
+.busy-indicator-container {
+	display: none !important;
 }
 </style>

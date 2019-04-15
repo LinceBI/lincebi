@@ -16,9 +16,9 @@
 		<div id="pucHeader">
 			<div id="pucMenuBar"></div>
 			<div id="pucPerspectives"></div>
+			<div id="pucToolBar"></div>
 			<div id="pucUserDropDown"></div>
 		</div>
-		<div id="pucToolBar"></div>
 		<div id="pucContent"></div>
 	</div>
 	<script src="webcontext.js?context=mantle"></script>
@@ -28,38 +28,115 @@
 	<style>
 		body {
 			margin: 0;
-			height: 100vh;
-			width: 100vw;
+			min-height: 100vh;
 		}
 
-		#pucHeader {
-			display: none;
-		}
-
-		#pucWrapper, #pucContent {
+		#pucWrapper {
 			position: initial;
+			display: flex;
+			flex-grow: 1;
+			flex-shrink: 1;
+			flex-basis: auto;
+			flex-direction: column;
 			height: 100%;
-			width: 100%;
 		}
 
-		#pucToolBar {
-			display: block;
-			position: absolute;
-			top: 0;
-			right: 0;
-			margin: 0 10px;
-			z-index: 10000;
+		#pucWrapper > #pucHeader {
+			position: initial;
+			display: flex;
+			flex-grow: 0;
+			flex-shrink: 1;
+			flex-basis: auto;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			height: auto;
+			min-width: 100vw;
+			padding: 0;
+			border: 0;
+			z-index: 100;
 		}
 
-		#pucToolBar,
-		#pucToolBar .spacer {
+		/* pucMenuBar */
+		/* ========== */
+
+		body:not(.show-menu-bar) > #pucWrapper > #pucHeader > #pucMenuBar {
+			display: none !important;
+		}
+
+		#pucWrapper > #pucHeader > #pucMenuBar {
+			position: initial;
+			display: flex;
+			flex-grow: 0;
+			flex-shrink: 1;
+			flex-basis: auto;
+			flex-direction: row;
+			justify-content: flex-start;
+			margin: 0;
+		}
+
+		#pucWrapper > #pucHeader > #pucMenuBar #mainMenubar {
+			position: initial;
+		}
+
+		/* pucPerspectives */
+		/* =============== */
+
+		#pucWrapper > #pucHeader > #pucPerspectives {
+			display: none !important;
+		}
+
+		/* pucToolBar */
+		/* ========== */
+
+		body:not(.show-tool-bar) > #pucWrapper > #pucHeader > #pucToolBar {
+			display: none !important;
+		}
+
+		#pucWrapper > #pucHeader > #pucToolBar {
+			position: initial;
+			display: flex;
+			flex-grow: 0;
+			flex-shrink: 1;
+			flex-basis: auto;
+			flex-direction: row;
+			justify-content: flex-start;
+			margin: 0;
+		}
+
+		#pucWrapper > #pucHeader > #pucToolBar,
+		#pucWrapper > #pucHeader > #pucToolBar .spacer {
 			width: auto !important;
 		}
 
+		#pucWrapper > #pucHeader > #pucToolBar #mainToolbar .toolbar-button img {
+			margin-top: 2px;
+			height: 24px;
+			width: 24px;
+			background-size: 100%;
+		}
+
 		.newToolbarDropdown {
-			top: 40px !important;
-			left: auto !important;
-			right: 10px !important;
+			top: 30px !important;
+		}
+
+		/* pucUserDropDown */
+		/* =============== */
+
+		#pucWrapper > #pucHeader > #pucUserDropDown {
+			display: none !important;
+		}
+
+		/* pucContent */
+		/* ========== */
+
+		#pucWrapper > #pucContent {
+			position: initial;
+			display: flex;
+			flex-grow: 1;
+			flex-shrink: 1;
+			flex-basis: auto;
+			flex-direction: row;
+			height: 100%;
 		}
 	</style>
 	<script>

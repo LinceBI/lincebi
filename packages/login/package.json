@@ -18,12 +18,13 @@
     "bootstrap-vue": "~2.0.0-rc.18",
     "lodash": "~4.17.11",
     "unfetch": "~4.1.0",
-    "vue": "~2.6.10"
+    "vue": "~2.6.10",
+    "vue-i18n": "~8.10.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~3.5.5",
-    "@vue/cli-plugin-eslint": "~3.5.1",
-    "@vue/cli-service": "~3.5.3",
+    "@vue/cli-plugin-babel": "~3.6.0",
+    "@vue/cli-plugin-eslint": "~3.6.0",
+    "@vue/cli-service": "~3.6.0",
     "@vue/eslint-config-prettier": "~4.0.1",
     "babel-eslint": "~10.0.1",
     "eslint": "~5.16.0",

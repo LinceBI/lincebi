@@ -21,11 +21,12 @@ export default async () => {
 		const found = webcontextText.match(contextPathRegex);
 		if (found && found.length === 2) {
 			contextPath = found[1].replace(/\\/g, '');
+			return contextPath;
 		}
-	} else {
-		console.warn('Using predefined "contextPath" value');
-		contextPath = '/pentaho/';
 	}
+
+	console.warn(`Falling back to default context path`);
+	contextPath = '/pentaho/';
 
 	return contextPath;
 };

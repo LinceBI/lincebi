@@ -1,4 +1,5 @@
 import fetch from 'unfetch';
+
 import getContextPath from './getContextPath';
 
 const allowedResources = new Set([

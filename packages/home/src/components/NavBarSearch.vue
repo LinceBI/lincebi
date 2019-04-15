@@ -1,9 +1,13 @@
 <template>
-	<b-nav-form class="nav-bar-search" @submit="onSubmit" @reset="onReset">
+	<b-nav-form
+		class="nav-bar-search"
+		@submit.prevent="onSubmit"
+		@reset.prevent="onReset"
+	>
 		<b-input-group class="search-input-group">
 			<b-form-input
 				v-model="searchTerms"
-				placeholder="Search..."
+				:placeholder="$t('navbar.search.placeholder')"
 			></b-form-input>
 			<b-input-group-append>
 				<b-button variant="primary">
@@ -29,8 +33,6 @@ export default {
 	},
 	methods: {
 		onSubmit(event) {
-			event.preventDefault();
-
 			router.push({
 				name: 'perspective',
 				params: { perspective: 'search.perspective' }
@@ -41,14 +43,11 @@ export default {
 				async perspectiveWindow => {
 					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
 					(await STSearch.resetConfig().doRefresh()).doSearch(this.searchTerms);
-
 					event.target.reset();
 				}
 			);
 		},
-		onReset(event) {
-			event.preventDefault();
-
+		onReset() {
 			this.searchTerms = '';
 		}
 	}
