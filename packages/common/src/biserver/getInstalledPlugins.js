@@ -5,13 +5,9 @@ import isStpivotInstalled from './plugins/isStpivotInstalled';
 import isStreportInstalled from './plugins/isStreportInstalled';
 import isStsearchInstalled from './plugins/isStsearchInstalled';
 
-let installedPlugins = null;
+let installedPluginsPromise = null;
 
-export default async () => {
-	if (installedPlugins !== null) {
-		return installedPlugins;
-	}
-
+const getInstalledPlugins = async () => {
 	// Each checker makes a HEAD request to a known plugin resource.
 	const installCheckers = [
 		['stagile', isStagileInstalled],
@@ -28,9 +24,14 @@ export default async () => {
 		})
 	);
 
-	installedPlugins = installCheckersResults
+	return installCheckersResults
 		.filter(([, isInstalled]) => isInstalled)
 		.map(([plugin]) => plugin);
+};
 
-	return installedPlugins;
+export default async (...args) => {
+	if (installedPluginsPromise === null) {
+		installedPluginsPromise = getInstalledPlugins(...args);
+	}
+	return await installedPluginsPromise;
 };

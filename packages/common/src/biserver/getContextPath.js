@@ -1,12 +1,8 @@
 import fetch from 'unfetch';
 
-let contextPath = null;
+let contextPathPromise = null;
 
-export default async () => {
-	if (contextPath !== null) {
-		return contextPath;
-	}
-
+const getContextPath = async () => {
 	const endpoint = '../webcontext.js?useFullyQualifiedUrl=false';
 	const response = await fetch(endpoint, {
 		method: 'GET',
@@ -20,13 +16,17 @@ export default async () => {
 		const webcontextText = await response.text();
 		const found = webcontextText.match(contextPathRegex);
 		if (found && found.length === 2) {
-			contextPath = found[1].replace(/\\/g, '');
-			return contextPath;
+			return found[1].replace(/\\/g, '');
 		}
 	}
 
 	console.warn(`Falling back to default context path`);
-	contextPath = '/pentaho/';
+	return '/pentaho/';
+};
 
-	return contextPath;
+export default async (...args) => {
+	if (contextPathPromise === null) {
+		contextPathPromise = getContextPath(...args);
+	}
+	return await contextPathPromise;
 };

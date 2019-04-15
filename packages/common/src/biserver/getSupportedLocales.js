@@ -1,31 +1,39 @@
 import getContextPath from './getContextPath';
 
-let supportedLocales = null;
+let supportedLocalesPromise = null;
 
-export default async (expectedLocales = ['en']) => {
-	if (supportedLocales !== null) {
-		return supportedLocales;
-	}
-
-	supportedLocales = expectedLocales.find(l => l === 'en') ? ['en'] : [];
-
-	for await (const expectedLocale of expectedLocales) {
-		const contextPath = await getContextPath();
-		const resource = `content/languagePack_${expectedLocale}/resources/lang/messages.properties`;
-		const endpoint = `${contextPath}${resource}`;
-		const response = await fetch(endpoint, {
-			method: 'GET',
-			headers: { 'Content-Type': 'text/plain' }
-		});
-
-		if (response.status === 200) {
-			const languagePackRegex = /^languagePack\.title=/m;
-			const languagePackText = await response.text();
-			if (languagePackRegex.test(languagePackText)) {
-				supportedLocales.push(expectedLocale);
+const getSupportedLocales = async (expectedLocales = ['en']) => {
+	const contextPath = await getContextPath();
+	return (await Promise.all(
+		expectedLocales.map(expectedLocale => {
+			// English is always supported.
+			if (expectedLocale === 'en') {
+				return expectedLocale;
 			}
-		}
-	}
 
-	return supportedLocales;
+			// Check a known language pack resource.
+			const resource = `content/languagePack_${expectedLocale}/resources/lang/messages.properties`;
+			const endpoint = `${contextPath}${resource}`;
+			return fetch(endpoint, {
+				method: 'GET',
+				headers: { 'Content-Type': 'text/plain' }
+			}).then(response => {
+				if (response.status === 200) {
+					return response.text().then(languagePackText => {
+						const languagePackRegex = /^languagePack\.title=/m;
+						if (languagePackRegex.test(languagePackText)) {
+							return expectedLocale;
+						}
+					});
+				}
+			});
+		})
+	)).filter(locale => typeof locale === 'string');
+};
+
+export default async (...args) => {
+	if (supportedLocalesPromise === null) {
+		supportedLocalesPromise = getSupportedLocales(...args);
+	}
+	return await supportedLocalesPromise;
 };

@@ -9,7 +9,7 @@ import getCanCreate from '@stratebi/biserver-customization-common/src/biserver/g
 import getInstalledPlugins from '@stratebi/biserver-customization-common/src/biserver/getInstalledPlugins';
 import getLocale from '@stratebi/biserver-customization-common/src/biserver/getLocale';
 import getSupportedLocales from '@stratebi/biserver-customization-common/src/biserver/getSupportedLocales';
-import getUserSetting from '@stratebi/biserver-customization-common/src/biserver/getUserSetting';
+import getUserSettings from '@stratebi/biserver-customization-common/src/biserver/getUserSettings';
 import replaceParameter from '@stratebi/biserver-customization-common/src/replaceParameter';
 import setLocale from '@stratebi/biserver-customization-common/src/biserver/setLocale';
 import setUserSetting from '@stratebi/biserver-customization-common/src/biserver/setUserSetting';
@@ -100,9 +100,10 @@ export default new Vuex.Store({
 			}
 		},
 		async fetchUserSettings({ commit }, keys) {
-			if (!Array.isArray(keys)) keys = [keys];
-			for await (let key of keys) {
-				const value = await getUserSetting(key);
+			const userSettings = await getUserSettings(
+				Array.isArray(keys) ? keys : [keys]
+			);
+			for (const [key, value] of Object.keys(userSettings)) {
 				if (value !== null) {
 					commit('setUserSetting', { key, value });
 				}

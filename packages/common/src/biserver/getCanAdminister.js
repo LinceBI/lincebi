@@ -2,13 +2,9 @@ import fetch from 'unfetch';
 
 import getContextPath from './getContextPath';
 
-let canAdminister = null;
+let canAdministerPromise = null;
 
-export default async () => {
-	if (canAdminister !== null) {
-		return canAdminister;
-	}
-
+const getCanAdminister = async () => {
 	const contextPath = await getContextPath();
 	const endpoint = `${contextPath}api/repo/files/canAdminister`;
 	const response = await fetch(endpoint, {
@@ -17,11 +13,16 @@ export default async () => {
 	});
 
 	if (response.status === 200) {
-		canAdminister = (await response.text()) === 'true';
-	} else {
-		console.warn('Falling back to default "canAdminister" value');
-		canAdminister = false;
+		return (await response.text()) === 'true';
 	}
 
-	return canAdminister;
+	console.warn('Falling back to default "canAdminister" value');
+	return false;
+};
+
+export default async (...args) => {
+	if (canAdministerPromise === null) {
+		canAdministerPromise = getCanAdminister(...args);
+	}
+	return await canAdministerPromise;
 };
