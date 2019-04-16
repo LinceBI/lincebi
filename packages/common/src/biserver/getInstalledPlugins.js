@@ -20,9 +20,7 @@ const getInstalledPlugins = async () => {
 
 	return (await Promise.all(
 		installCheckers.map(async ([plugin, isInstalled]) => {
-			if (await isInstalled()) {
-				return plugin;
-			}
+			return (await isInstalled()) ? plugin : undefined;
 		})
 	)).filter(plugin => typeof plugin === 'string');
 };

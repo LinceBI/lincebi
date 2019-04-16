@@ -27,6 +27,8 @@ const getSupportedLocales = async (expectedLocales = ['en']) => {
 					return expectedLocale;
 				}
 			}
+
+			return undefined;
 		})
 	)).filter(locale => typeof locale === 'string');
 };
