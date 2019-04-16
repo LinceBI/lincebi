@@ -1,7 +1,7 @@
 <template>
 	<b-nav-item-dropdown class="nav-bar-settings" right no-caret>
 		<template slot="button-content">
-			<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
+			<font-awesome-icon :icon="['fas', 'sliders-h']" rotation="90" />
 			<span class="lbl d-lg-none">{{ $t('navbar.settings') }}</span>
 		</template>
 		<nav-bar-dropdown-item

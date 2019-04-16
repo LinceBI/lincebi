@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Administration from '@/views/Administration.vue';
+import Home from '@/views/Home.vue';
 import Perspective from '@/views/Perspective.vue';
 import Profile from '@/views/Profile.vue';
 
@@ -12,10 +13,7 @@ export default new Router({
 		{
 			path: '/',
 			name: 'home',
-			redirect: {
-				name: 'perspective',
-				params: { perspective: 'home.perspective' }
-			}
+			component: Home
 		},
 		{
 			path: '/profile',

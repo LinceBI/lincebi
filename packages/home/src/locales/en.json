@@ -17,8 +17,7 @@
     "useDescriptionsForTooltips": "Use descriptions for tooltips"
   },
   "sidebar": {
-    "sthome": "Home",
-    "stadmin": "Administration",
+    "home": "Home",
     "tools": "Tools",
     "opened": "Opened",
     "browser": "Browser",

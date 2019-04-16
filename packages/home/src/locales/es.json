@@ -17,8 +17,7 @@
     "useDescriptionsForTooltips": "Utilizar descripciones para los tooltips"
   },
   "sidebar": {
-    "sthome": "Inicio",
-    "stadmin": "Administración",
+    "home": "Inicio",
     "tools": "Herramientas",
     "opened": "Abiertos",
     "browser": "Explorador",

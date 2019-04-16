@@ -22,33 +22,11 @@ export default {
 		sidebar() {
 			return [
 				{
-					// TODO: check if plugin is installed.
 					enabled: true,
-					id: 'sthome',
-					name: this.$t('sidebar.sthome'),
-					icon: ['fac', 'tool-sthome'],
-					subitems: [
-						{
-							enabled: true,
-							id: 'sthome.home',
-							name: this.$t('sidebar.sthome'),
-							icon: ['fac', 'tool-sthome'],
-							to: {
-								name: 'perspective',
-								params: { perspective: 'sthome.perspective' }
-							}
-						},
-						{
-							enabled: true,
-							id: 'sthome.administration',
-							name: this.$t('sidebar.stadmin'),
-							icon: ['fac', 'tool-stadmin'],
-							to: {
-								name: 'perspective',
-								params: { perspective: 'stadmin.perspective' }
-							}
-						}
-					]
+					id: 'home',
+					name: this.$t('sidebar.home'),
+					icon: ['fas', 'home'],
+					to: { name: 'home' }
 				},
 				{
 					enabled: store.state.canCreate,
