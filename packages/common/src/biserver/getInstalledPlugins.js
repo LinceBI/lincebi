@@ -18,15 +18,13 @@ const getInstalledPlugins = async () => {
 		['stsearch', isStsearchInstalled]
 	];
 
-	const installCheckersResults = await Promise.all(
-		installCheckers.map(([plugin, installChecker]) => {
-			return installChecker().then(isInstalled => [plugin, isInstalled]);
+	return (await Promise.all(
+		installCheckers.map(async ([plugin, isInstalled]) => {
+			if (await isInstalled()) {
+				return plugin;
+			}
 		})
-	);
-
-	return installCheckersResults
-		.filter(([, isInstalled]) => isInstalled)
-		.map(([plugin]) => plugin);
+	)).filter(plugin => typeof plugin === 'string');
 };
 
 export default async (...args) => {

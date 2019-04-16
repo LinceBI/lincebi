@@ -4,8 +4,9 @@ let supportedLocalesPromise = null;
 
 const getSupportedLocales = async (expectedLocales = ['en']) => {
 	const contextPath = await getContextPath();
+
 	return (await Promise.all(
-		expectedLocales.map(expectedLocale => {
+		expectedLocales.map(async expectedLocale => {
 			// English is always supported.
 			if (expectedLocale === 'en') {
 				return expectedLocale;
@@ -14,19 +15,18 @@ const getSupportedLocales = async (expectedLocales = ['en']) => {
 			// Check a known language pack resource.
 			const resource = `content/languagePack_${expectedLocale}/resources/lang/messages.properties`;
 			const endpoint = `${contextPath}${resource}`;
-			return fetch(endpoint, {
+			const response = await fetch(endpoint, {
 				method: 'GET',
 				headers: { 'Content-Type': 'text/plain' }
-			}).then(response => {
-				if (response.status === 200) {
-					return response.text().then(languagePackText => {
-						const languagePackRegex = /^languagePack\.title=/m;
-						if (languagePackRegex.test(languagePackText)) {
-							return expectedLocale;
-						}
-					});
-				}
 			});
+
+			if (response.status === 200) {
+				const languagePackText = await response.text();
+				const languagePackRegex = /^languagePack\.title=/m;
+				if (languagePackRegex.test(languagePackText)) {
+					return expectedLocale;
+				}
+			}
 		})
 	)).filter(locale => typeof locale === 'string');
 };

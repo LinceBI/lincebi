@@ -3,6 +3,7 @@ import fetch from 'unfetch';
 import getContextPath from './getContextPath';
 
 let canCreatePromise = null;
+
 const getCanCreate = async () => {
 	const contextPath = await getContextPath();
 	const endpoint = `${contextPath}api/repo/files/canCreate`;
