@@ -7,6 +7,7 @@
 						<b-img
 							class="avatar-image"
 							:src="userSettings.custom_field_avatar"
+							:blank="userSettings.custom_field_avatar.length === 0"
 						></b-img>
 						<div class="avatar-overlay">
 							<font-awesome-icon class="icon" :icon="['fas', 'pencil-alt']" />

@@ -4,6 +4,7 @@
 			<b-img
 				class="user-avatar"
 				:src="userSettings.custom_field_avatar"
+				:blank="userSettings.custom_field_avatar.length === 0"
 			></b-img>
 		</b-link>
 		<span class="user-text">

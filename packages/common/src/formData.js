@@ -17,10 +17,7 @@ export default {
 	formify: obj => {
 		const form = new FormData();
 
-		Object.entries(obj).forEach(entry => {
-			const key = entry[0];
-			const value = entry[1];
-
+		Object.entries(obj).forEach(([key, value]) => {
 			if (typeof value === 'string') {
 				form.set(key, value);
 			} else if (Array.isArray(value)) {

@@ -3,7 +3,6 @@ import Vuex from 'vuex';
 
 import get from 'lodash/get';
 
-import blankSvg from '@stratebi/biserver-customization-common/src/blankSvg';
 import getCanAdminister from '@stratebi/biserver-customization-common/src/biserver/getCanAdminister';
 import getCanCreate from '@stratebi/biserver-customization-common/src/biserver/getCanCreate';
 import getInstalledPlugins from '@stratebi/biserver-customization-common/src/biserver/getInstalledPlugins';
@@ -31,7 +30,7 @@ export default new Vuex.Store({
 			custom_field_email: '',
 			custom_field_phone: '',
 			custom_field_address: '',
-			custom_field_avatar: blankSvg,
+			custom_field_avatar: '',
 			custom_field_show_menu_bar: 'false',
 			custom_field_show_tool_bar: 'false',
 			MANTLE_SHOW_HIDDEN_FILES: 'false',
@@ -103,11 +102,11 @@ export default new Vuex.Store({
 			const userSettings = await getUserSettings(
 				Array.isArray(keys) ? keys : [keys]
 			);
-			for (const [key, value] of Object.keys(userSettings)) {
+			Object.entries(userSettings).forEach(([key, value]) => {
 				if (value !== null) {
 					commit('setUserSetting', { key, value });
 				}
-			}
+			});
 		},
 		async setUserSetting({ commit }, { key, value }) {
 			const result = await setUserSetting(key, value);
