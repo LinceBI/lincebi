@@ -24,5 +24,5 @@ export default async (...args) => {
 	if (canCreatePromise === null) {
 		canCreatePromise = getCanCreate(...args);
 	}
-	return await canCreatePromise;
+	return canCreatePromise;
 };

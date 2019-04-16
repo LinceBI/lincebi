@@ -28,5 +28,5 @@ export default async (...args) => {
 	if (contextPathPromise === null) {
 		contextPathPromise = getContextPath(...args);
 	}
-	return await contextPathPromise;
+	return contextPathPromise;
 };

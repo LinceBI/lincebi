@@ -31,5 +31,5 @@ export default async (...args) => {
 	if (installedPluginsPromise === null) {
 		installedPluginsPromise = getInstalledPlugins(...args);
 	}
-	return await installedPluginsPromise;
+	return installedPluginsPromise;
 };

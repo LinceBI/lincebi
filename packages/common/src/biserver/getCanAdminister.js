@@ -24,5 +24,5 @@ export default async (...args) => {
 	if (canAdministerPromise === null) {
 		canAdministerPromise = getCanAdminister(...args);
 	}
-	return await canAdministerPromise;
+	return canAdministerPromise;
 };

@@ -35,5 +35,5 @@ export default async (...args) => {
 	if (supportedLocalesPromise === null) {
 		supportedLocalesPromise = getSupportedLocales(...args);
 	}
-	return await supportedLocalesPromise;
+	return supportedLocalesPromise;
 };
