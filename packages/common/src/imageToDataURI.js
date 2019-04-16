@@ -7,8 +7,8 @@ export default async (image, options = {}) => {
 		new Compressor(image, {
 			strict: true,
 			checkOrientation: false,
-			maxWidth: 256,
-			maxHeight: 256,
+			maxWidth: 512,
+			maxHeight: 512,
 			quality: 0.4,
 			...options,
 			success: result => resolve(result),
