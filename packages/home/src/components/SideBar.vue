@@ -61,6 +61,8 @@ export default {
 							id: 'tools.stpivot',
 							name: 'STPivot',
 							icon: ['fac', 'tool-stpivot'],
+							selectedForeground: '#FFFFFF',
+							selectedBackground: '#B0B916',
 							click() {
 								router.push({
 									name: 'perspective',
@@ -80,6 +82,8 @@ export default {
 							id: 'tools.stdashboard',
 							name: 'STDashboard',
 							icon: ['fac', 'tool-stdashboard'],
+							selectedForeground: '#FFFFFF',
+							selectedBackground: '#2980B9',
 							click() {
 								router.push({
 									name: 'perspective',
@@ -99,6 +103,8 @@ export default {
 							id: 'tools.streport',
 							name: 'STReport',
 							icon: ['fac', 'tool-streport'],
+							selectedForeground: '#FFFFFF',
+							selectedBackground: '#E67E22',
 							click() {
 								router.push({
 									name: 'perspective',
@@ -118,6 +124,8 @@ export default {
 							id: 'tools.stagile',
 							name: 'STAgile',
 							icon: ['fac', 'tool-stagile'],
+							selectedForeground: '#FFFFFF',
+							selectedBackground: '#B91616',
 							click() {
 								router.push({
 									name: 'perspective',
@@ -137,6 +145,8 @@ export default {
 							id: 'tools.stcard',
 							name: 'STCard',
 							icon: ['fac', 'tool-stcard'],
+							selectedForeground: '#FFFFFF',
+							selectedBackground: '#00796B',
 							click() {
 								router.push({
 									name: 'perspective',

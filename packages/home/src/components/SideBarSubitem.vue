@@ -4,6 +4,11 @@
 		v-if="item.enabled"
 		:to="item.to"
 		@click="onClick"
+		@mouseover.native="isHover = true"
+		@mouseout.native="isHover = false"
+		@focus.native="isFocused = true"
+		@blur.native="isFocused = false"
+		:style="itemStyle"
 	>
 		<font-awesome-icon
 			v-if="typeof item.icon !== 'undefined'"
@@ -24,6 +29,27 @@ export default {
 	name: 'SideBarSubitem',
 	components: {},
 	props: { item: Object },
+	data() {
+		return {
+			isHover: false,
+			isFocused: false
+		};
+	},
+	computed: {
+		itemStyle() {
+			const style = {};
+
+			if (this.isHover || this.isFocused) {
+				style.color = this.item.selectedForeground;
+				style.backgroundColor = this.item.selectedBackground;
+			} else {
+				style.color = this.item.foreground;
+				style.backgroundColor = this.item.background;
+			}
+
+			return style;
+		}
+	},
 	methods: {
 		onClick(event) {
 			if (typeof this.item.click !== 'undefined') {
@@ -40,14 +66,14 @@ export default {
 		display: flex;
 		align-items: center;
 		height: rem(45);
-		background-color: map-get($theme-colors, 'primary');
 		color: map-get($theme-colors, 'light');
+		background-color: map-get($theme-colors, 'primary');
 	}
 
 	&.dropdown-item:hover,
 	&.dropdown-item:focus {
-		background-color: map-get($theme-colors, 'light');
 		color: map-get($theme-colors, 'primary');
+		background-color: map-get($theme-colors, 'light');
 	}
 
 	.item-img {
