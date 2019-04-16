@@ -1,0 +1,4 @@
+/* Increase margin between icons and labels */
+img + .lbl, .svg-inline--fa + .lbl {
+	margin-left: rem(8);
+}

@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "@stratebi/biserver-customization-common",
+  "version": "1.0.0+PE81",
+  "scripts": {
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "~1.2.17",
+    "@fortawesome/free-brands-svg-icons": "~5.8.1",
+    "@fortawesome/free-regular-svg-icons": "~5.8.1",
+    "@fortawesome/free-solid-svg-icons": "~5.8.1",
+    "@fortawesome/vue-fontawesome": "~0.1.6",
+    "bootstrap": "~4.3.1",
+    "bootstrap-vue": "~2.0.0-rc.18",
+    "compressorjs": "~1.0.5",
+    "jdenticon": "~2.1.1",
+    "lodash": "~4.17.11",
+    "unfetch": "~4.1.0",
+    "vue": "~2.6.10"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~3.6.0",
+    "@vue/cli-plugin-eslint": "~3.6.0",
+    "@vue/cli-service": "~3.6.0",
+    "@vue/eslint-config-prettier": "~4.0.1",
+    "babel-eslint": "~10.0.1",
+    "eslint": "~5.16.0",
+    "eslint-plugin-vue": "~5.2.2",
+    "fibers": "~3.1.1",
+    "sass": "~1.18.0",
+    "sass-loader": "~7.1.0",
+    "vue-template-compiler": "~2.6.10"
+  }
+}

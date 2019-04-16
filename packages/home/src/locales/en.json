@@ -1,0 +1,56 @@
+{
+  "locales": {
+    "english": "English",
+    "spanish": "Spanish",
+    "french": "French",
+    "german": "German"
+  },
+  "navbar": {
+    "welcome": "Welcome {name}",
+    "categories": "Categories",
+    "search": { "label": "Search:", "placeholder": "Search..." },
+    "settings": "Settings",
+    "profile": "Profile",
+    "showMenuBar": "Show menu bar",
+    "showToolBar": "Show tool bar",
+    "showHiddenFiles": "Show hidden files",
+    "useDescriptionsForTooltips": "Use descriptions for tooltips"
+  },
+  "sidebar": {
+    "sthome": "Home",
+    "stadmin": "Administration",
+    "tools": "Tools",
+    "opened": "Opened",
+    "browser": "Browser",
+    "search": "Search",
+    "favorites": "Favorites",
+    "recents": "Recents",
+    "administration": "Administration",
+    "locales": "Languages",
+    "logout": "Logout"
+  },
+  "profile": {
+    "name": { "label": "Name:", "placeholder": "Name..." },
+    "email": { "label": "Email:", "placeholder": "Email..." },
+    "phone": { "label": "Phone:", "placeholder": "Phone..." },
+    "address": { "label": "Address:", "placeholder": "Address..." },
+    "avatar": { "label": "Avatar:", "placeholder": "Avatar..." },
+    "save": "Save"
+  },
+  "administration": {
+    "administration": "Administration",
+    "manageDatasources": "Manage datasources",
+    "schedules": "Schedules",
+    "marketplace": "Marketplace",
+    "manageCdaCache": "Manage CDA cache",
+    "refreshSystemSettings": "Refresh system settings",
+    "refreshReportingMetadata": "Refresh reporting metadata",
+    "refreshGlobalVariables": "Refresh global variables",
+    "refreshMondrianSchemaCache": "Refresh Mondrian schema cache",
+    "clearCdaCache": "Clear CDA cache",
+    "resourceRefreshSuccess": "Resource successfully refreshed",
+    "resourceRefreshError": "Error while refreshing resource",
+    "cacheClearSuccess": "Cache successfully cleared",
+    "cacheClearError": "Error while clearing cache"
+  }
+}

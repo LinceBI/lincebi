@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0+PE81",
+  "packages": [
+    "packages/*"
+  ],
+  "command": {
+    "version": {
+      "push": false
+    }
+  }
+}

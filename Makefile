@@ -1,89 +1,94 @@
 #!/usr/bin/make -f
 
-MKFILE_RELPATH := $(shell printf -- '%s' '$(MAKEFILE_LIST)' | sed 's|^\ ||')
-MKFILE_ABSPATH := $(shell readlink -f -- '$(MKFILE_RELPATH)')
-MKFILE_DIR := $(shell dirname -- '$(MKFILE_ABSPATH)')
+SHELL := /bin/sh
+.SHELLFLAGS := -eu -c
 
-DIST_DIR := $(MKFILE_DIR)/dist
+DOCKER := $(shell command -v docker 2>/dev/null)
+DOCKER_COMPOSE := $(shell command -v docker-compose 2>/dev/null)
+JQ := $(shell command -v jq 2>/dev/null)
+MVN := $(shell command -v mvn 2>/dev/null)
+NPM := $(shell command -v npm 2>/dev/null)
+TMUX := $(shell command -v tmux 2>/dev/null)
 
-DEPLOY_USER ?= user
-DEPLOY_PASS ?= password
-DEPLOY_URL_BASE ?= https://repo.stratebi.com
-DEPLOY_URL ?= $(DEPLOY_URL_BASE)/repository/stratebi-raw/customizations/sttools-customization-root.tgz
+PACKAGE_NAME ?= $(shell '$(JQ)' -r '.name' ./package.json | sed -r 's|^@([^/]+)/|\1-|')
+PACKAGE_VERSION ?= $(shell '$(JQ)' -r '.version' ./lerna.json)
+PACKAGE_VERSION_EXTRA := $(if $(PACKAGE_VERSION_EXTRA),.$(PACKAGE_VERSION_EXTRA),)
+
+MAVEN_GROUP ?= UNDEFINED
+MAVEN_REPOSITORY_ID ?= UNDEFINED
+MAVEN_REPOSITORY_URL ?= UNDEFINED
+
+DIST_DIR := ./dist
+DIST_TARBALL := $(DIST_DIR)/$(PACKAGE_NAME).tgz
+
+BISERVER_DIST_DIR := ./biserver/dist
+PACKAGE_LOGIN_DIST_DIR := ./packages/login/dist
+PACKAGE_HOME_DIST_DIR := ./packages/home/dist
+
+##################################################
+## "all" target
+##################################################
 
 .PHONY: all
-all: format build
+all: build
 
-.PHONY: format
-format: format-encoding format-xml format-json format-js format-css
+##################################################
+## "start-*" targets
+##################################################
 
-.PHONY: format-encoding
-format-encoding:
-	@find '$(MKFILE_DIR)/ROOT/' -type f \
-		-exec sh -c 'if ! git check-ignore -q "{}" && grep -qI "" "{}"; then \
-			iconv -f "$$(uchardet "{}")" -t UTF-8 -o "{}.tmp" "{}" 2>/dev/null && mv -f "{}.tmp" "{}"; \
-			dos2unix "{}"; \
-		fi' ';'
+.PHONY: start-biserver
+start-biserver:
+	'$(TMUX)' \
+		new-session 'cd ./biserver/; $(MAKE) start' ';' \
+		split-window 'cd ./docker/; $(DOCKER_COMPOSE) up' ';' \
+		select-layout even-horizontal
 
-.PHONY: format-xml
-format-xml:
-	@XMLLINT_INDENT="$$(printf '\t')" \
-	find '$(MKFILE_DIR)/ROOT/' -type f \
-		'(' -not -iregex '.*\.min\.[a-z0-9]+' ')' \
-		'(' -iname '*.xml' -or -iname '*.wcdf' ')' \
-		-exec sh -c 'if ! git check-ignore -q "{}" && grep -qI "" "{}"; then \
-			xmllint --format --noblanks --output "{}" "{}"; \
-			printf "%s\n" "{}"; \
-		fi' ';'
+.PHONY: start-devserver
+start-devserver:
+	'$(NPM)' run serve
 
-.PHONY: format-json
-format-json:
-	@find '$(MKFILE_DIR)/ROOT/' -type f \
-		'(' -not -iregex '.*\.min\.[a-z0-9]+' ')' \
-		'(' -iname '*.json' -or -iname '*.cdfde' ')' \
-		-exec sh -c 'if ! git check-ignore -q "{}" && grep -qI "" "{}"; then \
-			prettier --write --parser json "{}"; \
-		fi' ';'
-
-.PHONY: format-js
-format-js:
-	@find '$(MKFILE_DIR)/ROOT/' -type f \
-		'(' -not -iregex '.*\.min\.[a-z0-9]+' ')' \
-		'(' -iname '*.js' ')' \
-		-exec sh -c 'if ! git check-ignore -q "{}" && grep -qI "" "{}"; then \
-			prettier --write --parser babylon "{}"; \
-		fi' ';'
-
-.PHONY: format-css
-format-css:
-	@find '$(MKFILE_DIR)/ROOT/' -type f \
-		'(' -not -iregex '.*\.min\.[a-z0-9]+' ')' \
-		'(' -iname '*.css' ')' \
-		-exec sh -c 'if ! git check-ignore -q "{}" && grep -qI "" "{}"; then \
-			prettier --write --parser css "{}"; \
-		fi' ';'
+##################################################
+## "build" target
+##################################################
 
 .PHONY: build
-build:
-	@mkdir -p '$(DIST_DIR)'
-	@(cd '$(MKFILE_DIR)/ROOT/' \
-		&& STASH=$$(git stash create) && STASH=$${STASH:=HEAD} \
-		&& git archive \
-			--verbose \
-			--format=tar.gz \
-			--output '$(DIST_DIR)/sttools-customization-root.tgz' \
-			"$${STASH}" ./ \
-		&& git gc --prune=now)
+build: $(DIST_TARBALL)
+
+$(BISERVER_DIST_DIR):
+	cd ./biserver && '$(MAKE)' build
+
+$(PACKAGE_LOGIN_DIST_DIR) $(PACKAGE_HOME_DIST_DIR):
+	'$(NPM)' run build
+
+$(DIST_TARBALL): $(BISERVER_DIST_DIR) $(PACKAGE_LOGIN_DIST_DIR) $(PACKAGE_HOME_DIST_DIR)
+	mkdir -p '$(DIST_DIR)'
+	tar -czf '$@' \
+		--transform='s|^$(BISERVER_DIST_DIR)||' \
+		--exclude='$(BISERVER_DIST_DIR)/tomcat/webapps/pentaho/Login' \
+		--transform='s|^$(PACKAGE_LOGIN_DIST_DIR)|tomcat/webapps/pentaho/Login|' \
+		--exclude='$(BISERVER_DIST_DIR)/tomcat/webapps/pentaho/Home' \
+		--transform='s|^$(PACKAGE_HOME_DIST_DIR)|tomcat/webapps/pentaho/Home|' \
+		'$(BISERVER_DIST_DIR)' '$(PACKAGE_LOGIN_DIST_DIR)' '$(PACKAGE_HOME_DIST_DIR)'
+
+##################################################
+## "deploy" target
+##################################################
 
 .PHONY: deploy
-deploy:
-	@curl \
-		--verbose \
-		--user '$(DEPLOY_USER):$(DEPLOY_PASS)' \
-		--header 'Content-Type: application/gzip' \
-		--upload-file '$(DIST_DIR)/sttools-customization-root.tgz' \
-		'$(DEPLOY_URL)' 2>&1 >/dev/null | grep -v '> Authorization: '
+deploy: $(DIST_TARBALL)
+	mvn deploy:deploy-file \
+		-Dpackaging=tar.gz \
+		-Dfile='$(DIST_TARBALL)' \
+		-DgroupId='$(MAVEN_GROUP)' \
+		-DartifactId='$(PACKAGE_NAME)' \
+		-Dversion='$(PACKAGE_VERSION)$(PACKAGE_VERSION_EXTRA)' \
+		-DrepositoryId=$(MAVEN_REPOSITORY_ID) \
+		-Durl='$(MAVEN_REPOSITORY_URL)'
+
+##################################################
+## "clean" target
+##################################################
 
 .PHONY: clean
 clean:
-	rm -rf '$(DIST_DIR)'
+	rm -rf '$(DIST_DIR)' '$(PACKAGE_LOGIN_DIST_DIR)' '$(PACKAGE_HOME_DIST_DIR)'

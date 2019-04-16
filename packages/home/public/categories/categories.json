@@ -1,0 +1,93 @@
+[
+  {
+    "enabled": true,
+    "id": "marketing",
+    "name": "Marketing",
+    "icon": "categories/icons/marketing.svg",
+    "banner": "categories/banners/marketing.png"
+  },
+  {
+    "enabled": true,
+    "id": "retail",
+    "name": "Retail",
+    "icon": "categories/icons/retail.svg",
+    "banner": "categories/banners/retail.png"
+  },
+  {
+    "enabled": true,
+    "id": "finance",
+    "name": "Finance",
+    "icon": "categories/icons/finance.svg",
+    "banner": "categories/banners/finance.png"
+  },
+  {
+    "enabled": true,
+    "id": "ngo",
+    "name": "NGO",
+    "icon": "categories/icons/ngo.svg",
+    "banner": "categories/banners/ngo.png"
+  },
+  {
+    "enabled": true,
+    "id": "gov",
+    "name": "GOV",
+    "icon": "categories/icons/gov.svg",
+    "banner": "categories/banners/gov.png"
+  },
+  {
+    "enabled": true,
+    "id": "e-commerce",
+    "name": "e-Commerce",
+    "icon": "categories/icons/e-commerce.svg",
+    "banner": "categories/banners/e-commerce.png"
+  },
+  {
+    "enabled": true,
+    "id": "telco",
+    "name": "Telco",
+    "icon": "categories/icons/telco.svg",
+    "banner": "categories/banners/telco.png"
+  },
+  {
+    "enabled": true,
+    "id": "utilities",
+    "name": "Utilities",
+    "icon": "categories/icons/utilities.svg",
+    "banner": "categories/banners/utilities.png"
+  },
+  {
+    "enabled": true,
+    "id": "tourism",
+    "name": "Tourism",
+    "icon": "categories/icons/tourism.svg",
+    "banner": "categories/banners/tourism.png"
+  },
+  {
+    "enabled": true,
+    "id": "education",
+    "name": "Education",
+    "icon": "categories/icons/education.svg",
+    "banner": "categories/banners/education.png"
+  },
+  {
+    "enabled": true,
+    "id": "health",
+    "name": "Health",
+    "icon": "categories/icons/health.svg",
+    "banner": "categories/banners/health.png"
+  },
+  {
+    "enabled": true,
+    "id": "rrhh",
+    "name": "RRHH",
+    "icon": "categories/icons/rrhh.svg",
+    "banner": "categories/banners/rrhh.png"
+  },
+  {
+    "enabled": true,
+    "id": "pharma",
+    "name": "Pharma",
+    "icon": "categories/icons/pharma.svg",
+    "banner": "categories/banners/pharma.png"
+  }
+]

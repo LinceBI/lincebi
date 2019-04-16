@@ -1,0 +1,144 @@
+@import url('../ruby/mantleRuby.css');
+
+:root {
+	--primary-color: #7a9e3f;
+	--primary-darker-color: #637c39;
+	--light-color: #ffffff;
+	--gray-color: #cccccc;
+	--dark-color: #343a40;
+}
+
+#pucHeader {
+	border-top-color: var(--primary-color) !important;
+}
+
+.spinner:after,
+.toolbar-button.toolbar-button-hovering {
+	border-color: var(--primary-color) !important;
+}
+
+.btn, .btn:link, .btn:visited,
+button, button:link, button:visited {
+	color: var(--primary-color) !important;
+	background-color: var(--light-color) !important;
+	border-color: var(--primary-color) !important;
+}
+
+.btn:hover, .btn:active, .btn:focus,
+button:hover, button:active, button:focus {
+	color: var(--light-color) !important;
+	background-color: var(--primary-color) !important;
+	border-color: var(--primary-color) !important;
+}
+
+a, a:link, a:visited {
+	color: var(--primary-color) !important;
+	background-color: var(--light-color) !important;
+}
+
+a:hover, a:active, a:focus {
+	color: var(--primary-darker-color) !important;
+	background-color: var(--light-color) !important;
+}
+
+.nav-tabs a, .nav-tabs a:link, .nav-tabs a:visited {
+	color: var(--primary-color) !important;
+	background-color: var(--light-color) !important;
+}
+
+.nav-tabs a:hover, .nav-tabs a:active, .nav-tabs a:focus {
+	color: var(--light-color) !important;
+	background-color: var(--primary-color) !important;
+}
+
+.pentaho-tabWidget .pentaho-tabWidgetLabel:hover {
+	color: var(--primary-color) !important;
+}
+
+.pentaho-tabWidget-selected {
+	border-top: solid 4px var(--primary-color) !important;
+}
+
+.pentaho-tabWidget-selected .pentaho-tabWidgetLabel {
+	color: inherit !important;
+}
+
+.custom-dropdown-selected,
+.custom-list-item-selected,
+.tree-item-custom-widget-selected,
+.tree-item-custom-widget-selected:hover,
+.subMenuIcon-selected,
+.gwt-MenuItem-selected,
+.gwt-MenuItem-checkbox-checked-selected,
+.gwt-MenuItem-checkbox-unchecked-selected,
+.gwt-ScrollTable .dataTable tr.selected,
+.gwt-ScrollTable .dataTable tr.selected:hover,
+.pentaho-file-chooser-selection,
+.fileBrowserColumn .body .file.selected,
+.fileBrowserColumn .body .folder.selected > .element,
+.fileBrowserColumn .body .folder.secondarySelected > .element,
+.datePickerDays .datePickerDayIsValue,
+.datePickerDays .datePickerDayIsHighlighted,
+.schedulesPanel .pentaho-table .cellTableSelectedRow {
+	color: var(--light-color) !important;
+	background-color: var(--primary-color) !important;
+}
+
+.custom-dropdown-selected .gwt-Label,
+.custom-list-item-selected .gwt-Label,
+.tree-item-custom-widget-selected .gwt-Label {
+	color: var(--light-color) !important;
+}
+
+#fileBrowserFolders > .body,
+#fileBrowserFiles > .body,
+#fileBrowserButtons > .body {
+	background-color: var(--light-color) !important;
+	border: 1px solid var(--gray-color) !important;
+}
+
+#fileBrowserButtons > .body > .btn,
+#fileBrowserButtons > .body > .btn:link,
+#fileBrowserButtons > .body > .btn:visited,
+#fileBrowserButtons > .body > .btn:hover,
+#fileBrowserButtons > .body > .btn:active,
+#fileBrowserButtons > .body > .btn:focus {
+	padding: 5px 10px !important;
+	color: var(--dark-color) !important;
+	background-color: transparent !important;
+}
+
+#solutionNavigatorAndContentPanel .pentaho-tab-panel {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+#solutionNavigatorAndContentPanel .pentaho-tabWidget-selected {
+	border-top: none !important;
+}
+
+input.start-date-picker,
+input.start-date-picker:disabled,
+input.end-date-picker,
+input.end-date-picker:disabled,
+#schedule-start-date-input input,
+#schedule-end-date-input input {
+	background-image: none !important;
+}
+
+.tree-scroll-panel {
+	background-color: transparent !important;
+}
+
+.tree-scroll-panel > div {
+	border: 1px solid var(--gray-color) !important;
+	border-bottom: none !important;
+}
+
+.gwt-MenuBarPopup table {
+	border-collapse: collapse;
+}
+
+.invisible-font {
+	visibility: hidden !important;
+}
