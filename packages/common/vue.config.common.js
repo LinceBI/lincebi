@@ -5,6 +5,32 @@ module.exports = {
 	productionSourceMap: false,
 	devServer: { historyApiFallback: false },
 	chainWebpack: config => {
+		config.optimization.splitChunks({
+			cacheGroups: {
+				vendor: {
+					test: /\/node_modules\//,
+					name: 'vendor',
+					chunks: 'all',
+					enforce: true,
+					priority: -20
+				},
+				bootstrap: {
+					test: /\/node_modules\/bootstrap(-vue)?\//,
+					name: 'bootstrap',
+					chunks: 'all',
+					enforce: true,
+					priority: -10
+				},
+				fontawesome: {
+					test: /(\/node_modules\/@fortawesome\/)|(\/fontawesome\/)/,
+					name: 'fontawesome',
+					chunks: 'all',
+					enforce: true,
+					priority: -10
+				}
+			}
+		});
+
 		// Project relative image URLs for BootstrapVue custom components.
 		// See: https://bootstrap-vue.js.org/docs/reference/images/
 		config.module
@@ -33,10 +59,6 @@ module.exports = {
 				data: `
 					$common-font-path: '~@stratebi/biserver-customization-common/src/assets/fonts';
 					@import '~@stratebi/biserver-customization-common/src/scss/main';
-					@import '~bootstrap/scss/bootstrap';
-					@import '~bootstrap-vue/src/variables';
-					@import '~bootstrap-vue/src/utilities';
-					@import '~bootstrap-vue/src/components/index';
 				`
 			}
 		}

@@ -1,9 +1,20 @@
 import Vue from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
 
-Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('font-awesome-icon', async () => {
+	const { FontAwesomeIcon } = await import('@fortawesome/vue-fontawesome');
+	const { library } = await import('@fortawesome/fontawesome-svg-core');
 
-import { faKey, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+	const icons = [
+		import('@fortawesome/free-solid-svg-icons/faKey'),
+		import('@fortawesome/free-solid-svg-icons/faSignInAlt')
+	];
 
-library.add(faKey, faSignInAlt);
+	await Promise.all(
+		icons.map(async icon => {
+			const { definition } = await icon;
+			library.add(definition);
+		})
+	);
+
+	return FontAwesomeIcon;
+});
