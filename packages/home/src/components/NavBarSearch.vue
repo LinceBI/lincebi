@@ -8,7 +8,7 @@
 			<b-form-input
 				v-model="searchTerms"
 				:placeholder="$t('navbar.search.placeholder')"
-			></b-form-input>
+			/>
 			<b-input-group-append>
 				<b-button variant="primary">
 					<font-awesome-icon :icon="['fas', 'search']" />

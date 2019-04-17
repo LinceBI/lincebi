@@ -19,7 +19,7 @@
 			v-else-if="typeof item.img !== 'undefined'"
 			class="item-img"
 			:src="item.img"
-		></b-img>
+		/>
 		<span class="lbl">{{ item.name }}</span>
 	</b-dropdown-item>
 </template>

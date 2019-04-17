@@ -8,7 +8,7 @@
 							class="avatar-image"
 							:src="userSettings.custom_field_avatar"
 							:blank="userSettings.custom_field_avatar.length === 0"
-						></b-img>
+						/>
 						<div class="avatar-overlay">
 							<font-awesome-icon class="icon" :icon="['fas', 'pencil-alt']" />
 						</div>
@@ -28,7 +28,7 @@
 							name="custom_field_name"
 							:placeholder="$t('profile.name.placeholder')"
 							:value="userSettings.custom_field_name"
-						></b-form-input>
+						/>
 					</b-form-group>
 					<b-form-group :label="$t('profile.email.label')">
 						<b-form-input
@@ -36,7 +36,7 @@
 							name="custom_field_email"
 							:placeholder="$t('profile.email.placeholder')"
 							:value="userSettings.custom_field_email"
-						></b-form-input>
+						/>
 					</b-form-group>
 					<b-form-group :label="$t('profile.phone.label')">
 						<b-form-input
@@ -44,7 +44,7 @@
 							name="custom_field_phone"
 							:placeholder="$t('profile.phone.placeholder')"
 							:value="userSettings.custom_field_phone"
-						></b-form-input>
+						/>
 					</b-form-group>
 					<b-form-group :label="$t('profile.address.label')">
 						<b-form-input
@@ -52,7 +52,7 @@
 							name="custom_field_address"
 							:placeholder="$t('profile.address.placeholder')"
 							:value="userSettings.custom_field_address"
-						></b-form-input>
+						/>
 					</b-form-group>
 					<b-button type="submit" variant="primary" class="float-right">
 						<font-awesome-icon :icon="['fas', 'save']" />

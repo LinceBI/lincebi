@@ -10,7 +10,7 @@
 				@click="openCategory(category)"
 				:key="category.id"
 			>
-				<b-img class="category-icon" :src="category.icon"></b-img>
+				<b-img class="category-icon" :src="category.icon" />
 				<span class="category-text">{{ category.name }}</span>
 			</b-dropdown-item>
 		</b-dropdown>

@@ -5,9 +5,9 @@
 				class="h-100 w-auto"
 				src="@/assets/img/stratebi.svg"
 				alt="Stratebi"
-			></b-img>
+			/>
 		</b-navbar-brand>
-		<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+		<b-navbar-toggle target="nav-collapse" />
 		<b-collapse id="nav-collapse" is-nav>
 			<b-navbar-nav class="nav-section">
 				<nav-bar-welcome class="nav-element" />

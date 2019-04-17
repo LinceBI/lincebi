@@ -16,7 +16,7 @@
 						v-else-if="typeof item.img !== 'undefined'"
 						class="item-img"
 						:src="item.img"
-					></b-img>
+					/>
 				</template>
 				<side-bar-subitem
 					v-for="subitem in item.subitems"
@@ -36,7 +36,7 @@
 					v-else-if="typeof item.img !== 'undefined'"
 					class="item-img"
 					:src="item.img"
-				></b-img>
+				/>
 			</b-nav-item>
 		</div>
 	</div>

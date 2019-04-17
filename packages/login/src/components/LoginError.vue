@@ -13,7 +13,7 @@
 			height="4px"
 			:max="dismissSecs"
 			:value="dismissCountDown"
-		></b-progress>
+		/>
 	</b-alert>
 </template>
 
