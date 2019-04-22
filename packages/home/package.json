@@ -15,7 +15,7 @@
     "@fortawesome/vue-fontawesome": "~0.1.6",
     "@stratebi/biserver-customization-common": "file:../common",
     "bootstrap": "~4.3.1",
-    "bootstrap-vue": "~2.0.0-rc.18",
+    "bootstrap-vue": "~2.0.0-rc.19",
     "lodash": "~4.17.11",
     "unfetch": "~4.1.0",
     "vue": "~2.6.10",
@@ -35,7 +35,7 @@
     "eslint": "~5.16.0",
     "eslint-plugin-vue": "~5.2.2",
     "fibers": "~3.1.1",
-    "sass": "~1.18.0",
+    "sass": "~1.19.0",
     "sass-loader": "~7.1.0",
     "vue-template-compiler": "~2.6.10"
   }
