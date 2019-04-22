@@ -62,16 +62,14 @@ export default {
 
 <style scoped lang="scss">
 .side-bar-subitem {
-	&.dropdown-item {
-		display: flex;
-		align-items: center;
-		height: rem(45);
-		color: map-get($theme-colors, 'light');
-		background-color: map-get($theme-colors, 'primary');
-	}
+	display: flex;
+	align-items: center;
+	height: rem(45);
+	color: map-get($theme-colors, 'light');
+	background-color: map-get($theme-colors, 'primary');
 
-	&.dropdown-item:hover,
-	&.dropdown-item:focus {
+	&:hover,
+	&:focus {
 		color: map-get($theme-colors, 'primary');
 		background-color: map-get($theme-colors, 'light');
 	}
@@ -79,6 +77,11 @@ export default {
 	.item-img {
 		width: 1em;
 		height: auto;
+	}
+
+	&::v-deep .dropdown-item {
+		color: inherit !important;
+		background: inherit !important;
 	}
 }
 </style>

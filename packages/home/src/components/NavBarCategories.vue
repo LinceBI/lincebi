@@ -69,27 +69,32 @@ export default {
 
 <style scoped lang="scss">
 .nav-bar-categories {
-	.categories-dropdown {
-		width: 100%;
+	width: auto;
 
-		::v-deep .dropdown-menu {
+	.categories-dropdown {
+		&::v-deep .dropdown-menu {
 			width: rem(300);
 			padding: 0;
 			border-top: 0;
 			border-left: 0;
-		}
 
-		.category-item {
-			display: inline-block;
-			height: rem(45);
-			width: 50%;
-			padding: rem(10) rem(15);
+			.category-item {
+				display: inline-block;
+				width: 50%;
+				height: rem(45);
 
-			.category-icon {
-				height: 80%;
-				width: auto;
-				margin-right: rem(8);
-				vertical-align: middle;
+				.dropdown-item {
+					width: 100%;
+					height: 100%;
+					padding: rem(10) rem(15);
+
+					.category-icon {
+						height: 100%;
+						width: auto;
+						margin-right: rem(8);
+						vertical-align: middle;
+					}
+				}
 			}
 		}
 	}
