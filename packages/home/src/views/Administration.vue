@@ -119,27 +119,31 @@ export default {
 		},
 		async systemRefresh(resource) {
 			if (await systemRefresh(resource)) {
-				this.$notify({
-					type: 'success',
-					text: this.$t('administration.resourceRefreshSuccess')
+				this.$bvToast.toast(this.$t('administration.resourceRefreshSuccess'), {
+					title: this.$t('administration.notificationInfo'),
+					variant: 'success',
+					solid: true
 				});
 			} else {
-				this.$notify({
-					type: 'error',
-					text: this.$t('administration.resourceRefreshError')
+				this.$bvToast.toast(this.$t('administration.resourceRefreshError'), {
+					title: this.$t('administration.notificationError'),
+					variant: 'danger',
+					solid: true
 				});
 			}
 		},
 		async clearCdaCache() {
 			if (await clearCdaCache()) {
-				this.$notify({
-					type: 'success',
-					text: this.$t('administration.cacheClearSuccess')
+				this.$bvToast.toast(this.$t('administration.cacheClearSuccess'), {
+					title: this.$t('administration.notificationInfo'),
+					variant: 'success',
+					solid: true
 				});
 			} else {
-				this.$notify({
-					type: 'error',
-					text: this.$t('administration.cacheClearError')
+				this.$bvToast.toast(this.$t('administration.cacheClearError'), {
+					title: this.$t('administration.notificationError'),
+					variant: 'danger',
+					solid: true
 				});
 			}
 		}

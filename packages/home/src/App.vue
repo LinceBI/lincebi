@@ -5,14 +5,12 @@
 			<side-bar class="page-sidebar" />
 			<div class="page-content">
 				<router-multi-view class="page-router" />
-				<b-notifications class="page-notifications" />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import BNotifications from '@stratebi/biserver-customization-common/src/components/BNotifications.vue';
 import generateAvatar from '@stratebi/biserver-customization-common/src/generateAvatar';
 
 import store from '@/store';
@@ -23,7 +21,6 @@ import SideBar from '@/components/SideBar.vue';
 export default {
 	name: 'App',
 	components: {
-		BNotifications,
 		NavBar,
 		SideBar
 	},
@@ -119,11 +116,6 @@ body {
 
 			> .page-router {
 				height: 100%;
-			}
-
-			> .page-notifications {
-				position: absolute;
-				padding-top: rem(10);
 			}
 		}
 	}

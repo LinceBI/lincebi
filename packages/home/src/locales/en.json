@@ -50,6 +50,8 @@
     "resourceRefreshSuccess": "Resource successfully refreshed",
     "resourceRefreshError": "Error while refreshing resource",
     "cacheClearSuccess": "Cache successfully cleared",
-    "cacheClearError": "Error while clearing cache"
+    "cacheClearError": "Error while clearing cache",
+    "notificationInfo": "Information",
+    "notificationError": "Error"
   }
 }

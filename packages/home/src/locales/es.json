@@ -50,6 +50,8 @@
     "resourceRefreshSuccess": "Recurso actualizado con éxito",
     "resourceRefreshError": "Error al actualizar el recurso",
     "cacheClearSuccess": "Caché vaciada con éxito",
-    "cacheClearError": "Error al vaciar la caché"
+    "cacheClearError": "Error al vaciar la caché",
+    "notificationInfo": "Información",
+    "notificationError": "Error"
   }
 }

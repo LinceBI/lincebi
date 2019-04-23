@@ -30,6 +30,7 @@
 			></b-carousel-slide>
 		</b-carousel>
 		<b-tabs
+			ref="tabs"
 			class="home-tabs"
 			nav-class="home-tablist"
 			content-class="home-tabcontent"
@@ -48,7 +49,10 @@
 				<b-container class="py-5 px-4">Tab Contents {{ i }}</b-container>
 			</b-tab>
 			<template slot="tabs">
-				<b-nav-item class="flex-grow-0 ml-auto" @click.prevent="newTab">
+				<b-nav-item
+					class="unsortable flex-grow-0 ml-auto"
+					@click.prevent="newTab"
+				>
 					<div class="home-newtab">
 						<font-awesome-icon class="fa-fw" :icon="['fas', 'plus']" />
 					</div>
@@ -60,6 +64,10 @@
 </template>
 
 <script>
+import Sortable from 'sortablejs';
+
+import swap from '@stratebi/biserver-customization-common/src/swap';
+
 export default {
 	name: 'Home',
 	data() {
@@ -67,6 +75,18 @@ export default {
 			tabs: [],
 			tabCounter: 0
 		};
+	},
+	updated() {
+		this.$nextTick(() => {
+			const $tablist = this.$refs.tabs.$el.querySelector('.nav');
+			Sortable.create($tablist, {
+				animation: 150,
+				draggable: '.nav-item',
+				filter: '.unsortable',
+				onMove: event => !event.related.classList.contains('unsortable'),
+				onUpdate: event => swap(this.tabs, event.oldIndex, event.newIndex)
+			});
+		});
 	},
 	methods: {
 		newTab() {
@@ -122,6 +142,9 @@ export default {
 
 				.home-tab {
 					padding: 0 rem(50);
+					border: 0 solid darken(map-get($theme-colors, 'primary'), 10%);
+					border-right-width: rem(1);
+					border-bottom-width: rem(1);
 				}
 
 				.home-newtab {
