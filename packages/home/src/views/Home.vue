@@ -1,12 +1,12 @@
 <template>
 	<div class="home">
 		<b-carousel
-			:interval="4000"
-			controls
-			indicators
+			class="home-carousel"
 			img-width="256px"
 			img-height="256px"
-			class="home-carousel"
+			:interval="4000"
+			indicators
+			controls
 		>
 			<b-carousel-slide
 				caption="First slide"
@@ -34,24 +34,28 @@
 			class="home-tabs"
 			nav-class="home-tablist"
 			content-class="home-tabcontent"
-			fill
 			no-nav-style
+			fill
 		>
-			<b-tab v-for="i in tabs" :key="`home-tab-${i}`" no-body>
+			<b-tab v-for="(name, index) in tabs" :key="`home-tab-${index}`" no-body>
 				<template slot="title">
 					<div class="home-tab">
-						<span>Tab {{ i }}</span>
-						<b-button variant="link" class="home-closetab" @click="closeTab(i)">
+						<span>{{ name }}</span>
+						<b-button
+							class="home-closetab"
+							variant="link"
+							@click="closeTab(name, index)"
+						>
 							<font-awesome-icon class="fa-fw" :icon="['fas', 'times']" />
 						</b-button>
 					</div>
 				</template>
-				<b-container class="py-5 px-4">Tab Contents {{ i }}</b-container>
+				<b-container class="py-5 px-4">{{ name }}</b-container>
 			</b-tab>
 			<template slot="tabs">
 				<b-nav-item
 					class="unsortable flex-grow-0 ml-auto"
-					@click.prevent="newTab"
+					@click.prevent="newTab()"
 				>
 					<div class="home-newtab">
 						<font-awesome-icon class="fa-fw" :icon="['fas', 'plus']" />
@@ -72,8 +76,7 @@ export default {
 	name: 'Home',
 	data() {
 		return {
-			tabs: [],
-			tabCounter: 0
+			tabs: []
 		};
 	},
 	updated() {
@@ -90,14 +93,35 @@ export default {
 	},
 	methods: {
 		newTab() {
-			this.tabs.push(this.tabCounter++);
+			const $bForminput = this.$createElement('b-form-input');
+			this.$bvModal
+				.msgBoxConfirm($bForminput, {
+					title: 'Enter category name',
+					okVariant: 'primary',
+					okTitle: 'Create',
+					cancelTitle: 'Cancel',
+					centered: true
+				})
+				.then(confirmed => {
+					if (confirmed && $bForminput.elm.value.length) {
+						this.tabs.push($bForminput.elm.value);
+					}
+				});
 		},
-		closeTab(x) {
-			for (let i = 0; i < this.tabs.length; i++) {
-				if (this.tabs[i] === x) {
-					this.tabs.splice(i, 1);
-				}
-			}
+		closeTab(name, index) {
+			this.$bvModal
+				.msgBoxConfirm(`The category "${name}" will be deleted.`, {
+					title: 'Delete category',
+					okVariant: 'danger',
+					okTitle: 'Delete',
+					cancelTitle: 'Cancel',
+					centered: true
+				})
+				.then(confirmed => {
+					if (confirmed) {
+						this.tabs.splice(index, 1);
+					}
+				});
 		}
 	}
 };
