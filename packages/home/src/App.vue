@@ -94,7 +94,7 @@ body {
 			display: flex;
 			flex-grow: 0;
 			flex-shrink: 0;
-			flex-basis: rem(50);
+			flex-basis: $sidebar-width;
 			flex-direction: column;
 
 			overflow: visible;
