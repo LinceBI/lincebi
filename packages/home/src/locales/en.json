@@ -28,6 +28,14 @@
     "locales": "Languages",
     "logout": "Logout"
   },
+  "home": {
+    "categoryName": { "label": "Category name", "placeholder": "Category name..." },
+    "deleteCategory": "Delete category",
+    "categoryWillBeDeleted": "The category \"{name}\" will be deleted.",
+    "delete": "Delete",
+    "create": "Create",
+    "cancel": "Cancel"
+  },
   "profile": {
     "name": { "label": "Name:", "placeholder": "Name..." },
     "email": { "label": "Email:", "placeholder": "Email..." },

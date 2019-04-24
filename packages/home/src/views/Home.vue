@@ -34,13 +34,14 @@
 			class="home-tabs"
 			nav-class="home-tablist"
 			content-class="home-tabcontent"
+			@contextmenu.native="onTabContextmenu"
 			no-nav-style
 			fill
 		>
 			<b-tab v-for="(name, index) in tabs" :key="`home-tab-${index}`" no-body>
 				<template slot="title">
-					<div class="home-tab">
-						<span>{{ name }}</span>
+					<div class="home-tab" :title="name">
+						<span class="text-truncate">{{ name }}</span>
 						<b-button
 							class="home-closetab"
 							variant="link"
@@ -83,6 +84,7 @@ export default {
 		this.$nextTick(() => {
 			const $tablist = this.$refs.tabs.$el.querySelector('.nav');
 			Sortable.create($tablist, {
+				delay: 10,
 				animation: 150,
 				draggable: '.nav-item',
 				filter: '.unsortable',
@@ -93,13 +95,16 @@ export default {
 	},
 	methods: {
 		newTab() {
-			const $bForminput = this.$createElement('b-form-input');
+			const $bForminput = this.$createElement('b-form-input', {
+				attrs: { placeholder: this.$t('home.categoryName.placeholder') }
+			});
 			this.$bvModal
 				.msgBoxConfirm($bForminput, {
-					title: 'Enter category name',
+					title: this.$t('home.categoryName.label'),
 					okVariant: 'primary',
-					okTitle: 'Create',
-					cancelTitle: 'Cancel',
+					okTitle: this.$t('home.create'),
+					cancelVariant: 'secondary',
+					cancelTitle: this.$t('home.cancel'),
 					centered: true
 				})
 				.then(confirmed => {
@@ -109,12 +114,14 @@ export default {
 				});
 		},
 		closeTab(name, index) {
+			const message = this.$t('home.categoryWillBeDeleted', { name });
 			this.$bvModal
-				.msgBoxConfirm(`The category "${name}" will be deleted.`, {
-					title: 'Delete category',
+				.msgBoxConfirm(message, {
+					title: this.$t('home.deleteCategory'),
 					okVariant: 'danger',
-					okTitle: 'Delete',
-					cancelTitle: 'Cancel',
+					okTitle: this.$t('home.delete'),
+					cancelVariant: 'secondary',
+					cancelTitle: this.$t('home.cancel'),
 					centered: true
 				})
 				.then(confirmed => {
@@ -122,6 +129,11 @@ export default {
 						this.tabs.splice(index, 1);
 					}
 				});
+		},
+		onTabContextmenu(event) {
+			if (event.target.closest('.home-tablist')) {
+				event.preventDefault();
+			}
 		}
 	}
 };
@@ -148,6 +160,9 @@ export default {
 
 			.nav-item {
 				max-width: rem(384);
+				@media (max-width: rem(384)) {
+					width: 100%;
+				}
 			}
 
 			.nav-item > .nav-link {
@@ -169,6 +184,9 @@ export default {
 					border: 0 solid darken(map-get($theme-colors, 'primary'), 10%);
 					border-right-width: rem(1);
 					border-bottom-width: rem(1);
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
 				}
 
 				.home-newtab {
