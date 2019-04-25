@@ -79,6 +79,7 @@ body {
 		flex-direction: row;
 		flex-wrap: wrap;
 
+		height: $navbar-height;
 		z-index: 1000;
 	}
 
