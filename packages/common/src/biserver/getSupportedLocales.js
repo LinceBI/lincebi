@@ -13,6 +13,7 @@ const getSupportedLocales = async (expectedLocales = ['en']) => {
 			}
 
 			// Check a known language pack resource.
+			// TODO: find another resource that is only available after installation.
 			const resource = `content/languagePack_${expectedLocale}/resources/lang/messages.properties`;
 			const endpoint = `${contextPath}${resource}`;
 			const response = await fetch(endpoint, {
