@@ -9,8 +9,8 @@
     "upgradedeps:root": "ncu --upgrade",
     "upgradedeps:packages": "lerna exec --stream --concurrency 1 -- ncu --upgrade",
     "cleandeps": "run-s cleandeps:packages cleandeps:root",
-    "cleandeps:root": "rimraf ./node_modules/ ./package-lock.json",
-    "cleandeps:packages": "lerna exec -- rimraf ./node_modules/ ./package-lock.json",
+    "cleandeps:root": "rimraf node_modules package-lock.json",
+    "cleandeps:packages": "lerna exec -- rimraf node_modules package-lock.json",
     "postinstall": "lerna exec --stream --concurrency 1 -- npm install"
   },
   "devDependencies": {
