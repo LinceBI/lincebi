@@ -1,12 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import get from 'lodash/get';
-
 import getCanAdminister from '@stratebi/biserver-customization-common/src/biserver/getCanAdminister';
 import getCanCreate from '@stratebi/biserver-customization-common/src/biserver/getCanCreate';
 import getInstalledPlugins from '@stratebi/biserver-customization-common/src/biserver/getInstalledPlugins';
 import getLocale from '@stratebi/biserver-customization-common/src/biserver/getLocale';
+import getRepository from '@stratebi/biserver-customization-common/src/biserver/getRepository';
 import getSupportedLocales from '@stratebi/biserver-customization-common/src/biserver/getSupportedLocales';
 import getUserSettings from '@stratebi/biserver-customization-common/src/biserver/getUserSettings';
 import replaceParameter from '@stratebi/biserver-customization-common/src/replaceParameter';
@@ -25,6 +24,7 @@ export default new Vuex.Store({
 		installedPlugins: [],
 		supportedLocales: ['en'],
 		locale: 'en',
+		repository: { path: '/', children: [] },
 		userSettings: {
 			custom_field_name: '',
 			custom_field_email: '',
@@ -59,16 +59,11 @@ export default new Vuex.Store({
 				console.warn(`Cannot set locale "${locale}"`);
 			}
 		},
+		setRepository(state, repository) {
+			state.repository = repository;
+		},
 		setUserSetting(state, { key, value }) {
 			state.userSettings[key] = value;
-		},
-		toggleSidebarItem(state, { key, enabled }) {
-			const item = get(state.sidebar, key);
-			if (typeof item !== 'undefined') {
-				item.enabled = enabled;
-			} else {
-				console.warn(`Cannot toggle item "${key}"`);
-			}
 		}
 	},
 	actions: {
@@ -98,6 +93,10 @@ export default new Vuex.Store({
 				commit('setLocale', locale);
 			}
 		},
+		async fetchRepository({ commit }) {
+			const repository = await getRepository();
+			commit('setRepository', repository);
+		},
 		async fetchUserSettings({ commit }, keys) {
 			const userSettings = await getUserSettings(
 				Array.isArray(keys) ? keys : [keys]
@@ -113,6 +112,23 @@ export default new Vuex.Store({
 			if (result !== null) {
 				commit('setUserSetting', { key, value });
 			}
+		}
+	},
+	getters: {
+		flattenedRepository(state) {
+			const files = [];
+
+			(function flatten(children) {
+				children.forEach(child => {
+					if (child.isFolder) {
+						flatten(child.children);
+					} else {
+						files.push(child);
+					}
+				});
+			})(state.repository.children);
+
+			return files;
 		}
 	}
 });

@@ -19,8 +19,8 @@
 					/>
 				</template>
 				<side-bar-subitem
-					v-for="subitem in item.subitems"
-					:key="subitem.id"
+					v-for="(subitem, index) in item.subitems"
+					:key="index"
 					:item="subitem"
 				/>
 			</b-nav-item-dropdown>

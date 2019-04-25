@@ -31,6 +31,7 @@ export default {
 		store.dispatch('fetchSupportedLocales').then(() => {
 			store.dispatch('fetchLocale');
 		});
+		store.dispatch('fetchRepository');
 		store
 			.dispatch('fetchUserSettings', Object.keys(store.state.userSettings))
 			.then(() => {

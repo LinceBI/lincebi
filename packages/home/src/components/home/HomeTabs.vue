@@ -2,18 +2,18 @@
 	<b-tabs
 		ref="home-tabs"
 		class="home-tabs"
-		nav-class="home-tablist"
-		content-class="home-tabcontent"
+		nav-class="home-tab-list"
+		content-class="home-tab-content"
 		@contextmenu.native="onTabContextmenu"
 		no-nav-style
 		fill
 	>
-		<b-tab v-for="(name, index) in tabs" :key="`home-tab-${index}`" no-body>
+		<b-tab v-for="(name, index) in tabs" :key="index" no-body>
 			<template slot="title">
 				<div class="home-tab" :title="name">
 					<span class="text-truncate">{{ name }}</span>
 					<b-button
-						class="home-closetab"
+						class="home-tab-close"
 						variant="link"
 						@click="closeTab(name, index)"
 					>
@@ -21,20 +21,34 @@
 					</b-button>
 				</div>
 			</template>
-			<b-container class="py-5 px-4">{{ name }}</b-container>
+			<b-container class="py-5 px-4" fluid>
+				<b-card-group class="home-tab-card-group" deck>
+					<b-card
+						class="home-tab-card"
+						v-for="(file, index) in getFilesForTag(name)"
+						:key="index"
+						:header="file.title"
+						:img-alt="file.title"
+						:img-src="file.properties.thumbnail"
+						img-top
+					>
+						<b-card-text>{{ file.description }}</b-card-text>
+					</b-card>
+				</b-card-group>
+			</b-container>
 		</b-tab>
 		<template slot="tabs">
 			<b-nav-item
 				class="unsortable flex-grow-0 ml-auto"
 				@click.prevent="newTab()"
 			>
-				<div class="home-newtab">
+				<div class="home-tab-new">
 					<font-awesome-icon :icon="['fas', 'plus']" />
 				</div>
 			</b-nav-item>
 		</template>
 		<template slot="empty">
-			<div class="home-emptytab">
+			<div class="home-tab-empty">
 				<div class="icon">
 					<font-awesome-icon :icon="['far', 'window-restore']" />
 				</div>
@@ -49,13 +63,16 @@
 <script>
 import Sortable from 'sortablejs';
 
+import fuzzyEquals from '@stratebi/biserver-customization-common/src/fuzzyEquals';
 import swap from '@stratebi/biserver-customization-common/src/swap';
+
+import store from '@/store';
 
 export default {
 	name: 'HomeTabs',
 	data() {
 		return {
-			tabs: []
+			tabs: ['Tag1']
 		};
 	},
 	updated() {
@@ -109,9 +126,16 @@ export default {
 				});
 		},
 		onTabContextmenu(event) {
-			if (event.target.closest('.home-tablist')) {
+			if (event.target.closest('.home-tab-list')) {
 				event.preventDefault();
 			}
+		},
+		getFilesForTag(tag) {
+			return store.getters.flattenedRepository.filter(
+				file =>
+					Array.isArray(file.properties.tags) &&
+					file.properties.tags.some(t => fuzzyEquals(t.value, tag))
+			);
 		}
 	}
 };
@@ -119,7 +143,7 @@ export default {
 
 <style scoped lang="scss">
 .home-tabs::v-deep {
-	.home-tablist {
+	.home-tab-list {
 		max-height: rem(144);
 		background-color: map-get($theme-colors, 'primary');
 		border-bottom: rem(1) solid darken(map-get($theme-colors, 'primary'), 10%);
@@ -137,7 +161,7 @@ export default {
 			padding: 0;
 
 			.home-tab,
-			.home-newtab {
+			.home-tab-new {
 				position: relative;
 				display: flex;
 				align-items: center;
@@ -158,12 +182,12 @@ export default {
 				);
 			}
 
-			.home-newtab {
+			.home-tab-new {
 				padding: 0 rem(20);
 				z-index: 5;
 			}
 
-			.home-closetab {
+			.home-tab-close {
 				display: none;
 				position: absolute;
 				right: 0;
@@ -171,26 +195,26 @@ export default {
 
 			&.active {
 				.home-tab,
-				.home-newtab {
+				.home-tab-new {
 					color: map-get($theme-colors, 'primary');
 					background-color: map-get($theme-colors, 'light');
 				}
 
-				.home-closetab {
+				.home-tab-close {
 					display: block;
 				}
 			}
 		}
 	}
 
-	.home-tabcontent,
-	.home-tabcontent > .tab-pane,
-	.home-tabcontent > .tab-pane > .home-emptytab {
+	.home-tab-content,
+	.home-tab-content > .tab-pane,
+	.home-tab-content > .tab-pane > .home-tab-empty {
 		height: 100%;
 		width: 100%;
 	}
 
-	.home-emptytab {
+	.home-tab-empty {
 		display: flex;
 		align-items: center;
 		justify-content: center;

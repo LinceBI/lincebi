@@ -1,6 +1,6 @@
 <template>
 	<b-nav class="side-bar shadow" vertical>
-		<side-bar-item v-for="item in sidebar" :key="item.id" :item="item" />
+		<side-bar-item v-for="(item, index) in sidebar" :key="index" :item="item" />
 	</b-nav>
 </template>
 
