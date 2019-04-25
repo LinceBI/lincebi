@@ -29,6 +29,7 @@
     "logout": "Salir"
   },
   "home": {
+    "usePlusToCreateTab": "Utilice el botón + para crear una nueva pestaña",
     "categoryName": { "label": "Nombre de categoría", "placeholder": "Nombre de categoría..." },
     "deleteCategory": "Eliminar categoría",
     "categoryWillBeDeleted": "La categoría \"{name}\" será eliminada.",
