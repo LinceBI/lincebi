@@ -1,8 +1,8 @@
-@mixin border-collapse() {
+@mixin border-collapse($color: $border-color, $width: $border-width) {
 	box-shadow:
-		$border-width 0 0 0 $border-color,
-		0 $border-width 0 0 $border-color,
-		$border-width $border-width 0 0 $border-color,
-		$border-width 0 0 0 $border-color inset,
-		0 $border-width 0 0 $border-color inset;
+		$width 0 0 0 $color,
+		0 $width 0 0 $color,
+		$width $width 0 0 $color,
+		$width 0 0 0 $color inset,
+		0 $width 0 0 $color inset;
 }

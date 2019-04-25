@@ -1,14 +1,14 @@
 <template>
-	<b-nav-form class="nav-bar-categories" v-if="categories.some(c => c.enabled)">
+	<b-nav-form class="nav-bar-categories" v-if="categories.some(i => i.enabled)">
 		<b-dropdown class="categories-dropdown" variant="primary" right>
 			<template slot="button-content">
 				{{ $t('navbar.categories') }}
 			</template>
 			<b-dropdown-item
 				class="category-item border-collapse"
-				v-for="category in categories.filter(c => c.enabled)"
+				v-for="(category, index) in categories.filter(i => i.enabled)"
+				:key="index"
 				@click="openCategory(category)"
-				:key="category.id"
 			>
 				<b-img class="category-icon" :src="category.icon" />
 				<span class="category-text">{{ category.name }}</span>
@@ -57,7 +57,7 @@ export default {
 						.applyConfig({
 							'banner-title': category.name,
 							'banner-src': `${location.pathname}${category.banner}`,
-							'search-terms': category.id
+							'search-terms': category.tag
 						})
 						.doRefresh();
 				}

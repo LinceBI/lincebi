@@ -1,0 +1,26 @@
+[
+  {
+    "enabled": true,
+    "caption": "First slide",
+    "text": "Nulla vitae elit libero, a pharetra augue mollis interdum.",
+    "img": "slider/images/01.jpg"
+  },
+  {
+    "enabled": true,
+    "caption": "Second slide",
+    "text": "Nulla vitae elit libero, a pharetra augue mollis interdum.",
+    "img": "slider/images/02.jpg"
+  },
+  {
+    "enabled": true,
+    "caption": "Third slide",
+    "text": "Nulla vitae elit libero, a pharetra augue mollis interdum.",
+    "img": "slider/images/03.jpg"
+  },
+  {
+    "enabled": true,
+    "caption": "Fourth slide",
+    "text": "Nulla vitae elit libero, a pharetra augue mollis interdum.",
+    "img": "slider/images/04.jpg"
+  }
+]
