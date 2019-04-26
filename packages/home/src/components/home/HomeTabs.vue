@@ -24,15 +24,38 @@
 			<b-container class="py-5 px-4" fluid>
 				<b-card-group class="home-tab-card-group" deck>
 					<b-card
-						class="home-tab-card"
+						class="home-tab-card shadow"
 						v-for="(file, index) in getFilesForTag(name)"
 						:key="index"
-						:header="file.title"
 						:img-alt="file.title"
-						:img-src="file.properties.thumbnail"
-						img-top
+						:img-src="getThumbnailOrDefault(file)"
+						overlay
 					>
-						<b-card-text>{{ file.description }}</b-card-text>
+						<b-tooltip :target="`file-${file.id}-title`">
+							{{ file.title }}
+						</b-tooltip>
+						<b-card-title :id="`file-${file.id}-title`">
+							<font-awesome-icon
+								:class="['fa-fw', 'mr-1']"
+								:icon="['fac', `file-${file.extension}`]"
+							/>
+							{{ file.title }}
+						</b-card-title>
+						<b-card-text>
+							{{ file.description }}
+						</b-card-text>
+						<!--
+						<b-card-footer>
+							<b-button-group size="sm">
+								<b-button variant="light">
+									<font-awesome-icon :icon="['fas', 'edit']" />
+								</b-button>
+								<b-button variant="light">
+									<font-awesome-icon :icon="['fas', 'external-link-alt']" />
+								</b-button>
+							</b-button-group>
+						</b-card-footer>
+						-->
 					</b-card>
 				</b-card-group>
 			</b-container>
@@ -64,6 +87,7 @@
 import Sortable from 'sortablejs';
 
 import fuzzyEquals from '@stratebi/biserver-customization-common/src/fuzzyEquals';
+import generateImage from '@stratebi/biserver-customization-common/src/generateImage';
 import swap from '@stratebi/biserver-customization-common/src/swap';
 
 import store from '@/store';
@@ -72,7 +96,7 @@ export default {
 	name: 'HomeTabs',
 	data() {
 		return {
-			tabs: ['Tag1']
+			tabs: ['Tag1', 'Tag2', 'Tag3']
 		};
 	},
 	updated() {
@@ -136,6 +160,11 @@ export default {
 					Array.isArray(file.properties.tags) &&
 					file.properties.tags.some(t => fuzzyEquals(t.value, tag))
 			);
+		},
+		getThumbnailOrDefault(file) {
+			return file.properties.thumbnail
+				? file.properties.thumbnail
+				: generateImage(file.path, 0);
 		}
 	}
 };
@@ -212,6 +241,64 @@ export default {
 	.home-tab-content > .tab-pane > .home-tab-empty {
 		height: 100%;
 		width: 100%;
+	}
+
+	.home-tab-content {
+		.home-tab-card-group {
+			.home-tab-card {
+				margin-bottom: $grid-gutter-width;
+
+				flex-grow: 0;
+				flex-shrink: 0;
+				flex-basis: calc(#{100% / 1} - #{$grid-gutter-width});
+
+				@include media-breakpoint-up(md) {
+					flex-basis: calc(#{100% / 2} - #{$grid-gutter-width});
+				}
+
+				@include media-breakpoint-up(lg) {
+					flex-basis: calc(#{100% / 3} - #{$grid-gutter-width});
+				}
+
+				@include media-breakpoint-up(xl) {
+					flex-basis: calc(#{100% / 4} - #{$grid-gutter-width});
+				}
+
+				.card-body {
+					color: #ffffff;
+					text-shadow: 1px 1px 2px #333;
+					background-color: rgba(0, 0, 0, 0.4);
+					backdrop-filter: blur(rem(4));
+
+					.card-title {
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+					}
+
+					.card-text {
+						height: calc(100% - #{rem(75)});
+						overflow: hidden;
+					}
+
+					.card-footer {
+						padding: 0;
+						border: none;
+						background-color: transparent;
+						text-align: right;
+
+						.btn.btn-link {
+							color: #ffffff;
+						}
+					}
+				}
+
+				.card-img {
+					height: rem(256);
+					object-fit: cover;
+				}
+			}
+		}
 	}
 
 	.home-tab-empty {

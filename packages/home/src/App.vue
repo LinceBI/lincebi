@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import generateAvatar from '@stratebi/biserver-customization-common/src/generateAvatar';
+import generateImage from '@stratebi/biserver-customization-common/src/generateImage';
 
 import store from '@/store';
 
@@ -38,7 +38,7 @@ export default {
 				if (store.state.userSettings.custom_field_avatar.length === 0) {
 					store.commit('setUserSetting', {
 						key: 'custom_field_avatar',
-						value: generateAvatar(store.state.userSettings.custom_field_name)
+						value: generateImage(store.state.userSettings.custom_field_name)
 					});
 				}
 			});
