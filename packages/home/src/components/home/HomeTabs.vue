@@ -5,60 +5,84 @@
 		nav-class="home-tab-list"
 		content-class="home-tab-content"
 		@contextmenu.native="onTabContextmenu"
+		v-model="tabIndex"
 		no-nav-style
+		no-fade
 		fill
 	>
-		<b-tab v-for="(name, index) in tabs" :key="index" no-body>
+		<b-tab v-for="(tab, index) in tabs" :key="index" no-body>
 			<template slot="title">
-				<div class="home-tab" :title="name">
-					<span class="text-truncate">{{ name }}</span>
+				<div class="home-tab" :title="tab.name">
+					<font-awesome-icon
+						v-if="tab.icon"
+						:icon="tab.icon"
+						:class="tab.name.length > 0 ? ['fa-fw', 'mr-2'] : []"
+					/>
+					<span class="text-truncate">{{ tab.name }}</span>
 					<b-button
+						v-if="tab.removable"
 						class="home-tab-close"
 						variant="link"
-						@click="closeTab(name, index)"
+						@click="closeTab(tab, index)"
 					>
 						<font-awesome-icon :icon="['fas', 'times']" />
 					</b-button>
 				</div>
 			</template>
-			<b-container class="py-5 px-4" fluid>
+			<b-container v-if="filteredFiles.length > 0" class="py-5 px-4" fluid>
 				<b-card-group class="home-tab-card-group" deck>
 					<b-card
 						class="home-tab-card shadow"
-						v-for="(file, index) in getFilesForTag(name)"
+						v-for="(file, index) in filteredFiles"
 						:key="index"
-						:img-alt="file.title"
-						:img-src="getThumbnailOrDefault(file)"
-						overlay
+						no-body
 					>
-						<b-tooltip :target="`file-${file.id}-title`">
-							{{ file.title }}
-						</b-tooltip>
-						<b-card-title :id="`file-${file.id}-title`">
-							<font-awesome-icon
-								:class="['fa-fw', 'mr-1']"
-								:icon="['fac', `file-${file.extension}`]"
-							/>
-							{{ file.title }}
-						</b-card-title>
-						<b-card-text>
-							{{ file.description }}
-						</b-card-text>
-						<!--
-						<b-card-footer>
-							<b-button-group size="sm">
-								<b-button variant="light">
-									<font-awesome-icon :icon="['fas', 'edit']" />
-								</b-button>
-								<b-button variant="light">
-									<font-awesome-icon :icon="['fas', 'external-link-alt']" />
-								</b-button>
-							</b-button-group>
-						</b-card-footer>
-						-->
+						<b-card-img-lazy
+							:src="getThumbnailOrDefault(file)"
+							:alt="file.title"
+						/>
+						<b-card-body class="card-img-overlay">
+							<b-tooltip :target="`file-${file.id}-title`">
+								{{ file.title }}
+							</b-tooltip>
+							<b-card-title :id="`file-${file.id}-title`">
+								<font-awesome-icon
+									:class="['fa-fw', 'mr-1']"
+									:icon="['fac', `file-${file.extension}`]"
+								/>
+								{{ file.title }}
+							</b-card-title>
+							<b-card-text>
+								{{ file.description }}
+							</b-card-text>
+							<b-card-footer>
+								<b-button-group size="sm" class="mr-n2">
+									<!--
+									<b-button variant="link">
+										<font-awesome-icon :icon="['fas', 'pencil-alt']" />
+									</b-button>
+									-->
+									<b-button
+										:href="file.openUrl"
+										:target="file.id"
+										variant="link"
+									>
+										<font-awesome-icon :icon="['fas', 'link']" />
+									</b-button>
+								</b-button-group>
+							</b-card-footer>
+						</b-card-body>
 					</b-card>
 				</b-card-group>
 			</b-container>
+			<div v-else class="home-tab-empty">
+				<div class="icon">
+					<font-awesome-icon :icon="['far', 'file-alt']" />
+				</div>
+				<div class="text">
+					{{ $t('home.filesWillAppearHere') }}
+				</div>
+			</div>
 		</b-tab>
 		<template slot="tabs">
 			<b-nav-item
@@ -76,7 +100,7 @@
 					<font-awesome-icon :icon="['far', 'window-restore']" />
 				</div>
 				<div class="text">
-					{{ $t('home.usePlusToCreateTab') }}
+					{{ $t('home.useButtonToCreateTab') }}
 				</div>
 			</div>
 		</template>
@@ -96,7 +120,26 @@ export default {
 	name: 'HomeTabs',
 	data() {
 		return {
-			tabs: ['Tag1', 'Tag2', 'Tag3']
+			tabIndex: 0,
+			tabs: [
+				{
+					name: 'Global',
+					icon: ['fas', 'globe-europe'],
+					type: 'global',
+					removable: false
+				},
+				{
+					name: 'Home',
+					icon: ['fas', 'home'],
+					type: 'home',
+					removable: false
+				},
+				{
+					name: 'Example',
+					type: 'tag',
+					removable: true
+				}
+			]
 		};
 	},
 	updated() {
@@ -112,14 +155,38 @@ export default {
 			});
 		});
 	},
+	computed: {
+		filteredFiles() {
+			const tab = this.tabs[this.tabIndex];
+
+			if (tab.type === 'global') {
+				return store.getters.flattenedRepository.filter(file => {
+					return file.isGlobalItem;
+				});
+			} else if (tab.type === 'home') {
+				return store.getters.flattenedRepository.filter(file => {
+					return file.isHomeItem;
+				});
+			} else if (tab.type === 'tag') {
+				return store.getters.flattenedRepository.filter(file => {
+					return (
+						Array.isArray(file.properties.tags) &&
+						file.properties.tags.some(tag => fuzzyEquals(tag.value, tab.name))
+					);
+				});
+			}
+
+			return [];
+		}
+	},
 	methods: {
 		newTab() {
 			const $bForminput = this.$createElement('b-form-input', {
-				attrs: { placeholder: this.$t('home.categoryName.placeholder') }
+				attrs: { placeholder: this.$t('home.tabName.placeholder') }
 			});
 			this.$bvModal
 				.msgBoxConfirm($bForminput, {
-					title: this.$t('home.categoryName.label'),
+					title: this.$t('home.tabName.label'),
 					okVariant: 'primary',
 					okTitle: this.$t('home.create'),
 					cancelVariant: 'secondary',
@@ -127,16 +194,27 @@ export default {
 					centered: true
 				})
 				.then(confirmed => {
-					if (confirmed && $bForminput.elm.value.length) {
-						this.tabs.push($bForminput.elm.value);
+					const name = $bForminput.elm.value;
+					if (confirmed && name.length > 0) {
+						const tabIndex = this.tabs.findIndex(tab =>
+							fuzzyEquals(tab.name, name)
+						);
+						if (tabIndex === -1) {
+							this.tabs = [
+								...this.tabs,
+								{ name, type: 'tag', removable: true }
+							];
+						} else {
+							this.tabIndex = tabIndex;
+						}
 					}
 				});
 		},
-		closeTab(name, index) {
-			const message = this.$t('home.categoryWillBeDeleted', { name });
+		closeTab(tab, index) {
+			const message = this.$t('home.tabWillBeDeleted', { name: tab.name });
 			this.$bvModal
 				.msgBoxConfirm(message, {
-					title: this.$t('home.deleteCategory'),
+					title: this.$t('home.deleteTab'),
 					okVariant: 'danger',
 					okTitle: this.$t('home.delete'),
 					cancelVariant: 'secondary',
@@ -153,13 +231,6 @@ export default {
 			if (event.target.closest('.home-tab-list')) {
 				event.preventDefault();
 			}
-		},
-		getFilesForTag(tag) {
-			return store.getters.flattenedRepository.filter(
-				file =>
-					Array.isArray(file.properties.tags) &&
-					file.properties.tags.some(t => fuzzyEquals(t.value, tag))
-			);
 		},
 		getThumbnailOrDefault(file) {
 			return file.properties.thumbnail
@@ -267,8 +338,8 @@ export default {
 				.card-body {
 					color: #ffffff;
 					text-shadow: 1px 1px 2px #333;
-					background-color: rgba(0, 0, 0, 0.4);
-					backdrop-filter: blur(rem(4));
+					background-color: rgba(0, 0, 0, 0.6);
+					transition: background-color 200ms ease-in;
 
 					.card-title {
 						overflow: hidden;
@@ -296,6 +367,18 @@ export default {
 				.card-img {
 					height: rem(256);
 					object-fit: cover;
+					filter: blur(rem(2));
+					transition: filter 200ms ease-in;
+				}
+
+				&:hover {
+					.card-body {
+						background-color: rgba(0, 0, 0, 0.5);
+					}
+
+					.card-img {
+						filter: none;
+					}
 				}
 			}
 		}

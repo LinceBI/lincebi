@@ -29,10 +29,11 @@
     "logout": "Salir"
   },
   "home": {
-    "usePlusToCreateTab": "Utilice el botón + para crear una nueva pestaña",
-    "categoryName": { "label": "Nombre de categoría", "placeholder": "Nombre de categoría..." },
-    "deleteCategory": "Eliminar categoría",
-    "categoryWillBeDeleted": "La categoría \"{name}\" será eliminada.",
+    "useButtonToCreateTab": "Utilice el botón + para crear una nueva pestaña",
+    "filesWillAppearHere": "Los archivos que etiquete aparecerán aquí",
+    "tabName": { "label": "Nombre de pestaña", "placeholder": "Nombre de pestaña..." },
+    "deleteTab": "Eliminar pestaña",
+    "tabWillBeDeleted": "La pestaña \"{name}\" será eliminada.",
     "delete": "Eliminar",
     "create": "Crear",
     "cancel": "Cancelar"

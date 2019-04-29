@@ -29,10 +29,11 @@
     "logout": "Logout"
   },
   "home": {
-    "usePlusToCreateTab": "Use the + button to create a new tab",
-    "categoryName": { "label": "Category name", "placeholder": "Category name..." },
-    "deleteCategory": "Delete category",
-    "categoryWillBeDeleted": "The category \"{name}\" will be deleted.",
+    "useButtonToCreateTab": "Use the + button to create a new tab",
+    "filesWillAppearHere": "Files you tag will appear here",
+    "tabName": { "label": "Tab name", "placeholder": "Tab name..." },
+    "deleteTab": "Delete tab",
+    "tabWillBeDeleted": "The tab \"{name}\" will be deleted.",
     "delete": "Delete",
     "create": "Create",
     "cancel": "Cancel"
