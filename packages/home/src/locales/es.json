@@ -36,7 +36,9 @@
     "tabWillBeDeleted": "La pestaña \"{name}\" será eliminada.",
     "delete": "Eliminar",
     "create": "Crear",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "global": "Global",
+    "home": "Inicio"
   },
   "profile": {
     "name": { "label": "Nombre:", "placeholder": "Nombre..." },

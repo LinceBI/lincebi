@@ -32,16 +32,15 @@ export default {
 			store.dispatch('fetchLocale');
 		});
 		store.dispatch('fetchRepository');
-		store
-			.dispatch('fetchUserSettings', Object.keys(store.state.userSettings))
-			.then(() => {
-				if (store.state.userSettings.custom_field_avatar.length === 0) {
-					store.commit('setUserSetting', {
-						key: 'custom_field_avatar',
-						value: generateImage(store.state.userSettings.custom_field_name)
-					});
-				}
-			});
+		store.dispatch('fetchUserSettings').then(() => {
+			if (!store.state.userSettings.custom_field_avatar) {
+				store.commit('setUserSettings', {
+					custom_field_avatar: generateImage(
+						store.state.userSettings.custom_field_name
+					)
+				});
+			}
+		});
 	}
 };
 </script>

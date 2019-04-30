@@ -7,7 +7,7 @@
 						<b-img
 							class="avatar-image"
 							:src="userSettings.custom_field_avatar"
-							:blank="userSettings.custom_field_avatar.length === 0"
+							:blank="!userSettings.custom_field_avatar"
 						/>
 						<div class="avatar-overlay">
 							<font-awesome-icon class="icon" :icon="['fas', 'pencil-alt']" />
@@ -90,7 +90,7 @@ export default {
 			}
 
 			for (const [key, value] of formData.entries()) {
-				store.dispatch('setUserSetting', { key, value });
+				store.dispatch('updateUserSettings', { [key]: value });
 			}
 		},
 		async onAvatarChange(event) {
@@ -99,9 +99,8 @@ export default {
 				if (avatar instanceof File && avatar.size > 0) {
 					// Note that "commit" is called instead of "dispatch", so the avatar
 					// will not be saved on the server until the user submits the form.
-					store.commit('setUserSetting', {
-						key: 'custom_field_avatar',
-						value: await imageToDataURI(avatar)
+					store.commit('setUserSettings', {
+						custom_field_avatar: await imageToDataURI(avatar)
 					});
 				}
 			}

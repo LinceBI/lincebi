@@ -13,7 +13,7 @@ export default async (key, value = '') => {
 
 	if (response.status === 200) {
 		const value = await response.text();
-		return value === 'null' ? '' : value;
+		return value === 'null' ? null : value;
 	}
 
 	return null;

@@ -1,6 +1,6 @@
 import jdenticon from 'jdenticon';
 
-const maxCacheSize = 50;
+const maxCacheSize = 500;
 const cache = new Map();
 
 export default (value = '', padding = 0.08) => {

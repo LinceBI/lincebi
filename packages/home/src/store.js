@@ -13,7 +13,9 @@ import getUserSettings from '@stratebi/biserver-customization-common/src/biserve
 import replaceParameter from '@stratebi/biserver-customization-common/src/replaceParameter';
 import setLocale from '@stratebi/biserver-customization-common/src/biserver/setLocale';
 import setMetadata from '@stratebi/biserver-customization-common/src/biserver/setMetadata';
-import setUserSetting from '@stratebi/biserver-customization-common/src/biserver/setUserSetting';
+import setUserSettings from '@stratebi/biserver-customization-common/src/biserver/setUserSettings';
+
+import { initialUserSettings, defaultUserSettings } from './userSettings';
 
 import i18n from '@/i18n';
 
@@ -28,17 +30,7 @@ export default new Vuex.Store({
 		supportedLocales: ['en'],
 		locale: 'en',
 		repository: { path: '/', children: [] },
-		userSettings: {
-			custom_field_name: '',
-			custom_field_email: '',
-			custom_field_phone: '',
-			custom_field_address: '',
-			custom_field_avatar: '',
-			custom_field_show_menu_bar: 'false',
-			custom_field_show_tool_bar: 'false',
-			MANTLE_SHOW_HIDDEN_FILES: 'false',
-			MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS: 'false'
-		}
+		userSettings: initialUserSettings
 	}),
 	mutations: {
 		setCanCreate(state, canCreate) {
@@ -65,7 +57,7 @@ export default new Vuex.Store({
 		setRepository(state, repository) {
 			state.repository = repository;
 		},
-		updateRepositoryFile(state, file) {
+		setRepositoryFile(state, file) {
 			let currentPath = '';
 			let currentLocation = state.repository;
 
@@ -89,8 +81,8 @@ export default new Vuex.Store({
 				return undefined;
 			});
 		},
-		setUserSetting(state, { key, value }) {
-			state.userSettings[key] = value;
+		setUserSettings(state, userSettings) {
+			Object.assign(state.userSettings, userSettings);
 		}
 	},
 	actions: {
@@ -127,24 +119,29 @@ export default new Vuex.Store({
 		async updateRepositoryFile({ commit }, file) {
 			const result = await setMetadata([file]);
 			if (result !== null && result.length > 0) {
-				commit('updateRepositoryFile', file);
+				commit('setRepositoryFile', file);
 			}
 		},
-		async fetchUserSettings({ commit }, keys) {
-			const userSettings = await getUserSettings(
-				Array.isArray(keys) ? keys : [keys]
+		async fetchUserSettings({ commit }) {
+			const fetchedUserSettings = await getUserSettings(
+				Object.keys(defaultUserSettings)
 			);
-			Object.entries(userSettings).forEach(([key, value]) => {
-				if (value !== null) {
-					commit('setUserSetting', { key, value });
+
+			Object.entries(fetchedUserSettings).forEach(([key, value]) => {
+				if (value === null) {
+					fetchedUserSettings[key] = defaultUserSettings[key];
 				}
 			});
+
+			commit('setUserSettings', fetchedUserSettings);
 		},
-		async setUserSetting({ commit }, { key, value }) {
-			const result = await setUserSetting(key, value);
-			if (result !== null) {
-				commit('setUserSetting', { key, value });
-			}
+		async updateUserSettings({ commit }, userSettings) {
+			const updatedUserSettings = await setUserSettings(userSettings);
+			commit('setUserSettings', updatedUserSettings);
+		},
+		async resetUserSettings({ commit }) {
+			const updatedUserSettings = await setUserSettings(defaultUserSettings);
+			commit('setUserSettings', updatedUserSettings);
 		}
 	},
 	getters: {

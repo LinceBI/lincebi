@@ -10,15 +10,18 @@
 		no-fade
 		fill
 	>
-		<b-tab v-for="(tab, index) in tabs" :key="index" no-body>
+		<b-tab v-for="(tab, index) in tabs" :key="tab.name" no-body>
 			<template slot="title">
 				<div class="home-tab" :title="tab.name">
 					<font-awesome-icon
 						v-if="tab.icon"
 						:icon="tab.icon"
-						:class="tab.name.length > 0 ? ['fa-fw', 'mr-2'] : []"
+						:class="tab.name ? ['fa-fw', 'mr-2'] : []"
 					/>
-					<span class="text-truncate">{{ tab.name }}</span>
+					<span class="text-truncate">
+						<span v-if="tab.translate">{{ $t(tab.name) }}</span>
+						<span v-else>{{ tab.name }}</span>
+					</span>
 					<b-button
 						v-if="tab.removable"
 						class="home-tab-close"
@@ -57,11 +60,6 @@
 							</b-card-text>
 							<b-card-footer>
 								<b-button-group size="sm" class="mr-n2">
-									<!--
-									<b-button variant="link">
-										<font-awesome-icon :icon="['fas', 'pencil-alt']" />
-									</b-button>
-									-->
 									<b-button
 										:href="file.openUrl"
 										:target="file.id"
@@ -112,6 +110,7 @@ import Sortable from 'sortablejs';
 
 import fuzzyEquals from '@stratebi/biserver-customization-common/src/fuzzyEquals';
 import generateImage from '@stratebi/biserver-customization-common/src/generateImage';
+import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
 import swap from '@stratebi/biserver-customization-common/src/swap';
 
 import store from '@/store';
@@ -120,27 +119,47 @@ export default {
 	name: 'HomeTabs',
 	data() {
 		return {
-			tabIndex: 0,
-			tabs: [
-				{
-					name: 'Global',
-					icon: ['fas', 'globe-europe'],
-					type: 'global',
-					removable: false
-				},
-				{
-					name: 'Home',
-					icon: ['fas', 'home'],
-					type: 'home',
-					removable: false
-				},
-				{
-					name: 'Example',
-					type: 'tag',
-					removable: true
-				}
-			]
+			tabIndex: 0
 		};
+	},
+	computed: {
+		userSettings() {
+			return store.state.userSettings;
+		},
+		tabs: {
+			get() {
+				return safeJSON.parse(this.userSettings.custom_field_tabs, []);
+			},
+			set(tabs) {
+				store.dispatch('updateUserSettings', {
+					custom_field_tabs: safeJSON.stringify(tabs)
+				});
+			}
+		},
+		filteredFiles() {
+			if (this.tabIndex >= 0 && this.tabIndex < this.tabs.length) {
+				const tab = this.tabs[this.tabIndex];
+
+				if (tab.type === 'global') {
+					return store.getters.flattenedRepository.filter(file => {
+						return file.isGlobalItem;
+					});
+				} else if (tab.type === 'home') {
+					return store.getters.flattenedRepository.filter(file => {
+						return file.isHomeItem;
+					});
+				} else if (tab.type === 'tag') {
+					return store.getters.flattenedRepository.filter(file => {
+						return (
+							Array.isArray(file.properties.tags) &&
+							file.properties.tags.some(tag => fuzzyEquals(tag.value, tab.name))
+						);
+					});
+				}
+			}
+
+			return [];
+		}
 	},
 	updated() {
 		this.$nextTick(() => {
@@ -151,33 +170,12 @@ export default {
 				draggable: '.nav-item',
 				filter: '.unsortable',
 				onMove: event => !event.related.classList.contains('unsortable'),
-				onUpdate: event => swap(this.tabs, event.oldIndex, event.newIndex)
+				onUpdate: event => {
+					const tabs = this.tabs.slice(0);
+					this.tabs = swap(tabs, event.oldIndex, event.newIndex);
+				}
 			});
 		});
-	},
-	computed: {
-		filteredFiles() {
-			const tab = this.tabs[this.tabIndex];
-
-			if (tab.type === 'global') {
-				return store.getters.flattenedRepository.filter(file => {
-					return file.isGlobalItem;
-				});
-			} else if (tab.type === 'home') {
-				return store.getters.flattenedRepository.filter(file => {
-					return file.isHomeItem;
-				});
-			} else if (tab.type === 'tag') {
-				return store.getters.flattenedRepository.filter(file => {
-					return (
-						Array.isArray(file.properties.tags) &&
-						file.properties.tags.some(tag => fuzzyEquals(tag.value, tab.name))
-					);
-				});
-			}
-
-			return [];
-		}
 	},
 	methods: {
 		newTab() {
@@ -223,7 +221,7 @@ export default {
 				})
 				.then(confirmed => {
 					if (confirmed) {
-						this.tabs.splice(index, 1);
+						this.tabs = this.tabs.filter((t, i) => i !== index);
 					}
 				});
 		},

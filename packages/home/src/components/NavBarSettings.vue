@@ -69,7 +69,7 @@ export default {
 		},
 		async toggleUserSetting(key, perspectiveToReload) {
 			const value = this.userSettings[key] === 'true' ? 'false' : 'true';
-			await store.dispatch('setUserSetting', { key, value });
+			await store.dispatch('updateUserSettings', { [key]: value });
 			if (perspectiveToReload) {
 				eventBus.$emitWhen('mantle.perspective.reload', perspectiveToReload);
 			}

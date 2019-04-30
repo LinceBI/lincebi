@@ -36,7 +36,9 @@
     "tabWillBeDeleted": "The tab \"{name}\" will be deleted.",
     "delete": "Delete",
     "create": "Create",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "global": "Global",
+    "home": "Home"
   },
   "profile": {
     "name": { "label": "Name:", "placeholder": "Name..." },
