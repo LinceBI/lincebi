@@ -33,45 +33,40 @@
 				</div>
 			</template>
 			<b-container v-if="filteredFiles.length > 0" class="py-5 px-4" fluid>
-				<b-card-group class="home-tab-card-group" deck>
-					<b-card
-						class="home-tab-card shadow"
-						v-for="(file, index) in filteredFiles"
-						:key="index"
-						no-body
-					>
-						<b-card-img-lazy
+				<div class="card-deck">
+					<div class="card" v-for="file in filteredFiles" :key="file.id">
+						<img
+							class="card-img"
 							:src="getThumbnailOrDefault(file)"
 							:alt="file.title"
 						/>
-						<b-card-body class="card-img-overlay">
-							<b-tooltip :target="`file-${file.id}-title`">
-								{{ file.title }}
-							</b-tooltip>
-							<b-card-title :id="`file-${file.id}-title`">
+						<div class="card-body card-img-overlay">
+							<h5 class="card-title">
 								<font-awesome-icon
 									:class="['fa-fw', 'mr-1']"
 									:icon="['fac', `file-${file.extension}`]"
 								/>
 								{{ file.title }}
-							</b-card-title>
-							<b-card-text>
-								{{ file.description }}
-							</b-card-text>
-							<b-card-footer>
-								<b-button-group size="sm" class="mr-n2">
-									<b-button
+							</h5>
+							<p class="card-text">{{ file.description }}</p>
+							<div class="card-footer mr-n2">
+								<div class="btn-group btn-group-sm">
+									<a
+										class="btn btn-link"
+										rel="noopener"
 										:href="file.openUrl"
 										:target="file.id"
-										variant="link"
 									>
-										<font-awesome-icon :icon="['fas', 'link']" />
-									</b-button>
-								</b-button-group>
-							</b-card-footer>
-						</b-card-body>
-					</b-card>
-				</b-card-group>
+										<font-awesome-icon
+											:class="['fa-fw']"
+											:icon="['fas', 'link']"
+										/>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</b-container>
 			<div v-else class="home-tab-empty">
 				<div class="icon">
@@ -313,8 +308,8 @@ export default {
 	}
 
 	.home-tab-content {
-		.home-tab-card-group {
-			.home-tab-card {
+		.card-deck {
+			.card {
 				margin-bottom: $grid-gutter-width;
 
 				flex-grow: 0;
@@ -335,7 +330,7 @@ export default {
 
 				.card-body {
 					color: #ffffff;
-					text-shadow: 1px 1px 2px #333;
+					text-shadow: 1px 1px 4px #000;
 					background-color: rgba(0, 0, 0, 0.6);
 					transition: background-color 200ms ease-in;
 
@@ -348,6 +343,7 @@ export default {
 					.card-text {
 						height: calc(100% - #{rem(75)});
 						overflow: hidden;
+						transition: opacity 200ms ease-in;
 					}
 
 					.card-footer {
@@ -371,7 +367,11 @@ export default {
 
 				&:hover {
 					.card-body {
-						background-color: rgba(0, 0, 0, 0.5);
+						background-color: rgba(0, 0, 0, 0.3);
+
+						.card-text {
+							opacity: 0;
+						}
 					}
 
 					.card-img {
