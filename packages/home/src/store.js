@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import mergeWith from 'lodash/mergeWith';
+
 import getCanAdminister from '@stratebi/biserver-customization-common/src/biserver/getCanAdminister';
 import getCanCreate from '@stratebi/biserver-customization-common/src/biserver/getCanCreate';
 import getInstalledPlugins from '@stratebi/biserver-customization-common/src/biserver/getInstalledPlugins';
@@ -10,6 +12,7 @@ import getSupportedLocales from '@stratebi/biserver-customization-common/src/bis
 import getUserSettings from '@stratebi/biserver-customization-common/src/biserver/getUserSettings';
 import replaceParameter from '@stratebi/biserver-customization-common/src/replaceParameter';
 import setLocale from '@stratebi/biserver-customization-common/src/biserver/setLocale';
+import setMetadata from '@stratebi/biserver-customization-common/src/biserver/setMetadata';
 import setUserSetting from '@stratebi/biserver-customization-common/src/biserver/setUserSetting';
 
 import i18n from '@/i18n';
@@ -62,6 +65,30 @@ export default new Vuex.Store({
 		setRepository(state, repository) {
 			state.repository = repository;
 		},
+		updateRepositoryFile(state, file) {
+			let currentPath = '';
+			let currentLocation = state.repository;
+
+			const splittedFilePath = file.path
+				.replace(/(.+)\/$/, '$1')
+				.match(/\/[^/]*/g);
+
+			for (const filePathFragment of splittedFilePath) {
+				currentPath += filePathFragment;
+				currentLocation = currentLocation.children.find(
+					child => child.path === currentPath
+				);
+				if (typeof currentLocation === 'undefined') {
+					console.error('Cannot update repository file:', file);
+					return;
+				}
+			}
+
+			mergeWith(currentLocation, file, (objValue, srcValue) => {
+				if (Array.isArray(objValue)) return srcValue;
+				return undefined;
+			});
+		},
 		setUserSetting(state, { key, value }) {
 			state.userSettings[key] = value;
 		}
@@ -96,6 +123,12 @@ export default new Vuex.Store({
 		async fetchRepository({ commit }) {
 			const repository = await getRepository();
 			commit('setRepository', repository);
+		},
+		async updateRepositoryFile({ commit }, file) {
+			const result = await setMetadata([file]);
+			if (result !== null && result.length > 0) {
+				commit('updateRepositoryFile', file);
+			}
 		},
 		async fetchUserSettings({ commit }, keys) {
 			const userSettings = await getUserSettings(
