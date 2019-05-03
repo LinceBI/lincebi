@@ -105,8 +105,8 @@ import Sortable from 'sortablejs';
 
 import fuzzyEquals from '@stratebi/biserver-customization-common/src/fuzzyEquals';
 import generateSvg from '@stratebi/biserver-customization-common/src/generateSvg';
+import move from '@stratebi/biserver-customization-common/src/move';
 import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
-import swap from '@stratebi/biserver-customization-common/src/swap';
 
 import store from '@/store';
 
@@ -123,12 +123,14 @@ export default {
 		},
 		tabs: {
 			get() {
-				return safeJSON.parse(this.userSettings[`${this.namespace}.tabs`], []);
+				const key = `${this.namespace}.tabs`;
+				const value = safeJSON.parse(this.userSettings[key], []);
+				return value;
 			},
 			set(tabs) {
-				store.dispatch('updateUserSettings', {
-					[`${this.namespace}.tabs`]: safeJSON.stringify(tabs)
-				});
+				const key = `${this.namespace}.tabs`;
+				const value = safeJSON.stringify(tabs, '[]');
+				store.dispatch('updateUserSettings', { [key]: value });
 			}
 		},
 		filteredFiles() {
@@ -162,8 +164,7 @@ export default {
 				filter: '.unsortable',
 				onMove: event => !event.related.classList.contains('unsortable'),
 				onUpdate: event => {
-					const tabs = this.tabs.slice(0);
-					this.tabs = swap(tabs, event.oldIndex, event.newIndex);
+					this.tabs = move(this.tabs.slice(), event.oldIndex, event.newIndex);
 				}
 			});
 		});
