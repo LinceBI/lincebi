@@ -12,37 +12,23 @@
 		<b-dropdown-divider />
 		<nav-bar-dropdown-item
 			:text="$t('navbar.showMenuBar')"
-			:enabled="getUserSetting('custom_field_show_menu_bar')"
-			@click="toggleUserSetting('custom_field_show_menu_bar')"
+			:enabled="showMenuBar"
+			@click="showMenuBar = !showMenuBar"
 		/>
 		<nav-bar-dropdown-item
 			:text="$t('navbar.showToolBar')"
-			:enabled="getUserSetting('custom_field_show_tool_bar')"
-			@click="toggleUserSetting('custom_field_show_tool_bar')"
+			:enabled="showToolBar"
+			@click="showToolBar = !showToolBar"
 		/>
 		<nav-bar-dropdown-item
 			:text="$t('navbar.showHiddenFiles')"
-			:enabled="
-				getUserSetting('MANTLE_SHOW_HIDDEN_FILES', 'browser.perspective')
-			"
-			@click="
-				toggleUserSetting('MANTLE_SHOW_HIDDEN_FILES', 'browser.perspective')
-			"
+			:enabled="showHiddenFiles"
+			@click="showHiddenFiles = !showHiddenFiles"
 		/>
 		<nav-bar-dropdown-item
-			:text="$t('navbar.useDescriptionsForTooltips')"
-			:enabled="
-				getUserSetting(
-					'MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS',
-					'browser.perspective'
-				)
-			"
-			@click="
-				toggleUserSetting(
-					'MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS',
-					'browser.perspective'
-				)
-			"
+			:text="$t('navbar.showDescriptionsForTooltips')"
+			:enabled="showDescriptionsForTooltips"
+			@click="showDescriptionsForTooltips = !showDescriptionsForTooltips"
 		/>
 	</b-nav-item-dropdown>
 </template>
@@ -61,17 +47,63 @@ export default {
 	computed: {
 		userSettings() {
 			return store.state.userSettings;
-		}
-	},
-	methods: {
-		getUserSetting(key) {
-			return this.userSettings[key] === 'true';
 		},
-		async toggleUserSetting(key, perspectiveToReload) {
-			const value = this.userSettings[key] === 'true' ? 'false' : 'true';
-			await store.dispatch('updateUserSettings', { [key]: value });
-			if (perspectiveToReload) {
-				eventBus.$emitWhen('mantle.perspective.reload', perspectiveToReload);
+		showMenuBar: {
+			get() {
+				const key = `${this.namespace}.show_menu_bar`;
+				const value = store.state.userSettings[key] === 'true';
+				return value;
+			},
+			set(show) {
+				const key = `${this.namespace}.show_menu_bar`;
+				const value = show ? 'true' : 'false';
+				store.dispatch('updateUserSettings', { [key]: value });
+			}
+		},
+		showToolBar: {
+			get() {
+				const key = `${this.namespace}.show_tool_bar`;
+				const value = store.state.userSettings[key] === 'true';
+				return value;
+			},
+			set(show) {
+				const key = `${this.namespace}.show_tool_bar`;
+				const value = show ? 'true' : 'false';
+				store.dispatch('updateUserSettings', { [key]: value });
+			}
+		},
+		showHiddenFiles: {
+			get() {
+				const key = 'MANTLE_SHOW_HIDDEN_FILES';
+				const value = store.state.userSettings[key] === 'true';
+				return value;
+			},
+			set(show) {
+				const key = 'MANTLE_SHOW_HIDDEN_FILES';
+				const value = show ? 'true' : 'false';
+				store.dispatch('updateUserSettings', { [key]: value }).then(() => {
+					eventBus.$emitWhen(
+						'mantle.perspective.reload',
+						'browser.perspective'
+					);
+				});
+			}
+		},
+		showDescriptionsForTooltips: {
+			get() {
+				const key = 'MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS';
+				const value = store.state.userSettings[key] === 'true';
+				return value;
+			},
+			set(show) {
+				const key = 'MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS';
+				const value = show ? 'true' : 'false';
+				store.dispatch('updateUserSettings', { [key]: value }).then(() => {
+					eventBus.$emitWhen(
+						'mantle.perspective.reload',
+						'browser.perspective'
+					);
+				});
 			}
 		}
 	}

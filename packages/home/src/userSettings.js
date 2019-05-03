@@ -1,35 +1,46 @@
+import blankSvg from '@stratebi/biserver-customization-common/src/blankSvg';
+import generateSvg from '@stratebi/biserver-customization-common/src/generateSvg';
 import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
 
-const userSettings = {
-	custom_field_name: {
+export const namespace = 'stratebi.biserver.customization';
+
+export const globalUserSettings = {
+	'global-items': {
+		initial: '[]',
+		default: '[]'
+	}
+};
+
+export const userSettings = {
+	[`${namespace}.name`]: {
 		initial: '',
 		default: ''
 	},
-	custom_field_email: {
+	[`${namespace}.email`]: {
 		initial: '',
 		default: ''
 	},
-	custom_field_phone: {
+	[`${namespace}.phone`]: {
 		initial: '',
 		default: ''
 	},
-	custom_field_address: {
+	[`${namespace}.address`]: {
 		initial: '',
 		default: ''
 	},
-	custom_field_avatar: {
-		initial: '',
-		default: ''
+	[`${namespace}.avatar`]: {
+		initial: blankSvg,
+		default: generateSvg(navigator.userAgent)
 	},
-	custom_field_show_menu_bar: {
+	[`${namespace}.show_menu_bar`]: {
 		initial: 'false',
 		default: 'false'
 	},
-	custom_field_show_tool_bar: {
+	[`${namespace}.show_tool_bar`]: {
 		initial: 'false',
 		default: 'true'
 	},
-	custom_field_tabs: {
+	[`${namespace}.tabs`]: {
 		initial: '[]',
 		default: safeJSON.stringify([
 			{
@@ -48,6 +59,10 @@ const userSettings = {
 			}
 		])
 	},
+	'home-items': {
+		initial: '[]',
+		default: '[]'
+	},
 	MANTLE_SHOW_HIDDEN_FILES: {
 		initial: 'false',
 		default: 'false'
@@ -58,14 +73,19 @@ const userSettings = {
 	}
 };
 
-export const initialUserSettings = Object.assign(
-	...Object.entries(userSettings).map(([key, value]) => ({
-		[key]: value.initial
-	}))
-);
+export const getUserSettings = (propName, isGlobal = false) => {
+	const settingsObj = isGlobal ? globalUserSettings : userSettings;
+	return Object.assign(
+		...Object.entries(settingsObj).map(([key, value]) => ({
+			[key]: value[propName]
+		}))
+	);
+};
 
-export const defaultUserSettings = Object.assign(
-	...Object.entries(userSettings).map(([key, value]) => ({
-		[key]: value.default
-	}))
-);
+export const initialGlobalUserSettings = getUserSettings('initial', true);
+
+export const defaultGlobalUserSettings = getUserSettings('default', true);
+
+export const initialUserSettings = getUserSettings('initial', false);
+
+export const defaultUserSettings = getUserSettings('default', false);

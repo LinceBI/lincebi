@@ -14,7 +14,7 @@
     "showMenuBar": "Mostrar barra de menú",
     "showToolBar": "Mostrar barra de herramientas",
     "showHiddenFiles": "Mostrar archivos ocultos",
-    "useDescriptionsForTooltips": "Utilizar descripciones para los tooltips"
+    "showDescriptionsForTooltips": "Utilizar descripciones para los tooltips"
   },
   "sidebar": {
     "home": "Inicio",

@@ -254,7 +254,7 @@ export default {
 							name: this.$t('locales.english'),
 							img: require('@/assets/img/locales/en.svg'),
 							async click() {
-								await store.dispatch('setLocale', 'en');
+								await store.dispatch('updateLocale', 'en');
 							}
 						},
 						{
@@ -263,7 +263,7 @@ export default {
 							name: this.$t('locales.spanish'),
 							img: require('@/assets/img/locales/es.svg'),
 							async click() {
-								await store.dispatch('setLocale', 'es');
+								await store.dispatch('updateLocale', 'es');
 							}
 						},
 						{
@@ -272,7 +272,7 @@ export default {
 							name: this.$t('locales.french'),
 							img: require('@/assets/img/locales/fr.svg'),
 							async click() {
-								await store.dispatch('setLocale', 'fr');
+								await store.dispatch('updateLocale', 'fr');
 							}
 						},
 						{
@@ -281,7 +281,7 @@ export default {
 							name: this.$t('locales.german'),
 							img: require('@/assets/img/locales/de.svg'),
 							async click() {
-								await store.dispatch('setLocale', 'de');
+								await store.dispatch('updateLocale', 'de');
 							}
 						}
 					]

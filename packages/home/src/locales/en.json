@@ -14,7 +14,7 @@
     "showMenuBar": "Show menu bar",
     "showToolBar": "Show tool bar",
     "showHiddenFiles": "Show hidden files",
-    "useDescriptionsForTooltips": "Use descriptions for tooltips"
+    "showDescriptionsForTooltips": "Use descriptions for tooltips"
   },
   "sidebar": {
     "home": "Home",

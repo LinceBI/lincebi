@@ -50,10 +50,14 @@ export default {
 			});
 		},
 		showMenuBar() {
-			return store.state.userSettings.custom_field_show_menu_bar === 'true';
+			const key = `${this.namespace}.show_menu_bar`;
+			const value = store.state.userSettings[key] === 'true';
+			return value;
 		},
 		showToolBar() {
-			return store.state.userSettings.custom_field_show_tool_bar === 'true';
+			const key = `${this.namespace}.show_tool_bar`;
+			const value = store.state.userSettings[key] === 'true';
+			return value;
 		},
 		locale() {
 			return store.state.locale;

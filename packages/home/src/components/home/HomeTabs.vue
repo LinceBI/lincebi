@@ -104,7 +104,7 @@
 import Sortable from 'sortablejs';
 
 import fuzzyEquals from '@stratebi/biserver-customization-common/src/fuzzyEquals';
-import generateImage from '@stratebi/biserver-customization-common/src/generateImage';
+import generateSvg from '@stratebi/biserver-customization-common/src/generateSvg';
 import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
 import swap from '@stratebi/biserver-customization-common/src/swap';
 
@@ -123,11 +123,11 @@ export default {
 		},
 		tabs: {
 			get() {
-				return safeJSON.parse(this.userSettings.custom_field_tabs, []);
+				return safeJSON.parse(this.userSettings[`${this.namespace}.tabs`], []);
 			},
 			set(tabs) {
 				store.dispatch('updateUserSettings', {
-					custom_field_tabs: safeJSON.stringify(tabs)
+					[`${this.namespace}.tabs`]: safeJSON.stringify(tabs)
 				});
 			}
 		},
@@ -136,15 +136,11 @@ export default {
 				const tab = this.tabs[this.tabIndex];
 
 				if (tab.type === 'global') {
-					return store.getters.flattenedRepository.filter(file => {
-						return file.isGlobalItem;
-					});
+					return store.getters.globalFiles;
 				} else if (tab.type === 'home') {
-					return store.getters.flattenedRepository.filter(file => {
-						return file.isHomeItem;
-					});
+					return store.getters.homeFiles;
 				} else if (tab.type === 'tag') {
-					return store.getters.flattenedRepository.filter(file => {
+					return store.getters.repositoryFiles.filter(file => {
 						return (
 							Array.isArray(file.properties.tags) &&
 							file.properties.tags.some(tag => fuzzyEquals(tag.value, tab.name))
@@ -228,7 +224,7 @@ export default {
 		getThumbnailOrDefault(file) {
 			return file.properties.thumbnail
 				? file.properties.thumbnail
-				: generateImage(file.path, 0);
+				: generateSvg(file.path, 0);
 		}
 	}
 };

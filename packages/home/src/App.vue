@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import generateImage from '@stratebi/biserver-customization-common/src/generateImage';
-
 import store from '@/store';
 
 import NavBar from '@/components/NavBar.vue';
@@ -32,15 +30,8 @@ export default {
 			store.dispatch('fetchLocale');
 		});
 		store.dispatch('fetchRepository');
-		store.dispatch('fetchUserSettings').then(() => {
-			if (!store.state.userSettings.custom_field_avatar) {
-				store.commit('setUserSettings', {
-					custom_field_avatar: generateImage(
-						store.state.userSettings.custom_field_name
-					)
-				});
-			}
-		});
+		store.dispatch('fetchUserSettings', true);
+		store.dispatch('fetchUserSettings', false);
 	}
 };
 </script>

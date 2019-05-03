@@ -2,7 +2,14 @@ import Vue from 'vue';
 
 import defaultTo from 'lodash/defaultTo';
 
-const mixin = {
+import { namespace } from '@/userSettings';
+
+export const mixin = {
+	data() {
+		return {
+			namespace
+		};
+	},
 	methods: {
 		defaultTo: (v, d) => defaultTo(v, d),
 		defaultToReq: (v, d) => defaultTo(v, require(`@/${d}`))
@@ -10,5 +17,3 @@ const mixin = {
 };
 
 Vue.mixin(mixin);
-
-export default mixin;

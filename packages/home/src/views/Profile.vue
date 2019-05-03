@@ -6,8 +6,7 @@
 					<label class="avatar">
 						<b-img
 							class="avatar-image"
-							:src="userSettings.custom_field_avatar"
-							:blank="!userSettings.custom_field_avatar"
+							:src="userSettings[`${namespace}.avatar`]"
 						/>
 						<div class="avatar-overlay">
 							<font-awesome-icon class="icon" :icon="['fas', 'pencil-alt']" />
@@ -15,7 +14,7 @@
 						<input
 							class="avatar-input"
 							type="file"
-							name="custom_field_avatar"
+							:name="`${namespace}.avatar`"
 							accept="image/jpeg, image/png, image/gif"
 							@change="onAvatarChange"
 						/>
@@ -25,33 +24,33 @@
 					<b-form-group :label="$t('profile.name.label')">
 						<b-form-input
 							type="text"
-							name="custom_field_name"
+							:name="`${namespace}.name`"
+							:value="userSettings[`${namespace}.name`]"
 							:placeholder="$t('profile.name.placeholder')"
-							:value="userSettings.custom_field_name"
 						/>
 					</b-form-group>
 					<b-form-group :label="$t('profile.email.label')">
 						<b-form-input
-							type="text"
-							name="custom_field_email"
+							type="email"
+							:name="`${namespace}.email`"
+							:value="userSettings[`${namespace}.email`]"
 							:placeholder="$t('profile.email.placeholder')"
-							:value="userSettings.custom_field_email"
 						/>
 					</b-form-group>
 					<b-form-group :label="$t('profile.phone.label')">
 						<b-form-input
 							type="text"
-							name="custom_field_phone"
+							:name="`${namespace}.phone`"
+							:value="userSettings[`${namespace}.phone`]"
 							:placeholder="$t('profile.phone.placeholder')"
-							:value="userSettings.custom_field_phone"
 						/>
 					</b-form-group>
 					<b-form-group :label="$t('profile.address.label')">
 						<b-form-input
 							type="text"
-							name="custom_field_address"
+							:name="`${namespace}.address`"
+							:value="userSettings[`${namespace}.address`]"
 							:placeholder="$t('profile.address.placeholder')"
-							:value="userSettings.custom_field_address"
 						/>
 					</b-form-group>
 					<b-button type="submit" variant="primary" class="float-right">
@@ -83,10 +82,10 @@ export default {
 
 			try {
 				// User avatar must be converted to a data URI.
-				const avatar = formData.get('custom_field_avatar');
-				formData.set('custom_field_avatar', await imageToDataURI(avatar));
+				const avatar = formData.get(`${this.namespace}.avatar`);
+				formData.set(`${this.namespace}.avatar`, await imageToDataURI(avatar));
 			} catch (error) {
-				formData.delete('custom_field_avatar');
+				formData.delete(`${this.namespace}.avatar`);
 			}
 
 			for (const [key, value] of formData.entries()) {
@@ -100,7 +99,7 @@ export default {
 					// Note that "commit" is called instead of "dispatch", so the avatar
 					// will not be saved on the server until the user submits the form.
 					store.commit('setUserSettings', {
-						custom_field_avatar: await imageToDataURI(avatar)
+						[`${this.namespace}.avatar`]: await imageToDataURI(avatar)
 					});
 				}
 			}

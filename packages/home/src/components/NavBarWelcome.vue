@@ -1,14 +1,10 @@
 <template>
 	<b-nav-text class="nav-bar-welcome">
 		<b-link :to="{ name: 'profile' }">
-			<b-img
-				class="user-avatar"
-				:src="userSettings.custom_field_avatar"
-				:blank="!userSettings.custom_field_avatar"
-			/>
+			<b-img class="user-avatar" :src="userSettings[`${namespace}.avatar`]" />
 		</b-link>
 		<span class="user-text">
-			{{ $t('navbar.welcome', { name: userSettings.custom_field_name }) }}
+			{{ $t('navbar.welcome', { name: userSettings[`${namespace}.name`] }) }}
 		</span>
 	</b-nav-text>
 </template>
