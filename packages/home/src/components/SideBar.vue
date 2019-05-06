@@ -26,21 +26,22 @@ export default {
 					id: 'home',
 					name: this.$t('sidebar.home'),
 					icon: ['fas', 'home'],
+					/* to: { name: 'home' }, */
 					subitems: [
 						{
 							enabled: true,
-							id: 'home.perspective',
-							name: this.$t('sidebar.home'),
+							id: 'sthome.perspective',
+							name: 'STHome',
 							icon: ['fas', 'home'],
 							to: {
 								name: 'perspective',
-								params: { perspective: 'home.perspective' }
+								params: { perspective: 'sthome.perspective' }
 							}
 						},
 						{
 							enabled: true,
 							id: 'stadmin.perspective',
-							name: this.$t('sidebar.administration'),
+							name: 'STAdmin',
 							icon: ['fac', 'tool-stadmin'],
 							to: {
 								name: 'perspective',

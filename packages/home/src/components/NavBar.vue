@@ -2,7 +2,10 @@
 	<b-navbar class="nav-bar shadow" toggleable="lg" variant="light">
 		<b-navbar-brand
 			class="navbar-logo"
-			:to="{ name: 'perspective', params: { perspective: 'home.perspective' } }"
+			:to="{
+				name: 'perspective',
+				params: { perspective: 'sthome.perspective' }
+			}"
 		>
 			<b-img
 				class="h-100 w-auto"

@@ -15,7 +15,7 @@ export default new Router({
 			name: 'default',
 			redirect: {
 				name: 'perspective',
-				params: { perspective: 'home.perspective' }
+				params: { perspective: 'sthome.perspective' }
 			}
 		},
 		{
