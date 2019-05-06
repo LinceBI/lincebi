@@ -1,6 +1,9 @@
 <template>
 	<b-navbar class="nav-bar shadow" toggleable="lg" variant="light">
-		<b-navbar-brand class="navbar-logo" :to="{ name: 'home' }">
+		<b-navbar-brand
+			class="navbar-logo"
+			:to="{ name: 'perspective', params: { perspective: 'home.perspective' } }"
+		>
 			<b-img
 				class="h-100 w-auto"
 				src="@/assets/img/stratebi.svg"

@@ -296,10 +296,10 @@
 		<jsp-file>/mantle/MantleDebug.jsp</jsp-file>
 	</servlet>
 
-  <servlet>
-    <servlet-name>BridgeHome</servlet-name>
-    <jsp-file>/mantle/MantleBridge.jsp</jsp-file>
-  </servlet>
+	<servlet>
+		<servlet-name>BridgeHome</servlet-name>
+		<jsp-file>/mantle/MantleBridge.jsp</jsp-file>
+	</servlet>
 
 	<servlet>
 		<servlet-name>InitFailure</servlet-name>
@@ -485,10 +485,10 @@
 		<url-pattern>/DebugHome</url-pattern>
 	</servlet-mapping>
 
-  <servlet-mapping>
-    <servlet-name>BridgeHome</servlet-name>
-    <url-pattern>/BridgeHome</url-pattern>
-  </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BridgeHome</servlet-name>
+		<url-pattern>/BridgeHome</url-pattern>
+	</servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>InitFailure</servlet-name>

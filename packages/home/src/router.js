@@ -12,6 +12,14 @@ export default new Router({
 	routes: [
 		{
 			path: '/',
+			name: 'default',
+			redirect: {
+				name: 'perspective',
+				params: { perspective: 'home.perspective' }
+			}
+		},
+		{
+			path: '/home',
 			name: 'home',
 			component: Home
 		},

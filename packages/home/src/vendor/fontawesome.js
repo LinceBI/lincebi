@@ -49,6 +49,7 @@ Vue.component('font-awesome-icon', async () => {
 		import('@stratebi/biserver-customization-common/src/fontawesome/faFileXjpivot'),
 		import('@stratebi/biserver-customization-common/src/fontawesome/faFileXml'),
 		import('@stratebi/biserver-customization-common/src/fontawesome/faToolCde'),
+		import('@stratebi/biserver-customization-common/src/fontawesome/faToolStadmin'),
 		import('@stratebi/biserver-customization-common/src/fontawesome/faToolStagile'),
 		import('@stratebi/biserver-customization-common/src/fontawesome/faToolStcard'),
 		import('@stratebi/biserver-customization-common/src/fontawesome/faToolStdashboard'),
