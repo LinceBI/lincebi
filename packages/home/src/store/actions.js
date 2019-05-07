@@ -47,8 +47,8 @@ export const updateLocale = async ({ commit }, locale) => {
 	}
 };
 
-export const fetchRepository = async ({ commit }) => {
-	const repository = await getRepository();
+export const fetchRepository = async ({ commit, state }) => {
+	const repository = await getRepository({ locale: state.locale });
 	commit('setRepository', repository);
 };
 

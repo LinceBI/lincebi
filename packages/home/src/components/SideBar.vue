@@ -277,6 +277,7 @@ export default {
 							img: require('@/assets/img/locales/en.svg'),
 							async click() {
 								await store.dispatch('updateLocale', 'en');
+								await store.dispatch('fetchRepository');
 							}
 						},
 						{
@@ -286,6 +287,7 @@ export default {
 							img: require('@/assets/img/locales/es.svg'),
 							async click() {
 								await store.dispatch('updateLocale', 'es');
+								await store.dispatch('fetchRepository');
 							}
 						},
 						{
@@ -295,6 +297,7 @@ export default {
 							img: require('@/assets/img/locales/fr.svg'),
 							async click() {
 								await store.dispatch('updateLocale', 'fr');
+								await store.dispatch('fetchRepository');
 							}
 						},
 						{
@@ -304,6 +307,7 @@ export default {
 							img: require('@/assets/img/locales/de.svg'),
 							async click() {
 								await store.dispatch('updateLocale', 'de');
+								await store.dispatch('fetchRepository');
 							}
 						}
 					]

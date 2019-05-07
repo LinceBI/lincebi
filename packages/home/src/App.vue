@@ -26,10 +26,10 @@ export default {
 		store.dispatch('fetchCanCreate');
 		store.dispatch('fetchCanAdminister');
 		store.dispatch('fetchInstalledPlugins');
-		store.dispatch('fetchSupportedLocales').then(() => {
-			store.dispatch('fetchLocale');
+		store.dispatch('fetchSupportedLocales').then(async () => {
+			await store.dispatch('fetchLocale');
+			await store.dispatch('fetchRepository');
 		});
-		store.dispatch('fetchRepository');
 		store.dispatch('fetchUserSettings', true);
 		store.dispatch('fetchUserSettings', false);
 	}

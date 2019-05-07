@@ -3,10 +3,15 @@ import fetch from 'unfetch';
 
 import getContextPath from './getContextPath';
 import safeJSON from '../safeJSON';
+import searchParams from '../searchParams';
 
-export default async metadata => {
+export default async (metadata, { locale = 'default' } = {}) => {
 	if (!Array.isArray(metadata)) {
 		metadata = [metadata];
+	}
+
+	if (/^en(?:_[A-Z]{2})?$/.test(locale)) {
+		locale = 'default';
 	}
 
 	// Clone "metadata" object to avoid mutating the original.
@@ -14,20 +19,16 @@ export default async metadata => {
 
 	// Transform "metadata" object.
 	for await (const child of metadata) {
-		// "properties" must be defined.
-		if (typeof child.properties === 'undefined') {
-			child.properties = {};
-		}
-
 		// "properties.tags" must be converted to string.
-		if (Array.isArray(child.properties.tags)) {
-			const strTags = safeJSON.stringify(child.properties.tags, '[]');
-			child.properties.tags = strTags;
+		if (child.properties && Array.isArray(child.properties.tags)) {
+			child.properties.tags = safeJSON.stringify(child.properties.tags, '[]');
 		}
 	}
 
 	const contextPath = await getContextPath();
-	const endpoint = `${contextPath}plugin/file-metadata/api/set`;
+	const endpoint = `${contextPath}plugin/file-metadata/api/set?${searchParams.stringify(
+		{ locale }
+	)}`;
 	const response = await fetch(endpoint, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
