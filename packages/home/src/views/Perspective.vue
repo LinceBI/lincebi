@@ -2,13 +2,14 @@
 	<iframe
 		class="perspective"
 		ref="mantle"
-		:src="`../BridgeHome?${staticSearchParams}&${dynamicSearchParams}`"
+		:src="`../BridgeHome?${staticSearchParams}`"
 		:sandbox="isSanboxed ? sandboxAllowed.join(' ') : false"
 	/>
 </template>
 
 <script>
 import insertIf from '@stratebi/biserver-customization-common/src/insertIf';
+import replaceParameter from '@stratebi/biserver-customization-common/src/replaceParameter';
 import searchParams from '@stratebi/biserver-customization-common/src/searchParams';
 import waitFor from '@stratebi/biserver-customization-common/src/waitFor';
 
@@ -20,10 +21,7 @@ export default {
 	props: { perspective: String },
 	data() {
 		return {
-			staticSearchParams: searchParams.stringify({
-				_: Date.now(),
-				...insertIf(this.perspective, { perspective: this.perspective })
-			}),
+			staticSearchParams: this.dynamicSearchParams,
 			// It is recommended to add to this list all properties which are directly or indirectly used.
 			mantleWindowProperties: [
 				'enableSave',
@@ -46,7 +44,8 @@ export default {
 	computed: {
 		dynamicSearchParams() {
 			return searchParams.stringify({
-				locale: this.locale
+				locale: this.locale,
+				...insertIf(this.perspective, { perspective: this.perspective })
 			});
 		},
 		showMenuBar() {
@@ -118,6 +117,7 @@ export default {
 					perspective = mantleWindow.mantle_getPerspectives()[0];
 				}
 				mantleWindow.mantle_setPerspective(perspective);
+				replaceParameter('perspective', perspective, mantleWindow);
 			});
 		},
 		changePerspectiveParams(perspective, params = {}) {
@@ -147,6 +147,8 @@ export default {
 			this.changeShowToolBar(...args);
 		},
 		locale() {
+			this.staticSearchParams = this.dynamicSearchParams;
+
 			// The iframe will reload, so we will need to reapply some changes.
 			// But we will wait a few milliseconds to run the code on the next load.
 			setTimeout(() => {

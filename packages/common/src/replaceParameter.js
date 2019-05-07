@@ -1,5 +1,6 @@
-export default (key, value) => {
-	const url = new URL(location);
+export default (key, value, context = window) => {
+	const url = new URL(context.location);
 	url.searchParams.set(key, value);
-	history.replaceState({ key, value }, document.title, url.toString());
+	const title = context.document.title;
+	context.history.replaceState({ key, value }, title, url.toString());
 };
