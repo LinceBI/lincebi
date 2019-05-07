@@ -1,9 +1,10 @@
 <template>
 	<b-dropdown-item
+		ref="side-bar-subitem"
 		class="side-bar-subitem"
 		v-if="item.enabled"
 		:to="item.to"
-		@click="onClick"
+		@click.native="onClick"
 		@mouseover.native="isHover = true"
 		@mouseout.native="isHover = false"
 		@focus.native="isFocused = true"
@@ -52,6 +53,7 @@ export default {
 	},
 	methods: {
 		onClick(event) {
+			this.$refs['side-bar-subitem'].closeDropdown();
 			if (typeof this.item.click !== 'undefined') {
 				this.item.click.call(this, event);
 			}
