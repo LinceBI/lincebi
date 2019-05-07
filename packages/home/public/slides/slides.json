@@ -1,26 +1,32 @@
 [
   {
     "enabled": true,
-    "caption": "First slide",
-    "text": "Nulla vitae elit libero, a pharetra augue mollis interdum.",
-    "img": "slides/images/01.jpg"
+    "caption": "",
+    "text": "",
+    "img": "slides/images/01.png"
   },
   {
     "enabled": true,
-    "caption": "Second slide",
-    "text": "Nulla vitae elit libero, a pharetra augue mollis interdum.",
-    "img": "slides/images/02.jpg"
+    "caption": "",
+    "text": "",
+    "img": "slides/images/02.png"
   },
   {
     "enabled": true,
-    "caption": "Third slide",
-    "text": "Nulla vitae elit libero, a pharetra augue mollis interdum.",
-    "img": "slides/images/03.jpg"
+    "caption": "",
+    "text": "",
+    "img": "slides/images/03.png"
   },
   {
     "enabled": true,
-    "caption": "Fourth slide",
-    "text": "Nulla vitae elit libero, a pharetra augue mollis interdum.",
-    "img": "slides/images/04.jpg"
+    "caption": "",
+    "text": "",
+    "img": "slides/images/04.png"
+  },
+  {
+    "enabled": true,
+    "caption": "",
+    "text": "",
+    "img": "slides/images/05.png"
   }
 ]

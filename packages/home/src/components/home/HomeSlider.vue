@@ -1,5 +1,5 @@
 <template>
-	<b-carousel class="home-slider" v-if="slides.some(i => i.enabled)" fade>
+	<b-carousel class="home-slider" v-if="slides.some(i => i.enabled)">
 		<b-carousel-slide
 			class="slide-item"
 			v-for="(slide, index) in slides.filter(i => i.enabled)"
@@ -37,7 +37,10 @@ export default {
 	text-shadow: 1px 1px 2px #333;
 
 	.carousel-item > img {
+		display: block;
+		margin: 0 auto;
 		min-height: rem(192);
+		max-width: map-get($grid-breakpoints, 'lg');
 		object-fit: cover;
 	}
 }
