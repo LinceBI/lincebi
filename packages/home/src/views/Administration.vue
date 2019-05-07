@@ -1,31 +1,43 @@
 <template>
 	<b-container class="administration py-5 px-4">
 		<b-list-group class="mb-4">
-			<b-list-group-item button @click="openAdministration()">
+			<b-list-group-item
+				v-if="canAdminister"
+				@click="openAdministration()"
+				button
+			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'tools']" />
 				<span class="lbl">
 					{{ $t('administration.administration') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item button @click="openManageDatasources()">
+			<b-list-group-item
+				v-if="hasDataAccess"
+				@click="openManageDatasources()"
+				button
+			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'database']" />
 				<span class="lbl">
 					{{ $t('administration.manageDatasources') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item button @click="openSchedules()">
+			<b-list-group-item v-if="canSchedule" button @click="openSchedules()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'hourglass-half']" />
 				<span class="lbl">
 					{{ $t('administration.schedules') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item button @click="openMarketplace()">
+			<b-list-group-item v-if="canAdminister" button @click="openMarketplace()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'store']" />
 				<span class="lbl">
 					{{ $t('administration.marketplace') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item button @click="openManageCdaCache()">
+			<b-list-group-item
+				v-if="canAdminister"
+				@click="openManageCdaCache()"
+				button
+			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'table']" />
 				<span class="lbl">
 					{{ $t('administration.manageCdaCache') }}
@@ -33,31 +45,47 @@
 			</b-list-group-item>
 		</b-list-group>
 		<b-list-group class="mb-4">
-			<b-list-group-item button @click="systemRefresh('systemSettings')">
+			<b-list-group-item
+				v-if="canAdminister"
+				@click="systemRefresh('systemSettings')"
+				button
+			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">
 					{{ $t('administration.refreshSystemSettings') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item button @click="systemRefresh('metadata')">
+			<b-list-group-item
+				v-if="canAdminister"
+				@click="systemRefresh('metadata')"
+				button
+			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">
 					{{ $t('administration.refreshReportingMetadata') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item button @click="systemRefresh('globalActions')">
+			<b-list-group-item
+				v-if="canAdminister"
+				@click="systemRefresh('globalActions')"
+				button
+			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">
 					{{ $t('administration.refreshGlobalVariables') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item button @click="systemRefresh('mondrianSchemaCache')">
+			<b-list-group-item
+				v-if="canAdminister"
+				@click="systemRefresh('mondrianSchemaCache')"
+				button
+			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">
 					{{ $t('administration.refreshMondrianSchemaCache') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item button @click="clearCdaCache()">
+			<b-list-group-item v-if="canAdminister" button @click="clearCdaCache()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">
 					{{ $t('administration.clearCdaCache') }}
@@ -71,11 +99,23 @@
 import clearCdaCache from '@stratebi/biserver-customization-common/src/biserver/clearCdaCache';
 import systemRefresh from '@stratebi/biserver-customization-common/src/biserver/systemRefresh';
 
-import router from '@/router';
 import eventBus from '@/eventBus';
+import router from '@/router';
+import store from '@/store';
 
 export default {
 	name: 'Administration',
+	computed: {
+		canAdminister() {
+			return store.state.canAdminister;
+		},
+		canSchedule() {
+			return store.state.canSchedule;
+		},
+		hasDataAccess() {
+			return store.state.hasDataAccess;
+		}
+	},
 	methods: {
 		async openAdministration() {
 			router.push({
@@ -86,7 +126,7 @@ export default {
 		async openManageDatasources() {
 			router.push({
 				name: 'perspective',
-				params: { perspective: 'admin.perspective' }
+				params: { perspective: 'browser.perspective' }
 			});
 			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 				mantleWindow.executeCommand('ManageDatasourcesCommand');

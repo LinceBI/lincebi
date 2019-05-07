@@ -12,6 +12,14 @@ export const setCanAdminister = (state, canAdminister) => {
 	state.canAdminister = canAdminister;
 };
 
+export const setCanSchedule = (state, canSchedule) => {
+	state.canSchedule = canSchedule;
+};
+
+export const setHasDataAccess = (state, hasDataAccess) => {
+	state.hasDataAccess = hasDataAccess;
+};
+
 export const setInstalledPlugins = (state, installedPlugins) => {
 	state.installedPlugins = installedPlugins;
 };

@@ -25,6 +25,8 @@ export default {
 	created() {
 		store.dispatch('fetchCanCreate');
 		store.dispatch('fetchCanAdminister');
+		store.dispatch('fetchCanSchedule');
+		store.dispatch('fetchHasDataAccess');
 		store.dispatch('fetchInstalledPlugins');
 		store.dispatch('fetchSupportedLocales').then(async () => {
 			await store.dispatch('fetchLocale');

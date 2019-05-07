@@ -1,6 +1,8 @@
 import getCanAdminister from '@stratebi/biserver-customization-common/src/biserver/getCanAdminister';
 import getCanCreate from '@stratebi/biserver-customization-common/src/biserver/getCanCreate';
+import getCanSchedule from '@stratebi/biserver-customization-common/src/biserver/getCanSchedule';
 import getGlobalUserSettings from '@stratebi/biserver-customization-common/src/biserver/getGlobalUserSettings';
+import getHasDataAccess from '@stratebi/biserver-customization-common/src/biserver/getHasDataAccess';
 import getInstalledPlugins from '@stratebi/biserver-customization-common/src/biserver/getInstalledPlugins';
 import getLocale from '@stratebi/biserver-customization-common/src/biserver/getLocale';
 import getRepository from '@stratebi/biserver-customization-common/src/biserver/getRepository';
@@ -23,6 +25,16 @@ export const fetchCanCreate = async ({ commit }) => {
 export const fetchCanAdminister = async ({ commit }) => {
 	const canAdminister = await getCanAdminister();
 	commit('setCanAdminister', canAdminister);
+};
+
+export const fetchCanSchedule = async ({ commit }) => {
+	const canSchedule = await getCanSchedule();
+	commit('setCanSchedule', canSchedule);
+};
+
+export const fetchHasDataAccess = async ({ commit }) => {
+	const hasDataAccess = await getHasDataAccess();
+	commit('setHasDataAccess', hasDataAccess);
 };
 
 export const fetchInstalledPlugins = async ({ commit }) => {

@@ -51,7 +51,7 @@ export default {
 		showMenuBar: {
 			get() {
 				const key = `${this.namespace}.show_menu_bar`;
-				const value = store.state.userSettings[key] === 'true';
+				const value = this.userSettings[key] === 'true';
 				return value;
 			},
 			set(show) {
@@ -63,7 +63,7 @@ export default {
 		showToolBar: {
 			get() {
 				const key = `${this.namespace}.show_tool_bar`;
-				const value = store.state.userSettings[key] === 'true';
+				const value = this.userSettings[key] === 'true';
 				return value;
 			},
 			set(show) {
@@ -75,7 +75,7 @@ export default {
 		showHiddenFiles: {
 			get() {
 				const key = 'MANTLE_SHOW_HIDDEN_FILES';
-				const value = store.state.userSettings[key] === 'true';
+				const value = this.userSettings[key] === 'true';
 				return value;
 			},
 			set(show) {
@@ -92,7 +92,7 @@ export default {
 		showDescriptionsForTooltips: {
 			get() {
 				const key = 'MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS';
-				const value = store.state.userSettings[key] === 'true';
+				const value = this.userSettings[key] === 'true';
 				return value;
 			},
 			set(show) {

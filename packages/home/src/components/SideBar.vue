@@ -19,6 +19,24 @@ export default {
 		SideBarItem
 	},
 	computed: {
+		canCreate() {
+			return store.state.canCreate;
+		},
+		canAdminister() {
+			return store.state.canAdminister;
+		},
+		canSchedule() {
+			return store.state.canSchedule;
+		},
+		hasDataAccess() {
+			return store.state.hasDataAccess;
+		},
+		installedPlugins() {
+			return store.state.installedPlugins;
+		},
+		supportedLocales() {
+			return store.state.supportedLocales;
+		},
 		sidebar() {
 			return [
 				{
@@ -51,13 +69,13 @@ export default {
 					]
 				},
 				{
-					enabled: store.state.canCreate,
+					enabled: this.canCreate,
 					id: 'tools',
 					name: this.$t('sidebar.tools'),
 					icon: ['fas', 'plus'],
 					subitems: [
 						{
-							enabled: store.state.installedPlugins.includes('stpivot'),
+							enabled: this.installedPlugins.includes('stpivot'),
 							id: 'tools.stpivot',
 							name: 'STPivot',
 							icon: ['fac', 'tool-stpivot'],
@@ -78,7 +96,7 @@ export default {
 							}
 						},
 						{
-							enabled: store.state.installedPlugins.includes('stdashboard'),
+							enabled: this.installedPlugins.includes('stdashboard'),
 							id: 'tools.stdashboard',
 							name: 'STDashboard',
 							icon: ['fac', 'tool-stdashboard'],
@@ -99,7 +117,7 @@ export default {
 							}
 						},
 						{
-							enabled: store.state.installedPlugins.includes('streport'),
+							enabled: this.installedPlugins.includes('streport'),
 							id: 'tools.streport',
 							name: 'STReport',
 							icon: ['fac', 'tool-streport'],
@@ -120,7 +138,7 @@ export default {
 							}
 						},
 						{
-							enabled: store.state.installedPlugins.includes('stagile'),
+							enabled: this.installedPlugins.includes('stagile'),
 							id: 'tools.stagile',
 							name: 'STAgile',
 							icon: ['fac', 'tool-stagile'],
@@ -141,7 +159,7 @@ export default {
 							}
 						},
 						{
-							enabled: store.state.installedPlugins.includes('stcard'),
+							enabled: this.installedPlugins.includes('stcard'),
 							id: 'tools.stcard',
 							name: 'STCard',
 							icon: ['fac', 'tool-stcard'],
@@ -184,7 +202,7 @@ export default {
 					}
 				},
 				{
-					enabled: store.state.installedPlugins.includes('stsearch'),
+					enabled: this.installedPlugins.includes('stsearch'),
 					id: 'stsearch',
 					name: this.$t('sidebar.search'),
 					icon: ['fac', 'tool-stsearch'],
@@ -258,20 +276,20 @@ export default {
 					]
 				},
 				{
-					enabled: store.state.canAdminister,
+					enabled: this.canAdminister || this.canSchedule || this.hasDataAccess,
 					id: 'administration',
 					name: this.$t('sidebar.administration'),
 					icon: ['fas', 'tools'],
 					to: { name: 'administration' }
 				},
 				{
-					enabled: store.state.supportedLocales.length > 1,
+					enabled: this.supportedLocales.length > 1,
 					id: 'locales',
 					name: this.$t('sidebar.locales'),
 					icon: ['fas', 'globe-europe'],
 					subitems: [
 						{
-							enabled: store.state.supportedLocales.includes('en'),
+							enabled: this.supportedLocales.includes('en'),
 							id: 'locales.english',
 							name: this.$t('locales.english'),
 							img: require('@/assets/img/locales/en.svg'),
@@ -281,7 +299,7 @@ export default {
 							}
 						},
 						{
-							enabled: store.state.supportedLocales.includes('es'),
+							enabled: this.supportedLocales.includes('es'),
 							id: 'locales.spanish',
 							name: this.$t('locales.spanish'),
 							img: require('@/assets/img/locales/es.svg'),
@@ -291,7 +309,7 @@ export default {
 							}
 						},
 						{
-							enabled: store.state.supportedLocales.includes('fr'),
+							enabled: this.supportedLocales.includes('fr'),
 							id: 'locales.french',
 							name: this.$t('locales.french'),
 							img: require('@/assets/img/locales/fr.svg'),
@@ -301,7 +319,7 @@ export default {
 							}
 						},
 						{
-							enabled: store.state.supportedLocales.includes('de'),
+							enabled: this.supportedLocales.includes('de'),
 							id: 'locales.german',
 							name: this.$t('locales.german'),
 							img: require('@/assets/img/locales/de.svg'),

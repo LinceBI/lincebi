@@ -42,6 +42,12 @@ export default {
 		};
 	},
 	computed: {
+		locale() {
+			return store.state.locale;
+		},
+		userSettings() {
+			return store.state.userSettings;
+		},
 		dynamicSearchParams() {
 			return searchParams.stringify({
 				locale: this.locale,
@@ -50,16 +56,13 @@ export default {
 		},
 		showMenuBar() {
 			const key = `${this.namespace}.show_menu_bar`;
-			const value = store.state.userSettings[key] === 'true';
+			const value = this.userSettings[key] === 'true';
 			return value;
 		},
 		showToolBar() {
 			const key = `${this.namespace}.show_tool_bar`;
-			const value = store.state.userSettings[key] === 'true';
+			const value = this.userSettings[key] === 'true';
 			return value;
-		},
-		locale() {
-			return store.state.locale;
 		}
 	},
 	created() {
