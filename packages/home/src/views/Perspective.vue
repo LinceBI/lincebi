@@ -21,7 +21,7 @@ export default {
 	props: { perspective: String },
 	data() {
 		return {
-			staticSearchParams: this.dynamicSearchParams,
+			staticSearchParams: '',
 			// It is recommended to add to this list all properties which are directly or indirectly used.
 			mantleWindowProperties: [
 				'enableSave',
@@ -66,6 +66,8 @@ export default {
 		}
 	},
 	created() {
+		this.staticSearchParams = this.dynamicSearchParams;
+
 		eventBus.$on('mantle.invoke', this.invokeInMantleWindow);
 		eventBus.$on('mantle.perspective.invoke', this.invokeInPerspectiveWindow);
 		eventBus.$on('mantle.perspective.reload', this.reloadPerspective);
