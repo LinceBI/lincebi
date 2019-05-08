@@ -27,7 +27,6 @@ export class Node {
 	update() {
 		this.x += this.vx;
 		this.y += this.vy;
-
 		if (
 			this.x > this.garden.width + 50 ||
 			this.x < -50 ||
@@ -56,7 +55,6 @@ export class Node {
 		let x = node.x - this.x;
 		let y = node.y - this.y;
 		let total = Math.sqrt(x ** 2 + y ** 2);
-
 		return { x, y, total };
 	}
 
@@ -74,7 +72,6 @@ export class Node {
 		node.vy =
 			(node.m * node.vy) / (this.m + node.m) +
 			(this.m * this.vy) / (this.m + node.m);
-
 		this.reset();
 	}
 
@@ -123,7 +120,7 @@ export default {
 
 					// Collision: remove smaller or equal, never both of them
 					let squaredDistance = a.squaredDistanceTo(b);
-					if (squaredDistance <= (a.m / 2 + b.m / 2) * (a.m / 2 + b.m / 2)) {
+					if (squaredDistance <= (a.m / 2 + b.m / 2) ** 2) {
 						if (a.m <= b.m) a.collideTo(b);
 						else b.collideTo(a);
 						continue;
@@ -183,10 +180,7 @@ export default {
 
 			// Create nodes
 			for (let i = 0; i < this.nodes.length; i++) {
-				if (this.nodes[i]) {
-					continue;
-				}
-
+				if (this.nodes[i]) continue;
 				this.nodes[i] = new Node(this);
 			}
 		},
