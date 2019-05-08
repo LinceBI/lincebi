@@ -4,6 +4,8 @@
 		ref="node-garden"
 		@mousemove="onMousemove"
 		@mouseleave="onMouseleave"
+		@mousedown="onMousedown"
+		@mouseup="onMouseup"
 	/>
 </template>
 
@@ -93,6 +95,7 @@ export default {
 	},
 	data() {
 		return {
+			mounted: false,
 			width: 0,
 			height: 0,
 			nodes: [],
@@ -104,66 +107,52 @@ export default {
 	},
 	methods: {
 		render() {
-			requestAnimationFrame(this.render);
+			if (this.mounted) {
+				requestAnimationFrame(this.render);
+			}
 
 			// Clear canvas
 			this.ctx.clearRect(0, 0, this.width, this.height);
 
 			// Update links
-			let nodeA;
-			let nodeB;
-
 			for (let i = 0; i < this.nodes.length - 1; i++) {
-				nodeA = this.nodes[i];
+				let a = this.nodes[i];
 
 				for (let j = i + 1; j < this.nodes.length; j++) {
-					nodeB = this.nodes[j];
-					let squaredDistance = nodeA.squaredDistanceTo(nodeB);
+					let b = this.nodes[j];
+
+					// Collision: remove smaller or equal, never both of them
+					let squaredDistance = a.squaredDistanceTo(b);
+					if (squaredDistance <= (a.m / 2 + b.m / 2) * (a.m / 2 + b.m / 2)) {
+						if (a.m <= b.m) a.collideTo(b);
+						else b.collideTo(a);
+						continue;
+					}
 
 					// Calculate gravity force
-					let force = (2 * (nodeA.m * nodeB.m)) / squaredDistance;
-
-					let opacity = force * 200;
-					if (opacity < 0.025 || opacity > this.color.a) {
-						continue;
-					}
-
-					if (
-						squaredDistance <=
-						(nodeA.m / 2 + nodeB.m / 2) * (nodeA.m / 2 + nodeB.m / 2)
-					) {
-						// Collision: remove smaller or equal - never both of them
-						if (nodeA.m <= nodeB.m) {
-							nodeA.collideTo(nodeB);
-						} else {
-							nodeB.collideTo(nodeA);
-						}
-
-						continue;
-					}
-
-					let distance = nodeA.distanceTo(nodeB);
-
-					// Calculate gravity direction
+					let force = (2 * (a.m * b.m)) / squaredDistance;
+					let distance = a.distanceTo(b);
 					let direction = {
 						x: distance.x / distance.total,
 						y: distance.y / distance.total
 					};
+					a.addForce(force, direction);
+					b.addForce(-force, direction);
 
 					// Draw gravity lines
-					this.ctx.beginPath();
-					this.ctx.strokeStyle = `rgba(
-						${this.color.r},
-						${this.color.g},
-						${this.color.b},
-						${opacity}
-					)`;
-					this.ctx.moveTo(nodeA.x, nodeA.y);
-					this.ctx.lineTo(nodeB.x, nodeB.y);
-					this.ctx.stroke();
-
-					nodeA.addForce(force, direction);
-					nodeB.addForce(-force, direction);
+					let opacity = force * 200;
+					if (opacity >= 0.025 && opacity < this.color.a) {
+						this.ctx.beginPath();
+						this.ctx.strokeStyle = `rgba(
+							${this.color.r},
+							${this.color.g},
+							${this.color.b},
+							${opacity}
+						)`;
+						this.ctx.moveTo(a.x, a.y);
+						this.ctx.lineTo(b.x, b.y);
+						this.ctx.stroke();
+					}
 				}
 			}
 
@@ -208,10 +197,17 @@ export default {
 		onMouseleave() {
 			this.mouseNode.x = Number.MAX_SAFE_INTEGER;
 			this.mouseNode.y = Number.MAX_SAFE_INTEGER;
+		},
+		onMousedown() {
+			this.mouseNode.m = -50;
+		},
+		onMouseup() {
+			this.mouseNode.m = 5;
 		}
 	},
 	mounted() {
 		this.$nextTick(function() {
+			this.mounted = true;
 			this.nodes = [];
 
 			this.canvas = this.$refs['node-garden'];
@@ -225,10 +221,10 @@ export default {
 
 			// Add mouse node
 			this.mouseNode = new Node(this);
-			this.mouseNode.m = 5;
 			this.mouseNode.update = () => {};
 			this.mouseNode.reset = () => {};
 			this.mouseNode.render = () => {};
+			this.mouseNode.m = 5;
 			// Move coordinates to unreachable zone
 			this.mouseNode.x = Number.MAX_SAFE_INTEGER;
 			this.mouseNode.y = Number.MAX_SAFE_INTEGER;
@@ -241,6 +237,7 @@ export default {
 		});
 	},
 	beforeDestroy() {
+		this.mounted = false;
 		window.removeEventListener('resize', this.resize);
 	}
 };
