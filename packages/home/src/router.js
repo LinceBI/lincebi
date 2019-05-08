@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import isDemo from '@stratebi/biserver-customization-common/src/isDemo';
+
 import Administration from '@/views/Administration.vue';
 import Home from '@/views/Home.vue';
 import Perspective from '@/views/Perspective.vue';
@@ -12,11 +14,10 @@ export default new Router({
 	routes: [
 		{
 			path: '/',
-			name: 'default',
-			redirect: {
-				name: 'perspective',
-				params: { perspective: 'sthome.perspective' }
-			}
+			name: 'root',
+			redirect: isDemo
+				? { name: 'perspective', params: { perspective: 'sthome.perspective' } }
+				: { name: 'home' }
 		},
 		{
 			path: '/home',

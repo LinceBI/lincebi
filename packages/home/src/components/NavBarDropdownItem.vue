@@ -1,5 +1,5 @@
 <template>
-	<b-dropdown-item href="#" :to="to" @click="onClick">
+	<b-dropdown-item :href="href" @click="onClick">
 		<font-awesome-icon v-if="enabled" :icon="icon" />
 		<font-awesome-icon v-else :icon="iconDisabled" />
 		<span class="lbl">{{ text }}</span>
@@ -11,7 +11,7 @@ export default {
 	name: 'NavBarDropdownItem',
 	props: {
 		text: String,
-		to: Object,
+		href: String,
 		enabled: { type: Boolean, default: true },
 		icon: { type: Array, default: () => ['far', 'check-square'] },
 		iconDisabled: { type: Array, default: () => ['far', 'square'] }

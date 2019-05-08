@@ -1,13 +1,13 @@
 <template>
 	<b-nav-item-dropdown class="nav-bar-settings" right no-caret>
 		<template slot="button-content">
-			<font-awesome-icon :icon="['fas', 'sliders-h']" rotation="90" />
+			<font-awesome-icon :icon="['fas', 'cog']" />
 			<span class="lbl d-lg-none">{{ $t('navbar.settings') }}</span>
 		</template>
 		<nav-bar-dropdown-item
 			:text="$t('navbar.profile')"
 			:icon="['fas', 'user']"
-			:to="{ name: 'profile' }"
+			href="#/profile"
 		/>
 		<b-dropdown-divider />
 		<nav-bar-dropdown-item

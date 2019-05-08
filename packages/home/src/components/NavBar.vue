@@ -1,12 +1,6 @@
 <template>
 	<b-navbar class="nav-bar shadow" toggleable="lg" variant="light">
-		<b-navbar-brand
-			class="navbar-logo"
-			:to="{
-				name: 'perspective',
-				params: { perspective: 'sthome.perspective' }
-			}"
-		>
+		<b-navbar-brand class="navbar-logo" href="#/">
 			<b-img
 				class="h-100 w-auto"
 				src="@/assets/img/stratebi.svg"
@@ -27,7 +21,15 @@
 					class="nav-element"
 					v-if="installedPlugins.includes('stsearch')"
 				/>
-				<nav-bar-settings class="nav-element" />
+				<b-nav-item
+					v-if="isDemo"
+					class="nav-element"
+					href="#/p/stadmin.perspective"
+				>
+					<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
+					<span class="lbl d-lg-none">STAdmin</span>
+				</b-nav-item>
+				<nav-bar-settings v-else class="nav-element" />
 			</b-navbar-nav>
 		</b-collapse>
 	</b-navbar>

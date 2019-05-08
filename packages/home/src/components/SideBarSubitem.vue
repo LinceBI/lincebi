@@ -3,7 +3,7 @@
 		ref="side-bar-subitem"
 		class="side-bar-subitem"
 		v-if="item.enabled"
-		:to="item.to"
+		:href="item.href"
 		@click.native="onClick"
 		@mouseover.native="isHover = true"
 		@mouseout.native="isHover = false"
@@ -53,7 +53,6 @@ export default {
 	},
 	methods: {
 		onClick(event) {
-			this.$refs['side-bar-subitem'].closeDropdown();
 			if (typeof this.item.click !== 'undefined') {
 				this.item.click.call(this, event);
 			}

@@ -40,31 +40,31 @@ export default {
 		sidebar() {
 			return [
 				{
-					enabled: true,
+					enabled: !this.isDemo,
 					id: 'home',
 					name: this.$t('sidebar.home'),
 					icon: ['fas', 'home'],
-					/* to: { name: 'home' }, */
+					href: '#/'
+				},
+				{
+					enabled: this.isDemo,
+					id: 'sthome',
+					name: this.$t('sidebar.home'),
+					icon: ['fas', 'home'],
 					subitems: [
 						{
 							enabled: true,
 							id: 'sthome.perspective',
 							name: 'STHome',
 							icon: ['fas', 'home'],
-							to: {
-								name: 'perspective',
-								params: { perspective: 'sthome.perspective' }
-							}
+							href: '#/p/sthome.perspective'
 						},
 						{
 							enabled: true,
 							id: 'stadmin.perspective',
 							name: 'STAdmin',
 							icon: ['fac', 'tool-stadmin'],
-							to: {
-								name: 'perspective',
-								params: { perspective: 'stadmin.perspective' }
-							}
+							href: '#/p/stadmin.perspective'
 						}
 					]
 				},
@@ -186,20 +186,14 @@ export default {
 					id: 'opened',
 					name: this.$t('sidebar.opened'),
 					icon: ['far', 'window-maximize'],
-					to: {
-						name: 'perspective',
-						params: { perspective: 'opened.perspective' }
-					}
+					href: '#/p/opened.perspective'
 				},
 				{
 					enabled: true,
 					id: 'browser',
 					name: this.$t('sidebar.browser'),
 					icon: ['fas', 'folder-open'],
-					to: {
-						name: 'perspective',
-						params: { perspective: 'browser.perspective' }
-					}
+					href: '#/p/browser.perspective'
 				},
 				{
 					enabled: this.installedPlugins.includes('stsearch'),
@@ -280,7 +274,7 @@ export default {
 					id: 'administration',
 					name: this.$t('sidebar.administration'),
 					icon: ['fas', 'tools'],
-					to: { name: 'administration' }
+					href: '#/administration'
 				},
 				{
 					enabled: this.supportedLocales.length > 1,
@@ -335,7 +329,7 @@ export default {
 					id: 'logout',
 					name: this.$t('sidebar.logout'),
 					icon: ['fas', 'sign-out-alt'],
-					to: { name: 'logout' }
+					href: '#/logout'
 				}
 			];
 		}

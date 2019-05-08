@@ -1,6 +1,6 @@
 <template>
 	<b-nav-text class="nav-bar-welcome">
-		<b-link :to="{ name: 'profile' }">
+		<b-link href="#/profile">
 			<b-img class="user-avatar" :src="userSettings[`${namespace}.avatar`]" />
 		</b-link>
 		<span class="user-text">

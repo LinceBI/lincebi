@@ -26,7 +26,7 @@
 			</b-nav-item-dropdown>
 		</div>
 		<div v-else>
-			<b-nav-item :to="item.to" @click="onClick">
+			<b-nav-item :href="item.href" @click="onClick">
 				<font-awesome-icon
 					v-if="typeof item.icon !== 'undefined'"
 					class="item-icon fa-fw"
