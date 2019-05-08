@@ -1,16 +1,19 @@
 <template>
 	<div class="app d-flex align-items-center justify-content-center">
+		<node-garden class="node-garden" />
 		<login-form class="login-form" />
 	</div>
 </template>
 
 <script>
 import LoginForm from '@/components/LoginForm.vue';
+import NodeGarden from '@/components/NodeGarden.vue';
 
 export default {
 	name: 'App',
 	components: {
-		LoginForm
+		LoginForm,
+		NodeGarden
 	}
 };
 </script>
@@ -30,6 +33,15 @@ body {
 .app {
 	height: 100%;
 	width: 100%;
+
+	.node-garden {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+	}
 
 	.login-form {
 		margin: 0 rem(10);
