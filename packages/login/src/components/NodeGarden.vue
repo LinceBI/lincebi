@@ -162,7 +162,9 @@ export default {
 		resize() {
 			// If retina screen, scale canvas
 			if (window.devicePixelRatio !== 1) {
-				this.$refs.canvas.style.transform = `scale(${1 / window.devicePixelRatio})`;
+				this.$refs.canvas.style.transform = `scale(
+					${1 / window.devicePixelRatio}
+				)`;
 				this.$refs.canvas.style.transformOrigin = '0 0';
 			}
 
