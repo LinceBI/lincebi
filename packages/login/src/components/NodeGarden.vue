@@ -1,12 +1,14 @@
 <template>
-	<canvas
-		lass="node-garden"
-		ref="node-garden"
+	<div
+		class="node-garden"
+		ref="container"
 		@mousemove="onMousemove"
 		@mouseleave="onMouseleave"
 		@mousedown="onMousedown"
 		@mouseup="onMouseup"
-	/>
+	>
+		<canvas ref="canvas" />
+	</div>
 </template>
 
 <script>
@@ -95,11 +97,9 @@ export default {
 			mounted: false,
 			width: 0,
 			height: 0,
-			nodes: [],
-			canvas: null,
 			ctx: null,
-			mouseNode: null,
-			pixelRatio: window.devicePixelRatio
+			nodes: [],
+			mouseNode: null
 		};
 	},
 	methods: {
@@ -160,16 +160,23 @@ export default {
 			}
 		},
 		resize() {
-			this.width = this.canvas.offsetWidth * this.pixelRatio;
-			this.height = this.canvas.offsetHeight * this.pixelRatio;
+			// If retina screen, scale canvas
+			if (window.devicePixelRatio !== 1) {
+				this.$refs.canvas.style.transform = `scale(${1 / window.devicePixelRatio})`;
+				this.$refs.canvas.style.transformOrigin = '0 0';
+			}
+
+			this.width = this.$refs.container.offsetWidth * window.devicePixelRatio;
+			this.height = this.$refs.container.offsetHeight * window.devicePixelRatio;
 			this.area = this.width * this.height;
 
 			// Calculate nodes needed
 			this.nodes.length = (Math.sqrt(this.area) / 10) | 0;
+			if (this.nodes.length > 150) this.nodes.length = 150;
 
 			// Set canvas size
-			this.canvas.width = this.width;
-			this.canvas.height = this.height;
+			this.$refs.canvas.width = this.width;
+			this.$refs.canvas.height = this.height;
 
 			this.ctx.fillStyle = `rgba(
 				${this.color.r},
@@ -185,8 +192,8 @@ export default {
 			}
 		},
 		onMousemove(event) {
-			this.mouseNode.x = event.pageX * this.pixelRatio;
-			this.mouseNode.y = event.pageY * this.pixelRatio;
+			this.mouseNode.x = event.pageX * window.devicePixelRatio;
+			this.mouseNode.y = event.pageY * window.devicePixelRatio;
 		},
 		onMouseleave() {
 			this.mouseNode.x = Number.MAX_SAFE_INTEGER;
@@ -202,16 +209,8 @@ export default {
 	mounted() {
 		this.$nextTick(function() {
 			this.mounted = true;
+			this.ctx = this.$refs.canvas.getContext('2d');
 			this.nodes = [];
-
-			this.canvas = this.$refs['node-garden'];
-			this.ctx = this.canvas.getContext('2d');
-
-			if (this.pixelRatio !== 1) {
-				// If retina screen, scale canvas
-				this.canvas.style.transform = `scale(${1 / this.pixelRatio})`;
-				this.canvas.style.transformOrigin = '0 0';
-			}
 
 			// Add mouse node
 			this.mouseNode = new Node(this);
@@ -239,6 +238,6 @@ export default {
 
 <style scoped lang="scss">
 .node-garden {
-	mix-blend-mode: multiply;
+	overflow: hidden;
 }
 </style>
