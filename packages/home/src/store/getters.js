@@ -17,7 +17,7 @@ export const repositoryFiles = state => {
 export const globalFiles = (state, getters) => {
 	const paths = new Set(
 		safeJSON
-			.parse(state.userSettings['global-items'], [])
+			.parse(state.globalUserSettings['global-items'], [])
 			.map(item => item.fullPath)
 	);
 	const files = getters.repositoryFiles.filter(file => paths.has(file.path));

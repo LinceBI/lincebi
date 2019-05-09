@@ -32,8 +32,8 @@ export default {
 			await store.dispatch('fetchLocale');
 			await store.dispatch('fetchRepository');
 		});
-		store.dispatch('fetchUserSettings', true);
-		store.dispatch('fetchUserSettings', false);
+		store.dispatch('fetchGlobalUserSettings');
+		store.dispatch('fetchUserSettings');
 	}
 };
 </script>

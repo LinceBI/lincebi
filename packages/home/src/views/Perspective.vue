@@ -79,6 +79,13 @@ export default {
 				window.top[prop] = mantleWindow[prop];
 			});
 		});
+
+		// Listen to STSearch events.
+		this.invokeInMantleWindow(mantleWindow => {
+			mantleWindow.addEventListener('stsearch-set-metadata', ({ detail }) => {
+				store.commit('setRepositoryFile', detail);
+			});
+		});
 	},
 	methods: {
 		retrieveMantleWindow() {

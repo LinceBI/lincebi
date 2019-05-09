@@ -3,6 +3,7 @@ import mergeWith from 'lodash/mergeWith';
 import i18n from '@/i18n';
 
 import replaceParameter from '@stratebi/biserver-customization-common/src/replaceParameter';
+import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
 
 export const setCanCreate = (state, canCreate) => {
 	state.canCreate = canCreate;
@@ -59,13 +60,39 @@ export const setRepositoryFile = (state, file) => {
 		}
 	}
 
+	// If "isHomeItem" differs, update "home-items" user setting.
+	if (file.isHomeItem !== currentLocation.isHomeItem) {
+		const oldHomeItemsStr = state.userSettings['home-items'];
+		const oldHomeItems = safeJSON.parse(oldHomeItemsStr, []);
+		const newHomeItems = file.isHomeItem
+			? [...oldHomeItems, { fullPath: file.path }]
+			: oldHomeItems.filter(item => item.fullPath !== file.path);
+		const newHomeItemsStr = safeJSON.stringify(newHomeItems, '[]');
+		state.userSettings['home-items'] = newHomeItemsStr;
+	}
+
+	// If "isGlobalItem" differs, update "global-items" global user setting.
+	if (file.isGlobalItem !== currentLocation.isGlobalItem) {
+		const oldGlobalItemsStr = state.globalUserSettings['global-items'];
+		const oldGlobalItems = safeJSON.parse(oldGlobalItemsStr, []);
+		const newGlobalItems = file.isGlobalItem
+			? [...oldGlobalItems, { fullPath: file.path }]
+			: oldGlobalItems.filter(item => item.fullPath !== file.path);
+		const newGlobalItemsStr = safeJSON.stringify(newGlobalItems, '[]');
+		state.globalUserSettings['global-items'] = newGlobalItemsStr;
+	}
+
+	// Update repository file.
 	mergeWith(currentLocation, file, (objValue, srcValue) => {
 		if (Array.isArray(objValue)) return srcValue;
 		return undefined;
 	});
 };
 
-export const setUserSettings = (state, userSettings, isGlobal = false) => {
-	const stateObj = isGlobal ? state.globalUserSettings : state.userSettings;
-	Object.assign(stateObj, userSettings);
+export const setGlobalUserSettings = (state, settings) => {
+	Object.assign(state.globalUserSettings, settings);
+};
+
+export const setUserSettings = (state, settings) => {
+	Object.assign(state.userSettings, settings);
 };

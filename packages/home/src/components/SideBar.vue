@@ -218,7 +218,7 @@ export default {
 										// En este caso si STSearch no ha cargado,
 										// no es necesario realizar ninguna acción.
 										const STSearch = perspectiveWindow.STSearch;
-										if (STSearch) await STSearch.resetConfig().doRefresh();
+										if (STSearch) await STSearch.resetConfig();
 									}
 								);
 							}
@@ -240,7 +240,7 @@ export default {
 										const STSearch = await waitFor(
 											() => perspectiveWindow.STSearch
 										);
-										await STSearch.applyPreset('favorites').doRefresh();
+										await STSearch.applyPreset('favorites');
 									}
 								);
 							}
@@ -262,7 +262,7 @@ export default {
 										const STSearch = await waitFor(
 											() => perspectiveWindow.STSearch
 										);
-										await STSearch.applyPreset('recents').doRefresh();
+										await STSearch.applyPreset('recents');
 									}
 								);
 							}

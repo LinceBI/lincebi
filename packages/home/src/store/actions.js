@@ -71,31 +71,48 @@ export const updateRepositoryFile = async ({ commit }, file) => {
 	}
 };
 
-export const fetchUserSettings = async ({ commit }, isGlobal = false) => {
-	const getFunc = isGlobal ? getGlobalUserSettings : getUserSettings;
-	const defObj = isGlobal ? defaultGlobalUserSettings : defaultUserSettings;
-	const fetchedUserSettings = await getFunc(Object.keys(defObj));
-	Object.entries(fetchedUserSettings).forEach(([key, value]) => {
+export const fetchGlobalUserSettings = async ({ commit }) => {
+	const fetchedSettings = await getGlobalUserSettings(
+		Object.keys(defaultGlobalUserSettings)
+	);
+	Object.entries(fetchedSettings).forEach(([key, value]) => {
 		if (value === null) {
-			fetchedUserSettings[key] = defObj[key];
+			fetchedSettings[key] = defaultGlobalUserSettings[key];
 		}
 	});
-	commit('setUserSettings', fetchedUserSettings, isGlobal);
+	commit('setGlobalUserSettings', fetchedSettings);
 };
 
-export const updateUserSettings = async (
-	{ commit },
-	userSettings,
-	isGlobal = false
-) => {
-	const setFunc = isGlobal ? setGlobalUserSettings : setUserSettings;
-	const updatedUserSettings = await setFunc(userSettings);
-	commit('setUserSettings', updatedUserSettings, isGlobal);
+export const fetchUserSettings = async ({ commit }) => {
+	const fetchedSettings = await getUserSettings(
+		Object.keys(defaultUserSettings)
+	);
+	Object.entries(fetchedSettings).forEach(([key, value]) => {
+		if (value === null) {
+			fetchedSettings[key] = defaultUserSettings[key];
+		}
+	});
+	commit('setUserSettings', fetchedSettings);
 };
 
-export const resetUserSettings = async ({ commit }, isGlobal = false) => {
-	const setFunc = isGlobal ? setGlobalUserSettings : setUserSettings;
-	const defObj = isGlobal ? defaultGlobalUserSettings : defaultUserSettings;
-	const updatedUserSettings = await setFunc(defObj);
-	commit('setUserSettings', updatedUserSettings, isGlobal);
+export const updateGlobalUserSettings = async ({ commit }, settings) => {
+	const updatedSettings = await setGlobalUserSettings(settings);
+	commit('setGlobalUserSettings', updatedSettings);
+};
+
+export const updateUserSettings = async ({ commit }, settings) => {
+	const updatedSettings = await setUserSettings(settings);
+	commit('setUserSettings', updatedSettings);
+};
+
+export const resetGlobalUserSettings = async ({ commit }) => {
+	const updatedSettings = await setGlobalUserSettings(
+		defaultGlobalUserSettings
+	);
+	commit('setGlobalUserSettings', updatedSettings);
+};
+
+export const resetUserSettings = async ({ commit }) => {
+	const updatedSettings = await setUserSettings(defaultUserSettings);
+	commit('setUserSettings', updatedSettings);
 };
