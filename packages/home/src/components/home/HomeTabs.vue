@@ -78,10 +78,7 @@
 			</div>
 		</b-tab>
 		<template slot="tabs">
-			<b-nav-item
-				class="unsortable flex-grow-0"
-				@click.prevent="newTab()"
-			>
+			<b-nav-item class="unsortable flex-grow-0" @click.prevent="newTab()">
 				<div class="home-tab-new">
 					<font-awesome-icon :icon="['fas', 'plus']" />
 				</div>
