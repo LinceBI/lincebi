@@ -1,104 +1,115 @@
 <template>
-	<b-tabs
-		ref="home-tabs"
-		class="home-tabs"
-		nav-class="home-tab-list"
-		content-class="home-tab-content"
-		@contextmenu.native="onTabContextmenu"
-		v-model="tabIndex"
-		no-nav-style
-		no-fade
-		fill
-	>
-		<b-tab v-for="(tab, index) in tabs" :key="tab.name" no-body>
-			<template slot="title">
-				<div class="home-tab" :title="tab.name">
+	<div class="home-tabs" ref="home-tabs">
+		<!-- Tab list -->
+		<ul class="home-tab-list nav nav-fill">
+			<!-- Tabs -->
+			<li
+				v-for="(tab, index) in tabs"
+				:key="tab.name"
+				:class="{
+					'home-tab': true,
+					'nav-item': true,
+					undraggable: !tab.draggable
+				}"
+			>
+				<a
+					href="#"
+					:title="tab.name"
+					:class="{ 'nav-link': true, active: index === tabIndex }"
+					@click="tabIndex = index"
+					@contextmenu="onTabContextmenu"
+				>
 					<font-awesome-icon
 						v-if="tab.icon"
 						:icon="tab.icon"
 						:class="tab.name ? ['fa-fw', 'mr-2'] : []"
 					/>
 					<span class="text-truncate">
-						<span v-if="tab.translate">{{ $t(tab.name) }}</span>
-						<span v-else>{{ tab.name }}</span>
+						{{ tab.name }}
 					</span>
-					<b-button
+					<button
 						v-if="tab.removable"
-						class="home-tab-close"
-						variant="link"
+						type="button"
+						class="home-tab-close btn btn-link"
 						@click="closeTab(tab, index)"
 					>
 						<font-awesome-icon :icon="['fas', 'times']" />
-					</b-button>
-				</div>
-			</template>
-			<b-container v-if="filteredFiles.length > 0" class="py-5 px-4" fluid>
-				<div class="card-deck">
-					<div class="card" v-for="file in filteredFiles" :key="file.id">
-						<img
-							class="card-img"
-							:src="getThumbnailOrDefault(file)"
-							:alt="file.title"
-						/>
-						<div class="card-body card-img-overlay">
-							<h5 class="card-title">
-								<font-awesome-icon
-									:class="['fa-fw', 'mr-1']"
-									:icon="['fac', `file-${file.extension}`]"
-								/>
-								{{ file.title }}
-							</h5>
-							<p class="card-text">{{ file.description }}</p>
-							<div class="card-footer mr-n2">
-								<div class="btn-group btn-group-sm">
-									<a
-										class="btn btn-link"
-										rel="noopener"
-										:href="file.openUrl"
-										:target="file.id"
-									>
-										<font-awesome-icon
-											:class="['fa-fw']"
-											:icon="['fas', 'link']"
-										/>
-									</a>
-								</div>
+					</button>
+				</a>
+			</li>
+			<!-- New tab -->
+			<li class="home-tab-new nav-item undraggable">
+				<a href="#" class="nav-link" @click="newTab()">
+					<font-awesome-icon :icon="['fas', 'plus']" />
+				</a>
+			</li>
+		</ul>
+		<!-- No tabs content -->
+		<div v-if="tabs.length === 0" class="home-tab-empty">
+			<div class="icon">
+				<font-awesome-icon :icon="['far', 'window-restore']" />
+			</div>
+			<div class="text">
+				{{ $t('home.useButtonToCreateTab') }}
+			</div>
+		</div>
+		<!-- No files content -->
+		<div v-else-if="filteredFiles.length === 0" class="home-tab-empty">
+			<div class="icon">
+				<font-awesome-icon :icon="['far', 'file-alt']" />
+			</div>
+			<div class="text">
+				{{ $t('home.filesWillAppearHere') }}
+			</div>
+		</div>
+		<!-- Normal content -->
+		<div v-else class="home-tab-content">
+			<div class="home-card-deck card-deck">
+				<div
+					class="home-card card"
+					v-for="file in filteredFiles"
+					:key="file.id"
+				>
+					<img
+						class="card-img"
+						:src="getThumbnailOrDefault(file)"
+						:alt="file.title"
+					/>
+					<div class="card-body card-img-overlay">
+						<h5 class="card-title">
+							<font-awesome-icon
+								:class="['fa-fw', 'mr-1']"
+								:icon="['fac', `file-${file.extension}`]"
+							/>
+							{{ file.title }}
+						</h5>
+						<p class="card-text">{{ file.description }}</p>
+						<div class="card-footer mr-n2">
+							<div class="btn-group btn-group-sm">
+								<a
+									class="btn btn-link"
+									rel="noopener"
+									:href="file.openUrl"
+									:target="file.id"
+								>
+									<font-awesome-icon
+										:class="['fa-fw']"
+										:icon="['fas', 'link']"
+									/>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</b-container>
-			<div v-else class="home-tab-empty">
-				<div class="icon">
-					<font-awesome-icon :icon="['far', 'file-alt']" />
-				</div>
-				<div class="text">
-					{{ $t('home.filesWillAppearHere') }}
-				</div>
 			</div>
-		</b-tab>
-		<template slot="tabs">
-			<b-nav-item class="unsortable flex-grow-0" @click.prevent="newTab()">
-				<div class="home-tab-new">
-					<font-awesome-icon :icon="['fas', 'plus']" />
-				</div>
-			</b-nav-item>
-		</template>
-		<template slot="empty">
-			<div class="home-tab-empty">
-				<div class="icon">
-					<font-awesome-icon :icon="['far', 'window-restore']" />
-				</div>
-				<div class="text">
-					{{ $t('home.useButtonToCreateTab') }}
-				</div>
-			</div>
-		</template>
-	</b-tabs>
+		</div>
+	</div>
 </template>
 
 <script>
 import Sortable from 'sortablejs';
+
+import differenceWith from 'lodash/differenceWith';
 
 import fuzzyEquals from '@stratebi/biserver-customization-common/src/fuzzyEquals';
 import generateSvg from '@stratebi/biserver-customization-common/src/generateSvg';
@@ -111,24 +122,54 @@ export default {
 	name: 'HomeTabs',
 	data() {
 		return {
-			tabIndex: 0
+			tabIndex: 0,
+			localTabs: [],
+			fixedTabs: [
+				{
+					name: this.$t('home.global'),
+					icon: ['fas', 'globe-europe'],
+					type: 'global',
+					removable: false,
+					draggable: false,
+					sortable: true
+				},
+				{
+					name: this.$t('home.home'),
+					icon: ['fas', 'home'],
+					type: 'home',
+					removable: false,
+					draggable: false,
+					sortable: true
+				}
+			]
 		};
 	},
 	computed: {
-		userSettings() {
-			return store.state.userSettings;
-		},
 		tabs: {
 			get() {
-				const key = `${this.namespace}.tabs`;
-				const value = safeJSON.parse(this.userSettings[key], []);
-				return value;
+				// Concatenate fixed tabs and local tabs.
+				return [...this.fixedTabs, ...this.localTabs];
 			},
 			set(tabs) {
-				const key = `${this.namespace}.tabs`;
-				const value = safeJSON.stringify(tabs, '[]');
-				store.dispatch('updateUserSettings', { [key]: value });
+				// Filter fixed tabs.
+				this.localTabs = differenceWith(
+					tabs,
+					this.fixedTabs,
+					(a, b) => a.name === b.name
+				);
+
+				// Update remote tabs.
+				store.dispatch('updateUserSettings', {
+					[`${this.namespace}.tabs`]: safeJSON.stringify(this.localTabs, '[]')
+				});
 			}
+		},
+		remoteTabs() {
+			// Fetch remote tabs.
+			return safeJSON.parse(
+				store.state.userSettings[`${this.namespace}.tabs`],
+				[]
+			);
 		},
 		filteredFiles() {
 			if (this.tabIndex >= 0 && this.tabIndex < this.tabs.length) {
@@ -151,18 +192,43 @@ export default {
 			return [];
 		}
 	},
+	watch: {
+		remoteTabs(remoteTabs) {
+			// Populate local tabs.
+			this.localTabs = remoteTabs;
+		}
+	},
 	updated() {
 		this.$nextTick(() => {
-			const $tablist = this.$refs['home-tabs'].$el.querySelector('.nav');
-			Sortable.create($tablist, {
-				delay: 10,
-				animation: 150,
-				draggable: '.nav-item',
-				filter: '.unsortable',
-				onMove: event => !event.related.classList.contains('unsortable'),
-				onUpdate: event => {
-					this.tabs = move(this.tabs.slice(), event.oldIndex, event.newIndex);
-				}
+			const $homeTabs = this.$refs['home-tabs'];
+
+			const $tabList = $homeTabs.querySelector('.home-tab-list');
+			if ($tabList !== null) {
+				Sortable.create($tabList, {
+					delay: 10,
+					animation: 150,
+					draggable: '.nav-item',
+					filter: '.undraggable',
+					onStart: event => (this.tabIndex = event.oldIndex),
+					onEnd: event => (this.tabIndex = event.newIndex),
+					onMove: event => !event.related.classList.contains('undraggable'),
+					onUpdate: event => {
+						this.tabs = move(this.tabs.slice(), event.oldIndex, event.newIndex);
+					}
+				});
+			}
+
+			const $cardDecks = $homeTabs.querySelectorAll('.home-card-deck');
+			$cardDecks.forEach($cardDeck => {
+				Sortable.create($cardDeck, {
+					delay: 10,
+					animation: 150,
+					draggable: '.home-card',
+					onMove: () => this.tabs[this.tabIndex].sortable,
+					onUpdate: () => {
+						/* TODO */
+					}
+				});
 			});
 		});
 	},
@@ -183,16 +249,23 @@ export default {
 				.then(confirmed => {
 					const name = $bForminput.elm.value;
 					if (confirmed && name.length > 0) {
-						const tabIndex = this.tabs.findIndex(tab =>
+						const findIndex = this.tabs.findIndex(tab =>
 							fuzzyEquals(tab.name, name)
 						);
-						if (tabIndex === -1) {
+						if (findIndex === -1) {
 							this.tabs = [
 								...this.tabs,
-								{ name, type: 'tag', removable: true }
+								{
+									name,
+									type: 'tag',
+									removable: true,
+									draggable: true,
+									sortable: false
+								}
 							];
+							this.tabIndex = this.tabs.length - 1;
 						} else {
-							this.tabIndex = tabIndex;
+							this.tabIndex = findIndex;
 						}
 					}
 				});
@@ -211,6 +284,7 @@ export default {
 				.then(confirmed => {
 					if (confirmed) {
 						this.tabs = this.tabs.filter((t, i) => i !== index);
+						this.tabIndex = this.tabs.length - 1;
 					}
 				});
 		},
@@ -229,79 +303,91 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home-tabs::v-deep {
+.home-tabs {
 	.home-tab-list {
+		display: flex;
+		flex-grow: 0;
+		flex-shrink: 1;
+		flex-basis: auto;
+		flex-direction: row;
+
 		max-height: rem(144);
+		overflow-y: auto;
+
 		background-color: map-get($theme-colors, 'primary');
 		border-bottom: rem(1) solid darken(map-get($theme-colors, 'primary'), 10%);
 		box-shadow: $box-shadow;
-		overflow-y: auto;
 
-		.nav-item {
+		.home-tab {
 			max-width: rem(384);
 			@media (max-width: rem(384)) {
 				width: 100%;
 			}
-		}
 
-		.nav-item > .nav-link {
-			padding: 0;
-
-			.home-tab,
-			.home-tab-new {
+			.nav-link {
 				position: relative;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				height: rem(46);
-				color: map-get($theme-colors, 'light');
-				background-color: map-get($theme-colors, 'primary');
-			}
-
-			.home-tab {
 				padding: 0 rem(50);
+				height: rem(46);
+				z-index: 10;
+
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
-				z-index: 10;
+
+				color: map-get($theme-colors, 'light');
+				background-color: map-get($theme-colors, 'primary');
+
 				@include border-collapse(
 					darken(map-get($theme-colors, 'primary'), 10%)
 				);
-			}
-
-			.home-tab-new {
-				padding: 0 rem(20);
-				z-index: 5;
-			}
-
-			.home-tab-close {
-				display: none;
-				position: absolute;
-				right: 0;
-			}
-
-			&.active {
-				.home-tab,
-				.home-tab-new {
-					color: map-get($theme-colors, 'primary');
-					background-color: map-get($theme-colors, 'light');
-				}
 
 				.home-tab-close {
-					display: block;
+					position: absolute;
+					display: none;
+					right: 0;
 				}
+
+				&.active {
+					color: map-get($theme-colors, 'primary');
+					background-color: map-get($theme-colors, 'light');
+
+					.home-tab-close {
+						display: block;
+					}
+				}
+			}
+		}
+
+		.home-tab-new {
+			flex-grow: 0;
+
+			.nav-link {
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0 rem(20);
+				height: rem(46);
+				z-index: 5;
+
+				color: map-get($theme-colors, 'light');
+				background-color: map-get($theme-colors, 'primary');
 			}
 		}
 	}
 
-	.home-tab-content,
-	.home-tab-content > .tab-pane,
-	.home-tab-content > .tab-pane > .home-tab-empty {
-		height: 100%;
-		width: 100%;
-	}
-
 	.home-tab-content {
+		display: flex;
+		flex-grow: 1;
+		flex-shrink: 1;
+		flex-basis: auto;
+		flex-direction: column;
+
+		padding: rem(20);
+
 		.card-deck {
 			.card {
 				margin-bottom: $grid-gutter-width;
@@ -321,6 +407,9 @@ export default {
 				@include media-breakpoint-up(xl) {
 					flex-basis: calc(#{100% / 4} - #{$grid-gutter-width});
 				}
+
+				cursor: pointer;
+				user-select: none;
 
 				.card-body {
 					color: #ffffff;
@@ -378,6 +467,9 @@ export default {
 
 	.home-tab-empty {
 		display: flex;
+		flex-grow: 1;
+		flex-shrink: 1;
+		flex-basis: auto;
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
