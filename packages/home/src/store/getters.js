@@ -17,8 +17,8 @@ export const repositoryFiles = state => {
 export const globalFiles = (state, getters) => {
 	const paths = new Set(
 		safeJSON
-			.parse(state.globalUserSettings['global-items'], [])
-			.map(item => item.fullPath)
+			.parse(state.globalUserSettings.global, [])
+			.map(entry => entry.fullPath)
 	);
 	const files = getters.repositoryFiles.filter(file => paths.has(file.path));
 	return files;
@@ -26,9 +26,7 @@ export const globalFiles = (state, getters) => {
 
 export const homeFiles = (state, getters) => {
 	const paths = new Set(
-		safeJSON
-			.parse(state.userSettings['home-items'], [])
-			.map(item => item.fullPath)
+		safeJSON.parse(state.userSettings.home, []).map(entry => entry.fullPath)
 	);
 	const files = getters.repositoryFiles.filter(file => paths.has(file.path));
 	return files;

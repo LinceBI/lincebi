@@ -60,26 +60,22 @@ export const setRepositoryFile = (state, file) => {
 		}
 	}
 
-	// If "isHomeItem" differs, update "home-items" user setting.
-	if (file.isHomeItem !== currentLocation.isHomeItem) {
-		const oldHomeItemsStr = state.userSettings['home-items'];
-		const oldHomeItems = safeJSON.parse(oldHomeItemsStr, []);
-		const newHomeItems = file.isHomeItem
-			? [...oldHomeItems, { fullPath: file.path }]
-			: oldHomeItems.filter(item => item.fullPath !== file.path);
-		const newHomeItemsStr = safeJSON.stringify(newHomeItems, '[]');
-		state.userSettings['home-items'] = newHomeItemsStr;
+	// If "isHome" differs, update "home" user setting.
+	if (file.isHome !== currentLocation.isHome) {
+		const oldHomeFiles = safeJSON.parse(state.userSettings.home, []);
+		const newHomeFiles = file.isHome
+			? [...oldHomeFiles, { fullPath: file.path }]
+			: oldHomeFiles.filter(entry => entry.fullPath !== file.path);
+		state.userSettings.home = safeJSON.stringify(newHomeFiles, '[]');
 	}
 
-	// If "isGlobalItem" differs, update "global-items" global user setting.
-	if (file.isGlobalItem !== currentLocation.isGlobalItem) {
-		const oldGlobalItemsStr = state.globalUserSettings['global-items'];
-		const oldGlobalItems = safeJSON.parse(oldGlobalItemsStr, []);
-		const newGlobalItems = file.isGlobalItem
-			? [...oldGlobalItems, { fullPath: file.path }]
-			: oldGlobalItems.filter(item => item.fullPath !== file.path);
-		const newGlobalItemsStr = safeJSON.stringify(newGlobalItems, '[]');
-		state.globalUserSettings['global-items'] = newGlobalItemsStr;
+	// If "isGlobal" differs, update "global" global user setting.
+	if (file.isGlobal !== currentLocation.isGlobal) {
+		const oldGlobalFiles = safeJSON.parse(state.globalUserSettings.global, []);
+		const newGlobalFiles = file.isGlobal
+			? [...oldGlobalFiles, { fullPath: file.path }]
+			: oldGlobalFiles.filter(entry => entry.fullPath !== file.path);
+		state.globalUserSettings.global = safeJSON.stringify(newGlobalFiles, '[]');
 	}
 
 	// Update repository file.

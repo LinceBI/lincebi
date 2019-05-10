@@ -1,11 +1,10 @@
 import blankSvg from '@stratebi/biserver-customization-common/src/blankSvg';
 import generateSvg from '@stratebi/biserver-customization-common/src/generateSvg';
-import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
 
 export const namespace = 'stratebi.biserver.customization';
 
 export const globalUserSettings = {
-	'global-items': {
+	global: {
 		initial: '[]',
 		default: '[]'
 	}
@@ -42,24 +41,17 @@ export const userSettings = {
 	},
 	[`${namespace}.tabs`]: {
 		initial: '[]',
-		default: safeJSON.stringify([
-			{
-				name: 'home.global',
-				icon: ['fas', 'globe-europe'],
-				type: 'global',
-				removable: false,
-				translate: true
-			},
-			{
-				name: 'home.home',
-				icon: ['fas', 'home'],
-				type: 'home',
-				removable: false,
-				translate: true
-			}
-		])
+		default: '[]'
 	},
-	'home-items': {
+	home: {
+		initial: '[]',
+		default: '[]'
+	},
+	favorites: {
+		initial: '[]',
+		default: '[]'
+	},
+	recent: {
 		initial: '[]',
 		default: '[]'
 	},
