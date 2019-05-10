@@ -8,7 +8,7 @@
 							class="avatar-image"
 							:src="userSettings[`${namespace}.avatar`]"
 						/>
-						<div :class="{ 'avatar-overlay': true, 'd-none': isDemo }">
+						<div class="avatar-overlay">
 							<font-awesome-icon class="icon" :icon="['fas', 'pencil-alt']" />
 						</div>
 						<input
@@ -17,7 +17,6 @@
 							:name="`${namespace}.avatar`"
 							accept="image/jpeg, image/png, image/gif"
 							@change="onAvatarChange"
-							:disabled="isDemo"
 						/>
 					</label>
 				</b-col>
@@ -54,12 +53,7 @@
 							:placeholder="$t('profile.address.placeholder')"
 						/>
 					</b-form-group>
-					<b-button
-						type="submit"
-						variant="primary"
-						class="float-right"
-						:disabled="isDemo"
-					>
+					<b-button type="submit" variant="primary" class="float-right">
 						<font-awesome-icon :icon="['fas', 'save']" />
 						<span class="lbl">{{ $t('profile.save') }}</span>
 					</b-button>
@@ -84,9 +78,6 @@ export default {
 	},
 	methods: {
 		async onSubmit(event) {
-			// Profile update is disabled for demo.
-			if (this.isDemo) return;
-
 			const formData = new FormData(event.target);
 
 			try {
