@@ -132,7 +132,7 @@ export default {
 									mantleWindow.openURL(
 										'STReport',
 										'STReport',
-										'content/saiku-adhoc/web/index.html?biplugin=true'
+										'api/repos/saiku-adhoc/adhoc.edit'
 									);
 								});
 							}
