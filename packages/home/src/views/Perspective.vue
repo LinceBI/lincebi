@@ -14,6 +14,7 @@ import searchParams from '@stratebi/biserver-customization-common/src/searchPara
 import waitFor from '@stratebi/biserver-customization-common/src/waitFor';
 
 import eventBus from '@/eventBus.js';
+import router from '@/router';
 import store from '@/store';
 
 export default {
@@ -78,6 +79,41 @@ export default {
 			this.mantleWindowProperties.forEach(prop => {
 				window.top[prop] = mantleWindow[prop];
 			});
+		});
+
+		// Update route when perspective changes.
+		this.invokeInMantleWindow(mantleWindow => {
+			setInterval(() => {
+				const visibleFrame = mantleWindow
+					.mantle_getPerspectives()
+					.map(perspective => {
+						const selector = `iframe#${CSS.escape(perspective)}`;
+						return mantleWindow.document.querySelector(selector);
+					})
+					.find(frame => {
+						return frame !== null && frame.offsetParent !== null;
+					});
+
+				let visiblePerspective;
+				if (visibleFrame) {
+					visiblePerspective = visibleFrame.id;
+				} else {
+					// Handle "opened.perspective" with a special check.
+					const knownId = 'solutionNavigatorAndContentPanel';
+					const sncp = mantleWindow.document.getElementById(knownId);
+					if (sncp !== null && sncp.offsetParent !== null) {
+						visiblePerspective = 'opened.perspective';
+					}
+				}
+
+				if (visiblePerspective && visiblePerspective !== this.perspective) {
+					console.warn(`Perspective updated to ${visiblePerspective}`);
+					router.push({
+						name: 'perspective',
+						params: { perspective: visiblePerspective }
+					});
+				}
+			}, 1000);
 		});
 
 		// Listen to STSearch events.
