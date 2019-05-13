@@ -180,12 +180,17 @@ export default {
 				} else if (tab.type === 'home') {
 					return store.getters.homeFiles;
 				} else if (tab.type === 'tag') {
-					return store.getters.repositoryFiles.filter(file => {
-						return (
-							Array.isArray(file.properties.tags) &&
+					const filteredFiles = [];
+					store.getters.repositoryMap.forEach(file => {
+						if (
+							file.properties &&
+							file.properties.tags &&
 							file.properties.tags.some(tag => fuzzyEquals(tag.value, tab.name))
-						);
+						) {
+							filteredFiles.push(file);
+						}
 					});
+					return filteredFiles;
 				}
 			}
 
