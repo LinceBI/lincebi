@@ -13,7 +13,7 @@
 				}"
 			>
 				<a
-					href="#"
+					href="javascript:void(0)"
 					:title="tab.name"
 					:class="{ 'nav-link': true, active: index === tabIndex }"
 					@click="tabIndex = index"
@@ -39,7 +39,7 @@
 			</li>
 			<!-- New tab -->
 			<li class="home-tab-new nav-item undraggable">
-				<a href="#" class="nav-link" @click="newTab()">
+				<a href="javascript:void(0)" class="nav-link" @click="newTab()">
 					<font-awesome-icon :icon="['fas', 'plus']" />
 				</a>
 			</li>
