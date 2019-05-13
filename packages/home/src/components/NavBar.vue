@@ -7,8 +7,8 @@
 				alt="Stratebi"
 			/>
 		</b-navbar-brand>
-		<b-navbar-toggle target="nav-collapse" />
-		<b-collapse id="nav-collapse" is-nav>
+		<b-navbar-toggle :target="`nav-collapse-${uniqueId}`" />
+		<b-collapse :id="`nav-collapse-${uniqueId}`" is-nav>
 			<b-navbar-nav class="nav-section">
 				<nav-bar-welcome class="nav-element" />
 			</b-navbar-nav>
