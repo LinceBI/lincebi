@@ -1,4 +1,5 @@
 $em-base: 16 !default;
+$em-base-px: #{$em-base}px;
 
 @function em($pxval, $base: $em-base) {
 	@return ($pxval / $base) * 1em;
