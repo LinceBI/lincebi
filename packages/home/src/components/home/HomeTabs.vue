@@ -448,7 +448,7 @@ export default {
 				margin-bottom: $grid-gutter-width;
 
 				flex-grow: 0;
-				flex-shrink: 0;
+				flex-shrink: 1;
 				flex-basis: calc(#{100% / 1} - #{$grid-gutter-width});
 
 				@include media-breakpoint-up(md) {
