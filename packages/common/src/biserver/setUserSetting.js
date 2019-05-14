@@ -1,14 +1,21 @@
 import fetch from 'unfetch';
 
 import getContextPath from './getContextPath';
-import isDemo from '../isDemo';
 
-const ALLOWED_SETTINGS_IN_DEMO = new Set(['home', 'favorites', 'recent']);
+import isDemo from '../isDemo';
+import { allowedSettingsInDemo } from './getUserSetting';
 
 export default async (key, value = '') => {
-	// Some user settings are mocked for demo.
-	if (isDemo && !ALLOWED_SETTINGS_IN_DEMO.has(key)) {
-		return value;
+	// Mock user settings in demo environment.
+	if (isDemo && !allowedSettingsInDemo.has(key)) {
+		try {
+			const prefixedKey = `_user_setting_${key}`;
+			window.sessionStorage.setItem(prefixedKey, value);
+			return window.sessionStorage.getItem(prefixedKey);
+		} catch (error) {
+			console.error(error);
+			return null;
+		}
 	}
 
 	const contextPath = await getContextPath();
