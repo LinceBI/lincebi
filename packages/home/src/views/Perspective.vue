@@ -85,6 +85,9 @@ export default {
 		// Update route when perspective changes.
 		this.invokeInMantleWindow(mantleWindow => {
 			setInterval(() => {
+				// Skip if there is no "mantle_getPerspectives" method.
+				if (!mantleWindow.mantle_getPerspectives) return;
+
 				const visibleFrame = mantleWindow
 					.mantle_getPerspectives()
 					.map(perspective => {
