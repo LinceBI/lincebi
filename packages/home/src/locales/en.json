@@ -24,6 +24,7 @@
     "search": "Search",
     "favorites": "Favorites",
     "recents": "Recents",
+    "manageDatasources": "Manage datasources",
     "administration": "Administration",
     "locales": "Languages",
     "logout": "Logout"

@@ -26,6 +26,7 @@ export default {
 			// It is recommended to add to this list all properties which are directly or indirectly used.
 			mantleWindowProperties: [
 				'enableSave',
+				'executeCommand',
 				'mantle_getPerspectives',
 				'mantle_initialized',
 				'mantle_setPerspective',

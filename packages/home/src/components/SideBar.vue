@@ -270,6 +270,21 @@ export default {
 					]
 				},
 				{
+					enabled: this.hasDataAccess,
+					id: 'manageDatasources',
+					name: this.$t('sidebar.manageDatasources'),
+					icon: ['fas', 'database'],
+					click() {
+						router.push({
+							name: 'perspective',
+							params: { perspective: 'browser.perspective' }
+						});
+						eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+							mantleWindow.executeCommand('ManageDatasourcesCommand');
+						});
+					}
+				},
+				{
 					enabled: this.canAdminister || this.canSchedule || this.hasDataAccess,
 					id: 'administration',
 					name: this.$t('sidebar.administration'),
