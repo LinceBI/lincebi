@@ -115,6 +115,10 @@
 			background-size: 100%;
 		}
 
+		#newButton {
+			display: none !important;
+		}
+
 		.newToolbarDropdown {
 			top: 30px !important;
 		}
