@@ -21,7 +21,6 @@ export default {
 <style lang="scss">
 body {
 	margin: 0;
-	padding: rem(10);
 	height: 100vh;
 	font-family: 'Titillium Web', $system-sans-serif;
 	font-size: $em-base-px;
@@ -37,6 +36,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	padding: rem(10);
 	min-height: 100%;
 
 	.login-form {

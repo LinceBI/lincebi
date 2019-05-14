@@ -99,9 +99,9 @@ export default {
 			mouseNode: null,
 			maxNodes: 200,
 			colors: {
-				node: { r: 0x00, g: 0x00, b: 0x00 },
-				repel: { r: 0x00, g: 0x00, b: 0x00 },
-				attract: { r: 0x00, g: 0x00, b: 0x00 }
+				node: { r: 0x30, g: 0x30, b: 0x30 },
+				repel: { r: 0x30, g: 0x30, b: 0x30 },
+				attract: { r: 0x30, g: 0x30, b: 0x30 }
 			}
 		};
 	},
