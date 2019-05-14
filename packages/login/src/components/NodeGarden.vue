@@ -2,17 +2,21 @@
 	<div
 		class="node-garden"
 		ref="container"
+		@click="onClick"
 		@mousemove="onMousemove"
 		@mouseleave="onMouseleave"
-		@mousedown="onMousedown"
-		@mouseup="onMouseup"
 	>
 		<canvas ref="canvas" />
 	</div>
 </template>
 
 <script>
-import defaultTo from 'lodash/defaultTo';
+/*
+ * Based on: https://github.com/pakastin/nodegarden
+ */
+const defaultTo = (value, defaultValue) => {
+	return typeof value === 'undefined' ? defaultValue : value;
+};
 
 export class Node {
 	constructor(garden) {
@@ -35,17 +39,18 @@ export class Node {
 			this.y > this.garden.height + 50 ||
 			this.y < -50
 		) {
-			// If node over screen limits - reset to a init position
+			// If node over screen limits - reset to a init position.
 			this.reset();
 		}
 	}
 
-	reset({ x, y, vx, vy, m } = {}) {
+	reset({ x, y, vx, vy, m, c } = {}) {
 		this.x = defaultTo(x, Math.random() * this.garden.width);
 		this.y = defaultTo(y, Math.random() * this.garden.height);
 		this.vx = defaultTo(vx, Math.random() * 0.5 - 0.25);
 		this.vy = defaultTo(vy, Math.random() * 0.5 - 0.25);
-		this.m = defaultTo(m, Math.random() * 2.5 + 0.5);
+		this.m = defaultTo(m, Math.random() * 3 + 0.5);
+		this.c = defaultTo(c, Math.random() >= 0.5 ? 1 : -1);
 	}
 
 	addForce(force, direction) {
@@ -54,9 +59,9 @@ export class Node {
 	}
 
 	distanceTo(node) {
-		let x = node.x - this.x;
-		let y = node.y - this.y;
-		let total = Math.sqrt(x ** 2 + y ** 2);
+		const x = node.x - this.x;
+		const y = node.y - this.y;
+		const total = Math.sqrt(x ** 2 + y ** 2);
 		return { x, y, total };
 	}
 
@@ -84,14 +89,6 @@ export class Node {
 
 export default {
 	name: 'node-garden',
-	props: {
-		color: {
-			type: Object,
-			default() {
-				return { r: 0, g: 0, b: 0, a: 0.5 };
-			}
-		}
-	},
 	data() {
 		return {
 			mounted: false,
@@ -99,7 +96,13 @@ export default {
 			height: 0,
 			ctx: null,
 			nodes: [],
-			mouseNode: null
+			mouseNode: null,
+			maxNodes: 200,
+			colors: {
+				node: { r: 0x00, g: 0x00, b: 0x00 },
+				repel: { r: 0x00, g: 0x00, b: 0x00 },
+				attract: { r: 0x00, g: 0x00, b: 0x00 }
+			}
 		};
 	},
 	methods: {
@@ -108,42 +111,53 @@ export default {
 				requestAnimationFrame(this.render);
 			}
 
-			// Clear canvas
+			// Clear canvas.
 			this.ctx.clearRect(0, 0, this.width, this.height);
 
-			// Update links
+			// Update links.
 			for (let i = 0; i < this.nodes.length - 1; i++) {
-				let a = this.nodes[i];
+				const a = this.nodes[i];
 
 				for (let j = i + 1; j < this.nodes.length; j++) {
-					let b = this.nodes[j];
+					const b = this.nodes[j];
 
-					// Collision: remove smaller or equal, never both of them
-					let squaredDistance = a.squaredDistanceTo(b);
-					if (squaredDistance <= (a.m / 2 + b.m / 2) ** 2) {
-						if (a.m <= b.m) a.collideTo(b);
-						else b.collideTo(a);
+					const attract = a.c !== b.c;
+
+					// Collision: remove smaller or equal, never both of them.
+					const squaredDistance = a.squaredDistanceTo(b);
+					if (attract && squaredDistance <= (a.m / 2 + b.m / 2) ** 2) {
+						if (a.m <= b.m) {
+							a.collideTo(b);
+						} else {
+							b.collideTo(a);
+						}
 						continue;
 					}
 
-					// Calculate gravity force
-					let force = (2 * (a.m * b.m)) / squaredDistance;
-					let distance = a.distanceTo(b);
-					let direction = {
+					// Calculate gravity force.
+					const force = (2 * (a.m * b.m)) / squaredDistance;
+					const distance = a.distanceTo(b);
+					const direction = {
 						x: distance.x / distance.total,
 						y: distance.y / distance.total
 					};
-					a.addForce(force, direction);
-					b.addForce(-force, direction);
+					a.addForce((attract ? 1 : -1) * force, direction);
+					b.addForce((attract ? 1 : -1) * -force, direction);
 
 					// Draw gravity lines
-					let opacity = force * 200;
-					if (opacity >= 0.025 && opacity < this.color.a) {
+					const opacity = force * 100;
+					if (opacity >= 0.025) {
+						let color;
+						if (attract) {
+							color = this.colors.attract;
+						} else {
+							color = this.colors.repel;
+						}
 						this.ctx.beginPath();
 						this.ctx.strokeStyle = `rgba(
-							${this.color.r},
-							${this.color.g},
-							${this.color.b},
+							${color.r},
+							${color.g},
+							${color.b},
 							${opacity}
 						)`;
 						this.ctx.moveTo(a.x, a.y);
@@ -153,45 +167,46 @@ export default {
 				}
 			}
 
-			// Render and update nodes
+			// Render and update nodes.
 			for (let i = 0; i < this.nodes.length; i++) {
 				this.nodes[i].render();
 				this.nodes[i].update();
 			}
 		},
 		resize() {
-			// If retina screen, scale canvas
+			// If retina screen, scale canvas.
 			if (window.devicePixelRatio !== 1) {
+				this.$refs.canvas.style.transformOrigin = '0 0';
 				this.$refs.canvas.style.transform = `scale(
 					${1 / window.devicePixelRatio}
 				)`;
-				this.$refs.canvas.style.transformOrigin = '0 0';
 			}
 
 			this.width = this.$refs.container.offsetWidth * window.devicePixelRatio;
 			this.height = this.$refs.container.offsetHeight * window.devicePixelRatio;
 			this.area = this.width * this.height;
 
-			// Calculate nodes needed
+			// Calculate nodes needed.
 			this.nodes.length = (Math.sqrt(this.area) / 10) | 0;
-			if (this.nodes.length > 150) this.nodes.length = 150;
+			if (this.nodes.length > this.maxNodes) {
+				this.nodes.length = this.maxNodes;
+			}
 
-			// Set canvas size
+			// Set canvas size.
 			this.$refs.canvas.width = this.width;
 			this.$refs.canvas.height = this.height;
 
-			this.ctx.fillStyle = `rgba(
-				${this.color.r},
-				${this.color.g},
-				${this.color.b},
-				${this.color.a}
-			)`;
+			const color = this.colors.node;
+			this.ctx.fillStyle = `rgb(${color.r}, ${color.g}, ${color.b})`;
 
-			// Create nodes
+			// Create nodes.
 			for (let i = 0; i < this.nodes.length; i++) {
 				if (this.nodes[i]) continue;
 				this.nodes[i] = new Node(this);
 			}
+		},
+		onClick() {
+			this.mouseNode.c *= -1;
 		},
 		onMousemove(event) {
 			this.mouseNode.x = event.pageX * window.devicePixelRatio;
@@ -200,12 +215,6 @@ export default {
 		onMouseleave() {
 			this.mouseNode.x = Number.MAX_SAFE_INTEGER;
 			this.mouseNode.y = Number.MAX_SAFE_INTEGER;
-		},
-		onMousedown() {
-			this.mouseNode.m = -50;
-		},
-		onMouseup() {
-			this.mouseNode.m = 5;
 		}
 	},
 	mounted() {
@@ -214,13 +223,14 @@ export default {
 			this.ctx = this.$refs.canvas.getContext('2d');
 			this.nodes = [];
 
-			// Add mouse node
+			// Add mouse node.
 			this.mouseNode = new Node(this);
 			this.mouseNode.update = () => {};
 			this.mouseNode.reset = () => {};
 			this.mouseNode.render = () => {};
-			this.mouseNode.m = 5;
-			// Move coordinates to unreachable zone
+			this.mouseNode.m = 15;
+			this.mouseNode.c = 1;
+			// Move coordinates to unreachable zone.
 			this.mouseNode.x = Number.MAX_SAFE_INTEGER;
 			this.mouseNode.y = Number.MAX_SAFE_INTEGER;
 			this.nodes.unshift(this.mouseNode);
@@ -237,9 +247,3 @@ export default {
 	}
 };
 </script>
-
-<style scoped lang="scss">
-.node-garden {
-	overflow: hidden;
-}
-</style>
