@@ -9,7 +9,7 @@
 				:class="{
 					'home-tab': true,
 					'nav-item': true,
-					undraggable: !tab.draggable
+					draggable: tab.draggable
 				}"
 			>
 				<a
@@ -38,7 +38,7 @@
 				</a>
 			</li>
 			<!-- New tab -->
-			<li class="home-tab-new nav-item undraggable">
+			<li class="home-tab-new nav-item">
 				<a href="javascript:void(0)" class="nav-link" @click="newTab()">
 					<font-awesome-icon :icon="['fas', 'plus']" />
 				</a>
@@ -54,7 +54,7 @@
 			</div>
 		</div>
 		<!-- No files content -->
-		<div v-else-if="filteredFiles.length === 0" class="home-tab-empty">
+		<div v-else-if="files.length === 0" class="home-tab-empty">
 			<div class="icon">
 				<font-awesome-icon :icon="['far', 'file-alt']" />
 			</div>
@@ -66,9 +66,13 @@
 		<div v-else class="home-tab-content">
 			<div class="home-card-deck card-deck">
 				<div
-					class="home-card card"
-					v-for="file in filteredFiles"
+					v-for="file in files"
 					:key="file.id"
+					:class="{
+						'home-card': true,
+						card: true,
+						sortable: tabs[tabIndex].sortable
+					}"
 				>
 					<img
 						class="card-img"
@@ -171,30 +175,73 @@ export default {
 				[]
 			);
 		},
-		filteredFiles() {
-			if (this.tabIndex >= 0 && this.tabIndex < this.tabs.length) {
-				const tab = this.tabs[this.tabIndex];
+		files: {
+			get() {
+				const files = [];
 
-				if (tab.type === 'global') {
-					return store.getters.globalFiles;
-				} else if (tab.type === 'home') {
-					return store.getters.homeFiles;
-				} else if (tab.type === 'tag') {
-					const filteredFiles = [];
-					store.getters.repositoryMap.forEach(file => {
-						if (
-							file.properties &&
-							file.properties.tags &&
-							file.properties.tags.some(tag => fuzzyEquals(tag.value, tab.name))
-						) {
-							filteredFiles.push(file);
+				if (this.tabIndex >= 0 && this.tabIndex < this.tabs.length) {
+					const tab = this.tabs[this.tabIndex];
+
+					if (tab.type === 'global') {
+						const setting = store.state.globalUserSettings.global;
+						const entries = safeJSON.parse(setting, []);
+						for (const entry of entries) {
+							if (store.getters.repositoryMap.has(entry.fullPath)) {
+								files.push(store.getters.repositoryMap.get(entry.fullPath));
+							}
 						}
-					});
-					return filteredFiles;
+					} else if (tab.type === 'home') {
+						const setting = store.state.userSettings.home;
+						const entries = safeJSON.parse(setting, []);
+						for (const entry of entries) {
+							if (store.getters.repositoryMap.has(entry.fullPath)) {
+								files.push(store.getters.repositoryMap.get(entry.fullPath));
+							}
+						}
+					} else if (tab.type === 'tag') {
+						for (const [, file] of store.getters.repositoryMap) {
+							if (
+								!file.isFolder &&
+								file.properties.tags &&
+								file.properties.tags.some(tag =>
+									fuzzyEquals(tag.value, tab.name)
+								)
+							) {
+								files.push(file);
+							}
+						}
+					}
+				}
+
+				return files;
+			},
+			set(files) {
+				if (this.tabIndex >= 0 && this.tabIndex < this.tabs.length) {
+					const tab = this.tabs[this.tabIndex];
+
+					if (tab.type === 'global') {
+						const entries = files.map(file => ({
+							fullPath: file.path,
+							title: file.title,
+							lastUse: Date.now()
+						}));
+						store.dispatch('updateGlobalUserSettings', {
+							global: safeJSON.stringify(entries, '[]')
+						});
+					} else if (tab.type === 'home') {
+						const entries = files.map(file => ({
+							fullPath: file.path,
+							title: file.title,
+							lastUse: Date.now()
+						}));
+						store.dispatch('updateUserSettings', {
+							home: safeJSON.stringify(entries, '[]')
+						});
+					} else if (tab.type === 'tag') {
+						// Unimplemented.
+					}
 				}
 			}
-
-			return [];
 		}
 	},
 	watch: {
@@ -212,11 +259,10 @@ export default {
 				Sortable.create($tabList, {
 					delay: 10,
 					animation: 150,
-					draggable: '.nav-item',
-					filter: '.undraggable',
+					draggable: '.home-tab.draggable',
 					onStart: event => (this.tabIndex = event.oldIndex),
 					onEnd: event => (this.tabIndex = event.newIndex),
-					onMove: event => !event.related.classList.contains('undraggable'),
+					onMove: event => event.related.classList.contains('draggable'),
 					onUpdate: event => {
 						this.tabs = move(this.tabs.slice(), event.oldIndex, event.newIndex);
 					}
@@ -228,10 +274,14 @@ export default {
 				Sortable.create($cardDeck, {
 					delay: 10,
 					animation: 150,
-					draggable: '.home-card',
-					onMove: () => this.tabs[this.tabIndex].sortable,
-					onUpdate: () => {
-						/* TODO */
+					draggable: '.home-card.sortable',
+					onMove: event => event.related.classList.contains('sortable'),
+					onUpdate: event => {
+						this.files = move(
+							this.files.slice(),
+							event.oldIndex,
+							event.newIndex
+						);
 					}
 				});
 			});
