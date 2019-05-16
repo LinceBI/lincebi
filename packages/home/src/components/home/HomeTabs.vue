@@ -9,7 +9,7 @@
 				:class="{
 					'home-tab': true,
 					'nav-item': true,
-					draggable: tab.draggable
+					draggable: tab.isTabDraggable
 				}"
 			>
 				<a
@@ -28,7 +28,7 @@
 						{{ tab.name }}
 					</span>
 					<button
-						v-if="tab.removable"
+						v-if="tab.isTabRemovable"
 						type="button"
 						class="home-tab-close btn btn-link"
 						@click="closeTab(tab, index)"
@@ -64,6 +64,33 @@
 		</div>
 		<!-- Normal content -->
 		<div v-else class="home-tab-content">
+			<div v-if="currentTab.sort" class="home-card-order">
+				<div class="input-group">
+					<select class="form-control" v-model="currentTab.sort.selected">
+						<option
+							v-for="option in sort.options"
+							:key="option.value"
+							:value="option.value"
+						>
+							{{ option.text }}
+						</option>
+					</select>
+					<div class="input-group-append">
+						<button
+							class="btn btn-primary"
+							type="button"
+							@click="currentTab.sort.asc = !currentTab.sort.asc"
+						>
+							<font-awesome-icon
+								:icon="[
+									'fas',
+									`sort-amount-${currentTab.sort.asc ? 'up' : 'down'}`
+								]"
+							/>
+						</button>
+					</div>
+				</div>
+			</div>
 			<div class="home-card-deck card-deck">
 				<div
 					v-for="file in files"
@@ -71,7 +98,7 @@
 					:class="{
 						'home-card': true,
 						card: true,
-						sortable: tabs[tabIndex].sortable
+						draggable: currentTab.isContentDraggable
 					}"
 				>
 					<img
@@ -119,6 +146,7 @@ import fuzzyEquals from '@stratebi/biserver-customization-common/src/fuzzyEquals
 import generateSvg from '@stratebi/biserver-customization-common/src/generateSvg';
 import move from '@stratebi/biserver-customization-common/src/move';
 import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
+import stringCompare from '@stratebi/biserver-customization-common/src/stringCompare';
 
 import store from '@/store';
 
@@ -133,19 +161,27 @@ export default {
 					name: this.$t('home.global'),
 					icon: ['fas', 'globe-europe'],
 					type: 'global',
-					removable: false,
-					draggable: false,
-					sortable: true
+					isTabRemovable: false,
+					isTabDraggable: false,
+					isContentDraggable: true
 				},
 				{
 					name: this.$t('home.home'),
 					icon: ['fas', 'home'],
 					type: 'home',
-					removable: false,
-					draggable: false,
-					sortable: true
+					isTabRemovable: false,
+					isTabDraggable: false,
+					isContentDraggable: true
 				}
-			]
+			],
+			sort: {
+				options: [
+					{ text: 'Title', value: 'title', type: String },
+					{ text: 'Extension', value: 'extension', type: String },
+					{ text: 'Created', value: 'created', type: Date },
+					{ text: 'Modified', value: 'modified', type: Date }
+				]
+			}
 		};
 	},
 	computed: {
@@ -175,71 +211,99 @@ export default {
 				[]
 			);
 		},
+		currentTab() {
+			return this.tabIndex >= 0 && this.tabIndex < this.tabs.length
+				? this.tabs[this.tabIndex]
+				: null;
+		},
 		files: {
 			get() {
+				if (!this.currentTab) return [];
+
 				const files = [];
 
-				if (this.tabIndex >= 0 && this.tabIndex < this.tabs.length) {
-					const tab = this.tabs[this.tabIndex];
-
-					if (tab.type === 'global') {
-						const setting = store.state.globalUserSettings.global;
-						const entries = safeJSON.parse(setting, []);
-						for (const entry of entries) {
-							if (store.getters.repositoryMap.has(entry.fullPath)) {
-								files.push(store.getters.repositoryMap.get(entry.fullPath));
-							}
-						}
-					} else if (tab.type === 'home') {
-						const setting = store.state.userSettings.home;
-						const entries = safeJSON.parse(setting, []);
-						for (const entry of entries) {
-							if (store.getters.repositoryMap.has(entry.fullPath)) {
-								files.push(store.getters.repositoryMap.get(entry.fullPath));
-							}
-						}
-					} else if (tab.type === 'tag') {
-						for (const [, file] of store.getters.repositoryMap) {
-							if (
-								!file.isFolder &&
-								file.properties.tags &&
-								file.properties.tags.some(tag =>
-									fuzzyEquals(tag.value, tab.name)
-								)
-							) {
-								files.push(file);
-							}
+				if (this.currentTab.type === 'global') {
+					const setting = store.state.globalUserSettings.global;
+					const entries = safeJSON.parse(setting, []);
+					for (const entry of entries) {
+						if (store.getters.repositoryMap.has(entry.fullPath)) {
+							files.push(store.getters.repositoryMap.get(entry.fullPath));
 						}
 					}
+				} else if (this.currentTab.type === 'home') {
+					const setting = store.state.userSettings.home;
+					const entries = safeJSON.parse(setting, []);
+					for (const entry of entries) {
+						if (store.getters.repositoryMap.has(entry.fullPath)) {
+							files.push(store.getters.repositoryMap.get(entry.fullPath));
+						}
+					}
+				} else if (this.currentTab.type === 'tag') {
+					for (const [, file] of store.getters.repositoryMap) {
+						if (
+							!file.isFolder &&
+							file.properties.tags &&
+							file.properties.tags.some(tag =>
+								fuzzyEquals(tag.value, this.currentTab.name)
+							)
+						) {
+							files.push(file);
+						}
+					}
+				}
+
+				if (this.currentTab.sort) {
+					const asc = this.currentTab.sort.asc;
+					const option = this.sort.options.find(options => {
+						return options.value === this.currentTab.sort.selected;
+					});
+					const fallback = this.sort.options[0];
+					files.sort((a, b) => {
+						const comparison = stringCompare(
+							a[option.value],
+							b[option.value],
+							option.type,
+							asc
+						);
+
+						if (comparison === 0 && option !== fallback) {
+							return stringCompare(
+								a[fallback.value],
+								b[fallback.value],
+								fallback.type,
+								asc
+							);
+						}
+
+						return comparison;
+					});
 				}
 
 				return files;
 			},
 			set(files) {
-				if (this.tabIndex >= 0 && this.tabIndex < this.tabs.length) {
-					const tab = this.tabs[this.tabIndex];
+				if (!this.currentTab) return;
 
-					if (tab.type === 'global') {
-						const entries = files.map(file => ({
-							fullPath: file.path,
-							title: file.title,
-							lastUse: Date.now()
-						}));
-						store.dispatch('updateGlobalUserSettings', {
-							global: safeJSON.stringify(entries, '[]')
-						});
-					} else if (tab.type === 'home') {
-						const entries = files.map(file => ({
-							fullPath: file.path,
-							title: file.title,
-							lastUse: Date.now()
-						}));
-						store.dispatch('updateUserSettings', {
-							home: safeJSON.stringify(entries, '[]')
-						});
-					} else if (tab.type === 'tag') {
-						// Unimplemented.
-					}
+				if (this.currentTab.type === 'global') {
+					const entries = files.map(file => ({
+						fullPath: file.path,
+						title: file.title,
+						lastUse: Date.now()
+					}));
+					store.dispatch('updateGlobalUserSettings', {
+						global: safeJSON.stringify(entries, '[]')
+					});
+				} else if (this.currentTab.type === 'home') {
+					const entries = files.map(file => ({
+						fullPath: file.path,
+						title: file.title,
+						lastUse: Date.now()
+					}));
+					store.dispatch('updateUserSettings', {
+						home: safeJSON.stringify(entries, '[]')
+					});
+				} else if (this.currentTab.type === 'tag') {
+					// Unimplemented.
 				}
 			}
 		}
@@ -274,8 +338,8 @@ export default {
 				Sortable.create($cardDeck, {
 					delay: 10,
 					animation: 150,
-					draggable: '.home-card.sortable',
-					onMove: event => event.related.classList.contains('sortable'),
+					draggable: '.home-card.draggable',
+					onMove: event => event.related.classList.contains('draggable'),
 					onUpdate: event => {
 						this.files = move(
 							this.files.slice(),
@@ -313,9 +377,10 @@ export default {
 								{
 									name,
 									type: 'tag',
-									removable: true,
-									draggable: true,
-									sortable: false
+									isTabRemovable: true,
+									isTabDraggable: true,
+									isContentDraggable: false,
+									sort: { asc: false, selected: 'title' }
 								}
 							];
 							this.tabIndex = this.tabs.length - 1;
@@ -442,6 +507,13 @@ export default {
 		flex-direction: column;
 
 		padding: rem(20);
+
+		.home-card-order {
+			width: 100%;
+			max-width: rem(200);
+			margin-bottom: rem(20);
+			align-self: flex-end;
+		}
 
 		.card-deck {
 			.card {
