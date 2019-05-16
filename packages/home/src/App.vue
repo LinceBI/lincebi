@@ -40,17 +40,10 @@ export default {
 
 <style lang="scss">
 body {
-	display: flex;
-	flex-grow: 1;
-	flex-shrink: 1;
-	flex-basis: auto;
-	flex-direction: column;
-
 	margin: 0;
 	min-height: 100vh;
-
 	font-family: 'Titillium Web', $system-sans-serif;
-	font-size: $em-base + 0px;
+	font-size: $em-base-px;
 	background-image: url('~@/assets/img/background.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -58,21 +51,12 @@ body {
 }
 
 .app {
-	display: flex;
-	flex-grow: 1;
-	flex-shrink: 1;
-	flex-basis: auto;
-	flex-direction: column;
-
 	> .page-navbar {
-		display: flex;
-		flex-grow: 0;
-		flex-shrink: 1;
-		flex-basis: auto;
-		flex-direction: row;
-		flex-wrap: wrap;
-
-		height: $navbar-height;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		min-height: $navbar-height;
 		z-index: 1000;
 	}
 
@@ -82,7 +66,9 @@ body {
 		flex-shrink: 1;
 		flex-basis: auto;
 		flex-direction: row;
-		flex-wrap: nowrap;
+		padding-top: $navbar-height;
+		min-height: 100vh;
+		overflow: auto;
 
 		> .page-sidebar {
 			display: flex;
@@ -90,9 +76,7 @@ body {
 			flex-shrink: 0;
 			flex-basis: $sidebar-width;
 			flex-direction: column;
-
-			overflow: visible;
-			padding: 0;
+			flex-wrap: nowrap;
 			z-index: 500;
 		}
 
@@ -102,10 +86,7 @@ body {
 			flex-shrink: 1;
 			flex-basis: auto;
 			flex-direction: column;
-
-			position: relative;
-			overflow: auto;
-			padding: 0;
+			flex-wrap: nowrap;
 			z-index: 0;
 
 			> .page-router {
