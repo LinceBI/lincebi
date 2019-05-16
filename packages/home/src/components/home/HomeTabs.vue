@@ -176,10 +176,10 @@ export default {
 			],
 			sort: {
 				options: [
-					{ text: 'Title', value: 'title', type: String },
-					{ text: 'Extension', value: 'extension', type: String },
-					{ text: 'Created', value: 'created', type: Date },
-					{ text: 'Modified', value: 'modified', type: Date }
+					{ text: this.$t('home.sort.title'), value: 'title', type: String },
+					{ text: this.$t('home.sort.extension'), value: 'extension', type: String },
+					{ text: this.$t('home.sort.created'), value: 'created', type: Date },
+					{ text: this.$t('home.sort.modified'), value: 'modified', type: Date }
 				]
 			}
 		};
@@ -509,8 +509,6 @@ export default {
 		padding: rem(20);
 
 		.home-card-order {
-			width: 100%;
-			max-width: rem(200);
 			margin-bottom: rem(20);
 			align-self: flex-end;
 		}

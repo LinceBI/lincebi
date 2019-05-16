@@ -39,7 +39,13 @@
     "create": "Create",
     "cancel": "Cancel",
     "global": "Global",
-    "home": "Home"
+    "home": "Home",
+    "sort": {
+      "title": "Title",
+      "extension": "Extension",
+      "created": "Creation date",
+      "modified": "Modification date"
+    }
   },
   "profile": {
     "name": { "label": "Name:", "placeholder": "Name..." },
