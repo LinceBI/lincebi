@@ -9,6 +9,7 @@
 	<title>Bridge</title>
 	<link rel="icon" href="/pentaho-style/favicon.ico">
 	<link rel="stylesheet" href="mantle/MantleStyle.css">
+	<link rel="stylesheet" href="mantle/Widgets.css">
 </head>
 
 <body>
