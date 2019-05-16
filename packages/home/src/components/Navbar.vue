@@ -20,7 +20,7 @@
 			<b-navbar-nav class="nav-section ml-auto">
 				<navbar-categories
 					class="nav-element"
-					v-if="installedPlugins.includes('stsearch')"
+					v-if="installedPlugins.includes('stsearch') && isDemo"
 				/>
 				<navbar-search
 					class="nav-element"
