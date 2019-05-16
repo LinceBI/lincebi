@@ -1,31 +1,31 @@
 <template>
-	<b-nav-item-dropdown class="nav-bar-settings" right no-caret>
+	<b-nav-item-dropdown class="navbar-settings" right no-caret>
 		<template slot="button-content">
 			<font-awesome-icon :icon="['fas', 'cog']" />
 			<span class="lbl d-lg-none">{{ $t('navbar.settings') }}</span>
 		</template>
-		<nav-bar-dropdown-item
+		<navbar-dropdown-item
 			:text="$t('navbar.profile')"
 			:icon="['fas', 'user']"
 			href="#/profile"
 		/>
 		<b-dropdown-divider />
-		<nav-bar-dropdown-item
+		<navbar-dropdown-item
 			:text="$t('navbar.showMenuBar')"
 			:enabled="showMenuBar"
 			@click="showMenuBar = !showMenuBar"
 		/>
-		<nav-bar-dropdown-item
+		<navbar-dropdown-item
 			:text="$t('navbar.showToolBar')"
 			:enabled="showToolBar"
 			@click="showToolBar = !showToolBar"
 		/>
-		<nav-bar-dropdown-item
+		<navbar-dropdown-item
 			:text="$t('navbar.showHiddenFiles')"
 			:enabled="showHiddenFiles"
 			@click="showHiddenFiles = !showHiddenFiles"
 		/>
-		<nav-bar-dropdown-item
+		<navbar-dropdown-item
 			:text="$t('navbar.showDescriptionsForTooltips')"
 			:enabled="showDescriptionsForTooltips"
 			@click="showDescriptionsForTooltips = !showDescriptionsForTooltips"
@@ -34,15 +34,15 @@
 </template>
 
 <script>
-import NavBarDropdownItem from '@/components/NavBarDropdownItem.vue';
+import NavbarDropdownItem from '@/components/NavbarDropdownItem.vue';
 
 import store from '@/store';
 import eventBus from '@/eventBus';
 
 export default {
-	name: 'NavBarSettings',
+	name: 'NavbarSettings',
 	components: {
-		NavBarDropdownItem
+		NavbarDropdownItem
 	},
 	computed: {
 		userSettings() {

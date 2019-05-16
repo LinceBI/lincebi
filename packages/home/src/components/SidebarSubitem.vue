@@ -1,7 +1,7 @@
 <template>
 	<b-dropdown-item
-		ref="side-bar-subitem"
-		class="side-bar-subitem"
+		ref="sidebar-subitem"
+		class="sidebar-subitem"
 		v-if="item.enabled"
 		:href="item.href"
 		@click.native="onClick"
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-	name: 'SideBarSubitem',
+	name: 'SidebarSubitem',
 	components: {},
 	props: { item: Object },
 	data() {
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.side-bar-subitem {
+.sidebar-subitem {
 	display: flex;
 	align-items: center;
 	height: rem(45);

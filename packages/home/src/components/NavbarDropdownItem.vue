@@ -8,7 +8,7 @@
 
 <script>
 export default {
-	name: 'NavBarDropdownItem',
+	name: 'NavbarDropdownItem',
 	props: {
 		text: String,
 		href: String,

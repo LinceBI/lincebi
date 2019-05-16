@@ -1,5 +1,5 @@
 <template>
-	<div class="side-bar-item" v-if="item.enabled" :title="item.name">
+	<div class="sidebar-item" v-if="item.enabled" :title="item.name">
 		<div v-if="Array.isArray(item.subitems)">
 			<b-nav-item-dropdown
 				v-if="item.subitems.some(i => i.enabled)"
@@ -18,7 +18,7 @@
 						:src="item.img"
 					/>
 				</template>
-				<side-bar-subitem
+				<sidebar-subitem
 					v-for="(subitem, index) in item.subitems"
 					:key="index"
 					:item="subitem"
@@ -43,12 +43,12 @@
 </template>
 
 <script>
-import SideBarSubitem from '@/components/SideBarSubitem.vue';
+import SidebarSubitem from '@/components/SidebarSubitem.vue';
 
 export default {
-	name: 'SideBarItem',
+	name: 'SidebarItem',
 	components: {
-		SideBarSubitem
+		SidebarSubitem
 	},
 	props: { item: Object },
 	methods: {
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.side-bar-item {
+.sidebar-item {
 	::v-deep .nav-link {
 		padding: rem(8) 0;
 		font-size: rem(20);

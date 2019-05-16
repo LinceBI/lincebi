@@ -1,8 +1,8 @@
 <template>
 	<div class="app">
-		<nav-bar class="page-navbar" />
+		<navbar class="page-navbar" />
 		<div class="page-container">
-			<side-bar class="page-sidebar" />
+			<sidebar class="page-sidebar" />
 			<div class="page-content">
 				<router-multi-view class="page-router" />
 			</div>
@@ -13,14 +13,14 @@
 <script>
 import store from '@/store';
 
-import NavBar from '@/components/NavBar.vue';
-import SideBar from '@/components/SideBar.vue';
+import Navbar from '@/components/Navbar.vue';
+import Sidebar from '@/components/Sidebar.vue';
 
 export default {
 	name: 'App',
 	components: {
-		NavBar,
-		SideBar
+		Navbar,
+		Sidebar
 	},
 	created() {
 		store.dispatch('fetchCanCreate');

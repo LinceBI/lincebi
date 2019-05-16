@@ -1,5 +1,5 @@
 <template>
-	<b-nav-text class="nav-bar-welcome">
+	<b-nav-text class="navbar-welcome">
 		<b-link href="#/profile">
 			<b-img class="user-avatar" :src="userSettings[`${namespace}.avatar`]" />
 		</b-link>
@@ -13,7 +13,7 @@
 import store from '@/store';
 
 export default {
-	name: 'NavBarWelcome',
+	name: 'NavbarWelcome',
 	computed: {
 		userSettings() {
 			return store.state.userSettings;
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.nav-bar-welcome {
+.navbar-welcome {
 	.user-avatar {
 		height: rem(32);
 		width: rem(32);

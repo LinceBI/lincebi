@@ -1,5 +1,6 @@
 <template>
-	<b-navbar class="nav-bar shadow" toggleable="lg" variant="light">
+	<b-navbar class="navbar shadow" toggleable="lg" variant="light">
+		<navbar-sidebar-toggle />
 		<b-navbar-brand class="navbar-logo" href="#/">
 			<b-img
 				class="h-100 w-auto"
@@ -7,17 +8,21 @@
 				alt="Stratebi"
 			/>
 		</b-navbar-brand>
-		<b-navbar-toggle :target="`nav-collapse-${uniqueId}`" />
+		<b-navbar-toggle :target="`nav-collapse-${uniqueId}`">
+			<template slot="default">
+				<font-awesome-icon :icon="['fas', 'bars']" />
+			</template>
+		</b-navbar-toggle>
 		<b-collapse :id="`nav-collapse-${uniqueId}`" is-nav>
 			<b-navbar-nav class="nav-section">
-				<nav-bar-welcome class="nav-element" />
+				<navbar-welcome class="nav-element" />
 			</b-navbar-nav>
 			<b-navbar-nav class="nav-section ml-auto">
-				<nav-bar-categories
+				<navbar-categories
 					class="nav-element"
 					v-if="installedPlugins.includes('stsearch')"
 				/>
-				<nav-bar-search
+				<navbar-search
 					class="nav-element"
 					v-if="installedPlugins.includes('stsearch')"
 				/>
@@ -29,27 +34,29 @@
 					<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
 					<span class="lbl d-lg-none">STAdmin</span>
 				</b-nav-item>
-				<nav-bar-settings v-else class="nav-element" />
+				<navbar-settings v-else class="nav-element" />
 			</b-navbar-nav>
 		</b-collapse>
 	</b-navbar>
 </template>
 
 <script>
-import NavBarCategories from '@/components/NavBarCategories.vue';
-import NavBarSearch from '@/components/NavBarSearch.vue';
-import NavBarSettings from '@/components/NavBarSettings.vue';
-import NavBarWelcome from '@/components/NavBarWelcome.vue';
+import NavbarCategories from '@/components/NavbarCategories.vue';
+import NavbarSearch from '@/components/NavbarSearch.vue';
+import NavbarSettings from '@/components/NavbarSettings.vue';
+import NavbarSidebarToggle from '@/components/NavbarSidebarToggle.vue';
+import NavbarWelcome from '@/components/NavbarWelcome.vue';
 
 import store from '@/store';
 
 export default {
-	name: 'NavBar',
+	name: 'Navbar',
 	components: {
-		NavBarWelcome,
-		NavBarCategories,
-		NavBarSearch,
-		NavBarSettings
+		NavbarCategories,
+		NavbarSearch,
+		NavbarSettings,
+		NavbarSidebarToggle,
+		NavbarWelcome
 	},
 	computed: {
 		installedPlugins() {
@@ -60,7 +67,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.nav-bar {
+.navbar {
 	.navbar-logo {
 		height: rem(40);
 		padding: 0;

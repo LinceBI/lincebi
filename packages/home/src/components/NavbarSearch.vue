@@ -1,6 +1,6 @@
 <template>
 	<b-nav-form
-		class="nav-bar-search"
+		class="navbar-search"
 		@submit.prevent="onSubmit"
 		@reset.prevent="onReset"
 	>
@@ -25,7 +25,7 @@ import eventBus from '@/eventBus';
 import router from '@/router';
 
 export default {
-	name: 'NavBarSearch',
+	name: 'NavbarSearch',
 	data() {
 		return {
 			searchTerms: ''
@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.nav-bar-search {
+.navbar-search {
 	.search-input-group {
 		width: 100%;
 	}

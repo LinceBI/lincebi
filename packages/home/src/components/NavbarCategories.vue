@@ -1,5 +1,5 @@
 <template>
-	<b-nav-form class="nav-bar-categories" v-if="categories.some(i => i.enabled)">
+	<b-nav-form class="navbar-categories" v-if="categories.some(i => i.enabled)">
 		<b-dropdown class="categories-dropdown" variant="primary" right>
 			<template slot="button-content">
 				{{ $t('navbar.categories') }}
@@ -26,7 +26,7 @@ import eventBus from '@/eventBus';
 import router from '@/router';
 
 export default {
-	name: 'NavBarCategories',
+	name: 'NavbarCategories',
 	data() {
 		return {
 			categories: []
@@ -68,7 +68,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.nav-bar-categories {
+.navbar-categories {
 	width: auto;
 
 	.categories-dropdown {

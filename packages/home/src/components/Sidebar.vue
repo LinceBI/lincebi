@@ -1,24 +1,27 @@
 <template>
-	<b-nav class="side-bar shadow" vertical>
-		<side-bar-item v-for="(item, index) in sidebar" :key="index" :item="item" />
+	<b-nav v-if="showSidebar" class="sidebar shadow" vertical>
+		<sidebar-item v-for="(item, index) in sidebar" :key="index" :item="item" />
 	</b-nav>
 </template>
 
 <script>
 import waitFor from '@stratebi/biserver-customization-common/src/waitFor';
 
-import SideBarItem from '@/components/SideBarItem.vue';
+import SidebarItem from '@/components/SidebarItem.vue';
 
 import eventBus from '@/eventBus';
 import router from '@/router';
 import store from '@/store';
 
 export default {
-	name: 'SideBar',
+	name: 'Sidebar',
 	components: {
-		SideBarItem
+		SidebarItem
 	},
 	computed: {
+		showSidebar() {
+			return store.state.showSidebar;
+		},
 		canCreate() {
 			return store.state.canCreate;
 		},
@@ -353,7 +356,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.side-bar {
+.sidebar {
 	background-color: map-get($theme-colors, 'primary');
 }
 </style>
