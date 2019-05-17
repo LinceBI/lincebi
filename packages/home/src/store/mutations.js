@@ -37,6 +37,7 @@ export const setLocale = (state, locale) => {
 	if (state.supportedLocales.includes(locale)) {
 		state.locale = locale;
 		i18n.locale = locale;
+		document.documentElement.lang = locale;
 		replaceParameter('locale', locale);
 	} else {
 		console.warn(`Cannot set locale "${locale}"`);
