@@ -18,10 +18,6 @@
 				<navbar-welcome class="nav-element" />
 			</b-navbar-nav>
 			<b-navbar-nav class="nav-section ml-auto">
-				<navbar-categories
-					class="nav-element"
-					v-if="installedPlugins.includes('stsearch') && isDemo"
-				/>
 				<navbar-search
 					class="nav-element"
 					v-if="installedPlugins.includes('stsearch')"
@@ -41,7 +37,6 @@
 </template>
 
 <script>
-import NavbarCategories from '@/components/NavbarCategories.vue';
 import NavbarSearch from '@/components/NavbarSearch.vue';
 import NavbarSettings from '@/components/NavbarSettings.vue';
 import NavbarSidebarToggle from '@/components/NavbarSidebarToggle.vue';
@@ -52,7 +47,6 @@ import store from '@/store';
 export default {
 	name: 'Navbar',
 	components: {
-		NavbarCategories,
 		NavbarSearch,
 		NavbarSettings,
 		NavbarSidebarToggle,
