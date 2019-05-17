@@ -176,10 +176,26 @@ export default {
 			],
 			sort: {
 				options: [
-					{ text: this.$t('home.sort.title'), value: 'title', type: String },
-					{ text: this.$t('home.sort.extension'), value: 'extension', type: String },
-					{ text: this.$t('home.sort.created'), value: 'created', type: Date },
-					{ text: this.$t('home.sort.modified'), value: 'modified', type: Date }
+					{
+						text: this.$t('home.sort.title'),
+						value: 'title',
+						type: String
+					},
+					{
+						text: this.$t('home.sort.extension'),
+						value: 'extension',
+						type: String
+					},
+					{
+						text: this.$t('home.sort.created'),
+						value: 'created',
+						type: Date
+					},
+					{
+						text: this.$t('home.sort.modified'),
+						value: 'modified',
+						type: Date
+					}
 				]
 			}
 		};
