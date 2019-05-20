@@ -1,32 +1,8 @@
 [
   {
-    "enabled": true,
-    "caption": "",
-    "text": "",
+    "enabled": false,
+    "caption": "Example caption",
+    "text": "Example text",
     "img": "slides/images/01.png"
-  },
-  {
-    "enabled": true,
-    "caption": "",
-    "text": "",
-    "img": "slides/images/02.png"
-  },
-  {
-    "enabled": true,
-    "caption": "",
-    "text": "",
-    "img": "slides/images/03.png"
-  },
-  {
-    "enabled": true,
-    "caption": "",
-    "text": "",
-    "img": "slides/images/04.png"
-  },
-  {
-    "enabled": true,
-    "caption": "",
-    "text": "",
-    "img": "slides/images/05.png"
   }
 ]

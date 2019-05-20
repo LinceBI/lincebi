@@ -1,93 +1,9 @@
 [
   {
-    "enabled": true,
-    "tag": "marketing",
-    "name": "Marketing",
-    "icon": "categories/icons/marketing.svg",
-    "banner": "categories/banners/marketing.png"
-  },
-  {
-    "enabled": true,
-    "tag": "retail",
-    "name": "Retail",
-    "icon": "categories/icons/retail.svg",
-    "banner": "categories/banners/retail.png"
-  },
-  {
-    "enabled": true,
-    "tag": "finance",
-    "name": "Finance",
-    "icon": "categories/icons/finance.svg",
-    "banner": "categories/banners/finance.png"
-  },
-  {
-    "enabled": true,
-    "tag": "ngo",
-    "name": "NGO",
-    "icon": "categories/icons/ngo.svg",
-    "banner": "categories/banners/ngo.png"
-  },
-  {
-    "enabled": true,
-    "tag": "gov",
-    "name": "GOV",
-    "icon": "categories/icons/gov.svg",
-    "banner": "categories/banners/gov.png"
-  },
-  {
-    "enabled": true,
-    "tag": "e-commerce",
-    "name": "e-Commerce",
-    "icon": "categories/icons/e-commerce.svg",
-    "banner": "categories/banners/e-commerce.png"
-  },
-  {
-    "enabled": true,
-    "tag": "telco",
-    "name": "Telco",
-    "icon": "categories/icons/telco.svg",
-    "banner": "categories/banners/telco.png"
-  },
-  {
-    "enabled": true,
-    "tag": "utilities",
-    "name": "Utilities",
-    "icon": "categories/icons/utilities.svg",
-    "banner": "categories/banners/utilities.png"
-  },
-  {
-    "enabled": true,
-    "tag": "tourism",
-    "name": "Tourism",
-    "icon": "categories/icons/tourism.svg",
-    "banner": "categories/banners/tourism.png"
-  },
-  {
-    "enabled": true,
-    "tag": "education",
-    "name": "Education",
-    "icon": "categories/icons/education.svg",
-    "banner": "categories/banners/education.png"
-  },
-  {
-    "enabled": true,
-    "tag": "health",
-    "name": "Health",
-    "icon": "categories/icons/health.svg",
-    "banner": "categories/banners/health.png"
-  },
-  {
-    "enabled": true,
-    "tag": "rrhh",
-    "name": "RRHH",
-    "icon": "categories/icons/rrhh.svg",
-    "banner": "categories/banners/rrhh.png"
-  },
-  {
-    "enabled": true,
-    "tag": "pharma",
-    "name": "Pharma",
-    "icon": "categories/icons/pharma.svg",
-    "banner": "categories/banners/pharma.png"
+    "enabled": false,
+    "tag": "example",
+    "name": "Example",
+    "icon": "categories/icons/example.svg",
+    "banner": "categories/banners/example.png"
   }
 ]
