@@ -63,11 +63,11 @@ $(PACKAGE_LOGIN_DIST_DIR) $(PACKAGE_HOME_DIST_DIR):
 $(DIST_TARBALL): $(BISERVER_DIST_DIR) $(PACKAGE_LOGIN_DIST_DIR) $(PACKAGE_HOME_DIST_DIR)
 	mkdir -p '$(DIST_DIR)'
 	tar -czf '$@' \
-		--transform='s|^$(BISERVER_DIST_DIR)||' \
+		--transform='s|^$(BISERVER_DIST_DIR)|.|' \
 		--exclude='$(BISERVER_DIST_DIR)/tomcat/webapps/pentaho/Login' \
-		--transform='s|^$(PACKAGE_LOGIN_DIST_DIR)|tomcat/webapps/pentaho/Login|' \
+		--transform='s|^$(PACKAGE_LOGIN_DIST_DIR)|./tomcat/webapps/pentaho/Login|' \
 		--exclude='$(BISERVER_DIST_DIR)/tomcat/webapps/pentaho/Home' \
-		--transform='s|^$(PACKAGE_HOME_DIST_DIR)|tomcat/webapps/pentaho/Home|' \
+		--transform='s|^$(PACKAGE_HOME_DIST_DIR)|./tomcat/webapps/pentaho/Home|' \
 		'$(BISERVER_DIST_DIR)' '$(PACKAGE_LOGIN_DIST_DIR)' '$(PACKAGE_HOME_DIST_DIR)'
 
 ##################################################
