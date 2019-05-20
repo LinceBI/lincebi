@@ -50,6 +50,12 @@ export default {
 		userSettings() {
 			return store.state.userSettings;
 		},
+		isRepositoryLoading() {
+			return store.state.isRepositoryLoading;
+		},
+		repository() {
+			return store.state.repository;
+		},
 		dynamicSearchParams() {
 			return searchParams.stringify({
 				locale: this.locale,
@@ -119,6 +125,13 @@ export default {
 				}
 			}, 1000);
 		});
+
+		if (!this.isRepositoryLoading) {
+			// Populate initial STSearch repository.
+			this.invokeInMantleWindow(mantleWindow => {
+				mantleWindow.stsearch_initial_repository = this.repository;
+			});
+		}
 
 		// Listen to STSearch events.
 		this.invokeInMantleWindow(mantleWindow => {
@@ -207,6 +220,14 @@ export default {
 				this.changeShowMenuBar(this.showMenuBar);
 				this.changeShowToolBar(this.showToolBar);
 			}, 500);
+		},
+		isRepositoryLoading(isRepositoryLoading) {
+			if (!isRepositoryLoading) {
+				// Populate initial STSearch repository.
+				this.invokeInMantleWindow(mantleWindow => {
+					mantleWindow.stsearch_initial_repository = this.repository;
+				});
+			}
 		}
 	}
 };
