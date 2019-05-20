@@ -462,6 +462,10 @@ export default {
 		max-height: rem(144);
 		overflow-y: auto;
 
+		// Hide side border of tabs.
+		margin: 0 rem(-1);
+		width: calc(100% + 1px);
+
 		background-color: map-get($theme-colors, 'primary');
 		border-bottom: rem(1) solid darken(map-get($theme-colors, 'primary'), 10%);
 		box-shadow: $box-shadow;
