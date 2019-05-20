@@ -31,15 +31,23 @@
 						v-if="tab.isTabRemovable"
 						type="button"
 						class="home-tab-close btn btn-link"
-						@click="closeTab(tab, index)"
+						@click="closeTabModalShow = true"
 					>
 						<font-awesome-icon :icon="['fas', 'times']" />
 					</button>
 				</a>
+				<div
+					class="home-tab-marker"
+					:style="{ borderTopColor: tab.color }"
+				></div>
 			</li>
 			<!-- New tab -->
 			<li class="home-tab-new nav-item">
-				<a href="javascript:void(0)" class="nav-link" @click="newTab()">
+				<a
+					href="javascript:void(0)"
+					class="nav-link"
+					@click="newTabModalShow = true"
+				>
 					<font-awesome-icon :icon="['fas', 'plus']" />
 				</a>
 			</li>
@@ -143,6 +151,45 @@
 				</div>
 			</div>
 		</div>
+		<!-- New tab modal -->
+		<b-modal
+			v-model="newTabModalShow"
+			:title="$t('home.createTab')"
+			ok-variant="primary"
+			:ok-title="$t('home.create')"
+			cancel-variant="secondary"
+			:cancel-title="$t('home.cancel')"
+			@ok="handleNewTabModalOk"
+			centered
+		>
+			<form ref="new-tab-form" @submit.stop.prevent="handleNewTabFormSubmit">
+				<b-form-group :label="$t('home.tabName.label')">
+					<b-form-input
+						type="text"
+						v-model="newTab.name"
+						:placeholder="$t('home.tabName.placeholder')"
+						autofocus
+						required
+					/>
+				</b-form-group>
+				<b-form-group :label="$t('home.tabColor.label')">
+					<b-form-color-swatch v-model="newTab.color" />
+				</b-form-group>
+			</form>
+		</b-modal>
+		<!-- Close tab modal -->
+		<b-modal
+			v-model="closeTabModalShow"
+			:title="$t('home.deleteTab')"
+			ok-variant="danger"
+			:ok-title="$t('home.delete')"
+			cancel-variant="secondary"
+			:cancel-title="$t('home.cancel')"
+			@ok="handleCloseTabModalOk"
+			centered
+		>
+			{{ $t('home.tabWillBeDeleted', { name: currentTab.name }) }}
+		</b-modal>
 	</div>
 </template>
 
@@ -157,27 +204,34 @@ import move from '@stratebi/biserver-customization-common/src/move';
 import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
 import stringCompare from '@stratebi/biserver-customization-common/src/stringCompare';
 
+import BFormColorSwatch from '@stratebi/biserver-customization-common/src/components/BFormColorSwatch.vue';
+
 import store from '@/store';
 
 export default {
 	name: 'HomeTabs',
+	components: {
+		BFormColorSwatch
+	},
 	data() {
 		return {
 			tabIndex: 0,
 			localTabs: [],
 			fixedTabs: [
 				{
+					type: 'global',
 					name: this.$t('home.global'),
 					icon: ['fas', 'globe-europe'],
-					type: 'global',
+					color: 'transparent',
 					isTabRemovable: false,
 					isTabDraggable: false,
 					isContentDraggable: true
 				},
 				{
+					type: 'home',
 					name: this.$t('home.home'),
 					icon: ['fas', 'home'],
-					type: 'home',
+					color: 'transparent',
 					isTabRemovable: false,
 					isTabDraggable: false,
 					isContentDraggable: true
@@ -206,7 +260,18 @@ export default {
 						type: Date
 					}
 				]
-			}
+			},
+			newTab: {
+				type: 'tag',
+				name: '',
+				color: 'transparent',
+				isTabRemovable: true,
+				isTabDraggable: true,
+				isContentDraggable: false,
+				sort: { asc: false, selected: 'title' }
+			},
+			newTabModalShow: false,
+			closeTabModalShow: false
 		};
 	},
 	computed: {
@@ -380,61 +445,34 @@ export default {
 		});
 	},
 	methods: {
-		newTab() {
-			const $bForminput = this.$createElement('b-form-input', {
-				attrs: { placeholder: this.$t('home.tabName.placeholder') }
-			});
-			this.$bvModal
-				.msgBoxConfirm($bForminput, {
-					title: this.$t('home.tabName.label'),
-					okVariant: 'primary',
-					okTitle: this.$t('home.create'),
-					cancelVariant: 'secondary',
-					cancelTitle: this.$t('home.cancel'),
-					centered: true
-				})
-				.then(confirmed => {
-					const name = $bForminput.elm.value;
-					if (confirmed && name.length > 0) {
-						const findIndex = this.tabs.findIndex(tab =>
-							fuzzyEquals(tab.name, name)
-						);
-						if (findIndex === -1) {
-							this.tabs = [
-								...this.tabs,
-								{
-									name,
-									type: 'tag',
-									isTabRemovable: true,
-									isTabDraggable: true,
-									isContentDraggable: false,
-									sort: { asc: false, selected: 'title' }
-								}
-							];
-							this.tabIndex = this.tabs.length - 1;
-						} else {
-							this.tabIndex = findIndex;
-						}
-					}
-				});
+		handleNewTabModalOk(event) {
+			event.preventDefault();
+			this.handleNewTabFormSubmit();
 		},
-		closeTab(tab, index) {
-			const message = this.$t('home.tabWillBeDeleted', { name: tab.name });
-			this.$bvModal
-				.msgBoxConfirm(message, {
-					title: this.$t('home.deleteTab'),
-					okVariant: 'danger',
-					okTitle: this.$t('home.delete'),
-					cancelVariant: 'secondary',
-					cancelTitle: this.$t('home.cancel'),
-					centered: true
-				})
-				.then(confirmed => {
-					if (confirmed) {
-						this.tabs = this.tabs.filter((t, i) => i !== index);
-						this.tabIndex = this.tabs.length - 1;
-					}
-				});
+		handleNewTabFormSubmit() {
+			if (this.$refs['new-tab-form'].reportValidity()) {
+				this.newTabModalShow = false;
+				this.createNewTab();
+			}
+		},
+		createNewTab() {
+			const findIndex = this.tabs.findIndex(tab => {
+				return fuzzyEquals(tab.name, this.newTab.name);
+			});
+
+			if (findIndex === -1) {
+				this.tabs = [...this.tabs, this.newTab];
+				this.tabIndex = this.tabs.length - 1;
+			} else {
+				this.tabIndex = findIndex;
+			}
+		},
+		handleCloseTabModalOk() {
+			this.removeCurrentTab();
+		},
+		removeCurrentTab() {
+			this.tabs = this.tabs.filter((t, i) => i !== this.tabIndex);
+			this.tabIndex--;
 		},
 		onTabContextmenu(event) {
 			if (event.target.closest('.home-tab-list')) {
@@ -471,7 +509,9 @@ export default {
 		box-shadow: $box-shadow;
 
 		.home-tab {
+			position: relative;
 			max-width: rem(384);
+
 			@media (max-width: rem(384)) {
 				width: 100%;
 			}
@@ -510,6 +550,18 @@ export default {
 						display: block;
 					}
 				}
+			}
+
+			.home-tab-marker {
+				position: absolute;
+				top: rem(1);
+				left: rem(1);
+				height: 0;
+				width: 0;
+				border-width: rem(20) rem(20) 0 0;
+				border-style: solid;
+				border-color: transparent;
+				z-index: 15;
 			}
 		}
 
