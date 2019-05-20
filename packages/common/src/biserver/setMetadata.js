@@ -2,12 +2,18 @@ import cloneDeep from 'lodash/cloneDeep';
 import fetch from 'unfetch';
 
 import getContextPath from './getContextPath';
+import isDemo from '../isDemo';
 import safeJSON from '../safeJSON';
 import searchParams from '../searchParams';
 
 export default async (metadata, { locale = 'default' } = {}) => {
 	if (!Array.isArray(metadata)) {
 		metadata = [metadata];
+	}
+
+	// Mock metadata update in demo environment.
+	if (isDemo) {
+		return metadata.map(entry => ({ fullPath: entry.path }));
 	}
 
 	if (/^en(?:_[A-Z]{2})?$/.test(locale)) {

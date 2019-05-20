@@ -3,7 +3,7 @@ import fetch from 'unfetch';
 import getContextPath from './getContextPath';
 
 import isDemo from '../isDemo';
-export const allowedSettingsInDemo = new Set(['home', 'favorites', 'recent']);
+export const allowedSettingsInDemo = new Set([]);
 
 export default async key => {
 	// Mock user settings in demo environment.
