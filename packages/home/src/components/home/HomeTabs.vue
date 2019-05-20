@@ -44,8 +44,17 @@
 				</a>
 			</li>
 		</ul>
+		<!-- Loading content -->
+		<div v-if="isRepositoryLoading" class="home-tab-empty">
+			<div class="icon">
+				<font-awesome-icon :icon="['fas', 'sync']" spin />
+			</div>
+			<div class="text">
+				{{ $t('home.loadingFiles') }}
+			</div>
+		</div>
 		<!-- No tabs content -->
-		<div v-if="tabs.length === 0" class="home-tab-empty">
+		<div v-else-if="tabs.length === 0" class="home-tab-empty">
 			<div class="icon">
 				<font-awesome-icon :icon="['far', 'window-restore']" />
 			</div>
@@ -201,6 +210,9 @@ export default {
 		};
 	},
 	computed: {
+		isRepositoryLoading() {
+			return store.state.isRepositoryLoading;
+		},
 		tabs: {
 			get() {
 				// Concatenate fixed tabs and local tabs.

@@ -44,6 +44,10 @@ export const setLocale = (state, locale) => {
 	}
 };
 
+export const setIsRepositoryLoading = (state, isRepositoryLoading) => {
+	state.isRepositoryLoading = isRepositoryLoading;
+};
+
 export const setRepository = (state, repository) => {
 	state.repository = repository;
 };

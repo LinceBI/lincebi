@@ -60,8 +60,12 @@ export const updateLocale = async ({ commit }, locale) => {
 };
 
 export const fetchRepository = async ({ commit, state }) => {
+	commit('setIsRepositoryLoading', true);
 	const repository = await getRepository({ locale: state.locale });
-	commit('setRepository', repository);
+	if (repository !== null) {
+		commit('setRepository', repository);
+	}
+	commit('setIsRepositoryLoading', false);
 };
 
 export const updateRepositoryFile = async ({ commit }, file) => {

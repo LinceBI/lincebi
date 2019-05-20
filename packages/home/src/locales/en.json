@@ -30,6 +30,7 @@
     "logout": "Logout"
   },
   "home": {
+    "loadingFiles": "Loading files...",
     "useButtonToCreateTab": "Use the + button to create a new tab",
     "filesWillAppearHere": "Files you tag will appear here",
     "tabName": { "label": "Tab name", "placeholder": "Tab name..." },

@@ -32,6 +32,7 @@ Vue.component('font-awesome-icon', async () => {
 		import('@fortawesome/free-solid-svg-icons/faStar'),
 		import('@fortawesome/free-solid-svg-icons/faStore'),
 		import('@fortawesome/free-solid-svg-icons/faSync'),
+		import('@fortawesome/free-solid-svg-icons/faSync'),
 		import('@fortawesome/free-solid-svg-icons/faTable'),
 		import('@fortawesome/free-solid-svg-icons/faTimes'),
 		import('@fortawesome/free-solid-svg-icons/faTools'),

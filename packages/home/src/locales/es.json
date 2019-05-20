@@ -30,6 +30,7 @@
     "logout": "Salir"
   },
   "home": {
+    "loadingFiles": "Cargando archivos...",
     "useButtonToCreateTab": "Utilice el botón + para crear una nueva pestaña",
     "filesWillAppearHere": "Los archivos que etiquete aparecerán aquí",
     "tabName": { "label": "Nombre de pestaña", "placeholder": "Nombre de pestaña..." },

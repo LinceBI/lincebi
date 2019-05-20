@@ -9,6 +9,7 @@ export default () => ({
 	installedPlugins: [],
 	supportedLocales: ['en'],
 	locale: 'en',
+	isRepositoryLoading: true,
 	repository: { path: '/', children: [] },
 	globalUserSettings: initialGlobalUserSettings,
 	userSettings: initialUserSettings
