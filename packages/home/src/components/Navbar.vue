@@ -1,7 +1,7 @@
 <template>
 	<b-navbar class="navbar shadow" toggleable="lg" variant="light">
 		<navbar-sidebar-toggle />
-		<b-navbar-brand class="navbar-logo" href="#/">
+		<b-navbar-brand class="navbar-logo mr-0 mr-lg-3 p-0" href="#/">
 			<b-img
 				class="h-100 w-auto"
 				src="@/assets/img/stratebi.svg"
@@ -64,7 +64,6 @@ export default {
 .navbar {
 	.navbar-logo {
 		height: rem(40);
-		padding: 0;
 	}
 
 	.nav-element {
