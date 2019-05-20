@@ -39,8 +39,8 @@ all: build
 .PHONY: start-biserver
 start-biserver:
 	'$(TMUX)' \
-		new-session 'cd ./biserver/; $(MAKE) start' ';' \
-		split-window 'cd ./docker/; $(DOCKER_COMPOSE) up' ';' \
+		new-session 'cd ./biserver/; "$(MAKE)" start' ';' \
+		split-window 'cd ./docker/; "$(DOCKER_COMPOSE)" up' ';' \
 		select-layout even-horizontal
 
 .PHONY: start-devserver
@@ -82,7 +82,7 @@ deploy: $(DIST_TARBALL)
 		-DgroupId='$(MAVEN_GROUP)' \
 		-DartifactId='$(PACKAGE_NAME)' \
 		-Dversion='$(PACKAGE_VERSION)$(PACKAGE_VERSION_EXTRA)' \
-		-DrepositoryId=$(MAVEN_REPOSITORY_ID) \
+		-DrepositoryId='$(MAVEN_REPOSITORY_ID)' \
 		-Durl='$(MAVEN_REPOSITORY_URL)'
 
 ##################################################
