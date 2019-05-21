@@ -12,8 +12,7 @@
 			:value="color"
 			:class="{ color: true, transparent: color === 'transparent' }"
 			:style="{ backgroundColor: color }"
-			>&nbsp;</b-form-radio
-		>
+		></b-form-radio>
 	</b-form-radio-group>
 </template>
 
@@ -64,6 +63,9 @@ export default {
 	.color {
 		flex-grow: 0;
 		margin: 0;
+		padding: rem(6) 0;
+		width: rem(28);
+		height: rem(34);
 		border: none;
 		border-radius: 0;
 		z-index: 0;

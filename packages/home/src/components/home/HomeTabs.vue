@@ -175,6 +175,9 @@
 				<b-form-group :label="$t('home.tabColor.label')">
 					<b-form-color-swatch v-model="newTab.color" />
 				</b-form-group>
+				<b-form-group :label="$t('home.tabIcon.label')">
+					<b-form-icon-swatch v-model="newTab.icon" />
+				</b-form-group>
 			</form>
 		</b-modal>
 		<!-- Close tab modal -->
@@ -205,13 +208,15 @@ import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
 import stringCompare from '@stratebi/biserver-customization-common/src/stringCompare';
 
 import BFormColorSwatch from '@stratebi/biserver-customization-common/src/components/BFormColorSwatch.vue';
+import BFormIconSwatch from '@stratebi/biserver-customization-common/src/components/BFormIconSwatch.vue';
 
 import store from '@/store';
 
 export default {
 	name: 'HomeTabs',
 	components: {
-		BFormColorSwatch
+		BFormColorSwatch,
+		BFormIconSwatch
 	},
 	data() {
 		return {
@@ -221,8 +226,8 @@ export default {
 				{
 					type: 'global',
 					name: this.$t('home.global'),
-					icon: ['fas', 'globe-europe'],
 					color: 'transparent',
+					icon: { prefix: 'fas', iconName: 'globe' },
 					isTabRemovable: false,
 					isTabDraggable: false,
 					isContentDraggable: true
@@ -230,8 +235,8 @@ export default {
 				{
 					type: 'home',
 					name: this.$t('home.home'),
-					icon: ['fas', 'home'],
 					color: 'transparent',
+					icon: { prefix: 'fas', iconName: 'home' },
 					isTabRemovable: false,
 					isTabDraggable: false,
 					isContentDraggable: true
@@ -265,6 +270,7 @@ export default {
 				type: 'tag',
 				name: '',
 				color: 'transparent',
+				icon: null,
 				isTabRemovable: true,
 				isTabDraggable: true,
 				isContentDraggable: false,

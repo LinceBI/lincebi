@@ -36,6 +36,7 @@
     "createTab": "Crear pestaña",
     "tabName": { "label": "Nombre de pestaña", "placeholder": "Nombre de pestaña..." },
     "tabColor": { "label": "Color de pestaña", "placeholder": "Color de pestaña..." },
+    "tabIcon": { "label": "Icono de pestaña", "placeholder": "Icono de pestaña..." },
     "deleteTab": "Eliminar pestaña",
     "tabWillBeDeleted": "La pestaña \"{name}\" será eliminada.",
     "delete": "Eliminar",
