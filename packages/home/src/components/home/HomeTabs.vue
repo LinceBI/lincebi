@@ -38,7 +38,7 @@
 				</a>
 				<div
 					class="home-tab-marker"
-					:style="{ borderTopColor: tab.color }"
+					:style="{ borderColor: tab.color }"
 				></div>
 			</li>
 			<!-- New tab -->
@@ -508,7 +508,7 @@ export default {
 
 		// Hide side border of tabs.
 		margin: 0 rem(-1);
-		width: calc(100% + 1px);
+		width: calc(100% + #{rem(1)});
 
 		background-color: map-get($theme-colors, 'primary');
 		border-bottom: rem(1) solid darken(map-get($theme-colors, 'primary'), 10%);
@@ -560,11 +560,11 @@ export default {
 
 			.home-tab-marker {
 				position: absolute;
-				top: rem(1);
 				left: rem(1);
+				bottom: 0;
 				height: 0;
-				width: 0;
-				border-width: rem(20) rem(20) 0 0;
+				width: calc(100% - #{rem(1)});
+				border-width: rem(3);
 				border-style: solid;
 				border-color: transparent;
 				z-index: 15;
