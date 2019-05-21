@@ -13,16 +13,16 @@
 				}"
 			>
 				<a
-					href="javascript:void(0)"
 					:title="tab.name"
 					:class="{ 'nav-link': true, active: index === tabIndex }"
 					@click="tabIndex = index"
 					@contextmenu="onTabContextmenu"
+					href="javascript:void(0)"
 				>
 					<font-awesome-icon
 						v-if="tab.icon"
 						:icon="tab.icon"
-						:class="tab.name ? ['fa-fw', 'mr-2'] : []"
+						class="fa-fw mr-2"
 					/>
 					<span class="text-truncate">
 						{{ tab.name }}
@@ -36,49 +36,38 @@
 						<font-awesome-icon :icon="['fas', 'times']" />
 					</button>
 				</a>
-				<div
-					class="home-tab-marker"
-					:style="{ borderColor: tab.color }"
-				></div>
+				<div class="home-tab-marker" :style="{ borderColor: tab.color }"></div>
 			</li>
 			<!-- New tab -->
 			<li class="home-tab-new nav-item">
 				<a
-					href="javascript:void(0)"
 					class="nav-link"
 					@click="newTabModalShow = true"
+					href="javascript:void(0)"
 				>
 					<font-awesome-icon :icon="['fas', 'plus']" />
 				</a>
 			</li>
 		</ul>
 		<!-- Loading content -->
-		<div v-if="isRepositoryLoading" class="home-tab-empty">
-			<div class="icon">
-				<font-awesome-icon :icon="['fas', 'sync']" spin />
-			</div>
-			<div class="text">
-				{{ $t('home.loadingFiles') }}
-			</div>
-		</div>
+		<home-tab-empty
+			v-if="isRepositoryLoading"
+			:icon="['fas', 'sync']"
+			:text="$t('home.loadingFiles')"
+			spin
+		/>
 		<!-- No tabs content -->
-		<div v-else-if="tabs.length === 0" class="home-tab-empty">
-			<div class="icon">
-				<font-awesome-icon :icon="['far', 'window-restore']" />
-			</div>
-			<div class="text">
-				{{ $t('home.useButtonToCreateTab') }}
-			</div>
-		</div>
+		<home-tab-empty
+			v-else-if="tabs.length === 0"
+			:icon="['far', 'window-restore']"
+			:text="$t('home.useButtonToCreateTab')"
+		/>
 		<!-- No files content -->
-		<div v-else-if="files.length === 0" class="home-tab-empty">
-			<div class="icon">
-				<font-awesome-icon :icon="['far', 'file-alt']" />
-			</div>
-			<div class="text">
-				{{ $t('home.filesWillAppearHere') }}
-			</div>
-		</div>
+		<home-tab-empty
+			v-else-if="files.length === 0"
+			:icon="['far', 'file-alt']"
+			:text="$t('home.filesWillAppearHere')"
+		/>
 		<!-- Normal content -->
 		<div v-else class="home-tab-content">
 			<div v-if="currentTab.sort" class="home-card-order">
@@ -210,13 +199,16 @@ import stringCompare from '@stratebi/biserver-customization-common/src/stringCom
 import BFormColorSwatch from '@stratebi/biserver-customization-common/src/components/BFormColorSwatch.vue';
 import BFormIconSwatch from '@stratebi/biserver-customization-common/src/components/BFormIconSwatch.vue';
 
+import HomeTabEmpty from '@/components/home/HomeTabEmpty';
+
 import store from '@/store';
 
 export default {
 	name: 'HomeTabs',
 	components: {
 		BFormColorSwatch,
-		BFormIconSwatch
+		BFormIconSwatch,
+		HomeTabEmpty
 	},
 	data() {
 		return {
@@ -677,30 +669,6 @@ export default {
 					}
 				}
 			}
-		}
-	}
-
-	.home-tab-empty {
-		display: flex;
-		flex-grow: 1;
-		flex-shrink: 1;
-		flex-basis: auto;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-
-		text-align: center;
-		font-weight: bold;
-		color: map-get($theme-colors, 'secondary');
-
-		.icon {
-			padding: rem(5);
-			font-size: rem(80);
-		}
-
-		.text {
-			padding: rem(5);
-			font-size: rem(24);
 		}
 	}
 }
