@@ -527,9 +527,9 @@ export default {
 
 		.home-tab {
 			position: relative;
-			max-width: rem(384);
+			max-width: rem(400);
 
-			@media (max-width: rem(384)) {
+			@media (max-width: rem(400)) {
 				width: 100%;
 			}
 
