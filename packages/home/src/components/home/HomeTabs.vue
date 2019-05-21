@@ -628,7 +628,7 @@ export default {
 
 				.card-body {
 					color: #ffffff;
-					text-shadow: 1px 1px 4px #000;
+					text-shadow: rem(1) rem(1) rem(4) #000;
 					background-color: rgba(0, 0, 0, 0.6);
 					transition: background-color 200ms ease-in;
 

@@ -34,7 +34,7 @@ export default {
 
 <style scoped lang="scss">
 .home-slider::v-deep {
-	text-shadow: 1px 1px 2px #333;
+	text-shadow: rem(1) rem(1) rem(2) #333;
 
 	.carousel-item > img {
 		display: block;
