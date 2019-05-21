@@ -9,7 +9,7 @@
 				:class="{
 					'home-tab': true,
 					'nav-item': true,
-					draggable: tab.isTabDraggable
+					draggable: tab.isDraggable
 				}"
 			>
 				<a
@@ -28,7 +28,7 @@
 						{{ tab.name }}
 					</span>
 					<button
-						v-if="tab.isTabRemovable"
+						v-if="tab.isRemovable"
 						type="button"
 						class="home-tab-close btn btn-link"
 						@click="closeTabModalShow = true"
@@ -157,9 +157,15 @@
 						type="text"
 						v-model="newTab.name"
 						:placeholder="$t('home.tabName.placeholder')"
+						:list="`new-tab-name-${uniqueId}`"
 						autofocus
 						required
 					/>
+					<datalist :id="`new-tab-name-${uniqueId}`">
+						<option v-for="tab in localTabs" :key="tab.name">
+							{{ tab.name }}
+						</option>
+					</datalist>
 				</b-form-group>
 				<b-form-group :label="$t('home.tabColor.label')">
 					<b-form-color-swatch v-model="newTab.color" />
@@ -188,6 +194,7 @@
 <script>
 import Sortable from 'sortablejs';
 
+import cloneDeep from 'lodash/cloneDeep';
 import differenceWith from 'lodash/differenceWith';
 
 import fuzzyEquals from '@stratebi/biserver-customization-common/src/fuzzyEquals';
@@ -220,8 +227,8 @@ export default {
 					name: this.$t('home.global'),
 					color: 'transparent',
 					icon: { prefix: 'fas', iconName: 'globe' },
-					isTabRemovable: false,
-					isTabDraggable: false,
+					isRemovable: false,
+					isDraggable: false,
 					isContentDraggable: true
 				},
 				{
@@ -229,8 +236,8 @@ export default {
 					name: this.$t('home.home'),
 					color: 'transparent',
 					icon: { prefix: 'fas', iconName: 'home' },
-					isTabRemovable: false,
-					isTabDraggable: false,
+					isRemovable: false,
+					isDraggable: false,
 					isContentDraggable: true
 				}
 			],
@@ -263,8 +270,8 @@ export default {
 				name: '',
 				color: 'transparent',
 				icon: null,
-				isTabRemovable: true,
-				isTabDraggable: true,
+				isRemovable: true,
+				isDraggable: true,
 				isContentDraggable: false,
 				sort: { asc: false, selected: 'title' }
 			},
@@ -409,9 +416,9 @@ export default {
 		this.$nextTick(() => {
 			const $homeTabs = this.$refs['home-tabs'];
 
-			const $tabList = $homeTabs.querySelector('.home-tab-list');
-			if ($tabList !== null) {
-				Sortable.create($tabList, {
+			const $homeTabList = $homeTabs.querySelector('.home-tab-list');
+			if ($homeTabList !== null) {
+				Sortable.create($homeTabList, {
 					delay: 10,
 					animation: 150,
 					draggable: '.home-tab.draggable',
@@ -424,9 +431,9 @@ export default {
 				});
 			}
 
-			const $cardDecks = $homeTabs.querySelectorAll('.home-card-deck');
-			$cardDecks.forEach($cardDeck => {
-				Sortable.create($cardDeck, {
+			const $homeCardDecks = $homeTabs.querySelectorAll('.home-card-deck');
+			$homeCardDecks.forEach($homeCardDecks => {
+				Sortable.create($homeCardDecks, {
 					delay: 10,
 					animation: 150,
 					draggable: '.home-card.draggable',
@@ -449,28 +456,40 @@ export default {
 		},
 		handleNewTabFormSubmit() {
 			if (this.$refs['new-tab-form'].reportValidity()) {
+				this.createTab(cloneDeep(this.newTab));
 				this.newTabModalShow = false;
-				this.createNewTab();
-			}
-		},
-		createNewTab() {
-			const findIndex = this.tabs.findIndex(tab => {
-				return fuzzyEquals(tab.name, this.newTab.name);
-			});
-
-			if (findIndex === -1) {
-				this.tabs = [...this.tabs, this.newTab];
-				this.tabIndex = this.tabs.length - 1;
-			} else {
-				this.tabIndex = findIndex;
+				this.newTab.name = '';
 			}
 		},
 		handleCloseTabModalOk() {
-			this.removeCurrentTab();
+			this.removeTab(this.tabIndex);
 		},
-		removeCurrentTab() {
-			this.tabs = this.tabs.filter((t, i) => i !== this.tabIndex);
-			this.tabIndex--;
+		createTab(newTab) {
+			const newTabIndex = this.tabs.findIndex(tab => {
+				return fuzzyEquals(tab.name, newTab.name);
+			});
+
+			if (newTabIndex === -1) {
+				this.tabs = [...this.tabs, newTab];
+				this.tabIndex = this.tabs.length - 1;
+			} else {
+				const foundTab = this.tabs[newTabIndex];
+				// Replace tab if type equals tag.
+				if (foundTab.type === 'tag') {
+					const updatedTabs = this.tabs.slice();
+					updatedTabs[newTabIndex] = newTab;
+					this.tabs = updatedTabs;
+				}
+				this.tabIndex = newTabIndex;
+			}
+		},
+		removeTab(removeTabIndex) {
+			this.tabs = this.tabs.filter((tab, index) => {
+				return index !== removeTabIndex || !tab.isRemovable;
+			});
+			if (this.tabIndex >= removeTabIndex) {
+				this.tabIndex--;
+			}
 		},
 		onTabContextmenu(event) {
 			if (event.target.closest('.home-tab-list')) {
