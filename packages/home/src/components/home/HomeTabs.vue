@@ -219,8 +219,11 @@ export default {
 	},
 	data() {
 		return {
+			// Selected tab index.
 			tabIndex: 0,
+			// Local tabs are populated with remote tabs.
 			localTabs: [],
+			// Fixed tabs will never be stored server side.
 			fixedTabs: [
 				{
 					type: 'global',
@@ -241,6 +244,18 @@ export default {
 					isContentDraggable: true
 				}
 			],
+			// New tab template.
+			newTab: {
+				type: 'tag',
+				name: '',
+				color: 'transparent',
+				icon: null,
+				isRemovable: true,
+				isDraggable: true,
+				isContentDraggable: false,
+				sort: { asc: false, selected: 'title' }
+			},
+			// Sort criteria.
 			sort: {
 				options: [
 					{
@@ -265,24 +280,14 @@ export default {
 					}
 				]
 			},
-			newTab: {
-				type: 'tag',
-				name: '',
-				color: 'transparent',
-				icon: null,
-				isRemovable: true,
-				isDraggable: true,
-				isContentDraggable: false,
-				sort: { asc: false, selected: 'title' }
-			},
+			// Variables to control the display of modals.
 			newTabModalShow: false,
-			closeTabModalShow: false
+			closeTabModalShow: false,
+			// Map of elements associated to Sortable.js objects.
+			sortables: new Map()
 		};
 	},
 	computed: {
-		isRepositoryLoading() {
-			return store.state.isRepositoryLoading;
-		},
 		tabs: {
 			get() {
 				// Concatenate fixed tabs and local tabs.
@@ -316,9 +321,11 @@ export default {
 		},
 		files: {
 			get() {
-				if (!this.currentTab) return [];
-
 				const files = [];
+
+				if (!this.currentTab) {
+					return files;
+				}
 
 				if (this.currentTab.type === 'global') {
 					const setting = store.state.globalUserSettings.global;
@@ -380,7 +387,9 @@ export default {
 				return files;
 			},
 			set(files) {
-				if (!this.currentTab) return;
+				if (!this.currentTab) {
+					return;
+				}
 
 				if (this.currentTab.type === 'global') {
 					const entries = files.map(file => ({
@@ -404,6 +413,9 @@ export default {
 					// Unimplemented.
 				}
 			}
+		},
+		isRepositoryLoading() {
+			return store.state.isRepositoryLoading;
 		}
 	},
 	watch: {
@@ -416,38 +428,64 @@ export default {
 		this.$nextTick(() => {
 			const $homeTabs = this.$refs['home-tabs'];
 
+			// Create Sortable.js object for "home-tab-list" element if it does not exist on the map.
 			const $homeTabList = $homeTabs.querySelector('.home-tab-list');
-			if ($homeTabList !== null) {
-				Sortable.create($homeTabList, {
-					delay: 10,
-					animation: 150,
-					draggable: '.home-tab.draggable',
-					onStart: event => (this.tabIndex = event.oldIndex),
-					onEnd: event => (this.tabIndex = event.newIndex),
-					onMove: event => event.related.classList.contains('draggable'),
-					onUpdate: event => {
-						this.tabs = move(this.tabs.slice(), event.oldIndex, event.newIndex);
-					}
-				});
+			if (!this.sortables.has($homeTabList)) {
+				this.sortables.set(
+					$homeTabList,
+					Sortable.create($homeTabList, {
+						delay: 10,
+						animation: 150,
+						draggable: '.home-tab.draggable',
+						onStart: event => (this.tabIndex = event.oldIndex),
+						onEnd: event => (this.tabIndex = event.newIndex),
+						onMove: event => event.related.classList.contains('draggable'),
+						onUpdate: event => {
+							this.tabs = move(
+								this.tabs.slice(),
+								event.oldIndex,
+								event.newIndex
+							);
+						}
+					})
+				);
 			}
 
+			// Create Sortable.js objects for all "home-card-deck" elements that do not exist on the map.
 			const $homeCardDecks = $homeTabs.querySelectorAll('.home-card-deck');
-			$homeCardDecks.forEach($homeCardDecks => {
-				Sortable.create($homeCardDecks, {
-					delay: 10,
-					animation: 150,
-					draggable: '.home-card.draggable',
-					onMove: event => event.related.classList.contains('draggable'),
-					onUpdate: event => {
-						this.files = move(
-							this.files.slice(),
-							event.oldIndex,
-							event.newIndex
-						);
-					}
-				});
+			$homeCardDecks.forEach($homeCardDeck => {
+				if (!this.sortables.has($homeCardDeck)) {
+					this.sortables.set(
+						$homeCardDeck,
+						Sortable.create($homeCardDeck, {
+							delay: 10,
+							animation: 150,
+							draggable: '.home-card.draggable',
+							onMove: event => event.related.classList.contains('draggable'),
+							onUpdate: event => {
+								this.files = move(
+									this.files.slice(),
+									event.oldIndex,
+									event.newIndex
+								);
+							}
+						})
+					);
+				}
+			});
+
+			// Destroy Sortable.js objects that are no longer needed.
+			this.sortables.forEach((sortable, $element) => {
+				if (!$homeTabs.contains($element)) {
+					this.sortables.delete($element);
+					sortable.destroy();
+				}
 			});
 		});
+	},
+	beforeDestroy() {
+		// Destroy all Sortable.js objects.
+		this.sortables.forEach(sortable => sortable.destroy());
 	},
 	methods: {
 		handleNewTabModalOk(event) {
