@@ -4,6 +4,7 @@
 		ref="mantle"
 		:src="`../BridgeHome?${staticSearchParams}`"
 		:sandbox="isSanboxed ? sandboxAllowed.join(' ') : false"
+		@load="handleMantleLoad"
 	/>
 </template>
 
@@ -75,70 +76,10 @@ export default {
 	},
 	created() {
 		this.staticSearchParams = this.dynamicSearchParams;
-
 		eventBus.$on('mantle.invoke', this.invokeInMantleWindow);
 		eventBus.$on('mantle.perspective.invoke', this.invokeInPerspectiveWindow);
 		eventBus.$on('mantle.perspective.reload', this.reloadPerspective);
 		eventBus.$on('mantle.perspective.params', this.changePerspectiveParams);
-
-		// Some plugins access these properties using "window.top", so we will expose them.
-		this.invokeInMantleWindow(mantleWindow => {
-			this.mantleWindowProperties.forEach(prop => {
-				window.top[prop] = mantleWindow[prop];
-			});
-		});
-
-		// Update route when perspective changes.
-		this.invokeInMantleWindow(mantleWindow => {
-			setInterval(() => {
-				// Skip if there is no "mantle_getPerspectives" method.
-				if (!mantleWindow.mantle_getPerspectives) return;
-
-				const visibleFrame = mantleWindow
-					.mantle_getPerspectives()
-					.map(perspective => {
-						const selector = `iframe#${CSS.escape(perspective)}`;
-						return mantleWindow.document.querySelector(selector);
-					})
-					.find(frame => {
-						return frame !== null && frame.offsetParent !== null;
-					});
-
-				let visiblePerspective;
-				if (visibleFrame) {
-					visiblePerspective = visibleFrame.id;
-				} else {
-					// Handle "opened.perspective" with a special check.
-					const knownId = 'solutionNavigatorAndContentPanel';
-					const sncp = mantleWindow.document.getElementById(knownId);
-					if (sncp !== null && sncp.offsetParent !== null) {
-						visiblePerspective = 'opened.perspective';
-					}
-				}
-
-				if (visiblePerspective && visiblePerspective !== this.perspective) {
-					console.warn(`Perspective updated to ${visiblePerspective}`);
-					router.push({
-						name: 'perspective',
-						params: { perspective: visiblePerspective }
-					});
-				}
-			}, 1000);
-		});
-
-		if (!this.isRepositoryLoading) {
-			// Populate initial STSearch repository.
-			this.invokeInMantleWindow(mantleWindow => {
-				mantleWindow.stsearch_initial_repository = this.repository;
-			});
-		}
-
-		// Listen to STSearch events.
-		this.invokeInMantleWindow(mantleWindow => {
-			mantleWindow.addEventListener('stsearch-set-metadata', ({ detail }) => {
-				store.commit('setRepositoryFile', detail);
-			});
-		});
 	},
 	methods: {
 		retrieveMantleWindow() {
@@ -199,6 +140,70 @@ export default {
 			this.invokeInMantleWindow(mantleWindow => {
 				mantleWindow.document.body.classList.toggle('show-tool-bar', show);
 			});
+		},
+		handleMantleLoad() {
+			this.invokeInMantleWindow(mantleWindow => {
+				// Some plugins access these properties using "window.top", so we will expose them.
+				this.mantleWindowProperties.forEach(prop => {
+					window.top[prop] = mantleWindow[prop];
+				});
+
+				// Set menu bar and toolbar state.
+				mantleWindow.document.body.classList.toggle(
+					'show-menu-bar',
+					this.showMenuBar
+				);
+				mantleWindow.document.body.classList.toggle(
+					'show-tool-bar',
+					this.showToolBar
+				);
+
+				// Update route when perspective changes.
+				mantleWindow.setInterval(() => {
+					// Skip if there is no "mantle_getPerspectives" method.
+					if (!mantleWindow.mantle_getPerspectives) return;
+
+					const visibleFrame = mantleWindow
+						.mantle_getPerspectives()
+						.map(perspective => {
+							const selector = `iframe#${CSS.escape(perspective)}`;
+							return mantleWindow.document.querySelector(selector);
+						})
+						.find(frame => {
+							return frame !== null && frame.offsetParent !== null;
+						});
+
+					let visiblePerspective;
+					if (visibleFrame) {
+						visiblePerspective = visibleFrame.id;
+					} else {
+						// Handle "opened.perspective" with a special check.
+						const knownId = 'solutionNavigatorAndContentPanel';
+						const sncp = mantleWindow.document.getElementById(knownId);
+						if (sncp !== null && sncp.offsetParent !== null) {
+							visiblePerspective = 'opened.perspective';
+						}
+					}
+
+					if (visiblePerspective && visiblePerspective !== this.perspective) {
+						console.warn(`Perspective updated to ${visiblePerspective}`);
+						router.push({
+							name: 'perspective',
+							params: { perspective: visiblePerspective }
+						});
+					}
+				}, 1000);
+
+				// Populate initial STSearch repository.
+				if (!this.isRepositoryLoading) {
+					mantleWindow.stsearch_initial_repository = this.repository;
+				}
+
+				// Listen to STSearch events.
+				mantleWindow.addEventListener('stsearch-set-metadata', ({ detail }) => {
+					store.commit('setRepositoryFile', detail);
+				});
+			});
 		}
 	},
 	watch: {
@@ -213,13 +218,6 @@ export default {
 		},
 		locale() {
 			this.staticSearchParams = this.dynamicSearchParams;
-
-			// The iframe will reload, so we will need to reapply some changes.
-			// But we will wait a few milliseconds to run the code on the next load.
-			setTimeout(() => {
-				this.changeShowMenuBar(this.showMenuBar);
-				this.changeShowToolBar(this.showToolBar);
-			}, 500);
 		},
 		isRepositoryLoading(isRepositoryLoading) {
 			if (!isRepositoryLoading) {
