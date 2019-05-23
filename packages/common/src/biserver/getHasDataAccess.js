@@ -2,9 +2,9 @@ import fetch from 'unfetch';
 
 import getContextPath from './getContextPath';
 
-let canCreatePromise = null;
+let hasDataAccessPromise = null;
 
-const getCanCreate = async () => {
+const getHasDataAccess = async () => {
 	const contextPath = await getContextPath();
 	const endpoint = `${contextPath}plugin/data-access/api/permissions/hasDataAccess`;
 	const response = await fetch(endpoint, {
@@ -20,9 +20,9 @@ const getCanCreate = async () => {
 	return false;
 };
 
-export default async (...args) => {
-	if (canCreatePromise === null) {
-		canCreatePromise = getCanCreate(...args);
+export default async (useCache = true, ...args) => {
+	if (hasDataAccessPromise === null || !useCache) {
+		hasDataAccessPromise = getHasDataAccess(...args);
 	}
-	return canCreatePromise;
+	return hasDataAccessPromise;
 };

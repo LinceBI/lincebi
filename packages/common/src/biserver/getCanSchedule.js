@@ -2,9 +2,9 @@ import fetch from 'unfetch';
 
 import getContextPath from './getContextPath';
 
-let canCreatePromise = null;
+let canSchedulePromise = null;
 
-const getCanCreate = async () => {
+const getCanSchedule = async () => {
 	const contextPath = await getContextPath();
 	const endpoint = `${contextPath}api/scheduler/canSchedule`;
 	const response = await fetch(endpoint, {
@@ -20,9 +20,9 @@ const getCanCreate = async () => {
 	return false;
 };
 
-export default async (...args) => {
-	if (canCreatePromise === null) {
-		canCreatePromise = getCanCreate(...args);
+export default async (useCache = true, ...args) => {
+	if (canSchedulePromise === null || !useCache) {
+		canSchedulePromise = getCanSchedule(...args);
 	}
-	return canCreatePromise;
+	return canSchedulePromise;
 };

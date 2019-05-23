@@ -20,8 +20,8 @@ const getCanAdminister = async () => {
 	return false;
 };
 
-export default async (...args) => {
-	if (canAdministerPromise === null) {
+export default async (useCache = true, ...args) => {
+	if (canAdministerPromise === null || !useCache) {
 		canAdministerPromise = getCanAdminister(...args);
 	}
 	return canAdministerPromise;

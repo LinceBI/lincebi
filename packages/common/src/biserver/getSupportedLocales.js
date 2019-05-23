@@ -34,8 +34,8 @@ const getSupportedLocales = async (expectedLocales = ['en']) => {
 	)).filter(locale => typeof locale === 'string');
 };
 
-export default async (...args) => {
-	if (supportedLocalesPromise === null) {
+export default async (useCache = true, ...args) => {
+	if (supportedLocalesPromise === null || !useCache) {
 		supportedLocalesPromise = getSupportedLocales(...args);
 	}
 	return supportedLocalesPromise;

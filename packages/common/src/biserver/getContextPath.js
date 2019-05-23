@@ -20,12 +20,12 @@ const getContextPath = async () => {
 		}
 	}
 
-	console.warn(`Falling back to default context path`);
+	console.warn('Falling back to default context path');
 	return '/pentaho/';
 };
 
-export default async (...args) => {
-	if (contextPathPromise === null) {
+export default async (useCache = true, ...args) => {
+	if (contextPathPromise === null || !useCache) {
 		contextPathPromise = getContextPath(...args);
 	}
 	return contextPathPromise;

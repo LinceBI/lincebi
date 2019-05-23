@@ -1,12 +1,18 @@
 import fetch from 'unfetch';
 
 import getContextPath from './getContextPath';
+import getLocale from './getLocale';
 import safeJSON from '../safeJSON';
 import searchParams from '../searchParams';
 
-export default async (paths, { locale = 'default', depth = 1 } = {}) => {
+export default async (paths, { locale = getLocale(), depth = 1 } = {}) => {
 	if (!Array.isArray(paths)) {
 		paths = [paths];
+	}
+
+	// If "locale" is a promise, resolve it.
+	if (locale instanceof Promise) {
+		locale = await locale;
 	}
 
 	if (/^en(?:_[A-Z]{2})?$/.test(locale)) {

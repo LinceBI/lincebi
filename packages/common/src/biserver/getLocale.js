@@ -2,7 +2,9 @@ import fetch from 'unfetch';
 
 import getContextPath from './getContextPath';
 
-export default async () => {
+let localePromise = null;
+
+const getLocale = async () => {
 	const contextPath = await getContextPath();
 	const endpoint = `${contextPath}api/mantle/locale`;
 	const response = await fetch(endpoint, {
@@ -19,6 +21,13 @@ export default async () => {
 		}
 	}
 
-	console.warn(`Falling back to default locale`);
+	console.warn('Falling back to default locale');
 	return 'en';
+};
+
+export default async (useCache = true, ...args) => {
+	if (localePromise === null || !useCache) {
+		localePromise = getLocale(...args);
+	}
+	return localePromise;
 };
