@@ -7,8 +7,8 @@ export default (
 		composed = false,
 		target = window
 	} = {}
-) =>
-	target.dispatchEvent(
+) => {
+	return target.dispatchEvent(
 		new CustomEvent(type, {
 			detail,
 			bubbles,
@@ -16,3 +16,4 @@ export default (
 			composed
 		})
 	);
+};

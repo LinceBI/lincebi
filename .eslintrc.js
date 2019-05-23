@@ -6,7 +6,7 @@ module.exports = {
 	extends: ['plugin:vue/essential', '@vue/prettier'],
 	env: { node: true },
 	rules: {
-		'no-console': [isProduction ? 'error' : 'warn', { allow: ['warn', 'error'] }],
+		'no-console': ['warn', { allow: ['warn', 'error'] }],
 		'prettier/prettier': ['error', { singleQuote: true, useTabs: true }]
 	}
 };
