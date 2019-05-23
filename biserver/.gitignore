@@ -1,47 +1,47 @@
 /dist/
 
-/src/*
-!/src/
+/overlay/*
+!/overlay/
 
-/src/pentaho-solutions/*
-!/src/pentaho-solutions/
+/overlay/pentaho-solutions/*
+!/overlay/pentaho-solutions/
 
-/src/pentaho-solutions/system/*
-!/src/pentaho-solutions/system/
-!/src/pentaho-solutions/system/pentaho.xml
+/overlay/pentaho-solutions/system/*
+!/overlay/pentaho-solutions/system/
+!/overlay/pentaho-solutions/system/pentaho.xml
 
-/src/pentaho-solutions/system/common-ui/*
-!/src/pentaho-solutions/system/common-ui/
-!/src/pentaho-solutions/system/common-ui/themes.xml
+/overlay/pentaho-solutions/system/common-ui/*
+!/overlay/pentaho-solutions/system/common-ui/
+!/overlay/pentaho-solutions/system/common-ui/themes.xml
 
-/src/pentaho-solutions/system/common-ui/resources/*
-!/src/pentaho-solutions/system/common-ui/resources/
+/overlay/pentaho-solutions/system/common-ui/resources/*
+!/overlay/pentaho-solutions/system/common-ui/resources/
 
-/src/pentaho-solutions/system/common-ui/resources/themes/*
-!/src/pentaho-solutions/system/common-ui/resources/themes/
-!/src/pentaho-solutions/system/common-ui/resources/themes/stratebi/
+/overlay/pentaho-solutions/system/common-ui/resources/themes/*
+!/overlay/pentaho-solutions/system/common-ui/resources/themes/
+!/overlay/pentaho-solutions/system/common-ui/resources/themes/stratebi/
 
-/src/tomcat/*
-!/src/tomcat/
+/overlay/tomcat/*
+!/overlay/tomcat/
 
-/src/tomcat/webapps/*
-!/src/tomcat/webapps/
+/overlay/tomcat/webapps/*
+!/overlay/tomcat/webapps/
 
-/src/tomcat/webapps/pentaho/*
-!/src/tomcat/webapps/pentaho/
-!/src/tomcat/webapps/pentaho/Login/
-!/src/tomcat/webapps/pentaho/Home/
-!/src/tomcat/webapps/pentaho/index.jsp
+/overlay/tomcat/webapps/pentaho/*
+!/overlay/tomcat/webapps/pentaho/
+!/overlay/tomcat/webapps/pentaho/Login/
+!/overlay/tomcat/webapps/pentaho/Home/
+!/overlay/tomcat/webapps/pentaho/index.jsp
 
-/src/tomcat/webapps/pentaho/mantle/*
-!/src/tomcat/webapps/pentaho/mantle/
-!/src/tomcat/webapps/pentaho/mantle/MantleBridge.jsp
-!/src/tomcat/webapps/pentaho/mantle/themes.xml
+/overlay/tomcat/webapps/pentaho/mantle/*
+!/overlay/tomcat/webapps/pentaho/mantle/
+!/overlay/tomcat/webapps/pentaho/mantle/MantleBridge.jsp
+!/overlay/tomcat/webapps/pentaho/mantle/themes.xml
 
-/src/tomcat/webapps/pentaho/mantle/themes/*
-!/src/tomcat/webapps/pentaho/mantle/themes/
-!/src/tomcat/webapps/pentaho/mantle/themes/stratebi/
+/overlay/tomcat/webapps/pentaho/mantle/themes/*
+!/overlay/tomcat/webapps/pentaho/mantle/themes/
+!/overlay/tomcat/webapps/pentaho/mantle/themes/stratebi/
 
-/src/tomcat/webapps/pentaho/WEB-INF/*
-!/src/tomcat/webapps/pentaho/WEB-INF/
-!/src/tomcat/webapps/pentaho/WEB-INF/web.xml
+/overlay/tomcat/webapps/pentaho/WEB-INF/*
+!/overlay/tomcat/webapps/pentaho/WEB-INF/
+!/overlay/tomcat/webapps/pentaho/WEB-INF/web.xml

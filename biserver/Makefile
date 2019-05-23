@@ -20,7 +20,7 @@ all: build
 
 .PHONY: start
 start:
-	(cd ./src/ \
+	(cd ./overlay/ \
 		&& export CATALINA_PID="$$(pwd)/catalina.pid" \
 		&& (pkill --pidfile "$${CATALINA_PID}" && sleep 5 ||:) \
 		&& rm -rf ./pentaho-solutions/system/karaf/caches/* \
@@ -35,7 +35,7 @@ start:
 build: $(DIST_DIR)
 
 $(DIST_DIR):
-	(cd ./src/ \
+	(cd ./overlay/ \
 		&& OUT='$(shell readlink -m '$@')' \
 		&& STASH=$$('$(GIT)' stash create) && STASH=$${STASH:=HEAD} \
 		&& rm -rf "$${OUT}" && mkdir -p "$${OUT}" \
