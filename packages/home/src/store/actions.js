@@ -68,8 +68,8 @@ export const fetchRepository = async ({ commit, state }) => {
 	commit('setIsRepositoryLoading', false);
 };
 
-export const updateRepositoryFile = async ({ commit }, file) => {
-	const result = await setMetadata([file]);
+export const updateRepositoryFile = async ({ commit, state }, file) => {
+	const result = await setMetadata([file], { locale: state.locale });
 	if (result !== null && result.length > 0) {
 		commit('setRepositoryFile', file);
 	}
