@@ -31,7 +31,6 @@
 !/overlay/tomcat/webapps/pentaho/
 !/overlay/tomcat/webapps/pentaho/Login/
 !/overlay/tomcat/webapps/pentaho/Home/
-!/overlay/tomcat/webapps/pentaho/index.jsp
 
 /overlay/tomcat/webapps/pentaho/mantle/*
 !/overlay/tomcat/webapps/pentaho/mantle/

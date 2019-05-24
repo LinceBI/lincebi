@@ -91,4 +91,6 @@ deploy: $(DIST_TARBALL)
 
 .PHONY: clean
 clean:
-	rm -rf '$(DIST_DIR)' '$(PACKAGE_LOGIN_DIST_DIR)' '$(PACKAGE_HOME_DIST_DIR)'
+	rm -rf '$(DIST_DIR)'
+	rm -rf '$(BISERVER_DIST_DIR)'
+	rm -rf '$(PACKAGE_LOGIN_DIST_DIR)' '$(PACKAGE_HOME_DIST_DIR)'
