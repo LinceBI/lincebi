@@ -46,7 +46,7 @@
     "home": "Home",
     "sort": {
       "title": "Title",
-      "extension": "Extension",
+      "extension": "Type",
       "created": "Creation date",
       "modified": "Modification date"
     }
