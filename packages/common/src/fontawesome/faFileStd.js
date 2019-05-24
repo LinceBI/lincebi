@@ -1,12 +1,10 @@
+import { width, height, ligatures, svgPathData } from './faToolStdashboard';
 import getFaUnicodeCharacter from './getUnicodeCharacter';
 
-import { width, height, ligatures, svgPathData } from './faToolStdashboard';
 export { width, height, ligatures, svgPathData };
-
 export const prefix = 'fac';
 export const iconName = 'file-std';
 export const unicode = getFaUnicodeCharacter();
-
 export const definition = {
 	prefix: prefix,
 	iconName: iconName,
