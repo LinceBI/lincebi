@@ -1,18 +1,27 @@
 import getContextPath from '../getContextPath';
 
-let isStreportInstalled = null;
+let isInstalled = null;
 
 export default async () => {
-	if (isStreportInstalled !== null) {
-		return isStreportInstalled;
+	if (isInstalled !== null) {
+		return isInstalled;
 	}
 
 	const contextPath = await getContextPath();
 	const resource = 'content/saiku-adhoc/web/js/adhoc/version.json';
 	const endpoint = `${contextPath}${resource}`;
-	const response = await fetch(endpoint, { method: 'HEAD' });
+	const response = await fetch(endpoint, {
+		method: 'GET',
+		headers: { 'Content-Type': 'text/plain' }
+	});
 
-	isStreportInstalled = response.status === 200;
+	if (response.status === 200) {
+		const content = await response.text();
+		const include = 'ERROR_PAGE_TITLE';
+		isInstalled = !content.includes(include);
+	} else {
+		isInstalled = false;
+	}
 
-	return isStreportInstalled;
+	return isInstalled;
 };

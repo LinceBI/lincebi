@@ -1,18 +1,27 @@
 import getContextPath from '../getContextPath';
 
-let isStagileInstalled = null;
+let isInstalled = null;
 
 export default async () => {
-	if (isStagileInstalled !== null) {
-		return isStagileInstalled;
+	if (isInstalled !== null) {
+		return isInstalled;
 	}
 
 	const contextPath = await getContextPath();
-	const resource = 'content/stagile/ui/index.html';
+	const resource = 'content/stagile/ui/stagile.properties';
 	const endpoint = `${contextPath}${resource}`;
-	const response = await fetch(endpoint, { method: 'HEAD' });
+	const response = await fetch(endpoint, {
+		method: 'GET',
+		headers: { 'Content-Type': 'text/plain' }
+	});
 
-	isStagileInstalled = response.status === 200;
+	if (response.status === 200) {
+		const content = await response.text();
+		const include = 'ERROR_PAGE_TITLE';
+		isInstalled = !content.includes(include);
+	} else {
+		isInstalled = false;
+	}
 
-	return isStagileInstalled;
+	return isInstalled;
 };

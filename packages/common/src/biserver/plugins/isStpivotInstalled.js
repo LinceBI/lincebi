@@ -1,18 +1,25 @@
 import getContextPath from '../getContextPath';
 
-let isStpivotInstalled = null;
+let isInstalled = null;
 
 export default async () => {
-	if (isStpivotInstalled !== null) {
-		return isStpivotInstalled;
+	if (isInstalled !== null) {
+		return isInstalled;
 	}
 
 	const contextPath = await getContextPath();
 	const resource = 'stpivot/build.json';
 	const endpoint = `${contextPath}${resource}`;
-	const response = await fetch(endpoint, { method: 'HEAD' });
+	const response = await fetch(endpoint, {
+		method: 'GET',
+		headers: { 'Content-Type': 'text/plain' }
+	});
 
-	isStpivotInstalled = response.status === 200;
+	if (response.status === 200) {
+		isInstalled = true;
+	} else {
+		isInstalled = false;
+	}
 
-	return isStpivotInstalled;
+	return isInstalled;
 };
