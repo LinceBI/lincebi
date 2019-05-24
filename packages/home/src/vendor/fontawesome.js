@@ -69,6 +69,7 @@ Vue.component('font-awesome-icon', async () => {
 		import('@stratebi/biserver-customization-common/src/fontawesome/faFileAdhoc'),
 		import('@stratebi/biserver-customization-common/src/fontawesome/faFileCda'),
 		import('@stratebi/biserver-customization-common/src/fontawesome/faFileCdfde'),
+		import('@stratebi/biserver-customization-common/src/fontawesome/faFilePdf'),
 		import('@stratebi/biserver-customization-common/src/fontawesome/faFilePrpt'),
 		import('@stratebi/biserver-customization-common/src/fontawesome/faFileSta'),
 		import('@stratebi/biserver-customization-common/src/fontawesome/faFileStd'),
