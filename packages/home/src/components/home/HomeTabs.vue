@@ -223,27 +223,6 @@ export default {
 			tabIndex: 0,
 			// Local tabs are populated with remote tabs.
 			localTabs: [],
-			// Fixed tabs will never be stored server side.
-			fixedTabs: [
-				{
-					type: 'global',
-					name: this.$t('home.global'),
-					color: 'transparent',
-					icon: { prefix: 'fas', iconName: 'globe' },
-					isRemovable: false,
-					isDraggable: false,
-					isContentDraggable: true
-				},
-				{
-					type: 'home',
-					name: this.$t('home.home'),
-					color: 'transparent',
-					icon: { prefix: 'fas', iconName: 'home' },
-					isRemovable: false,
-					isDraggable: false,
-					isContentDraggable: true
-				}
-			],
 			// New tab template.
 			newTab: {
 				type: 'tag',
@@ -307,8 +286,31 @@ export default {
 				});
 			}
 		},
+		// Fixed tabs will never be stored server side.
+		fixedTabs() {
+			return [
+				{
+					type: 'global',
+					name: this.$t('home.global'),
+					color: 'transparent',
+					icon: { prefix: 'fas', iconName: 'globe' },
+					isRemovable: false,
+					isDraggable: false,
+					isContentDraggable: this.canAdminister
+				},
+				{
+					type: 'home',
+					name: this.$t('home.home'),
+					color: 'transparent',
+					icon: { prefix: 'fas', iconName: 'home' },
+					isRemovable: false,
+					isDraggable: false,
+					isContentDraggable: true
+				}
+			];
+		},
+		// Fetch remote tabs.
 		remoteTabs() {
-			// Fetch remote tabs.
 			return safeJSON.parse(
 				store.state.userSettings[`${this.namespace}.tabs`],
 				[]
@@ -416,6 +418,9 @@ export default {
 		},
 		isRepositoryLoading() {
 			return store.state.isRepositoryLoading;
+		},
+		canAdminister() {
+			return store.state.canAdminister;
 		}
 	},
 	watch: {
