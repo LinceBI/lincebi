@@ -98,46 +98,43 @@
 				</div>
 			</div>
 			<div class="home-card-deck card-deck">
-				<div
+				<a
 					v-for="file in files"
 					:key="file.id"
+					:id="`card-${uniqueId}-${file.id}`"
 					:class="{
 						'home-card': true,
 						card: true,
 						draggable: currentTab.isContentDraggable
 					}"
+					:href="file.openUrl"
+					target="_blank"
+					rel="noopener"
 				>
 					<img
 						class="card-img"
 						:src="getThumbnailOrDefault(file)"
 						:alt="file.title"
 					/>
-					<div class="card-body card-img-overlay">
-						<h5 class="card-title">
+					<div class="card-body">
+						<h5 class="card-title m-0">
 							<font-awesome-icon
 								:class="['fa-fw', 'mr-1']"
 								:icon="['fac', `file-${file.extension}`]"
 							/>
 							{{ file.title }}
 						</h5>
-						<p class="card-text">{{ file.description }}</p>
-						<div class="card-footer mr-n2">
-							<div class="btn-group btn-group-sm">
-								<a
-									class="btn btn-link"
-									rel="noopener"
-									:href="file.openUrl"
-									:target="file.id"
-								>
-									<font-awesome-icon
-										:class="['fa-fw']"
-										:icon="['fas', 'link']"
-									/>
-								</a>
-							</div>
-						</div>
 					</div>
-				</div>
+					<b-popover
+						v-if="file.description.length > 0"
+						:target="`card-${uniqueId}-${file.id}`"
+						:title="file.title"
+						:content="file.description"
+						:triggers="['hover', 'focus']"
+						:delay="500"
+						placement="top"
+					/>
+				</a>
 			</div>
 		</div>
 		<!-- New tab modal -->
@@ -657,8 +654,8 @@ export default {
 			align-self: flex-end;
 		}
 
-		.card-deck {
-			.card {
+		.home-card-deck {
+			.home-card {
 				margin-bottom: $grid-gutter-width;
 
 				flex-grow: 0;
@@ -680,22 +677,25 @@ export default {
 				cursor: pointer;
 				user-select: none;
 
+				transform: scale(1);
+				transition: transform 200ms ease-in;
+
 				.card-body {
+					position: absolute;
+					left: 0;
+					right: 0;
+					bottom: 0;
+
+					max-height: 100%;
+					overflow: auto;
+
 					color: #ffffff;
 					text-shadow: rem(1) rem(1) rem(4) #000;
 					background-color: rgba(0, 0, 0, 0.6);
-					transition: background-color 200ms ease-in;
-
-					.card-title {
-						overflow: hidden;
-						white-space: nowrap;
-						text-overflow: ellipsis;
-					}
 
 					.card-text {
 						height: calc(100% - #{rem(75)});
 						overflow: hidden;
-						transition: opacity 200ms ease-in;
 					}
 
 					.card-footer {
@@ -713,22 +713,11 @@ export default {
 				.card-img {
 					height: rem(256);
 					object-fit: cover;
-					filter: blur(rem(2));
-					transition: filter 200ms ease-in;
 				}
 
+				&:focus,
 				&:hover {
-					.card-body {
-						background-color: rgba(0, 0, 0, 0.3);
-
-						.card-text {
-							opacity: 0;
-						}
-					}
-
-					.card-img {
-						filter: none;
-					}
+					transform: scale(1.05);
 				}
 			}
 		}
