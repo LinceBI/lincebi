@@ -62,22 +62,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.sidebar-item {
-	::v-deep .nav-link {
+.sidebar-item::v-deep {
+	.nav-link {
 		padding: rem(8) 0;
 		font-size: rem(20);
 		text-align: center;
 		color: map-get($theme-colors, 'light');
 	}
 
-	&::v-deep .nav-link:hover,
-	&::v-deep .nav-link:focus,
-	&.show::v-deep .nav-link {
+	.nav-link:hover,
+	.nav-link:focus,
+	&.show .nav-link {
 		background-color: map-get($theme-colors, 'light');
 		color: map-get($theme-colors, 'primary');
 	}
 
-	&::v-deep .dropdown-menu {
+	.dropdown-menu {
 		margin: 0;
 		padding: 0;
 		border-left: 0;
