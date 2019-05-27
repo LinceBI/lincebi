@@ -20,6 +20,10 @@
 				<a
 					:title="tab.name"
 					:class="{ 'nav-link': true, active: index === tabIndex }"
+					:style="{
+						backgroundColor: tab.color,
+						color: overlayColor(tab.color)
+					}"
 					@click="tabIndex = index"
 					href="javascript:void(0)"
 				>
@@ -40,7 +44,6 @@
 						<font-awesome-icon :icon="['fas', 'times']" />
 					</button>
 				</a>
-				<div class="home-tab-marker" :style="{ borderColor: tab.color }"></div>
 			</li>
 			<!-- New tab -->
 			<li class="home-tab-new nav-item">
@@ -202,7 +205,6 @@ import differenceWith from 'lodash/differenceWith';
 
 import fuzzyEquals from '@stratebi/biserver-customization-common/src/fuzzyEquals';
 import generateSvg from '@stratebi/biserver-customization-common/src/generateSvg';
-import isTouchDevice from '@stratebi/biserver-customization-common/src/isTouchDevice';
 import move from '@stratebi/biserver-customization-common/src/move';
 import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
 import stringCompare from '@stratebi/biserver-customization-common/src/stringCompare';
@@ -443,7 +445,7 @@ export default {
 				this.sortables.set(
 					$homeTabList,
 					Sortable.create($homeTabList, {
-						delay: isTouchDevice ? 100 : 10,
+						delay: this.isTouchDevice ? 100 : 10,
 						animation: 150,
 						draggable: '.home-tab.draggable',
 						onStart: event => (this.tabIndex = event.oldIndex),
@@ -467,7 +469,7 @@ export default {
 					this.sortables.set(
 						$homeCardDeck,
 						Sortable.create($homeCardDeck, {
-							delay: isTouchDevice ? 100 : 10,
+							delay: this.isTouchDevice ? 100 : 10,
 							animation: 150,
 							draggable: '.home-card.draggable',
 							onMove: event => event.related.classList.contains('draggable'),
@@ -540,7 +542,7 @@ export default {
 		},
 		onContextmenu(event) {
 			// Prevent context menu on draggable elements on touch devices
-			if (isTouchDevice && event.target.closest('.draggable')) {
+			if (this.isTouchDevice && event.target.closest('.draggable')) {
 				event.preventDefault();
 			}
 		},
@@ -577,10 +579,13 @@ export default {
 		.home-tab {
 			position: relative;
 			max-width: rem(400);
+			z-index: 10;
 
 			@media (max-width: rem(400)) {
 				width: 100%;
 			}
+
+			@include border-collapse(darken(map-get($theme-colors, 'primary'), 5%));
 
 			.nav-link {
 				position: relative;
@@ -589,45 +594,51 @@ export default {
 				justify-content: center;
 				padding: 0 rem(50);
 				height: rem(46);
-				z-index: 10;
 
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
 
-				color: map-get($theme-colors, 'light');
-				background-color: map-get($theme-colors, 'primary');
-
-				@include border-collapse(
-					darken(map-get($theme-colors, 'primary'), 10%)
-				);
-
-				.home-tab-close {
-					position: absolute;
-					display: none;
-					right: 0;
-				}
+				color: map-get($theme-colors, 'primary');
+				background-color: map-get($theme-colors, 'light');
 
 				&.active {
-					color: map-get($theme-colors, 'primary');
-					background-color: map-get($theme-colors, 'light');
+					color: map-get($theme-colors, 'light');
+					background-color: map-get($theme-colors, 'primary');
+
+					&::after {
+						display: block;
+						position: absolute;
+						bottom: 0;
+						height: rem(5);
+						width: 100%;
+						background-color: currentColor;
+						content: '';
+						z-index: 15;
+					}
 
 					.home-tab-close {
 						display: block;
 					}
 				}
+
+				.home-tab-close {
+					display: none;
+					position: absolute;
+					right: 0;
+					color: currentColor;
+					z-index: 15;
+				}
 			}
 
-			.home-tab-marker {
+			&::after {
 				position: absolute;
-				left: rem(1);
+				top: 0;
+				left: 0;
 				bottom: 0;
-				height: 0;
-				width: calc(100% - #{rem(1)});
-				border-width: rem(3);
-				border-style: solid;
-				border-color: transparent;
-				z-index: 15;
+				width: rem(10);
+				background-color: rgba(0, 0, 0, 0.2);
+				content: '';
 			}
 		}
 
@@ -641,7 +652,6 @@ export default {
 				justify-content: center;
 				padding: 0 rem(20);
 				height: rem(46);
-				z-index: 5;
 
 				color: map-get($theme-colors, 'light');
 				background-color: map-get($theme-colors, 'primary');
