@@ -564,6 +564,7 @@ export default {
 
 		max-height: rem(144);
 		overflow-y: auto;
+		overflow-x: hidden;
 
 		// Hide side border of tabs.
 		margin: 0 rem(-1);
