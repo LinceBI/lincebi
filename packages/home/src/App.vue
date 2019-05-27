@@ -1,12 +1,8 @@
 <template>
 	<div class="app">
 		<navbar class="page-navbar" />
-		<div class="page-container">
-			<sidebar class="page-sidebar" />
-			<div class="page-content">
-				<router-multi-view class="page-router" />
-			</div>
-		</div>
+		<sidebar class="page-sidebar" />
+		<router-multi-view class="page-content" />
 	</div>
 </template>
 
@@ -41,7 +37,8 @@ export default {
 <style lang="scss">
 body {
 	margin: 0;
-	min-height: 100vh;
+	width: 100vw;
+	height: 100vh;
 	font-family: 'Titillium Web', $system-sans-serif;
 	font-size: $em-base-px;
 	background-image: url('~@/assets/img/background.jpg');
@@ -51,48 +48,28 @@ body {
 }
 
 .app {
+	display: grid;
+	grid-template-areas: 'navbar navbar' 'sidebar content';
+	grid-template-columns: auto 1fr;
+	grid-template-rows: auto 1fr;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+
 	> .page-navbar {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		min-height: $navbar-height;
+		grid-area: navbar;
 		z-index: 1000;
 	}
 
-	> .page-container {
-		display: flex;
-		flex-grow: 1;
-		flex-shrink: 1;
-		flex-basis: auto;
-		flex-direction: row;
-		padding-top: $navbar-height;
-		min-height: 100vh;
+	> .page-sidebar {
+		grid-area: sidebar;
+		z-index: 500;
+	}
+
+	> .page-content {
+		grid-area: content;
 		overflow: auto;
-
-		> .page-sidebar {
-			display: flex;
-			flex-grow: 0;
-			flex-shrink: 0;
-			flex-basis: $sidebar-width;
-			flex-direction: column;
-			flex-wrap: nowrap;
-			z-index: 500;
-		}
-
-		> .page-content {
-			display: flex;
-			flex-grow: 1;
-			flex-shrink: 1;
-			flex-basis: auto;
-			flex-direction: column;
-			flex-wrap: nowrap;
-			z-index: 0;
-
-			> .page-router {
-				height: 100%;
-			}
-		}
+		z-index: 0;
 	}
 }
 

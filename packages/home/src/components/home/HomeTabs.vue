@@ -1,5 +1,10 @@
 <template>
-	<div class="home-tabs" ref="home-tabs">
+	<div
+		class="home-tabs"
+		ref="home-tabs"
+		:id="`home-tabs-${uniqueId}`"
+		@contextmenu="onContextmenu"
+	>
 		<!-- Tab list -->
 		<ul class="home-tab-list nav nav-fill">
 			<!-- Tabs -->
@@ -16,7 +21,6 @@
 					:title="tab.name"
 					:class="{ 'nav-link': true, active: index === tabIndex }"
 					@click="tabIndex = index"
-					@contextmenu="onTabContextmenu"
 					href="javascript:void(0)"
 				>
 					<font-awesome-icon
@@ -115,6 +119,7 @@
 						class="card-img"
 						:src="getThumbnailOrDefault(file)"
 						:alt="file.title"
+						@contextmenu.prevent
 					/>
 					<div class="card-body">
 						<h5 class="card-title m-0">
@@ -128,10 +133,11 @@
 					<b-popover
 						v-if="file.description.length > 0"
 						:target="`card-${uniqueId}-${file.id}`"
+						:container="`home-tabs-${uniqueId}`"
 						:title="file.title"
 						:content="file.description"
 						:triggers="['hover', 'focus']"
-						:delay="500"
+						:delay="100"
 						placement="top"
 					/>
 				</a>
@@ -196,6 +202,7 @@ import differenceWith from 'lodash/differenceWith';
 
 import fuzzyEquals from '@stratebi/biserver-customization-common/src/fuzzyEquals';
 import generateSvg from '@stratebi/biserver-customization-common/src/generateSvg';
+import isTouchDevice from '@stratebi/biserver-customization-common/src/isTouchDevice';
 import move from '@stratebi/biserver-customization-common/src/move';
 import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
 import stringCompare from '@stratebi/biserver-customization-common/src/stringCompare';
@@ -436,7 +443,7 @@ export default {
 				this.sortables.set(
 					$homeTabList,
 					Sortable.create($homeTabList, {
-						delay: 10,
+						delay: isTouchDevice ? 100 : 10,
 						animation: 150,
 						draggable: '.home-tab.draggable',
 						onStart: event => (this.tabIndex = event.oldIndex),
@@ -460,7 +467,7 @@ export default {
 					this.sortables.set(
 						$homeCardDeck,
 						Sortable.create($homeCardDeck, {
-							delay: 10,
+							delay: isTouchDevice ? 100 : 10,
 							animation: 150,
 							draggable: '.home-card.draggable',
 							onMove: event => event.related.classList.contains('draggable'),
@@ -531,8 +538,9 @@ export default {
 				this.tabIndex--;
 			}
 		},
-		onTabContextmenu(event) {
-			if (event.target.closest('.home-tab-list')) {
+		onContextmenu(event) {
+			// Prevent context menu on draggable elements on touch devices
+			if (isTouchDevice && event.target.closest('.draggable')) {
 				event.preventDefault();
 			}
 		},
@@ -677,8 +685,15 @@ export default {
 				cursor: pointer;
 				user-select: none;
 
-				transform: scale(1);
-				transition: transform 200ms ease-in;
+				&:not(.sortable-drag) {
+					transform: scale(1);
+					transition: transform 200ms ease-in;
+
+					&:focus,
+					&:hover {
+						transform: scale(1.05);
+					}
+				}
 
 				.card-body {
 					position: absolute;
@@ -686,7 +701,7 @@ export default {
 					right: 0;
 					bottom: 0;
 
-					max-height: 100%;
+					max-height: 40%;
 					overflow: auto;
 
 					color: #ffffff;
@@ -714,11 +729,22 @@ export default {
 					height: rem(256);
 					object-fit: cover;
 				}
+			}
+		}
+	}
 
-				&:focus,
-				&:hover {
-					transform: scale(1.05);
-				}
+	&::v-deep .popover {
+		.arrow::after {
+			border-bottom-color: map-get($theme-colors, 'primary');
+		}
+
+		.popover-header {
+			background-color: map-get($theme-colors, 'primary');
+			border-bottom-color: darken(map-get($theme-colors, 'primary'), 10%);
+			color: $yiq-text-light;
+
+			&::before {
+				border: none;
 			}
 		}
 	}

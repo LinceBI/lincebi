@@ -1,5 +1,5 @@
 <template>
-	<b-nav v-if="showSidebar" class="sidebar shadow" vertical>
+	<b-nav :class="{ sidebar: true, shadow: true, show: showSidebar }" vertical>
 		<sidebar-item v-for="(item, index) in sidebar" :key="index" :item="item" />
 	</b-nav>
 </template>
@@ -358,5 +358,17 @@ export default {
 <style scoped lang="scss">
 .sidebar {
 	background-color: map-get($theme-colors, 'primary');
+
+	position: relative;
+	$sidebar-width: rem(50);
+	width: $sidebar-width;
+	left: -$sidebar-width;
+	margin-right: -$sidebar-width;
+	transition: left 0.35s ease, margin-right 0.35s ease;
+
+	&.show {
+		left: 0;
+		margin-right: 0;
+	}
 }
 </style>
