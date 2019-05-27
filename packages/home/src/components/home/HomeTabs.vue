@@ -448,7 +448,6 @@ export default {
 						delay: this.isTouchDevice ? 100 : 10,
 						animation: 150,
 						draggable: '.home-tab.draggable',
-						onStart: event => (this.tabIndex = event.oldIndex),
 						onEnd: event => (this.tabIndex = event.newIndex),
 						onMove: event => event.related.classList.contains('draggable'),
 						onUpdate: event => {
