@@ -138,7 +138,7 @@
 			position: initial;
 			display: flex;
 			flex-grow: 1;
-			flex-shrink: 0;
+			flex-shrink: 1;
 			flex-basis: auto;
 			flex-direction: row;
 			height: 100%;
