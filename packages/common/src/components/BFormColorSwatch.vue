@@ -10,7 +10,7 @@
 			v-for="color in colors"
 			:key="color"
 			:value="color"
-			:class="{ color: true, transparent: color === 'transparent' }"
+			:class="{ color: true, none: color === null }"
 			:style="{ backgroundColor: color }"
 		></b-form-radio>
 	</b-form-radio-group>
@@ -22,28 +22,28 @@ export default {
 	props: {
 		value: {
 			type: String,
-			default: 'transparent'
+			default: null
 		},
 		colors: {
 			type: Array,
 			default() {
 				return [
-					'transparent',
-					'#f44336',
-					'#e91e63',
-					'#9c27b0',
-					'#3f51b5',
-					'#2196f3',
-					'#03a9f4',
-					'#00bcd4',
-					'#009688',
-					'#4caf50',
-					'#8bc34a',
-					'#cddc39',
-					'#ffeb3b',
-					'#ffc107',
-					'#ff9800',
-					'#ff5722'
+					null,
+					'#e53935',
+					'#d81b60',
+					'#8e24aa',
+					'#5e35b1',
+					'#3949ab',
+					'#1e88e5',
+					'#039be5',
+					'#00acc1',
+					'#00897b',
+					'#43a047',
+					'#7cb342',
+					'#c0ca33',
+					'#ffb300',
+					'#fb8c00',
+					'#f4511e'
 				];
 			}
 		}
@@ -70,15 +70,19 @@ export default {
 		border-radius: 0;
 		z-index: 0;
 
+		background-color: inherit;
+		box-shadow: none;
+
 		&:hover {
 			z-index: 0;
 		}
 
 		&.active {
+			background-color: inherit;
 			box-shadow: inset 0 0 0 rem(4) rgba(0, 0, 0, 0.5);
 		}
 
-		&.transparent {
+		&.none {
 			position: relative;
 
 			&::before,

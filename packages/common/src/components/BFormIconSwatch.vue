@@ -93,11 +93,15 @@ export default {
 		border-radius: 0;
 		z-index: 0;
 
+		background-color: inherit;
+		box-shadow: none;
+
 		&:hover {
 			z-index: 0;
 		}
 
 		&.active {
+			background-color: inherit;
 			box-shadow: inset 0 0 0 rem(4) rgba(0, 0, 0, 0.5);
 		}
 

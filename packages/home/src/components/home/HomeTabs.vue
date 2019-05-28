@@ -20,10 +20,7 @@
 				<a
 					:title="tab.name"
 					:class="{ 'nav-link': true, active: index === tabIndex }"
-					:style="{
-						backgroundColor: tab.color,
-						color: overlayColor(tab.color)
-					}"
+					:style="getTabStyle(tab, index)"
 					@click="tabIndex = index"
 					href="javascript:void(0)"
 				>
@@ -167,11 +164,11 @@
 						autofocus
 						required
 					/>
-					<datalist :id="`new-tab-name-${uniqueId}`">
+					<b-form-datalist :id="`new-tab-name-${uniqueId}`">
 						<option v-for="tab in localTabs" :key="tab.name">
 							{{ tab.name }}
 						</option>
-					</datalist>
+					</b-form-datalist>
 				</b-form-group>
 				<b-form-group :label="$t('home.tabColor.label')">
 					<b-form-color-swatch v-model="newTab.color" />
@@ -233,7 +230,7 @@ export default {
 			newTab: {
 				type: 'tag',
 				name: '',
-				color: 'transparent',
+				color: null,
 				icon: null,
 				isRemovable: true,
 				isDraggable: true,
@@ -298,7 +295,7 @@ export default {
 				{
 					type: 'global',
 					name: this.$t('home.global'),
-					color: 'transparent',
+					color: null,
 					icon: { prefix: 'fas', iconName: 'globe' },
 					isRemovable: false,
 					isDraggable: false,
@@ -307,7 +304,7 @@ export default {
 				{
 					type: 'home',
 					name: this.$t('home.home'),
-					color: 'transparent',
+					color: null,
 					icon: { prefix: 'fas', iconName: 'home' },
 					isRemovable: false,
 					isDraggable: false,
@@ -545,6 +542,11 @@ export default {
 				event.preventDefault();
 			}
 		},
+		getTabStyle(tab, index) {
+			return index === this.tabIndex
+				? { backgroundColor: tab.color }
+				: { color: tab.color };
+		},
 		getThumbnailOrDefault(file) {
 			return file.properties.thumbnail
 				? file.properties.thumbnail
@@ -563,28 +565,24 @@ export default {
 		flex-basis: auto;
 		flex-direction: row;
 
-		max-height: rem(144);
+		max-height: rem(46 * 3);
 		overflow-y: auto;
 		overflow-x: hidden;
 
-		// Hide side border of tabs.
-		margin: 0 rem(-1);
-		width: calc(100% + #{rem(1)});
+		color: map-get($theme-colors, 'primary');
+		background-color: map-get($theme-colors, 'light');
 
-		background-color: map-get($theme-colors, 'primary');
-		border-bottom: rem(1) solid darken(map-get($theme-colors, 'primary'), 10%);
 		box-shadow: $box-shadow;
 
 		.home-tab {
 			position: relative;
+			min-width: rem(220);
 			max-width: rem(400);
 			z-index: 10;
 
 			@media (max-width: rem(400)) {
 				width: 100%;
 			}
-
-			@include border-collapse(darken(map-get($theme-colors, 'primary'), 5%));
 
 			.nav-link {
 				position: relative;
@@ -599,26 +597,29 @@ export default {
 				text-overflow: ellipsis;
 
 				color: map-get($theme-colors, 'primary');
-				background-color: map-get($theme-colors, 'light');
+				background-color: transparent;
 
 				&.active {
 					color: map-get($theme-colors, 'light');
 					background-color: map-get($theme-colors, 'primary');
 
-					&::after {
-						display: block;
-						position: absolute;
-						bottom: 0;
-						height: rem(5);
-						width: 100%;
-						background-color: currentColor;
-						content: '';
-						z-index: 15;
+					&::before {
+						background-color: rgba(0, 0, 0, 0.2);
 					}
 
 					.home-tab-close {
 						display: block;
 					}
+				}
+
+				&::before {
+					position: absolute;
+					top: 0;
+					left: 0;
+					height: 100%;
+					width: rem(10);
+					background-color: currentColor;
+					content: '';
 				}
 
 				.home-tab-close {
@@ -628,16 +629,6 @@ export default {
 					color: currentColor;
 					z-index: 15;
 				}
-			}
-
-			&::after {
-				position: absolute;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				width: rem(10);
-				background-color: rgba(0, 0, 0, 0.2);
-				content: '';
 			}
 		}
 
@@ -652,8 +643,10 @@ export default {
 				padding: 0 rem(20);
 				height: rem(46);
 
-				color: map-get($theme-colors, 'light');
-				background-color: map-get($theme-colors, 'primary');
+				color: map-get($theme-colors, 'primary');
+				background-color: transparent;
+
+				font-size: rem(24);
 			}
 		}
 	}
