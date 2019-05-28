@@ -532,7 +532,7 @@ export default {
 			this.tabs = this.tabs.filter((tab, index) => {
 				return index !== removeTabIndex || !tab.isRemovable;
 			});
-			if (this.tabIndex >= removeTabIndex) {
+			if (this.tabIndex > 0 && this.tabIndex >= removeTabIndex) {
 				this.tabIndex--;
 			}
 		},
