@@ -30,7 +30,7 @@ export default {
 .home-tab-empty {
 	display: flex;
 	flex-grow: 1;
-	flex-shrink: 1;
+	flex-shrink: 0;
 	flex-basis: auto;
 	align-items: center;
 	justify-content: center;
