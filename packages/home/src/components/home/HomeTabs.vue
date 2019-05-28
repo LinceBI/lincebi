@@ -54,21 +54,18 @@
 			</li>
 		</ul>
 		<!-- Loading content -->
-		<home-tab-empty
-			v-if="isRepositoryLoading"
-			:icon="['fas', 'sync']"
-			:text="$t('home.loadingFiles')"
-			spin
-		/>
+		<home-tab-empty v-if="isRepositoryLoading" class="home-tab-loading" />
 		<!-- No tabs content -->
 		<home-tab-empty
 			v-else-if="tabs.length === 0"
+			class="home-tab-notabs"
 			:icon="['far', 'window-restore']"
 			:text="$t('home.useButtonToCreateTab')"
 		/>
 		<!-- No files content -->
 		<home-tab-empty
 			v-else-if="files.length === 0"
+			class="home-tab-nofiles"
 			:icon="['far', 'file-alt']"
 			:text="$t('home.filesWillAppearHere')"
 		/>
@@ -734,6 +731,10 @@ export default {
 				}
 			}
 		}
+	}
+
+	.home-tab-loading {
+		@include loading();
 	}
 
 	&::v-deep .popover {

@@ -1,3 +1,6 @@
+$em-base: 16 !default;
+$em-base-px: #{$em-base}px;
+
 /* Bootstrap colors */
 $theme-colors: (
 	"primary": #7a9e3f,

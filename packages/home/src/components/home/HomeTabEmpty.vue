@@ -1,9 +1,9 @@
 <template>
 	<div class="home-tab-empty">
-		<div class="icon">
+		<div v-if="icon" class="icon">
 			<font-awesome-icon class="fa-fw" :icon="icon" :spin="spin" />
 		</div>
-		<div class="text">
+		<div v-if="text" class="text">
 			{{ text }}
 		</div>
 	</div>
@@ -28,6 +28,7 @@ export default {
 
 <style scoped lang="scss">
 .home-tab-empty {
+	position: relative;
 	display: flex;
 	flex-grow: 1;
 	flex-shrink: 0;
