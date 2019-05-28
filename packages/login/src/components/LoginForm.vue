@@ -1,9 +1,10 @@
 <template>
 	<div class="login-form p-4 rounded">
 		<b-form @submit.prevent="onSubmit">
-			<h2 class="text-center">
-				{{ $t('welcome') }}
-			</h2>
+			<b-img
+				class="d-block h-auto w-75 mb-4 mx-auto"
+				src="@stratebi/biserver-customization-common/src/assets/img/logo.svg"
+			/>
 			<b-form-group :label="$t('username.label')">
 				<b-form-input
 					type="text"

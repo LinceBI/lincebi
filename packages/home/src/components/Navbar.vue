@@ -4,8 +4,7 @@
 		<b-navbar-brand class="navbar-logo mr-0 mr-lg-3 p-0" href="#/">
 			<b-img
 				class="h-100 w-auto"
-				src="@/assets/img/stratebi.svg"
-				alt="Stratebi"
+				src="@stratebi/biserver-customization-common/src/assets/img/logo.svg"
 			/>
 		</b-navbar-brand>
 		<b-navbar-toggle :target="`nav-collapse-${uniqueId}`">
