@@ -11,6 +11,8 @@ Vue.component('font-awesome-icon', async () => {
 		import('@fortawesome/free-regular-svg-icons/faSquare'),
 		import('@fortawesome/free-regular-svg-icons/faWindowMaximize'),
 		import('@fortawesome/free-regular-svg-icons/faWindowRestore'),
+		import('@fortawesome/free-solid-svg-icons/faAngleDown'),
+		import('@fortawesome/free-solid-svg-icons/faAngleUp'),
 		import('@fortawesome/free-solid-svg-icons/faArchive'),
 		import('@fortawesome/free-solid-svg-icons/faBalanceScale'),
 		import('@fortawesome/free-solid-svg-icons/faBars'),

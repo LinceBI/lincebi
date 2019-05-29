@@ -1,0 +1,14 @@
+{
+  "interval": 5000,
+  "indicators": false,
+  "controls": true,
+  "fade": true,
+  "slides": [
+    {
+      "enabled": false,
+      "caption": "Example caption",
+      "text": "Example text",
+      "img": "slides/images/01.png"
+    }
+  ]
+}
