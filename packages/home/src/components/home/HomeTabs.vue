@@ -574,10 +574,10 @@ export default {
 		.home-tab {
 			position: relative;
 			min-width: rem(220);
-			max-width: rem(400);
+			max-width: rem(448);
 			z-index: 10;
 
-			@media (max-width: rem(400)) {
+			@media (max-width: rem(448)) {
 				width: 100%;
 			}
 
