@@ -96,13 +96,20 @@ export default {
 		background-color: inherit;
 		box-shadow: none;
 
-		&:hover {
-			z-index: 0;
+		&:active,
+		&.active,
+		&.focus {
+			z-index: 1;
 		}
 
+		&:active,
 		&.active {
 			background-color: inherit;
-			box-shadow: inset 0 0 0 rem(4) rgba(0, 0, 0, 0.5);
+			box-shadow: 0 0 0 rem(2) rgba(0, 0, 0, 0.5);
+		}
+
+		&.focus {
+			box-shadow: 0 0 0 rem(2) rgba(0, 0, 0, 0.8);
 		}
 
 		&.none {
