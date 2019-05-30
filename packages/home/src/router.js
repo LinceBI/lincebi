@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import isDemo from '@stratebi/biserver-customization-common/src/isDemo';
+import stopAllWindows from '@stratebi/biserver-customization-common/src/stopAllWindows';
 
 import Administration from '@/views/Administration.vue';
 import Home from '@/views/Home.vue';
@@ -46,14 +47,16 @@ export default new Router({
 			path: '/login',
 			name: 'login',
 			beforeEnter() {
-				location.href = '../Login';
+				stopAllWindows();
+				window.location.href = '../Login';
 			}
 		},
 		{
 			path: '/logout',
 			name: 'logout',
 			beforeEnter() {
-				location.href = '../Logout';
+				stopAllWindows();
+				window.location.href = '../Logout';
 			}
 		}
 	]
