@@ -1,15 +1,15 @@
 <template>
-	<b-dropdown-item
-		ref="sidebar-subitem"
-		class="sidebar-subitem"
+	<b-link
 		v-if="item.enabled"
+		class="sidebar-subitem dropdown-item"
+		target="_self"
 		:href="item.href"
-		@click.native="onClick"
-		@mouseover.native="isHover = true"
-		@mouseout.native="isHover = false"
-		@focus.native="isFocused = true"
-		@blur.native="isFocused = false"
 		:style="itemStyle"
+		@click="onClick"
+		@mouseover="isHover = true"
+		@mouseout="isHover = false"
+		@focus="isFocused = true"
+		@blur="isFocused = false"
 	>
 		<font-awesome-icon
 			v-if="typeof item.icon !== 'undefined'"
@@ -22,7 +22,7 @@
 			:src="item.img"
 		/>
 		<span class="lbl">{{ item.name }}</span>
-	</b-dropdown-item>
+	</b-link>
 </template>
 
 <script>
@@ -78,11 +78,6 @@ export default {
 	.item-img {
 		width: 1em;
 		height: auto;
-	}
-
-	&::v-deep .dropdown-item {
-		color: inherit !important;
-		background: inherit !important;
 	}
 }
 </style>
