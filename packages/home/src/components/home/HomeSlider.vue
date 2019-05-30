@@ -33,7 +33,7 @@ export default {
 	name: 'HomeSlider',
 	data() {
 		return {
-			show: false,
+			show: true,
 			slider: {
 				interval: 5000,
 				indicators: false,
