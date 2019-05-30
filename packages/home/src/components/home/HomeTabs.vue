@@ -148,6 +148,7 @@
 			:ok-title="$t('home.create')"
 			cancel-variant="secondary"
 			:cancel-title="$t('home.cancel')"
+			@shown="handleNewTabModalShown"
 			@ok="handleNewTabModalOk"
 			centered
 		>
@@ -155,13 +156,13 @@
 				<b-form-group :label="$t('home.tabName.label')">
 					<b-form-input
 						type="text"
+						ref="new-tab-name"
 						v-model="newTab.name"
 						:placeholder="$t('home.tabName.placeholder')"
-						:list="`new-tab-name-${uniqueId}`"
-						autofocus
+						:list="`new-tab-name-datalist-${uniqueId}`"
 						required
 					/>
-					<b-form-datalist :id="`new-tab-name-${uniqueId}`">
+					<b-form-datalist :id="`new-tab-name-datalist-${uniqueId}`">
 						<option v-for="tab in localTabs" :key="tab.name">
 							{{ tab.name }}
 						</option>
@@ -492,6 +493,9 @@ export default {
 		this.sortables.forEach(sortable => sortable.destroy());
 	},
 	methods: {
+		handleNewTabModalShown() {
+			this.$refs['new-tab-name'].focus();
+		},
 		handleNewTabModalOk(event) {
 			event.preventDefault();
 			this.handleNewTabFormSubmit();
