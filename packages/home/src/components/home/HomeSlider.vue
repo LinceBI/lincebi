@@ -1,6 +1,6 @@
 <template>
 	<div class="home-slider" v-if="slider.slides.some(i => i.enabled)">
-		<b-collapse v-model="show">
+		<b-collapse v-model="slider.expanded">
 			<b-carousel
 				:interval="slider.interval"
 				:indicators="slider.indicators"
@@ -20,9 +20,9 @@
 			class="p-0 rounded-0"
 			size="sm"
 			variant="light"
-			@click="show = !show"
+			@click="slider.expanded = !slider.expanded"
 		>
-			<font-awesome-icon v-if="show" :icon="['fas', 'angle-up']" />
+			<font-awesome-icon v-if="slider.expanded" :icon="['fas', 'angle-up']" />
 			<font-awesome-icon v-else :icon="['fas', 'angle-down']" />
 		</b-button>
 	</div>
@@ -33,11 +33,11 @@ export default {
 	name: 'HomeSlider',
 	data() {
 		return {
-			show: true,
 			slider: {
+				expanded: false,
 				interval: 5000,
 				indicators: false,
-				controls: true,
+				controls: false,
 				fade: true,
 				slides: []
 			}

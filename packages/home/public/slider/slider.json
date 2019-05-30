@@ -1,4 +1,5 @@
 {
+  "expanded": true,
   "interval": 5000,
   "indicators": false,
   "controls": true,
@@ -8,7 +9,7 @@
       "enabled": false,
       "caption": "Example caption",
       "text": "Example text",
-      "img": "slides/images/01.png"
+      "img": "slider/images/01.png"
     }
   ]
 }
