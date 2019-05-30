@@ -35,7 +35,7 @@
 					<button
 						v-if="tab.isRemovable"
 						type="button"
-						class="home-tab-close btn btn-link"
+						class="home-tab-close btn"
 						@click="closeTabModalShow = true"
 					>
 						<font-awesome-icon :icon="['fas', 'times']" />
@@ -581,8 +581,9 @@ export default {
 			max-width: rem(448);
 			z-index: 10;
 
-			@media (max-width: rem(448)) {
+			@include media-breakpoint-down(xs) {
 				width: 100%;
+				max-width: none;
 			}
 
 			.nav-link {
@@ -626,7 +627,7 @@ export default {
 				.home-tab-close {
 					display: none;
 					position: absolute;
-					right: 0;
+					right: rem(5);
 					color: currentColor;
 					z-index: 15;
 				}
@@ -711,22 +712,6 @@ export default {
 					color: #ffffff;
 					text-shadow: rem(1) rem(1) rem(4) #000;
 					background-color: rgba(0, 0, 0, 0.6);
-
-					.card-text {
-						height: calc(100% - #{rem(75)});
-						overflow: hidden;
-					}
-
-					.card-footer {
-						padding: 0;
-						border: none;
-						background-color: transparent;
-						text-align: right;
-
-						.btn.btn-link {
-							color: #ffffff;
-						}
-					}
 				}
 
 				.card-img {
