@@ -187,7 +187,7 @@
 			@ok="handleCloseTabModalOk"
 			centered
 		>
-			{{ $t('home.tabWillBeDeleted', { name: currentTab.name }) }}
+			{{ $t('home.tabWillBeDeleted', { name: truncate(currentTab.name) }) }}
 		</b-modal>
 	</div>
 </template>
