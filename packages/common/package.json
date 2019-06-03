@@ -12,7 +12,7 @@
     "@fortawesome/free-solid-svg-icons": "~5.8.2",
     "@fortawesome/vue-fontawesome": "~0.1.6",
     "bootstrap": "~4.3.1",
-    "bootstrap-vue": "~2.0.0-rc.21",
+    "bootstrap-vue": "~2.0.0-rc.22",
     "compressorjs": "~1.0.5",
     "jdenticon": "~2.1.1",
     "lodash": "~4.17.11",
@@ -28,7 +28,7 @@
     "eslint": "~5.16.0",
     "eslint-plugin-vue": "~5.2.2",
     "fibers": "~4.0.1",
-    "sass": "~1.20.1",
+    "sass": "~1.20.3",
     "sass-loader": "~7.1.0",
     "vue-template-compiler": "~2.6.10"
   }
