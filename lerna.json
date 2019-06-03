@@ -5,6 +5,7 @@
   ],
   "command": {
     "version": {
+      "message": "chore(release): publish %s (Pentaho Server 8.2)",
       "allowBranch": "master",
       "push": false
     }
