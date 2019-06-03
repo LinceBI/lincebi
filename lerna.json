@@ -5,6 +5,7 @@
   ],
   "command": {
     "version": {
+      "allowBranch": "master",
       "push": false
     }
   }
