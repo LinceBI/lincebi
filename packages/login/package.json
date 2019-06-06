@@ -8,10 +8,10 @@
     "serve": "vue-cli-service serve"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "~1.2.18",
-    "@fortawesome/free-brands-svg-icons": "~5.8.2",
-    "@fortawesome/free-regular-svg-icons": "~5.8.2",
-    "@fortawesome/free-solid-svg-icons": "~5.8.2",
+    "@fortawesome/fontawesome-svg-core": "~1.2.19",
+    "@fortawesome/free-brands-svg-icons": "~5.9.0",
+    "@fortawesome/free-regular-svg-icons": "~5.9.0",
+    "@fortawesome/free-solid-svg-icons": "~5.9.0",
     "@fortawesome/vue-fontawesome": "~0.1.6",
     "@stratebi/biserver-customization-common": "file:../common",
     "bootstrap": "~4.3.1",
