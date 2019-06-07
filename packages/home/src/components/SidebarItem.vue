@@ -2,7 +2,10 @@
 	<div class="sidebar-item" v-if="item.enabled" :title="item.name">
 		<div v-if="Array.isArray(item.subitems)">
 			<b-nav-item-dropdown
+				ref="dropdown"
 				v-if="item.subitems.some(i => i.enabled)"
+				@mouseenter.native="onDropdownMouseenter"
+				@mouseleave.native="onDropdownMouseleave"
 				dropright
 				no-caret
 			>
@@ -26,8 +29,9 @@
 			</b-nav-item-dropdown>
 		</div>
 		<div v-else>
-			<b-nav-item :href="item.href" @click="onClick">
+			<b-nav-item :href="item.href" @click="onItemClick">
 				<font-awesome-icon
+					ref="item"
 					v-if="typeof item.icon !== 'undefined'"
 					class="item-icon fa-fw"
 					:icon="item.icon"
@@ -52,7 +56,13 @@ export default {
 	},
 	props: { item: Object },
 	methods: {
-		onClick(event) {
+		onDropdownMouseenter(event) {
+			this.$refs.dropdown.show();
+		},
+		onDropdownMouseleave(event) {
+			this.$refs.dropdown.hide();
+		},
+		onItemClick(event) {
 			if (typeof this.item.click !== 'undefined') {
 				this.item.click.call(this, event);
 			}
