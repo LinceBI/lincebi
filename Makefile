@@ -77,7 +77,7 @@ $(DIST_TARBALL): $(BISERVER_DIST_DIR) $(PACKAGE_LOGIN_DIST_DIR) $(PACKAGE_HOME_D
 .PHONY: deploy
 deploy: $(DIST_TARBALL)
 	mvn deploy:deploy-file \
-		-Dpackaging=tar.gz \
+		-Dpackaging=tgz \
 		-Dfile='$(DIST_TARBALL)' \
 		-DgroupId='$(MAVEN_GROUP)' \
 		-DartifactId='$(PACKAGE_NAME)' \
