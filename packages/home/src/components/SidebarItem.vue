@@ -56,10 +56,10 @@ export default {
 	},
 	props: { item: Object },
 	methods: {
-		onDropdownMouseenter(event) {
+		onDropdownMouseenter() {
 			this.$refs.dropdown.show();
 		},
-		onDropdownMouseleave(event) {
+		onDropdownMouseleave() {
 			this.$refs.dropdown.hide();
 		},
 		onItemClick(event) {
