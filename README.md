@@ -16,13 +16,11 @@ reemplaza las vistas de login e inicio.
 ### Pasos
 
  1. Descargar las dependencias.
-
  ```sh
  npm install
  ```
 
  2. Compilar el proyecto.
-
  ```sh
  make build
  ```
