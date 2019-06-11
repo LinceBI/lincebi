@@ -16,7 +16,7 @@
 			<b-form-group :label="$t('password.label')">
 				<b-form-input type="password" v-model="form.j_password" required />
 			</b-form-group>
-			<b-form-text class="mb-4" tag="p" text-variant="primary">
+			<b-form-text v-if="isDemo" class="mb-4" tag="p" text-variant="primary">
 				<a href="http://www.stratebi.com/demos" target="_blank" rel="noopener">
 					<font-awesome-icon :icon="['fas', 'key']" />
 					<span class="lbl">{{ $t('getCredentialsHere') }}</span>

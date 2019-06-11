@@ -5,6 +5,7 @@ import '@/vendor/fontawesome';
 
 import App from '@/App.vue';
 import i18n from '@/i18n';
+import '@/mixin';
 
 new Vue({
 	i18n,
