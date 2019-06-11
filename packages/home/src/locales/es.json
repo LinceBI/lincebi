@@ -6,7 +6,7 @@
     "german": "Alemán"
   },
   "navbar": {
-    "welcome": "Bienvenido {name}",
+    "welcome": "{name}",
     "categories": "Categorías",
     "search": { "label": "Buscar:", "placeholder": "Buscar..." },
     "settings": "Opciones",

@@ -9,6 +9,10 @@ export const setShowSidebar = (state, showSidebar) => {
 	state.showSidebar = showSidebar;
 };
 
+export const setUserId = (state, userId) => {
+	state.userId = userId;
+};
+
 export const setCanCreate = (state, canCreate) => {
 	state.canCreate = canCreate;
 };

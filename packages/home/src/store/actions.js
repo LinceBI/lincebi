@@ -7,6 +7,7 @@ import getInstalledPlugins from '@stratebi/biserver-customization-common/src/bis
 import getLocale from '@stratebi/biserver-customization-common/src/biserver/getLocale';
 import getRepository from '@stratebi/biserver-customization-common/src/biserver/getRepository';
 import getSupportedLocales from '@stratebi/biserver-customization-common/src/biserver/getSupportedLocales';
+import getUserId from '@stratebi/biserver-customization-common/src/biserver/getUserId';
 import getUserSettings from '@stratebi/biserver-customization-common/src/biserver/getUserSettings';
 import setGlobalUserSettings from '@stratebi/biserver-customization-common/src/biserver/setGlobalUserSettings';
 import setLocale from '@stratebi/biserver-customization-common/src/biserver/setLocale';
@@ -16,6 +17,11 @@ import setUserSettings from '@stratebi/biserver-customization-common/src/biserve
 import { defaultGlobalUserSettings, defaultUserSettings } from '@/userSettings';
 
 import i18n from '@/i18n';
+
+export const fetchUserId = async ({ commit }) => {
+	const userId = await getUserId(false);
+	commit('setUserId', userId);
+};
 
 export const fetchCanCreate = async ({ commit }) => {
 	const canCreate = await getCanCreate(false);

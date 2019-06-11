@@ -6,7 +6,7 @@
     "german": "German"
   },
   "navbar": {
-    "welcome": "Welcome {name}",
+    "welcome": "{name}",
     "categories": "Categories",
     "search": { "label": "Search:", "placeholder": "Search..." },
     "settings": "Settings",

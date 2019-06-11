@@ -19,6 +19,7 @@ export default {
 		Sidebar
 	},
 	created() {
+		store.dispatch('fetchUserId');
 		store.dispatch('fetchCanCreate');
 		store.dispatch('fetchCanAdminister');
 		store.dispatch('fetchCanSchedule');

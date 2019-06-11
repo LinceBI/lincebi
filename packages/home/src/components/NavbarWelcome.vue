@@ -7,7 +7,11 @@
 			/>
 		</b-link>
 		<span class="user-text">
-			{{ $t('navbar.welcome', { name: userSettings[`${namespace}.name`] }) }}
+			{{
+				$t('navbar.welcome', {
+					name: userSettings[`${namespace}.name`] || userId
+				})
+			}}
 		</span>
 	</b-nav-text>
 </template>
@@ -18,6 +22,9 @@ import store from '@/store';
 export default {
 	name: 'NavbarWelcome',
 	computed: {
+		userId() {
+			return store.state.userId;
+		},
 		userSettings() {
 			return store.state.userSettings;
 		}
