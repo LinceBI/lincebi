@@ -1,31 +1,14 @@
-import fetch from 'unfetch';
+import getPentahoEnvironment from './getPentahoEnvironment';
 
 let contextPathPromise = null;
 
 const getContextPath = async () => {
-	const endpoint = '../webcontext.js?useFullyQualifiedUrl=false';
-	const response = await fetch(endpoint, {
-		method: 'GET',
-		headers: { 'Content-Type': 'text/plain' }
-	});
-
-	if (response.status === 200) {
-		// Horrible way to get the CONTEXT_PATH.
-		// TODO: find a more robust approach.
-		const contextPathRegex = /^var\sCONTEXT_PATH\s=\s"(.*)";$/m;
-		const webcontextText = await response.text();
-		const found = webcontextText.match(contextPathRegex);
-		if (found && found.length === 2) {
-			return found[1].replace(/\\/g, '');
-		}
-	}
-
-	console.warn('Falling back to default context path');
-	return '/pentaho/';
+	const pentahoEnvironment = await getPentahoEnvironment();
+	return pentahoEnvironment.server.root;
 };
 
-export default async (useCache = true, ...args) => {
-	if (contextPathPromise === null || !useCache) {
+export default async (...args) => {
+	if (contextPathPromise === null) {
 		contextPathPromise = getContextPath(...args);
 	}
 	return contextPathPromise;
