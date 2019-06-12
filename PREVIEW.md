@@ -18,7 +18,7 @@ muestran los archivos que el administrador y el usuario han elegido.
 Por defecto, las dos únicas pestañas que aparecen son "Global" e "Inicio", en la primera es el
 administrador quien elige los archivos que se muestran marcando una opción desde el buscador, y en
 la segunda es el usuario quien hace esto. El administrador o el usuario pueden arrastrar en su
-respectiva pestaña los archivos para que se muesten en el orden que desee.
+respectiva pestaña los archivos para que se muestren en el orden que desee.
 
 ![xl_home] ![sm_home]
 
