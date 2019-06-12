@@ -1,13 +1,17 @@
 # Personalización de Pentaho BI Server
 
-El siguiente repositorio contiene una personalización para Pentaho BI Server hecha con Vue.js que
+Este repositorio contiene una personalización para Pentaho BI Server hecha con Vue.js que
 reemplaza las vistas "/Login" y "/Home".
 
-Este desarrollo se ha realizado de la forma más independiente posible a Pentaho BI Server, con el
-fin de facilitar las actualizaciones a futuras versiones. Toda la comunicación con el servidor se
+El desarrollo se ha realizado de la forma más independiente posible a Pentaho BI Server, con el fin
+de facilitar las actualizaciones a futuras versiones. Toda la comunicación con el servidor se
 realiza exclusivamente mediante su API, cada interacción está separada en módulos que pueden
-encontrarse en la siguiente ruta:
-[`./packages/common/src/biserver/`](./packages/common/src/biserver/)
+encontrarse en la siguiente ruta: [./packages/common/src/biserver/](./packages/common/src/biserver/)
+
+## Vista previa de la personalización
+
+En el documento [./PREVIEW.md](./PREVIEW.md) y en el directorio [./screenshots/](./screenshots/)
+pueden encontrarse capturas de pantalla de la personalización en escritorio y móvil.
 
 ## Instalación en clientes
 
