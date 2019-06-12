@@ -109,3 +109,8 @@ reemplaza las vistas "/Login" y "/Home".
 ## Instalación del paquete compilado
 
 Descomprimir y reemplazar el contenido del archivo `.tgz` sobre una instalación de Pentaho BI Server.
+
+**NOTA:** esta personalización es dependiente de los plugins
+ [STSearch](//gitlab.stratebi.com/stratebi/customizations/STSearch),
+ [file-metadata](//gitlab.stratebi.com/stratebi/customizations/file-metadata) y
+ [global-user-settings](//gitlab.stratebi.com/stratebi/customizations/global-user-settings).
