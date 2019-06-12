@@ -3,6 +3,18 @@
 El siguiente repositorio contiene una personalización para Pentaho BI Server hecha con Vue.js que
 reemplaza las vistas "/Login" y "/Home".
 
+Este desarrollo se ha realizado de la forma más independiente posible a Pentaho BI Server, con el
+fin de facilitar las actualizaciones a futuras versiones. Toda la comunicación con el servidor se
+realiza exclusivamente mediante su API, cada interacción está separada en módulos que pueden
+encontrarse en la siguiente ruta:
+[`./packages/common/src/biserver/`](./packages/common/src/biserver/)
+
+## Instalación en clientes
+
+Actualmente la personalización tiene el logo y los colores de Stratebi, sin embargo, esto puede
+cambiarse fácilmente con variables en tiempo de compilación (no es posible cambiarlo en el paquete
+generado).
+
 ## Estructura del proyecto
 
 ```
@@ -111,6 +123,6 @@ reemplaza las vistas "/Login" y "/Home".
 Descomprimir y reemplazar el contenido del archivo `.tgz` sobre una instalación de Pentaho BI Server.
 
 **NOTA:** esta personalización es dependiente de los plugins
- [STSearch](//gitlab.stratebi.com/stratebi/customizations/STSearch),
+ [STSearch](//gitlab.stratebi.com/stratebi/customizations/stsearch),
  [file-metadata](//gitlab.stratebi.com/stratebi/customizations/file-metadata) y
  [global-user-settings](//gitlab.stratebi.com/stratebi/customizations/global-user-settings).
