@@ -34,7 +34,7 @@
 				:placeholder="$t('navbar.search.placeholder')"
 			/>
 			<b-input-group-append>
-				<b-button variant="primary">
+				<b-button variant="primary" type="submit">
 					<font-awesome-icon :icon="['fas', 'search']" />
 				</b-button>
 			</b-input-group-append>
