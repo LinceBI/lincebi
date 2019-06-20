@@ -1,3 +1,5 @@
+import '@stratebi/biserver-customization-common/src/nestedLoginDetector';
+
 import Vue from 'vue';
 
 import '@/vendor/bootstrap';
