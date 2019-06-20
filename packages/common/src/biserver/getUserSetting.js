@@ -26,7 +26,9 @@ export default async key => {
 
 	if (response.status === 200) {
 		const value = await response.text();
-		return value === 'null' ? null : value;
+		if (value.length > 0 && value !== 'null') {
+			return value;
+		}
 	}
 
 	return null;
