@@ -3,7 +3,7 @@ module.exports = {
 	indexPath: 'index.jsp',
 	integrity: true,
 	productionSourceMap: false,
-	devServer: { historyApiFallback: false },
+	devServer: { historyApiFallback: false, disableHostCheck: true },
 	chainWebpack: config => {
 		config.optimization.splitChunks({
 			cacheGroups: {
