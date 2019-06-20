@@ -1,18 +1,23 @@
 <template>
-	<div class="app d-flex align-items-center justify-content-center">
-		<login-form class="login-form" />
+	<div class="app">
+		<div class="login-container">
+			<login-form class="login-form" />
+		</div>
+		<login-footer class="login-footer" />
 		<node-garden class="node-garden" />
 	</div>
 </template>
 
 <script>
 import LoginForm from '@/components/LoginForm.vue';
+import LoginFooter from '@/components/LoginFooter.vue';
 import NodeGarden from '@/components/NodeGarden.vue';
 
 export default {
 	name: 'App',
 	components: {
 		LoginForm,
+		LoginFooter,
 		NodeGarden
 	}
 };
@@ -21,7 +26,6 @@ export default {
 <style lang="scss">
 body {
 	margin: 0;
-	height: 100vh;
 	font-family: 'Titillium Web', $system-sans-serif;
 	font-size: $em-base-px;
 	background-image: url('~@/assets/img/background.jpg');
@@ -32,23 +36,40 @@ body {
 
 .app {
 	display: flex;
-	position: relative;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: auto;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	padding: rem(10);
-	min-height: 100%;
+	min-height: 100vh;
 
-	.login-form {
-		display: block;
-		position: relative;
-		width: 100%;
-		max-width: rem(400);
-		z-index: 1;
+	.login-container {
+		display: flex;
+		flex-grow: 1;
+		flex-shrink: 0;
+		flex-basis: auto;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: rem(10);
 
-		@include media-breakpoint-up(md) {
-			left: -20%;
+		.login-form {
+			display: block;
+			position: relative;
+			width: 100%;
+			max-width: rem(400);
+			z-index: 1;
+
+			@include media-breakpoint-up(md) {
+				left: -20%;
+			}
 		}
+	}
+
+	.login-footer {
+		display: block;
+		padding: rem(10);
+		text-align: center;
+		z-index: 1;
 	}
 
 	.node-garden {
