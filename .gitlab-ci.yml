@@ -4,8 +4,8 @@ stages:
 
 .develop_variables: &develop_variables
   MAVEN_GROUP: com.stratebi.pentaho
-  MAVEN_REPOSITORY_ID: stratebi-snapshot
-  MAVEN_REPOSITORY_URL: https://repo.stratebi.com/repository/stratebi-mvn-snapshot
+  MAVEN_REPOSITORY_ID: stratebi-snapshots
+  MAVEN_REPOSITORY_URL: https://repo.stratebi.com/repository/stratebi-mvn-snapshots
   MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2
   PACKAGE_VERSION_EXTRA: ${CI_COMMIT_REF_SLUG}-SNAPSHOT
 
