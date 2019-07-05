@@ -15,22 +15,22 @@
     "@fortawesome/vue-fontawesome": "~0.1.6",
     "@stratebi/biserver-customization-common": "file:../common",
     "bootstrap": "~4.3.1",
-    "bootstrap-vue": "~2.0.0-rc.24",
+    "bootstrap-vue": "~2.0.0-rc.25",
     "lodash": "~4.17.11",
     "unfetch": "~4.1.0",
     "vue": "~2.6.10",
     "vue-i18n": "~8.11.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~3.8.0",
-    "@vue/cli-plugin-eslint": "~3.8.0",
-    "@vue/cli-service": "~3.8.4",
+    "@vue/cli-plugin-babel": "~3.9.0",
+    "@vue/cli-plugin-eslint": "~3.9.1",
+    "@vue/cli-service": "~3.9.0",
     "@vue/eslint-config-prettier": "~4.0.1",
     "babel-eslint": "~10.0.2",
     "eslint": "~5.16.0",
     "eslint-plugin-vue": "~5.2.3",
     "fibers": "~4.0.1",
-    "sass": "~1.22.0",
+    "sass": "~1.22.3",
     "sass-loader": "~7.1.0",
     "vue-template-compiler": "~2.6.10"
   }
