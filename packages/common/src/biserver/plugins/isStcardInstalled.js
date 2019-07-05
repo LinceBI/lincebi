@@ -1,3 +1,5 @@
+import fetch from 'unfetch';
+
 import getContextPath from '../getContextPath';
 
 let isInstalled = null;

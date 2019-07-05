@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import fetch from 'unfetch';
+
 import waitFor from '@stratebi/biserver-customization-common/src/waitFor';
 
 import eventBus from '@/eventBus';
