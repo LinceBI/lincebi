@@ -1,4 +1,52 @@
-# Personalización de Pentaho BI Server
+---
+papersize: "a4"
+geometry:
+  - top=3cm
+  - bottom=3cm
+  - left=2cm
+  - right=2cm
+fontsize: "12pt"
+mainfont: "Titillium"
+mainfontoptions:
+  - Scale=1.00
+monofont: "DejaVu Sans Mono"
+monofontoptions:
+  - Scale=0.80
+colorlinks: true
+header-includes:
+  - \usepackage{xcolor}
+  - \usepackage{hyperref}
+  - \usepackage{fancyhdr}
+  - \usepackage[es-ES]{datetime2}
+  - \pagestyle{fancy}
+  - \fancyhead[LO,LE]{\leftmark}
+  - \fancyhead[CO,CE]{}
+  - \fancyhead[RE,RO]{\includegraphics[height=0.6cm]{./images/stratebi_simplified.png}}
+  - \fancyfoot[LE,LO]{}
+  - \fancyfoot[CO,CE]{}
+  - \fancyfoot[RE,RO]{\thepage}
+---
+
+\begin{titlepage}
+  \centering
+
+  \includegraphics[width=0.4\textwidth]{./images/stratebi.png}\par
+  \vspace{5cm}
+  {\huge\bfseries Personalización de Pentaho BI Server\par}
+
+  \vfill
+
+  {\large \today\par}
+\end{titlepage}
+
+\renewcommand\contentsname{Índice}
+\addtocontents{toc}{~\hfill\textbf{Página}\par}
+\hypersetup{linkcolor=black}
+\tableofcontents
+
+\newpage
+
+# Introducción
 
 El siguiente documento presenta un manual de instalación y uso de la personalización de Stratebi
 de Pentaho BI Server.
@@ -21,15 +69,11 @@ exclusivamente mediante su API REST.
  * Mozilla Firefox Extended Support Release (ESR).
  * **Ninguna versión de Internet Explorer.**
 
-## Instalación en clientes
+\newpage
 
-Actualmente la personalización tiene el logo y los colores de Stratebi, sin embargo, esto puede
-cambiarse fácilmente con variables en tiempo de compilación (no es posible cambiarlo en el paquete
-generado).
+# Compilación
 
-## Compilación
-
-### Requisitos
+## Requisitos
 
  * GNU/Linux.
  * [Node.js](https://nodejs.org/en/download/package-manager/).
@@ -37,7 +81,7 @@ generado).
  * [Docker Compose](https://docs.docker.com/compose/install/).
  * Los siguientes paquetes: `git` `jq` `make` `maven` `tmux`.
 
-### Pasos
+## Pasos
 
  1. Descargar y descomprimir un Pentaho BI Server 8.2 original en el directorio
     `./biserver/overlay/` (sin sobreescribir los archivos existentes).
@@ -54,7 +98,7 @@ generado).
 
  4. El resultado de la compilación podrá encontrarse en el directorio `./dist/`.
 
-### Workflow de desarrollo
+## Workflow de desarrollo
 
  1. Iniciar Pentaho BI Server y el proxy inverso.
     ```sh
@@ -69,7 +113,9 @@ generado).
  3. Cuando ambos servicios estén en marcha, acceder a `http://localhost:2015/`
     (los dev servers se encargarán de recompilar el proyecto en caliente con cada cambio).
 
-### Estructura del proyecto
+\newpage
+
+## Estructura del proyecto
 
 ```
  .
@@ -102,7 +148,9 @@ generado).
  └── package.json
 ```
 
-## Instalación
+\newpage
+
+# Instalación
 
 Descomprimir y reemplazar el contenido del archivo `.tgz` sobre una instalación de Pentaho BI
 Server.
@@ -115,7 +163,7 @@ De ya existir los directorios `./tomcat/webapps/pentaho/Login/` y
  [file-metadata](https://gitlab.stratebi.com/stratebi/customizations/file-metadata) y
  [global-user-settings](https://gitlab.stratebi.com/stratebi/customizations/global-user-settings).
 
-### Estructura del paquete compilado
+## Estructura del paquete compilado
 
 ```
  .
@@ -152,3 +200,112 @@ De ya existir los directorios `./tomcat/webapps/pentaho/Login/` y
                                         desactivación de los servlets "Login" y
                                         "Home" y la definición de nuevos servlets.
 ```
+
+\newpage
+
+# Vista previa
+
+## /Login
+
+Lo primero que el usuario verá al entrar en la personalización es la siguiente vista, en la que se
+le ofrecerá iniciar sesión.
+
+![](./images/xl_login.png){width=512px}
+![](./images/sm_login.png){width=128px}
+
+\newpage
+
+## /Home
+
+### Pestañas
+
+Esta es la vista inicial de la personalización, en ella se presenta una navegación por pestañas que
+muestran los archivos que el administrador y el usuario han elegido.
+
+Por defecto, las dos únicas pestañas que aparecen son "Global" e "Inicio", en la primera es el
+administrador quien elige los archivos que se muestran haciendo click en el icono de la bola del
+mundo en el buscador, y en la segunda es el usuario quien hace esto haciendo click en el icono de la
+casa.
+
+Tanto el administrador como el usuario pueden arrastrar en su respectiva pestaña los archivos para
+que se muestren en el orden que desee.
+
+![](./images/xl_home.png){width=512px}
+![](./images/sm_home.png){width=128px}
+
+\newpage
+
+El resto de pestañas de ejemplo que se ven en la imagen muestran los archivos del repositorio que
+contienen una etiqueta con el mismo nombre que la pestaña. Estas etiquetas son definidas en el
+buscador.
+
+![](./images/xl_home_tab.png){width=512px}
+![](./images/sm_home_tab.png){width=128px}
+
+Estas pestañas pueden ser creadas y cambiadas de orden por el usuario, en ellas se define un nombre,
+color e icono.
+
+![](./images/xl_home_tab_new.png){width=512px}
+![](./images/sm_home_tab_new.png){width=128px}
+
+\newpage
+
+### Buscador
+
+Desde el buscador el usuario ve los archivos de un directorio de forma recursiva. Puede explorar
+todo el árbol de directorios y filtrar los archivos en base a unos criterios definidos en la sección
+superior de la vista.
+
+![](./images/xl_stsearch.png){width=512px}
+![](./images/sm_stsearch.png){width=128px}
+
+El usuario puede editar los metadatos de los archivos y estos son guardados en el idioma
+seleccionado (a excepción de la imagen y las etiquetas, que son los mismos independientemente del
+idioma).
+
+![](./images/xl_stsearch_edit.png){width=512px}
+![](./images/sm_stsearch_edit.png){width=128px}
+
+\newpage
+
+### Perfil
+
+La siguiente vista es la del perfil del usuario, la cual puede accederse haciendo click en la imagen
+de perfil o desde el menú de opciones superior.
+
+En ella el usuario puede actualizar su imagen e introducir su nombre, email, teléfono y dirección.
+
+Estos datos podrán ser utilizados posteriormente en otras vistas de la personalización o plugins de
+Pentaho BI Server.
+
+![](./images/xl_home_navbar_options.png){width=512px}\
+
+![](./images/xl_profile.png){width=512px}
+![](./images/sm_profile.png){width=128px}
+
+\newpage
+
+### Administración
+
+La última vista propia implementada es administración, que puede ser accedida desde el menú lateral.
+
+En ella el administrador podrá acceder a distintas secciones para gestionar Pentaho BI Server, como
+la gestión de fuentes de datos, programaciones o marketplace, así como vaciar las cachés del
+servidor.
+
+![](./images/xl_administration.png){width=512px}
+![](./images/sm_administration.png){width=128px}
+
+\newpage
+
+### Perspectivas estándar
+
+Las perspectivas incluidas en Pentaho BI Server, como el explorador de archivos o los archivos
+abiertos, siguen existiendo y pueden ser accedidas desde la barra lateral o desde
+`/pentaho/Home/#/p/nombre_de_perspectiva` en la URL.
+
+![](./images/xl_browser.png){width=512px}
+![](./images/sm_browser.png){width=128px}
+
+![](./images/xl_opened.png){width=512px}
+![](./images/sm_opened.png){width=128px}
