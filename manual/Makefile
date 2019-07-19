@@ -3,9 +3,9 @@
 SHELL := /bin/sh
 .SHELLFLAGS := -eu -c
 
-PANDOOC := $(shell command -v pandoc 2>/dev/null)
+PANDOC := $(shell command -v pandoc 2>/dev/null)
 
-PANDOC_CSS := ./pandoc.css
+PANDOC_CSS := ./assets/style.css
 
 TARGET_PDF := $(addsuffix .pdf, $(basename $(wildcard *.md)))
 TARGET_HTML := $(addsuffix .html, $(basename $(wildcard *.md)))
@@ -25,15 +25,16 @@ all: build
 build: $(TARGET_PDF) $(TARGET_HTML)
 
 %.pdf: %.md
-	'$(PANDOOC)' '$<' \
+	'$(PANDOC)' '$<' \
 		--latex-engine=xelatex \
-		-o '$@'
+		--output='$@'
+
 %.html: %.md
-	'$(PANDOOC)' '$<' \
+	'$(PANDOC)' '$<' \
 		--latex-engine=xelatex \
+		--css='$(PANDOC_CSS)' \
 		--self-contained \
-		--css '$(PANDOC_CSS)' \
-		-o '$@'
+		--output='$@'
 
 ##################################################
 ## "clean" target

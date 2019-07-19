@@ -12,14 +12,14 @@ mainfontoptions:
   - BoldFont=Titillium-Bold.otf
   - ItalicFont=Titillium-RegularItalic.otf
   - BoldItalicFont=Titillium-BoldItalic.otf
-  - ExternalLocation=fonts/
+  - ExternalLocation=assets/fonts/
 monofont: "Hack-Regular.otf"
 monofontoptions:
   - Scale=0.80
   - BoldFont=Hack-Bold.otf
   - ItalicFont=Hack-RegularItalic.otf
   - BoldItalicFont=Hack-BoldItalic.otf
-  - ExternalLocation=fonts/
+  - ExternalLocation=assets/fonts/
 colorlinks: true
 header-includes:
   - \usepackage{xcolor}
@@ -29,7 +29,7 @@ header-includes:
   - \pagestyle{fancy}
   - \fancyhead[LO,LE]{\leftmark}
   - \fancyhead[CO,CE]{}
-  - \fancyhead[RE,RO]{\includegraphics[height=0.6cm]{./images/stratebi_simplified.png}}
+  - \fancyhead[RE,RO]{\includegraphics[height=0.6cm]{./assets/images/stratebi_simplified.png}}
   - \fancyfoot[LE,LO]{}
   - \fancyfoot[CO,CE]{}
   - \fancyfoot[RE,RO]{\thepage}
@@ -38,7 +38,7 @@ header-includes:
 \begin{titlepage}
   \centering
 
-  \includegraphics[width=0.4\textwidth]{./images/stratebi.png}\par
+  \includegraphics[width=0.4\textwidth]{./assets/images/stratebi.png}\par
   \vspace{5cm}
   {\huge\bfseries Personalización de Pentaho BI Server\par}
 
@@ -218,8 +218,8 @@ De ya existir los directorios `./tomcat/webapps/pentaho/Login/` y
 Lo primero que el usuario verá al entrar en la personalización es la siguiente vista, en la que se
 le ofrecerá iniciar sesión.
 
-![](./images/xl_login.png){width=512px}
-![](./images/sm_login.png){width=128px}
+![](./assets/images/xl_login.png){width=512px}
+![](./assets/images/sm_login.png){width=128px}
 
 \newpage
 
@@ -238,8 +238,8 @@ casa.
 Tanto el administrador como el usuario pueden arrastrar en su respectiva pestaña los archivos para
 que se muestren en el orden que desee.
 
-![](./images/xl_home.png){width=512px}
-![](./images/sm_home.png){width=128px}
+![](./assets/images/xl_home.png){width=512px}
+![](./assets/images/sm_home.png){width=128px}
 
 \newpage
 
@@ -247,14 +247,14 @@ El resto de pestañas de ejemplo que se ven en la imagen muestran los archivos d
 contienen una etiqueta con el mismo nombre que la pestaña. Estas etiquetas son definidas en el
 buscador.
 
-![](./images/xl_home_tab.png){width=512px}
-![](./images/sm_home_tab.png){width=128px}
+![](./assets/images/xl_home_tab.png){width=512px}
+![](./assets/images/sm_home_tab.png){width=128px}
 
 Estas pestañas pueden ser creadas y cambiadas de orden por el usuario, en ellas se define un nombre,
 color e icono.
 
-![](./images/xl_home_tab_new.png){width=512px}
-![](./images/sm_home_tab_new.png){width=128px}
+![](./assets/images/xl_home_tab_new.png){width=512px}
+![](./assets/images/sm_home_tab_new.png){width=128px}
 
 \newpage
 
@@ -264,15 +264,15 @@ Desde el buscador el usuario ve los archivos de un directorio de forma recursiva
 todo el árbol de directorios y filtrar los archivos en base a unos criterios definidos en la sección
 superior de la vista.
 
-![](./images/xl_stsearch.png){width=512px}
-![](./images/sm_stsearch.png){width=128px}
+![](./assets/images/xl_stsearch.png){width=512px}
+![](./assets/images/sm_stsearch.png){width=128px}
 
 El usuario puede editar los metadatos de los archivos y estos son guardados en el idioma
 seleccionado (a excepción de la imagen y las etiquetas, que son los mismos independientemente del
 idioma).
 
-![](./images/xl_stsearch_edit.png){width=512px}
-![](./images/sm_stsearch_edit.png){width=128px}
+![](./assets/images/xl_stsearch_edit.png){width=512px}
+![](./assets/images/sm_stsearch_edit.png){width=128px}
 
 \newpage
 
@@ -286,10 +286,10 @@ En ella el usuario puede actualizar su imagen e introducir su nombre, email, tel
 Estos datos podrán ser utilizados posteriormente en otras vistas de la personalización o plugins de
 Pentaho BI Server.
 
-![](./images/xl_home_navbar_options.png){width=512px}\
+![](./assets/images/xl_home_navbar_options.png){width=512px}\
 
-![](./images/xl_profile.png){width=512px}
-![](./images/sm_profile.png){width=128px}
+![](./assets/images/xl_profile.png){width=512px}
+![](./assets/images/sm_profile.png){width=128px}
 
 \newpage
 
@@ -301,8 +301,8 @@ En ella el administrador podrá acceder a distintas secciones para gestionar Pen
 la gestión de fuentes de datos, programaciones o marketplace, así como vaciar las cachés del
 servidor.
 
-![](./images/xl_administration.png){width=512px}
-![](./images/sm_administration.png){width=128px}
+![](./assets/images/xl_administration.png){width=512px}
+![](./assets/images/sm_administration.png){width=128px}
 
 \newpage
 
@@ -312,8 +312,8 @@ Las perspectivas incluidas en Pentaho BI Server, como el explorador de archivos 
 abiertos, siguen existiendo y pueden ser accedidas desde la barra lateral o desde
 `/pentaho/Home/#/p/nombre_de_perspectiva` en la URL.
 
-![](./images/xl_browser.png){width=512px}
-![](./images/sm_browser.png){width=128px}
+![](./assets/images/xl_browser.png){width=512px}
+![](./assets/images/sm_browser.png){width=128px}
 
-![](./images/xl_opened.png){width=512px}
-![](./images/sm_opened.png){width=128px}
+![](./assets/images/xl_opened.png){width=512px}
+![](./assets/images/sm_opened.png){width=128px}
