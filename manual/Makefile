@@ -5,8 +5,10 @@ SHELL := /bin/sh
 
 PANDOOC := $(shell command -v pandoc 2>/dev/null)
 
-SOURCE := ./manual.md
-TARGET := ./manual.pdf
+PANDOC_CSS := ./pandoc.css
+
+TARGET_PDF := $(addsuffix .pdf, $(basename $(wildcard *.md)))
+TARGET_HTML := $(addsuffix .html, $(basename $(wildcard *.md)))
 
 ##################################################
 ## "all" target
@@ -20,12 +22,18 @@ all: build
 ##################################################
 
 .PHONY: build
-build: $(TARGET)
+build: $(TARGET_PDF) $(TARGET_HTML)
 
-$(TARGET):
-	'$(PANDOOC)' '$(SOURCE)' \
+%.pdf: %.md
+	'$(PANDOOC)' '$<' \
 		--latex-engine=xelatex \
-		-o '$(TARGET)'
+		-o '$@'
+%.html: %.md
+	'$(PANDOOC)' '$<' \
+		--latex-engine=xelatex \
+		--self-contained \
+		--css '$(PANDOC_CSS)' \
+		-o '$@'
 
 ##################################################
 ## "clean" target
@@ -33,4 +41,4 @@ $(TARGET):
 
 .PHONY: clean
 clean:
-	rm -f '$(TARGET)'
+	rm -f $(addprefix ', $(addsuffix ', $(TARGET_PDF) $(TARGET_HTML)))
