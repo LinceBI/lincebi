@@ -1,4 +1,7 @@
 ---
+title: Personalización de Pentaho Business Intelligence Server
+subtitle: Manual de desarrollo y uso
+lang: es
 papersize: "a4"
 geometry:
   - top=3cm
@@ -29,30 +32,15 @@ header-includes:
   - \pagestyle{fancy}
   - \fancyhead[LO,LE]{\leftmark}
   - \fancyhead[CO,CE]{}
-  - \fancyhead[RE,RO]{\includegraphics[height=0.6cm]{./assets/images/stratebi_simplified.png}}
+  - \fancyhead[RE,RO]{\includegraphics[height=0.6cm]{./assets/images/stratebi_alt.png}}
   - \fancyfoot[LE,LO]{}
   - \fancyfoot[CO,CE]{}
   - \fancyfoot[RE,RO]{\thepage}
+  - \renewcommand\contentsname{Índice}
 ---
 
-\begin{titlepage}
-  \centering
-
-  \includegraphics[width=0.4\textwidth]{./assets/images/stratebi.png}\par
-  \vspace{5cm}
-  {\huge\bfseries Personalización de Pentaho BI Server\par}
-
-  \vfill
-
-  {\large \today\par}
-\end{titlepage}
-
-\renewcommand\contentsname{Índice}
-\addtocontents{toc}{~\hfill\textbf{Página}\par}
 \hypersetup{linkcolor=black}
 \tableofcontents
-
-\newpage
 
 # Introducción
 
@@ -76,8 +64,6 @@ exclusivamente mediante su API REST.
  * Las dos últimas versiones de Opera.
  * Mozilla Firefox Extended Support Release (ESR).
  * **Ninguna versión de Internet Explorer.**
-
-\newpage
 
 # Compilación
 
@@ -121,8 +107,6 @@ exclusivamente mediante su API REST.
  3. Cuando ambos servicios estén en marcha, acceder a `http://localhost:2015/`
     (los dev servers se encargarán de recompilar el proyecto en caliente con cada cambio).
 
-\newpage
-
 ## Estructura del proyecto
 
 ```
@@ -155,8 +139,6 @@ exclusivamente mediante su API REST.
  |                             de cada paquete y compilar el proyecto.
  └── package.json
 ```
-
-\newpage
 
 # Instalación
 
@@ -209,8 +191,6 @@ De ya existir los directorios `./tomcat/webapps/pentaho/Login/` y
                                         "Home" y la definición de nuevos servlets.
 ```
 
-\newpage
-
 # Vista previa
 
 ## /Login
@@ -221,7 +201,7 @@ le ofrecerá iniciar sesión.
 ![](./assets/images/xl_login.png){width=512px}
 ![](./assets/images/sm_login.png){width=128px}
 
-\newpage
+######
 
 ## /Home
 
@@ -241,7 +221,7 @@ que se muestren en el orden que desee.
 ![](./assets/images/xl_home.png){width=512px}
 ![](./assets/images/sm_home.png){width=128px}
 
-\newpage
+######
 
 El resto de pestañas de ejemplo que se ven en la imagen muestran los archivos del repositorio que
 contienen una etiqueta con el mismo nombre que la pestaña. Estas etiquetas son definidas en el
@@ -256,7 +236,7 @@ color e icono.
 ![](./assets/images/xl_home_tab_new.png){width=512px}
 ![](./assets/images/sm_home_tab_new.png){width=128px}
 
-\newpage
+######
 
 ### Buscador
 
@@ -274,7 +254,7 @@ idioma).
 ![](./assets/images/xl_stsearch_edit.png){width=512px}
 ![](./assets/images/sm_stsearch_edit.png){width=128px}
 
-\newpage
+######
 
 ### Perfil
 
@@ -291,7 +271,7 @@ Pentaho BI Server.
 ![](./assets/images/xl_profile.png){width=512px}
 ![](./assets/images/sm_profile.png){width=128px}
 
-\newpage
+######
 
 ### Administración
 
@@ -304,7 +284,7 @@ servidor.
 ![](./assets/images/xl_administration.png){width=512px}
 ![](./assets/images/sm_administration.png){width=128px}
 
-\newpage
+######
 
 ### Perspectivas estándar
 
