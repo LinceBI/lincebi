@@ -1,6 +1,6 @@
 ---
-title: Personalización de Pentaho Business Intelligence Server
-subtitle: Manual de desarrollo y uso
+title: Personalización para Pentaho Business Intelligence Server
+subtitle: Manual de desarrollo
 lang: es
 papersize: "a4"
 geometry:
@@ -44,8 +44,8 @@ header-includes:
 
 # Introducción
 
-El siguiente documento presenta un manual de instalación y uso de la personalización de Stratebi
-de Pentaho BI Server.
+El siguiente documento presenta un manual de desarrollo e instalación de la personalización de
+Stratebi para Pentaho BI Server.
 
 Es un desarrollo web moderno con ECMAScript 2018+, Vue.js, Bootstrap y SASS que reemplaza las
 vistas de Pentaho BI Server `/Login` y `/Home`.
@@ -106,6 +106,8 @@ exclusivamente mediante su API REST.
 
  3. Cuando ambos servicios estén en marcha, acceder a `http://localhost:2015/`
     (los dev servers se encargarán de recompilar el proyecto en caliente con cada cambio).
+
+######
 
 ## Estructura del proyecto
 
@@ -190,110 +192,3 @@ De ya existir los directorios `./tomcat/webapps/pentaho/Login/` y
                                         desactivación de los servlets "Login" y
                                         "Home" y la definición de nuevos servlets.
 ```
-
-# Vista previa
-
-## /Login
-
-Lo primero que el usuario verá al entrar en la personalización es la siguiente vista, en la que se
-le ofrecerá iniciar sesión.
-
-![](./assets/images/xl_login.png){width=512px}
-![](./assets/images/sm_login.png){width=128px}
-
-######
-
-## /Home
-
-### Pestañas
-
-Esta es la vista inicial de la personalización, en ella se presenta una navegación por pestañas que
-muestran los archivos que el administrador y el usuario han elegido.
-
-Por defecto, las dos únicas pestañas que aparecen son "Global" e "Inicio", en la primera es el
-administrador quien elige los archivos que se muestran haciendo click en el icono de la bola del
-mundo en el buscador, y en la segunda es el usuario quien hace esto haciendo click en el icono de la
-casa.
-
-Tanto el administrador como el usuario pueden arrastrar en su respectiva pestaña los archivos para
-que se muestren en el orden que desee.
-
-![](./assets/images/xl_home.png){width=512px}
-![](./assets/images/sm_home.png){width=128px}
-
-######
-
-El resto de pestañas de ejemplo que se ven en la imagen muestran los archivos del repositorio que
-contienen una etiqueta con el mismo nombre que la pestaña. Estas etiquetas son definidas en el
-buscador.
-
-![](./assets/images/xl_home_tab.png){width=512px}
-![](./assets/images/sm_home_tab.png){width=128px}
-
-Estas pestañas pueden ser creadas y cambiadas de orden por el usuario, en ellas se define un nombre,
-color e icono.
-
-![](./assets/images/xl_home_tab_new.png){width=512px}
-![](./assets/images/sm_home_tab_new.png){width=128px}
-
-######
-
-### Buscador
-
-Desde el buscador el usuario ve los archivos de un directorio de forma recursiva. Puede explorar
-todo el árbol de directorios y filtrar los archivos en base a unos criterios definidos en la sección
-superior de la vista.
-
-![](./assets/images/xl_stsearch.png){width=512px}
-![](./assets/images/sm_stsearch.png){width=128px}
-
-El usuario puede editar los metadatos de los archivos y estos son guardados en el idioma
-seleccionado (a excepción de la imagen y las etiquetas, que son los mismos independientemente del
-idioma).
-
-![](./assets/images/xl_stsearch_edit.png){width=512px}
-![](./assets/images/sm_stsearch_edit.png){width=128px}
-
-######
-
-### Perfil
-
-La siguiente vista es la del perfil del usuario, la cual puede accederse haciendo click en la imagen
-de perfil o desde el menú de opciones superior.
-
-En ella el usuario puede actualizar su imagen e introducir su nombre, email, teléfono y dirección.
-
-Estos datos podrán ser utilizados posteriormente en otras vistas de la personalización o plugins de
-Pentaho BI Server.
-
-![](./assets/images/xl_home_navbar_options.png){width=512px}\
-
-![](./assets/images/xl_profile.png){width=512px}
-![](./assets/images/sm_profile.png){width=128px}
-
-######
-
-### Administración
-
-La última vista propia implementada es administración, que puede ser accedida desde el menú lateral.
-
-En ella el administrador podrá acceder a distintas secciones para gestionar Pentaho BI Server, como
-la gestión de fuentes de datos, programaciones o marketplace, así como vaciar las cachés del
-servidor.
-
-![](./assets/images/xl_administration.png){width=512px}
-![](./assets/images/sm_administration.png){width=128px}
-
-######
-
-### Perspectivas estándar
-
-Las perspectivas incluidas en Pentaho BI Server, como el explorador de archivos o los archivos
-abiertos, siguen existiendo y pueden ser accedidas desde la barra lateral o desde
-`/pentaho/Home/#/p/nombre_de_perspectiva` en la URL.
-
-![](./assets/images/xl_browser.png){width=512px}
-![](./assets/images/sm_browser.png){width=128px}
-
-![](./assets/images/xl_opened.png){width=512px}
-![](./assets/images/sm_opened.png){width=128px}
