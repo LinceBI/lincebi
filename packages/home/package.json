@@ -8,10 +8,10 @@
     "serve": "vue-cli-service serve"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "~1.2.19",
-    "@fortawesome/free-brands-svg-icons": "~5.9.0",
-    "@fortawesome/free-regular-svg-icons": "~5.9.0",
-    "@fortawesome/free-solid-svg-icons": "~5.9.0",
+    "@fortawesome/fontawesome-svg-core": "~1.2.21",
+    "@fortawesome/free-brands-svg-icons": "~5.10.1",
+    "@fortawesome/free-regular-svg-icons": "~5.10.1",
+    "@fortawesome/free-solid-svg-icons": "~5.10.1",
     "@fortawesome/vue-fontawesome": "~0.1.6",
     "@stratebi/biserver-customization-common": "file:../common",
     "bootstrap": "~4.3.1",
@@ -21,20 +21,22 @@
     "unfetch": "~4.1.0",
     "vue": "~2.6.10",
     "vue-i18n": "~8.12.0",
-    "vue-router": "~3.0.7",
+    "vue-router": "~3.1.1",
     "vue-router-multi-view": "~0.1.0",
     "vuex": "~3.1.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~3.9.2",
-    "@vue/cli-plugin-eslint": "~3.9.2",
-    "@vue/cli-service": "~3.9.3",
-    "@vue/eslint-config-prettier": "~4.0.1",
+    "@vue/cli-plugin-babel": "~3.10.0",
+    "@vue/cli-plugin-eslint": "~3.10.0",
+    "@vue/cli-service": "~3.10.0",
+    "@vue/eslint-config-prettier": "~5.0.0",
     "babel-eslint": "~10.0.2",
     "eslint": "~5.16.0",
+    "eslint-plugin-prettier": "~3.1.0",
     "eslint-plugin-vue": "~5.2.3",
     "fibers": "~4.0.1",
-    "sass": "~1.22.7",
+    "prettier": "~1.18.2",
+    "sass": "~1.22.9",
     "sass-loader": "~7.1.0",
     "vue-template-compiler": "~2.6.10"
   }
