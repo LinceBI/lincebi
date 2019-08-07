@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@stratebi/biserver-customization-login",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "scripts": {
     "lint": "vue-cli-service lint",
     "build": "vue-cli-service build",
@@ -28,8 +28,8 @@
     "@vue/eslint-config-prettier": "~5.0.0",
     "babel-eslint": "~10.0.2",
     "eslint": "~5.16.0",
-    "eslint-plugin-vue": "~5.2.3",
     "eslint-plugin-prettier": "~3.1.0",
+    "eslint-plugin-vue": "~5.2.3",
     "fibers": "~4.0.1",
     "prettier": "~1.18.2",
     "sass": "~1.22.9",
