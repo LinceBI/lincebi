@@ -5,6 +5,7 @@ Vue.component('font-awesome-icon', async () => {
 	const { library } = await import('@fortawesome/fontawesome-svg-core');
 
 	const icons = [
+		/* eslint-disable prettier/prettier */
 		import('@fortawesome/free-regular-svg-icons/faCheckSquare'),
 		import('@fortawesome/free-regular-svg-icons/faClock'),
 		import('@fortawesome/free-regular-svg-icons/faFileAlt'),
@@ -89,6 +90,7 @@ Vue.component('font-awesome-icon', async () => {
 		import('@stratebi/biserver-customization-common/src/fontawesome/faToolStpivot'),
 		import('@stratebi/biserver-customization-common/src/fontawesome/faToolStreport'),
 		import('@stratebi/biserver-customization-common/src/fontawesome/faToolStsearch')
+		/* eslint-enable */
 	];
 
 	await Promise.all(

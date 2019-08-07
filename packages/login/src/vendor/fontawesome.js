@@ -5,8 +5,10 @@ Vue.component('font-awesome-icon', async () => {
 	const { library } = await import('@fortawesome/fontawesome-svg-core');
 
 	const icons = [
+		/* eslint-disable prettier/prettier */
 		import('@fortawesome/free-solid-svg-icons/faKey'),
 		import('@fortawesome/free-solid-svg-icons/faSignInAlt')
+		/* eslint-enable */
 	];
 
 	await Promise.all(
