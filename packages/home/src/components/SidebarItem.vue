@@ -73,29 +73,33 @@ export default {
 
 <style scoped lang="scss">
 .sidebar-item::v-deep {
-	.nav-link {
-		padding: rem(8) 0;
-		font-size: rem(20);
-		text-align: center;
-		color: map-get($theme-colors, 'light');
-	}
+	.nav-item {
+		position: static;
 
-	.nav-link:hover,
-	.nav-link:focus,
-	&.show .nav-link {
-		background-color: map-get($theme-colors, 'light');
-		color: map-get($theme-colors, 'primary');
-	}
+		.nav-link {
+			padding: rem(8) 0;
+			font-size: rem(20);
+			text-align: center;
+			color: map-get($theme-colors, 'light');
+		}
 
-	.dropdown-menu {
-		margin: 0;
-		padding: 0;
-		border-left: 0;
-	}
+		.nav-link:hover,
+		.nav-link:focus,
+		&.show .nav-link {
+			background-color: map-get($theme-colors, 'light');
+			color: map-get($theme-colors, 'primary');
+		}
 
-	.item-img {
-		width: 1em;
-		height: auto;
+		.dropdown-menu {
+			margin: 0;
+			padding: 0;
+			border-left: 0;
+		}
+
+		.item-img {
+			width: 1em;
+			height: auto;
+		}
 	}
 }
 </style>
