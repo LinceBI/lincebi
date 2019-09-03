@@ -64,7 +64,7 @@ module.exports = {
 	css: {
 		loaderOptions: {
 			sass: {
-				data: `
+				prependData: `
 					$common-font-path: '~@stratebi/biserver-customization-common/src/assets/fonts';
 					@import '~@stratebi/biserver-customization-common/src/scss/main';
 				`
