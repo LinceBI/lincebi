@@ -102,10 +102,10 @@
 				<a
 					v-for="file in files"
 					:key="file.id"
-					:id="`card-${uniqueId}-${file.id}`"
 					:class="{
 						'home-card': true,
 						card: true,
+						touchable: isTouchDevice,
 						draggable: currentTab.isContentDraggable
 					}"
 					:href="file.openUrl"
@@ -116,9 +116,8 @@
 						class="card-img"
 						:src="getThumbnailOrDefault(file)"
 						:alt="file.title"
-						@contextmenu.prevent
 					/>
-					<div class="card-body">
+					<div class="card-body" :id="`card-body-${uniqueId}-${file.id}`">
 						<h5 class="card-title m-0">
 							<font-awesome-icon
 								:class="['fa-fw', 'mr-1']"
@@ -129,7 +128,7 @@
 					</div>
 					<b-popover
 						v-if="file.description.length > 0"
-						:target="`card-${uniqueId}-${file.id}`"
+						:target="`card-body-${uniqueId}-${file.id}`"
 						:container="`home-tabs-${uniqueId}`"
 						:title="file.title"
 						:content="file.description"
@@ -440,6 +439,7 @@ export default {
 				this.sortables.set(
 					$homeTabList,
 					Sortable.create($homeTabList, {
+						forceFallback: this.isTouchDevice,
 						delay: this.isTouchDevice ? 100 : 10,
 						animation: 150,
 						draggable: '.home-tab.draggable',
@@ -463,6 +463,7 @@ export default {
 					this.sortables.set(
 						$homeCardDeck,
 						Sortable.create($homeCardDeck, {
+							forceFallback: this.isTouchDevice,
 							delay: this.isTouchDevice ? 100 : 10,
 							animation: 150,
 							draggable: '.home-card.draggable',
@@ -687,7 +688,7 @@ export default {
 				cursor: pointer;
 				user-select: none;
 
-				&:not(.sortable-drag) {
+				&:not(.touchable):not(.sortable-drag) {
 					transform: scale(1);
 					transition: transform 200ms ease-in;
 

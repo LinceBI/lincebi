@@ -46,6 +46,7 @@ body {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
+	overscroll-behavior-y: contain;
 }
 
 .app {
