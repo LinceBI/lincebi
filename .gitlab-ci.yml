@@ -1,93 +1,84 @@
 stages:
-  - build
-  - deploy
+  - "build"
+  - "deploy"
 
-.develop_variables: &develop_variables
-  MAVEN_GROUP: com.stratebi.pentaho
-  MAVEN_REPOSITORY_ID: stratebi-snapshots
-  MAVEN_REPOSITORY_URL: https://repo.stratebi.com/repository/stratebi-mvn-snapshots
-  MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2
-  PACKAGE_VERSION_EXTRA: ${CI_COMMIT_REF_SLUG}-SNAPSHOT
+.variables: &variables
+  MAVEN_OPTS: "-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2"
+  MAVEN_GROUP: "com.stratebi.pentaho"
 
-.production_variables: &production_variables
-  MAVEN_GROUP: com.stratebi.pentaho
-  MAVEN_REPOSITORY_ID: stratebi-releases
-  MAVEN_REPOSITORY_URL: https://repo.stratebi.com/repository/stratebi-mvn-releases
-  MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2
+.variables_develop: &variables_develop
+  <<: *variables
+  MAVEN_REPOSITORY_ID: "stratebi-snapshots"
+  MAVEN_REPOSITORY_URL: "https://repo.stratebi.com/repository/stratebi-mvn-snapshots"
 
-.cache_paths:
-  - &mvn_cache_path ./.m2/
-  - &npm_cache_path ./node_modules/
+.variables_release: &variables_release
+  <<: *variables
+  MAVEN_REPOSITORY_ID: "stratebi-releases"
+  MAVEN_REPOSITORY_URL: "https://repo.stratebi.com/repository/stratebi-mvn-releases"
 
-.ref_patterns:
-  # Semantic Versioning 2.0.0 regex.
-  # (extracted from: https://github.com/npm/node-semver/).
-  - &release_regex /^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][a-zA-Z0-9-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][a-zA-Z0-9-]*))*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$/
+.artifacts: &artifacts
+  expire_in: "15 mins"
+  paths:
+    - "./dist/"
+    - "./packages/login/dist/"
+    - "./packages/home/dist/"
+
+.cache: &cache
+  key: "${CI_COMMIT_REF_SLUG}"
+  paths:
+    - "./.m2/"
+    - "./node_modules/"
+
+.regex:
+  # Semantic Versioning 2.0.0 regex (from: https://github.com/npm/node-semver/).
+  - &regex_version "/^v?(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][a-zA-Z0-9-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][a-zA-Z0-9-]*))*))?(?:\\+([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?$/"
 
 build:develop:
-  stage: build
+  stage: "build"
   variables:
-    <<: *develop_variables
-  before_script:
-    - npm install
+    <<: *variables_develop
   script:
-    - make build
+    - "npm install"
+    - "make build"
   artifacts:
-    expire_in: 15 mins
-    paths:
-      - dist/
-      - packages/login/dist/
-      - packages/home/dist/
+    <<: *artifacts
   cache:
-    paths:
-      - *mvn_cache_path
-      - *npm_cache_path
+    <<: *cache
   except:
-    - *release_regex
+    - *regex_version
 
-build:production:
-  stage: build
+build:release:
+  stage: "build"
   variables:
-    <<: *production_variables
-  before_script:
-    - npm install
+    <<: *variables_release
   script:
-    - make build
+    - "npm install"
+    - "make build"
   artifacts:
-    expire_in: 1 day
-    paths:
-      - dist/
-      - packages/login/dist/
-      - packages/home/dist/
+    <<: *artifacts
   cache:
-    paths:
-      - *mvn_cache_path
-      - *npm_cache_path
+    <<: *cache
   only:
-    - *release_regex
+    - *regex_version
 
-deploy:develop:
-  stage: deploy
+deploy:develop:mvn:
+  stage: "deploy"
   variables:
-    <<: *develop_variables
+    <<: *variables_develop
   script:
-    - make deploy
+    - "make deploy"
   cache:
-    paths:
-      - *mvn_cache_path
-      - *npm_cache_path
+    <<: *cache
   except:
-    - *release_regex
+    - *regex_version
 
-deploy:production:
-  stage: deploy
+deploy:release:mvn:
+  stage: "deploy"
   variables:
-    <<: *production_variables
+    <<: *variables_release
   script:
-    - make deploy
+    - "make deploy"
   cache:
-    paths:
-      - *mvn_cache_path
-      - *npm_cache_path
+    <<: *cache
   only:
-    - *release_regex
+    - *regex_version
