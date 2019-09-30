@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@stratebi/biserver-customization-home",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "scripts": {
     "lint": "vue-cli-service lint",
     "build": "vue-cli-service build",
