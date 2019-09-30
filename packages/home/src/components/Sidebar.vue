@@ -364,7 +364,9 @@ export default {
 	width: $sidebar-width;
 	left: -$sidebar-width;
 	margin-right: -$sidebar-width;
-	transition: left 0.35s ease, margin-right 0.35s ease;
+
+	// It's pretty, but also very slow.
+	// transition: left 0.35s ease, margin-right 0.35s ease;
 
 	&.show {
 		left: 0;
