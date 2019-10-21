@@ -8,7 +8,7 @@ import isStsearchInstalled from './plugins/isStsearchInstalled';
 let installedPluginsPromise = null;
 
 const getInstalledPlugins = async () => {
-	// Each checker makes a HEAD request to a known plugin resource.
+	// Each checker implements its own logic to determine if a plugin is installed.
 	const installCheckers = [
 		['stagile', isStagileInstalled],
 		['stcard', isStcardInstalled],

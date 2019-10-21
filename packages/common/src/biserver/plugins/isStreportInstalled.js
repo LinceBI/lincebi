@@ -1,6 +1,4 @@
-import fetch from 'unfetch';
-
-import getContextPath from '../getContextPath';
+import getRegisteredPlugins from '../getRegisteredPlugins';
 
 let isInstalled = null;
 
@@ -9,21 +7,8 @@ export default async () => {
 		return isInstalled;
 	}
 
-	const contextPath = await getContextPath();
-	const resource = 'content/saiku-adhoc/js/adhoc/version.json';
-	const endpoint = `${contextPath}${resource}`;
-	const response = await fetch(endpoint, {
-		method: 'GET',
-		headers: { 'Content-Type': 'text/plain' }
-	});
-
-	if (response.status === 200) {
-		const content = await response.text();
-		const include = 'ERROR_PAGE_TITLE';
-		isInstalled = !content.includes(include);
-	} else {
-		isInstalled = false;
-	}
+	const registeredPlugins = await getRegisteredPlugins();
+	isInstalled = registeredPlugins.includes('saiku-adhoc');
 
 	return isInstalled;
 };

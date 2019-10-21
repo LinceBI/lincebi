@@ -17,11 +17,7 @@ export default async () => {
 		headers: { 'Content-Type': 'text/plain' }
 	});
 
-	if (response.status === 200) {
-		isInstalled = true;
-	} else {
-		isInstalled = false;
-	}
+	isInstalled = response.status === 200;
 
 	return isInstalled;
 };
