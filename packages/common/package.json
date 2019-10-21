@@ -12,7 +12,7 @@
     "@fortawesome/free-solid-svg-icons": "~5.11.2",
     "@fortawesome/vue-fontawesome": "~0.1.7",
     "bootstrap": "~4.3.1",
-    "bootstrap-vue": "~2.0.2",
+    "bootstrap-vue": "~2.0.4",
     "compressorjs": "~1.0.5",
     "jdenticon": "~2.2.0",
     "lodash": "~4.17.15",
@@ -20,16 +20,16 @@
     "vue": "~2.6.10"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~3.11.0",
-    "@vue/cli-plugin-eslint": "~3.11.0",
-    "@vue/cli-service": "~3.11.0",
+    "@vue/cli-plugin-babel": "~4.0.4",
+    "@vue/cli-plugin-eslint": "~4.0.4",
+    "@vue/cli-service": "~4.0.4",
     "@vue/eslint-config-prettier": "~5.0.0",
     "babel-eslint": "~10.0.3",
     "eslint": "~5.16.0",
     "eslint-plugin-prettier": "~3.1.1",
     "eslint-plugin-vue": "~5.2.3",
     "prettier": "~1.18.2",
-    "sass": "~1.22.12",
+    "sass": "~1.23.0",
     "sass-loader": "~8.0.0",
     "vue-template-compiler": "~2.6.10"
   }
