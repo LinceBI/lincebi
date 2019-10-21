@@ -1,3 +1,4 @@
+import isMarketplaceInstalled from './plugins/isMarketplaceInstalled';
 import isStagileInstalled from './plugins/isStagileInstalled';
 import isStcardInstalled from './plugins/isStcardInstalled';
 import isStdashboardInstalled from './plugins/isStdashboardInstalled';
@@ -10,6 +11,7 @@ let installedPluginsPromise = null;
 const getInstalledPlugins = async () => {
 	// Each checker implements its own logic to determine if a plugin is installed.
 	const installCheckers = [
+		['marketplace', isMarketplaceInstalled],
 		['stagile', isStagileInstalled],
 		['stcard', isStcardInstalled],
 		['stdashboard', isStdashboardInstalled],

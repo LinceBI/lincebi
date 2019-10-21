@@ -27,7 +27,11 @@
 					{{ $t('administration.schedules') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item v-if="canAdminister" button @click="openMarketplace()">
+			<b-list-group-item
+				v-if="canAdminister && this.installedPlugins.includes('marketplace')"
+				button
+				@click="openMarketplace()"
+			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'store']" />
 				<span class="lbl">
 					{{ $t('administration.marketplace') }}
@@ -114,6 +118,9 @@ export default {
 		},
 		hasDataAccess() {
 			return store.state.hasDataAccess;
+		},
+		installedPlugins() {
+			return store.state.installedPlugins;
 		}
 	},
 	methods: {
