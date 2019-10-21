@@ -10,7 +10,7 @@ export default async () => {
 	}
 
 	const contextPath = await getContextPath();
-	const resource = 'content/saiku-adhoc/web/js/adhoc/version.json';
+	const resource = 'content/saiku-adhoc/js/adhoc/version.json';
 	const endpoint = `${contextPath}${resource}`;
 	const response = await fetch(endpoint, {
 		method: 'GET',
