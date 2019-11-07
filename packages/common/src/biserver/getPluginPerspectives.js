@@ -27,8 +27,8 @@ const getPluginPerspectives = async () => {
 	return [];
 };
 
-export default async (useCache = true, ...args) => {
-	if (pluginPerspectivesPromise === null || !useCache) {
+export default async (...args) => {
+	if (pluginPerspectivesPromise === null) {
 		pluginPerspectivesPromise = getPluginPerspectives(...args);
 	}
 	return pluginPerspectivesPromise;

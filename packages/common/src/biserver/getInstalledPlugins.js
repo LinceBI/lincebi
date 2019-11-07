@@ -27,8 +27,8 @@ const getInstalledPlugins = async () => {
 	)).filter(plugin => typeof plugin === 'string');
 };
 
-export default async (useCache = true, ...args) => {
-	if (installedPluginsPromise === null || !useCache) {
+export default async (...args) => {
+	if (installedPluginsPromise === null) {
 		installedPluginsPromise = getInstalledPlugins(...args);
 	}
 	return installedPluginsPromise;

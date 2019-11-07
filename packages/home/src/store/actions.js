@@ -19,43 +19,43 @@ import { defaultGlobalUserSettings, defaultUserSettings } from '@/userSettings';
 import i18n from '@/i18n';
 
 export const fetchUserId = async ({ commit }) => {
-	const userId = await getUserId(false);
+	const userId = await getUserId();
 	commit('setUserId', userId);
 };
 
 export const fetchCanCreate = async ({ commit }) => {
-	const canCreate = await getCanCreate(false);
+	const canCreate = await getCanCreate();
 	commit('setCanCreate', canCreate);
 };
 
 export const fetchCanAdminister = async ({ commit }) => {
-	const canAdminister = await getCanAdminister(false);
+	const canAdminister = await getCanAdminister();
 	commit('setCanAdminister', canAdminister);
 };
 
 export const fetchCanSchedule = async ({ commit }) => {
-	const canSchedule = await getCanSchedule(false);
+	const canSchedule = await getCanSchedule();
 	commit('setCanSchedule', canSchedule);
 };
 
 export const fetchHasDataAccess = async ({ commit }) => {
-	const hasDataAccess = await getHasDataAccess(false);
+	const hasDataAccess = await getHasDataAccess();
 	commit('setHasDataAccess', hasDataAccess);
 };
 
 export const fetchInstalledPlugins = async ({ commit }) => {
-	const installedPlugins = await getInstalledPlugins(false);
+	const installedPlugins = await getInstalledPlugins();
 	commit('setInstalledPlugins', installedPlugins);
 };
 
 export const fetchSupportedLocales = async ({ commit }) => {
 	const availableLocales = i18n.availableLocales;
-	const supportedLocales = await getSupportedLocales(false, availableLocales);
+	const supportedLocales = await getSupportedLocales(availableLocales);
 	commit('setSupportedLocales', supportedLocales);
 };
 
 export const fetchLocale = async ({ commit }) => {
-	const locale = await getLocale(false);
+	const locale = await getLocale();
 	commit('setLocale', locale);
 };
 

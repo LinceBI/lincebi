@@ -21,8 +21,8 @@ const getRegisteredPlugins = async () => {
 	return [];
 };
 
-export default async (useCache = true, ...args) => {
-	if (registeredPluginsPromise === null || !useCache) {
+export default async (...args) => {
+	if (registeredPluginsPromise === null) {
 		registeredPluginsPromise = getRegisteredPlugins(...args);
 	}
 	return registeredPluginsPromise;

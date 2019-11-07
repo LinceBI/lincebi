@@ -25,8 +25,8 @@ const getLocale = async () => {
 	return 'en';
 };
 
-export default async (useCache = true, ...args) => {
-	if (localePromise === null || !useCache) {
+export default async (...args) => {
+	if (localePromise === null) {
 		localePromise = getLocale(...args);
 	}
 	return localePromise;

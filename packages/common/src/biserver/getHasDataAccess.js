@@ -20,8 +20,8 @@ const getHasDataAccess = async () => {
 	return false;
 };
 
-export default async (useCache = true, ...args) => {
-	if (hasDataAccessPromise === null || !useCache) {
+export default async (...args) => {
+	if (hasDataAccessPromise === null) {
 		hasDataAccessPromise = getHasDataAccess(...args);
 	}
 	return hasDataAccessPromise;

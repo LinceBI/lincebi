@@ -20,8 +20,8 @@ const getCanSchedule = async () => {
 	return false;
 };
 
-export default async (useCache = true, ...args) => {
-	if (canSchedulePromise === null || !useCache) {
+export default async (...args) => {
+	if (canSchedulePromise === null) {
 		canSchedulePromise = getCanSchedule(...args);
 	}
 	return canSchedulePromise;

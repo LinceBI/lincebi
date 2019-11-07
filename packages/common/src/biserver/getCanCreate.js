@@ -20,8 +20,8 @@ const getCanCreate = async () => {
 	return false;
 };
 
-export default async (useCache = true, ...args) => {
-	if (canCreatePromise === null || !useCache) {
+export default async (...args) => {
+	if (canCreatePromise === null) {
 		canCreatePromise = getCanCreate(...args);
 	}
 	return canCreatePromise;
