@@ -2,13 +2,7 @@ import fetch from 'unfetch';
 
 import getContextPath from '../getContextPath';
 
-let isInstalled = null;
-
 export default async () => {
-	if (isInstalled !== null) {
-		return isInstalled;
-	}
-
 	const contextPath = await getContextPath();
 	const resource = 'stpivot/build.json';
 	const endpoint = `${contextPath}${resource}`;
@@ -17,7 +11,5 @@ export default async () => {
 		headers: { 'Content-Type': 'text/plain' }
 	});
 
-	isInstalled = response.status === 200;
-
-	return isInstalled;
+	return response.status === 200;
 };

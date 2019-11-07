@@ -1,1 +1,3 @@
-module.exports = require('./babel.config.common.js');
+module.exports = {
+	presets: ['@vue/app']
+};

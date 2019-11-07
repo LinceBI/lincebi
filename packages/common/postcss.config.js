@@ -1,1 +1,8 @@
-module.exports = require('./postcss.config.common.js');
+module.exports = {
+	plugins: {
+		autoprefixer: {},
+		cssnano: {
+			preset: ['default', { discardComments: { removeAll: true } }]
+		}
+	}
+};
