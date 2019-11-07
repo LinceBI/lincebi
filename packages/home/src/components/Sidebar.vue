@@ -85,10 +85,12 @@ export default {
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#B0B916',
 							click() {
-								router.push({
-									name: 'perspective',
-									params: { perspective: 'opened.perspective' }
-								});
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' }
+									})
+									.catch(() => {});
 								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 									mantleWindow.openURL(
 										'STPivot',
@@ -106,10 +108,12 @@ export default {
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#2980B9',
 							click() {
-								router.push({
-									name: 'perspective',
-									params: { perspective: 'opened.perspective' }
-								});
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' }
+									})
+									.catch(() => {});
 								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 									mantleWindow.openURL(
 										'STDashboard',
@@ -127,10 +131,12 @@ export default {
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#E67E22',
 							click() {
-								router.push({
-									name: 'perspective',
-									params: { perspective: 'opened.perspective' }
-								});
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' }
+									})
+									.catch(() => {});
 								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 									mantleWindow.openURL(
 										'STReport',
@@ -148,10 +154,12 @@ export default {
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#B91616',
 							click() {
-								router.push({
-									name: 'perspective',
-									params: { perspective: 'opened.perspective' }
-								});
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' }
+									})
+									.catch(() => {});
 								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 									mantleWindow.openURL(
 										'STAgile',
@@ -169,10 +177,12 @@ export default {
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#00796B',
 							click() {
-								router.push({
-									name: 'perspective',
-									params: { perspective: 'opened.perspective' }
-								});
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' }
+									})
+									.catch(() => {});
 								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 									mantleWindow.openURL(
 										'STCard',
@@ -210,10 +220,12 @@ export default {
 							name: this.$t('sidebar.search'),
 							icon: ['fac', 'tool-stsearch'],
 							click() {
-								router.push({
-									name: 'perspective',
-									params: { perspective: 'search.perspective' }
-								});
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'search.perspective' }
+									})
+									.catch(() => {});
 								eventBus.$emit(
 									'mantle.perspective.invoke',
 									'search.perspective',
@@ -232,10 +244,12 @@ export default {
 							name: this.$t('sidebar.favorites'),
 							icon: ['fas', 'star'],
 							click() {
-								router.push({
-									name: 'perspective',
-									params: { perspective: 'search.perspective' }
-								});
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'search.perspective' }
+									})
+									.catch(() => {});
 								eventBus.$emitWhen(
 									'mantle.perspective.invoke',
 									'search.perspective',
@@ -254,10 +268,12 @@ export default {
 							name: this.$t('sidebar.recents'),
 							icon: ['far', 'clock'],
 							click() {
-								router.push({
-									name: 'perspective',
-									params: { perspective: 'search.perspective' }
-								});
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'search.perspective' }
+									})
+									.catch(() => {});
 								eventBus.$emitWhen(
 									'mantle.perspective.invoke',
 									'search.perspective',
@@ -278,10 +294,12 @@ export default {
 					name: this.$t('sidebar.manageDatasources'),
 					icon: ['fas', 'database'],
 					click() {
-						router.push({
-							name: 'perspective',
-							params: { perspective: 'browser.perspective' }
-						});
+						router
+							.push({
+								name: 'perspective',
+								params: { perspective: 'browser.perspective' }
+							})
+							.catch(() => {});
 						eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 							mantleWindow.executeCommand('ManageDatasourcesCommand');
 						});

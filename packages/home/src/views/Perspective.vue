@@ -187,10 +187,12 @@ export default {
 
 					if (visiblePerspective && visiblePerspective !== this.perspective) {
 						console.warn(`Perspective updated to ${visiblePerspective}`);
-						router.push({
-							name: 'perspective',
-							params: { perspective: visiblePerspective }
-						});
+						router
+							.push({
+								name: 'perspective',
+								params: { perspective: visiblePerspective }
+							})
+							.catch(() => {});
 					}
 				}, 1000);
 

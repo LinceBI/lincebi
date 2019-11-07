@@ -70,10 +70,12 @@ export default {
 	},
 	methods: {
 		onSubmit(event) {
-			router.push({
-				name: 'perspective',
-				params: { perspective: 'search.perspective' }
-			});
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'search.perspective' }
+				})
+				.catch(() => {});
 			eventBus.$emitWhen(
 				'mantle.perspective.invoke',
 				'search.perspective',
@@ -88,10 +90,12 @@ export default {
 			this.searchTerms = '';
 		},
 		onCategoryClick(category) {
-			router.push({
-				name: 'perspective',
-				params: { perspective: 'search.perspective' }
-			});
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'search.perspective' }
+				})
+				.catch(() => {});
 			eventBus.$emitWhen(
 				'mantle.perspective.invoke',
 				'search.perspective',

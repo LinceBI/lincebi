@@ -125,37 +125,47 @@ export default {
 	},
 	methods: {
 		async openAdministration() {
-			router.push({
-				name: 'perspective',
-				params: { perspective: 'admin.perspective' }
-			});
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'admin.perspective' }
+				})
+				.catch(() => {});
 		},
 		async openManageDatasources() {
-			router.push({
-				name: 'perspective',
-				params: { perspective: 'browser.perspective' }
-			});
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'browser.perspective' }
+				})
+				.catch(() => {});
 			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 				mantleWindow.executeCommand('ManageDatasourcesCommand');
 			});
 		},
 		async openSchedules() {
-			router.push({
-				name: 'perspective',
-				params: { perspective: 'schedules.perspective' }
-			});
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'schedules.perspective' }
+				})
+				.catch(() => {});
 		},
 		async openMarketplace() {
-			router.push({
-				name: 'perspective',
-				params: { perspective: 'marketplace.perspective.osgi' }
-			});
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'marketplace.perspective.osgi' }
+				})
+				.catch(() => {});
 		},
 		async openManageCdaCache() {
-			router.push({
-				name: 'perspective',
-				params: { perspective: 'opened.perspective' }
-			});
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'opened.perspective' }
+				})
+				.catch(() => {});
 			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 				mantleWindow.openURL(
 					'CDA cache manager',
