@@ -52,6 +52,7 @@ Vue.component('font-awesome-icon', async () => {
 		import('@fortawesome/free-solid-svg-icons/faLayerGroup'),
 		import('@fortawesome/free-solid-svg-icons/faLightbulb'),
 		import('@fortawesome/free-solid-svg-icons/faLink'),
+		import('@fortawesome/free-solid-svg-icons/faList'),
 		import('@fortawesome/free-solid-svg-icons/faMapMarked'),
 		import('@fortawesome/free-solid-svg-icons/faMedkit'),
 		import('@fortawesome/free-solid-svg-icons/faPencilAlt'),

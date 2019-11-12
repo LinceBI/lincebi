@@ -99,7 +99,7 @@
 				</div>
 			</div>
 			<div class="home-card-deck card-deck">
-				<a
+				<div
 					v-for="file in files"
 					:key="file.id"
 					:class="{
@@ -108,9 +108,8 @@
 						touchable: isTouchDevice,
 						draggable: currentTab.isContentDraggable
 					}"
-					:href="file.openUrl"
-					target="_blank"
-					rel="noopener"
+					@click="onFileOpenClick(file)"
+					tabindex="0"
 				>
 					<img
 						class="card-img"
@@ -118,13 +117,33 @@
 						:alt="file.title"
 					/>
 					<div class="card-body" :id="`card-body-${uniqueId}-${file.id}`">
-						<h5 class="card-title m-0">
+						<h5 class="card-title m-0 text-truncate">
 							<font-awesome-icon
 								:class="['fa-fw', 'mr-1']"
 								:icon="['fac', `file-${file.extension}`]"
 							/>
 							{{ file.title }}
 						</h5>
+					</div>
+					<div class="card-toolbar">
+						<div class="btn-group">
+							<div
+								class="btn btn-dark"
+								v-if="!file.isReadonly && installedPlugins.includes('stsearch')"
+								@click.stop="onFileMetadataEditClick(file)"
+								tabindex="0"
+							>
+								<font-awesome-icon :icon="['fas', 'list']" />
+							</div>
+							<div
+								class="btn btn-dark"
+								v-if="!file.isReadonly && file.editUrl"
+								@click.stop="onFileEditClick(file)"
+								tabindex="0"
+							>
+								<font-awesome-icon :icon="['fas', 'pencil-alt']" />
+							</div>
+						</div>
 					</div>
 					<b-popover
 						v-if="file.description.length > 0"
@@ -136,7 +155,7 @@
 						:delay="100"
 						placement="top"
 					/>
-				</a>
+				</div>
 			</div>
 		</div>
 		<!-- New tab modal -->
@@ -202,12 +221,15 @@ import generateSvg from '@stratebi/biserver-customization-common/src/generateSvg
 import move from '@stratebi/biserver-customization-common/src/move';
 import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
 import stringCompare from '@stratebi/biserver-customization-common/src/stringCompare';
+import waitFor from '@stratebi/biserver-customization-common/src/waitFor';
 
 import BFormColorSwatch from '@stratebi/biserver-customization-common/src/components/BFormColorSwatch.vue';
 import BFormIconSwatch from '@stratebi/biserver-customization-common/src/components/BFormIconSwatch.vue';
 
 import HomeTabEmpty from '@/components/home/HomeTabEmpty';
 
+import eventBus from '@/eventBus';
+import router from '@/router';
 import store from '@/store';
 
 export default {
@@ -267,6 +289,9 @@ export default {
 		};
 	},
 	computed: {
+		installedPlugins() {
+			return store.state.installedPlugins;
+		},
 		tabs: {
 			get() {
 				// Concatenate fixed tabs and local tabs.
@@ -550,6 +575,44 @@ export default {
 			return file.properties.thumbnail
 				? file.properties.thumbnail
 				: generateSvg(file.path, 0);
+		},
+		onFileOpenClick(file) {
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'opened.perspective' }
+				})
+				.catch(() => {});
+			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+				mantleWindow.mantle_openRepositoryFile(file.path, 'RUN');
+			});
+		},
+		onFileEditClick(file) {
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'opened.perspective' }
+				})
+				.catch(() => {});
+			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+				mantleWindow.mantle_openRepositoryFile(file.path, 'EDIT');
+			});
+		},
+		onFileMetadataEditClick(file) {
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'search.perspective' }
+				})
+				.catch(() => {});
+			eventBus.$emitWhen(
+				'mantle.perspective.invoke',
+				'search.perspective',
+				async perspectiveWindow => {
+					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
+					await STSearch.applyConfig({ 'form-file-path': file.path }, true);
+				}
+			);
 		}
 	}
 };
@@ -693,8 +756,19 @@ export default {
 					transition: transform 200ms ease-in;
 
 					&:focus,
+					&:focus-within,
 					&:hover {
 						transform: scale(1.05);
+					}
+				}
+
+				&:not(.sortable-drag) {
+					&:focus,
+					&:focus-within,
+					&:hover {
+						.card-toolbar .btn {
+							opacity: 1;
+						}
 					}
 				}
 
@@ -715,6 +789,27 @@ export default {
 				.card-img {
 					height: rem(256);
 					object-fit: cover;
+				}
+
+				.card-toolbar {
+					position: absolute;
+					top: rem(5);
+					right: rem(5);
+
+					.btn {
+						opacity: 0;
+						transition: opacity 200ms ease-in;
+
+						@include button-variant(
+							rgba(map-get($theme-colors, 'dark'), 0.6),
+							rgba(map-get($theme-colors, 'dark'), 0.6)
+						);
+					}
+
+					.btn:focus,
+					.btn:hover {
+						opacity: 1;
+					}
 				}
 			}
 		}
