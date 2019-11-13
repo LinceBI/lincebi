@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import insertIf from '@stratebi/biserver-customization-common/src/insertIf';
-import replaceParameter from '@stratebi/biserver-customization-common/src/replaceParameter';
-import searchParams from '@stratebi/biserver-customization-common/src/searchParams';
-import waitFor from '@stratebi/biserver-customization-common/src/waitFor';
+import insertIf from '@lincebi/biserver-customization-common/src/insertIf';
+import replaceParameter from '@lincebi/biserver-customization-common/src/replaceParameter';
+import searchParams from '@lincebi/biserver-customization-common/src/searchParams';
+import waitFor from '@lincebi/biserver-customization-common/src/waitFor';
 
 import eventBus from '@/eventBus.js';
 import router from '@/router';

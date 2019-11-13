@@ -591,11 +591,11 @@
 		<location>/unavailable.html</location>
 	</error-page>
 
-	<!-- START STRATEBI BISERVER CUSTOMIZATION -->
+	<!-- START LINCEBI BISERVER CUSTOMIZATION -->
 	<!-- IMPORTANT: The previous "<servlet>" and "<servlet-mapping>" blocks corresponding to "Home"
 	and "Login" must be commented. -->
 	<servlet>
-		<servlet-name>stratebi-biserver-customization</servlet-name>
+		<servlet-name>lincebi-biserver-customization</servlet-name>
 		<servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
 		<init-param>
 			<param-name>debug</param-name>
@@ -608,11 +608,11 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>stratebi-biserver-customization</servlet-name>
+		<servlet-name>lincebi-biserver-customization</servlet-name>
 		<url-pattern>/Login</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>stratebi-biserver-customization</servlet-name>
+		<servlet-name>lincebi-biserver-customization</servlet-name>
 		<url-pattern>/Home</url-pattern>
 	</servlet-mapping>
 	<servlet>
@@ -623,6 +623,6 @@
 		<servlet-name>BridgeHome</servlet-name>
 		<url-pattern>/BridgeHome</url-pattern>
 	</servlet-mapping>
-	<!-- END STRATEBI BISERVER CUSTOMIZATION -->
+	<!-- END LINCEBI BISERVER CUSTOMIZATION -->
 
 </web-app>

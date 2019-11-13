@@ -44,7 +44,7 @@ header-includes:
 
 # Introducción
 
-El siguiente documento presenta un manual de uso de la personalización de Stratebi para Pentaho BI
+El siguiente documento presenta un manual de uso de la personalización de LinceBI para Pentaho BI
 Server.
 
 ## Soporte para navegadores

@@ -100,8 +100,8 @@
 </template>
 
 <script>
-import clearCdaCache from '@stratebi/biserver-customization-common/src/biserver/clearCdaCache';
-import systemRefresh from '@stratebi/biserver-customization-common/src/biserver/systemRefresh';
+import clearCdaCache from '@lincebi/biserver-customization-common/src/biserver/clearCdaCache';
+import systemRefresh from '@lincebi/biserver-customization-common/src/biserver/systemRefresh';
 
 import eventBus from '@/eventBus';
 import router from '@/router';

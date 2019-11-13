@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <themes root-folder="themes">
-	<stratebi>
-		<file>mantleStratebi.css</file>
-	</stratebi>
+	<lincebi>
+		<file>mantleLincebi.css</file>
+	</lincebi>
 	<onyx>
 		<file>mantleOnyx.css</file>
 	</onyx>

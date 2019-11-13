@@ -2,8 +2,8 @@ import mergeWith from 'lodash/mergeWith';
 
 import i18n from '@/i18n';
 
-import replaceParameter from '@stratebi/biserver-customization-common/src/replaceParameter';
-import safeJSON from '@stratebi/biserver-customization-common/src/safeJSON';
+import replaceParameter from '@lincebi/biserver-customization-common/src/replaceParameter';
+import safeJSON from '@lincebi/biserver-customization-common/src/safeJSON';
 
 export const setShowSidebar = (state, showSidebar) => {
 	state.showSidebar = showSidebar;

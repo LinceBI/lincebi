@@ -1,18 +1,18 @@
-import getCanAdminister from '@stratebi/biserver-customization-common/src/biserver/getCanAdminister';
-import getCanCreate from '@stratebi/biserver-customization-common/src/biserver/getCanCreate';
-import getCanSchedule from '@stratebi/biserver-customization-common/src/biserver/getCanSchedule';
-import getGlobalUserSettings from '@stratebi/biserver-customization-common/src/biserver/getGlobalUserSettings';
-import getHasDataAccess from '@stratebi/biserver-customization-common/src/biserver/getHasDataAccess';
-import getInstalledPlugins from '@stratebi/biserver-customization-common/src/biserver/getInstalledPlugins';
-import getLocale from '@stratebi/biserver-customization-common/src/biserver/getLocale';
-import getRepository from '@stratebi/biserver-customization-common/src/biserver/getRepository';
-import getSupportedLocales from '@stratebi/biserver-customization-common/src/biserver/getSupportedLocales';
-import getUserId from '@stratebi/biserver-customization-common/src/biserver/getUserId';
-import getUserSettings from '@stratebi/biserver-customization-common/src/biserver/getUserSettings';
-import setGlobalUserSettings from '@stratebi/biserver-customization-common/src/biserver/setGlobalUserSettings';
-import setLocale from '@stratebi/biserver-customization-common/src/biserver/setLocale';
-import setMetadata from '@stratebi/biserver-customization-common/src/biserver/setMetadata';
-import setUserSettings from '@stratebi/biserver-customization-common/src/biserver/setUserSettings';
+import getCanAdminister from '@lincebi/biserver-customization-common/src/biserver/getCanAdminister';
+import getCanCreate from '@lincebi/biserver-customization-common/src/biserver/getCanCreate';
+import getCanSchedule from '@lincebi/biserver-customization-common/src/biserver/getCanSchedule';
+import getGlobalUserSettings from '@lincebi/biserver-customization-common/src/biserver/getGlobalUserSettings';
+import getHasDataAccess from '@lincebi/biserver-customization-common/src/biserver/getHasDataAccess';
+import getInstalledPlugins from '@lincebi/biserver-customization-common/src/biserver/getInstalledPlugins';
+import getLocale from '@lincebi/biserver-customization-common/src/biserver/getLocale';
+import getRepository from '@lincebi/biserver-customization-common/src/biserver/getRepository';
+import getSupportedLocales from '@lincebi/biserver-customization-common/src/biserver/getSupportedLocales';
+import getUserId from '@lincebi/biserver-customization-common/src/biserver/getUserId';
+import getUserSettings from '@lincebi/biserver-customization-common/src/biserver/getUserSettings';
+import setGlobalUserSettings from '@lincebi/biserver-customization-common/src/biserver/setGlobalUserSettings';
+import setLocale from '@lincebi/biserver-customization-common/src/biserver/setLocale';
+import setMetadata from '@lincebi/biserver-customization-common/src/biserver/setMetadata';
+import setUserSettings from '@lincebi/biserver-customization-common/src/biserver/setUserSettings';
 
 import { defaultGlobalUserSettings, defaultUserSettings } from '@/userSettings';
 

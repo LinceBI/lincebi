@@ -45,7 +45,7 @@ header-includes:
 # Introducción
 
 El siguiente documento presenta un manual de desarrollo e instalación de la personalización de
-Stratebi para Pentaho BI Server.
+LinceBI para Pentaho BI Server.
 
 Es un desarrollo web moderno con ECMAScript 2018+, Vue.js, Bootstrap y SASS que reemplaza las
 vistas de Pentaho BI Server `/Login` y `/Home`.
@@ -151,9 +151,9 @@ De ya existir los directorios `./tomcat/webapps/pentaho/Login/` y
 `./tomcat/webapps/pentaho/Home/`, deben ser borrados previamente.
 
 **Nota:** esta personalización es dependiente de los plugins
- [STSearch](https://gitlab.stratebi.com/stratebi/customizations/stsearch),
- [file-metadata](https://gitlab.stratebi.com/stratebi/customizations/file-metadata) y
- [global-user-settings](https://gitlab.stratebi.com/stratebi/customizations/global-user-settings).
+ [STSearch](https://gitlab.stratebi.com/stratebi/lincebi/stsearch),
+ [file-metadata](https://gitlab.stratebi.com/stratebi/lincebi/file-metadata) y
+ [global-user-settings](https://gitlab.stratebi.com/stratebi/lincebi/global-user-settings).
 
 ## Estructura del paquete compilado
 
@@ -164,10 +164,10 @@ De ya existir los directorios `./tomcat/webapps/pentaho/Login/` y
  │       ├── common-ui/
  │       │   ├── resources/
  │       │   │   └── themes/
- │       │   │       └── stratebi/    # Tema de Pentaho BI Server heredado del tema
+ │       │   │       └── lincebi/     # Tema de Pentaho BI Server heredado del tema
  |       |   |                          Ruby.
  │       │   └── themes.xml           # El único cambio en ese archivo es la
- |       |                              definición del tema Stratebi.
+ |       |                              definición del tema LinceBI.
  │       └── pentaho.xml              # El único cambio en ese archivo es la
  |                                      definición del tema por defecto.
  └── tomcat/
@@ -179,14 +179,14 @@ De ya existir los directorios `./tomcat/webapps/pentaho/Login/` y
              |                          "Login" de "web.xml".
              ├── mantle/
              │   ├── themes/
-             │   │   └── stratebi/    # Tema de Pentaho BI Server heredado del tema
+             │   │   └── lincebi/     # Tema de Pentaho BI Server heredado del tema
              |   |                      Ruby.
              │   ├── MantleBridge.jsp # Reescritura de Mantle.jsp que es utilizada a
              |   |                      modo de puente para que la personalización
              |   |                      pueda cargar las perspectivas originales de
              |   |                      Pentaho BI Server.
              │   └── themes.xml       # El único cambio en ese archivo es la
-             |                          definición del tema Stratebi.
+             |                          definición del tema LinceBI.
              └── WEB-INF/
                  └── web.xml          # Los cambios en ese archivo son la
                                         desactivación de los servlets "Login" y

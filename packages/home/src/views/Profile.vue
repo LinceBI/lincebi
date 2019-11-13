@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import imageToDataURI from '@stratebi/biserver-customization-common/src/imageToDataURI';
+import imageToDataURI from '@lincebi/biserver-customization-common/src/imageToDataURI';
 
 import store from '@/store';
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <themes root-folder="resources/themes">
-	<stratebi display-name="Stratebi" system="true">
-		<file>globalStratebi.css</file>
-	</stratebi>
+	<lincebi display-name="LinceBI" system="true">
+		<file>globalLincebi.css</file>
+	</lincebi>
 	<onyx display-name="Onyx" system="true" hidden="true">
 		<file>globalOnyx.css</file>
 		<file>bootstrap/css/bootstrap-namespaced.css</file>

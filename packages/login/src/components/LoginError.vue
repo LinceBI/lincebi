@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import getParameter from '@stratebi/biserver-customization-common/src/getParameter';
+import getParameter from '@lincebi/biserver-customization-common/src/getParameter';
 
 export default {
 	name: 'login-error',

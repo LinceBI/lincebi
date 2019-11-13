@@ -3,7 +3,7 @@
 		<b-form @submit.prevent="onSubmit">
 			<b-img
 				class="d-block h-auto w-75 mb-4 mx-auto"
-				src="@stratebi/biserver-customization-common/src/assets/img/logo.svg"
+				src="@lincebi/biserver-customization-common/src/assets/img/logo.svg"
 			/>
 			<b-form-group :label="$t('username.label')">
 				<b-form-input
@@ -17,7 +17,7 @@
 				<b-form-input type="password" v-model="form.j_password" required />
 			</b-form-group>
 			<b-form-text v-if="isDemo" class="mb-4" tag="p" text-variant="primary">
-				<a href="http://www.stratebi.com/demos" target="_blank" rel="noopener">
+				<a href="https://www.stratebi.com/demos" target="_blank" rel="noopener">
 					<font-awesome-icon :icon="['fas', 'key']" />
 					<span class="lbl">{{ $t('getCredentialsHere') }}</span>
 				</a>
@@ -34,7 +34,7 @@
 <script>
 import fetch from 'unfetch';
 
-import searchParams from '@stratebi/biserver-customization-common/src/searchParams';
+import searchParams from '@lincebi/biserver-customization-common/src/searchParams';
 
 import LoginError from '@/components/LoginError.vue';
 

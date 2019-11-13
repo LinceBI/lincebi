@@ -45,7 +45,7 @@
 <script>
 import fetch from 'unfetch';
 
-import waitFor from '@stratebi/biserver-customization-common/src/waitFor';
+import waitFor from '@lincebi/biserver-customization-common/src/waitFor';
 
 import eventBus from '@/eventBus';
 import router from '@/router';

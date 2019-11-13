@@ -1,5 +1,5 @@
-import blankSvg from '@stratebi/biserver-customization-common/src/blankSvg';
-import generateSvg from '@stratebi/biserver-customization-common/src/generateSvg';
+import blankSvg from '@lincebi/biserver-customization-common/src/blankSvg';
+import generateSvg from '@lincebi/biserver-customization-common/src/generateSvg';
 
 export const namespace = 'stratebi.biserver.customization';
 

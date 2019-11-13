@@ -4,12 +4,12 @@ http://*:2015 {
 		transparent
 	}
 	# Webpack Dev Server
-	## @stratebi/biserver-customization-login
+	## @lincebi/biserver-customization-login
 	proxy /pentaho/Login/ 127.0.0.1:8081 {
 		without /pentaho/Login/
 		transparent
 	}
-	## @stratebi/biserver-customization-home
+	## @lincebi/biserver-customization-home
 	proxy /pentaho/Home/ 127.0.0.1:8082 {
 		without /pentaho/Home/
 		transparent

@@ -1,1 +1,1 @@
-module.exports = require('@stratebi/biserver-customization-common/.eslintrc.js');
+module.exports = require('@lincebi/biserver-customization-common/.eslintrc.js');
