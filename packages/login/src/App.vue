@@ -37,7 +37,7 @@ body {
 .app {
 	display: flex;
 	flex-grow: 1;
-	flex-shrink: 0;
+	flex-shrink: 1;
 	flex-basis: auto;
 	flex-direction: column;
 	min-height: 100vh;
@@ -45,7 +45,7 @@ body {
 	.login-container {
 		display: flex;
 		flex-grow: 1;
-		flex-shrink: 0;
+		flex-shrink: 1;
 		flex-basis: auto;
 		flex-direction: column;
 		align-items: center;

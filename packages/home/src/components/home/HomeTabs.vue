@@ -623,7 +623,7 @@ export default {
 	.home-tab-list {
 		display: flex;
 		flex-grow: 0;
-		flex-shrink: 0;
+		flex-shrink: 1;
 		flex-basis: auto;
 		flex-direction: row;
 
@@ -717,7 +717,7 @@ export default {
 	.home-tab-content {
 		display: flex;
 		flex-grow: 1;
-		flex-shrink: 0;
+		flex-shrink: 1;
 		flex-basis: auto;
 		flex-direction: column;
 
@@ -733,7 +733,7 @@ export default {
 				margin-bottom: $grid-gutter-width;
 
 				flex-grow: 0;
-				flex-shrink: 0;
+				flex-shrink: 1;
 				flex-basis: calc(#{100% / 1} - #{$grid-gutter-width});
 
 				@include media-breakpoint-up(md) {

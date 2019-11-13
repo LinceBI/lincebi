@@ -22,7 +22,7 @@ export default {
 .home {
 	display: flex;
 	flex-grow: 1;
-	flex-shrink: 0;
+	flex-shrink: 1;
 	flex-basis: auto;
 	flex-direction: column;
 
@@ -31,7 +31,7 @@ export default {
 	.home-slider {
 		display: flex;
 		flex-grow: 0;
-		flex-shrink: 0;
+		flex-shrink: 1;
 		flex-basis: auto;
 		flex-direction: column;
 	}
@@ -39,7 +39,7 @@ export default {
 	.home-tabs {
 		display: flex;
 		flex-grow: 1;
-		flex-shrink: 0;
+		flex-shrink: 1;
 		flex-basis: auto;
 		flex-direction: column;
 	}

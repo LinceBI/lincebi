@@ -31,7 +31,7 @@ export default {
 	position: relative;
 	display: flex;
 	flex-grow: 1;
-	flex-shrink: 0;
+	flex-shrink: 1;
 	flex-basis: auto;
 	align-items: center;
 	justify-content: center;
