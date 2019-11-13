@@ -1,10 +1,5 @@
 <template>
-	<div
-		class="home-tabs"
-		ref="home-tabs"
-		:id="`home-tabs-${uniqueId}`"
-		@contextmenu="onContextmenu"
-	>
+	<div class="home-tabs" ref="home-tabs" :id="`home-tabs-${uniqueId}`">
 		<!-- Tab list -->
 		<ul class="home-tab-list nav nav-fill">
 			<!-- Tabs -->
@@ -17,12 +12,12 @@
 					draggable: tab.isDraggable
 				}"
 			>
-				<a
+				<div
 					:title="tab.name"
 					:class="{ 'nav-link': true, active: index === tabIndex }"
 					:style="getTabStyle(tab, index)"
 					@click="tabIndex = index"
-					href="javascript:void(0)"
+					tabindex="0"
 				>
 					<font-awesome-icon
 						v-if="tab.icon"
@@ -40,17 +35,13 @@
 					>
 						<font-awesome-icon :icon="['fas', 'times']" />
 					</button>
-				</a>
+				</div>
 			</li>
 			<!-- New tab -->
 			<li class="home-tab-new nav-item">
-				<a
-					class="nav-link"
-					@click="newTabModalShow = true"
-					href="javascript:void(0)"
-				>
+				<div class="nav-link" @click="newTabModalShow = true" tabindex="0">
 					<font-awesome-icon :icon="['fas', 'plus']" />
-				</a>
+				</div>
 			</li>
 		</ul>
 		<!-- Loading content -->
@@ -105,18 +96,22 @@
 					:class="{
 						'home-card': true,
 						card: true,
-						touchable: isTouchDevice,
 						draggable: currentTab.isContentDraggable
 					}"
-					@click="onFileOpenClick(file)"
 					tabindex="0"
 				>
 					<img
 						class="card-img"
 						:src="getThumbnailOrDefault(file)"
 						:alt="file.title"
+						@click="onFileOpenClick(file)"
+						@contextmenu.stop.prevent
 					/>
-					<div class="card-body" :id="`card-body-${uniqueId}-${file.id}`">
+					<div
+						class="card-body"
+						:id="`card-body-${uniqueId}-${file.id}`"
+						@click.stop.prevent
+					>
 						<h5 class="card-title m-0 text-truncate">
 							<font-awesome-icon
 								:class="['fa-fw', 'mr-1']"
@@ -142,6 +137,15 @@
 								tabindex="0"
 							>
 								<font-awesome-icon :icon="['fas', 'pencil-alt']" />
+							</div>
+							<div
+								class="btn btn-dark drag-handle"
+								v-if="currentTab.isContentDraggable"
+								tabindex="-1"
+								@click.stop.prevent
+								@contextmenu.stop.prevent
+							>
+								<font-awesome-icon :icon="['fas', 'arrows-alt']" />
 							</div>
 						</div>
 					</div>
@@ -488,10 +492,11 @@ export default {
 					this.sortables.set(
 						$homeCardDeck,
 						Sortable.create($homeCardDeck, {
-							forceFallback: this.isTouchDevice,
-							delay: this.isTouchDevice ? 100 : 10,
+							forceFallback: false,
+							delay: 10,
 							animation: 150,
 							draggable: '.home-card.draggable',
+							handle: '.drag-handle',
 							onMove: event => event.related.classList.contains('draggable'),
 							onUpdate: event => {
 								this.files = move(
@@ -558,12 +563,6 @@ export default {
 			});
 			if (this.tabIndex > 0 && this.tabIndex >= removeTabIndex) {
 				this.tabIndex--;
-			}
-		},
-		onContextmenu(event) {
-			// Prevent context menu on draggable elements on touch devices
-			if (this.isTouchDevice && event.target.closest('.draggable')) {
-				event.preventDefault();
 			}
 		},
 		getTabStyle(tab, index) {
@@ -642,6 +641,9 @@ export default {
 			max-width: rem(448);
 			z-index: 10;
 
+			cursor: pointer;
+			user-select: none;
+
 			@include media-breakpoint-down(xs) {
 				width: 100%;
 				max-width: none;
@@ -698,6 +700,9 @@ export default {
 		.home-tab-new {
 			flex-grow: 0;
 
+			cursor: pointer;
+			user-select: none;
+
 			.nav-link {
 				position: relative;
 				display: flex;
@@ -751,7 +756,7 @@ export default {
 				cursor: pointer;
 				user-select: none;
 
-				&:not(.touchable):not(.sortable-drag) {
+				&:not(.sortable-drag) {
 					transform: scale(1);
 					transition: transform 200ms ease-in;
 
@@ -759,13 +764,7 @@ export default {
 					&:focus-within,
 					&:hover {
 						transform: scale(1.05);
-					}
-				}
 
-				&:not(.sortable-drag) {
-					&:focus,
-					&:focus-within,
-					&:hover {
 						.card-toolbar .btn {
 							opacity: 1;
 						}
