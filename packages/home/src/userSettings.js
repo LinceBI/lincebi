@@ -1,7 +1,7 @@
 import blankSvg from '@lincebi/biserver-customization-common/src/blankSvg';
 import generateSvg from '@lincebi/biserver-customization-common/src/generateSvg';
 
-export const namespace = 'stratebi.biserver.customization';
+export const namespace = 'lincebi.biserver.customization';
 
 export const globalUserSettings = {
 	global: {
