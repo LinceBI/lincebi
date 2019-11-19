@@ -19,9 +19,9 @@
 						</span>
 					</template>
 					<b-dropdown-item
-						class="category-item border-collapse"
 						v-for="(category, index) in categories.filter(i => i.enabled)"
 						:key="index"
+						class="category-item border-collapse"
 						@click="onCategoryClick(category)"
 					>
 						<b-img class="category-icon" :src="category.icon" />

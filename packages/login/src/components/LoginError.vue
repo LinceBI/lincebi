@@ -1,7 +1,7 @@
 <template>
 	<b-alert
-		class="login-error"
 		v-if="showError"
+		class="login-error"
 		variant="danger"
 		:show="dismissCountDown"
 		@dismissed="dismissCountDown = 0"
@@ -21,7 +21,7 @@
 import getParameter from '@lincebi/biserver-customization-common/src/getParameter';
 
 export default {
-	name: 'login-error',
+	name: 'LoginError',
 	data() {
 		return {
 			code: getParameter('login_error', null),
@@ -44,13 +44,13 @@ export default {
 				: this.messages['0'];
 		}
 	},
+	mounted() {
+		this.dismissCountDown = this.dismissSecs;
+	},
 	methods: {
 		countDownChanged(dismissCountDown) {
 			this.dismissCountDown = dismissCountDown;
 		}
-	},
-	mounted() {
-		this.dismissCountDown = this.dismissSecs;
 	}
 };
 </script>

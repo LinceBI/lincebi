@@ -29,7 +29,12 @@
 export default {
 	name: 'SidebarSubitem',
 	components: {},
-	props: { item: Object },
+	props: {
+		item: {
+			type: Object,
+			default: undefined
+		}
+	},
 	data() {
 		return {
 			isHover: false,

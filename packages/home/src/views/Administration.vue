@@ -3,8 +3,8 @@
 		<b-list-group class="mb-4">
 			<b-list-group-item
 				v-if="canAdminister"
-				@click="openAdministration()"
 				button
+				@click="openAdministration()"
 			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'tools']" />
 				<span class="lbl">
@@ -13,8 +13,8 @@
 			</b-list-group-item>
 			<b-list-group-item
 				v-if="hasDataAccess"
-				@click="openManageDatasources()"
 				button
+				@click="openManageDatasources()"
 			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'database']" />
 				<span class="lbl">
@@ -28,7 +28,7 @@
 				</span>
 			</b-list-group-item>
 			<b-list-group-item
-				v-if="canAdminister && this.installedPlugins.includes('marketplace')"
+				v-if="canAdminister && installedPlugins.includes('marketplace')"
 				button
 				@click="openMarketplace()"
 			>
@@ -39,8 +39,8 @@
 			</b-list-group-item>
 			<b-list-group-item
 				v-if="canAdminister"
-				@click="openManageCdaCache()"
 				button
+				@click="openManageCdaCache()"
 			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'table']" />
 				<span class="lbl">
@@ -51,8 +51,8 @@
 		<b-list-group class="mb-4">
 			<b-list-group-item
 				v-if="canAdminister"
-				@click="systemRefresh('systemSettings')"
 				button
+				@click="systemRefresh('systemSettings')"
 			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">
@@ -61,8 +61,8 @@
 			</b-list-group-item>
 			<b-list-group-item
 				v-if="canAdminister"
-				@click="systemRefresh('metadata')"
 				button
+				@click="systemRefresh('metadata')"
 			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">
@@ -71,8 +71,8 @@
 			</b-list-group-item>
 			<b-list-group-item
 				v-if="canAdminister"
-				@click="systemRefresh('globalActions')"
 				button
+				@click="systemRefresh('globalActions')"
 			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">
@@ -81,8 +81,8 @@
 			</b-list-group-item>
 			<b-list-group-item
 				v-if="canAdminister"
-				@click="systemRefresh('mondrianSchemaCache')"
 				button
+				@click="systemRefresh('mondrianSchemaCache')"
 			>
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">

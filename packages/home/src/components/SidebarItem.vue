@@ -1,13 +1,13 @@
 <template>
-	<div class="sidebar-item" v-if="item.enabled" :title="item.name">
+	<div v-if="item.enabled" class="sidebar-item" :title="item.name">
 		<div v-if="Array.isArray(item.subitems)">
 			<b-nav-item-dropdown
-				ref="dropdown"
 				v-if="item.subitems.some(i => i.enabled)"
-				@mouseenter.native="onDropdownMouseenter"
-				@mouseleave.native="onDropdownMouseleave"
+				ref="dropdown"
 				dropright
 				no-caret
+				@mouseenter.native="onDropdownMouseenter"
+				@mouseleave.native="onDropdownMouseleave"
 			>
 				<template slot="button-content">
 					<font-awesome-icon
@@ -31,8 +31,8 @@
 		<div v-else>
 			<b-nav-item :href="item.href" @click="onItemClick">
 				<font-awesome-icon
-					ref="item"
 					v-if="typeof item.icon !== 'undefined'"
+					ref="item"
 					class="item-icon fa-fw"
 					:icon="item.icon"
 				/>
@@ -54,7 +54,12 @@ export default {
 	components: {
 		SidebarSubitem
 	},
-	props: { item: Object },
+	props: {
+		item: {
+			type: Object,
+			default: undefined
+		}
+	},
 	methods: {
 		onDropdownMouseenter() {
 			this.$refs.dropdown.show();

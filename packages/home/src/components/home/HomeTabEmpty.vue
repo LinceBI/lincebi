@@ -13,7 +13,10 @@
 export default {
 	name: 'HomeTabEmpty',
 	props: {
-		icon: Array,
+		icon: {
+			type: Array,
+			default: undefined
+		},
 		text: {
 			type: String,
 			default: ''

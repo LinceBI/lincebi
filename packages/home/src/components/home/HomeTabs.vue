@@ -1,5 +1,5 @@
 <template>
-	<div class="home-tabs" ref="home-tabs" :id="`home-tabs-${uniqueId}`">
+	<div :id="`home-tabs-${uniqueId}`" ref="home-tabs" class="home-tabs">
 		<!-- Tab list -->
 		<ul class="home-tab-list nav nav-fill">
 			<!-- Tabs -->
@@ -16,8 +16,8 @@
 					:title="tab.name"
 					:class="{ 'nav-link': true, active: index === tabIndex }"
 					:style="getTabStyle(tab, index)"
-					@click="tabIndex = index"
 					tabindex="0"
+					@click="tabIndex = index"
 				>
 					<font-awesome-icon
 						v-if="tab.icon"
@@ -39,7 +39,7 @@
 			</li>
 			<!-- New tab -->
 			<li class="home-tab-new nav-item">
-				<div class="nav-link" @click="newTabModalShow = true" tabindex="0">
+				<div class="nav-link" tabindex="0" @click="newTabModalShow = true">
 					<font-awesome-icon :icon="['fas', 'plus']" />
 				</div>
 			</li>
@@ -64,7 +64,7 @@
 		<div v-else class="home-tab-content">
 			<div v-if="currentTab.sort" class="home-card-order">
 				<div class="input-group">
-					<select class="form-control" v-model="currentTab.sort.selected">
+					<select v-model="currentTab.sort.selected" class="form-control">
 						<option
 							v-for="option in sort.options"
 							:key="option.value"
@@ -108,8 +108,8 @@
 						@contextmenu.stop.prevent
 					/>
 					<div
-						class="card-body"
 						:id="`card-body-${uniqueId}-${file.id}`"
+						class="card-body"
 						@click.stop.prevent
 					>
 						<h5 class="card-title m-0 text-truncate">
@@ -123,24 +123,24 @@
 					<div class="card-toolbar">
 						<div class="btn-group">
 							<div
-								class="btn btn-dark"
 								v-if="!file.isReadonly && installedPlugins.includes('stsearch')"
-								@click.stop="onFileMetadataEditClick(file)"
+								class="btn btn-dark"
 								tabindex="0"
+								@click.stop="onFileMetadataEditClick(file)"
 							>
 								<font-awesome-icon :icon="['fas', 'list']" />
 							</div>
 							<div
-								class="btn btn-dark"
 								v-if="!file.isReadonly && file.editUrl"
-								@click.stop="onFileEditClick(file)"
+								class="btn btn-dark"
 								tabindex="0"
+								@click.stop="onFileEditClick(file)"
 							>
 								<font-awesome-icon :icon="['fas', 'pencil-alt']" />
 							</div>
 							<div
-								class="btn btn-dark drag-handle"
 								v-if="currentTab.isContentDraggable"
+								class="btn btn-dark drag-handle"
 								tabindex="-1"
 								@click.stop.prevent
 								@contextmenu.stop.prevent
@@ -170,15 +170,15 @@
 			:ok-title="$t('home.create')"
 			cancel-variant="secondary"
 			:cancel-title="$t('home.cancel')"
-			@ok="handleNewTabModalOk"
 			centered
+			@ok="handleNewTabModalOk"
 		>
 			<form ref="new-tab-form" @submit.stop.prevent="handleNewTabFormSubmit">
 				<b-form-group :label="$t('home.tabName.label')">
 					<b-form-input
-						type="text"
 						ref="new-tab-name"
 						v-model="newTab.name"
+						type="text"
 						:placeholder="$t('home.tabName.placeholder')"
 						:list="`new-tab-name-datalist-${uniqueId}`"
 						required
@@ -206,8 +206,8 @@
 			:ok-title="$t('home.delete')"
 			cancel-variant="secondary"
 			:cancel-title="$t('home.cancel')"
-			@ok="handleCloseTabModalOk"
 			centered
+			@ok="handleCloseTabModalOk"
 		>
 			{{ $t('home.tabWillBeDeleted', { name: truncate(currentTab.name) }) }}
 		</b-modal>

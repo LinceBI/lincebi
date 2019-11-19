@@ -1,7 +1,7 @@
 <template>
 	<iframe
-		class="perspective"
 		ref="mantle"
+		class="perspective"
 		:src="`../BridgeHome?${staticSearchParams}`"
 		:sandbox="isSanboxed ? sandboxAllowed.join(' ') : false"
 		@load="handleMantleLoad"
@@ -20,7 +20,12 @@ import store from '@/store';
 
 export default {
 	name: 'Perspective',
-	props: { perspective: String },
+	props: {
+		perspective: {
+			type: String,
+			default: ''
+		}
+	},
 	data() {
 		return {
 			staticSearchParams: '',
@@ -72,6 +77,28 @@ export default {
 			const key = `${this.namespace}.show_tool_bar`;
 			const value = this.userSettings[key] === 'true';
 			return value;
+		}
+	},
+	watch: {
+		perspective(...args) {
+			this.changePerspective(...args);
+		},
+		showMenuBar(...args) {
+			this.changeShowMenuBar(...args);
+		},
+		showToolBar(...args) {
+			this.changeShowToolBar(...args);
+		},
+		locale() {
+			this.staticSearchParams = this.dynamicSearchParams;
+		},
+		isRepositoryLoading(isRepositoryLoading) {
+			if (!isRepositoryLoading) {
+				// Populate initial STSearch repository.
+				this.invokeInMantleWindow(mantleWindow => {
+					mantleWindow.stsearch_initial_repository = this.repository;
+				});
+			}
 		}
 	},
 	created() {
@@ -206,28 +233,6 @@ export default {
 					store.commit('setRepositoryFile', detail);
 				});
 			});
-		}
-	},
-	watch: {
-		perspective(...args) {
-			this.changePerspective(...args);
-		},
-		showMenuBar(...args) {
-			this.changeShowMenuBar(...args);
-		},
-		showToolBar(...args) {
-			this.changeShowToolBar(...args);
-		},
-		locale() {
-			this.staticSearchParams = this.dynamicSearchParams;
-		},
-		isRepositoryLoading(isRepositoryLoading) {
-			if (!isRepositoryLoading) {
-				// Populate initial STSearch repository.
-				this.invokeInMantleWindow(mantleWindow => {
-					mantleWindow.stsearch_initial_repository = this.repository;
-				});
-			}
 		}
 	}
 };

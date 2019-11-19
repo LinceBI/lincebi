@@ -18,8 +18,8 @@
 			</b-navbar-nav>
 			<b-navbar-nav class="nav-section ml-auto">
 				<navbar-search
-					class="nav-element"
 					v-if="installedPlugins.includes('stsearch')"
+					class="nav-element"
 				/>
 				<b-nav-item
 					v-if="isDemo"

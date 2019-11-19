@@ -1,5 +1,5 @@
 <template>
-	<div class="login-footer" v-if="$t('footer').length > 0">
+	<div v-if="$t('footer').length > 0" class="login-footer">
 		{{ $t('footer', { year: new Date().getFullYear() }) }}
 	</div>
 </template>

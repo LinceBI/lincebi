@@ -70,7 +70,6 @@ import store from '@/store';
 
 export default {
 	name: 'Profile',
-	props: { perspective: String },
 	computed: {
 		userSettings() {
 			return store.state.userSettings;

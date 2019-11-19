@@ -1,5 +1,5 @@
 <template>
-	<div class="home-slider" v-if="slider.slides.some(i => i.enabled)">
+	<div v-if="slider.slides.some(i => i.enabled)" class="home-slider">
 		<b-collapse v-model="slider.expanded">
 			<b-carousel
 				:interval="slider.interval"

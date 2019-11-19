@@ -1,17 +1,17 @@
 <template>
 	<b-form-radio-group
-		class="icon-swatch"
 		v-model="icon"
-		@input="$emit('input', icon)"
+		class="icon-swatch"
 		button-variant="light"
 		buttons
 		required
+		@input="$emit('input', icon)"
 	>
 		<b-form-radio
-			v-for="icon in icons"
-			:key="toString(icon)"
-			:value="icon"
-			:class="{ icon: true, none: icon === null }"
+			v-for="kI in icons"
+			:key="toString(kI)"
+			:value="kI"
+			:class="{ icon: true, none: kI === null }"
 		>
 			<font-awesome-icon v-if="icon" class="fa-fw" :icon="icon" />
 		</b-form-radio>

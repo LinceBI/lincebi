@@ -10,11 +10,26 @@
 export default {
 	name: 'NavbarDropdownItem',
 	props: {
-		text: String,
-		href: String,
-		enabled: { type: Boolean, default: true },
-		icon: { type: Array, default: () => ['far', 'check-square'] },
-		iconDisabled: { type: Array, default: () => ['far', 'square'] }
+		text: {
+			type: String,
+			default: ''
+		},
+		href: {
+			type: String,
+			default: ''
+		},
+		enabled: {
+			type: Boolean,
+			default: true
+		},
+		icon: {
+			type: Array,
+			default: () => ['far', 'check-square']
+		},
+		iconDisabled: {
+			type: Array,
+			default: () => ['far', 'square']
+		}
 	},
 	methods: {
 		onClick(event) {

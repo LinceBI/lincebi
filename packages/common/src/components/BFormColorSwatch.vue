@@ -1,17 +1,17 @@
 <template>
 	<b-form-radio-group
-		class="color-swatch"
 		v-model="color"
-		@input="$emit('input', color)"
+		class="color-swatch"
 		buttons
 		required
+		@input="$emit('input', color)"
 	>
 		<b-form-radio
-			v-for="color in colors"
-			:key="color"
-			:value="color"
-			:class="{ color: true, none: color === null }"
-			:style="{ backgroundColor: color }"
+			v-for="kC in colors"
+			:key="kC"
+			:value="kC"
+			:class="{ color: true, none: kC === null }"
+			:style="{ backgroundColor: kC }"
 		></b-form-radio>
 	</b-form-radio-group>
 </template>

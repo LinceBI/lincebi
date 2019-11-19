@@ -1,7 +1,7 @@
 <template>
 	<div
-		class="node-garden"
 		ref="container"
+		class="node-garden"
 		@click="onClick"
 		@mousemove="onMousemove"
 		@mouseleave="onMouseleave"
@@ -88,7 +88,7 @@ export class Node {
 }
 
 export default {
-	name: 'node-garden',
+	name: 'NodeGarden',
 	data() {
 		return {
 			mounted: false,
@@ -104,6 +104,34 @@ export default {
 				attract: { r: 0x30, g: 0x30, b: 0x30 }
 			}
 		};
+	},
+	mounted() {
+		this.$nextTick(function() {
+			this.mounted = true;
+			this.ctx = this.$refs.canvas.getContext('2d');
+			this.nodes = [];
+
+			// Add mouse node.
+			this.mouseNode = new Node(this);
+			this.mouseNode.update = () => {};
+			this.mouseNode.reset = () => {};
+			this.mouseNode.render = () => {};
+			this.mouseNode.m = 15;
+			this.mouseNode.c = 1;
+			// Move coordinates to unreachable zone.
+			this.mouseNode.x = Number.MAX_SAFE_INTEGER;
+			this.mouseNode.y = Number.MAX_SAFE_INTEGER;
+			this.nodes.unshift(this.mouseNode);
+
+			this.resize();
+			this.render();
+
+			window.addEventListener('resize', this.resize);
+		});
+	},
+	beforeDestroy() {
+		this.mounted = false;
+		window.removeEventListener('resize', this.resize);
 	},
 	methods: {
 		render() {
@@ -216,34 +244,6 @@ export default {
 			this.mouseNode.x = Number.MAX_SAFE_INTEGER;
 			this.mouseNode.y = Number.MAX_SAFE_INTEGER;
 		}
-	},
-	mounted() {
-		this.$nextTick(function() {
-			this.mounted = true;
-			this.ctx = this.$refs.canvas.getContext('2d');
-			this.nodes = [];
-
-			// Add mouse node.
-			this.mouseNode = new Node(this);
-			this.mouseNode.update = () => {};
-			this.mouseNode.reset = () => {};
-			this.mouseNode.render = () => {};
-			this.mouseNode.m = 15;
-			this.mouseNode.c = 1;
-			// Move coordinates to unreachable zone.
-			this.mouseNode.x = Number.MAX_SAFE_INTEGER;
-			this.mouseNode.y = Number.MAX_SAFE_INTEGER;
-			this.nodes.unshift(this.mouseNode);
-
-			this.resize();
-			this.render();
-
-			window.addEventListener('resize', this.resize);
-		});
-	},
-	beforeDestroy() {
-		this.mounted = false;
-		window.removeEventListener('resize', this.resize);
 	}
 };
 </script>
