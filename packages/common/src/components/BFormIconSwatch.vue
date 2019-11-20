@@ -13,7 +13,7 @@
 			:value="kI"
 			:class="{ icon: true, none: kI === null }"
 		>
-			<font-awesome-icon v-if="icon" class="fa-fw" :icon="icon" />
+			<font-awesome-icon v-if="kI" class="fa-fw" :icon="kI" />
 		</b-form-radio>
 	</b-form-radio-group>
 </template>
