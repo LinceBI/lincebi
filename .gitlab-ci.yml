@@ -64,6 +64,8 @@ build:release:
 
 deploy:develop:mvn:
   stage: "deploy"
+  dependencies:
+    - "build:develop"
   variables:
     <<: *variables_develop
   script:
@@ -75,6 +77,8 @@ deploy:develop:mvn:
 
 deploy:release:mvn:
   stage: "deploy"
+  dependencies:
+    - "build:release"
   variables:
     <<: *variables_release
   script:
