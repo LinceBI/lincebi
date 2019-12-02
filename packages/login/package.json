@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@lincebi/biserver-customization-login",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "scripts": {
     "lint": "vue-cli-service lint",
     "build": "vue-cli-service build",
