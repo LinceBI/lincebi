@@ -18,6 +18,7 @@
 					:style="getTabStyle(tab, index)"
 					tabindex="0"
 					@click="tabIndex = index"
+					@keyup.enter="tabIndex = index"
 				>
 					<font-awesome-icon
 						v-if="tab.icon"
@@ -32,6 +33,7 @@
 						type="button"
 						class="home-tab-close btn"
 						@click="closeTabModalShow = true"
+						@keyup.enter="closeTabModalShow = true"
 					>
 						<font-awesome-icon :icon="['fas', 'times']" />
 					</button>
@@ -39,7 +41,12 @@
 			</li>
 			<!-- New tab -->
 			<li class="home-tab-new nav-item">
-				<div class="nav-link" tabindex="0" @click="newTabModalShow = true">
+				<div
+					class="nav-link"
+					tabindex="0"
+					@click="newTabModalShow = true"
+					@keyup.enter="newTabModalShow = true"
+				>
 					<font-awesome-icon :icon="['fas', 'plus']" />
 				</div>
 			</li>
@@ -78,6 +85,7 @@
 							class="btn btn-primary"
 							type="button"
 							@click="currentTab.sort.asc = !currentTab.sort.asc"
+							@keyup.enter="currentTab.sort.asc = !currentTab.sort.asc"
 						>
 							<font-awesome-icon
 								:icon="[
@@ -99,18 +107,20 @@
 						draggable: currentTab.isContentDraggable
 					}"
 					tabindex="0"
+					@click="onFileOpenClick(file)"
+					@keyup.enter="onFileOpenClick(file)"
 				>
 					<img
 						class="card-img"
 						:src="getThumbnailOrDefault(file)"
 						:alt="file.title"
-						@click="onFileOpenClick(file)"
 						@contextmenu.stop.prevent
 					/>
 					<div
 						:id="`card-body-${uniqueId}-${file.id}`"
 						class="card-body"
 						@click.stop.prevent
+						@keyup.enter.stop.prevent
 					>
 						<h5 class="card-title m-0 text-truncate">
 							<font-awesome-icon
@@ -127,6 +137,7 @@
 								class="btn btn-dark"
 								tabindex="0"
 								@click.stop="onFileMetadataEditClick(file)"
+								@keyup.enter.stop="onFileMetadataEditClick(file)"
 							>
 								<font-awesome-icon :icon="['fas', 'list']" />
 							</div>
@@ -135,6 +146,7 @@
 								class="btn btn-dark"
 								tabindex="0"
 								@click.stop="onFileEditClick(file)"
+								@keyup.enter.stop="onFileEditClick(file)"
 							>
 								<font-awesome-icon :icon="['fas', 'pencil-alt']" />
 							</div>
@@ -576,26 +588,10 @@ export default {
 				: generateSvg(file.path, 0);
 		},
 		onFileOpenClick(file) {
-			router
-				.push({
-					name: 'perspective',
-					params: { perspective: 'opened.perspective' }
-				})
-				.catch(() => {});
-			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
-				mantleWindow.mantle_openRepositoryFile(file.path, 'RUN');
-			});
+			window.open(file.openUrl, `lincebi_open_${file.id}`, 'noopener');
 		},
 		onFileEditClick(file) {
-			router
-				.push({
-					name: 'perspective',
-					params: { perspective: 'opened.perspective' }
-				})
-				.catch(() => {});
-			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
-				mantleWindow.mantle_openRepositoryFile(file.path, 'EDIT');
-			});
+			window.open(file.editUrl, `lincebi_edit_${file.id}`, 'noopener');
 		},
 		onFileMetadataEditClick(file) {
 			router
