@@ -47,6 +47,16 @@
 					{{ $t('administration.manageCdaCache') }}
 				</span>
 			</b-list-group-item>
+			<b-list-group-item
+				v-if="installedPlugins.includes('streport')"
+				button
+				@click="openStreportStats()"
+			>
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'chart-bar']" />
+				<span class="lbl">
+					{{ $t('administration.openStreportStats') }}
+				</span>
+			</b-list-group-item>
 		</b-list-group>
 		<b-list-group class="mb-4">
 			<b-list-group-item
@@ -171,6 +181,21 @@ export default {
 					'CDA cache manager',
 					'CDA cache manager',
 					'plugin/cda/api/manageCache'
+				);
+			});
+		},
+		async openStreportStats() {
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'opened.perspective' }
+				})
+				.catch(() => {});
+			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+				mantleWindow.openURL(
+					'STReport statistics',
+					'STReport statistics',
+					'api/repos/saiku-adhoc/statistics'
 				);
 			});
 		},
