@@ -38,7 +38,7 @@
     "tabColor": { "label": "Color de pestanya", "placeholder": "Color de pestanya..." },
     "tabIcon": { "label": "Icona de pestanya", "placeholder": "Icona de pestanya..." },
     "deleteTab": "Eliminar pestanya",
-    "tabWillBeDeleted": "La pestanya \"{name}\"serà eliminada.",
+    "tabWillBeDeleted": "La pestanya \"{name}\" serà eliminada.",
     "delete": "Eliminar",
     "create": "Crear",
     "cancel": "Cancel·lar",
