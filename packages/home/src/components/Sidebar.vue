@@ -347,26 +347,6 @@ export default {
 								await store.dispatch('updateLocale', 'ca');
 								await store.dispatch('fetchRepository');
 							}
-						},
-						{
-							enabled: this.supportedLocales.includes('fr'),
-							id: 'locales.french',
-							name: this.$t('locales.french'),
-							img: require('@/assets/img/locales/fr.svg'),
-							async click() {
-								await store.dispatch('updateLocale', 'fr');
-								await store.dispatch('fetchRepository');
-							}
-						},
-						{
-							enabled: this.supportedLocales.includes('de'),
-							id: 'locales.german',
-							name: this.$t('locales.german'),
-							img: require('@/assets/img/locales/de.svg'),
-							async click() {
-								await store.dispatch('updateLocale', 'de');
-								await store.dispatch('fetchRepository');
-							}
 						}
 					]
 				},
