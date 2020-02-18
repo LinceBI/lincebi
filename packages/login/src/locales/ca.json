@@ -1,0 +1,12 @@
+{
+  "username": { "label": "Usuari:" },
+  "password": { "label": "Contrasenya:" },
+  "getCredentialsHere": "Obtingui el seu usuari i contrasenya aquí.",
+  "signIn": "Iniciar sessió",
+  "footer": "",
+  "errors": {
+    "unknownError": "S'ha produït un error en l'inici de sessió. Si us plau, intenti-ho de nou.",
+    "authenticationFailure": "S'ha produït un error en l'inici de sessió. Si us plau, intenti-ho de nou.",
+    "sessionReuseDetected": "S'ha produït un error en l'inici de sessió. Si us plau, intenti-ho de nou."
+  }
+}

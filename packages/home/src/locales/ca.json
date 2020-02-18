@@ -1,0 +1,81 @@
+{
+  "locales": {
+    "english": "Anglès",
+    "spanish": "Espanyol",
+    "catalan": "Català",
+    "french": "Francès",
+    "german": "Alemany"
+  },
+  "navbar": {
+    "welcome": "{name}",
+    "categories": "Categories",
+    "search": { "label": "Cercar:", "placeholder": "Cercar..." },
+    "settings": "Opcions",
+    "profile": "Perfil",
+    "showMenuBar": "Mostrar barra de menú",
+    "showToolBar": "Mostrar barra d'eines",
+    "showHiddenFiles": "Mostrar arxius ocults",
+    "showDescriptionsForTooltips": "Utilitzar descripcions per a els tooltips"
+  },
+  "sidebar": {
+    "home": "Inici",
+    "tools": "Eines",
+    "opened": "Oberts",
+    "browser": "Explorador",
+    "search": "Cercador",
+    "favorites": "Favorits",
+    "recents": "Recents",
+    "manageDatasources": "Manage datasources",
+    "administration": "Administració",
+    "locales": "Idiomes",
+    "logout": "Sortida"
+  },
+  "home": {
+    "useButtonToCreateTab": "Utilitzi el botó + per a crear una nova pestanya",
+    "filesWillAppearHere": "Els arxius que etiqueti apareixeran aquí",
+    "createTab": "Crear pestanya",
+    "tabName": { "label": "Nom de pestanya", "placeholder": "Nom de pestanya..." },
+    "tabColor": { "label": "Color de pestanya", "placeholder": "Color de pestanya..." },
+    "tabIcon": { "label": "Icona de pestanya", "placeholder": "Icona de pestanya..." },
+    "deleteTab": "Eliminar pestanya",
+    "tabWillBeDeleted": "La pestanya \"{name}\"serà eliminada.",
+    "delete": "Eliminar",
+    "create": "Crear",
+    "cancel": "Cancel·lar",
+    "global": "Global",
+    "home": "Inici",
+    "sort": {
+      "title": "Títol",
+      "extension": "Tipus",
+      "created": "Data de creació",
+      "modified": "Data de modificació"
+    }
+  },
+  "profile": {
+    "name": { "label": "Nom:", "placeholder": "Nom..." },
+    "email": { "label": "Email:", "placeholder": "Email..." },
+    "phone": { "label": "Telèfon:", "placeholder": "Telèfon..." },
+    "address": { "label": "Direcció:", "placeholder": "Direcció..." },
+    "avatar": { "label": "Foto:", "placeholder": "Foto..." },
+    "save": "Guardar"
+  },
+  "administration": {
+    "administration": "Administració",
+    "manageDatasources": "Gestionar fonts de dades",
+    "schedules": "Programacions",
+    "marketplace": "Marketplace",
+    "manageCdaCache": "Administrar caché de CDA",
+    "openStreportStats": "Obrir estadístiques de STReport",
+    "refreshSystemSettings": "Actualitzar configuració del sistema",
+    "refreshReportingMetadata": "Actualitzar report de metadades",
+    "refreshGlobalVariables": "Actualizar variables globals",
+    "refreshMondrianSchemaCache": "Actualizar caché dels esquemes de Mondrian",
+    "clearCdaCache": "Buidar caché de CDA",
+    "resourceRefreshSuccess": "Recurs actualitzat amb èxit",
+    "resourceRefreshError": "Error en actualitzar el recurs",
+    "cacheClearSuccess": "Caché buidada amb èxit",
+    "cacheClearError": "Error al buidar la caché",
+    "notificationInfo": "Informació",
+    "notificationError": "Error"
+  }
+}
