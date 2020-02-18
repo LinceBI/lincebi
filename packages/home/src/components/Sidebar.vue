@@ -339,6 +339,16 @@ export default {
 							}
 						},
 						{
+							enabled: this.supportedLocales.includes('ca'),
+							id: 'locales.catalan',
+							name: this.$t('locales.catalan'),
+							img: require('@/assets/img/locales/ca.svg'),
+							async click() {
+								await store.dispatch('updateLocale', 'ca');
+								await store.dispatch('fetchRepository');
+							}
+						},
+						{
 							enabled: this.supportedLocales.includes('fr'),
 							id: 'locales.french',
 							name: this.$t('locales.french'),
