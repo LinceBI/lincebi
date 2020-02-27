@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import waitFor from '@lincebi/biserver-customization-common/src/waitFor';
+import waitFor from '@lincebi/biserver-frontend-common/src/waitFor';
 
 import SidebarItem from '@/components/SidebarItem.vue';
 

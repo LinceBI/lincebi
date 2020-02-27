@@ -3,7 +3,7 @@
 		<b-form @submit.prevent="onSubmit">
 			<b-img
 				class="d-block h-auto w-75 mb-4 mx-auto"
-				src="@lincebi/biserver-customization-common/src/assets/img/logo.svg"
+				src="@lincebi/biserver-frontend-common/src/assets/img/logo.svg"
 			/>
 			<b-form-group :label="$t('username.label')">
 				<b-form-input
@@ -34,7 +34,7 @@
 <script>
 import fetch from 'unfetch';
 
-import searchParams from '@lincebi/biserver-customization-common/src/searchParams';
+import searchParams from '@lincebi/biserver-frontend-common/src/searchParams';
 
 import LoginError from '@/components/LoginError.vue';
 

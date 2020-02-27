@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@lincebi/biserver-customization",
+  "name": "@lincebi/biserver-frontend",
   "scripts": {
     "lint": "lerna run --stream lint",
     "build": "lerna run --stream build",

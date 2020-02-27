@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import getParameter from '@lincebi/biserver-customization-common/src/getParameter';
+import getParameter from '@lincebi/biserver-frontend-common/src/getParameter';
 
 export default {
 	name: 'LoginError',

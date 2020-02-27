@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import isDemo from '@lincebi/biserver-customization-common/src/isDemo';
-import stopAllWindows from '@lincebi/biserver-customization-common/src/stopAllWindows';
+import isDemo from '@lincebi/biserver-frontend-common/src/isDemo';
+import stopAllWindows from '@lincebi/biserver-frontend-common/src/stopAllWindows';
 
 import Administration from '@/views/Administration.vue';
 import Home from '@/views/Home.vue';

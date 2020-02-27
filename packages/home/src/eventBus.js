@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-import invokeWhen from '@lincebi/biserver-customization-common/src/invokeWhen';
+import invokeWhen from '@lincebi/biserver-frontend-common/src/invokeWhen';
 
 const eventBus = new Vue();
 eventBus.$emitWhen = (eventName, ...args) => {

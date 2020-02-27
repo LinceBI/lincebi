@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@lincebi/biserver-customization-common",
+  "name": "@lincebi/biserver-frontend-common",
   "version": "1.3.2",
   "scripts": {
     "lint": "vue-cli-service lint"

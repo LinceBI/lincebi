@@ -232,15 +232,15 @@ import Sortable from 'sortablejs';
 import cloneDeep from 'lodash/cloneDeep';
 import differenceWith from 'lodash/differenceWith';
 
-import fuzzyEquals from '@lincebi/biserver-customization-common/src/fuzzyEquals';
-import generateSvg from '@lincebi/biserver-customization-common/src/generateSvg';
-import move from '@lincebi/biserver-customization-common/src/move';
-import safeJSON from '@lincebi/biserver-customization-common/src/safeJSON';
-import stringCompare from '@lincebi/biserver-customization-common/src/stringCompare';
-import waitFor from '@lincebi/biserver-customization-common/src/waitFor';
+import fuzzyEquals from '@lincebi/biserver-frontend-common/src/fuzzyEquals';
+import generateSvg from '@lincebi/biserver-frontend-common/src/generateSvg';
+import move from '@lincebi/biserver-frontend-common/src/move';
+import safeJSON from '@lincebi/biserver-frontend-common/src/safeJSON';
+import stringCompare from '@lincebi/biserver-frontend-common/src/stringCompare';
+import waitFor from '@lincebi/biserver-frontend-common/src/waitFor';
 
-import BFormColorSwatch from '@lincebi/biserver-customization-common/src/components/BFormColorSwatch.vue';
-import BFormIconSwatch from '@lincebi/biserver-customization-common/src/components/BFormIconSwatch.vue';
+import BFormColorSwatch from '@lincebi/biserver-frontend-common/src/components/BFormColorSwatch.vue';
+import BFormIconSwatch from '@lincebi/biserver-frontend-common/src/components/BFormIconSwatch.vue';
 
 import HomeTabEmpty from '@/components/home/HomeTabEmpty';
 

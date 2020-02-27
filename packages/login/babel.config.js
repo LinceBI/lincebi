@@ -1,1 +1,1 @@
-module.exports = require('@lincebi/biserver-customization-common/babel.config.js');
+module.exports = require('@lincebi/biserver-frontend-common/babel.config.js');

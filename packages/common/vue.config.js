@@ -65,8 +65,8 @@ module.exports = {
 		loaderOptions: {
 			sass: {
 				prependData: `
-					$common-font-path: '~@lincebi/biserver-customization-common/src/assets/fonts';
-					@import '~@lincebi/biserver-customization-common/src/scss/main';
+					$common-font-path: '~@lincebi/biserver-frontend-common/src/assets/fonts';
+					@import '~@lincebi/biserver-frontend-common/src/scss/main';
 				`
 			}
 		}

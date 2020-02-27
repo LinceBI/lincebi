@@ -2,8 +2,8 @@ import Vue from 'vue';
 
 import uniqueId from 'lodash/uniqueId';
 
-import isDemo from '@lincebi/biserver-customization-common/src/isDemo';
-import isProduction from '@lincebi/biserver-customization-common/src/isProduction';
+import isDemo from '@lincebi/biserver-frontend-common/src/isDemo';
+import isProduction from '@lincebi/biserver-frontend-common/src/isProduction';
 
 export const mixin = {
 	data() {
