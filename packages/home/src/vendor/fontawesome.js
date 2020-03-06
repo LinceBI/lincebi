@@ -85,6 +85,7 @@ Vue.component('font-awesome-icon', async () => {
 		import('@lincebi/biserver-frontend-common/src/fontawesome/faFilePrpt'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/faFileSta'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/faFileStd'),
+		import('@lincebi/biserver-frontend-common/src/fontawesome/faFileStolap'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/faFileUrl'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/faFileWcdf'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/faFileXaction'),
@@ -96,6 +97,7 @@ Vue.component('font-awesome-icon', async () => {
 		import('@lincebi/biserver-frontend-common/src/fontawesome/faToolStagile'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/faToolStcard'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/faToolStdashboard'),
+		import('@lincebi/biserver-frontend-common/src/fontawesome/faToolStolap'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/faToolStpivot'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/faToolStreport'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/faToolStsearch')

@@ -193,6 +193,29 @@ export default {
 							}
 						},
 						{
+							enabled: this.installedPlugins.includes('stolap'),
+							id: 'tools.stolap',
+							name: 'STOlap',
+							icon: ['fac', 'tool-stolap'],
+							selectedForeground: '#FFFFFF',
+							selectedBackground: '#993711',
+							click() {
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' }
+									})
+									.catch(() => {});
+								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+									mantleWindow.openURL(
+										'STOlap',
+										'STOlap',
+										'plugin/stolap/faces/catalog.xhtml'
+									);
+								});
+							}
+						},
+						{
 							enabled: this.installedPlugins.includes('cde'),
 							id: 'tools.cde',
 							name: 'CDE',
