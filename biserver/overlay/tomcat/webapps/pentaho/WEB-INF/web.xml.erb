@@ -7,7 +7,7 @@
 
 	<context-param>
 		<param-name>solution-path</param-name>
-		<param-value>../../pentaho-solutions</param-value>
+		<param-value>../../<%= ENV['SOLUTIONS_DIRNAME'] %></param-value>
 	</context-param>
 
 	<context-param>
@@ -25,12 +25,16 @@
 	<!-- [BEGIN HSQLDB DATABASES] -->
 	<context-param>
 		<param-name>hsqldb-port</param-name>
-		<param-value>9001</param-value>
+		<param-value><%= ENV['HSQLDB_PORT'] %></param-value>
 	</context-param>
 
 	<context-param>
 		<param-name>hsqldb-databases</param-name>
-		<param-value>sampledata@../../data/hsqldb/sampledata,hibernate@../../data/hsqldb/hibernate,quartz@../../data/hsqldb/quartz</param-value>
+		<%- if ENV['STORAGE_TYPE'] == 'local' -%>
+		<param-value>sampledata@../../<%= ENV['DATA_DIRNAME'] %>/hsqldb/sampledata,hibernate@../../<%= ENV['DATA_DIRNAME'] %>/hsqldb/hibernate,quartz@../../<%= ENV['DATA_DIRNAME'] %>/hsqldb/quartz</param-value>
+		<%- else -%>
+		<param-value>sampledata@../../<%= ENV['DATA_DIRNAME'] %>/hsqldb/sampledata</param-value>
+		<%- end -%>
 	</context-param>
 	<!-- [END HSQLDB DATABASES] -->
 

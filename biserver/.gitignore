@@ -9,6 +9,7 @@
 /overlay/pentaho-solutions/system/*
 !/overlay/pentaho-solutions/system/
 !/overlay/pentaho-solutions/system/pentaho.xml
+!/overlay/pentaho-solutions/system/pentaho.xml.erb
 
 /overlay/pentaho-solutions/system/common-ui/*
 !/overlay/pentaho-solutions/system/common-ui/
@@ -44,3 +45,4 @@
 /overlay/tomcat/webapps/pentaho/WEB-INF/*
 !/overlay/tomcat/webapps/pentaho/WEB-INF/
 !/overlay/tomcat/webapps/pentaho/WEB-INF/web.xml
+!/overlay/tomcat/webapps/pentaho/WEB-INF/web.xml.erb
