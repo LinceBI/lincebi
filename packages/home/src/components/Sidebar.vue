@@ -191,6 +191,29 @@ export default {
 									);
 								});
 							}
+						},
+						{
+							enabled: this.installedPlugins.includes('cde'),
+							id: 'tools.cde',
+							name: 'CDE',
+							icon: ['fac', 'tool-cde'],
+							selectedForeground: '#FFFFFF',
+							selectedBackground: '#955CC1',
+							click() {
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' }
+									})
+									.catch(() => {});
+								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+									mantleWindow.openURL(
+										'Webdetails CDE',
+										'Webdetails CDE',
+										'api/repos/wcdf/new'
+									);
+								});
+							}
 						}
 					]
 				},
