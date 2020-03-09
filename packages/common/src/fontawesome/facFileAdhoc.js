@@ -1,14 +1,14 @@
-import { width, height, ligatures, svgPathData } from './faToolUnknown';
+import { width, height, ligatures, svgPathData } from './facToolStreport';
 import getFaUnicodeCharacter from './getUnicodeCharacter';
 
 export { width, height, ligatures, svgPathData };
 export const prefix = 'fac';
-export const iconName = 'file-xml';
+export const iconName = 'file-adhoc';
 export const unicode = getFaUnicodeCharacter();
 export const definition = {
-	prefix: prefix,
-	iconName: iconName,
+	prefix,
+	iconName,
 	icon: [width, height, ligatures, unicode, svgPathData]
 };
 
-export { definition as faFileXml };
+export { definition as faFileAdhoc };
