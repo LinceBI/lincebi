@@ -101,12 +101,12 @@ export default {
 							}
 						},
 						{
-							enabled: this.installedPlugins.includes('stdashboard'),
-							id: 'tools.stdashboard',
-							name: 'STDashboard',
-							icon: ['fac', 'tool-stdashboard'],
+							enabled: this.installedPlugins.includes('stolap'),
+							id: 'tools.stolap',
+							name: 'STOlap',
+							icon: ['fac', 'tool-stolap'],
 							selectedForeground: '#FFFFFF',
-							selectedBackground: '#2980B9',
+							selectedBackground: '#993711',
 							click() {
 								router
 									.push({
@@ -116,9 +116,9 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
 									mantleWindow.openURL(
-										'STDashboard',
-										'STDashboard',
-										'content/stdashboard?solution=system&path=temp&action=true'
+										'STOlap',
+										'STOlap',
+										'plugin/stolap/faces/catalog.xhtml'
 									);
 								});
 							}
@@ -142,6 +142,29 @@ export default {
 										'STReport',
 										'STReport',
 										'api/repos/saiku-adhoc/adhoc.edit'
+									);
+								});
+							}
+						},
+						{
+							enabled: this.installedPlugins.includes('stdashboard'),
+							id: 'tools.stdashboard',
+							name: 'STDashboard',
+							icon: ['fac', 'tool-stdashboard'],
+							selectedForeground: '#FFFFFF',
+							selectedBackground: '#2980B9',
+							click() {
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' }
+									})
+									.catch(() => {});
+								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+									mantleWindow.openURL(
+										'STDashboard',
+										'STDashboard',
+										'content/stdashboard?solution=system&path=temp&action=true'
 									);
 								});
 							}
@@ -188,29 +211,6 @@ export default {
 										'STCard',
 										'STCard',
 										'stcard/menu/STCard.jsp'
-									);
-								});
-							}
-						},
-						{
-							enabled: this.installedPlugins.includes('stolap'),
-							id: 'tools.stolap',
-							name: 'STOlap',
-							icon: ['fac', 'tool-stolap'],
-							selectedForeground: '#FFFFFF',
-							selectedBackground: '#993711',
-							click() {
-								router
-									.push({
-										name: 'perspective',
-										params: { perspective: 'opened.perspective' }
-									})
-									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
-									mantleWindow.openURL(
-										'STOlap',
-										'STOlap',
-										'plugin/stolap/faces/catalog.xhtml'
 									);
 								});
 							}
