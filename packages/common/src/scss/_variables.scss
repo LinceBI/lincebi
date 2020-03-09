@@ -13,27 +13,6 @@ $theme-colors: (
 	"dark": #343a40
 );
 
-/* Tool colors */
-$theme-colors: map-merge($theme-colors, (
-	"tool-unknown": #7b7b7b,
-	"tool-cde": #9836e4,
-	"tool-stpivot": #9aa210,
-	"tool-streport": #e67e22,
-	"tool-stdashboard": #2980b9,
-	"tool-stagile": #b91616
-));
-
-/* File colors */
-$theme-colors: map-merge($theme-colors, (
-	"file-unknown": map-get($theme-colors, tool-unknown),
-	"file-wcdf": map-get($theme-colors, tool-cde),
-	"file-xjpivot": map-get($theme-colors, tool-stpivot),
-	"file-adhoc": map-get($theme-colors, tool-streport),
-	"file-prpt": map-get($theme-colors, tool-streport),
-	"file-std": map-get($theme-colors, tool-stdashboard),
-	"file-sta": map-get($theme-colors, tool-stagile)
-));
-
 $yiq-text-dark: #495057;
 $yiq-text-light: #f8f9fa;
 
