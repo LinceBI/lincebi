@@ -4,18 +4,18 @@ stages:
 
 .variables: &variables
   MAVEN_OPTS: "-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2"
-  MAVEN_GROUP: "com.stratebi.pentaho"
+  MAVEN_GROUP: "com.stratebi.lincebi"
 
 .variables_develop: &variables_develop
   <<: *variables
-  MAVEN_REPOSITORY_ID: "stratebi-snapshots"
-  MAVEN_REPOSITORY_URL: "https://repo.stratebi.com/repository/stratebi-mvn-snapshots"
+  MAVEN_REPOSITORY_ID: "lincebi-snapshots"
+  MAVEN_REPOSITORY_URL: "https://repo.stratebi.com/repository/lincebi-mvn-snapshots"
   PACKAGE_VERSION_EXTRA: "${CI_COMMIT_REF_SLUG}-SNAPSHOT"
 
 .variables_release: &variables_release
   <<: *variables
-  MAVEN_REPOSITORY_ID: "stratebi-releases"
-  MAVEN_REPOSITORY_URL: "https://repo.stratebi.com/repository/stratebi-mvn-releases"
+  MAVEN_REPOSITORY_ID: "lincebi-releases"
+  MAVEN_REPOSITORY_URL: "https://repo.stratebi.com/repository/lincebi-mvn-releases"
 
 .artifacts: &artifacts
   expire_in: "15 mins"
