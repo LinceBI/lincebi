@@ -221,7 +221,7 @@ export default {
 							name: 'CDE',
 							icon: ['fac', 'tool-cde'],
 							selectedForeground: '#FFFFFF',
-							selectedBackground: '#955CC1',
+							selectedBackground: '#9836E4',
 							click() {
 								router
 									.push({
