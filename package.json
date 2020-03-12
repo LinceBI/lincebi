@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@lincebi/biserver-frontend",
+  "license": "GPL-3.0-or-later",
   "scripts": {
     "lint": "lerna run --stream lint",
     "build": "lerna run --stream build",
