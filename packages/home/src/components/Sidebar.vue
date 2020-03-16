@@ -37,8 +37,8 @@ export default {
 		installedPlugins() {
 			return store.state.installedPlugins;
 		},
-		supportedLocales() {
-			return store.state.supportedLocales;
+		installedLocales() {
+			return store.state.installedLocales;
 		},
 		sidebar() {
 			return [
@@ -359,13 +359,13 @@ export default {
 					href: '#/administration'
 				},
 				{
-					enabled: this.supportedLocales.length > 1,
+					enabled: this.installedLocales.length > 1,
 					id: 'locales',
 					name: this.$t('sidebar.locales'),
 					icon: ['fas', 'globe-europe'],
 					subitems: [
 						{
-							enabled: this.supportedLocales.includes('en'),
+							enabled: this.installedLocales.includes('en'),
 							id: 'locales.english',
 							name: this.$t('locales.english'),
 							img: require('@/assets/img/locales/en.svg'),
@@ -375,7 +375,7 @@ export default {
 							}
 						},
 						{
-							enabled: this.supportedLocales.includes('es'),
+							enabled: this.installedLocales.includes('es'),
 							id: 'locales.spanish',
 							name: this.$t('locales.spanish'),
 							img: require('@/assets/img/locales/es.svg'),
@@ -385,7 +385,7 @@ export default {
 							}
 						},
 						{
-							enabled: this.supportedLocales.includes('ca'),
+							enabled: this.installedLocales.includes('ca'),
 							id: 'locales.catalan',
 							name: this.$t('locales.catalan'),
 							img: require('@/assets/img/locales/ca.svg'),

@@ -8,7 +8,7 @@ export default () => ({
 	canSchedule: false,
 	hasDataAccess: false,
 	installedPlugins: [],
-	supportedLocales: ['en'],
+	installedLocales: [],
 	locale: 'en',
 	isRepositoryLoading: true,
 	repository: { path: '/', children: [] },

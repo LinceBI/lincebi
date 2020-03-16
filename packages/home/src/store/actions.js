@@ -6,7 +6,7 @@ import getHasDataAccess from '@lincebi/biserver-frontend-common/src/biserver/get
 import getInstalledPlugins from '@lincebi/biserver-frontend-common/src/biserver/getInstalledPlugins';
 import getLocale from '@lincebi/biserver-frontend-common/src/biserver/getLocale';
 import getRepository from '@lincebi/biserver-frontend-common/src/biserver/getRepository';
-import getSupportedLocales from '@lincebi/biserver-frontend-common/src/biserver/getSupportedLocales';
+import getInstalledLocales from '@lincebi/biserver-frontend-common/src/biserver/getInstalledLocales';
 import getUserId from '@lincebi/biserver-frontend-common/src/biserver/getUserId';
 import getUserSettings from '@lincebi/biserver-frontend-common/src/biserver/getUserSettings';
 import setGlobalUserSettings from '@lincebi/biserver-frontend-common/src/biserver/setGlobalUserSettings';
@@ -15,8 +15,6 @@ import setMetadata from '@lincebi/biserver-frontend-common/src/biserver/setMetad
 import setUserSettings from '@lincebi/biserver-frontend-common/src/biserver/setUserSettings';
 
 import { defaultGlobalUserSettings, defaultUserSettings } from '@/userSettings';
-
-import i18n from '@/i18n';
 
 export const fetchUserId = async ({ commit }) => {
 	const userId = await getUserId();
@@ -48,10 +46,9 @@ export const fetchInstalledPlugins = async ({ commit }) => {
 	commit('setInstalledPlugins', installedPlugins);
 };
 
-export const fetchSupportedLocales = async ({ commit }) => {
-	const availableLocales = i18n.availableLocales;
-	const supportedLocales = await getSupportedLocales(availableLocales);
-	commit('setSupportedLocales', supportedLocales);
+export const fetchInstalledLocales = async ({ commit }) => {
+	const installedLocales = await getInstalledLocales();
+	commit('setInstalledLocales', installedLocales);
 };
 
 export const fetchLocale = async ({ commit }) => {

@@ -33,12 +33,15 @@ export const setInstalledPlugins = (state, installedPlugins) => {
 	state.installedPlugins = installedPlugins;
 };
 
-export const setSupportedLocales = (state, supportedLocales) => {
-	state.supportedLocales = supportedLocales;
+export const setInstalledLocales = (state, installedLocales) => {
+	state.installedLocales = installedLocales;
 };
 
 export const setLocale = (state, locale) => {
-	if (state.supportedLocales.includes(locale)) {
+	if (
+		state.installedLocales.includes(locale) &&
+		i18n.availableLocales.includes(locale)
+	) {
 		state.locale = locale;
 		i18n.locale = locale;
 		document.documentElement.lang = locale;
