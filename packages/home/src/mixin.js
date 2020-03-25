@@ -18,15 +18,15 @@ export const mixin = {
 			namespace,
 			isDemo,
 			isProduction,
-			isTouchDevice
+			isTouchDevice,
 		};
 	},
 	methods: {
 		defaultTo: (v, d) => defaultTo(v, d),
 		defaultToReq: (v, d) => defaultTo(v, require(`@/${d}`)),
 		overlayColor,
-		truncate
-	}
+		truncate,
+	},
 };
 
 Vue.mixin(mixin);

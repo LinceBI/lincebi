@@ -6,7 +6,7 @@ export default {
 		// URLSearchParams and FormData have similar methods.
 		return formData.objectify(new URLSearchParams(str), defaultValues);
 	},
-	stringify: obj => {
+	stringify: (obj) => {
 		const params = [];
 
 		Object.entries(obj).forEach(([key, value]) => {
@@ -14,7 +14,7 @@ export default {
 				params.push(`${key}=${encodeURIComponent(value)}`);
 			} else if (Array.isArray(value)) {
 				const arrKey = `${key}[]`;
-				value.forEach(arrValue => {
+				value.forEach((arrValue) => {
 					params.push(`${arrKey}=${encodeURIComponent(arrValue)}`);
 				});
 			} else {
@@ -24,5 +24,5 @@ export default {
 		});
 
 		return params.join('&');
-	}
+	},
 };

@@ -1,4 +1,4 @@
-export default c => {
+export default (c) => {
 	let r = 0,
 		g = 0,
 		b = 0;

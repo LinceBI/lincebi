@@ -22,7 +22,7 @@ export default {
 	props: {
 		value: {
 			type: String,
-			default: null
+			default: null,
 		},
 		colors: {
 			type: Array,
@@ -43,16 +43,16 @@ export default {
 					'#c0ca33',
 					'#ffb300',
 					'#fb8c00',
-					'#f4511e'
+					'#f4511e',
 				];
-			}
-		}
+			},
+		},
 	},
 	data() {
 		return {
-			color: this.value
+			color: this.value,
 		};
-	}
+	},
 };
 </script>
 

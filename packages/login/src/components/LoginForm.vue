@@ -41,25 +41,25 @@ import LoginError from '@/components/LoginError.vue';
 export default {
 	name: 'LoginForm',
 	components: {
-		LoginError
+		LoginError,
 	},
 	data: () => ({
 		form: {
 			j_username: '',
-			j_password: ''
-		}
+			j_password: '',
+		},
 	}),
 	methods: {
 		async onSubmit() {
 			const response = await fetch('../j_spring_security_check', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-				body: searchParams.stringify(this.form)
+				body: searchParams.stringify(this.form),
 			});
 
 			window.location.replace(response.url);
-		}
-	}
+		},
+	},
 };
 </script>
 

@@ -7,10 +7,10 @@ const allowedResources = new Set([
 	'metadata',
 	'mondrianSchemaCache',
 	'reportingDataCache',
-	'systemSettings'
+	'systemSettings',
 ]);
 
-export default async resource => {
+export default async (resource) => {
 	if (!allowedResources.has(resource)) {
 		return false;
 	}
@@ -18,7 +18,7 @@ export default async resource => {
 	const contextPath = await getContextPath();
 	const endpoint = `${contextPath}api/system/refresh/${resource}`;
 	const response = await fetch(endpoint, {
-		method: 'GET'
+		method: 'GET',
 	});
 
 	return response.status === 200;

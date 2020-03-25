@@ -9,7 +9,7 @@
 		<span class="user-text">
 			{{
 				$t('navbar.welcome', {
-					name: userSettings[`${namespace}.name`] || userId
+					name: userSettings[`${namespace}.name`] || userId,
 				})
 			}}
 		</span>
@@ -27,8 +27,8 @@ export default {
 		},
 		userSettings() {
 			return store.state.userSettings;
-		}
-	}
+		},
+	},
 };
 </script>
 

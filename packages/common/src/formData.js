@@ -14,7 +14,7 @@ export default {
 
 		return obj;
 	},
-	formify: obj => {
+	formify: (obj) => {
 		const form = new FormData();
 
 		Object.entries(obj).forEach(([key, value]) => {
@@ -22,7 +22,7 @@ export default {
 				form.set(key, value);
 			} else if (Array.isArray(value)) {
 				const arrKey = `${key}[]`;
-				value.forEach(arrValue => {
+				value.forEach((arrValue) => {
 					form.append(arrKey, arrValue);
 				});
 			} else {
@@ -32,5 +32,5 @@ export default {
 		});
 
 		return form;
-	}
+	},
 };

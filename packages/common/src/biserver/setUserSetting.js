@@ -23,7 +23,7 @@ export default async (key, value = '') => {
 	const response = await fetch(endpoint, {
 		method: 'POST',
 		headers: { 'Content-Type': 'text/plain' },
-		body: value
+		body: value,
 	});
 
 	if (response.status === 200) {

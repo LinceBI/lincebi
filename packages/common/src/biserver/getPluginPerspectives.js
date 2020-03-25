@@ -9,7 +9,7 @@ const getPluginPerspectives = async () => {
 	const endpoint = `${contextPath}api/plugin-manager/perspectives`;
 	const response = await fetch(endpoint, {
 		method: 'GET',
-		headers: { 'Content-Type': 'text/plain' }
+		headers: { 'Content-Type': 'text/plain' },
 	});
 
 	if (response.status === 200) {
@@ -17,7 +17,7 @@ const getPluginPerspectives = async () => {
 
 		try {
 			const json = JSON.parse(content);
-			return json.pluginPerspective.map(p => p.id);
+			return json.pluginPerspective.map((p) => p.id);
 		} catch (error) {
 			console.error(error);
 		}

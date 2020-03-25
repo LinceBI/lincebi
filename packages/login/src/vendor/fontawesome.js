@@ -12,7 +12,7 @@ Vue.component('font-awesome-icon', async () => {
 	];
 
 	await Promise.all(
-		icons.map(async icon => {
+		icons.map(async (icon) => {
 			const { definition } = await icon;
 			library.add(definition);
 		})

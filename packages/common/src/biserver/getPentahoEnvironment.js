@@ -4,7 +4,7 @@ let pentahoEnvironmentPromise = null;
 
 const defaultPentahoEnvironment = {
 	user: { id: '' },
-	server: { root: '/pentaho/' }
+	server: { root: '/pentaho/' },
 };
 
 const getPentahoEnvironment = async () => {
@@ -12,8 +12,8 @@ const getPentahoEnvironment = async () => {
 
 	if (webcontextWorker !== null) {
 		webcontextWorker.postMessage('requireCfg.config["pentaho/environment"]');
-		return new Promise(resolve => {
-			webcontextWorker.onmessage = event => {
+		return new Promise((resolve) => {
+			webcontextWorker.onmessage = (event) => {
 				resolve(event.data);
 			};
 			webcontextWorker.onerror = () => {

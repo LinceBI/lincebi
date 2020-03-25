@@ -6,7 +6,7 @@ export default async () => {
 	const contextPath = await getContextPath();
 	const endpoint = `${contextPath}plugin/cda/api/clearCache`;
 	const response = await fetch(endpoint, {
-		method: 'GET'
+		method: 'GET',
 	});
 
 	return response.status === 200;

@@ -18,30 +18,30 @@ export default new Router({
 			name: 'root',
 			redirect: isDemo
 				? { name: 'perspective', params: { perspective: 'sthome.perspective' } }
-				: { name: 'home' }
+				: { name: 'home' },
 		},
 		{
 			path: '/home',
 			name: 'home',
-			component: Home
+			component: Home,
 		},
 		{
 			path: '/profile',
 			name: 'profile',
-			component: Profile
+			component: Profile,
 		},
 		{
 			path: '/administration',
 			name: 'administration',
-			component: Administration
+			component: Administration,
 		},
 		{
 			path: '/p/:perspective',
 			name: 'perspective',
 			component: Perspective,
-			props: route => ({
-				perspective: route.params.perspective
-			})
+			props: (route) => ({
+				perspective: route.params.perspective,
+			}),
 		},
 		{
 			path: '/login',
@@ -49,7 +49,7 @@ export default new Router({
 			beforeEnter() {
 				stopAllWindows();
 				window.location.href = '../Login';
-			}
+			},
 		},
 		{
 			path: '/logout',
@@ -57,7 +57,7 @@ export default new Router({
 			beforeEnter() {
 				stopAllWindows();
 				window.location.href = '../Logout';
-			}
-		}
-	]
+			},
+		},
+	],
 });

@@ -21,7 +21,7 @@ const getInstalledPlugins = async () => {
 		['stolap', isStolapInstalled],
 		['stpivot', isStpivotInstalled],
 		['streport', isStreportInstalled],
-		['stsearch', isStsearchInstalled]
+		['stsearch', isStsearchInstalled],
 	];
 
 	return (
@@ -30,7 +30,7 @@ const getInstalledPlugins = async () => {
 				return (await isInstalled()) ? plugin : undefined;
 			})
 		)
-	).filter(plugin => typeof plugin === 'string');
+	).filter((plugin) => typeof plugin === 'string');
 };
 
 export default async (...args) => {

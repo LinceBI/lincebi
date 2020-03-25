@@ -11,5 +11,5 @@ import '@/mixin';
 
 new Vue({
 	i18n,
-	render: h => h(App)
+	render: (h) => h(App),
 }).$mount('#app');

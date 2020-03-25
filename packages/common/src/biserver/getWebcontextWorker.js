@@ -17,7 +17,7 @@ const getWebcontextWorker = async () => {
 	const endpoint = '../webcontext.js?useFullyQualifiedUrl=false';
 	const response = await fetch(endpoint, {
 		method: 'GET',
-		headers: { 'Content-Type': 'text/plain' }
+		headers: { 'Content-Type': 'text/plain' },
 	});
 
 	if (response.status === 200) {

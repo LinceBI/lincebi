@@ -28,10 +28,10 @@ export default {
 			messages: {
 				'0': this.$t('errors.unknownError'),
 				'1': this.$t('errors.authenticationFailure'),
-				'2': this.$t('errors.sessionReuseDetected')
+				'2': this.$t('errors.sessionReuseDetected'),
 			},
 			dismissSecs: 5,
-			dismissCountDown: 0
+			dismissCountDown: 0,
 		};
 	},
 	computed: {
@@ -42,7 +42,7 @@ export default {
 			return this.code in this.messages
 				? this.messages[this.code]
 				: this.messages['0'];
-		}
+		},
 	},
 	mounted() {
 		this.dismissCountDown = this.dismissSecs;
@@ -50,7 +50,7 @@ export default {
 	methods: {
 		countDownChanged(dismissCountDown) {
 			this.dismissCountDown = dismissCountDown;
-		}
-	}
+		},
+	},
 };
 </script>

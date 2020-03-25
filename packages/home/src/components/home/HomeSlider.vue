@@ -1,5 +1,5 @@
 <template>
-	<div v-if="slider.slides.some(i => i.enabled)" class="home-slider">
+	<div v-if="slider.slides.some((i) => i.enabled)" class="home-slider">
 		<b-collapse v-model="slider.expanded">
 			<b-carousel
 				:interval="slider.interval"
@@ -8,7 +8,7 @@
 				:fade="slider.fade"
 			>
 				<b-carousel-slide
-					v-for="(slide, index) in slider.slides.filter(i => i.enabled)"
+					v-for="(slide, index) in slider.slides.filter((i) => i.enabled)"
 					:key="index"
 					:caption="slide.caption"
 					:text="slide.text"
@@ -41,20 +41,20 @@ export default {
 				indicators: false,
 				controls: false,
 				fade: true,
-				slides: []
-			}
+				slides: [],
+			},
 		};
 	},
 	async created() {
 		const response = await fetch('./slider/slider.json', {
 			method: 'GET',
-			headers: { 'Content-Type': 'application/json' }
+			headers: { 'Content-Type': 'application/json' },
 		});
 
 		if (response.status === 200) {
 			this.slider = await response.json();
 		}
-	}
+	},
 };
 </script>
 

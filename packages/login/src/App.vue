@@ -18,8 +18,8 @@ export default {
 	components: {
 		LoginForm,
 		LoginFooter,
-		NodeGarden
-	}
+		NodeGarden,
+	},
 };
 </script>
 

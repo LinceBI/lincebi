@@ -104,7 +104,7 @@ Vue.component('font-awesome-icon', async () => {
 		/* eslint-enable */
 	]);
 
-	icons.map(icon => {
+	icons.map((icon) => {
 		library.add(icon.definition);
 	});
 

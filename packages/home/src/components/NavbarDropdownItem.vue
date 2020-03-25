@@ -12,31 +12,31 @@ export default {
 	props: {
 		text: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		href: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		enabled: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		icon: {
 			type: Array,
-			default: () => ['far', 'check-square']
+			default: () => ['far', 'check-square'],
 		},
 		iconDisabled: {
 			type: Array,
-			default: () => ['far', 'square']
-		}
+			default: () => ['far', 'square'],
+		},
 	},
 	methods: {
 		onClick(event) {
 			if (typeof this.$listeners.click !== 'undefined') {
 				this.$listeners.click.call(this, event);
 			}
-		}
-	}
+		},
+	},
 };
 </script>

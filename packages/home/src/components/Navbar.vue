@@ -49,13 +49,13 @@ export default {
 		NavbarSearch,
 		NavbarSettings,
 		NavbarSidebarToggle,
-		NavbarWelcome
+		NavbarWelcome,
 	},
 	computed: {
 		installedPlugins() {
 			return store.state.installedPlugins;
-		}
-	}
+		},
+	},
 };
 </script>
 

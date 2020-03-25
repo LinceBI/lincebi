@@ -5,6 +5,6 @@ module.exports = {
 	env: { node: true },
 	rules: {
 		'no-console': ['warn', { allow: ['warn', 'error'] }],
-		'prettier/prettier': ['error', { singleQuote: true, useTabs: true }]
-	}
+		'prettier/prettier': ['error', { singleQuote: true, useTabs: true }],
+	},
 };

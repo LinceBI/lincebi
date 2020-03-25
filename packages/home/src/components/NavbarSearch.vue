@@ -5,7 +5,7 @@
 		@reset.prevent="onReset"
 	>
 		<b-input-group class="w-100">
-			<b-input-group-prepend v-if="categories.some(i => i.enabled)">
+			<b-input-group-prepend v-if="categories.some((i) => i.enabled)">
 				<b-dropdown
 					class="categories-dropdown"
 					variant="primary"
@@ -19,7 +19,7 @@
 						</span>
 					</template>
 					<b-dropdown-item
-						v-for="(category, index) in categories.filter(i => i.enabled)"
+						v-for="(category, index) in categories.filter((i) => i.enabled)"
 						:key="index"
 						class="category-item border-collapse"
 						@click="onCategoryClick(category)"
@@ -55,13 +55,13 @@ export default {
 	data() {
 		return {
 			searchTerms: '',
-			categories: []
+			categories: [],
 		};
 	},
 	async created() {
 		const response = await fetch('./categories/categories.json', {
 			method: 'GET',
-			headers: { 'Content-Type': 'application/json' }
+			headers: { 'Content-Type': 'application/json' },
 		});
 
 		if (response.status === 200) {
@@ -73,13 +73,13 @@ export default {
 			router
 				.push({
 					name: 'perspective',
-					params: { perspective: 'search.perspective' }
+					params: { perspective: 'search.perspective' },
 				})
 				.catch(() => {});
 			eventBus.$emitWhen(
 				'mantle.perspective.invoke',
 				'search.perspective',
-				async perspectiveWindow => {
+				async (perspectiveWindow) => {
 					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
 					(await STSearch.resetConfig().doRefresh()).doSearch(this.searchTerms);
 					event.target.reset();
@@ -93,25 +93,25 @@ export default {
 			router
 				.push({
 					name: 'perspective',
-					params: { perspective: 'search.perspective' }
+					params: { perspective: 'search.perspective' },
 				})
 				.catch(() => {});
 			eventBus.$emitWhen(
 				'mantle.perspective.invoke',
 				'search.perspective',
-				async perspectiveWindow => {
+				async (perspectiveWindow) => {
 					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
 					await STSearch.applyPreset('category')
 						.applyConfig({
 							'banner-title': category.name,
 							'banner-src': `${location.pathname}${category.banner}`,
-							'search-terms': category.tag
+							'search-terms': category.tag,
 						})
 						.doRefresh();
 				}
 			);
-		}
-	}
+		},
+	},
 };
 </script>
 

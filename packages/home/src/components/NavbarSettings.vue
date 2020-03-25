@@ -42,7 +42,7 @@ import eventBus from '@/eventBus';
 export default {
 	name: 'NavbarSettings',
 	components: {
-		NavbarDropdownItem
+		NavbarDropdownItem,
 	},
 	computed: {
 		userSettings() {
@@ -58,7 +58,7 @@ export default {
 				const key = `${this.namespace}.show_menu_bar`;
 				const value = show ? 'true' : 'false';
 				store.dispatch('updateUserSettings', { [key]: value });
-			}
+			},
 		},
 		showToolBar: {
 			get() {
@@ -70,7 +70,7 @@ export default {
 				const key = `${this.namespace}.show_tool_bar`;
 				const value = show ? 'true' : 'false';
 				store.dispatch('updateUserSettings', { [key]: value });
-			}
+			},
 		},
 		showHiddenFiles: {
 			get() {
@@ -87,7 +87,7 @@ export default {
 						'browser.perspective'
 					);
 				});
-			}
+			},
 		},
 		showDescriptionsForTooltips: {
 			get() {
@@ -104,8 +104,8 @@ export default {
 						'browser.perspective'
 					);
 				});
-			}
-		}
-	}
+			},
+		},
+	},
 };
 </script>

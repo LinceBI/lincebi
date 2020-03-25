@@ -23,8 +23,8 @@ export default {
 	props: {
 		perspective: {
 			type: String,
-			default: ''
-		}
+			default: '',
+		},
 	},
 	data() {
 		return {
@@ -36,7 +36,7 @@ export default {
 				'mantle_getPerspectives',
 				'mantle_initialized',
 				'mantle_setPerspective',
-				'openURL'
+				'openURL',
 			],
 			// We will leave this disabled for now, as it causes problems with some plugins.
 			isSanboxed: false,
@@ -45,8 +45,8 @@ export default {
 				'allow-modals',
 				'allow-popups',
 				'allow-same-origin',
-				'allow-scripts'
-			]
+				'allow-scripts',
+			],
 		};
 	},
 	computed: {
@@ -65,7 +65,7 @@ export default {
 		dynamicSearchParams() {
 			return searchParams.stringify({
 				locale: this.locale,
-				...insertIf(this.perspective, { perspective: this.perspective })
+				...insertIf(this.perspective, { perspective: this.perspective }),
 			});
 		},
 		showMenuBar() {
@@ -77,7 +77,7 @@ export default {
 			const key = `${this.namespace}.show_tool_bar`;
 			const value = this.userSettings[key] === 'true';
 			return value;
-		}
+		},
 	},
 	watch: {
 		perspective(...args) {
@@ -95,11 +95,11 @@ export default {
 		isRepositoryLoading(isRepositoryLoading) {
 			if (!isRepositoryLoading) {
 				// Populate initial STSearch repository.
-				this.invokeInMantleWindow(mantleWindow => {
+				this.invokeInMantleWindow((mantleWindow) => {
 					mantleWindow.stsearch_initial_repository = this.repository;
 				});
 			}
-		}
+		},
 	},
 	created() {
 		this.staticSearchParams = this.dynamicSearchParams;
@@ -119,7 +119,7 @@ export default {
 				const mantleWindow = this.retrieveMantleWindow();
 				if (
 					typeof mantleWindow !== 'undefined' &&
-					reqFns.every(reqFn => reqFn in mantleWindow)
+					reqFns.every((reqFn) => reqFn in mantleWindow)
 				) {
 					return mantleWindow;
 				}
@@ -127,7 +127,7 @@ export default {
 			fn.call(mantleWindow, mantleWindow);
 		},
 		async invokeInPerspectiveWindow(perspective, fn) {
-			this.invokeInMantleWindow(async mantleWindow => {
+			this.invokeInMantleWindow(async (mantleWindow) => {
 				const perspectiveWindow = await waitFor(() => {
 					const perspectiveIframe = mantleWindow.document.querySelector(
 						`iframe[id="${perspective}"]`
@@ -140,12 +140,12 @@ export default {
 			});
 		},
 		reloadPerspective(perspective) {
-			this.invokeInPerspectiveWindow(perspective, perspectiveWindow => {
+			this.invokeInPerspectiveWindow(perspective, (perspectiveWindow) => {
 				perspectiveWindow.location.reload();
 			});
 		},
 		changePerspective(perspective) {
-			this.invokeInMantleWindow(mantleWindow => {
+			this.invokeInMantleWindow((mantleWindow) => {
 				if (!perspective) {
 					perspective = mantleWindow.mantle_getPerspectives()[0];
 				}
@@ -154,24 +154,24 @@ export default {
 			});
 		},
 		changePerspectiveParams(perspective, params = {}) {
-			this.invokeInPerspectiveWindow(perspective, perspectiveWindow => {
+			this.invokeInPerspectiveWindow(perspective, (perspectiveWindow) => {
 				perspectiveWindow.location.search = searchParams.stringify(params);
 			});
 		},
 		changeShowMenuBar(show) {
-			this.invokeInMantleWindow(mantleWindow => {
+			this.invokeInMantleWindow((mantleWindow) => {
 				mantleWindow.document.body.classList.toggle('show-menu-bar', show);
 			});
 		},
 		changeShowToolBar(show) {
-			this.invokeInMantleWindow(mantleWindow => {
+			this.invokeInMantleWindow((mantleWindow) => {
 				mantleWindow.document.body.classList.toggle('show-tool-bar', show);
 			});
 		},
 		handleMantleLoad() {
-			this.invokeInMantleWindow(mantleWindow => {
+			this.invokeInMantleWindow((mantleWindow) => {
 				// Some plugins access these properties using "window.top", so we will expose them.
-				this.mantleWindowProperties.forEach(prop => {
+				this.mantleWindowProperties.forEach((prop) => {
 					window.top[prop] = mantleWindow[prop];
 				});
 
@@ -192,11 +192,11 @@ export default {
 
 					const visibleFrame = mantleWindow
 						.mantle_getPerspectives()
-						.map(perspective => {
+						.map((perspective) => {
 							const selector = `iframe#${CSS.escape(perspective)}`;
 							return mantleWindow.document.querySelector(selector);
 						})
-						.find(frame => {
+						.find((frame) => {
 							return frame !== null && frame.offsetParent !== null;
 						});
 
@@ -217,7 +217,7 @@ export default {
 						router
 							.push({
 								name: 'perspective',
-								params: { perspective: visiblePerspective }
+								params: { perspective: visiblePerspective },
 							})
 							.catch(() => {});
 					}
@@ -233,8 +233,8 @@ export default {
 					store.commit('setRepositoryFile', detail);
 				});
 			});
-		}
-	}
+		},
+	},
 };
 </script>
 

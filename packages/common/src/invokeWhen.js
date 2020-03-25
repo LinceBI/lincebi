@@ -2,8 +2,8 @@ import throttle from 'lodash/throttle';
 
 export default (
 	condFunc = () => true,
-	invokeFunc = r => r,
-	timeoutFunc = r => r,
+	invokeFunc = (r) => r,
+	timeoutFunc = (r) => r,
 	{ wait = 50, timeout = 20000 } = {}
 ) => {
 	const start = performance.now();

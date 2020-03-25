@@ -24,7 +24,7 @@ export default {
 	props: {
 		value: {
 			type: Object,
-			default: null
+			default: null,
 		},
 		icons: {
 			type: Array,
@@ -61,21 +61,21 @@ export default {
 					{ prefix: 'fas', iconName: 'truck' },
 					{ prefix: 'fas', iconName: 'users' },
 					{ prefix: 'fas', iconName: 'warehouse' },
-					{ prefix: 'fas', iconName: 'wrench' }
+					{ prefix: 'fas', iconName: 'wrench' },
 				];
-			}
-		}
+			},
+		},
 	},
 	data() {
 		return {
-			icon: this.value
+			icon: this.value,
 		};
 	},
 	methods: {
-		toString: icon => {
+		toString: (icon) => {
 			return icon !== null ? `${icon.prefix}-${icon.iconName}` : null;
-		}
-	}
+		},
+	},
 };
 </script>
 

@@ -14,7 +14,7 @@ export default async (metadata, { locale = getLocale() } = {}) => {
 
 	// Mock metadata update in demo environment.
 	if (isDemo) {
-		return metadata.map(entry => ({ fullPath: entry.path }));
+		return metadata.map((entry) => ({ fullPath: entry.path }));
 	}
 
 	// If "locale" is a promise, resolve it.
@@ -50,7 +50,7 @@ export default async (metadata, { locale = getLocale() } = {}) => {
 	const response = await fetch(endpoint, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(metadata)
+		body: JSON.stringify(metadata),
 	});
 
 	if (response.status === 200) {

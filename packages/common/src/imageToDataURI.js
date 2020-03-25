@@ -12,10 +12,10 @@ export default async (image, options = {}) => {
 			maxHeight: 512,
 			quality: 0.4,
 			...options,
-			success: result => resolve(result),
-			error: error => reject(error)
+			success: (result) => resolve(result),
+			error: (error) => reject(error),
 		});
-	}).then(compressedImage => {
+	}).then((compressedImage) => {
 		return fileToDataURI(compressedImage);
 	});
 };

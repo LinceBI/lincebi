@@ -131,14 +131,14 @@ export default {
 		},
 		installedPlugins() {
 			return store.state.installedPlugins;
-		}
+		},
 	},
 	methods: {
 		async openAdministration() {
 			router
 				.push({
 					name: 'perspective',
-					params: { perspective: 'admin.perspective' }
+					params: { perspective: 'admin.perspective' },
 				})
 				.catch(() => {});
 		},
@@ -146,10 +146,10 @@ export default {
 			router
 				.push({
 					name: 'perspective',
-					params: { perspective: 'browser.perspective' }
+					params: { perspective: 'browser.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+			eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
 				mantleWindow.executeCommand('ManageDatasourcesCommand');
 			});
 		},
@@ -157,7 +157,7 @@ export default {
 			router
 				.push({
 					name: 'perspective',
-					params: { perspective: 'schedules.perspective' }
+					params: { perspective: 'schedules.perspective' },
 				})
 				.catch(() => {});
 		},
@@ -165,7 +165,7 @@ export default {
 			router
 				.push({
 					name: 'perspective',
-					params: { perspective: 'marketplace.perspective.osgi' }
+					params: { perspective: 'marketplace.perspective.osgi' },
 				})
 				.catch(() => {});
 		},
@@ -173,10 +173,10 @@ export default {
 			router
 				.push({
 					name: 'perspective',
-					params: { perspective: 'opened.perspective' }
+					params: { perspective: 'opened.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+			eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
 				mantleWindow.openURL(
 					'CDA cache manager',
 					'CDA cache manager',
@@ -188,10 +188,10 @@ export default {
 			router
 				.push({
 					name: 'perspective',
-					params: { perspective: 'opened.perspective' }
+					params: { perspective: 'opened.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+			eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
 				mantleWindow.openURL(
 					'STReport statistics',
 					'STReport statistics',
@@ -204,13 +204,13 @@ export default {
 				this.$bvToast.toast(this.$t('administration.resourceRefreshSuccess'), {
 					title: this.$t('administration.notificationInfo'),
 					variant: 'success',
-					solid: true
+					solid: true,
 				});
 			} else {
 				this.$bvToast.toast(this.$t('administration.resourceRefreshError'), {
 					title: this.$t('administration.notificationError'),
 					variant: 'danger',
-					solid: true
+					solid: true,
 				});
 			}
 		},
@@ -219,17 +219,17 @@ export default {
 				this.$bvToast.toast(this.$t('administration.cacheClearSuccess'), {
 					title: this.$t('administration.notificationInfo'),
 					variant: 'success',
-					solid: true
+					solid: true,
 				});
 			} else {
 				this.$bvToast.toast(this.$t('administration.cacheClearError'), {
 					title: this.$t('administration.notificationError'),
 					variant: 'danger',
-					solid: true
+					solid: true,
 				});
 			}
-		}
-	}
+		},
+	},
 };
 </script>
 

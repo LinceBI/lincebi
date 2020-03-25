@@ -16,7 +16,7 @@ import store from '@/store';
 export default {
 	name: 'Sidebar',
 	components: {
-		SidebarItem
+		SidebarItem,
 	},
 	computed: {
 		showSidebar() {
@@ -47,7 +47,7 @@ export default {
 					id: 'home',
 					name: this.$t('sidebar.home'),
 					icon: ['fas', 'home'],
-					href: '#/'
+					href: '#/',
 				},
 				{
 					enabled: this.isDemo,
@@ -60,16 +60,16 @@ export default {
 							id: 'sthome.perspective',
 							name: 'STHome',
 							icon: ['fas', 'home'],
-							href: '#/p/sthome.perspective'
+							href: '#/p/sthome.perspective',
 						},
 						{
 							enabled: true,
 							id: 'stadmin.perspective',
 							name: 'STAdmin',
 							icon: ['fac', 'tool-stadmin'],
-							href: '#/p/stadmin.perspective'
-						}
-					]
+							href: '#/p/stadmin.perspective',
+						},
+					],
 				},
 				{
 					enabled: this.canCreate,
@@ -88,17 +88,17 @@ export default {
 								router
 									.push({
 										name: 'perspective',
-										params: { perspective: 'opened.perspective' }
+										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'STPivot',
 										'STPivot',
 										'plugin/jpivot/AnalysisViewService?component=newView'
 									);
 								});
-							}
+							},
 						},
 						{
 							enabled: this.installedPlugins.includes('stolap'),
@@ -111,17 +111,17 @@ export default {
 								router
 									.push({
 										name: 'perspective',
-										params: { perspective: 'opened.perspective' }
+										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'STOlap',
 										'STOlap',
 										'plugin/stolap/faces/catalog.xhtml'
 									);
 								});
-							}
+							},
 						},
 						{
 							enabled: this.installedPlugins.includes('streport'),
@@ -134,17 +134,17 @@ export default {
 								router
 									.push({
 										name: 'perspective',
-										params: { perspective: 'opened.perspective' }
+										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'STReport',
 										'STReport',
 										'api/repos/saiku-adhoc/adhoc.edit'
 									);
 								});
-							}
+							},
 						},
 						{
 							enabled: this.installedPlugins.includes('stdashboard'),
@@ -157,17 +157,17 @@ export default {
 								router
 									.push({
 										name: 'perspective',
-										params: { perspective: 'opened.perspective' }
+										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'STDashboard',
 										'STDashboard',
 										'content/stdashboard?solution=system&path=temp&action=true'
 									);
 								});
-							}
+							},
 						},
 						{
 							enabled: this.installedPlugins.includes('stagile'),
@@ -180,17 +180,17 @@ export default {
 								router
 									.push({
 										name: 'perspective',
-										params: { perspective: 'opened.perspective' }
+										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'STAgile',
 										'STAgile',
 										'content/stagile/ui/index.html#!/new'
 									);
 								});
-							}
+							},
 						},
 						{
 							enabled: this.installedPlugins.includes('stcard'),
@@ -203,17 +203,17 @@ export default {
 								router
 									.push({
 										name: 'perspective',
-										params: { perspective: 'opened.perspective' }
+										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'STCard',
 										'STCard',
 										'stcard/menu/STCard.jsp'
 									);
 								});
-							}
+							},
 						},
 						{
 							enabled: this.installedPlugins.includes('cde'),
@@ -226,33 +226,33 @@ export default {
 								router
 									.push({
 										name: 'perspective',
-										params: { perspective: 'opened.perspective' }
+										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'Webdetails CDE',
 										'Webdetails CDE',
 										'api/repos/wcdf/new'
 									);
 								});
-							}
-						}
-					]
+							},
+						},
+					],
 				},
 				{
 					enabled: true,
 					id: 'opened',
 					name: this.$t('sidebar.opened'),
 					icon: ['far', 'window-maximize'],
-					href: '#/p/opened.perspective'
+					href: '#/p/opened.perspective',
 				},
 				{
 					enabled: true,
 					id: 'browser',
 					name: this.$t('sidebar.browser'),
 					icon: ['fas', 'folder-open'],
-					href: '#/p/browser.perspective'
+					href: '#/p/browser.perspective',
 				},
 				{
 					enabled: this.installedPlugins.includes('stsearch'),
@@ -269,20 +269,20 @@ export default {
 								router
 									.push({
 										name: 'perspective',
-										params: { perspective: 'search.perspective' }
+										params: { perspective: 'search.perspective' },
 									})
 									.catch(() => {});
 								eventBus.$emit(
 									'mantle.perspective.invoke',
 									'search.perspective',
-									async perspectiveWindow => {
+									async (perspectiveWindow) => {
 										// En este caso si STSearch no ha cargado,
 										// no es necesario realizar ninguna acción.
 										const STSearch = perspectiveWindow.STSearch;
 										if (STSearch) await STSearch.resetConfig();
 									}
 								);
-							}
+							},
 						},
 						{
 							enabled: true,
@@ -293,20 +293,20 @@ export default {
 								router
 									.push({
 										name: 'perspective',
-										params: { perspective: 'search.perspective' }
+										params: { perspective: 'search.perspective' },
 									})
 									.catch(() => {});
 								eventBus.$emitWhen(
 									'mantle.perspective.invoke',
 									'search.perspective',
-									async perspectiveWindow => {
+									async (perspectiveWindow) => {
 										const STSearch = await waitFor(
 											() => perspectiveWindow.STSearch
 										);
 										await STSearch.applyPreset('favorites');
 									}
 								);
-							}
+							},
 						},
 						{
 							enabled: true,
@@ -317,22 +317,22 @@ export default {
 								router
 									.push({
 										name: 'perspective',
-										params: { perspective: 'search.perspective' }
+										params: { perspective: 'search.perspective' },
 									})
 									.catch(() => {});
 								eventBus.$emitWhen(
 									'mantle.perspective.invoke',
 									'search.perspective',
-									async perspectiveWindow => {
+									async (perspectiveWindow) => {
 										const STSearch = await waitFor(
 											() => perspectiveWindow.STSearch
 										);
 										await STSearch.applyPreset('recents');
 									}
 								);
-							}
-						}
-					]
+							},
+						},
+					],
 				},
 				{
 					enabled: this.hasDataAccess,
@@ -343,20 +343,20 @@ export default {
 						router
 							.push({
 								name: 'perspective',
-								params: { perspective: 'browser.perspective' }
+								params: { perspective: 'browser.perspective' },
 							})
 							.catch(() => {});
-						eventBus.$emitWhen('mantle.invoke', mantleWindow => {
+						eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
 							mantleWindow.executeCommand('ManageDatasourcesCommand');
 						});
-					}
+					},
 				},
 				{
 					enabled: this.canAdminister || this.canSchedule || this.hasDataAccess,
 					id: 'administration',
 					name: this.$t('sidebar.administration'),
 					icon: ['fas', 'tools'],
-					href: '#/administration'
+					href: '#/administration',
 				},
 				{
 					enabled: this.installedLocales.length > 1,
@@ -372,7 +372,7 @@ export default {
 							async click() {
 								await store.dispatch('updateLocale', 'en');
 								await store.dispatch('fetchRepository');
-							}
+							},
 						},
 						{
 							enabled: this.installedLocales.includes('es'),
@@ -382,7 +382,7 @@ export default {
 							async click() {
 								await store.dispatch('updateLocale', 'es');
 								await store.dispatch('fetchRepository');
-							}
+							},
 						},
 						{
 							enabled: this.installedLocales.includes('ca'),
@@ -392,20 +392,20 @@ export default {
 							async click() {
 								await store.dispatch('updateLocale', 'ca');
 								await store.dispatch('fetchRepository');
-							}
-						}
-					]
+							},
+						},
+					],
 				},
 				{
 					enabled: true,
 					id: 'logout',
 					name: this.$t('sidebar.logout'),
 					icon: ['fas', 'sign-out-alt'],
-					href: '#/logout'
-				}
+					href: '#/logout',
+				},
 			];
-		}
-	}
+		},
+	},
 };
 </script>
 

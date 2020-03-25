@@ -2,7 +2,7 @@
 	<div v-if="item.enabled" class="sidebar-item" :title="item.name">
 		<div v-if="Array.isArray(item.subitems)">
 			<b-nav-item-dropdown
-				v-if="item.subitems.some(i => i.enabled)"
+				v-if="item.subitems.some((i) => i.enabled)"
 				ref="dropdown"
 				dropright
 				no-caret
@@ -52,13 +52,13 @@ import SidebarSubitem from '@/components/SidebarSubitem.vue';
 export default {
 	name: 'SidebarItem',
 	components: {
-		SidebarSubitem
+		SidebarSubitem,
 	},
 	props: {
 		item: {
 			type: Object,
-			default: undefined
-		}
+			default: undefined,
+		},
 	},
 	methods: {
 		onDropdownMouseenter() {
@@ -71,8 +71,8 @@ export default {
 			if (typeof this.item.click !== 'undefined') {
 				this.item.click.call(this, event);
 			}
-		}
-	}
+		},
+	},
 };
 </script>
 

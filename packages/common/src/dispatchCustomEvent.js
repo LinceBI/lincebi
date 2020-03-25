@@ -5,7 +5,7 @@ export default (
 		bubbles = true,
 		cancelable = false,
 		composed = false,
-		target = window
+		target = window,
 	} = {}
 ) => {
 	return target.dispatchEvent(
@@ -13,7 +13,7 @@ export default (
 			detail,
 			bubbles,
 			cancelable,
-			composed
+			composed,
 		})
 	);
 };

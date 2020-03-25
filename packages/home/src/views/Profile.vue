@@ -73,7 +73,7 @@ export default {
 	computed: {
 		userSettings() {
 			return store.state.userSettings;
-		}
+		},
 	},
 	methods: {
 		async onSubmit(event) {
@@ -98,12 +98,12 @@ export default {
 					// Note that "commit" is called instead of "dispatch", so the avatar
 					// will not be saved on the server until the user submits the form.
 					store.commit('setUserSettings', {
-						[`${this.namespace}.avatar`]: await imageToDataURI(avatar)
+						[`${this.namespace}.avatar`]: await imageToDataURI(avatar),
 					});
 				}
 			}
-		}
-	}
+		},
+	},
 };
 </script>
 

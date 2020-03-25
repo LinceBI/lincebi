@@ -13,8 +13,8 @@ export default {
 	name: 'Home',
 	components: {
 		HomeSlider,
-		HomeTabs
-	}
+		HomeTabs,
+	},
 };
 </script>
 

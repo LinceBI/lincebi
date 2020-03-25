@@ -22,8 +22,8 @@ export default {
 			},
 			set(showSidebar) {
 				store.commit('setShowSidebar', showSidebar);
-			}
-		}
-	}
+			},
+		},
+	},
 };
 </script>

@@ -9,7 +9,7 @@
 				:class="{
 					'home-tab': true,
 					'nav-item': true,
-					draggable: tab.isDraggable
+					draggable: tab.isDraggable,
 				}"
 			>
 				<div
@@ -90,7 +90,7 @@
 							<font-awesome-icon
 								:icon="[
 									'fas',
-									`sort-amount-${currentTab.sort.asc ? 'up' : 'down'}`
+									`sort-amount-${currentTab.sort.asc ? 'up' : 'down'}`,
 								]"
 							/>
 						</button>
@@ -104,7 +104,7 @@
 					:class="{
 						'home-card': true,
 						card: true,
-						draggable: currentTab.isContentDraggable
+						draggable: currentTab.isContentDraggable,
 					}"
 					tabindex="0"
 					@click="onFileOpenClick(file)"
@@ -253,7 +253,7 @@ export default {
 	components: {
 		BFormColorSwatch,
 		BFormIconSwatch,
-		HomeTabEmpty
+		HomeTabEmpty,
 	},
 	data() {
 		return {
@@ -270,7 +270,7 @@ export default {
 				isRemovable: true,
 				isDraggable: true,
 				isContentDraggable: false,
-				sort: { asc: false, selected: 'title' }
+				sort: { asc: false, selected: 'title' },
 			},
 			// Sort criteria.
 			sort: {
@@ -278,30 +278,30 @@ export default {
 					{
 						text: this.$t('home.sort.title'),
 						value: 'title',
-						type: String
+						type: String,
 					},
 					{
 						text: this.$t('home.sort.extension'),
 						value: 'extension',
-						type: String
+						type: String,
 					},
 					{
 						text: this.$t('home.sort.created'),
 						value: 'created',
-						type: Date
+						type: Date,
 					},
 					{
 						text: this.$t('home.sort.modified'),
 						value: 'modified',
-						type: Date
-					}
-				]
+						type: Date,
+					},
+				],
 			},
 			// Variables to control the display of modals.
 			newTabModalShow: false,
 			closeTabModalShow: false,
 			// Map of elements associated to Sortable.js objects.
-			sortables: new Map()
+			sortables: new Map(),
 		};
 	},
 	computed: {
@@ -323,9 +323,9 @@ export default {
 
 				// Update remote tabs.
 				store.dispatch('updateUserSettings', {
-					[`${this.namespace}.tabs`]: safeJSON.stringify(this.localTabs, '[]')
+					[`${this.namespace}.tabs`]: safeJSON.stringify(this.localTabs, '[]'),
 				});
-			}
+			},
 		},
 		// Fixed tabs will never be stored server side.
 		fixedTabs() {
@@ -337,7 +337,7 @@ export default {
 					icon: { prefix: 'fas', iconName: 'globe' },
 					isRemovable: false,
 					isDraggable: false,
-					isContentDraggable: this.canAdminister
+					isContentDraggable: this.canAdminister,
 				},
 				{
 					type: 'home',
@@ -346,8 +346,8 @@ export default {
 					icon: { prefix: 'fas', iconName: 'home' },
 					isRemovable: false,
 					isDraggable: false,
-					isContentDraggable: true
-				}
+					isContentDraggable: true,
+				},
 			];
 		},
 		// Fetch remote tabs.
@@ -391,7 +391,7 @@ export default {
 						if (
 							!file.isFolder &&
 							file.properties.tags &&
-							file.properties.tags.some(tag =>
+							file.properties.tags.some((tag) =>
 								fuzzyEquals(tag.value, this.currentTab.name)
 							)
 						) {
@@ -402,7 +402,7 @@ export default {
 
 				if (this.currentTab.sort) {
 					const asc = this.currentTab.sort.asc;
-					const option = this.sort.options.find(options => {
+					const option = this.sort.options.find((options) => {
 						return options.value === this.currentTab.sort.selected;
 					});
 					const fallback = this.sort.options[0];
@@ -435,40 +435,40 @@ export default {
 				}
 
 				if (this.currentTab.type === 'global') {
-					const entries = files.map(file => ({
+					const entries = files.map((file) => ({
 						fullPath: file.path,
 						title: file.title,
-						lastUse: Date.now()
+						lastUse: Date.now(),
 					}));
 					store.dispatch('updateGlobalUserSettings', {
-						global: safeJSON.stringify(entries, '[]')
+						global: safeJSON.stringify(entries, '[]'),
 					});
 				} else if (this.currentTab.type === 'home') {
-					const entries = files.map(file => ({
+					const entries = files.map((file) => ({
 						fullPath: file.path,
 						title: file.title,
-						lastUse: Date.now()
+						lastUse: Date.now(),
 					}));
 					store.dispatch('updateUserSettings', {
-						home: safeJSON.stringify(entries, '[]')
+						home: safeJSON.stringify(entries, '[]'),
 					});
 				} else if (this.currentTab.type === 'tag') {
 					// Unimplemented.
 				}
-			}
+			},
 		},
 		isRepositoryLoading() {
 			return store.state.isRepositoryLoading;
 		},
 		canAdminister() {
 			return store.state.canAdminister;
-		}
+		},
 	},
 	watch: {
 		remoteTabs(remoteTabs) {
 			// Populate local tabs.
 			this.localTabs = remoteTabs;
-		}
+		},
 	},
 	updated() {
 		this.$nextTick(() => {
@@ -484,22 +484,22 @@ export default {
 						delay: this.isTouchDevice ? 100 : 10,
 						animation: 150,
 						draggable: '.home-tab.draggable',
-						onEnd: event => (this.tabIndex = event.newIndex),
-						onMove: event => event.related.classList.contains('draggable'),
-						onUpdate: event => {
+						onEnd: (event) => (this.tabIndex = event.newIndex),
+						onMove: (event) => event.related.classList.contains('draggable'),
+						onUpdate: (event) => {
 							this.tabs = move(
 								this.tabs.slice(),
 								event.oldIndex,
 								event.newIndex
 							);
-						}
+						},
 					})
 				);
 			}
 
 			// Create Sortable.js objects for all "home-card-deck" elements that do not exist on the map.
 			const $homeCardDecks = $homeTabs.querySelectorAll('.home-card-deck');
-			$homeCardDecks.forEach($homeCardDeck => {
+			$homeCardDecks.forEach(($homeCardDeck) => {
 				if (!this.sortables.has($homeCardDeck)) {
 					this.sortables.set(
 						$homeCardDeck,
@@ -509,14 +509,14 @@ export default {
 							animation: 150,
 							draggable: '.home-card.draggable',
 							handle: '.drag-handle',
-							onMove: event => event.related.classList.contains('draggable'),
-							onUpdate: event => {
+							onMove: (event) => event.related.classList.contains('draggable'),
+							onUpdate: (event) => {
 								this.files = move(
 									this.files.slice(),
 									event.oldIndex,
 									event.newIndex
 								);
-							}
+							},
 						})
 					);
 				}
@@ -533,7 +533,7 @@ export default {
 	},
 	beforeDestroy() {
 		// Destroy all Sortable.js objects.
-		this.sortables.forEach(sortable => sortable.destroy());
+		this.sortables.forEach((sortable) => sortable.destroy());
 	},
 	methods: {
 		handleNewTabModalOk(event) {
@@ -551,7 +551,7 @@ export default {
 			this.removeTab(this.tabIndex);
 		},
 		createTab(newTab) {
-			const newTabIndex = this.tabs.findIndex(tab => {
+			const newTabIndex = this.tabs.findIndex((tab) => {
 				return fuzzyEquals(tab.name, newTab.name);
 			});
 
@@ -597,19 +597,19 @@ export default {
 			router
 				.push({
 					name: 'perspective',
-					params: { perspective: 'search.perspective' }
+					params: { perspective: 'search.perspective' },
 				})
 				.catch(() => {});
 			eventBus.$emitWhen(
 				'mantle.perspective.invoke',
 				'search.perspective',
-				async perspectiveWindow => {
+				async (perspectiveWindow) => {
 					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
 					await STSearch.applyConfig({ 'form-file-path': file.path }, true);
 				}
 			);
-		}
-	}
+		},
+	},
 };
 </script>
 

@@ -4,7 +4,7 @@ module.exports = {
 	integrity: true,
 	productionSourceMap: false,
 	devServer: { historyApiFallback: false, disableHostCheck: true },
-	chainWebpack: config => {
+	chainWebpack: (config) => {
 		config.optimization.splitChunks({
 			cacheGroups: {
 				vendor: {
@@ -12,23 +12,23 @@ module.exports = {
 					name: 'vendor',
 					chunks: 'all',
 					enforce: true,
-					priority: -20
+					priority: -20,
 				},
 				bootstrap: {
 					test: /\/node_modules\/bootstrap(-vue)?\//,
 					name: 'bootstrap',
 					chunks: 'all',
 					enforce: true,
-					priority: -10
+					priority: -10,
 				},
 				fontawesome: {
 					test: /(\/node_modules\/@fortawesome\/)|(\/fontawesome\/)/,
 					name: 'fontawesome',
 					chunks: 'all',
 					enforce: true,
-					priority: -10
-				}
-			}
+					priority: -10,
+				},
+			},
 		});
 
 		// Project relative image URLs for BootstrapVue custom components.
@@ -37,7 +37,7 @@ module.exports = {
 			.rule('vue')
 			.use('vue-loader')
 			.loader('vue-loader')
-			.tap(options => {
+			.tap((options) => {
 				options['transformAssetUrls'] = {
 					img: 'src',
 					image: 'xlink:href',
@@ -47,14 +47,14 @@ module.exports = {
 					'b-card-img': 'img-src',
 					'b-card-img-lazy': ['src', 'blank-src'],
 					'b-carousel-slide': 'img-src',
-					'b-embed': 'src'
+					'b-embed': 'src',
 				};
 
 				return options;
 			});
 
 		// Disable HTML comments removal.
-		config.plugin('html').tap(args => {
+		config.plugin('html').tap((args) => {
 			if (args.length > 0 && args[0].minify) {
 				args[0].minify.removeComments = false;
 			}
@@ -67,8 +67,8 @@ module.exports = {
 				prependData: `
 					$common-font-path: '~@lincebi/biserver-frontend-common/src/assets/fonts';
 					@import '~@lincebi/biserver-frontend-common/src/scss/main';
-				`
-			}
-		}
-	}
+				`,
+			},
+		},
+	},
 };

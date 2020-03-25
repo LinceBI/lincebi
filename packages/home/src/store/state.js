@@ -13,5 +13,5 @@ export default () => ({
 	isRepositoryLoading: true,
 	repository: { path: '/', children: [] },
 	globalUserSettings: initialGlobalUserSettings,
-	userSettings: initialUserSettings
+	userSettings: initialUserSettings,
 });

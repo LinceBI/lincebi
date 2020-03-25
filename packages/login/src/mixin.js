@@ -10,9 +10,9 @@ export const mixin = {
 		return {
 			uniqueId: uniqueId(),
 			isDemo,
-			isProduction
+			isProduction,
 		};
-	}
+	},
 };
 
 Vue.mixin(mixin);

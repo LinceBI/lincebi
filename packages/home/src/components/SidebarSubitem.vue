@@ -32,13 +32,13 @@ export default {
 	props: {
 		item: {
 			type: Object,
-			default: undefined
-		}
+			default: undefined,
+		},
 	},
 	data() {
 		return {
 			isHover: false,
-			isFocused: false
+			isFocused: false,
 		};
 	},
 	computed: {
@@ -54,15 +54,15 @@ export default {
 			}
 
 			return style;
-		}
+		},
 	},
 	methods: {
 		onClick(event) {
 			if (typeof this.item.click !== 'undefined') {
 				this.item.click.call(this, event);
 			}
-		}
-	}
+		},
+	},
 };
 </script>
 

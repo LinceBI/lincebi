@@ -9,7 +9,7 @@ const getLocale = async () => {
 	const endpoint = `${contextPath}api/mantle/locale`;
 	const response = await fetch(endpoint, {
 		method: 'GET',
-		headers: { 'Content-Type': 'text/plain' }
+		headers: { 'Content-Type': 'text/plain' },
 	});
 
 	if (response.status === 200) {

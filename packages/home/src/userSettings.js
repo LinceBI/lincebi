@@ -6,70 +6,70 @@ export const namespace = 'lincebi';
 export const globalUserSettings = {
 	global: {
 		initial: '[]',
-		default: '[]'
-	}
+		default: '[]',
+	},
 };
 
 export const userSettings = {
 	[`${namespace}.name`]: {
 		initial: '',
-		default: ''
+		default: '',
 	},
 	[`${namespace}.email`]: {
 		initial: '',
-		default: ''
+		default: '',
 	},
 	[`${namespace}.phone`]: {
 		initial: '',
-		default: ''
+		default: '',
 	},
 	[`${namespace}.address`]: {
 		initial: '',
-		default: ''
+		default: '',
 	},
 	[`${namespace}.avatar`]: {
 		initial: blankSvg,
-		default: generateSvg(navigator.userAgent)
+		default: generateSvg(navigator.userAgent),
 	},
 	[`${namespace}.show_menu_bar`]: {
 		initial: 'false',
-		default: 'false'
+		default: 'false',
 	},
 	[`${namespace}.show_tool_bar`]: {
 		initial: 'false',
-		default: 'true'
+		default: 'true',
 	},
 	[`${namespace}.tabs`]: {
 		initial: '[]',
-		default: '[]'
+		default: '[]',
 	},
 	home: {
 		initial: '[]',
-		default: '[]'
+		default: '[]',
 	},
 	favorites: {
 		initial: '[]',
-		default: '[]'
+		default: '[]',
 	},
 	recent: {
 		initial: '[]',
-		default: '[]'
+		default: '[]',
 	},
 	MANTLE_SHOW_HIDDEN_FILES: {
 		initial: 'false',
-		default: 'false'
+		default: 'false',
 	},
 	MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS: {
 		initial: 'false',
-		default: 'true'
-	}
+		default: 'true',
+	},
 };
 
 export const getUserSettings = (propName, isGlobal = false) => {
 	const settingsObj = isGlobal ? globalUserSettings : userSettings;
 	return Object.assign(
 		...Object.entries(settingsObj).map(([key, value]) => ({
-			[key]: value[propName]
+			[key]: value[propName],
 		}))
 	);
 };

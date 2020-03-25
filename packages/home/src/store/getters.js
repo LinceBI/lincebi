@@ -1,7 +1,7 @@
-export const repositoryMap = state => {
+export const repositoryMap = (state) => {
 	const map = new Map();
 	(function flatten(children) {
-		children.forEach(child => {
+		children.forEach((child) => {
 			if (child.isFolder) {
 				map.set(child.path, child);
 				flatten(child.children);

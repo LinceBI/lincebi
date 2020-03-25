@@ -8,7 +8,7 @@ const getInstalledLocales = async () => {
 	// English is always installed.
 	const installedLocales = ['en'];
 
-	registeredPlugins.forEach(plugin => {
+	registeredPlugins.forEach((plugin) => {
 		if (plugin.startsWith('languagePack_')) {
 			installedLocales.push(plugin.replace('languagePack_', ''));
 		}

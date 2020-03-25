@@ -15,17 +15,17 @@ export default {
 	props: {
 		icon: {
 			type: Array,
-			default: undefined
+			default: undefined,
 		},
 		text: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		spin: {
 			type: Boolean,
-			default: false
-		}
-	}
+			default: false,
+		},
+	},
 };
 </script>
 

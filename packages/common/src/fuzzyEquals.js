@@ -1,4 +1,4 @@
-export const normalize = string =>
+export const normalize = (string) =>
 	string
 		// Remove leading and trailing whitespace.
 		.trim()

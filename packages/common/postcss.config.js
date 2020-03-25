@@ -2,7 +2,7 @@ module.exports = {
 	plugins: {
 		autoprefixer: {},
 		cssnano: {
-			preset: ['default', { discardComments: { removeAll: true } }]
-		}
-	}
+			preset: ['default', { discardComments: { removeAll: true } }],
+		},
+	},
 };

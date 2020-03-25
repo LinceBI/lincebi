@@ -101,12 +101,12 @@ export default {
 			colors: {
 				node: { r: 0x30, g: 0x30, b: 0x30 },
 				repel: { r: 0x30, g: 0x30, b: 0x30 },
-				attract: { r: 0x30, g: 0x30, b: 0x30 }
-			}
+				attract: { r: 0x30, g: 0x30, b: 0x30 },
+			},
 		};
 	},
 	mounted() {
-		this.$nextTick(function() {
+		this.$nextTick(function () {
 			this.mounted = true;
 			this.ctx = this.$refs.canvas.getContext('2d');
 			this.nodes = [];
@@ -167,7 +167,7 @@ export default {
 					const distance = a.distanceTo(b);
 					const direction = {
 						x: distance.x / distance.total,
-						y: distance.y / distance.total
+						y: distance.y / distance.total,
 					};
 					a.addForce((attract ? 1 : -1) * force, direction);
 					b.addForce((attract ? 1 : -1) * -force, direction);
@@ -243,7 +243,7 @@ export default {
 		onMouseleave() {
 			this.mouseNode.x = Number.MAX_SAFE_INTEGER;
 			this.mouseNode.y = Number.MAX_SAFE_INTEGER;
-		}
-	}
+		},
+	},
 };
 </script>

@@ -16,7 +16,7 @@ export default {
 	name: 'App',
 	components: {
 		Navbar,
-		Sidebar
+		Sidebar,
 	},
 	created() {
 		store.dispatch('fetchUserId');
@@ -31,7 +31,7 @@ export default {
 		});
 		store.dispatch('fetchGlobalUserSettings');
 		store.dispatch('fetchUserSettings');
-	}
+	},
 };
 </script>
 

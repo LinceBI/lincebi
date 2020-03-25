@@ -68,7 +68,7 @@ export const setRepositoryFile = (state, file) => {
 	for (const filePathFragment of splittedFilePath) {
 		currentPath += filePathFragment;
 		currentLocation = currentLocation.children.find(
-			child => child.path === currentPath
+			(child) => child.path === currentPath
 		);
 		if (typeof currentLocation === 'undefined') {
 			console.error('Cannot update repository file:', file);
@@ -81,7 +81,7 @@ export const setRepositoryFile = (state, file) => {
 		const oldHomeFiles = safeJSON.parse(state.userSettings.home, []);
 		const newHomeFiles = file.isHome
 			? [...oldHomeFiles, { fullPath: file.path }]
-			: oldHomeFiles.filter(entry => entry.fullPath !== file.path);
+			: oldHomeFiles.filter((entry) => entry.fullPath !== file.path);
 		state.userSettings.home = safeJSON.stringify(newHomeFiles, '[]');
 	}
 
@@ -90,7 +90,7 @@ export const setRepositoryFile = (state, file) => {
 		const oldGlobalFiles = safeJSON.parse(state.globalUserSettings.global, []);
 		const newGlobalFiles = file.isGlobal
 			? [...oldGlobalFiles, { fullPath: file.path }]
-			: oldGlobalFiles.filter(entry => entry.fullPath !== file.path);
+			: oldGlobalFiles.filter((entry) => entry.fullPath !== file.path);
 		state.globalUserSettings.global = safeJSON.stringify(newGlobalFiles, '[]');
 	}
 

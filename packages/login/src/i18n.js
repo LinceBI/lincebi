@@ -12,13 +12,13 @@ Vue.use(VueI18n);
 const i18n = new VueI18n({
 	locale: process.env.VUE_APP_I18N_LOCALE || navigator.language.slice(0, 2),
 	fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
-	messages: { en, es, ca }
+	messages: { en, es, ca },
 });
 
-Object.keys(i18n.messages).forEach(async locale => {
+Object.keys(i18n.messages).forEach(async (locale) => {
 	const response = await fetch(`./locales/${locale}.json`, {
 		method: 'GET',
-		headers: { 'Content-Type': 'application/json' }
+		headers: { 'Content-Type': 'application/json' },
 	});
 	if (response.status === 200) {
 		i18n.mergeLocaleMessage(locale, await response.json());
