@@ -12,7 +12,7 @@ TMUX := $(shell command -v tmux 2>/dev/null)
 
 PACKAGE_NAME ?= $(shell '$(JQ)' -r '.name' ./package.json | sed -r 's|^@([^/]+)/|\1-|')
 PACKAGE_VERSION ?= $(shell '$(JQ)' -r '.version' ./lerna.json)
-PACKAGE_VERSION_EXTRA := $(if $(PACKAGE_VERSION_EXTRA),.$(PACKAGE_VERSION_EXTRA),)
+PACKAGE_VERSION_EXTRA := $(if $(PACKAGE_VERSION_EXTRA),-$(PACKAGE_VERSION_EXTRA),)
 
 MAVEN_GROUP ?= UNDEFINED
 MAVEN_REPOSITORY_ID ?= UNDEFINED
