@@ -16,7 +16,7 @@
     "@fortawesome/vue-fontawesome": "~0.1.9",
     "@lincebi/biserver-frontend-common": "file:../common",
     "bootstrap": "~4.4.1",
-    "bootstrap-vue": "~2.8.0",
+    "bootstrap-vue": "~2.9.0",
     "core-js": "~3.6.4",
     "lodash": "~4.17.15",
     "unfetch": "~4.1.0",
