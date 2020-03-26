@@ -5,7 +5,7 @@ Vue.component('font-awesome-icon', async () => {
 		/* eslint-disable prettier/prettier */
 		import('@fortawesome/vue-fontawesome'),
 		import('@fortawesome/fontawesome-svg-core'),
-		import('@fortawesome/fontawesome-svg-core/styles.css')
+		import('@fortawesome/fontawesome-svg-core/styles.css'),
 		/* eslint-enable */
 	]);
 
@@ -83,6 +83,7 @@ Vue.component('font-awesome-icon', async () => {
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facFileCdfde'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facFilePdf'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facFilePrpt'),
+		import('@lincebi/biserver-frontend-common/src/fontawesome/facFileSaiku'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facFileSta'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facFileStd'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facFileStolap'),
@@ -93,6 +94,8 @@ Vue.component('font-awesome-icon', async () => {
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facFileXjpivot'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facFileXml'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolCde'),
+		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolRepositorySynchronizer'),
+		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolSaiku'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStadmin'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStagile'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStcard'),
@@ -100,7 +103,7 @@ Vue.component('font-awesome-icon', async () => {
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStolap'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStpivot'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStreport'),
-		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStsearch')
+		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStsearch'),
 		/* eslint-enable */
 	]);
 

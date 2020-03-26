@@ -1,5 +1,7 @@
 import isCdeInstalled from './plugins/isCdeInstalled';
 import isMarketplaceInstalled from './plugins/isMarketplaceInstalled';
+import isRepositorySynchronizerInstalled from './plugins/isRepositorySynchronizerInstalled';
+import isSaikuInstalled from './plugins/isSaikuInstalled';
 import isStagileInstalled from './plugins/isStagileInstalled';
 import isStcardInstalled from './plugins/isStcardInstalled';
 import isStdashboardInstalled from './plugins/isStdashboardInstalled';
@@ -15,6 +17,8 @@ const getInstalledPlugins = async () => {
 	const installCheckers = [
 		['cde', isCdeInstalled],
 		['marketplace', isMarketplaceInstalled],
+		['repositorySynchronizer', isRepositorySynchronizerInstalled],
+		['saiku', isSaikuInstalled],
 		['stagile', isStagileInstalled],
 		['stcard', isStcardInstalled],
 		['stdashboard', isStdashboardInstalled],

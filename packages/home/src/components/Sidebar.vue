@@ -238,6 +238,52 @@ export default {
 								});
 							},
 						},
+						{
+							enabled: this.installedPlugins.includes('saiku'),
+							id: 'tools.saiku',
+							name: 'Saiku Analytics',
+							icon: ['fac', 'tool-saiku'],
+							selectedForeground: '#FFFFFF',
+							selectedBackground: '#C52120',
+							click() {
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' },
+									})
+									.catch(() => {});
+								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+									mantleWindow.openURL(
+										'Saiku Analytics',
+										'Saiku Analytics',
+										'content/saiku-ui/index.html?biplugin5=true'
+									);
+								});
+							},
+						},
+						{
+							enabled: this.installedPlugins.includes('repositorySynchronizer'),
+							id: 'tools.repositorySynchronizer',
+							name: 'Repository Synchronizer',
+							icon: ['fac', 'tool-repository-synchronizer'],
+							selectedForeground: '#FFFFFF',
+							selectedBackground: '#4B4B4B',
+							click() {
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' },
+									})
+									.catch(() => {});
+								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+									mantleWindow.openURL(
+										'Repository Synchronizer',
+										'Repository Synchronizer',
+										'plugin/repositorySynchronizer/api/default'
+									);
+								});
+							},
+						},
 					],
 				},
 				{
