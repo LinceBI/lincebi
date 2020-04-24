@@ -33,6 +33,7 @@ export default {
 			mantleWindowProperties: [
 				'enableSave',
 				'executeCommand',
+				'HOME_FOLDER',
 				'mantle_getPerspectives',
 				'mantle_initialized',
 				'mantle_setPerspective',
