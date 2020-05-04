@@ -8,6 +8,25 @@
 	--dark-color: #343a40;
 }
 
+body > .pentaho-dialog {
+	max-width: calc(100vw - 64px) !important;
+	max-height: calc(100vh - 64px) !important;
+}
+
+body > .pentaho-dialog .pentaho-tab-panel {
+	overflow: hidden !important;
+}
+
+body > .pentaho-dialog,
+body > .pentaho-dialog .pentaho-tab-panel .pentaho-tab-deck-panel {
+	overflow: auto !important;
+}
+
+body > .glasspane {
+	width: 100% !important;
+	height: 100% !important;
+}
+
 #pucHeader {
 	border-top-color: var(--primary-color) !important;
 }
