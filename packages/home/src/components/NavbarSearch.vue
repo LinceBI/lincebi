@@ -81,7 +81,7 @@ export default {
 				'search.perspective',
 				async (perspectiveWindow) => {
 					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
-					(await STSearch.resetConfig().doRefresh()).doSearch(this.searchTerms);
+					STSearch.resetConfig().doSearch(this.searchTerms).doFocus();
 					event.target.reset();
 				}
 			);
@@ -101,13 +101,11 @@ export default {
 				'search.perspective',
 				async (perspectiveWindow) => {
 					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
-					await STSearch.applyPreset('category')
-						.applyConfig({
-							'banner-title': category.name,
-							'banner-src': `${location.pathname}${category.banner}`,
-							'search-terms': category.tag,
-						})
-						.doRefresh();
+					STSearch.applyPreset('category').applyConfig({
+						'banner-title': category.name,
+						'banner-src': `${location.pathname}${category.banner}`,
+						'search-terms': category.tag,
+					});
 				}
 			);
 		},
