@@ -77,7 +77,7 @@ exclusivamente mediante su API REST.
 
 ## Pasos
 
- 1. Descargar y descomprimir un Pentaho BI Server 8.2 original en el directorio
+ 1. Descargar y descomprimir un Pentaho BI Server 9.0 original en el directorio
     `./biserver/overlay/` (sin sobreescribir los archivos existentes).
 
  2. Descargar las dependencias.

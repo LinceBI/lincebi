@@ -5,7 +5,7 @@
   ],
   "command": {
     "version": {
-      "message": "chore(release): publish %s (Pentaho Server 8.2)",
+      "message": "chore(release): publish %s (Pentaho Server 9.0)",
       "allowBranch": "master",
       "push": false
     }
