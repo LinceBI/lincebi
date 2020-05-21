@@ -12,7 +12,7 @@
     "deps:clean": "run-s deps:clean:packages deps:clean:root",
     "deps:clean:root": "rimraf node_modules package-lock.json",
     "deps:clean:packages": "lerna exec -- rimraf node_modules package-lock.json",
-    "postinstall": "lerna exec --stream --concurrency 1 -- DISABLE_OPENCOLLECTIVE=true npm install"
+    "postinstall": "lerna exec --stream --concurrency 1 -- npm install"
   },
   "devDependencies": {
     "lerna": "~3.21.0",
