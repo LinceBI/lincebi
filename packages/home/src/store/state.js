@@ -1,6 +1,7 @@
 import { initialGlobalUserSettings, initialUserSettings } from '@/userSettings';
 
 export default () => ({
+	showNavbar: undefined,
 	showSidebar: window.matchMedia('(min-device-width: 576px)').matches,
 	userId: '',
 	canCreate: false,

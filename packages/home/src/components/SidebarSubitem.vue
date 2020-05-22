@@ -1,6 +1,7 @@
 <template>
 	<b-link
 		v-if="item.enabled"
+		:id="`sidebar-subitem-${item.id}`"
 		class="sidebar-subitem dropdown-item"
 		target="_self"
 		:href="item.href"

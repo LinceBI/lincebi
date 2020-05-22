@@ -1,5 +1,10 @@
 <template>
-	<b-nav-item-dropdown class="navbar-settings" right no-caret>
+	<b-nav-item-dropdown
+		id="navbar-settings"
+		class="navbar-settings"
+		right
+		no-caret
+	>
 		<template slot="button-content">
 			<font-awesome-icon :icon="['fas', 'cog']" />
 			<span class="lbl d-lg-none">{{ $t('navbar.settings') }}</span>
@@ -78,15 +83,11 @@ export default {
 				const value = this.userSettings[key] === 'true';
 				return value;
 			},
-			set(show) {
+			async set(show) {
 				const key = 'MANTLE_SHOW_HIDDEN_FILES';
 				const value = show ? 'true' : 'false';
-				store.dispatch('updateUserSettings', { [key]: value }).then(() => {
-					eventBus.$emitWhen(
-						'mantle.perspective.reload',
-						'browser.perspective'
-					);
-				});
+				await store.dispatch('updateUserSettings', { [key]: value });
+				eventBus.$emitWhen('mantle.perspective.reload', 'browser.perspective');
 			},
 		},
 		showDescriptionsForTooltips: {
@@ -95,15 +96,11 @@ export default {
 				const value = this.userSettings[key] === 'true';
 				return value;
 			},
-			set(show) {
+			async set(show) {
 				const key = 'MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS';
 				const value = show ? 'true' : 'false';
-				store.dispatch('updateUserSettings', { [key]: value }).then(() => {
-					eventBus.$emitWhen(
-						'mantle.perspective.reload',
-						'browser.perspective'
-					);
-				});
+				store.dispatch('updateUserSettings', { [key]: value });
+				eventBus.$emitWhen('mantle.perspective.reload', 'browser.perspective');
 			},
 		},
 	},

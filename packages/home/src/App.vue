@@ -1,8 +1,9 @@
 <template>
 	<div class="app">
-		<navbar class="page-navbar" />
-		<sidebar class="page-sidebar" />
-		<router-multi-view class="page-content" />
+		<navbar class="app-navbar" />
+		<sidebar class="app-sidebar" />
+		<router-multi-view class="app-content" />
+		<tour class="app-tour" />
 	</div>
 </template>
 
@@ -11,26 +12,33 @@ import store from '@/store';
 
 import Navbar from '@/components/Navbar.vue';
 import Sidebar from '@/components/Sidebar.vue';
+import Tour from '@/components/Tour.vue';
 
 export default {
 	name: 'App',
 	components: {
 		Navbar,
 		Sidebar,
+		Tour,
 	},
-	created() {
-		store.dispatch('fetchUserId');
-		store.dispatch('fetchCanCreate');
-		store.dispatch('fetchCanAdminister');
-		store.dispatch('fetchCanSchedule');
-		store.dispatch('fetchHasDataAccess');
-		store.dispatch('fetchInstalledPlugins');
-		store.dispatch('fetchInstalledLocales').then(async () => {
-			await store.dispatch('fetchLocale');
-			await store.dispatch('fetchRepository');
-		});
-		store.dispatch('fetchGlobalUserSettings');
-		store.dispatch('fetchUserSettings');
+	async mounted() {
+		await Promise.all([
+			store.dispatch('fetchUserId'),
+			store.dispatch('fetchCanCreate'),
+			store.dispatch('fetchCanAdminister'),
+			store.dispatch('fetchCanSchedule'),
+			store.dispatch('fetchHasDataAccess'),
+			store.dispatch('fetchInstalledLocales').then(() => {
+				store.dispatch('fetchLocale');
+			}),
+			store.dispatch('fetchInstalledPlugins'),
+			store.dispatch('fetchGlobalUserSettings'),
+			store.dispatch('fetchUserSettings'),
+		]);
+
+		// this.$tours.tour.start();
+
+		await store.dispatch('fetchRepository');
 	},
 };
 </script>
@@ -58,20 +66,30 @@ body {
 	height: 100%;
 	overflow: auto;
 
-	> .page-navbar {
+	> .app-navbar {
 		grid-area: navbar;
 		z-index: 1000;
 	}
 
-	> .page-sidebar {
+	> .app-sidebar {
 		grid-area: sidebar;
 		z-index: 500;
 	}
 
-	> .page-content {
+	> .app-content {
 		grid-area: content;
 		overflow: auto;
 		z-index: 0;
+	}
+
+	> .app-tour {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 0;
+		z-index: 1500;
 	}
 }
 

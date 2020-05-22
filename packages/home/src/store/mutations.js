@@ -5,6 +5,10 @@ import i18n from '@/i18n';
 import replaceParameter from '@lincebi/biserver-frontend-common/src/replaceParameter';
 import safeJSON from '@lincebi/biserver-frontend-common/src/safeJSON';
 
+export const setShowNavbar = (state, showNavbar) => {
+	state.showNavbar = showNavbar;
+};
+
 export const setShowSidebar = (state, showSidebar) => {
 	state.showSidebar = showSidebar;
 };

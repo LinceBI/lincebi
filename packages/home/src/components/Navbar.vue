@@ -1,7 +1,11 @@
 <template>
 	<b-navbar class="navbar shadow" toggleable="lg" variant="light">
 		<navbar-sidebar-toggle />
-		<b-navbar-brand class="navbar-logo mr-0 mr-lg-3 p-0" href="#/">
+		<b-navbar-brand
+			id="navbar-logo"
+			class="navbar-logo mr-0 mr-lg-3 p-0"
+			href="#/"
+		>
 			<b-img
 				class="h-100 w-auto"
 				src="@lincebi/biserver-frontend-common/src/assets/img/logo.svg"
@@ -12,9 +16,9 @@
 				<font-awesome-icon :icon="['fas', 'bars']" />
 			</template>
 		</b-navbar-toggle>
-		<b-collapse :id="`nav-collapse-${uniqueId}`" is-nav>
+		<b-collapse :id="`nav-collapse-${uniqueId}`" v-model="showNavbar" is-nav>
 			<b-navbar-nav class="nav-section">
-				<navbar-welcome class="nav-element" />
+				<navbar-profile class="nav-element" />
 			</b-navbar-nav>
 			<b-navbar-nav class="nav-section ml-auto">
 				<navbar-search
@@ -39,7 +43,7 @@
 import NavbarSearch from '@/components/NavbarSearch.vue';
 import NavbarSettings from '@/components/NavbarSettings.vue';
 import NavbarSidebarToggle from '@/components/NavbarSidebarToggle.vue';
-import NavbarWelcome from '@/components/NavbarWelcome.vue';
+import NavbarProfile from '@/components/NavbarProfile.vue';
 
 import store from '@/store';
 
@@ -49,9 +53,17 @@ export default {
 		NavbarSearch,
 		NavbarSettings,
 		NavbarSidebarToggle,
-		NavbarWelcome,
+		NavbarProfile,
 	},
 	computed: {
+		showNavbar: {
+			get() {
+				return store.state.showNavbar;
+			},
+			set(showNavbar) {
+				store.commit('setShowNavbar', showNavbar);
+			},
+		},
 		installedPlugins() {
 			return store.state.installedPlugins;
 		},

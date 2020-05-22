@@ -6,6 +6,7 @@ import Vue from 'vue';
 import '@/vendor/bootstrap';
 import '@/vendor/fontawesome';
 import '@/vendor/vue-router-multi-view';
+import '@/vendor/vue-tour';
 
 import App from '@/App.vue';
 import i18n from '@/i18n';

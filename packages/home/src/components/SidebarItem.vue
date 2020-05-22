@@ -1,5 +1,10 @@
 <template>
-	<div v-if="item.enabled" class="sidebar-item" :title="item.name">
+	<div
+		v-if="item.enabled"
+		:id="`sidebar-item-${item.id}`"
+		class="sidebar-item"
+		:title="item.name"
+	>
 		<div v-if="Array.isArray(item.subitems)">
 			<b-nav-item-dropdown
 				v-if="item.subitems.some((i) => i.enabled)"

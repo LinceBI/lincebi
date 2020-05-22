@@ -1,5 +1,5 @@
 <template>
-	<b-nav-text class="navbar-welcome">
+	<b-nav-text id="navbar-profile" class="navbar-profile">
 		<b-link class="user-avatar" href="#/profile">
 			<b-img
 				class="user-avatar-img"
@@ -8,7 +8,7 @@
 		</b-link>
 		<span class="user-text">
 			{{
-				$t('navbar.welcome', {
+				$t('navbar.profile', {
 					name: userSettings[`${namespace}.name`] || userId,
 				})
 			}}
@@ -20,7 +20,7 @@
 import store from '@/store';
 
 export default {
-	name: 'NavbarWelcome',
+	name: 'NavbarProfile',
 	computed: {
 		userId() {
 			return store.state.userId;
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.navbar-welcome {
+.navbar-profile {
 	.user-avatar {
 		margin: rem(-6) rem(10) rem(-6) 0;
 

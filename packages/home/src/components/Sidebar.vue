@@ -263,7 +263,7 @@ export default {
 						},
 						{
 							enabled: this.installedPlugins.includes('repositorySynchronizer'),
-							id: 'tools.repositorySynchronizer',
+							id: 'tools.repository-synchronizer',
 							name: 'Repository Synchronizer',
 							icon: ['fac', 'tool-repository-synchronizer'],
 							selectedForeground: '#FFFFFF',
@@ -322,9 +322,8 @@ export default {
 									'mantle.perspective.invoke',
 									'search.perspective',
 									async (perspectiveWindow) => {
-										// En este caso si STSearch no ha cargado,
-										// no es necesario realizar ninguna acción.
 										const STSearch = perspectiveWindow.STSearch;
+										// If STSearch has not loaded, no action is required.
 										if (STSearch) await STSearch.resetConfig();
 									}
 								);
@@ -382,7 +381,7 @@ export default {
 				},
 				{
 					enabled: this.hasDataAccess,
-					id: 'manageDatasources',
+					id: 'manage-datasources',
 					name: this.$t('sidebar.manageDatasources'),
 					icon: ['fas', 'database'],
 					click() {

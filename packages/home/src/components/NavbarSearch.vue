@@ -1,5 +1,6 @@
 <template>
 	<b-nav-form
+		id="navbar-search"
 		class="navbar-search"
 		@submit.prevent="onSubmit"
 		@reset.prevent="onReset"
