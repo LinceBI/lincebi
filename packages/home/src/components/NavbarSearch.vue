@@ -2,6 +2,7 @@
 	<b-nav-form
 		id="navbar-search"
 		class="navbar-search"
+		form-class="w-100"
 		@submit.prevent="onSubmit"
 		@reset.prevent="onReset"
 	>
