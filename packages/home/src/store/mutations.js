@@ -5,14 +5,6 @@ import i18n from '@/i18n';
 import replaceParameter from '@lincebi/biserver-frontend-common/src/replaceParameter';
 import safeJSON from '@lincebi/biserver-frontend-common/src/safeJSON';
 
-export const setShowNavbar = (state, showNavbar) => {
-	state.showNavbar = showNavbar;
-};
-
-export const setShowSidebar = (state, showSidebar) => {
-	state.showSidebar = showSidebar;
-};
-
 export const setUserId = (state, userId) => {
 	state.userId = userId;
 };
@@ -111,4 +103,14 @@ export const setGlobalUserSettings = (state, settings) => {
 
 export const setUserSettings = (state, settings) => {
 	Object.assign(state.userSettings, settings);
+};
+
+export const setNavbarExpanded = (state, navbarExpanded) => {
+	if (!window.matchMedia('(min-width: 992px)').matches) {
+		state.navbarExpanded = navbarExpanded;
+	}
+};
+
+export const setSidebarExpanded = (state, sidebarExpanded) => {
+	state.sidebarExpanded = sidebarExpanded;
 };

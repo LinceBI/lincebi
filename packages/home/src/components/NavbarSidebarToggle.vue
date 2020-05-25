@@ -2,10 +2,10 @@
 	<button
 		class="navbar-sidebar-toggle navbar-toggler"
 		type="button"
-		@click="showSidebar = !showSidebar"
+		@click="sidebarExpanded = !sidebarExpanded"
 	>
 		<font-awesome-icon
-			:icon="['fas', `chevron-${showSidebar ? 'left' : 'right'}`]"
+			:icon="['fas', `chevron-${sidebarExpanded ? 'left' : 'right'}`]"
 		/>
 	</button>
 </template>
@@ -16,12 +16,12 @@ import store from '@/store';
 export default {
 	name: 'NavbarSidebarToggle',
 	computed: {
-		showSidebar: {
+		sidebarExpanded: {
 			get() {
-				return store.state.showSidebar;
+				return store.state.sidebarExpanded;
 			},
-			set(showSidebar) {
-				store.commit('setShowSidebar', showSidebar);
+			set(sidebarExpanded) {
+				store.commit('setSidebarExpanded', sidebarExpanded);
 			},
 		},
 	},

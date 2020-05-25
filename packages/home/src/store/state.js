@@ -1,8 +1,6 @@
 import { initialGlobalUserSettings, initialUserSettings } from '@/userSettings';
 
 export default () => ({
-	showNavbar: undefined,
-	showSidebar: window.matchMedia('(min-device-width: 576px)').matches,
 	userId: '',
 	canCreate: false,
 	canAdminister: false,
@@ -15,4 +13,6 @@ export default () => ({
 	repository: { path: '/', children: [] },
 	globalUserSettings: initialGlobalUserSettings,
 	userSettings: initialUserSettings,
+	navbarExpanded: false,
+	sidebarExpanded: window.matchMedia('(min-device-width: 576px)').matches,
 });

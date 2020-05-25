@@ -1,10 +1,5 @@
 <template>
-	<b-nav-item-dropdown
-		id="navbar-settings"
-		class="navbar-settings"
-		right
-		no-caret
-	>
+	<b-nav-item-dropdown class="navbar-settings" right no-caret>
 		<template slot="button-content">
 			<font-awesome-icon :icon="['fas', 'cog']" />
 			<span class="lbl d-lg-none">{{ $t('navbar.settings') }}</span>

@@ -2,8 +2,8 @@
 	<b-navbar class="navbar shadow" toggleable="lg" variant="light">
 		<navbar-sidebar-toggle />
 		<b-navbar-brand
-			id="navbar-logo"
 			class="navbar-logo mr-0 mr-lg-3 p-0"
+			data-v-step="welcome"
 			href="#/"
 		>
 			<b-img
@@ -16,14 +16,19 @@
 				<font-awesome-icon :icon="['fas', 'bars']" />
 			</template>
 		</b-navbar-toggle>
-		<b-collapse :id="`nav-collapse-${uniqueId}`" v-model="showNavbar" is-nav>
+		<b-collapse
+			:id="`nav-collapse-${uniqueId}`"
+			v-model="navbarExpanded"
+			is-nav
+		>
 			<b-navbar-nav class="nav-section">
-				<navbar-profile class="nav-element" />
+				<navbar-profile class="nav-element" data-v-step="profile" />
 			</b-navbar-nav>
 			<b-navbar-nav class="nav-section ml-auto">
 				<navbar-search
 					v-if="installedPlugins.includes('stsearch')"
 					class="nav-element"
+					data-v-step="search"
 				/>
 				<b-nav-item
 					v-if="isDemo"
@@ -33,7 +38,7 @@
 					<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
 					<span class="lbl d-lg-none">STAdmin</span>
 				</b-nav-item>
-				<navbar-settings v-else class="nav-element" />
+				<navbar-settings v-else class="nav-element" data-v-step="settings" />
 			</b-navbar-nav>
 		</b-collapse>
 	</b-navbar>
@@ -56,16 +61,16 @@ export default {
 		NavbarProfile,
 	},
 	computed: {
-		showNavbar: {
-			get() {
-				return store.state.showNavbar;
-			},
-			set(showNavbar) {
-				store.commit('setShowNavbar', showNavbar);
-			},
-		},
 		installedPlugins() {
 			return store.state.installedPlugins;
+		},
+		navbarExpanded: {
+			get() {
+				return store.state.navbarExpanded;
+			},
+			set(navbarExpanded) {
+				store.commit('setNavbarExpanded', navbarExpanded);
+			},
 		},
 	},
 };

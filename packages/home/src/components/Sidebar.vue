@@ -1,5 +1,8 @@
 <template>
-	<b-nav :class="{ sidebar: true, shadow: true, show: showSidebar }" vertical>
+	<b-nav
+		:class="{ sidebar: true, shadow: true, show: sidebarExpanded }"
+		vertical
+	>
 		<sidebar-item v-for="(item, index) in sidebar" :key="index" :item="item" />
 	</b-nav>
 </template>
@@ -19,9 +22,6 @@ export default {
 		SidebarItem,
 	},
 	computed: {
-		showSidebar() {
-			return store.state.showSidebar;
-		},
 		canCreate() {
 			return store.state.canCreate;
 		},
@@ -39,6 +39,9 @@ export default {
 		},
 		installedLocales() {
 			return store.state.installedLocales;
+		},
+		sidebarExpanded() {
+			return store.state.sidebarExpanded;
 		},
 		sidebar() {
 			return [

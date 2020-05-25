@@ -25,69 +25,81 @@ export default {
 			},
 			steps: [
 				{
-					target: '#navbar-logo',
+					target: '[data-v-step="welcome"]',
 					header: { title: 'Get Started' },
 					content: `Discover <strong>LinceBI</strong>!`,
 				},
 				{
-					target: '#navbar-profile',
+					target: '[data-v-step="profile"]',
 					content: 'Some text about profile',
-					callback: this.openNavbar,
+					callback: this.expandNavbar,
 				},
 				{
-					target: '#navbar-search',
+					target: '[data-v-step="search"]',
 					content: 'Some text about search',
-					callback: this.openNavbar,
+					callback: this.expandNavbar,
 				},
 				{
-					target: '#navbar-settings',
+					target: '[data-v-step="settings"]',
 					content: 'Some text about settings',
-					callback: this.openNavbar,
+					callback: this.expandNavbar,
 				},
 				{
-					target: '#sidebar-item-home',
+					target: '[data-v-step="tab-global"]',
+					content: 'Some text about global tab',
+				},
+				{
+					target: '[data-v-step="tab-home"]',
+					content: 'Some text about home tab',
+				},
+				{
+					target: '[data-v-step="tab-new"]',
+					content: 'Some text about new tab',
+				},
+				{
+					target: '[data-v-step="sidebar-item-home"]',
 					content: 'Some text about home',
-					callback: this.openSidebar,
+					callback: this.expandSidebar,
 				},
 				{
-					target: '#sidebar-item-tools',
+					target: '[data-v-step="sidebar-item-tools"]',
 					content: 'Some text about tools',
-					callback: this.openSidebar,
+					callback: this.expandSidebar,
 				},
 				{
-					target: '#sidebar-item-opened',
+					target: '[data-v-step="sidebar-item-opened"]',
 					content: 'Some text about opened',
-					callback: this.openSidebar,
+					callback: this.expandSidebar,
 				},
 				{
-					target: '#sidebar-item-browser',
+					target: '[data-v-step="sidebar-item-browser"]',
 					content: 'Some text about browser',
-					callback: this.openSidebar,
+					callback: this.expandSidebar,
 				},
 				{
-					target: '#sidebar-item-stsearch',
+					target: '[data-v-step="sidebar-item-stsearch"]',
 					content: 'Some text about stsearch',
-					callback: this.openSidebar,
+					callback: this.expandSidebar,
 				},
 				{
-					target: '#sidebar-item-manage-datasources',
+					target: '[data-v-step="sidebar-item-manage-datasources"]',
 					content: 'Some text about manage datasources',
-					callback: this.openSidebar,
+					callback: this.expandSidebar,
 				},
 				{
-					target: '#sidebar-item-administration',
+					target: '[data-v-step="sidebar-item-administration"]',
 					content: 'Some text about administration',
-					callback: this.openSidebar,
+					callback: this.expandSidebar,
 				},
 				{
-					target: '#sidebar-item-locales',
+					target: '[data-v-step="sidebar-item-locales"]',
 					content: 'Some text about locales',
-					callback: this.openSidebar,
+					callback: this.expandSidebar,
 				},
 				{
-					target: '#sidebar-item-logout',
+					target: '[data-v-step="sidebar-item-logout"]',
 					content: 'Some text about logout',
-					callback: this.openSidebar,
+					callback: this.expandSidebar,
 				},
 			],
 			filteredSteps: [],
@@ -120,11 +132,11 @@ export default {
 		};
 	},
 	methods: {
-		openNavbar() {
-			store.commit('setShowNavbar', true);
+		expandNavbar() {
+			store.commit('setNavbarExpanded', true);
 		},
-		openSidebar() {
-			store.commit('setShowSidebar', true);
+		expandSidebar() {
+			store.commit('setSidebarExpanded', true);
 		},
 	},
 };

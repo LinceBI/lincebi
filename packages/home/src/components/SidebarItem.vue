@@ -1,8 +1,8 @@
 <template>
 	<div
 		v-if="item.enabled"
-		:id="`sidebar-item-${item.id}`"
 		class="sidebar-item"
+		:data-v-step="`sidebar-item-${item.id}`"
 		:title="item.name"
 	>
 		<div v-if="Array.isArray(item.subitems)">

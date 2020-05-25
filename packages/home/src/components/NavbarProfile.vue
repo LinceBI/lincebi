@@ -1,5 +1,5 @@
 <template>
-	<b-nav-text id="navbar-profile" class="navbar-profile">
+	<b-nav-text class="navbar-profile">
 		<b-link class="user-avatar" href="#/profile">
 			<b-img
 				class="user-avatar-img"
