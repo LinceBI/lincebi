@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE web-app PUBLIC
-	"-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-	"http://java.sun.com/dtd/web-app_2_3.dtd">
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
 
@@ -30,11 +28,14 @@
 
 	<context-param>
 		<param-name>hsqldb-databases</param-name>
-		<%- if ENV['STORAGE_TYPE'] == 'local' -%>
-		<param-value>sampledata@../../<%= ENV['DATA_DIRNAME'] %>/hsqldb/sampledata,hibernate@../../<%= ENV['DATA_DIRNAME'] %>/hsqldb/hibernate,quartz@../../<%= ENV['DATA_DIRNAME'] %>/hsqldb/quartz</param-value>
-		<%- else -%>
-		<param-value>sampledata@../../<%= ENV['DATA_DIRNAME'] %>/hsqldb/sampledata</param-value>
-		<%- end -%>
+		<%-
+		@hsqldbDbs = []
+		Dir.glob("#{ENV['BISERVER_HOME']}/#{ENV['DATA_DIRNAME']}/hsqldb/*.properties") do |file|
+			dbName = File.basename(file, '.properties')
+			@hsqldbDbs.push("#{dbName}@../../#{ENV['DATA_DIRNAME']}/hsqldb/#{dbName}")
+		end
+		-%>
+		<param-value><%= @hsqldbDbs.join(',') %></param-value>
 	</context-param>
 	<!-- [END HSQLDB DATABASES] -->
 
