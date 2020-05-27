@@ -30,10 +30,12 @@
 		<param-name>hsqldb-databases</param-name>
 		<%-
 		@hsqldbDbs = []
-		Dir.glob("#{ENV['BISERVER_HOME']}/#{ENV['DATA_DIRNAME']}/hsqldb/*.properties") do |file|
-			dbName = File.basename(file, '.properties')
-			@hsqldbDbs.push("#{dbName}@../../#{ENV['DATA_DIRNAME']}/hsqldb/#{dbName}")
-		end
+		Dir.glob("{./,#{ENV['BISERVER_HOME']}}/#{ENV['DATA_DIRNAME']}/hsqldb/*.properties") { |file|
+			@hsqldbDbs.push(File.basename(file, '.properties'))
+		}
+		@hsqldbDbs = @hsqldbDbs.uniq.map { |db|
+			"#{db}@../../#{ENV['DATA_DIRNAME']}/hsqldb/#{db}"
+		}
 		-%>
 		<param-value><%= @hsqldbDbs.join(',') %></param-value>
 	</context-param>
