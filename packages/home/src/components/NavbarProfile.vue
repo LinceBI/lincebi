@@ -8,7 +8,7 @@
 		</b-link>
 		<span class="user-text">
 			{{
-				$t('navbar.profile', {
+				$t('navbar.welcome', {
 					name: userSettings[`${namespace}.name`] || userId,
 				})
 			}}
