@@ -109,11 +109,31 @@ a:hover, a:active, a:focus {
 	color: var(--light-color) !important;
 }
 
-#fileBrowserFolders > .body,
-#fileBrowserFiles > .body,
-#fileBrowserButtons > .body {
+.main-container {
+	width: 90% !important;
+	min-width: 1024px !important;
+	max-width: 2048px !important;
+}
+
+#fileBrowser > #fileBrowserFolders {
+	width: 35% !important;
+}
+
+#fileBrowser > #fileBrowserFiles {
+	width: 35% !important;
+}
+
+#fileBrowser > #fileBrowserButtons {
+	width: 25% !important;
+}
+
+#fileBrowser > .fileBrowserColumn > .body {
 	background-color: var(--light-color) !important;
 	border: 1px solid var(--gray-color) !important;
+}
+
+#fileBrowser > .fileBrowserColumn > .body .folder > .element {
+	white-space: nowrap !important;
 }
 
 #fileBrowserButtons > .body > .btn,
