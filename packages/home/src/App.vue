@@ -84,7 +84,7 @@ body {
 
 	> .app-tour {
 		display: block;
-		width: 100%;
+		width: 0;
 		height: 0;
 	}
 }
