@@ -40,8 +40,13 @@ export default {
 		installedLocales() {
 			return store.state.installedLocales;
 		},
-		sidebarExpanded() {
-			return store.state.sidebarExpanded;
+		sidebarExpanded: {
+			get() {
+				return store.state.sidebarExpanded;
+			},
+			set(sidebarExpanded) {
+				store.commit('setSidebarExpanded', sidebarExpanded);
+			},
 		},
 		sidebar() {
 			return [
@@ -82,7 +87,7 @@ export default {
 					subitems: [
 						{
 							enabled: this.installedPlugins.includes('stpivot'),
-							id: 'tools.stpivot',
+							id: 'tool-stpivot',
 							name: 'STPivot',
 							icon: ['fac', 'tool-stpivot'],
 							selectedForeground: '#FFFFFF',
@@ -105,7 +110,7 @@ export default {
 						},
 						{
 							enabled: this.installedPlugins.includes('stolap'),
-							id: 'tools.stolap',
+							id: 'tool-stolap',
 							name: 'STOlap',
 							icon: ['fac', 'tool-stolap'],
 							selectedForeground: '#FFFFFF',
@@ -128,7 +133,7 @@ export default {
 						},
 						{
 							enabled: this.installedPlugins.includes('streport'),
-							id: 'tools.streport',
+							id: 'tool-streport',
 							name: 'STReport',
 							icon: ['fac', 'tool-streport'],
 							selectedForeground: '#FFFFFF',
@@ -151,7 +156,7 @@ export default {
 						},
 						{
 							enabled: this.installedPlugins.includes('stdashboard'),
-							id: 'tools.stdashboard',
+							id: 'tool-stdashboard',
 							name: 'STDashboard',
 							icon: ['fac', 'tool-stdashboard'],
 							selectedForeground: '#FFFFFF',
@@ -174,7 +179,7 @@ export default {
 						},
 						{
 							enabled: this.installedPlugins.includes('stagile'),
-							id: 'tools.stagile',
+							id: 'tool-stagile',
 							name: 'STAgile',
 							icon: ['fac', 'tool-stagile'],
 							selectedForeground: '#FFFFFF',
@@ -197,7 +202,7 @@ export default {
 						},
 						{
 							enabled: this.installedPlugins.includes('stcard'),
-							id: 'tools.stcard',
+							id: 'tool-stcard',
 							name: 'STCard',
 							icon: ['fac', 'tool-stcard'],
 							selectedForeground: '#FFFFFF',
@@ -220,7 +225,7 @@ export default {
 						},
 						{
 							enabled: this.installedPlugins.includes('cde'),
-							id: 'tools.cde',
+							id: 'tool-cde',
 							name: 'CDE',
 							icon: ['fac', 'tool-cde'],
 							selectedForeground: '#FFFFFF',
@@ -243,7 +248,7 @@ export default {
 						},
 						{
 							enabled: this.installedPlugins.includes('saiku'),
-							id: 'tools.saiku',
+							id: 'tool-saiku',
 							name: 'Saiku Analytics',
 							icon: ['fac', 'tool-saiku'],
 							selectedForeground: '#FFFFFF',
@@ -266,7 +271,7 @@ export default {
 						},
 						{
 							enabled: this.installedPlugins.includes('repositorySynchronizer'),
-							id: 'tools.repository-synchronizer',
+							id: 'tool-repository-synchronizer',
 							name: 'Repository Synchronizer',
 							icon: ['fac', 'tool-repository-synchronizer'],
 							selectedForeground: '#FFFFFF',
@@ -311,7 +316,7 @@ export default {
 					subitems: [
 						{
 							enabled: true,
-							id: 'stsearch.search',
+							id: 'stsearch-search',
 							name: this.$t('sidebar.search'),
 							icon: ['fac', 'tool-stsearch'],
 							click() {
@@ -334,7 +339,7 @@ export default {
 						},
 						{
 							enabled: true,
-							id: 'stsearch.favorites',
+							id: 'stsearch-favorites',
 							name: this.$t('sidebar.favorites'),
 							icon: ['fas', 'star'],
 							click() {
@@ -358,7 +363,7 @@ export default {
 						},
 						{
 							enabled: true,
-							id: 'stsearch.recents',
+							id: 'stsearch-recents',
 							name: this.$t('sidebar.recents'),
 							icon: ['far', 'clock'],
 							click() {
@@ -414,7 +419,7 @@ export default {
 					subitems: [
 						{
 							enabled: this.installedLocales.includes('en'),
-							id: 'locales.english',
+							id: 'locale-english',
 							name: this.$t('locales.english'),
 							img: require('@/assets/img/locales/en.svg'),
 							async click() {
@@ -424,7 +429,7 @@ export default {
 						},
 						{
 							enabled: this.installedLocales.includes('es'),
-							id: 'locales.spanish',
+							id: 'locale-spanish',
 							name: this.$t('locales.spanish'),
 							img: require('@/assets/img/locales/es.svg'),
 							async click() {
@@ -434,7 +439,7 @@ export default {
 						},
 						{
 							enabled: this.installedLocales.includes('ca'),
-							id: 'locales.catalan',
+							id: 'locale-catalan',
 							name: this.$t('locales.catalan'),
 							img: require('@/assets/img/locales/ca.svg'),
 							async click() {
@@ -453,6 +458,14 @@ export default {
 				},
 			];
 		},
+	},
+	created() {
+		eventBus.$on('sidebar.show', () => {
+			this.sidebarExpanded = true;
+		});
+		eventBus.$on('sidebar.hide', () => {
+			this.sidebarExpanded = false;
+		});
 	},
 };
 </script>

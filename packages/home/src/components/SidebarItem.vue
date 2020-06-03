@@ -2,7 +2,7 @@
 	<div
 		v-if="item.enabled"
 		class="sidebar-item"
-		:data-v-step="`sidebar-item-${item.id}`"
+		:data-v-step="item.id"
 		:title="item.name"
 	>
 		<div v-if="Array.isArray(item.subitems)">
@@ -11,8 +11,8 @@
 				ref="dropdown"
 				dropright
 				no-caret
-				@mouseenter.native="onDropdownMouseenter"
-				@mouseleave.native="onDropdownMouseleave"
+				@mouseenter.native="showDropdown"
+				@mouseleave.native="hideDropdown"
 			>
 				<template slot="button-content">
 					<font-awesome-icon
@@ -54,6 +54,8 @@
 <script>
 import SidebarSubitem from '@/components/SidebarSubitem.vue';
 
+import eventBus from '@/eventBus';
+
 export default {
 	name: 'SidebarItem',
 	components: {
@@ -65,12 +67,21 @@ export default {
 			default: undefined,
 		},
 	},
+	created() {
+		eventBus.$on(`sidebar.item.${this.item.id}.show`, this.showDropdown);
+		eventBus.$on(`sidebar.item.${this.item.id}.hide`, this.hideDropdown);
+		eventBus.$on(`sidebar.item.hide`, this.hideDropdown);
+	},
 	methods: {
-		onDropdownMouseenter() {
-			this.$refs.dropdown.show();
+		showDropdown() {
+			if (typeof this.$refs.dropdown !== 'undefined') {
+				this.$refs.dropdown.show();
+			}
 		},
-		onDropdownMouseleave() {
-			this.$refs.dropdown.hide();
+		hideDropdown() {
+			if (typeof this.$refs.dropdown !== 'undefined') {
+				this.$refs.dropdown.hide();
+			}
 		},
 		onItemClick(event) {
 			if (typeof this.item.click !== 'undefined') {

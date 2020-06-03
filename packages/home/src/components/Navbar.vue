@@ -50,6 +50,7 @@ import NavbarSettings from '@/components/NavbarSettings.vue';
 import NavbarSidebarToggle from '@/components/NavbarSidebarToggle.vue';
 import NavbarProfile from '@/components/NavbarProfile.vue';
 
+import eventBus from '@/eventBus';
 import store from '@/store';
 
 export default {
@@ -72,6 +73,14 @@ export default {
 				store.commit('setNavbarExpanded', navbarExpanded);
 			},
 		},
+	},
+	created() {
+		eventBus.$on('navbar.show', () => {
+			this.navbarExpanded = true;
+		});
+		eventBus.$on('navbar.hide', () => {
+			this.navbarExpanded = false;
+		});
 	},
 };
 </script>

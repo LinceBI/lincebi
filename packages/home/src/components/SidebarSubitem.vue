@@ -2,10 +2,11 @@
 	<b-link
 		v-if="item.enabled"
 		class="sidebar-subitem dropdown-item"
+		:data-v-step="item.id"
 		target="_self"
 		:href="item.href"
 		:style="itemStyle"
-		@click="onClick"
+		@click="onItemClick"
 		@mouseover="isHover = true"
 		@mouseout="isHover = false"
 		@focus="isFocused = true"
@@ -57,7 +58,7 @@ export default {
 		},
 	},
 	methods: {
-		onClick(event) {
+		onItemClick(event) {
 			if (typeof this.item.click !== 'undefined') {
 				this.item.click.call(this, event);
 			}
