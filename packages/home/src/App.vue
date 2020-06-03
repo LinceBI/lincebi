@@ -83,10 +83,13 @@ body {
 	}
 
 	> .app-tour {
-		display: block;
-		width: 0;
-		height: 0;
+		display: none;
 	}
+}
+
+// Display container when tour is active.
+.v-tour--active .app-tour {
+	display: block;
 }
 
 // Pentaho BI Server injects these elements into "window.top".
