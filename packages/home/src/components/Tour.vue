@@ -1,7 +1,6 @@
 <template>
 	<div class="tour" tabindex="-1" @click.stop @focus.stop @focusin.stop>
 		<v-tour
-			ref="tour"
 			name="tour"
 			:options="options"
 			:steps="steps"
@@ -244,6 +243,8 @@ export default {
 		},
 	},
 	beforeDestroy() {
+		this.popper = null;
+		this.step = null;
 		this.removeEventListeners();
 	},
 	methods: {
@@ -272,6 +273,8 @@ export default {
 			this.addEventListeners();
 		},
 		onStop() {
+			this.popper = null;
+			this.step = null;
 			this.removeEventListeners();
 		},
 		onPreviousStep(currentStepIndex) {
