@@ -87,7 +87,7 @@ export default {
 					params: {
 						placement: 'bottom',
 						modifiers: {
-							preventOverflow: { boundariesElement: 'offsetParent' },
+							preventOverflow: { boundariesElement: 'window' },
 						},
 					},
 				},
@@ -98,7 +98,7 @@ export default {
 					params: {
 						placement: 'bottom',
 						modifiers: {
-							preventOverflow: { boundariesElement: 'offsetParent' },
+							preventOverflow: { boundariesElement: 'window' },
 						},
 					},
 				},
@@ -107,9 +107,9 @@ export default {
 					header: { title: this.$t('tour.steps.homeTabNew.title') },
 					content: this.$t('tour.steps.homeTabNew.content'),
 					params: {
-						placement: 'left',
+						placement: 'bottom',
 						modifiers: {
-							preventOverflow: { boundariesElement: 'offsetParent' },
+							preventOverflow: { boundariesElement: 'window' },
 						},
 					},
 				},
@@ -119,7 +119,7 @@ export default {
 					content: this.$t('tour.steps.sidebarHome.content'),
 					callback: () => this.expandSidebar(),
 					params: {
-						placement: 'right',
+						placement: 'bottom',
 					},
 				},
 				{
@@ -128,7 +128,7 @@ export default {
 					content: this.$t('tour.steps.sidebarTools.content'),
 					callback: () => this.expandSidebar(),
 					params: {
-						placement: 'right',
+						placement: 'bottom',
 					},
 				},
 				{
@@ -200,7 +200,7 @@ export default {
 					content: this.$t('tour.steps.sidebarOpened.content'),
 					callback: () => this.expandSidebar(),
 					params: {
-						placement: 'right',
+						placement: 'bottom',
 					},
 				},
 				{
@@ -209,7 +209,7 @@ export default {
 					content: this.$t('tour.steps.sidebarBrowser.content'),
 					callback: () => this.expandSidebar(),
 					params: {
-						placement: 'right',
+						placement: 'bottom',
 					},
 				},
 				{
@@ -218,7 +218,7 @@ export default {
 					content: this.$t('tour.steps.sidebarSearch.content'),
 					callback: () => this.expandSidebar(),
 					params: {
-						placement: 'right',
+						placement: 'bottom',
 					},
 				},
 				{
@@ -227,7 +227,7 @@ export default {
 					content: this.$t('tour.steps.sidebarDatasources.content'),
 					callback: () => this.expandSidebar(),
 					params: {
-						placement: 'right',
+						placement: 'bottom',
 					},
 				},
 				{
@@ -236,7 +236,7 @@ export default {
 					content: this.$t('tour.steps.sidebarAdministration.content'),
 					callback: () => this.expandSidebar(),
 					params: {
-						placement: 'right',
+						placement: 'bottom',
 					},
 				},
 				{
@@ -245,7 +245,7 @@ export default {
 					content: this.$t('tour.steps.sidebarLocales.content'),
 					callback: () => this.expandSidebar(),
 					params: {
-						placement: 'right',
+						placement: 'bottom',
 					},
 				},
 				{
@@ -254,7 +254,7 @@ export default {
 					content: this.$t('tour.steps.sidebarLogout.content'),
 					callback: () => this.expandSidebar(),
 					params: {
-						placement: 'right',
+						placement: 'bottom',
 					},
 				},
 			];
@@ -414,5 +414,9 @@ export default {
 			border-radius: rem(4);
 		}
 	}
+}
+
+.v-step__arrow {
+	display: none !important;
 }
 </style>
