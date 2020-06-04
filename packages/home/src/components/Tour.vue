@@ -3,7 +3,7 @@
 		<v-tour
 			name="tour"
 			:options="options"
-			:steps="steps"
+			:steps="filteredSteps"
 			:callbacks="callbacks"
 		/>
 		<div class="v-tour--overlay">
@@ -24,7 +24,14 @@ export default {
 	name: 'Tour',
 	data() {
 		return {
-			options: {
+			popper: null,
+			step: null,
+			filteredSteps: [],
+		};
+	},
+	computed: {
+		options() {
+			return {
 				highlight: true,
 				stopOnTargetNotFound: true,
 				useKeyboardNavigation: true,
@@ -34,10 +41,10 @@ export default {
 					buttonNext: this.$t('tour.labels.next'),
 					buttonStop: this.$t('tour.labels.stop'),
 				},
-			},
-			popper: null,
-			step: null,
-			steps: [
+			};
+		},
+		steps() {
+			return [
 				{
 					target: '[data-v-step="navbar-welcome"]',
 					header: { title: this.$t('tour.steps.navbarWelcome.title') },
@@ -250,14 +257,16 @@ export default {
 						placement: 'right',
 					},
 				},
-			],
-			callbacks: {
+			];
+		},
+		callbacks() {
+			return {
 				onStart: this.onStart,
 				onStop: this.onStop,
 				onPreviousStep: this.onPreviousStep,
 				onNextStep: this.onNextStep,
-			},
-		};
+			};
+		},
 	},
 	watch: {
 		step() {
@@ -272,10 +281,10 @@ export default {
 	methods: {
 		onStart() {
 			// Filter all steps with a non-existent target.
-			this.steps = this.steps.filter(
+			this.filteredSteps = this.steps.filter(
 				(step) => document.querySelector(step.target) !== null
 			);
-			this.steps.forEach((step) => {
+			this.filteredSteps.forEach((step) => {
 				// Disable Popper.js events, as the positioning will be handled by us.
 				step.params.eventsEnabled = false;
 				step.params.onCreate = (data) => {
@@ -283,14 +292,14 @@ export default {
 					this.popper = data.instance;
 					// This class will be removed on first update
 					// (avoids visual glitches on first reposition).
-					document.body.classList.add('v-tour--hide');
+					document.body.classList.add('v-tour--hide-step');
 				};
 				step.params.onUpdate = () => {
-					document.body.classList.remove('v-tour--hide');
+					document.body.classList.remove('v-tour--hide-step');
 				};
 			});
-			if (this.steps.length > 0) {
-				this.step = this.steps[0];
+			if (this.filteredSteps.length > 0) {
+				this.step = this.filteredSteps[0];
 			}
 			this.addEventListeners();
 		},
@@ -302,7 +311,7 @@ export default {
 		onPreviousStep(currentStepIndex) {
 			const previousStepIndex = currentStepIndex - 1;
 			if (previousStepIndex > -1) {
-				const previousStep = this.steps[previousStepIndex];
+				const previousStep = this.filteredSteps[previousStepIndex];
 				if (typeof previousStep.callback === 'function') {
 					previousStep.callback.call(this);
 				}
@@ -311,8 +320,8 @@ export default {
 		},
 		onNextStep(currentStepIndex) {
 			const nextStepIndex = currentStepIndex + 1;
-			if (nextStepIndex < this.steps.length) {
-				const nextStep = this.steps[nextStepIndex];
+			if (nextStepIndex < this.filteredSteps.length) {
+				const nextStep = this.filteredSteps[nextStepIndex];
 				if (typeof nextStep.callback === 'function') {
 					nextStep.callback.call(this);
 				}
@@ -383,7 +392,7 @@ export default {
 .v-tour--active {
 	pointer-events: none;
 
-	&.v-tour--hide .v-step {
+	&.v-tour--hide-step .v-step {
 		opacity: 0;
 	}
 
