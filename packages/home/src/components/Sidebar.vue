@@ -10,11 +10,11 @@
 <script>
 import waitFor from '@lincebi/biserver-frontend-common/src/waitFor';
 
-import SidebarItem from '@/components/SidebarItem.vue';
-
 import eventBus from '@/eventBus';
 import router from '@/router';
 import store from '@/store';
+
+import SidebarItem from '@/components/SidebarItem.vue';
 
 export default {
 	name: 'Sidebar',

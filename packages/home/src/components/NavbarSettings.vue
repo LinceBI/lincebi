@@ -34,10 +34,10 @@
 </template>
 
 <script>
-import NavbarDropdownItem from '@/components/NavbarDropdownItem.vue';
-
-import store from '@/store';
 import eventBus from '@/eventBus';
+import store from '@/store';
+
+import NavbarDropdownItem from '@/components/NavbarDropdownItem.vue';
 
 export default {
 	name: 'NavbarSettings',

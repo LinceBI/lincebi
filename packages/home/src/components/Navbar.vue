@@ -49,13 +49,13 @@
 </template>
 
 <script>
+import eventBus from '@/eventBus';
+import store from '@/store';
+
 import NavbarSearch from '@/components/NavbarSearch.vue';
 import NavbarSettings from '@/components/NavbarSettings.vue';
 import NavbarSidebarToggle from '@/components/NavbarSidebarToggle.vue';
 import NavbarProfile from '@/components/NavbarProfile.vue';
-
-import eventBus from '@/eventBus';
-import store from '@/store';
 
 export default {
 	name: 'Navbar',

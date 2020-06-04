@@ -241,14 +241,14 @@ import safeJSON from '@lincebi/biserver-frontend-common/src/safeJSON';
 import stringCompare from '@lincebi/biserver-frontend-common/src/stringCompare';
 import waitFor from '@lincebi/biserver-frontend-common/src/waitFor';
 
+import eventBus from '@/eventBus';
+import router from '@/router';
+import store from '@/store';
+
 import BFormColorSwatch from '@lincebi/biserver-frontend-common/src/components/BFormColorSwatch.vue';
 import BFormIconSwatch from '@lincebi/biserver-frontend-common/src/components/BFormIconSwatch.vue';
 
 import HomeTabEmpty from '@/components/home/HomeTabEmpty';
-
-import eventBus from '@/eventBus';
-import router from '@/router';
-import store from '@/store';
 
 export default {
 	name: 'HomeTabs',

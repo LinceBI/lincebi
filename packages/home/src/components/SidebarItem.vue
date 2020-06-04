@@ -52,9 +52,9 @@
 </template>
 
 <script>
-import SidebarSubitem from '@/components/SidebarSubitem.vue';
-
 import eventBus from '@/eventBus';
+
+import SidebarSubitem from '@/components/SidebarSubitem.vue';
 
 export default {
 	name: 'SidebarItem',
