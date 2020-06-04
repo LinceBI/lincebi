@@ -29,50 +29,54 @@ export default {
 				stopOnTargetNotFound: true,
 				useKeyboardNavigation: true,
 				labels: {
-					buttonSkip: 'Skip tour',
-					buttonPrevious: 'Previous',
-					buttonNext: 'Next',
-					buttonStop: 'Finish',
+					buttonSkip: this.$t('tour.labels.skip'),
+					buttonPrevious: this.$t('tour.labels.previous'),
+					buttonNext: this.$t('tour.labels.next'),
+					buttonStop: this.$t('tour.labels.stop'),
 				},
 			},
 			popper: null,
 			step: null,
 			steps: [
 				{
-					target: '[data-v-step="welcome"]',
-					header: { title: 'Get Started' },
-					content: `Discover <strong>LinceBI</strong>!`,
+					target: '[data-v-step="navbar-welcome"]',
+					header: { title: this.$t('tour.steps.navbarWelcome.title') },
+					content: this.$t('tour.steps.navbarWelcome.content'),
 					params: {
 						placement: 'bottom',
 					},
 				},
 				{
-					target: '[data-v-step="profile"]',
-					content: 'Some text about profile',
+					target: '[data-v-step="navbar-profile"]',
+					header: { title: this.$t('tour.steps.navbarProfile.title') },
+					content: this.$t('tour.steps.navbarProfile.content'),
 					callback: () => this.expandNavbar(),
 					params: {
 						placement: 'bottom',
 					},
 				},
 				{
-					target: '[data-v-step="search"]',
-					content: 'Some text about search',
+					target: '[data-v-step="navbar-search"]',
+					header: { title: this.$t('tour.steps.navbarSearch.title') },
+					content: this.$t('tour.steps.navbarSearch.content'),
 					callback: () => this.expandNavbar(),
 					params: {
 						placement: 'bottom',
 					},
 				},
 				{
-					target: '[data-v-step="settings"]',
-					content: 'Some text about settings',
+					target: '[data-v-step="navbar-settings"]',
+					header: { title: this.$t('tour.steps.navbarSettings.title') },
+					content: this.$t('tour.steps.navbarSettings.content'),
 					callback: () => this.expandNavbar(),
 					params: {
 						placement: 'bottom',
 					},
 				},
 				{
-					target: '[data-v-step="tab-global"]',
-					content: 'Some text about global tab',
+					target: '[data-v-step="home-tab-global"]',
+					header: { title: this.$t('tour.steps.homeTabGlobal.title') },
+					content: this.$t('tour.steps.homeTabGlobal.content'),
 					params: {
 						placement: 'bottom',
 						modifiers: {
@@ -81,8 +85,9 @@ export default {
 					},
 				},
 				{
-					target: '[data-v-step="tab-home"]',
-					content: 'Some text about home tab',
+					target: '[data-v-step="home-tab-home"]',
+					header: { title: this.$t('tour.steps.homeTabHome.title') },
+					content: this.$t('tour.steps.homeTabHome.content'),
 					params: {
 						placement: 'bottom',
 						modifiers: {
@@ -91,8 +96,9 @@ export default {
 					},
 				},
 				{
-					target: '[data-v-step="tab-new"]',
-					content: 'Some text about new tab',
+					target: '[data-v-step="home-tab-new"]',
+					header: { title: this.$t('tour.steps.homeTabNew.title') },
+					content: this.$t('tour.steps.homeTabNew.content'),
 					params: {
 						placement: 'left',
 						modifiers: {
@@ -101,128 +107,144 @@ export default {
 					},
 				},
 				{
-					target: '[data-v-step="home"]',
-					content: 'Some text about home',
+					target: '[data-v-step="sidebar-home"]',
+					header: { title: this.$t('tour.steps.sidebarHome.title') },
+					content: this.$t('tour.steps.sidebarHome.content'),
 					callback: () => this.expandSidebar(),
 					params: {
 						placement: 'right',
 					},
 				},
 				{
-					target: '[data-v-step="tools"]',
-					content: 'Some text about tools',
+					target: '[data-v-step="sidebar-tools"]',
+					header: { title: this.$t('tour.steps.sidebarTools.title') },
+					content: this.$t('tour.steps.sidebarTools.content'),
 					callback: () => this.expandSidebar(),
 					params: {
 						placement: 'right',
 					},
 				},
 				{
-					target: '[data-v-step="tool-stpivot"]',
-					content: 'Some text about stpivot tool',
+					target: '[data-v-step="sidebar-tool-stpivot"]',
+					header: { title: this.$t('tour.steps.sidebarToolStpivot.title') },
+					content: this.$t('tour.steps.sidebarToolStpivot.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
 					params: {
 						placement: 'bottom',
 					},
 				},
 				{
-					target: '[data-v-step="tool-stolap"]',
-					content: 'Some text about stolap tool',
+					target: '[data-v-step="sidebar-tool-stolap"]',
+					header: { title: this.$t('tour.steps.sidebarToolStolap.title') },
+					content: this.$t('tour.steps.sidebarToolStolap.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
 					params: {
 						placement: 'bottom',
 					},
 				},
 				{
-					target: '[data-v-step="tool-streport"]',
-					content: 'Some text about streport tool',
+					target: '[data-v-step="sidebar-tool-streport"]',
+					header: { title: this.$t('tour.steps.sidebarToolStreport.title') },
+					content: this.$t('tour.steps.sidebarToolStreport.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
 					params: {
 						placement: 'bottom',
 					},
 				},
 				{
-					target: '[data-v-step="tool-stdashboard"]',
-					content: 'Some text about stdashboard tool',
+					target: '[data-v-step="sidebar-tool-stdashboard"]',
+					header: { title: this.$t('tour.steps.sidebarToolStdashboard.title') },
+					content: this.$t('tour.steps.sidebarToolStdashboard.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
 					params: {
 						placement: 'bottom',
 					},
 				},
 				{
-					target: '[data-v-step="tool-stagile"]',
-					content: 'Some text about stagile tool',
+					target: '[data-v-step="sidebar-tool-stagile"]',
+					header: { title: this.$t('tour.steps.sidebarToolStagile.title') },
+					content: this.$t('tour.steps.sidebarToolStagile.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
 					params: {
 						placement: 'bottom',
 					},
 				},
 				{
-					target: '[data-v-step="tool-stcard"]',
-					content: 'Some text about stcard tool',
+					target: '[data-v-step="sidebar-tool-stcard"]',
+					header: { title: this.$t('tour.steps.sidebarToolStcard.title') },
+					content: this.$t('tour.steps.sidebarToolStcard.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
 					params: {
 						placement: 'bottom',
 					},
 				},
 				{
-					target: '[data-v-step="tool-cde"]',
-					content: 'Some text about cde tool',
+					target: '[data-v-step="sidebar-tool-cde"]',
+					header: { title: this.$t('tour.steps.sidebarToolCde.title') },
+					content: this.$t('tour.steps.sidebarToolCde.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
 					params: {
 						placement: 'bottom',
 					},
 				},
 				{
-					target: '[data-v-step="opened"]',
-					content: 'Some text about opened',
+					target: '[data-v-step="sidebar-opened"]',
+					header: { title: this.$t('tour.steps.sidebarOpened.title') },
+					content: this.$t('tour.steps.sidebarOpened.content'),
 					callback: () => this.expandSidebar(),
 					params: {
 						placement: 'right',
 					},
 				},
 				{
-					target: '[data-v-step="browser"]',
-					content: 'Some text about browser',
+					target: '[data-v-step="sidebar-browser"]',
+					header: { title: this.$t('tour.steps.sidebarBrowser.title') },
+					content: this.$t('tour.steps.sidebarBrowser.content'),
 					callback: () => this.expandSidebar(),
 					params: {
 						placement: 'right',
 					},
 				},
 				{
-					target: '[data-v-step="stsearch"]',
-					content: 'Some text about stsearch',
+					target: '[data-v-step="sidebar-search"]',
+					header: { title: this.$t('tour.steps.sidebarSearch.title') },
+					content: this.$t('tour.steps.sidebarSearch.content'),
 					callback: () => this.expandSidebar(),
 					params: {
 						placement: 'right',
 					},
 				},
 				{
-					target: '[data-v-step="manage-datasources"]',
-					content: 'Some text about manage datasources',
+					target: '[data-v-step="sidebar-datasources"]',
+					header: { title: this.$t('tour.steps.sidebarDatasources.title') },
+					content: this.$t('tour.steps.sidebarDatasources.content'),
 					callback: () => this.expandSidebar(),
 					params: {
 						placement: 'right',
 					},
 				},
 				{
-					target: '[data-v-step="administration"]',
-					content: 'Some text about administration',
+					target: '[data-v-step="sidebar-administration"]',
+					header: { title: this.$t('tour.steps.sidebarAdministration.title') },
+					content: this.$t('tour.steps.sidebarAdministration.content'),
 					callback: () => this.expandSidebar(),
 					params: {
 						placement: 'right',
 					},
 				},
 				{
-					target: '[data-v-step="locales"]',
-					content: 'Some text about locales',
+					target: '[data-v-step="sidebar-locales"]',
+					header: { title: this.$t('tour.steps.sidebarLocales.title') },
+					content: this.$t('tour.steps.sidebarLocales.content'),
 					callback: () => this.expandSidebar(),
 					params: {
 						placement: 'right',
 					},
 				},
 				{
-					target: '[data-v-step="logout"]',
-					content: 'Some text about logout',
+					target: '[data-v-step="sidebar-logout"]',
+					header: { title: this.$t('tour.steps.sidebarLogout.title') },
+					content: this.$t('tour.steps.sidebarLogout.content'),
 					callback: () => this.expandSidebar(),
 					params: {
 						placement: 'right',

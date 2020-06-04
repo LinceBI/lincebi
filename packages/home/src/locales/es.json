@@ -7,7 +7,6 @@
     "german": "Alemán"
   },
   "navbar": {
-    "welcome": "{name}",
     "categories": "Categorías",
     "search": { "label": "Buscar:", "placeholder": "Buscar..." },
     "settings": "Opciones",
@@ -25,7 +24,7 @@
     "search": "Buscador",
     "favorites": "Favoritos",
     "recents": "Recientes",
-    "manageDatasources": "Manage datasources",
+    "datasources": "Gestionar fuentes de datos",
     "administration": "Administración",
     "locales": "Idiomas",
     "logout": "Salir"
@@ -77,5 +76,38 @@
     "cacheClearError": "Error al vaciar la caché",
     "notificationInfo": "Información",
     "notificationError": "Error"
+  },
+  "tour": {
+    "labels": {
+      "skip": "Skip tour",
+      "previous": "Previous",
+      "next": "Next",
+      "stop": "Finish"
+    },
+    "steps": {
+      "navbarWelcome": { "title": "welcome", "content": "some text about welcome" },
+      "navbarProfile": { "title": "profile", "content": "some text about profile" },
+      "navbarSearch": { "title": "search", "content": "some text about search" },
+      "navbarSettings": { "title": "settings", "content": "some text about settings" },
+      "homeTabGlobal": { "title": "global tab", "content": "some text about global tab" },
+      "homeTabHome": { "title": "home tab", "content": "some text about home tab" },
+      "homeTabNew": { "title": "new tab", "content": "some text about new tab" },
+      "sidebarHome": { "title": "home", "content": "some text about home" },
+      "sidebarTools": { "title": "tools", "content": "some text about tools" },
+      "sidebarToolStpivot": { "title": "stpivot", "content": "some text about stpivot tool" },
+      "sidebarToolStolap": { "title": "stolap", "content": "some text about stolap tool" },
+      "sidebarToolStreport": { "title": "streport", "content": "some text about streport tool" },
+      "sidebarToolStdashboard": { "title": "stdashboard", "content": "some text about stdashboard tool" },
+      "sidebarToolStagile": { "title": "stagile", "content": "some text about stagile tool" },
+      "sidebarToolStcard": { "title": "stcard", "content": "some text about stcard tool" },
+      "sidebarToolCde": { "title": "cde", "content": "some text about cde tool" },
+      "sidebarOpened": { "title": "opened", "content": "some text about opened" },
+      "sidebarBrowser": { "title": "browser", "content": "some text about browser" },
+      "sidebarSearch": { "title": "search", "content": "some text about search" },
+      "sidebarDatasources": { "title": "datasources", "content": "some text about datasources" },
+      "sidebarAdministration": { "title": "administration", "content": "some text about administration" },
+      "sidebarLocales": { "title": "locales", "content": "some text about locales" },
+      "sidebarLogout": { "title": "logout", "content": "some text about logout" }
+    }
   }
 }

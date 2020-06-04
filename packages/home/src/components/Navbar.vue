@@ -3,7 +3,7 @@
 		<navbar-sidebar-toggle />
 		<b-navbar-brand
 			class="navbar-logo mr-0 mr-lg-3 p-0"
-			data-v-step="welcome"
+			data-v-step="navbar-welcome"
 			href="#/"
 		>
 			<b-img
@@ -22,13 +22,13 @@
 			is-nav
 		>
 			<b-navbar-nav class="nav-section">
-				<navbar-profile class="nav-element" data-v-step="profile" />
+				<navbar-profile class="nav-element" data-v-step="navbar-profile" />
 			</b-navbar-nav>
 			<b-navbar-nav class="nav-section ml-auto">
 				<navbar-search
 					v-if="installedPlugins.includes('stsearch')"
 					class="nav-element"
-					data-v-step="search"
+					data-v-step="navbar-search"
 				/>
 				<b-nav-item
 					v-if="isDemo"
@@ -38,7 +38,11 @@
 					<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
 					<span class="lbl d-lg-none">STAdmin</span>
 				</b-nav-item>
-				<navbar-settings v-else class="nav-element" data-v-step="settings" />
+				<navbar-settings
+					v-else
+					class="nav-element"
+					data-v-step="navbar-settings"
+				/>
 			</b-navbar-nav>
 		</b-collapse>
 	</b-navbar>

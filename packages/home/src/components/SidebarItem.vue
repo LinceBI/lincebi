@@ -2,8 +2,8 @@
 	<div
 		v-if="item.enabled"
 		class="sidebar-item"
-		:data-v-step="item.id"
 		:title="item.name"
+		:data-v-step="`sidebar-${item.id}`"
 	>
 		<div v-if="Array.isArray(item.subitems)">
 			<b-nav-item-dropdown

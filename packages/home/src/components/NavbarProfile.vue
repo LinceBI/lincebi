@@ -7,11 +7,7 @@
 			/>
 		</b-link>
 		<span class="user-text">
-			{{
-				$t('navbar.welcome', {
-					name: userSettings[`${namespace}.name`] || userId,
-				})
-			}}
+			{{ userSettings[`${namespace}.name`] || userId }}
 		</span>
 	</b-nav-text>
 </template>

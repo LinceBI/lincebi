@@ -11,7 +11,7 @@
 					'nav-item': true,
 					draggable: tab.isDraggable,
 				}"
-				:data-v-step="`tab-${tab.type}`"
+				:data-v-step="`home-tab-${tab.type}`"
 			>
 				<div
 					:title="tab.name"
@@ -44,7 +44,7 @@
 			<li class="home-tab-new nav-item">
 				<div
 					class="nav-link"
-					data-v-step="tab-new"
+					data-v-step="home-tab-new"
 					tabindex="0"
 					@click="newTabModalShow = true"
 					@keyup.enter="newTabModalShow = true"

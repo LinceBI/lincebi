@@ -2,10 +2,11 @@
 	<b-link
 		v-if="item.enabled"
 		class="sidebar-subitem dropdown-item"
-		:data-v-step="item.id"
-		target="_self"
+		:title="item.name"
 		:href="item.href"
 		:style="itemStyle"
+		:data-v-step="`sidebar-${item.id}`"
+		target="_self"
 		@click="onItemClick"
 		@mouseover="isHover = true"
 		@mouseout="isHover = false"

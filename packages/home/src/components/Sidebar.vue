@@ -310,13 +310,13 @@ export default {
 				},
 				{
 					enabled: this.installedPlugins.includes('stsearch'),
-					id: 'stsearch',
+					id: 'search',
 					name: this.$t('sidebar.search'),
 					icon: ['fac', 'tool-stsearch'],
 					subitems: [
 						{
 							enabled: true,
-							id: 'stsearch-search',
+							id: 'search-main',
 							name: this.$t('sidebar.search'),
 							icon: ['fac', 'tool-stsearch'],
 							click() {
@@ -339,7 +339,7 @@ export default {
 						},
 						{
 							enabled: true,
-							id: 'stsearch-favorites',
+							id: 'search-favorites',
 							name: this.$t('sidebar.favorites'),
 							icon: ['fas', 'star'],
 							click() {
@@ -363,7 +363,7 @@ export default {
 						},
 						{
 							enabled: true,
-							id: 'stsearch-recents',
+							id: 'search-recents',
 							name: this.$t('sidebar.recents'),
 							icon: ['far', 'clock'],
 							click() {
@@ -389,8 +389,8 @@ export default {
 				},
 				{
 					enabled: this.hasDataAccess,
-					id: 'manage-datasources',
-					name: this.$t('sidebar.manageDatasources'),
+					id: 'datasources',
+					name: this.$t('sidebar.datasources'),
 					icon: ['fas', 'database'],
 					click() {
 						router
