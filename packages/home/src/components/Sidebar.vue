@@ -99,7 +99,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'STPivot',
 										'STPivot',
@@ -122,7 +122,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'STOlap',
 										'STOlap',
@@ -145,7 +145,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'STReport',
 										'STReport',
@@ -168,7 +168,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'STDashboard',
 										'STDashboard',
@@ -191,7 +191,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'STAgile',
 										'STAgile',
@@ -214,7 +214,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'STCard',
 										'STCard',
@@ -237,7 +237,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'Webdetails CDE',
 										'Webdetails CDE',
@@ -260,7 +260,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'Saiku Analytics',
 										'Saiku Analytics',
@@ -283,7 +283,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'Repository Synchronizer',
 										'Repository Synchronizer',
@@ -349,7 +349,7 @@ export default {
 										params: { perspective: 'search.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen(
+								eventBus.$emitWhenAvailable(
 									'mantle.perspective.invoke',
 									'search.perspective',
 									async (perspectiveWindow) => {
@@ -373,7 +373,7 @@ export default {
 										params: { perspective: 'search.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhen(
+								eventBus.$emitWhenAvailable(
 									'mantle.perspective.invoke',
 									'search.perspective',
 									async (perspectiveWindow) => {
@@ -399,7 +399,7 @@ export default {
 								params: { perspective: 'browser.perspective' },
 							})
 							.catch(() => {});
-						eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+						eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 							mantleWindow.executeCommand('ManageDatasourcesCommand');
 						});
 					},

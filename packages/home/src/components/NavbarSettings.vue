@@ -82,7 +82,10 @@ export default {
 				const key = 'MANTLE_SHOW_HIDDEN_FILES';
 				const value = show ? 'true' : 'false';
 				await store.dispatch('updateUserSettings', { [key]: value });
-				eventBus.$emitWhen('mantle.perspective.reload', 'browser.perspective');
+				eventBus.$emitWhenAvailable(
+					'mantle.perspective.reload',
+					'browser.perspective'
+				);
 			},
 		},
 		showDescriptionsForTooltips: {
@@ -95,7 +98,10 @@ export default {
 				const key = 'MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS';
 				const value = show ? 'true' : 'false';
 				store.dispatch('updateUserSettings', { [key]: value });
-				eventBus.$emitWhen('mantle.perspective.reload', 'browser.perspective');
+				eventBus.$emitWhenAvailable(
+					'mantle.perspective.reload',
+					'browser.perspective'
+				);
 			},
 		},
 	},

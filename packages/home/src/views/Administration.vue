@@ -149,7 +149,7 @@ export default {
 					params: { perspective: 'browser.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+			eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 				mantleWindow.executeCommand('ManageDatasourcesCommand');
 			});
 		},
@@ -176,7 +176,7 @@ export default {
 					params: { perspective: 'opened.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+			eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 				mantleWindow.openURL(
 					'CDA cache manager',
 					'CDA cache manager',
@@ -191,7 +191,7 @@ export default {
 					params: { perspective: 'opened.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhen('mantle.invoke', (mantleWindow) => {
+			eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
 				mantleWindow.openURL(
 					'STReport statistics',
 					'STReport statistics',

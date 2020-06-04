@@ -602,7 +602,7 @@ export default {
 					params: { perspective: 'search.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhen(
+			eventBus.$emitWhenAvailable(
 				'mantle.perspective.invoke',
 				'search.perspective',
 				async (perspectiveWindow) => {
