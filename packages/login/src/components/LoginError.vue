@@ -45,7 +45,9 @@ export default {
 		},
 	},
 	mounted() {
-		this.dismissCountDown = this.dismissSecs;
+		this.$nextTick(() => {
+			this.dismissCountDown = this.dismissSecs;
+		});
 	},
 	methods: {
 		countDownChanged(dismissCountDown) {

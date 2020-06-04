@@ -106,7 +106,7 @@ export default {
 		};
 	},
 	mounted() {
-		this.$nextTick(function () {
+		this.$nextTick(() => {
 			this.mounted = true;
 			this.ctx = this.$refs.canvas.getContext('2d');
 			this.nodes = [];
