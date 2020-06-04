@@ -36,9 +36,9 @@ export default {
 			store.dispatch('fetchUserSettings'),
 		]);
 
-		// this.$tours.tour.start();
-
 		await store.dispatch('fetchRepository');
+
+		// this.$tours.tour.start();
 	},
 };
 </script>
