@@ -1,5 +1,13 @@
 <template>
-	<div class="tour" tabindex="-1" @click.stop @focus.stop @focusin.stop>
+	<div
+		ref="tour"
+		class="tour"
+		tabindex="-1"
+		@click.stop.prevent
+		@focus.stop.prevent
+		@focusin.stop.prevent
+		@keydown.tab.stop.prevent
+	>
 		<v-tour
 			name="tour"
 			:options="options"
@@ -279,32 +287,39 @@ export default {
 		},
 		reposition: throttle(
 			function () {
-				let top = 0;
-				let left = 0;
-				let height = 0;
-				let width = 0;
-
-				if (this.step) {
-					const $target = document.querySelector(this.step.target);
-					if ($target !== null) {
-						const rect = $target.getBoundingClientRect();
-						top = rect.top - 4;
-						left = rect.left - 4;
-						height = rect.height + 8;
-						width = rect.width + 8;
-					}
-				}
-
+				// Update popper position.
 				if (this.popper) {
 					this.popper.update();
 				}
 
+				// Update spotlight size and position.
 				if (this.$refs.spotlight) {
+					let top = 0;
+					let left = 0;
+					let height = 0;
+					let width = 0;
+
+					if (this.step) {
+						const $target = document.querySelector(this.step.target);
+						if ($target !== null) {
+							const rect = $target.getBoundingClientRect();
+							top = rect.top - 4;
+							left = rect.left - 4;
+							height = rect.height + 8;
+							width = rect.width + 8;
+						}
+					}
+
 					const style = this.$refs.spotlight.style;
 					style.top = `${top}px`;
 					style.left = `${left}px`;
 					style.height = `${height}px`;
 					style.width = `${width}px`;
+				}
+
+				// Restore focus on tour element.
+				if (this.$refs.tour) {
+					this.$refs.tour.focus();
 				}
 			},
 			50,
