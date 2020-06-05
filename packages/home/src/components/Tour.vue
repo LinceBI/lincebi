@@ -131,9 +131,7 @@ export default {
 				},
 				{
 					target: '[data-v-step="sidebar-tool-stdashboard"]',
-					header: {
-						title: this.$t('tour.steps.sidebarToolStdashboard.title'),
-					},
+					header: { title: this.$t('tour.steps.sidebarToolStdashboard.title') },
 					content: this.$t('tour.steps.sidebarToolStdashboard.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
 				},
@@ -275,7 +273,7 @@ export default {
 				let height = 0;
 				let width = 0;
 
-				if (this.step !== null) {
+				if (this.step) {
 					const $target = document.querySelector(this.step.target);
 					if ($target !== null) {
 						const rect = $target.getBoundingClientRect();
@@ -286,14 +284,16 @@ export default {
 					}
 				}
 
-				const style = this.$refs.spotlight.style;
-				style.top = `${top}px`;
-				style.left = `${left}px`;
-				style.height = `${height}px`;
-				style.width = `${width}px`;
-
-				if (this.popper !== null) {
+				if (this.popper) {
 					this.popper.update();
+				}
+
+				if (this.$refs.spotlight) {
+					const style = this.$refs.spotlight.style;
+					style.top = `${top}px`;
+					style.left = `${left}px`;
+					style.height = `${height}px`;
+					style.width = `${width}px`;
 				}
 			},
 			50,
