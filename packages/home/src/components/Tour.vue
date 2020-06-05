@@ -17,6 +17,7 @@ import defaultsDeep from 'lodash/defaultsDeep';
 import throttle from 'lodash/throttle';
 
 import eventBus from '@/eventBus';
+import router from '@/router';
 
 const EVENT_OPTS_RESIZE = { passive: true, capture: false };
 const EVENT_OPTS_SCROLL = { passive: true, capture: true };
@@ -93,16 +94,19 @@ export default {
 					target: '[data-v-step="home-tab-global"]',
 					header: { title: this.$t('tour.steps.homeTabGlobal.title') },
 					content: this.$t('tour.steps.homeTabGlobal.content'),
+					callback: () => this.goPage('home'),
 				},
 				{
 					target: '[data-v-step="home-tab-home"]',
 					header: { title: this.$t('tour.steps.homeTabHome.title') },
 					content: this.$t('tour.steps.homeTabHome.content'),
+					callback: () => this.goPage('home'),
 				},
 				{
 					target: '[data-v-step="home-tab-new"]',
 					header: { title: this.$t('tour.steps.homeTabNew.title') },
 					content: this.$t('tour.steps.homeTabNew.content'),
+					callback: () => this.goPage('home'),
 				},
 				{
 					target: '[data-v-step="sidebar-home"]',
@@ -317,6 +321,9 @@ export default {
 			eventBus.$emit('sidebar.show');
 			eventBus.$emit('sidebar.item.hide');
 			eventBus.$emit(`sidebar.item.${id}.show`);
+		},
+		goPage(name) {
+			router.push({ name }).catch(() => {});
 		},
 		addEventListeners() {
 			window.addEventListener('resize', this.reposition, EVENT_OPTS_RESIZE);
