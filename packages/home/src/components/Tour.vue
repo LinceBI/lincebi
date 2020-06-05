@@ -3,7 +3,7 @@
 		<v-tour
 			name="tour"
 			:options="options"
-			:steps="filteredSteps"
+			:steps="steps"
 			:callbacks="callbacks"
 		/>
 		<div class="v-tour--overlay">
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import defaultsDeep from 'lodash/defaultsDeep';
 import throttle from 'lodash/throttle';
 
 import eventBus from '@/eventBus';
@@ -26,7 +27,6 @@ export default {
 		return {
 			popper: null,
 			step: null,
-			filteredSteps: [],
 		};
 	},
 	computed: {
@@ -41,228 +41,174 @@ export default {
 					buttonNext: this.$t('tour.labels.next'),
 					buttonStop: this.$t('tour.labels.stop'),
 				},
+				enabledButtons: {
+					buttonSkip: this.$tours.tour ? this.$tours.tour.isFirst : true,
+					buttonPrevious: this.$tours.tour ? !this.$tours.tour.isFirst : false,
+					buttonNext: this.$tours.tour ? !this.$tours.tour.isLast : true,
+					buttonStop: this.$tours.tour ? this.$tours.tour.isLast : false,
+				},
 			};
 		},
 		steps() {
-			return [
+			const stepDefaults = {
+				params: {
+					placement: 'bottom',
+					modifiers: { preventOverflow: { boundariesElement: 'window' } },
+					eventsEnabled: false,
+					onCreate: this.onCreateStep,
+					onUpdate: this.onUpdateStep,
+				},
+			};
+
+			const steps = [
 				{
 					target: '[data-v-step="navbar-welcome"]',
 					header: { title: this.$t('tour.steps.navbarWelcome.title') },
 					content: this.$t('tour.steps.navbarWelcome.content'),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="navbar-profile"]',
 					header: { title: this.$t('tour.steps.navbarProfile.title') },
 					content: this.$t('tour.steps.navbarProfile.content'),
 					callback: () => this.expandNavbar(),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="navbar-search"]',
 					header: { title: this.$t('tour.steps.navbarSearch.title') },
 					content: this.$t('tour.steps.navbarSearch.content'),
 					callback: () => this.expandNavbar(),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="navbar-settings"]',
 					header: { title: this.$t('tour.steps.navbarSettings.title') },
 					content: this.$t('tour.steps.navbarSettings.content'),
 					callback: () => this.expandNavbar(),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="home-tab-global"]',
 					header: { title: this.$t('tour.steps.homeTabGlobal.title') },
 					content: this.$t('tour.steps.homeTabGlobal.content'),
-					params: {
-						placement: 'bottom',
-						modifiers: {
-							preventOverflow: { boundariesElement: 'window' },
-						},
-					},
 				},
 				{
 					target: '[data-v-step="home-tab-home"]',
 					header: { title: this.$t('tour.steps.homeTabHome.title') },
 					content: this.$t('tour.steps.homeTabHome.content'),
-					params: {
-						placement: 'bottom',
-						modifiers: {
-							preventOverflow: { boundariesElement: 'window' },
-						},
-					},
 				},
 				{
 					target: '[data-v-step="home-tab-new"]',
 					header: { title: this.$t('tour.steps.homeTabNew.title') },
 					content: this.$t('tour.steps.homeTabNew.content'),
-					params: {
-						placement: 'bottom',
-						modifiers: {
-							preventOverflow: { boundariesElement: 'window' },
-						},
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-home"]',
 					header: { title: this.$t('tour.steps.sidebarHome.title') },
 					content: this.$t('tour.steps.sidebarHome.content'),
 					callback: () => this.expandSidebar(),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-tools"]',
 					header: { title: this.$t('tour.steps.sidebarTools.title') },
 					content: this.$t('tour.steps.sidebarTools.content'),
 					callback: () => this.expandSidebar(),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-tool-stpivot"]',
 					header: { title: this.$t('tour.steps.sidebarToolStpivot.title') },
 					content: this.$t('tour.steps.sidebarToolStpivot.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-tool-stolap"]',
 					header: { title: this.$t('tour.steps.sidebarToolStolap.title') },
 					content: this.$t('tour.steps.sidebarToolStolap.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-tool-streport"]',
 					header: { title: this.$t('tour.steps.sidebarToolStreport.title') },
 					content: this.$t('tour.steps.sidebarToolStreport.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-tool-stdashboard"]',
-					header: { title: this.$t('tour.steps.sidebarToolStdashboard.title') },
+					header: {
+						title: this.$t('tour.steps.sidebarToolStdashboard.title'),
+					},
 					content: this.$t('tour.steps.sidebarToolStdashboard.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-tool-stagile"]',
 					header: { title: this.$t('tour.steps.sidebarToolStagile.title') },
 					content: this.$t('tour.steps.sidebarToolStagile.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-tool-stcard"]',
 					header: { title: this.$t('tour.steps.sidebarToolStcard.title') },
 					content: this.$t('tour.steps.sidebarToolStcard.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-tool-cde"]',
 					header: { title: this.$t('tour.steps.sidebarToolCde.title') },
 					content: this.$t('tour.steps.sidebarToolCde.content'),
 					callback: () => this.expandSidebarDropdown('tools'),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-opened"]',
 					header: { title: this.$t('tour.steps.sidebarOpened.title') },
 					content: this.$t('tour.steps.sidebarOpened.content'),
 					callback: () => this.expandSidebar(),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-browser"]',
 					header: { title: this.$t('tour.steps.sidebarBrowser.title') },
 					content: this.$t('tour.steps.sidebarBrowser.content'),
 					callback: () => this.expandSidebar(),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-search"]',
 					header: { title: this.$t('tour.steps.sidebarSearch.title') },
 					content: this.$t('tour.steps.sidebarSearch.content'),
 					callback: () => this.expandSidebar(),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-datasources"]',
 					header: { title: this.$t('tour.steps.sidebarDatasources.title') },
 					content: this.$t('tour.steps.sidebarDatasources.content'),
 					callback: () => this.expandSidebar(),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-administration"]',
 					header: { title: this.$t('tour.steps.sidebarAdministration.title') },
 					content: this.$t('tour.steps.sidebarAdministration.content'),
 					callback: () => this.expandSidebar(),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-locales"]',
 					header: { title: this.$t('tour.steps.sidebarLocales.title') },
 					content: this.$t('tour.steps.sidebarLocales.content'),
 					callback: () => this.expandSidebar(),
-					params: {
-						placement: 'bottom',
-					},
 				},
 				{
 					target: '[data-v-step="sidebar-logout"]',
 					header: { title: this.$t('tour.steps.sidebarLogout.title') },
 					content: this.$t('tour.steps.sidebarLogout.content'),
 					callback: () => this.expandSidebar(),
-					params: {
-						placement: 'bottom',
-					},
 				},
-			];
+			]
+				// Filter all steps with a non-existent target.
+				.filter((step) => document.querySelector(step.target) !== null)
+				// Set default values.
+				.map((step) => defaultsDeep(step, stepDefaults));
+
+			return steps;
 		},
 		callbacks() {
 			return {
-				onStart: this.onStart,
-				onStop: this.onStop,
+				onStart: this.onStartTour,
+				onStop: this.onStopTour,
 				onPreviousStep: this.onPreviousStep,
 				onNextStep: this.onNextStep,
 			};
@@ -273,59 +219,53 @@ export default {
 			this.reposition();
 		},
 	},
+	created() {
+		eventBus.$on('tour.start', () => this.$tours.tour.start());
+		eventBus.$on('tour.stop', () => this.$tours.tour.stop());
+	},
 	beforeDestroy() {
 		this.popper = null;
 		this.step = null;
 		this.removeEventListeners();
 	},
 	methods: {
-		onStart() {
-			// Filter all steps with a non-existent target.
-			this.filteredSteps = this.steps.filter(
-				(step) => document.querySelector(step.target) !== null
-			);
-			this.filteredSteps.forEach((step) => {
-				// Disable Popper.js events, as the positioning will be handled by us.
-				step.params.eventsEnabled = false;
-				step.params.onCreate = (data) => {
-					// Store Popper.js instance.
-					this.popper = data.instance;
-					// This class will be removed on first update
-					// (avoids visual glitches on first reposition).
-					document.body.classList.add('v-tour--hide-step');
-				};
-				step.params.onUpdate = () => {
-					document.body.classList.remove('v-tour--hide-step');
-				};
-			});
-			if (this.filteredSteps.length > 0) {
-				this.step = this.filteredSteps[0];
-			}
+		onStartTour() {
+			if (this.steps.length <= 0) return;
+			this.popper = null;
+			this.step = this.steps[0];
 			this.addEventListeners();
+			eventBus.$emit('tour.started');
 		},
-		onStop() {
+		onStopTour() {
 			this.popper = null;
 			this.step = null;
 			this.removeEventListeners();
+			eventBus.$emit('tour.stopped');
+		},
+		onCreateStep(data) {
+			// Store Popper.js instance.
+			this.popper = data.instance;
+			// This class will be removed on first update
+			// (avoids visual glitches on first reposition).
+			document.body.classList.add('v-tour--hide-step');
+		},
+		onUpdateStep() {
+			document.body.classList.remove('v-tour--hide-step');
 		},
 		onPreviousStep(currentStepIndex) {
 			const previousStepIndex = currentStepIndex - 1;
-			if (previousStepIndex > -1) {
-				const previousStep = this.filteredSteps[previousStepIndex];
-				if (typeof previousStep.callback === 'function') {
-					previousStep.callback.call(this);
-				}
-				this.step = previousStep;
+			if (previousStepIndex < 0) return;
+			this.step = this.steps[previousStepIndex];
+			if (typeof this.step.callback === 'function') {
+				this.step.callback.call(this);
 			}
 		},
 		onNextStep(currentStepIndex) {
 			const nextStepIndex = currentStepIndex + 1;
-			if (nextStepIndex < this.filteredSteps.length) {
-				const nextStep = this.filteredSteps[nextStepIndex];
-				if (typeof nextStep.callback === 'function') {
-					nextStep.callback.call(this);
-				}
-				this.step = nextStep;
+			if (nextStepIndex >= this.steps.length) return;
+			this.step = this.steps[nextStepIndex];
+			if (typeof this.step.callback === 'function') {
+				this.step.callback.call(this);
 			}
 		},
 		reposition: throttle(

@@ -43,6 +43,10 @@ export const userSettings = {
 		initial: '[]',
 		default: '[]',
 	},
+	[`${namespace}.onboarded`]: {
+		initial: 'true',
+		default: 'false',
+	},
 	home: {
 		initial: '[]',
 		default: '[]',

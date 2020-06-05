@@ -3,11 +3,12 @@
 		<navbar class="app-navbar" />
 		<sidebar class="app-sidebar" />
 		<router-multi-view class="app-content" />
-		<tour class="app-tour" />
+		<tour v-if="!onboarded" class="app-tour" />
 	</div>
 </template>
 
 <script>
+import eventBus from '@/eventBus';
 import store from '@/store';
 
 import Navbar from '@/components/Navbar.vue';
@@ -21,24 +22,43 @@ export default {
 		Sidebar,
 		Tour,
 	},
-	async mounted() {
-		await Promise.all([
-			store.dispatch('fetchUserId'),
-			store.dispatch('fetchCanCreate'),
-			store.dispatch('fetchCanAdminister'),
-			store.dispatch('fetchCanSchedule'),
-			store.dispatch('fetchHasDataAccess'),
-			store.dispatch('fetchInstalledLocales').then(() => {
-				store.dispatch('fetchLocale');
-			}),
-			store.dispatch('fetchInstalledPlugins'),
-			store.dispatch('fetchGlobalUserSettings'),
-			store.dispatch('fetchUserSettings'),
-		]);
+	computed: {
+		onboarded: {
+			get() {
+				const key = `${this.namespace}.onboarded`;
+				const value = store.state.userSettings[key] === 'true';
+				return value;
+			},
+			set(onboarded) {
+				const key = `${this.namespace}.onboarded`;
+				const value = onboarded ? 'true' : 'false';
+				store.dispatch('updateUserSettings', { [key]: value });
+			},
+		},
+	},
+	mounted() {
+		this.$nextTick(async () => {
+			await Promise.all([
+				store.dispatch('fetchUserId'),
+				store.dispatch('fetchCanCreate'),
+				store.dispatch('fetchCanAdminister'),
+				store.dispatch('fetchCanSchedule'),
+				store.dispatch('fetchHasDataAccess'),
+				store.dispatch('fetchInstalledLocales').then(() => {
+					store.dispatch('fetchLocale');
+				}),
+				store.dispatch('fetchInstalledPlugins'),
+				store.dispatch('fetchGlobalUserSettings'),
+				store.dispatch('fetchUserSettings'),
+			]);
 
-		await store.dispatch('fetchRepository');
+			if (!this.onboarded) {
+				eventBus.$emit('tour.start');
+				eventBus.$on('tour.stopped', () => (this.onboarded = true));
+			}
 
-		// this.$tours.tour.start();
+			await store.dispatch('fetchRepository');
+		});
 	},
 };
 </script>
