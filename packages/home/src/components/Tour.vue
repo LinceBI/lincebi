@@ -27,10 +27,13 @@ export default {
 		return {
 			popper: null,
 			step: null,
+			startCount: 0,
 		};
 	},
 	computed: {
 		options() {
+			this.startCount;
+
 			return {
 				highlight: true,
 				stopOnTargetNotFound: true,
@@ -50,6 +53,8 @@ export default {
 			};
 		},
 		steps() {
+			this.startCount;
+
 			const stepDefaults = {
 				params: {
 					placement: 'bottom',
@@ -228,6 +233,7 @@ export default {
 	},
 	methods: {
 		onStartTour() {
+			this.startCount++;
 			if (this.steps.length <= 0) return;
 			this.popper = null;
 			this.step = this.steps[0];
