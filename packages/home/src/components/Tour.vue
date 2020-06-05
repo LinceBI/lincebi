@@ -231,8 +231,6 @@ export default {
 		eventBus.$on('tour.stop', () => this.$tours.tour.stop());
 	},
 	beforeDestroy() {
-		this.popper = null;
-		this.step = null;
 		this.removeEventListeners();
 	},
 	methods: {
