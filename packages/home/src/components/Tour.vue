@@ -237,8 +237,11 @@ export default {
 	},
 	methods: {
 		onStartTour() {
+			// Force steps recalculation.
 			this.startCount++;
+
 			if (this.steps.length <= 0) return;
+
 			this.popper = null;
 			this.step = this.steps[0];
 			this.addEventListeners();
