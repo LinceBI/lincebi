@@ -124,7 +124,7 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle.home.command',
-									this.launchOverlays.get('stolap')
+									this.launchOverlays.get('launch_new_stolap_analytics')
 								);
 							},
 						},
