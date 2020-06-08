@@ -8,6 +8,7 @@ export default () => ({
 	hasDataAccess: false,
 	installedPlugins: [],
 	installedLocales: [],
+	launchOverlays: {},
 	locale: 'en',
 	isRepositoryLoading: true,
 	repository: { path: '/', children: [] },

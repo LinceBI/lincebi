@@ -3,10 +3,11 @@ import getCanCreate from '@lincebi/biserver-frontend-common/src/biserver/getCanC
 import getCanSchedule from '@lincebi/biserver-frontend-common/src/biserver/getCanSchedule';
 import getGlobalUserSettings from '@lincebi/biserver-frontend-common/src/biserver/getGlobalUserSettings';
 import getHasDataAccess from '@lincebi/biserver-frontend-common/src/biserver/getHasDataAccess';
+import getInstalledLocales from '@lincebi/biserver-frontend-common/src/biserver/getInstalledLocales';
 import getInstalledPlugins from '@lincebi/biserver-frontend-common/src/biserver/getInstalledPlugins';
+import getLaunchOverlays from '@lincebi/biserver-frontend-common/src/biserver/getLaunchOverlays';
 import getLocale from '@lincebi/biserver-frontend-common/src/biserver/getLocale';
 import getRepository from '@lincebi/biserver-frontend-common/src/biserver/getRepository';
-import getInstalledLocales from '@lincebi/biserver-frontend-common/src/biserver/getInstalledLocales';
 import getUserId from '@lincebi/biserver-frontend-common/src/biserver/getUserId';
 import getUserSettings from '@lincebi/biserver-frontend-common/src/biserver/getUserSettings';
 import setGlobalUserSettings from '@lincebi/biserver-frontend-common/src/biserver/setGlobalUserSettings';
@@ -54,6 +55,11 @@ export const fetchInstalledLocales = async ({ commit }) => {
 export const fetchLocale = async ({ commit }) => {
 	const locale = await getLocale();
 	commit('setLocale', locale);
+};
+
+export const fetchLaunchOverlays = async ({ commit }) => {
+	const launchOverlays = await getLaunchOverlays();
+	commit('setLaunchOverlays', launchOverlays);
 };
 
 export const updateLocale = async ({ commit }, locale) => {

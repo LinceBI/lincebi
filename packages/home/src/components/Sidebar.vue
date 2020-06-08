@@ -40,6 +40,9 @@ export default {
 		installedLocales() {
 			return store.state.installedLocales;
 		},
+		launchOverlays() {
+			return store.state.launchOverlays;
+		},
 		sidebarExpanded: {
 			get() {
 				return store.state.sidebarExpanded;
@@ -92,20 +95,17 @@ export default {
 							icon: ['fac', 'tool-stpivot'],
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#B0B916',
-							click() {
+							click: () => {
 								router
 									.push({
 										name: 'perspective',
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
-									mantleWindow.openURL(
-										'STPivot',
-										'STPivot',
-										'plugin/jpivot/AnalysisViewService?component=newView'
-									);
-								});
+								eventBus.$emitWhenAvailable(
+									'mantle.home.command',
+									this.launchOverlays['jpivot'].command
+								);
 							},
 						},
 						{
@@ -115,20 +115,17 @@ export default {
 							icon: ['fac', 'tool-stolap'],
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#993711',
-							click() {
+							click: () => {
 								router
 									.push({
 										name: 'perspective',
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
-									mantleWindow.openURL(
-										'STOlap',
-										'STOlap',
-										'plugin/stolap/faces/catalog.xhtml'
-									);
-								});
+								eventBus.$emitWhenAvailable(
+									'mantle.home.command',
+									this.launchOverlays['stolap'].command
+								);
 							},
 						},
 						{
@@ -138,20 +135,17 @@ export default {
 							icon: ['fac', 'tool-streport'],
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#E67E22',
-							click() {
+							click: () => {
 								router
 									.push({
 										name: 'perspective',
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
-									mantleWindow.openURL(
-										'STReport',
-										'STReport',
-										'api/repos/saiku-adhoc/adhoc.edit'
-									);
-								});
+								eventBus.$emitWhenAvailable(
+									'mantle.home.command',
+									this.launchOverlays['launch-new-saiku-adhoc'].command
+								);
 							},
 						},
 						{
@@ -161,20 +155,17 @@ export default {
 							icon: ['fac', 'tool-stdashboard'],
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#2980B9',
-							click() {
+							click: () => {
 								router
 									.push({
 										name: 'perspective',
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
-									mantleWindow.openURL(
-										'STDashboard',
-										'STDashboard',
-										'content/stdashboard?solution=system&path=temp&action=true'
-									);
-								});
+								eventBus.$emitWhenAvailable(
+									'mantle.home.command',
+									this.launchOverlays['stdashboardButton'].command
+								);
 							},
 						},
 						{
@@ -184,20 +175,17 @@ export default {
 							icon: ['fac', 'tool-stagile'],
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#B91616',
-							click() {
+							click: () => {
 								router
 									.push({
 										name: 'perspective',
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
-									mantleWindow.openURL(
-										'STAgile',
-										'STAgile',
-										'content/stagile/ui/index.html#!/new'
-									);
-								});
+								eventBus.$emitWhenAvailable(
+									'mantle.home.command',
+									this.launchOverlays['launch-new-stagile'].command
+								);
 							},
 						},
 						{
@@ -207,20 +195,37 @@ export default {
 							icon: ['fac', 'tool-stcard'],
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#00796B',
-							click() {
+							click: () => {
 								router
 									.push({
 										name: 'perspective',
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
-									mantleWindow.openURL(
-										'STCard',
-										'STCard',
-										'stcard/menu/STCard.jsp'
-									);
-								});
+								eventBus.$emitWhenAvailable(
+									'mantle.home.command',
+									this.launchOverlays['button.stcard'].command
+								);
+							},
+						},
+						{
+							enabled: this.installedPlugins.includes('saiku'),
+							id: 'tool-saiku',
+							name: 'Saiku Analytics',
+							icon: ['fac', 'tool-saiku'],
+							selectedForeground: '#FFFFFF',
+							selectedBackground: '#C52120',
+							click: () => {
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' },
+									})
+									.catch(() => {});
+								eventBus.$emitWhenAvailable(
+									'mantle.home.command',
+									this.launchOverlays['SaikuAnalytics'].command
+								);
 							},
 						},
 						{
@@ -230,7 +235,7 @@ export default {
 							icon: ['fac', 'tool-cde'],
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#9836E4',
-							click() {
+							click: () => {
 								router
 									.push({
 										name: 'perspective',
@@ -247,36 +252,13 @@ export default {
 							},
 						},
 						{
-							enabled: this.installedPlugins.includes('saiku'),
-							id: 'tool-saiku',
-							name: 'Saiku Analytics',
-							icon: ['fac', 'tool-saiku'],
-							selectedForeground: '#FFFFFF',
-							selectedBackground: '#C52120',
-							click() {
-								router
-									.push({
-										name: 'perspective',
-										params: { perspective: 'opened.perspective' },
-									})
-									.catch(() => {});
-								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
-									mantleWindow.openURL(
-										'Saiku Analytics',
-										'Saiku Analytics',
-										'content/saiku-ui/index.html?biplugin5=true'
-									);
-								});
-							},
-						},
-						{
 							enabled: this.installedPlugins.includes('repositorySynchronizer'),
 							id: 'tool-repository-synchronizer',
 							name: 'Repository Synchronizer',
 							icon: ['fac', 'tool-repository-synchronizer'],
 							selectedForeground: '#FFFFFF',
 							selectedBackground: '#4B4B4B',
-							click() {
+							click: () => {
 								router
 									.push({
 										name: 'perspective',
@@ -319,7 +301,7 @@ export default {
 							id: 'search-main',
 							name: this.$t('sidebar.search'),
 							icon: ['fac', 'tool-stsearch'],
-							click() {
+							click: () => {
 								router
 									.push({
 										name: 'perspective',
@@ -342,7 +324,7 @@ export default {
 							id: 'search-favorites',
 							name: this.$t('sidebar.favorites'),
 							icon: ['fas', 'star'],
-							click() {
+							click: () => {
 								router
 									.push({
 										name: 'perspective',
@@ -366,7 +348,7 @@ export default {
 							id: 'search-recents',
 							name: this.$t('sidebar.recents'),
 							icon: ['far', 'clock'],
-							click() {
+							click: () => {
 								router
 									.push({
 										name: 'perspective',
@@ -392,7 +374,7 @@ export default {
 					id: 'datasources',
 					name: this.$t('sidebar.datasources'),
 					icon: ['fas', 'database'],
-					click() {
+					click: () => {
 						router
 							.push({
 								name: 'perspective',
@@ -422,7 +404,7 @@ export default {
 							id: 'locale-english',
 							name: this.$t('locales.english'),
 							img: require('@/assets/img/locales/en.svg'),
-							async click() {
+							click: async () => {
 								await store.dispatch('updateLocale', 'en');
 								await store.dispatch('fetchRepository');
 							},
@@ -432,7 +414,7 @@ export default {
 							id: 'locale-spanish',
 							name: this.$t('locales.spanish'),
 							img: require('@/assets/img/locales/es.svg'),
-							async click() {
+							click: async () => {
 								await store.dispatch('updateLocale', 'es');
 								await store.dispatch('fetchRepository');
 							},
@@ -442,7 +424,7 @@ export default {
 							id: 'locale-catalan',
 							name: this.$t('locales.catalan'),
 							img: require('@/assets/img/locales/ca.svg'),
-							async click() {
+							click: async () => {
 								await store.dispatch('updateLocale', 'ca');
 								await store.dispatch('fetchRepository');
 							},

@@ -48,6 +48,7 @@ export default {
 					store.dispatch('fetchLocale');
 				}),
 				store.dispatch('fetchInstalledPlugins'),
+				store.dispatch('fetchLaunchOverlays'),
 				store.dispatch('fetchGlobalUserSettings'),
 				store.dispatch('fetchUserSettings'),
 			]);

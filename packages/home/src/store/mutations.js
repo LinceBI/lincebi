@@ -33,6 +33,10 @@ export const setInstalledLocales = (state, installedLocales) => {
 	state.installedLocales = installedLocales;
 };
 
+export const setLaunchOverlays = (state, launchOverlays) => {
+	state.launchOverlays = launchOverlays;
+};
+
 export const setLocale = (state, locale) => {
 	if (
 		state.installedLocales.includes(locale) &&

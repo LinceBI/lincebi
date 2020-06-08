@@ -31,9 +31,9 @@ export default {
 			staticSearchParams: '',
 			// It is recommended to add to this list all properties which are directly or indirectly used.
 			mantleWindowProperties: [
+				'HOME_FOLDER',
 				'enableSave',
 				'executeCommand',
-				'HOME_FOLDER',
 				'mantle_getPerspectives',
 				'mantle_initialized',
 				'mantle_setPerspective',
@@ -108,6 +108,7 @@ export default {
 		eventBus.$on('mantle.perspective.invoke', this.invokeInPerspectiveWindow);
 		eventBus.$on('mantle.perspective.reload', this.reloadPerspective);
 		eventBus.$on('mantle.perspective.params', this.changePerspectiveParams);
+		eventBus.$on('mantle.home.command', this.runHomeCommand);
 	},
 	methods: {
 		retrieveMantleWindow() {
@@ -138,6 +139,17 @@ export default {
 					}
 				});
 				fn.call(perspectiveWindow, perspectiveWindow);
+			});
+		},
+		async runHomeCommand(command) {
+			this.invokeInMantleWindow(async (mantleWindow) => {
+				// Mock jQuery calls to prevent errors with plugins that try to use it.
+				// eslint-disable-next-line no-unused-vars
+				const $ = () => new Proxy({}, { get: () => $ });
+				// Mock "Home" object so that plugins can use it.
+				// eslint-disable-next-line no-unused-vars
+				const Home = { openFile: mantleWindow.openURL };
+				eval(command);
 			});
 		},
 		reloadPerspective(perspective) {
