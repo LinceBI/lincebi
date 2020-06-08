@@ -291,7 +291,7 @@ export default {
 					href: '#/p/browser.perspective',
 				},
 				{
-					enabled: this.plugins.has('stsearch'),
+					enabled: true,
 					id: 'search',
 					name: this.$t('sidebar.search'),
 					icon: ['fac', 'tool-stsearch'],

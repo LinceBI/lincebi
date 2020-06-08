@@ -135,7 +135,7 @@
 					<div class="card-toolbar">
 						<div class="btn-group">
 							<div
-								v-if="!file.isReadonly && plugins.has('stsearch')"
+								v-if="!file.isReadonly"
 								class="btn btn-dark"
 								tabindex="0"
 								@click.stop="onFileMetadataEditClick(file)"

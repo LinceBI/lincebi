@@ -25,11 +25,7 @@
 				<navbar-profile class="nav-element" data-v-step="navbar-profile" />
 			</b-navbar-nav>
 			<b-navbar-nav class="nav-section ml-auto">
-				<navbar-search
-					v-if="plugins.has('stsearch')"
-					class="nav-element"
-					data-v-step="navbar-search"
-				/>
+				<navbar-search class="nav-element" data-v-step="navbar-search" />
 				<b-nav-item
 					v-if="isDemo"
 					class="nav-element"
