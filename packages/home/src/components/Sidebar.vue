@@ -34,14 +34,14 @@ export default {
 		hasDataAccess() {
 			return store.state.hasDataAccess;
 		},
-		installedPlugins() {
-			return store.state.installedPlugins;
-		},
-		installedLocales() {
-			return store.state.installedLocales;
+		plugins() {
+			return store.state.plugins;
 		},
 		launchOverlays() {
 			return store.state.launchOverlays;
+		},
+		locales() {
+			return store.state.locales;
 		},
 		sidebarExpanded: {
 			get() {
@@ -89,7 +89,7 @@ export default {
 					icon: ['fas', 'plus'],
 					subitems: [
 						{
-							enabled: this.installedPlugins.includes('stpivot'),
+							enabled: this.plugins.has('stpivot'),
 							id: 'tool-stpivot',
 							name: 'STPivot',
 							icon: ['fac', 'tool-stpivot'],
@@ -104,12 +104,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle.home.command',
-									this.launchOverlays['jpivot'].command
+									this.launchOverlays.get('jpivot')
 								);
 							},
 						},
 						{
-							enabled: this.installedPlugins.includes('stolap'),
+							enabled: this.plugins.has('stolap'),
 							id: 'tool-stolap',
 							name: 'STOlap',
 							icon: ['fac', 'tool-stolap'],
@@ -124,12 +124,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle.home.command',
-									this.launchOverlays['stolap'].command
+									this.launchOverlays.get('stolap')
 								);
 							},
 						},
 						{
-							enabled: this.installedPlugins.includes('streport'),
+							enabled: this.plugins.has('saiku-adhoc'),
 							id: 'tool-streport',
 							name: 'STReport',
 							icon: ['fac', 'tool-streport'],
@@ -144,12 +144,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle.home.command',
-									this.launchOverlays['launch-new-saiku-adhoc'].command
+									this.launchOverlays.get('launch-new-saiku-adhoc')
 								);
 							},
 						},
 						{
-							enabled: this.installedPlugins.includes('stdashboard'),
+							enabled: this.plugins.has('stdashboard'),
 							id: 'tool-stdashboard',
 							name: 'STDashboard',
 							icon: ['fac', 'tool-stdashboard'],
@@ -164,12 +164,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle.home.command',
-									this.launchOverlays['stdashboardButton'].command
+									this.launchOverlays.get('stdashboardButton')
 								);
 							},
 						},
 						{
-							enabled: this.installedPlugins.includes('stagile'),
+							enabled: this.plugins.has('stagile'),
 							id: 'tool-stagile',
 							name: 'STAgile',
 							icon: ['fac', 'tool-stagile'],
@@ -184,12 +184,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle.home.command',
-									this.launchOverlays['launch-new-stagile'].command
+									this.launchOverlays.get('launch-new-stagile')
 								);
 							},
 						},
 						{
-							enabled: this.installedPlugins.includes('stcard'),
+							enabled: this.plugins.has('stcard'),
 							id: 'tool-stcard',
 							name: 'STCard',
 							icon: ['fac', 'tool-stcard'],
@@ -204,12 +204,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle.home.command',
-									this.launchOverlays['button.stcard'].command
+									this.launchOverlays.get('button.stcard')
 								);
 							},
 						},
 						{
-							enabled: this.installedPlugins.includes('saiku'),
+							enabled: this.plugins.has('saiku'),
 							id: 'tool-saiku',
 							name: 'Saiku Analytics',
 							icon: ['fac', 'tool-saiku'],
@@ -224,12 +224,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle.home.command',
-									this.launchOverlays['SaikuAnalytics'].command
+									this.launchOverlays.get('SaikuAnalytics')
 								);
 							},
 						},
 						{
-							enabled: this.installedPlugins.includes('cde'),
+							enabled: this.plugins.has('cde'),
 							id: 'tool-cde',
 							name: 'CDE',
 							icon: ['fac', 'tool-cde'],
@@ -252,7 +252,7 @@ export default {
 							},
 						},
 						{
-							enabled: this.installedPlugins.includes('repositorySynchronizer'),
+							enabled: this.plugins.has('repositorySynchronizer'),
 							id: 'tool-repository-synchronizer',
 							name: 'Repository Synchronizer',
 							icon: ['fac', 'tool-repository-synchronizer'],
@@ -291,7 +291,7 @@ export default {
 					href: '#/p/browser.perspective',
 				},
 				{
-					enabled: this.installedPlugins.includes('stsearch'),
+					enabled: this.plugins.has('stsearch'),
 					id: 'search',
 					name: this.$t('sidebar.search'),
 					icon: ['fac', 'tool-stsearch'],
@@ -394,13 +394,13 @@ export default {
 					href: '#/administration',
 				},
 				{
-					enabled: this.installedLocales.length > 1,
+					enabled: this.locales.size > 1,
 					id: 'locales',
 					name: this.$t('sidebar.locales'),
 					icon: ['fas', 'globe-europe'],
 					subitems: [
 						{
-							enabled: this.installedLocales.includes('en'),
+							enabled: this.locales.has('en'),
 							id: 'locale-english',
 							name: this.$t('locales.english'),
 							img: require('@/assets/img/locales/en.svg'),
@@ -410,7 +410,7 @@ export default {
 							},
 						},
 						{
-							enabled: this.installedLocales.includes('es'),
+							enabled: this.locales.has('es'),
 							id: 'locale-spanish',
 							name: this.$t('locales.spanish'),
 							img: require('@/assets/img/locales/es.svg'),
@@ -420,7 +420,7 @@ export default {
 							},
 						},
 						{
-							enabled: this.installedLocales.includes('ca'),
+							enabled: this.locales.has('ca'),
 							id: 'locale-catalan',
 							name: this.$t('locales.catalan'),
 							img: require('@/assets/img/locales/ca.svg'),

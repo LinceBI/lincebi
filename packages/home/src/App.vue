@@ -44,11 +44,12 @@ export default {
 				store.dispatch('fetchCanAdminister'),
 				store.dispatch('fetchCanSchedule'),
 				store.dispatch('fetchHasDataAccess'),
-				store.dispatch('fetchInstalledLocales').then(() => {
+				store.dispatch('fetchPlugins'),
+				store.dispatch('fetchPerspectives'),
+				store.dispatch('fetchLaunchOverlays'),
+				store.dispatch('fetchLocales').then(() => {
 					store.dispatch('fetchLocale');
 				}),
-				store.dispatch('fetchInstalledPlugins'),
-				store.dispatch('fetchLaunchOverlays'),
 				store.dispatch('fetchGlobalUserSettings'),
 				store.dispatch('fetchUserSettings'),
 			]);

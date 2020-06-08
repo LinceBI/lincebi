@@ -26,7 +26,7 @@
 			</b-navbar-nav>
 			<b-navbar-nav class="nav-section ml-auto">
 				<navbar-search
-					v-if="installedPlugins.includes('stsearch')"
+					v-if="plugins.has('stsearch')"
 					class="nav-element"
 					data-v-step="navbar-search"
 				/>
@@ -66,8 +66,8 @@ export default {
 		NavbarProfile,
 	},
 	computed: {
-		installedPlugins() {
-			return store.state.installedPlugins;
+		plugins() {
+			return store.state.plugins;
 		},
 		navbarExpanded: {
 			get() {

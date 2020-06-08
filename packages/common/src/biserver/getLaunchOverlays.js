@@ -12,30 +12,30 @@ const getLaunchOverlays = async () => {
 		headers: { 'Content-Type': 'text/plain' },
 	});
 
+	const launchOverlays = new Map();
+
 	if (response.status === 200) {
 		const content = await response.text();
 
 		try {
 			const json = JSON.parse(content);
 			const xmlParser = new DOMParser();
-			const overlays = {};
 			json.overlay.forEach((overlay) => {
 				const xml = xmlParser.parseFromString(overlay.source, 'text/xml');
 				const $button = xml.querySelector('button');
 				if ($button.getAttribute('id')) {
-					overlays[$button.getAttribute('id')] = {
-						command: $button.getAttribute('command') || null,
-					};
+					launchOverlays.set(
+						$button.getAttribute('id'),
+						$button.getAttribute('command')
+					);
 				}
 			});
-			return overlays;
 		} catch (error) {
 			console.error(error);
 		}
 	}
 
-	console.warn('Falling back to default "launchOverlays" value');
-	return {};
+	return launchOverlays;
 };
 
 export default async (...args) => {

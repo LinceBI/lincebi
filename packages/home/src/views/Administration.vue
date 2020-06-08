@@ -28,7 +28,7 @@
 				</span>
 			</b-list-group-item>
 			<b-list-group-item
-				v-if="canAdminister && installedPlugins.includes('marketplace')"
+				v-if="canAdminister && perspectives.has('marketplace.perspective.osgi')"
 				button
 				@click="openMarketplace()"
 			>
@@ -48,7 +48,7 @@
 				</span>
 			</b-list-group-item>
 			<b-list-group-item
-				v-if="installedPlugins.includes('streport')"
+				v-if="plugins.has('saiku-adhoc')"
 				button
 				@click="openStreportStats()"
 			>
@@ -129,8 +129,11 @@ export default {
 		hasDataAccess() {
 			return store.state.hasDataAccess;
 		},
-		installedPlugins() {
-			return store.state.installedPlugins;
+		plugins() {
+			return store.state.plugins;
+		},
+		perspectives() {
+			return store.state.perspectives;
 		},
 	},
 	methods: {

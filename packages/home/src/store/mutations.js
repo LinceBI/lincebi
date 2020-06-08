@@ -25,23 +25,24 @@ export const setHasDataAccess = (state, hasDataAccess) => {
 	state.hasDataAccess = hasDataAccess;
 };
 
-export const setInstalledPlugins = (state, installedPlugins) => {
-	state.installedPlugins = installedPlugins;
+export const setPlugins = (state, plugins) => {
+	state.plugins = plugins;
 };
 
-export const setInstalledLocales = (state, installedLocales) => {
-	state.installedLocales = installedLocales;
+export const setPerspectives = (state, perspectives) => {
+	state.perspectives = perspectives;
 };
 
 export const setLaunchOverlays = (state, launchOverlays) => {
 	state.launchOverlays = launchOverlays;
 };
 
+export const setLocales = (state, locales) => {
+	state.locales = locales;
+};
+
 export const setLocale = (state, locale) => {
-	if (
-		state.installedLocales.includes(locale) &&
-		i18n.availableLocales.includes(locale)
-	) {
+	if (state.locales.has(locale) && i18n.availableLocales.includes(locale)) {
 		state.locale = locale;
 		i18n.locale = locale;
 		document.documentElement.lang = locale;

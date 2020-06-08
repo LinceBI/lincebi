@@ -135,7 +135,7 @@
 					<div class="card-toolbar">
 						<div class="btn-group">
 							<div
-								v-if="!file.isReadonly && installedPlugins.includes('stsearch')"
+								v-if="!file.isReadonly && plugins.has('stsearch')"
 								class="btn btn-dark"
 								tabindex="0"
 								@click.stop="onFileMetadataEditClick(file)"
@@ -307,8 +307,8 @@ export default {
 		};
 	},
 	computed: {
-		installedPlugins() {
-			return store.state.installedPlugins;
+		plugins() {
+			return store.state.plugins;
 		},
 		tabs: {
 			get() {

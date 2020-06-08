@@ -3,10 +3,11 @@ import getCanCreate from '@lincebi/biserver-frontend-common/src/biserver/getCanC
 import getCanSchedule from '@lincebi/biserver-frontend-common/src/biserver/getCanSchedule';
 import getGlobalUserSettings from '@lincebi/biserver-frontend-common/src/biserver/getGlobalUserSettings';
 import getHasDataAccess from '@lincebi/biserver-frontend-common/src/biserver/getHasDataAccess';
-import getInstalledLocales from '@lincebi/biserver-frontend-common/src/biserver/getInstalledLocales';
-import getInstalledPlugins from '@lincebi/biserver-frontend-common/src/biserver/getInstalledPlugins';
 import getLaunchOverlays from '@lincebi/biserver-frontend-common/src/biserver/getLaunchOverlays';
 import getLocale from '@lincebi/biserver-frontend-common/src/biserver/getLocale';
+import getLocales from '@lincebi/biserver-frontend-common/src/biserver/getLocales';
+import getPerspectives from '@lincebi/biserver-frontend-common/src/biserver/getPerspectives';
+import getPlugins from '@lincebi/biserver-frontend-common/src/biserver/getPlugins';
 import getRepository from '@lincebi/biserver-frontend-common/src/biserver/getRepository';
 import getUserId from '@lincebi/biserver-frontend-common/src/biserver/getUserId';
 import getUserSettings from '@lincebi/biserver-frontend-common/src/biserver/getUserSettings';
@@ -42,24 +43,29 @@ export const fetchHasDataAccess = async ({ commit }) => {
 	commit('setHasDataAccess', hasDataAccess);
 };
 
-export const fetchInstalledPlugins = async ({ commit }) => {
-	const installedPlugins = await getInstalledPlugins();
-	commit('setInstalledPlugins', installedPlugins);
+export const fetchPlugins = async ({ commit }) => {
+	const plugins = await getPlugins();
+	commit('setPlugins', plugins);
 };
 
-export const fetchInstalledLocales = async ({ commit }) => {
-	const installedLocales = await getInstalledLocales();
-	commit('setInstalledLocales', installedLocales);
-};
-
-export const fetchLocale = async ({ commit }) => {
-	const locale = await getLocale();
-	commit('setLocale', locale);
+export const fetchPerspectives = async ({ commit }) => {
+	const perspectives = await getPerspectives();
+	commit('setPerspectives', perspectives);
 };
 
 export const fetchLaunchOverlays = async ({ commit }) => {
 	const launchOverlays = await getLaunchOverlays();
 	commit('setLaunchOverlays', launchOverlays);
+};
+
+export const fetchLocales = async ({ commit }) => {
+	const locales = await getLocales();
+	commit('setLocales', locales);
+};
+
+export const fetchLocale = async ({ commit }) => {
+	const locale = await getLocale();
+	commit('setLocale', locale);
 };
 
 export const updateLocale = async ({ commit }, locale) => {
