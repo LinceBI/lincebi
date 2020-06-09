@@ -26,19 +26,7 @@
 			</b-navbar-nav>
 			<b-navbar-nav class="nav-section ml-auto">
 				<navbar-search class="nav-element" data-v-step="navbar-search" />
-				<b-nav-item
-					v-if="isDemo"
-					class="nav-element"
-					href="#/p/stadmin.perspective"
-				>
-					<font-awesome-icon :icon="['fac', 'tool-stadmin']" />
-					<span class="lbl d-lg-none">STAdmin</span>
-				</b-nav-item>
-				<navbar-settings
-					v-else
-					class="nav-element"
-					data-v-step="navbar-settings"
-				/>
+				<navbar-settings class="nav-element" data-v-step="navbar-settings" />
 			</b-navbar-nav>
 		</b-collapse>
 	</b-navbar>

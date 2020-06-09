@@ -54,33 +54,11 @@ export default {
 		sidebar() {
 			return [
 				{
-					enabled: !this.isDemo,
+					enabled: true,
 					id: 'home',
 					name: this.$t('sidebar.home'),
 					icon: ['fas', 'home'],
 					href: '#/',
-				},
-				{
-					enabled: this.isDemo,
-					id: 'sthome',
-					name: this.$t('sidebar.home'),
-					icon: ['fas', 'home'],
-					subitems: [
-						{
-							enabled: true,
-							id: 'sthome.perspective',
-							name: 'STHome',
-							icon: ['fas', 'home'],
-							href: '#/p/sthome.perspective',
-						},
-						{
-							enabled: true,
-							id: 'stadmin.perspective',
-							name: 'STAdmin',
-							icon: ['fac', 'tool-stadmin'],
-							href: '#/p/stadmin.perspective',
-						},
-					],
 				},
 				{
 					enabled: this.canCreate,

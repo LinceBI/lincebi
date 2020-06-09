@@ -2,12 +2,11 @@ import fetch from 'unfetch';
 
 import getContextPath from './getContextPath';
 
-import isDemo from '../isDemo';
-import { allowedSettingsInDemo } from './getGlobalUserSetting';
+import isMocked from '../isMocked';
 
 export default async (key, value = '') => {
-	// Mock global user settings in demo environment.
-	if (isDemo && !allowedSettingsInDemo.has(key)) {
+	// Simulate action if mocked.
+	if (isMocked) {
 		try {
 			const prefixedKey = `_global_user_setting_${key}`;
 			window.sessionStorage.setItem(prefixedKey, value);

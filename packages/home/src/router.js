@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import isDemo from '@lincebi/biserver-frontend-common/src/isDemo';
 import stopAllWindows from '@lincebi/biserver-frontend-common/src/stopAllWindows';
 
 import Administration from '@/views/Administration.vue';
@@ -16,9 +15,7 @@ export default new Router({
 		{
 			path: '/',
 			name: 'root',
-			redirect: isDemo
-				? { name: 'perspective', params: { perspective: 'sthome.perspective' } }
-				: { name: 'home' },
+			redirect: { name: 'home' },
 		},
 		{
 			path: '/home',

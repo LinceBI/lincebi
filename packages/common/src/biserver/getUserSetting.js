@@ -2,12 +2,11 @@ import fetch from 'unfetch';
 
 import getContextPath from './getContextPath';
 
-import isDemo from '../isDemo';
-export const allowedSettingsInDemo = new Set([]);
+import isMocked from '../isMocked';
 
 export default async (key) => {
-	// Mock user settings in demo environment.
-	if (isDemo && !allowedSettingsInDemo.has(key)) {
+	// Simulate action if mocked.
+	if (isMocked) {
 		try {
 			const prefixedKey = `_user_setting_${key}`;
 			const value = window.sessionStorage.getItem(prefixedKey);
