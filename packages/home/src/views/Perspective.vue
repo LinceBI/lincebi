@@ -203,24 +203,23 @@ export default {
 					// Skip if there is no "mantle_getPerspectives" method.
 					if (!mantleWindow.mantle_getPerspectives) return;
 
-					const visibleFrame = mantleWindow
+					const visiblePerspectiveFrame = mantleWindow
 						.mantle_getPerspectives()
-						.map((perspective) => {
-							const selector = `iframe#${CSS.escape(perspective)}`;
-							return mantleWindow.document.querySelector(selector);
-						})
-						.find((frame) => {
-							return frame !== null && frame.offsetParent !== null;
-						});
+						.map((p) => mantleWindow.document.getElementById(p))
+						.find(
+							(f) =>
+								f instanceof mantleWindow.HTMLIFrameElement &&
+								f.offsetParent !== null
+						);
 
 					let visiblePerspective;
-					if (visibleFrame) {
-						visiblePerspective = visibleFrame.id;
+					if (visiblePerspectiveFrame) {
+						visiblePerspective = visiblePerspectiveFrame.id;
 					} else {
 						// Handle "opened.perspective" with a special check.
 						const knownId = 'solutionNavigatorAndContentPanel';
 						const sncp = mantleWindow.document.getElementById(knownId);
-						if (sncp !== null && sncp.offsetParent !== null) {
+						if (sncp && sncp.offsetParent !== null) {
 							visiblePerspective = 'opened.perspective';
 						}
 					}
