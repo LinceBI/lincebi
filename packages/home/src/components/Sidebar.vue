@@ -207,7 +207,7 @@ export default {
 							},
 						},
 						{
-							enabled: this.plugins.has('cde'),
+							enabled: this.plugins.has('pentaho-cdf'),
 							id: 'tool-cde',
 							name: 'CDE',
 							icon: ['fac', 'tool-cde'],
