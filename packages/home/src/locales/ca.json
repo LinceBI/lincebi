@@ -103,7 +103,7 @@
       "sidebarToolStcard": { "title": "STCard", "content": "STCard és una eina per a crear, gestionar i analitzar scorecards." },
       "sidebarToolCde": { "title": "CDE", "content": "CDE és l'eina que Pentaho incorpora de sèrie per a crear quadres de comandament." },
       "sidebarOpened": { "title": "Oberts", "content": "Des d'aquí podrà veure els arxius actualment oberts." },
-      "sidebarBrowser": { "title": "Explorador", "content": "El explorador de archivos le permitirá navegar por los archivos del repositorio." },
+      "sidebarBrowser": { "title": "Explorador", "content": "L'explorador d'arxius li permetrà navegar pels arxius del repositori." },
       "sidebarSearch": { "title": "Cercador", "content": "El cercador li permetrà trobar qualsevol arxiu del repositori." },
       "sidebarDatasources": { "title": "Fonts de dades", "content": "Administri les fonts de dades, els esquemes de Mondrian i les metadades d'informes." },
       "sidebarAdministration": { "title": "Administració", "content": "La pàgina d'administració li permetrà accedir les opcions de la plataforma restringides a administradors." },
