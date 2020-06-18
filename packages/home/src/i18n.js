@@ -5,6 +5,7 @@ import VueI18n from 'vue-i18n';
 
 import en from '@/locales/en.json';
 import es from '@/locales/es.json';
+import pt from '@/locales/pt.json';
 import ca from '@/locales/ca.json';
 
 Vue.use(VueI18n);
@@ -13,7 +14,7 @@ const i18n = new VueI18n({
 	// Later the correct language will be set if it is installed on Pentaho BI Server.
 	locale: process.env.VUE_APP_I18N_LOCALE || 'en', // navigator.language.slice(0, 2),
 	fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
-	messages: { en, es, ca },
+	messages: { en, es, pt, ca },
 });
 
 Object.keys(i18n.messages).forEach(async (locale) => {

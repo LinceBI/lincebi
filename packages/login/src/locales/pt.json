@@ -1,0 +1,12 @@
+{
+  "username": { "label": "Nome de usuário:" },
+  "password": { "label": "Senha:" },
+  "getCredentialsHere": "Obtenha seu usuário e senha aqui.",
+  "signIn": "Acessar",
+  "footer": "",
+  "errors": {
+    "unknownError": "Ocorreu um erro de login. Por favor, tente novamente.",
+    "authenticationFailure": "Ocorreu um erro de login. Por favor, tente novamente.",
+    "sessionReuseDetected": "Ocorreu um erro de login. Por favor, tente novamente."
+  }
+}

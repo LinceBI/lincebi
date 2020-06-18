@@ -398,6 +398,16 @@ export default {
 							},
 						},
 						{
+							enabled: this.locales.has('pt'),
+							id: 'locale-portuguese',
+							name: this.$t('locales.portuguese'),
+							img: require('@/assets/img/locales/pt.svg'),
+							click: async () => {
+								await store.dispatch('updateLocale', 'pt');
+								await store.dispatch('fetchRepository');
+							},
+						},
+						{
 							enabled: this.locales.has('ca'),
 							id: 'locale-catalan',
 							name: this.$t('locales.catalan'),

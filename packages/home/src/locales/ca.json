@@ -1,10 +1,11 @@
 {
   "locales": {
-    "english": "Anglès",
-    "spanish": "Espanyol",
     "catalan": "Català",
+    "english": "Anglès",
     "french": "Francès",
-    "german": "Alemany"
+    "german": "Alemany",
+    "portuguese": "Portuguès",
+    "spanish": "Espanyol"
   },
   "navbar": {
     "categories": "Categories",
