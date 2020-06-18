@@ -9,8 +9,10 @@ const getLocales = async () => {
 	const locales = new Set(['en']);
 
 	registeredPlugins.forEach((plugin) => {
-		if (plugin.startsWith('languagePack_')) {
-			locales.add(plugin.replace('languagePack_', ''));
+		const pluginRegex = /^languagePack_([a-z]{2}(?:_[A-Z]{2})?)$/;
+		const found = plugin.match(pluginRegex);
+		if (found && found.length === 2) {
+			locales.add(found[1]);
 		}
 	});
 

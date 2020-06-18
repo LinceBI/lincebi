@@ -13,7 +13,7 @@ const getLocale = async () => {
 	});
 
 	if (response.status === 200) {
-		const localeRegex = /^([a-z]{2})(?:_[A-Z]{2})?$/;
+		const localeRegex = /^([a-z]{2}(?:_[A-Z]{2})?)$/;
 		const localeResult = await response.text();
 		const found = localeResult.match(localeRegex);
 		if (found && found.length === 2) {
