@@ -13,6 +13,34 @@ $theme-colors: (
 	"dark": #343a40
 );
 
+/* Tool colors */
+$theme-colors: map-merge($theme-colors, (
+	"tool-other": #3e50b7,
+	"tool-cde": #9836e4,
+	"tool-saiku": #c52120,
+	"tool-stagile": #b91616,
+	"tool-stdashboard": #2980b9,
+	"tool-stolap": #993711,
+	"tool-stpivot": #9aa210,
+	"tool-streport": #e67e22
+));
+
+/* File colors */
+$theme-colors: map-merge($theme-colors, (
+	"file-other": map-get($theme-colors, tool-other),
+	"file-adhoc": map-get($theme-colors, tool-streport),
+	"file-csv": map-get($theme-colors, tool-other),
+	"file-pdf": map-get($theme-colors, tool-other),
+	"file-prpt": map-get($theme-colors, tool-other),
+	"file-saiku": map-get($theme-colors, tool-saiku),
+	"file-sta": map-get($theme-colors, tool-stagile),
+	"file-std": map-get($theme-colors, tool-stdashboard),
+	"file-stolap": map-get($theme-colors, tool-stolap),
+	"file-url": map-get($theme-colors, tool-other),
+	"file-wcdf": map-get($theme-colors, tool-cde),
+	"file-xjpivot": map-get($theme-colors, tool-stpivot)
+));
+
 $yiq-text-dark: #495057;
 $yiq-text-light: #f8f9fa;
 

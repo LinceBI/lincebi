@@ -72,7 +72,7 @@
 		<!-- Normal content -->
 		<div v-else class="home-tab-content">
 			<div v-if="currentTab.sort" class="home-card-order">
-				<div class="input-group">
+				<div class="input-group input-group-sm">
 					<select v-model="currentTab.sort.selected" class="form-control">
 						<option
 							v-for="option in sort.options"
@@ -112,54 +112,56 @@
 					@click="onFileOpenClick(file)"
 					@keyup.enter="onFileOpenClick(file)"
 				>
-					<img
-						class="card-img"
-						:src="getThumbnailOrDefault(file)"
-						:alt="file.title"
-						@contextmenu.stop.prevent
-					/>
-					<div
-						:id="`card-body-${uniqueId}-${file.id}`"
-						class="card-body"
-						@click.stop.prevent
-						@keyup.enter.stop.prevent
-					>
-						<h5 class="card-title m-0 text-truncate">
-							<font-awesome-icon
-								:class="['fa-fw', 'mr-1']"
-								:icon="['fac', `file-${file.extension}`]"
-							/>
-							{{ file.title }}
-						</h5>
-					</div>
-					<div class="card-toolbar">
-						<div class="btn-group">
-							<div
-								v-if="!file.isReadonly"
-								class="btn btn-dark"
-								tabindex="0"
-								@click.stop="onFileMetadataEditClick(file)"
-								@keyup.enter.stop="onFileMetadataEditClick(file)"
-							>
-								<font-awesome-icon :icon="['fas', 'list']" />
-							</div>
-							<div
-								v-if="!file.isReadonly && file.editUrl"
-								class="btn btn-dark"
-								tabindex="0"
-								@click.stop="onFileEditClick(file)"
-								@keyup.enter.stop="onFileEditClick(file)"
-							>
-								<font-awesome-icon :icon="['fas', 'pencil-alt']" />
-							</div>
-							<div
-								v-if="currentTab.isContentDraggable"
-								class="btn btn-dark drag-handle"
-								tabindex="-1"
-								@click.stop.prevent
-								@contextmenu.stop.prevent
-							>
-								<font-awesome-icon :icon="['fas', 'arrows-alt']" />
+					<div class="card-container">
+						<img
+							class="card-img"
+							:src="getFileThumbnail(file)"
+							:alt="file.title"
+							@contextmenu.stop.prevent
+						/>
+						<div
+							:id="`card-body-${uniqueId}-${file.id}`"
+							class="card-body"
+							@click.stop.prevent
+							@keyup.enter.stop.prevent
+						>
+							<h5 class="card-title m-0">
+								<font-awesome-icon
+									:class="['fa-fw', 'mr-1', getFileColorClass(file)]"
+									:icon="['fac', getFileIconName(file)]"
+								/>
+								{{ truncate(file.title, 50) }}
+							</h5>
+						</div>
+						<div class="card-toolbar">
+							<div class="btn-group btn-group-sm">
+								<div
+									v-if="!file.isReadonly"
+									class="btn btn-dark"
+									tabindex="0"
+									@click.stop="onFileMetadataEditClick(file)"
+									@keyup.enter.stop="onFileMetadataEditClick(file)"
+								>
+									<font-awesome-icon :icon="['fas', 'list']" />
+								</div>
+								<div
+									v-if="!file.isReadonly && file.editUrl"
+									class="btn btn-dark"
+									tabindex="0"
+									@click.stop="onFileEditClick(file)"
+									@keyup.enter.stop="onFileEditClick(file)"
+								>
+									<font-awesome-icon :icon="['fas', 'pencil-alt']" />
+								</div>
+								<div
+									v-if="currentTab.isContentDraggable"
+									class="btn btn-dark drag-handle"
+									tabindex="-1"
+									@click.stop.prevent
+									@contextmenu.stop.prevent
+								>
+									<font-awesome-icon :icon="['fas', 'arrows-alt']" />
+								</div>
 							</div>
 						</div>
 					</div>
@@ -233,6 +235,8 @@ import Sortable from 'sortablejs';
 
 import cloneDeep from 'lodash/cloneDeep';
 import differenceWith from 'lodash/differenceWith';
+
+import { library as faLibrary } from '@fortawesome/fontawesome-svg-core';
 
 import fuzzyEquals from '@lincebi/biserver-frontend-common/src/fuzzyEquals';
 import generateSvg from '@lincebi/biserver-frontend-common/src/generateSvg';
@@ -584,7 +588,16 @@ export default {
 				? { backgroundColor: tab.color }
 				: { color: tab.color };
 		},
-		getThumbnailOrDefault(file) {
+		getFileIconName(file) {
+			const faDefs = faLibrary.definitions;
+			return faDefs.fac && faDefs.fac[`file-${file.extension}`]
+				? `file-${file.extension}`
+				: 'file-other';
+		},
+		getFileColorClass(file) {
+			return `text-${this.getFileIconName(file)}`;
+		},
+		getFileThumbnail(file) {
 			return file.properties.thumbnail
 				? file.properties.thumbnail
 				: generateSvg(file.path, 0);
@@ -728,7 +741,7 @@ export default {
 
 		.home-card-order {
 			margin-bottom: rem(20);
-			align-self: flex-end;
+			align-self: flex-start;
 		}
 
 		.home-card-deck {
@@ -739,16 +752,10 @@ export default {
 				flex-shrink: 1;
 				flex-basis: calc(#{100% / 1} - #{$grid-gutter-width});
 
-				@include media-breakpoint-up(md) {
-					flex-basis: calc(#{100% / 2} - #{$grid-gutter-width});
-				}
-
-				@include media-breakpoint-up(lg) {
-					flex-basis: calc(#{100% / 3} - #{$grid-gutter-width});
-				}
-
-				@include media-breakpoint-up(xl) {
-					flex-basis: calc(#{100% / 4} - #{$grid-gutter-width});
+				@for $i from 0 through 10 {
+					@media (min-width: 672px + (320px * $i)) {
+						flex-basis: calc(#{100% / ($i + 2)} - #{$grid-gutter-width});
+					}
 				}
 
 				cursor: pointer;
@@ -769,43 +776,58 @@ export default {
 					}
 				}
 
-				.card-body {
-					position: absolute;
-					left: 0;
-					right: 0;
-					bottom: 0;
+				.card-container {
+					position: relative;
+					padding-top: (9 / 16) * 100%;
+					height: 0;
+					width: 100%;
 
-					max-height: 40%;
-					overflow: auto;
+					.card-body {
+						position: absolute;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						padding: rem(10);
+						max-height: 50%;
+						overflow: auto;
 
-					color: #ffffff;
-					text-shadow: rem(1) rem(1) rem(4) #000;
-					background-color: rgba(0, 0, 0, 0.6);
-				}
+						color: map-get($theme-colors, 'dark');
+						background-color: rgba(map-get($theme-colors, 'light'), 0.9);
 
-				.card-img {
-					height: rem(256);
-					object-fit: cover;
-				}
-
-				.card-toolbar {
-					position: absolute;
-					top: rem(5);
-					right: rem(5);
-
-					.btn {
-						opacity: 0;
-						transition: opacity 200ms ease-in;
-
-						@include button-variant(
-							rgba(map-get($theme-colors, 'dark'), 0.6),
-							rgba(map-get($theme-colors, 'dark'), 0.6)
-						);
+						.card-title {
+							font-size: rem(16);
+							line-height: rem(22);
+							word-break: break-all;
+						}
 					}
 
-					.btn:focus,
-					.btn:hover {
-						opacity: 1;
+					.card-img {
+						position: absolute;
+						top: 0;
+						height: 100%;
+						width: 100%;
+						object-fit: cover;
+					}
+
+					.card-toolbar {
+						position: absolute;
+						top: rem(5);
+						right: rem(5);
+
+						.btn {
+							opacity: 0;
+							transition: opacity 200ms ease-in;
+
+							@include button-variant(
+								rgba(map-get($theme-colors, 'dark'), 0.6),
+								rgba(map-get($theme-colors, 'dark'), 0.6)
+							);
+						}
+
+						.btn:focus,
+						.btn:hover {
+							opacity: 1;
+						}
 					}
 				}
 			}
