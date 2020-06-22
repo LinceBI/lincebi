@@ -1,11 +1,12 @@
 import Vue from 'vue';
 
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 Vue.component('font-awesome-icon', async () => {
 	const [{ FontAwesomeIcon }, { config, library }] = await Promise.all([
 		/* eslint-disable prettier/prettier */
 		import('@fortawesome/vue-fontawesome'),
 		import('@fortawesome/fontawesome-svg-core'),
-		import('@fortawesome/fontawesome-svg-core/styles.css'),
 		/* eslint-enable */
 	]);
 
