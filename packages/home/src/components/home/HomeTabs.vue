@@ -741,7 +741,7 @@ export default {
 
 		.home-card-order {
 			margin-bottom: rem(20);
-			align-self: flex-start;
+			align-self: flex-end;
 		}
 
 		.home-card-deck {
