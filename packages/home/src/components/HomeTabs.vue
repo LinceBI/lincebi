@@ -252,7 +252,7 @@ import store from '@/store';
 import BFormColorSwatch from '@lincebi/biserver-frontend-common/src/components/BFormColorSwatch.vue';
 import BFormIconSwatch from '@lincebi/biserver-frontend-common/src/components/BFormIconSwatch.vue';
 
-import HomeTabEmpty from '@/components/home/HomeTabEmpty';
+import HomeTabEmpty from '@/components/HomeTabEmpty';
 
 export default {
 	name: 'HomeTabs',

@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import HomeSlider from '@/components/home/HomeSlider.vue';
-import HomeTabs from '@/components/home/HomeTabs.vue';
+import HomeSlider from '@/components/HomeSlider.vue';
+import HomeTabs from '@/components/HomeTabs.vue';
 
 export default {
 	name: 'Home',
