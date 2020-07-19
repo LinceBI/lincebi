@@ -17,7 +17,7 @@
     "compressorjs": "~1.0.6",
     "core-js": "~3.6.5",
     "jdenticon": "~2.2.0",
-    "lodash": "~4.17.15",
+    "lodash": "~4.17.19",
     "unfetch": "~4.1.0",
     "vue": "~2.6.11"
   },
