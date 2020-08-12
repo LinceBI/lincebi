@@ -1,4 +1,4 @@
-import jdenticon from 'jdenticon';
+import { toSvg } from 'jdenticon';
 
 const maxCacheSize = 500;
 const cache = new Map();
@@ -8,7 +8,7 @@ export default (value = '') => {
 		return cache.get(value);
 	}
 
-	const svg = jdenticon.toSvg(value, 256, {
+	const svg = toSvg(value, 256, {
 		padding: 0.08,
 		lightness: {
 			color: [0.8, 0.8],
