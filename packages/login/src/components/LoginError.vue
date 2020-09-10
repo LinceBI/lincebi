@@ -26,9 +26,9 @@ export default {
 		return {
 			code: getParameter('login_error', null),
 			messages: {
-				'0': this.$t('errors.unknownError'),
-				'1': this.$t('errors.authenticationFailure'),
-				'2': this.$t('errors.sessionReuseDetected'),
+				0: this.$t('errors.unknownError'),
+				1: this.$t('errors.authenticationFailure'),
+				2: this.$t('errors.sessionReuseDetected'),
 			},
 			dismissSecs: 5,
 			dismissCountDown: 0,
