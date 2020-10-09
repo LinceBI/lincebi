@@ -235,8 +235,8 @@ export default {
 		},
 	},
 	created() {
-		eventBus.$on('tour.start', () => this.$tours.tour.start());
-		eventBus.$on('tour.stop', () => this.$tours.tour.stop());
+		eventBus.$on('tour-start', () => this.$tours.tour.start());
+		eventBus.$on('tour-stop', () => this.$tours.tour.stop());
 	},
 	beforeDestroy() {
 		this.removeEventListeners();
@@ -251,13 +251,13 @@ export default {
 			this.popper = null;
 			this.step = this.steps[0];
 			this.addEventListeners();
-			eventBus.$emit('tour.started');
+			eventBus.$emit('tour-started');
 		},
 		onStopTour() {
 			this.popper = null;
 			this.step = null;
 			this.removeEventListeners();
-			eventBus.$emit('tour.stopped');
+			eventBus.$emit('tour-stopped');
 		},
 		onCreateStep(data) {
 			// Store Popper.js instance.
@@ -326,17 +326,17 @@ export default {
 			{ leading: false, trailing: true }
 		),
 		expandNavbar() {
-			eventBus.$emit('navbar.show');
-			eventBus.$emit('sidebar.item.hide');
+			eventBus.$emit('navbar-show');
+			eventBus.$emit('sidebar-item-hide');
 		},
 		expandSidebar() {
-			eventBus.$emit('sidebar.show');
-			eventBus.$emit('sidebar.item.hide');
+			eventBus.$emit('sidebar-show');
+			eventBus.$emit('sidebar-item-hide');
 		},
 		expandSidebarDropdown(id) {
-			eventBus.$emit('sidebar.show');
-			eventBus.$emit('sidebar.item.hide');
-			eventBus.$emit(`sidebar.item.${id}.show`);
+			eventBus.$emit('sidebar-show');
+			eventBus.$emit('sidebar-item-hide');
+			eventBus.$emit(`sidebar-item-${id}-show`);
 		},
 		goPage(name) {
 			router.push({ name }).catch(() => {});

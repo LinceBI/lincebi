@@ -55,8 +55,8 @@ export default {
 			]);
 
 			if (!this.onboarded) {
-				eventBus.$emit('tour.start');
-				eventBus.$on('tour.stopped', () => (this.onboarded = true));
+				eventBus.$emit('tour-start');
+				eventBus.$on('tour-stopped', () => (this.onboarded = true));
 			}
 
 			await store.dispatch('fetchRepository');

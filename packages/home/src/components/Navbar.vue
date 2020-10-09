@@ -63,10 +63,10 @@ export default {
 		},
 	},
 	created() {
-		eventBus.$on('navbar.show', () => {
+		eventBus.$on('navbar-show', () => {
 			this.navbarExpanded = true;
 		});
-		eventBus.$on('navbar.hide', () => {
+		eventBus.$on('navbar-hide', () => {
 			this.navbarExpanded = false;
 		});
 	},

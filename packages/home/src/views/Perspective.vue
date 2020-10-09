@@ -104,11 +104,11 @@ export default {
 	},
 	created() {
 		this.staticSearchParams = this.dynamicSearchParams;
-		eventBus.$on('mantle.invoke', this.invokeInMantleWindow);
-		eventBus.$on('mantle.perspective.invoke', this.invokeInPerspectiveWindow);
-		eventBus.$on('mantle.perspective.reload', this.reloadPerspective);
-		eventBus.$on('mantle.perspective.params', this.changePerspectiveParams);
-		eventBus.$on('mantle.home.command', this.runHomeCommand);
+		eventBus.$on('mantle-invoke', this.invokeInMantleWindow);
+		eventBus.$on('mantle-perspective-invoke', this.invokeInPerspectiveWindow);
+		eventBus.$on('mantle-perspective-reload', this.reloadPerspective);
+		eventBus.$on('mantle-perspective-params', this.changePerspectiveParams);
+		eventBus.$on('mantle-home-command', this.runHomeCommand);
 	},
 	methods: {
 		retrieveMantleWindow() {

@@ -78,7 +78,7 @@ export default {
 				})
 				.catch(() => {});
 			eventBus.$emitWhenAvailable(
-				'mantle.perspective.invoke',
+				'mantle-perspective-invoke',
 				'search.perspective',
 				async (perspectiveWindow) => {
 					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
@@ -98,7 +98,7 @@ export default {
 				})
 				.catch(() => {});
 			eventBus.$emitWhenAvailable(
-				'mantle.perspective.invoke',
+				'mantle-perspective-invoke',
 				'search.perspective',
 				async (perspectiveWindow) => {
 					const STSearch = await waitFor(() => perspectiveWindow.STSearch);

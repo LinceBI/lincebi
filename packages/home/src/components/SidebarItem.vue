@@ -68,9 +68,9 @@ export default {
 		},
 	},
 	created() {
-		eventBus.$on(`sidebar.item.${this.item.id}.show`, this.showDropdown);
-		eventBus.$on(`sidebar.item.${this.item.id}.hide`, this.hideDropdown);
-		eventBus.$on(`sidebar.item.hide`, this.hideDropdown);
+		eventBus.$on(`sidebar-item-${this.item.id}-show`, this.showDropdown);
+		eventBus.$on(`sidebar-item-${this.item.id}-hide`, this.hideDropdown);
+		eventBus.$on(`sidebar-item-hide`, this.hideDropdown);
 	},
 	methods: {
 		showDropdown() {

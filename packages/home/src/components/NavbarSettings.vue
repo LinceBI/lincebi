@@ -83,7 +83,7 @@ export default {
 				const value = show ? 'true' : 'false';
 				await store.dispatch('updateUserSettings', { [key]: value });
 				eventBus.$emitWhenAvailable(
-					'mantle.perspective.reload',
+					'mantle-perspective-reload',
 					'browser.perspective'
 				);
 			},
@@ -99,7 +99,7 @@ export default {
 				const value = show ? 'true' : 'false';
 				store.dispatch('updateUserSettings', { [key]: value });
 				eventBus.$emitWhenAvailable(
-					'mantle.perspective.reload',
+					'mantle-perspective-reload',
 					'browser.perspective'
 				);
 			},

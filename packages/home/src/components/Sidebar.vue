@@ -81,7 +81,7 @@ export default {
 									})
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
-									'mantle.home.command',
+									'mantle-home-command',
 									this.launchOverlays.get('jpivot')
 								);
 							},
@@ -101,7 +101,7 @@ export default {
 									})
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
-									'mantle.home.command',
+									'mantle-home-command',
 									this.launchOverlays.get('launch_new_stolap_analytics')
 								);
 							},
@@ -121,7 +121,7 @@ export default {
 									})
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
-									'mantle.home.command',
+									'mantle-home-command',
 									this.launchOverlays.get('launch-new-saiku-adhoc')
 								);
 							},
@@ -141,7 +141,7 @@ export default {
 									})
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
-									'mantle.home.command',
+									'mantle-home-command',
 									this.launchOverlays.get('stdashboardButton')
 								);
 							},
@@ -161,7 +161,7 @@ export default {
 									})
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
-									'mantle.home.command',
+									'mantle-home-command',
 									this.launchOverlays.get('launch-new-stagile')
 								);
 							},
@@ -181,7 +181,7 @@ export default {
 									})
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
-									'mantle.home.command',
+									'mantle-home-command',
 									this.launchOverlays.get('button.stcard')
 								);
 							},
@@ -201,7 +201,7 @@ export default {
 									})
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
-									'mantle.home.command',
+									'mantle-home-command',
 									this.launchOverlays.get('SaikuAnalytics')
 								);
 							},
@@ -220,7 +220,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
+								eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'Webdetails CDE',
 										'Webdetails CDE',
@@ -243,7 +243,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
+								eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {
 									mantleWindow.openURL(
 										'Repository Synchronizer',
 										'Repository Synchronizer',
@@ -287,7 +287,7 @@ export default {
 									})
 									.catch(() => {});
 								eventBus.$emit(
-									'mantle.perspective.invoke',
+									'mantle-perspective-invoke',
 									'search.perspective',
 									async (perspectiveWindow) => {
 										const STSearch = perspectiveWindow.STSearch;
@@ -310,7 +310,7 @@ export default {
 									})
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
-									'mantle.perspective.invoke',
+									'mantle-perspective-invoke',
 									'search.perspective',
 									async (perspectiveWindow) => {
 										const STSearch = await waitFor(
@@ -334,7 +334,7 @@ export default {
 									})
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
-									'mantle.perspective.invoke',
+									'mantle-perspective-invoke',
 									'search.perspective',
 									async (perspectiveWindow) => {
 										const STSearch = await waitFor(
@@ -359,7 +359,7 @@ export default {
 								params: { perspective: 'browser.perspective' },
 							})
 							.catch(() => {});
-						eventBus.$emitWhenAvailable('mantle.invoke', (mantleWindow) => {
+						eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {
 							mantleWindow.executeCommand('ManageDatasourcesCommand');
 						});
 					},
@@ -430,10 +430,10 @@ export default {
 		},
 	},
 	created() {
-		eventBus.$on('sidebar.show', () => {
+		eventBus.$on('sidebar-show', () => {
 			this.sidebarExpanded = true;
 		});
-		eventBus.$on('sidebar.hide', () => {
+		eventBus.$on('sidebar-hide', () => {
 			this.sidebarExpanded = false;
 		});
 	},
