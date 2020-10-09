@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@lincebi/biserver-frontend-home",
-  "version": "1.7.5",
+  "version": "1.7.6",
   "license": "GPL-3.0-or-later",
   "scripts": {
     "lint": "vue-cli-service lint",
