@@ -34,7 +34,7 @@
 	<!--
 	This is the URL to the user guide
 	-->
-	<documentation-url>https://help.pentaho.com/Documentation/9.0/Products/Pentaho_User_Console</documentation-url>
+	<documentation-url>https://help.pentaho.com/Documentation/9.1/Products/Pentaho_User_Console</documentation-url>
 
 	<log-file>server.log</log-file>
 	<log-level>INFO</log-level>
