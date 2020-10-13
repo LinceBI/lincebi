@@ -1,0 +1,18 @@
+{
+	admin off
+}
+
+http://*:2015 {
+	# Pentaho BI Server
+	reverse_proxy /* http://127.0.0.1:8080
+
+	# Webpack Dev Server
+	## @lincebi/biserver-frontend-login
+	handle_path /pentaho/Login/* {
+		reverse_proxy http://127.0.0.1:8081
+	}
+	## @lincebi/biserver-frontend-home
+	handle_path /pentaho/Home/* {
+		reverse_proxy http://127.0.0.1:8082
+	}
+}

@@ -5,10 +5,10 @@ SHELL := /bin/sh
 
 DOCKER := $(shell command -v docker 2>/dev/null)
 DOCKER_COMPOSE := $(shell command -v docker-compose 2>/dev/null)
+GIT := $(shell command -v git 2>/dev/null)
 JQ := $(shell command -v jq 2>/dev/null)
 MVN := $(shell command -v mvn 2>/dev/null)
 NPM := $(shell command -v npm 2>/dev/null)
-TMUX := $(shell command -v tmux 2>/dev/null)
 
 PACKAGE_NAME ?= $(shell '$(JQ)' -r '.name' ./package.json | sed -r 's|^@([^/]+)/|\1-|')
 PACKAGE_VERSION ?= $(shell '$(JQ)' -r '.version' ./lerna.json)
@@ -38,10 +38,7 @@ all: build
 
 .PHONY: start-biserver
 start-biserver:
-	'$(TMUX)' \
-		new-session 'cd ./biserver/; "$(MAKE)" start' ';' \
-		split-window 'cd ./docker/; "$(DOCKER_COMPOSE)" up' ';' \
-		select-layout even-horizontal
+	'$(DOCKER_COMPOSE)' --project-directory ./biserver/ --file ./biserver/docker-compose.yml up
 
 .PHONY: start-devserver
 start-devserver:
@@ -55,7 +52,12 @@ start-devserver:
 build: $(DIST_TARBALL)
 
 $(BISERVER_DIST_DIR):
-	cd ./biserver && '$(MAKE)' build
+	(cd ./biserver/biserver.init.d/90_lincebi/ \
+		&& OUT='$(shell readlink -m '$@')' \
+		&& STASH=$$('$(GIT)' stash create) && STASH=$${STASH:=HEAD} \
+		&& rm -rf "$${OUT}" && mkdir -p "$${OUT}" \
+		&& '$(GIT)' archive --format=tar "$${STASH}" ./ | tar -xf- -C "$${OUT}" \
+		&& '$(GIT)' gc --prune=now)
 
 $(PACKAGE_LOGIN_DIST_DIR) $(PACKAGE_HOME_DIST_DIR):
 	'$(NPM)' run build

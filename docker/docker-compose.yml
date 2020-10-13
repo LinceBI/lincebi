@@ -1,8 +1,0 @@
-version: "3.7"
-
-services:
-
-  proxy:
-    image: "docker.io/hectormolinero/caddy:latest"
-    volumes: ["./Caddyfile:/etc/caddy/Caddyfile:ro"]
-    network_mode: "host"

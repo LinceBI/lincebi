@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+
+  biserver:
+    image: "repo.stratebi.com/lincebi/lincebi:9.1"
+    restart: "on-failure:3"
+    network_mode: "host"
+    volumes:
+      - "./biserver.init.d/:/etc/biserver.init.d/:ro"
+    environment:
+      IS_PROXIED: "true"
+      PROXY_SCHEME: "http"
+      PROXY_PORT: "2015"
+      FQSU_PROTOCOL: "http"
+      FQSU_DOMAIN: "localhost"
+      FQSU_PORT: "2015"
+
+  caddy:
+    image: "docker.io/caddy:2"
+    restart: "on-failure:3"
+    network_mode: "host"
+    volumes:
+      - "./Caddyfile:/etc/caddy/Caddyfile:ro"

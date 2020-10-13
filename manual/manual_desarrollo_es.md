@@ -73,24 +73,21 @@ exclusivamente mediante su API REST.
  * [Node.js](https://nodejs.org/en/download/package-manager/).
  * [Docker](https://docs.docker.com/install/).
  * [Docker Compose](https://docs.docker.com/compose/install/).
- * Los siguientes paquetes: `git` `jq` `make` `maven` `tmux`.
+ * Los siguientes paquetes: `git` `jq` `make` `maven`.
 
 ## Pasos
 
- 1. Descargar y descomprimir un Pentaho BI Server 9.0 original en el directorio
-    `./biserver/overlay/` (sin sobreescribir los archivos existentes).
-
- 2. Descargar las dependencias.
+ 1. Descargar las dependencias.
     ```sh
      npm install
     ```
 
- 3. Compilar el proyecto.
+ 2. Compilar el proyecto.
     ```sh
      make build
     ```
 
- 4. El resultado de la compilación podrá encontrarse en el directorio `./dist/`.
+ 3. El resultado de la compilación podrá encontrarse en el directorio `./dist/`.
 
 ## Workflow de desarrollo
 
@@ -115,16 +112,8 @@ exclusivamente mediante su API REST.
  .
  ├── biserver/               # Proyecto con la configuración y tema de Pentaho BI
  |   |                         Server.
- │   ├── overlay/            # Durante el desarrollo este directorio contiene una
- |   |                         instalación completa de Pentaho BI Server, pero todos
- |   |                         los archivos están ignorados excepto los que sean
- |   |                         necesarios (ver .gitignore).
- │   └── Makefile
- ├── docker/                 # Contenedor de Docker que mediante un proxy inverso
- |   |                         sustituye las vistas "/Login" y "/Home" por el dev
- |   |                         server de Webpack.
- │   ├── Caddyfile
- │   └── docker-compose.yml
+ │   └── biserver.init.d/    # Archivos de Pentaho BI Server que son reemplazados
+ |       └── 90_lincebi/       por LinceBI.
  ├── packages/               # Paquetes de Node.js.
  │   ├── common/             # Código compartido por el resto de paquetes.
  │   │   ├── src/
