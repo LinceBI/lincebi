@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:ExportManifest xmlns:ns2="http://www.pentaho.com/schema/">
+	<ExportManifestInformation exportDate="01-01-1970 00:00:00 GMT" exportBy="admin" rootFolder="/" manifestVersion="2" />
+	<ExportManifestUser>
+		<username>alice</username>
+		<roles>Authenticated</roles>
+		<roles>alice</roles>
+		<password><%= %x(/usr/share/biserver/bin/hash.sh "${DEFAULT_ADMIN_PASSWORD}") %></password>
+	</ExportManifestUser>
+	<ExportManifestUser>
+		<username>bob</username>
+		<roles>Authenticated</roles>
+		<roles>bob</roles>
+		<password><%= %x(/usr/share/biserver/bin/hash.sh "${DEFAULT_ADMIN_PASSWORD}") %></password>
+	</ExportManifestUser>
+	<ExportManifestUser>
+		<username>carol</username>
+		<roles>Authenticated</roles>
+		<roles>carol</roles>
+		<password><%= %x(/usr/share/biserver/bin/hash.sh "${DEFAULT_ADMIN_PASSWORD}") %></password>
+	</ExportManifestUser>
+	<ExportManifestRole>
+		<rolename>alice</rolename>
+		<permissions>org.pentaho.platform.dataaccess.datasource.security.manage</permissions>
+		<permissions>org.pentaho.repository.create</permissions>
+		<permissions>org.pentaho.repository.execute</permissions>
+		<permissions>org.pentaho.repository.read</permissions>
+		<permissions>org.pentaho.scheduler.manage</permissions>
+		<permissions>org.pentaho.security.administerSecurity</permissions>
+		<permissions>org.pentaho.security.publish</permissions>
+	</ExportManifestRole>
+	<ExportManifestRole>
+		<rolename>bob</rolename>
+		<permissions>org.pentaho.platform.dataaccess.datasource.security.manage</permissions>
+		<permissions>org.pentaho.repository.create</permissions>
+		<permissions>org.pentaho.repository.execute</permissions>
+		<permissions>org.pentaho.repository.read</permissions>
+	</ExportManifestRole>
+	<ExportManifestRole>
+		<rolename>carol</rolename>
+		<permissions>org.pentaho.repository.execute</permissions>
+		<permissions>org.pentaho.repository.read</permissions>
+	</ExportManifestRole>
+</ns2:ExportManifest>
