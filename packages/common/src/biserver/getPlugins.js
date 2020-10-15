@@ -25,19 +25,6 @@ const getPlugins = async () => {
 		} catch (error) {
 			console.error(error);
 		}
-
-		// Handle special cases.
-		if (!plugins.has('stpivot')) {
-			const stpivotResource = 'stpivot/build.json';
-			const stpivotEndpoint = `${contextPath}${stpivotResource}`;
-			const stpivotResponse = await fetch(stpivotEndpoint, {
-				method: 'GET',
-				headers: { 'Content-Type': 'text/plain' },
-			});
-			if (stpivotResponse.status === 200) {
-				plugins.add('stpivot');
-			}
-		}
 	}
 
 	return plugins;

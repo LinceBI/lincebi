@@ -38,7 +38,9 @@
 				</span>
 			</b-list-group-item>
 			<b-list-group-item
-				v-if="canAdminister"
+				v-if="
+					canAdminister && overlays.has('startup.cda.toolsmenu.cdaCacheManager')
+				"
 				button
 				@click="openManageCdaCache()"
 			>
@@ -48,7 +50,9 @@
 				</span>
 			</b-list-group-item>
 			<b-list-group-item
-				v-if="plugins.has('saiku-adhoc')"
+				v-if="
+					overlays.has('startup.saiku-adhoc.viewmenu.statistics-saiku-adhoc')
+				"
 				button
 				@click="openStreportStats()"
 			>
@@ -129,11 +133,11 @@ export default {
 		hasDataAccess() {
 			return store.state.hasDataAccess;
 		},
-		plugins() {
-			return store.state.plugins;
-		},
 		perspectives() {
 			return store.state.perspectives;
+		},
+		overlays() {
+			return store.state.overlays;
 		},
 	},
 	methods: {
@@ -179,13 +183,10 @@ export default {
 					params: { perspective: 'opened.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {
-				mantleWindow.openURL(
-					'CDA cache manager',
-					'CDA cache manager',
-					'plugin/cda/api/manageCache'
-				);
-			});
+			eventBus.$emitWhenAvailable(
+				'mantle-home-command',
+				this.overlays.get('startup.cda.toolsmenu.cdaCacheManager')
+			);
 		},
 		async openStreportStats() {
 			router
@@ -194,13 +195,10 @@ export default {
 					params: { perspective: 'opened.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {
-				mantleWindow.openURL(
-					'STReport statistics',
-					'STReport statistics',
-					'api/repos/saiku-adhoc/statistics'
-				);
-			});
+			eventBus.$emitWhenAvailable(
+				'mantle-home-command',
+				this.overlays.get('startup.saiku-adhoc.viewmenu.statistics-saiku-adhoc')
+			);
 		},
 		async systemRefresh(resource) {
 			if (await systemRefresh(resource)) {

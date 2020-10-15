@@ -44,9 +44,8 @@ export default {
 				store.dispatch('fetchCanAdminister'),
 				store.dispatch('fetchCanSchedule'),
 				store.dispatch('fetchHasDataAccess'),
-				store.dispatch('fetchPlugins'),
 				store.dispatch('fetchPerspectives'),
-				store.dispatch('fetchLaunchOverlays'),
+				store.dispatch('fetchOverlays'),
 				store.dispatch('fetchLocales').then(() => {
 					store.dispatch('fetchLocale');
 				}),

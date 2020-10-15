@@ -146,9 +146,11 @@ export default {
 				// Mock jQuery calls to prevent errors with plugins that try to use it.
 				// eslint-disable-next-line no-unused-vars
 				const $ = () => new Proxy({}, { get: () => $ });
-				// Mock "Home" object so that plugins can use it.
+				// Mock "Home" and "mantleXulHandler" object so that plugins can use it.
 				// eslint-disable-next-line no-unused-vars
 				const Home = { openFile: mantleWindow.openURL };
+				// eslint-disable-next-line no-unused-vars
+				const mantleXulHandler = { openUrl: mantleWindow.openURL };
 				eval(command);
 			});
 		},

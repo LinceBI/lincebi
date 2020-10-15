@@ -1,16 +1,16 @@
-import getPlugins from './getPlugins';
+import getOverlays from './getOverlays';
 
 let localesPromise = null;
 
 const getLocales = async () => {
-	const registeredPlugins = await getPlugins();
+	const overlays = await getOverlays();
 
 	// English is always installed.
 	const locales = new Set(['en']);
 
-	registeredPlugins.forEach((plugin) => {
-		const pluginRegex = /^languagePack_([a-z]{2}(?:_[A-Z]{2})?)$/;
-		const found = plugin.match(pluginRegex);
+	overlays.forEach((_, id) => {
+		const idRegex = /\.languagePack_([a-z]{2}(?:_[A-Z]{2})?)$/;
+		const found = id.match(idRegex);
 		if (found && found.length === 2) {
 			locales.add(found[1]);
 		}

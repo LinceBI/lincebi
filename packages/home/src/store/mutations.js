@@ -25,16 +25,12 @@ export const setHasDataAccess = (state, hasDataAccess) => {
 	state.hasDataAccess = hasDataAccess;
 };
 
-export const setPlugins = (state, plugins) => {
-	state.plugins = plugins;
-};
-
 export const setPerspectives = (state, perspectives) => {
 	state.perspectives = perspectives;
 };
 
-export const setLaunchOverlays = (state, launchOverlays) => {
-	state.launchOverlays = launchOverlays;
+export const setOverlays = (state, overlays) => {
+	state.overlays = overlays;
 };
 
 export const setLocales = (state, locales) => {

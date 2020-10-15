@@ -50,9 +50,6 @@ export default {
 		NavbarProfile,
 	},
 	computed: {
-		plugins() {
-			return store.state.plugins;
-		},
 		navbarExpanded: {
 			get() {
 				return store.state.navbarExpanded;

@@ -311,9 +311,6 @@ export default {
 		};
 	},
 	computed: {
-		plugins() {
-			return store.state.plugins;
-		},
 		tabs: {
 			get() {
 				// Concatenate fixed tabs and local tabs.

@@ -3,11 +3,10 @@ import getCanCreate from '@lincebi/biserver-frontend-common/src/biserver/getCanC
 import getCanSchedule from '@lincebi/biserver-frontend-common/src/biserver/getCanSchedule';
 import getGlobalUserSettings from '@lincebi/biserver-frontend-common/src/biserver/getGlobalUserSettings';
 import getHasDataAccess from '@lincebi/biserver-frontend-common/src/biserver/getHasDataAccess';
-import getLaunchOverlays from '@lincebi/biserver-frontend-common/src/biserver/getLaunchOverlays';
+import getOverlays from '@lincebi/biserver-frontend-common/src/biserver/getOverlays';
 import getLocale from '@lincebi/biserver-frontend-common/src/biserver/getLocale';
 import getLocales from '@lincebi/biserver-frontend-common/src/biserver/getLocales';
 import getPerspectives from '@lincebi/biserver-frontend-common/src/biserver/getPerspectives';
-import getPlugins from '@lincebi/biserver-frontend-common/src/biserver/getPlugins';
 import getRepository from '@lincebi/biserver-frontend-common/src/biserver/getRepository';
 import getUserId from '@lincebi/biserver-frontend-common/src/biserver/getUserId';
 import getUserSettings from '@lincebi/biserver-frontend-common/src/biserver/getUserSettings';
@@ -43,19 +42,14 @@ export const fetchHasDataAccess = async ({ commit }) => {
 	commit('setHasDataAccess', hasDataAccess);
 };
 
-export const fetchPlugins = async ({ commit }) => {
-	const plugins = await getPlugins();
-	commit('setPlugins', plugins);
-};
-
 export const fetchPerspectives = async ({ commit }) => {
 	const perspectives = await getPerspectives();
 	commit('setPerspectives', perspectives);
 };
 
-export const fetchLaunchOverlays = async ({ commit }) => {
-	const launchOverlays = await getLaunchOverlays();
-	commit('setLaunchOverlays', launchOverlays);
+export const fetchOverlays = async ({ commit }) => {
+	const overlays = await getOverlays();
+	commit('setOverlays', overlays);
 };
 
 export const fetchLocales = async ({ commit }) => {

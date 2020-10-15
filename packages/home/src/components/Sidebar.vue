@@ -34,11 +34,8 @@ export default {
 		hasDataAccess() {
 			return store.state.hasDataAccess;
 		},
-		plugins() {
-			return store.state.plugins;
-		},
-		launchOverlays() {
-			return store.state.launchOverlays;
+		overlays() {
+			return store.state.overlays;
 		},
 		locales() {
 			return store.state.locales;
@@ -67,7 +64,7 @@ export default {
 					icon: ['fas', 'plus'],
 					subitems: [
 						{
-							enabled: this.plugins.has('stpivot'),
+							enabled: this.overlays.has('launch.jpivot'),
 							id: 'tool-stpivot',
 							name: 'STPivot',
 							icon: ['fac', 'tool-stpivot'],
@@ -82,12 +79,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.launchOverlays.get('jpivot')
+									this.overlays.get('launch.jpivot')
 								);
 							},
 						},
 						{
-							enabled: this.plugins.has('stolap'),
+							enabled: this.overlays.has('launch.launch_new_stolap_analytic'),
 							id: 'tool-stolap',
 							name: 'STOlap',
 							icon: ['fac', 'tool-stolap'],
@@ -102,12 +99,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.launchOverlays.get('launch_new_stolap_analytics')
+									this.overlays.get('launch.launch_new_stolap_analytic')
 								);
 							},
 						},
 						{
-							enabled: this.plugins.has('saiku-adhoc'),
+							enabled: this.overlays.has('launch.launch-new-saiku-adhoc'),
 							id: 'tool-streport',
 							name: 'STReport',
 							icon: ['fac', 'tool-streport'],
@@ -122,12 +119,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.launchOverlays.get('launch-new-saiku-adhoc')
+									this.overlays.get('launch.launch-new-saiku-adhoc')
 								);
 							},
 						},
 						{
-							enabled: this.plugins.has('stdashboard'),
+							enabled: this.overlays.has('launch.stdashboardButton'),
 							id: 'tool-stdashboard',
 							name: 'STDashboard',
 							icon: ['fac', 'tool-stdashboard'],
@@ -142,12 +139,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.launchOverlays.get('stdashboardButton')
+									this.overlays.get('launch.stdashboardButton')
 								);
 							},
 						},
 						{
-							enabled: this.plugins.has('stagile'),
+							enabled: this.overlays.has('launch.launch-new-stagile'),
 							id: 'tool-stagile',
 							name: 'STAgile',
 							icon: ['fac', 'tool-stagile'],
@@ -162,12 +159,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.launchOverlays.get('launch-new-stagile')
+									this.overlays.get('launch.launch-new-stagile')
 								);
 							},
 						},
 						{
-							enabled: this.plugins.has('stcard'),
+							enabled: this.overlays.has('launch.button.stcard'),
 							id: 'tool-stcard',
 							name: 'STCard',
 							icon: ['fac', 'tool-stcard'],
@@ -182,12 +179,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.launchOverlays.get('button.stcard')
+									this.overlays.get('launch.button.stcard')
 								);
 							},
 						},
 						{
-							enabled: this.plugins.has('saiku'),
+							enabled: this.overlays.has('launch.SaikuAnalytics'),
 							id: 'tool-saiku',
 							name: 'Saiku Analytics',
 							icon: ['fac', 'tool-saiku'],
@@ -202,12 +199,12 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.launchOverlays.get('SaikuAnalytics')
+									this.overlays.get('launch.SaikuAnalytics')
 								);
 							},
 						},
 						{
-							enabled: this.plugins.has('pentaho-cdf'),
+							enabled: this.overlays.has('launch.launch_new_cde'),
 							id: 'tool-cde',
 							name: 'CDE',
 							icon: ['fac', 'tool-cde'],
@@ -230,7 +227,9 @@ export default {
 							},
 						},
 						{
-							enabled: this.plugins.has('repositorySynchronizer'),
+							enabled: this.overlays.has(
+								'startup.repositorySynchronizer.toolsmenu.repositorySynchronizer'
+							),
 							id: 'tool-repository-synchronizer',
 							name: 'Repository Synchronizer',
 							icon: ['fac', 'tool-repository-synchronizer'],
