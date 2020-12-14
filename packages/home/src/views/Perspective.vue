@@ -11,6 +11,7 @@
 <script>
 import insertIf from '@lincebi/biserver-frontend-common/src/insertIf';
 import replaceParameter from '@lincebi/biserver-frontend-common/src/replaceParameter';
+import safeWindowTop from '@lincebi/biserver-frontend-common/src/safeWindowTop';
 import searchParams from '@lincebi/biserver-frontend-common/src/searchParams';
 import waitFor from '@lincebi/biserver-frontend-common/src/waitFor';
 
@@ -187,7 +188,7 @@ export default {
 			this.invokeInMantleWindow((mantleWindow) => {
 				// Some plugins access these properties using "window.top", so we will expose them.
 				this.mantleWindowProperties.forEach((prop) => {
-					window.top[prop] = mantleWindow[prop];
+					safeWindowTop[prop] = mantleWindow[prop];
 				});
 
 				// Set menu bar and toolbar state.
