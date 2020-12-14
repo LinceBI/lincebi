@@ -1,4 +1,4 @@
-import '@lincebi/biserver-frontend-common/src/nestedLoginDetector';
+import '@lincebi/biserver-frontend-common/src/nestedFrameDetector';
 import '@lincebi/biserver-frontend-common/src/googleTagManager';
 
 import Vue from 'vue';
