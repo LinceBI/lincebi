@@ -600,10 +600,34 @@ export default {
 				: generateSvg(file.path, 0);
 		},
 		onFileOpenClick(file) {
-			window.open(file.openUrl, `lincebi_open_${file.id}`, 'noopener');
+			if (file.properties.embedded === 'true') {
+				router
+					.push({
+						name: 'perspective',
+						params: { perspective: 'opened.perspective' },
+					})
+					.catch(() => {});
+				eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {
+					mantleWindow.mantle_openRepositoryFile(file.path, 'RUN');
+				});
+			} else {
+				window.open(file.openUrl, `lincebi_open_${file.id}`, 'noopener');
+			}
 		},
 		onFileEditClick(file) {
-			window.open(file.editUrl, `lincebi_edit_${file.id}`, 'noopener');
+			if (file.properties.embedded === 'true') {
+				router
+					.push({
+						name: 'perspective',
+						params: { perspective: 'opened.perspective' },
+					})
+					.catch(() => {});
+				eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {
+					mantleWindow.mantle_openRepositoryFile(file.path, 'EDIT');
+				});
+			} else {
+				window.open(file.editUrl, `lincebi_edit_${file.id}`, 'noopener');
+			}
 		},
 		onFileMetadataEditClick(file) {
 			router

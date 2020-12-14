@@ -37,6 +37,7 @@ export default {
 				'executeCommand',
 				'mantle_getPerspectives',
 				'mantle_initialized',
+				'mantle_openRepositoryFile',
 				'mantle_setPerspective',
 				'openURL',
 			],
