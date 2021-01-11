@@ -1,8 +1,11 @@
 {
 	admin off
+	auto_https off
 }
 
 http://*:2015 {
+	tls internal
+
 	# Pentaho BI Server
 	reverse_proxy /* http://127.0.0.1:8080
 
