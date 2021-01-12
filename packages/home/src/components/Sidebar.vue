@@ -64,7 +64,7 @@ export default {
 					icon: ['fas', 'plus'],
 					subitems: [
 						{
-							enabled: this.overlays.has('launch.jpivot'),
+							enabled: this.overlays.has('launch.stpivot'),
 							id: 'tool-stpivot',
 							name: 'STPivot',
 							icon: ['fac', 'tool-stpivot'],
@@ -79,7 +79,7 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.overlays.get('launch.jpivot')
+									this.overlays.get('launch.stpivot')
 								);
 							},
 						},
@@ -224,6 +224,26 @@ export default {
 										'api/repos/wcdf/new'
 									);
 								});
+							},
+						},
+						{
+							enabled: this.overlays.has('launch.jpivot'),
+							id: 'tool-jpivot',
+							name: 'JPivot',
+							icon: ['fac', 'tool-jpivot'],
+							selectedForeground: '#FFFFFF',
+							selectedBackground: '#00B919',
+							click: () => {
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' },
+									})
+									.catch(() => {});
+								eventBus.$emitWhenAvailable(
+									'mantle-home-command',
+									this.overlays.get('launch.jpivot')
+								);
 							},
 						},
 						{

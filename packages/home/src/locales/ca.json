@@ -102,6 +102,7 @@
       "sidebarToolStagile": { "title": "STAgile", "content": "STAgile és una eina per a crear quadres de comandament." },
       "sidebarToolStcard": { "title": "STCard", "content": "STCard és una eina per a crear, gestionar i analitzar scorecards." },
       "sidebarToolCde": { "title": "CDE", "content": "CDE és l'eina que Pentaho incorpora de sèrie per a crear quadres de comandament." },
+      "sidebarToolJpivot": { "title": "JPivot", "content": "JPivot és el visor OLAP integrat de Pentaho." },
       "sidebarOpened": { "title": "Oberts", "content": "Des d'aquí podrà veure els arxius actualment oberts." },
       "sidebarBrowser": { "title": "Explorador", "content": "L'explorador d'arxius li permetrà navegar pels arxius del repositori." },
       "sidebarSearch": { "title": "Cercador", "content": "El cercador li permetrà trobar qualsevol arxiu del repositori." },

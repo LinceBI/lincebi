@@ -102,6 +102,7 @@
       "sidebarToolStagile": { "title": "STAgile", "content": "STAgile is a tool for creating dashboards." },
       "sidebarToolStcard": { "title": "STCard", "content": "STCard is a tool for creating, managing and analyzing scorecards." },
       "sidebarToolCde": { "title": "CDE", "content": "CDE is Pentaho's built-in tool for creating dashboards." },
+      "sidebarToolJpivot": { "title": "JPivot", "content": "JPivot is Pentaho's built-in OLAP viewer." },
       "sidebarOpened": { "title": "Opened", "content": "Here you can see the currently open files." },
       "sidebarBrowser": { "title": "Browser", "content": "The file browser allows you to browse the files in the repository." },
       "sidebarSearch": { "title": "Search", "content": "The search tool allows you to find any file in the repository." },

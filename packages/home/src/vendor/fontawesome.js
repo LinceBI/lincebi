@@ -92,6 +92,8 @@ Vue.component('FontAwesomeIcon', async () => {
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facFileWcdf'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facFileXjpivot'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolCde'),
+		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolJpivot'),
+		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolOther'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolRepositorySynchronizer'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolSaiku'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStadmin'),
@@ -100,7 +102,6 @@ Vue.component('FontAwesomeIcon', async () => {
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStdashboard'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStolap'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStpivot'),
-		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolOther'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStreport'),
 		import('@lincebi/biserver-frontend-common/src/fontawesome/facToolStsearch'),
 		/* eslint-enable */

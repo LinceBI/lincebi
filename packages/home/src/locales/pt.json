@@ -102,6 +102,7 @@
       "sidebarToolStagile": { "title": "STAgile", "content": "STAgile é uma ferramenta para criar dashboards." },
       "sidebarToolStcard": { "title": "STCard", "content": "STCard é uma ferramenta para criar, gerenciar e analizar painéis de desempenho." },
       "sidebarToolCde": { "title": "CDE", "content": "CDE é uma ferramenta padrão que Pentaho incorpora para criar dashboards." },
+      "sidebarToolJpivot": { "title": "JPivot", "content": "JPivot é o visualizador OLAP próprio de Pentaho." },
       "sidebarOpened": { "title": "Abertos", "content": "Visualizar os arquivos abertos atualmente." },
       "sidebarBrowser": { "title": "Explorador", "content": "O Explorador de arquivos permitirá navegar pelos arquivos." },
       "sidebarSearch": { "title": "Procurar", "content": "O Procurar permitirá encontrar qualquer arquivo." },

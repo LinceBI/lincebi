@@ -171,6 +171,12 @@ export default {
 					callback: () => this.expandSidebarDropdown('tools'),
 				},
 				{
+					target: '[data-v-step="sidebar-tool-jpivot"]',
+					header: { title: this.$t('tour.steps.sidebarToolJpivot.title') },
+					content: this.$t('tour.steps.sidebarToolJpivot.content'),
+					callback: () => this.expandSidebarDropdown('tools'),
+				},
+				{
 					target: '[data-v-step="sidebar-opened"]',
 					header: { title: this.$t('tour.steps.sidebarOpened.title') },
 					content: this.$t('tour.steps.sidebarOpened.content'),
