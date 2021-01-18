@@ -84,7 +84,7 @@ export default {
 							},
 						},
 						{
-							enabled: this.overlays.has('launch.launch_new_stolap_analytic'),
+							enabled: this.overlays.has('launch.launch_new_stolap_analytics'),
 							id: 'tool-stolap',
 							name: 'STOlap',
 							icon: ['fac', 'tool-stolap'],
@@ -99,7 +99,7 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.overlays.get('launch.launch_new_stolap_analytic')
+									this.overlays.get('launch.launch_new_stolap_analytics')
 								);
 							},
 						},
