@@ -3,7 +3,7 @@ version: "3.7"
 services:
 
   biserver:
-    image: "repo.stratebi.com/lincebi/lincebi:9.1"
+    image: "repo.stratebi.com/lincebi/lincebi:8.3"
     restart: "on-failure:3"
     network_mode: "host"
     volumes:
