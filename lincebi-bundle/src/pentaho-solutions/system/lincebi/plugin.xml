@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin name="lincebi" title="${lincebi}" loader="DEFAULT">
+
+	<static-paths>
+		<static-path url="/lincebi/resources" localFolder="resources" />
+	</static-paths>
+
+</plugin>

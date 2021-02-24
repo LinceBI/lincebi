@@ -1,4 +1,31 @@
-/node_modules/
-/npm-debug.log*
+# Build
+dist/
+build/
 
-/dist/
+# Node.js
+node_modules/
+
+# Gradle
+.gradle/
+gradle-app.setting
+
+# VSCode
+.vscode/
+
+# JetBrains
+.idea/
+
+# Eclipse
+bin/
+tmp/
+.settings/
+.classpath
+.project
+.metadata
+
+# Logs
+*.log
+
+# Misc
+.DS_Store*
+Thumbs.db

@@ -1,0 +1,24 @@
+{
+	admin off
+}
+
+https://*:8443 {
+	tls internal {
+		on_demand
+	}
+
+	# Pentaho BI Server
+	reverse_proxy /* http://biserver:8080
+
+	# Webpack Dev Server
+	## @lincebi/frontend-login
+	handle_path /pentaho/Login/* {
+		reverse_proxy http://host.docker.internal:8081
+	}
+	reverse_proxy /sockjs-login/* http://host.docker.internal:8081
+	## @lincebi/frontend-home
+	handle_path /pentaho/Home/* {
+		reverse_proxy http://host.docker.internal:8082
+	}
+	reverse_proxy /sockjs-home/* http://host.docker.internal:8082
+}

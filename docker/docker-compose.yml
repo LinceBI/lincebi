@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+
+  caddy:
+    image: "docker.io/caddy:2"
+    ports:
+      - "127.0.0.1:8443:8443/tcp"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - "./Caddyfile:/etc/caddy/Caddyfile:ro"
+
+  biserver:
+    image: "repo.stratebi.com/lincebi/lincebi:8.3"
+    volumes:
+      - "../lincebi-bundle/build/lincebi.zip:/etc/biserver.init.d/80_lincebi.__root__.zip:ro"
+      - "./biserver.init.d/90_configuration/:/etc/biserver.init.d/90_configuration/:ro"
+    environment:
+      IS_PROXIED: "true"
+      PROXY_SCHEME: "https"
+      PROXY_PORT: "8443"
+      FQSU_PROTOCOL: "https"
+      FQSU_DOMAIN: "localhost"
+      FQSU_PORT: "8443"
+      DEFAULT_ADMIN_PASSWORD: "password"

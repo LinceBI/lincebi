@@ -1,0 +1,12 @@
+{
+	admin off
+}
+
+https://*:8443 {
+	tls internal {
+		on_demand
+	}
+
+	# Pentaho BI Server
+	reverse_proxy /* http://127.0.0.1:8080
+}

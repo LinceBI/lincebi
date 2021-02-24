@@ -3,32 +3,32 @@ stages:
   - "deploy"
 
 .variables: &variables
-  MAVEN_OPTS: "-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2"
-  MAVEN_GROUP: "com.stratebi.lincebi"
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  GRADLE_USER_HOME: "./.gradle/"
+  NPM_CONFIG_FUND: "false"
+  DISABLE_OPENCOLLECTIVE: "true"
 
 .variables_develop: &variables_develop
   <<: *variables
-  MAVEN_REPOSITORY_ID: "lincebi-snapshots"
-  MAVEN_REPOSITORY_URL: "https://repo.stratebi.com/repository/lincebi-mvn-snapshots"
-  PACKAGE_VERSION_EXTRA: "${CI_COMMIT_REF_SLUG}-SNAPSHOT"
+  ORG_GRADLE_PROJECT_versionSuffix: "-${CI_COMMIT_REF_SLUG}-SNAPSHOT"
 
 .variables_release: &variables_release
   <<: *variables
-  MAVEN_REPOSITORY_ID: "lincebi-releases"
-  MAVEN_REPOSITORY_URL: "https://repo.stratebi.com/repository/lincebi-mvn-releases"
+  ORG_GRADLE_PROJECT_versionSuffix: ""
 
 .artifacts: &artifacts
-  expire_in: "15 mins"
+  expire_in: "30 mins"
   paths:
-    - "./dist/"
-    - "./packages/login/dist/"
-    - "./packages/home/dist/"
+    - "./lincebi-bundle/build/"
 
 .cache: &cache
   key: "${CI_COMMIT_REF_SLUG}"
   paths:
-    - "./.m2/"
-    - "./node_modules/"
+    - "./.gradle/"
+    - "./lincebi-frontend/node_modules/"
+    - "./lincebi-frontend/packages/common/node_modules/"
+    - "./lincebi-frontend/packages/login/node_modules/"
+    - "./lincebi-frontend/packages/home/node_modules/"
 
 .regex:
   # Semantic Versioning 2.0.0 regex (from: https://github.com/npm/node-semver/).
@@ -39,8 +39,7 @@ build:develop:
   variables:
     <<: *variables_develop
   script:
-    - "npm install"
-    - "make build"
+    - "./gradlew build"
   artifacts:
     <<: *artifacts
   cache:
@@ -53,8 +52,7 @@ build:release:
   variables:
     <<: *variables_release
   script:
-    - "npm install"
-    - "make build"
+    - "./gradlew build"
   artifacts:
     <<: *artifacts
   cache:
@@ -69,7 +67,7 @@ deploy:develop:mvn:
   variables:
     <<: *variables_develop
   script:
-    - "make deploy"
+    - "./gradlew publish"
   cache:
     <<: *cache
   except:
@@ -82,7 +80,7 @@ deploy:release:mvn:
   variables:
     <<: *variables_release
   script:
-    - "make deploy"
+    - "./gradlew publish"
   cache:
     <<: *cache
   only:
