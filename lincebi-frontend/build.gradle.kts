@@ -1,5 +1,9 @@
 tasks.register<Copy>("build") {
-	dependsOn("npmRunBuild")
+	val buildDirExists = File("${buildDir}/").exists()
+
+	if (!buildDirExists) {
+		dependsOn("npmRunBuild")
+	}
 
 	from("${projectDir}/packages/login/dist/", {
 		into("/Login/")
@@ -10,13 +14,13 @@ tasks.register<Copy>("build") {
 	})
 
 	into("${buildDir}/")
+
+	outputs.upToDateWhen { buildDirExists }
 }
 
-tasks.register<Exec>("clean") {
-	dependsOn("npmInstall")
-
-	commandLine("npm", "run", "clean")
-
+tasks.register("clean") {
+	delete("${projectDir}/packages/login/dist/")
+	delete("${projectDir}/packages/home/dist/")
 	delete("${buildDir}/")
 }
 
@@ -26,7 +30,7 @@ tasks.register<Exec>("npmRunBuild") {
 
 	commandLine("npm", "run", "build")
 
-	outputs.upToDateWhen { File("${buildDir}/").exists() }
+	outputs.upToDateWhen { false }
 }
 
 tasks.register<Exec>("npmRunLint") {
