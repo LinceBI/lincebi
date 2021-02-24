@@ -2,7 +2,7 @@
   "private": true,
   "name": "@lincebi/frontend-login",
   "scripts": {
-    "lint": "vue-cli-service lint",
+    "lint": "vue-cli-service lint --no-fix",
     "build": "vue-cli-service build",
     "serve": "vue-cli-service serve",
     "clean": "rimraf dist"
