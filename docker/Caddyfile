@@ -1,5 +1,14 @@
 {
 	admin off
+	auto_https off
+}
+
+http://*:8080 {
+	tls internal {
+		on_demand
+	}
+
+	redir /* https://{host}:8443{uri} 301
 }
 
 https://*:8443 {
