@@ -18,7 +18,7 @@ export default async (key, value = '') => {
 	}
 
 	const contextPath = await getContextPath();
-	const endpoint = `${contextPath}plugin/global-user-settings/api/${key}`;
+	const endpoint = `${contextPath}plugin/lincebi/api/global-user-settings/${key}`;
 	const response = await fetch(endpoint, {
 		method: 'POST',
 		headers: { 'Content-Type': 'text/plain' },

@@ -4,6 +4,8 @@ services:
 
   caddy:
     image: "docker.io/caddy:2"
+    networks:
+      - "biserver"
     ports:
       - "127.0.0.1:8080:8080/tcp"
       - "127.0.0.1:8443:8443/tcp"
@@ -11,9 +13,12 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       - "./Caddyfile:/etc/caddy/Caddyfile:ro"
+      - "caddy-data:/data/"
 
   biserver:
     image: "repo.stratebi.com/lincebi/lincebi:8.3"
+    networks:
+      - "biserver"
     volumes:
       - "../lincebi-bundle/build/lincebi.zip:/etc/biserver.init.d/80_lincebi.__root__.zip:ro"
       - "./biserver.init.d/90_configuration/:/etc/biserver.init.d/90_configuration/:ro"
@@ -25,3 +30,32 @@ services:
       FQSU_DOMAIN: "localhost"
       FQSU_PORT: "8443"
       DEFAULT_ADMIN_PASSWORD: "password"
+      STORAGE_TYPE: "postgres"
+      POSTGRES_HOST: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+    depends_on:
+      - "postgres"
+
+  postgres:
+    image: "docker.io/postgres:13"
+    networks:
+      - "biserver"
+    ports:
+      - "127.0.0.1:5432:5432/tcp"
+    volumes:
+      - "postgres-data:/var/lib/postgresql/data/"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+
+networks:
+
+  biserver:
+    driver: "bridge"
+    internal: false
+
+volumes:
+
+  caddy-data:
+  postgres-data:

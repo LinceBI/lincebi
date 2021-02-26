@@ -20,7 +20,7 @@ export default async (paths, { locale = getLocale(), depth = 1 } = {}) => {
 	}
 
 	const contextPath = await getContextPath();
-	const endpoint = `${contextPath}plugin/file-metadata/api/get?${searchParams.stringify(
+	const endpoint = `${contextPath}plugin/lincebi/api/file-metadata/get?${searchParams.stringify(
 		{ locale, depth }
 	)}`;
 	const response = await fetch(endpoint, {

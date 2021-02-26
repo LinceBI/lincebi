@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+	<title th:text="${name}">Power BI report</title>
+	<script src="https://cdn.jsdelivr.net/npm/powerbi-client@2/dist/powerbi.min.js"></script>
+	<style>
+		html, body, iframe {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			height: 100%;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		body {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		body > .report {
+			flex-grow: 1;
+			width: 100%;
+			min-height: 100%;
+			box-sizing: border-box;
+		}
+
+		@media (min-width: 2152px) {
+			body > .report {
+				width: 50%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<script th:inline="javascript">
+		(function() {
+			'use strict';
+
+			var models = window['powerbi-client'].models;
+			var embedConfig = JSON.parse(/*[[${embedConfig}]]*/'');
+
+			for (var i = 0; i < embedConfig.embedReports.length; i++) {
+				var embedReport = embedConfig.embedReports[i];
+				var $container = document.createElement('div');
+				$container.className = 'report';
+				document.body.appendChild($container);
+				powerbi.embed($container, {
+					type: 'report',
+					id: embedReport.id,
+					embedUrl: embedReport.embedUrl,
+					tokenType: models.TokenType.Embed,
+					accessToken: embedConfig.embedToken.token,
+					permissions: models.Permissions.Read,
+					viewMode: models.ViewMode.View
+				});
+			}
+		})();
+	</script>
+</body>
+
+</html>
