@@ -332,8 +332,7 @@ public class FileMetadataService {
 				throw new FileMetadataWriteException(this.userName, path);
 			}
 
-			boolean hasTitle = fileMetadataTree.getTitle() != null;
-			if (hasTitle) {
+			if (fileMetadataTree.hasTitle()) {
 				if (!this.canWrite) {
 					throw new FileMetadataWriteException(this.userName);
 				} else if (!this.canWriteFile(path)) {
@@ -341,8 +340,7 @@ public class FileMetadataService {
 				}
 			}
 
-			boolean hasDescription = fileMetadataTree.getDescription() != null;
-			if (hasDescription) {
+			if (fileMetadataTree.hasDescription()) {
 				if (!this.canWrite) {
 					throw new FileMetadataWriteException(this.userName);
 				} else if (!this.canWriteFile(path)) {
@@ -350,8 +348,7 @@ public class FileMetadataService {
 				}
 			}
 
-			boolean hasLocaleProperties = fileMetadataTree.getProperties() != null && fileMetadataTree.getProperties().size() > 0;
-			if (hasLocaleProperties) {
+			if (fileMetadataTree.hasProperties()) {
 				if (!this.canWrite) {
 					throw new FileMetadataWriteException(this.userName);
 				} else if (!this.canWriteFile(path)) {
@@ -359,14 +356,7 @@ public class FileMetadataService {
 				}
 			}
 
-			boolean hasIsFavorite = fileMetadataTree.getIsFavorite() != null;
-
-			boolean hasIsRecent = fileMetadataTree.getIsRecent() != null;
-
-			boolean hasIsHome = fileMetadataTree.getIsHome() != null;
-
-			boolean hasIsGlobal = fileMetadataTree.getIsGlobal();
-			if (hasIsGlobal && !this.canAdminister) {
+			if (fileMetadataTree.hasIsGlobal() && !this.canAdminister) {
 				throw new FileMetadataAdministerException(this.userName);
 			}
 
@@ -375,45 +365,45 @@ public class FileMetadataService {
 			 * ================
 			 */
 
-			Map<String, String> fileMetadataTreeProperties = hasLocaleProperties
+			Map<String, String> fileMetadataTreeProperties = fileMetadataTree.hasProperties()
 				? fileMetadataTree.getProperties()
 				: new HashMap<String, String>();
 
-			if (hasTitle) {
+			if (fileMetadataTree.hasTitle()) {
 				String title = fileMetadataTree.getTitle();
 				fileMetadataTreeProperties.put(RepositoryFile.FILE_TITLE, title);
 			}
 
-			if (hasDescription) {
+			if (fileMetadataTree.hasDescription()) {
 				String description = fileMetadataTree.getDescription();
 				fileMetadataTreeProperties.put(RepositoryFile.FILE_DESCRIPTION, description);
 			}
 
-			if (hasIsFavorite) {
+			if (fileMetadataTree.hasIsFavorite()) {
 				Set<RepositoryFile> fileSet = new HashSet<>(Arrays.asList(repositoryFile));
 				boolean isFavorite = fileMetadataTree.getIsFavorite();
 				this.toggleFileListUserSetting(FileMetadataService.FAVORITES_USER_SETTING, fileSet, isFavorite, false);
 			}
 
-			if (hasIsRecent) {
+			if (fileMetadataTree.hasIsRecent()) {
 				Set<RepositoryFile> fileSet = new HashSet<>(Arrays.asList(repositoryFile));
 				boolean isRecent = fileMetadataTree.getIsRecent();
 				this.toggleFileListUserSetting(FileMetadataService.RECENTS_USER_SETTING, fileSet, isRecent, false);
 			}
 
-			if (hasIsHome) {
+			if (fileMetadataTree.hasIsHome()) {
 				Set<RepositoryFile> fileSet = new HashSet<>(Arrays.asList(repositoryFile));
 				boolean isHome = fileMetadataTree.getIsHome();
 				this.toggleFileListUserSetting(FileMetadataService.HOME_USER_SETTING, fileSet, isHome, false);
 			}
 
-			if (hasIsGlobal) {
+			if (fileMetadataTree.hasIsGlobal()) {
 				Set<RepositoryFile> fileSet = new HashSet<>(Arrays.asList(repositoryFile));
 				boolean isGlobal = fileMetadataTree.getIsGlobal();
 				this.toggleFileListUserSetting(FileMetadataService.GLOBAL_USER_SETTING, fileSet, isGlobal, true);
 			}
 
-			if (hasTitle || hasDescription || hasLocaleProperties) {
+			if (fileMetadataTreeProperties.size() > 0) {
 				List<StringKeyStringValueDto> defaultLocaleProperties = new ArrayList<StringKeyStringValueDto>();
 				List<StringKeyStringValueDto> localeProperties = new ArrayList<StringKeyStringValueDto>();
 				for (Map.Entry<String, String> localeProperty : fileMetadataTreeProperties.entrySet()) {

@@ -23,6 +23,10 @@ public class FileMetadataPath {
 		this.fullPath = fullPath;
 	}
 
+	public boolean hasFullPath() {
+		return this.fullPath != null;
+	}
+
 	@JsonProperty("title")
 	public String getTitle() {
 		return this.title;
@@ -33,6 +37,10 @@ public class FileMetadataPath {
 		this.title = title;
 	}
 
+	public boolean hasTitle() {
+		return this.title != null;
+	}
+
 	@JsonProperty("lastUse")
 	public Long getLastUse() {
 		return this.lastUse;
@@ -41,6 +49,10 @@ public class FileMetadataPath {
 	@JsonProperty("lastUse")
 	public void setLastUse(Long lastUse) {
 		this.lastUse = lastUse;
+	}
+
+	public boolean hasLastUse() {
+		return this.lastUse != null;
 	}
 
 }
