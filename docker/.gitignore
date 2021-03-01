@@ -1,4 +1,5 @@
 /biserver.init.d/*
+!/biserver.init.d/30_*
 !/biserver.init.d/90_*
 
 /dist/
