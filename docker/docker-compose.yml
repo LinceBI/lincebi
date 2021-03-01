@@ -16,12 +16,13 @@ services:
       - "caddy-data:/data/"
 
   biserver:
-    image: "repo.stratebi.com/lincebi/lincebi:8.3"
+    image: "repo.stratebi.com/lincebi/biserver:8.3"
     networks:
       - "biserver"
     volumes:
-      - "../lincebi-bundle/build/lincebi.zip:/etc/biserver.init.d/80_lincebi.__root__.zip:ro"
+      - "../lincebi-bundle/build/lincebi.zip:/etc/biserver.init.d/10_lincebi.__root__.zip:ro"
       - "./biserver.init.d/90_configuration/:/etc/biserver.init.d/90_configuration/:ro"
+      - "./biserver.init.d/90_stsearch.sh:/etc/biserver.init.d/90_stsearch.sh:ro"
     environment:
       IS_PROXIED: "true"
       PROXY_SCHEME: "https"
