@@ -558,6 +558,7 @@ public class FileMetadataService {
 			fileMetadataPath.setFullPath(repositoryFile.getPath());
 			fileMetadataPath.setTitle(repositoryFile.getTitle());
 			fileMetadataPath.setLastUse(repositoryFile.getLastModifiedDate().getTime());
+			fileMetadataPathList.add(fileMetadataPath);
 		}
 
 		try {
