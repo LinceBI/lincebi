@@ -1,4 +1,4 @@
-package com.stratebi.lincebi.filemetadata.lifecyclelistener;
+package com.stratebi.lincebi.lifecyclelistener;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -14,11 +14,11 @@ import org.pentaho.platform.plugin.services.importer.IPlatformImporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class FileMetadataLifecycleListener implements IPluginLifecycleListener, IPlatformReadyListener {
+public class LifecycleListener implements IPluginLifecycleListener, IPlatformReadyListener {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(FileMetadataLifecycleListener.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LifecycleListener.class);
 
-	private static final String DEFAULT_FILE_METADATA_LOADER_THREAD_NAME = "Default File Metadata Loader Thread";
+	private static final String DEFAULT_LINCEBI_LOADER_THREAD_NAME = "Default LinceBI Loader Thread";
 	// Extracted from: org/pentaho/platform/plugin/action/defaultcontent/DefaultContentSystemListener.java
 	private static final String DEFAULT_CONTENT_LOADER_THREAD_NAME = "Default Content Loader Thread";
 
@@ -27,7 +27,7 @@ public class FileMetadataLifecycleListener implements IPluginLifecycleListener, 
 	private static final FilenameFilter FILE_FILTER = new FilenameFilter() {
 		@Override
 		public boolean accept(File dir, String name) {
-			return name.endsWith(".pfm");
+			return name.endsWith(".pgus") || name.endsWith(".pfm");
 		}
 	};
 
@@ -45,7 +45,7 @@ public class FileMetadataLifecycleListener implements IPluginLifecycleListener, 
 
 	@Override
 	public void ready() throws PluginLifecycleException {
-		Thread defaultContentLoaderThread = this.getThreadByName(FileMetadataLifecycleListener.DEFAULT_CONTENT_LOADER_THREAD_NAME);
+		Thread defaultContentLoaderThread = this.getThreadByName(LifecycleListener.DEFAULT_CONTENT_LOADER_THREAD_NAME);
 
 		Runnable runnable = new Runnable() {
 			@Override
@@ -59,24 +59,24 @@ public class FileMetadataLifecycleListener implements IPluginLifecycleListener, 
 					SecurityHelper.getInstance().runAsSystem(new Callable<Void>() {
 						@Override
 						public Void call() throws Exception {
-							String solutionPath = PentahoSystem.getApplicationContext().getSolutionPath(FileMetadataLifecycleListener.DEFAULT_CONTENT_FOLDER);
+							String solutionPath = PentahoSystem.getApplicationContext().getSolutionPath(LifecycleListener.DEFAULT_CONTENT_FOLDER);
 							File directory = new File(solutionPath);
 
 							IPlatformImporter importer = PentahoSystem.get(IPlatformImporter.class);
 							ArchiveLoader archiveLoader = new ArchiveLoader(importer);
-							archiveLoader.loadAll(directory, FileMetadataLifecycleListener.FILE_FILTER);
+							archiveLoader.loadAll(directory, LifecycleListener.FILE_FILTER);
 
 							return null;
 						}
 					});
 				} catch (Exception ex) {
-					FileMetadataLifecycleListener.LOGGER.error(ex.getMessage());
+					LifecycleListener.LOGGER.error(ex.getMessage());
 				}
 			}
 		};
 
 		Thread defaultFileMetadataLoaderThread = new Thread(runnable);
-		defaultFileMetadataLoaderThread.setName(FileMetadataLifecycleListener.DEFAULT_FILE_METADATA_LOADER_THREAD_NAME);
+		defaultFileMetadataLoaderThread.setName(LifecycleListener.DEFAULT_LINCEBI_LOADER_THREAD_NAME);
 		defaultFileMetadataLoaderThread.setDaemon(true);
 		defaultFileMetadataLoaderThread.start();
 	}

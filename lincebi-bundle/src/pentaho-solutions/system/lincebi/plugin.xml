@@ -5,8 +5,6 @@
 		<static-path url="/lincebi/resources" localFolder="resources" />
 	</static-paths>
 
-	<lifecycle-listener class="com.stratebi.lincebi.filemetadata.lifecyclelistener.FileMetadataLifecycleListener" />
-
-	<lifecycle-listener class="com.stratebi.lincebi.globalusersettings.lifecyclelistener.GlobalUserSettingsLifecycleListener" />
+	<lifecycle-listener class="com.stratebi.lincebi.lifecyclelistener.LifecycleListener" />
 
 </plugin>
