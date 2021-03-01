@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns2:ExportManifest xmlns:ns2="http://www.pentaho.com/schema/">
 	<ExportManifestInformation exportDate="01-01-1970 00:00:00 GMT" exportBy="admin" rootFolder="/" manifestVersion="2" />
+	<!-- Users -->
+	<ExportManifestUser>
+		<username>admin</username>
+		<roles>Authenticated</roles>
+		<roles>Administrator</roles>
+		<password><%= %x(/usr/share/biserver/bin/hash.sh "${DEFAULT_ADMIN_PASSWORD}") %></password>
+		<userSettings>
+			<name>lincebi.name</name>
+			<value>Admin</value>
+		</userSettings>
+		<!--
+		<userSettings>
+			<name>lincebi.avatar</name>
+			<value></value>
+		</userSettings>
+		-->
+		<userSettings>
+			<name>lincebi.show_menu_bar</name>
+			<value>true</value>
+		</userSettings>
+		<userSettings>
+			<name>lincebi.show_tool_bar</name>
+			<value>true</value>
+		</userSettings>
+		<userSettings>
+			<name>lincebi.onboarded</name>
+			<value>false</value>
+		</userSettings>
+		<userSettings>
+			<name>MANTLE_SHOW_HIDDEN_FILES</name>
+			<value>true</value>
+		</userSettings>
+		<userSettings>
+			<name>MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS</name>
+			<value>true</value>
+		</userSettings>
+		<userSettings>
+			<name>home</name>
+			<value>
+				[
+					{ "fullPath": "/public/Steel Wheels/Reports/Inventory List (report).prpt", "title": "Inventory List", "lastUse": 0 },
+					{ "fullPath": "/public/Steel Wheels/Reports/Invoice (report).prpt", "title": "Invoice (report)", "lastUse": 0 },
+					{ "fullPath": "/public/Steel Wheels/Reports/Product Sales.prpt", "title": "Product Sales", "lastUse": 0 },
+					{ "fullPath": "/public/Steel Wheels/Reports/Top Customers (report).prpt", "title": "Top Customers", "lastUse": 0 }
+				]
+			</value>
+		</userSettings>
+		<userSettings>
+			<name>favorites</name>
+			<value>
+				[
+					{ "fullPath": "/public/Steel Wheels/Dashboards/CTools_dashboard.wcdf", "title": "CTools Dashboard", "lastUse": 0 },
+					{ "fullPath": "/public/Steel Wheels/Reports/Income Statement (report).prpt", "title": "Income Statement", "lastUse": 0 },
+					{ "fullPath": "/public/Steel Wheels/Reports/Product Sales.prpt", "title": "Product Sales", "lastUse": 0 }
+				]
+			</value>
+		</userSettings>
+		<userSettings>
+			<name>recent</name>
+			<value>
+				[
+					{ "fullPath": "/public/Steel Wheels/Dashboards/CTools_dashboard.wcdf", "title": "CTools Dashboard", "lastUse": 0 },
+					{ "fullPath": "/public/Steel Wheels/Reports/Inventory List (report).prpt", "title": "Inventory List", "lastUse": 0 },
+					{ "fullPath": "/public/Steel Wheels/Reports/Invoice (report).prpt", "title": "Invoice (report)", "lastUse": 0 }
+				]
+			</value>
+		</userSettings>
+	</ExportManifestUser>
 	<ExportManifestUser>
 		<username>alice</username>
 		<roles>Authenticated</roles>
@@ -19,6 +87,7 @@
 		<roles>carol</roles>
 		<password><%= %x(/usr/share/biserver/bin/hash.sh "${DEFAULT_ADMIN_PASSWORD}") %></password>
 	</ExportManifestUser>
+	<!-- Roles -->
 	<ExportManifestRole>
 		<rolename>alice</rolename>
 		<permissions>org.pentaho.platform.dataaccess.datasource.security.manage</permissions>
