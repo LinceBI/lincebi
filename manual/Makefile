@@ -30,12 +30,11 @@ build: $(TARGET_PDF) $(TARGET_DOCX)
 
 #%.pdf: %.md
 #	'$(PANDOC)' '$<' \
-#		--latex-engine=xelatex \
+#		--pdf-engine=xelatex \
 #		--output='$@'
 
 %.docx: %.md
 	'$(PANDOC)' '$<' \
-		--latex-engine=xelatex \
 		--reference-doc='$(PANDOC_REFERENCE_DOCX)' \
 		--table-of-contents \
 		--output='$@'

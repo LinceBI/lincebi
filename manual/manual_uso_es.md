@@ -1,42 +1,43 @@
 ---
-title: Personalización para Pentaho Business Intelligence Server
-subtitle: Manual de uso
-lang: es
-papersize: "a4"
+title: 'LinceBI'
+subtitle: 'Manual de uso'
+lang: 'es'
+papersize: 'a4'
 geometry:
-  - top=3cm
-  - bottom=3cm
-  - left=2cm
-  - right=2cm
-fontsize: "12pt"
-mainfont: "Titillium-Regular.otf"
+  - 'top=3cm'
+  - 'bottom=3cm'
+  - 'left=2cm'
+  - 'right=2cm'
+fontsize: '12pt'
+mainfont: 'Titillium-Regular.otf'
 mainfontoptions:
-  - Scale=1.00
-  - BoldFont=Titillium-Bold.otf
-  - ItalicFont=Titillium-RegularItalic.otf
-  - BoldItalicFont=Titillium-BoldItalic.otf
-  - ExternalLocation=assets/fonts/
-monofont: "Hack-Regular.otf"
+  - 'Scale=1.00'
+  - 'BoldFont=Titillium-Bold.otf'
+  - 'ItalicFont=Titillium-RegularItalic.otf'
+  - 'BoldItalicFont=Titillium-BoldItalic.otf'
+  - 'ExternalLocation=assets/fonts/'
+monofont: 'Hack-Regular.otf'
 monofontoptions:
-  - Scale=0.80
-  - BoldFont=Hack-Bold.otf
-  - ItalicFont=Hack-RegularItalic.otf
-  - BoldItalicFont=Hack-BoldItalic.otf
-  - ExternalLocation=assets/fonts/
+  - 'Scale=0.80'
+  - 'BoldFont=Hack-Bold.otf'
+  - 'ItalicFont=Hack-RegularItalic.otf'
+  - 'BoldItalicFont=Hack-BoldItalic.otf'
+  - 'ExternalLocation=assets/fonts/'
 colorlinks: true
 header-includes:
-  - \usepackage{xcolor}
-  - \usepackage{hyperref}
-  - \usepackage{fancyhdr}
-  - \usepackage[es-ES]{datetime2}
-  - \pagestyle{fancy}
-  - \fancyhead[LO,LE]{\leftmark}
-  - \fancyhead[CO,CE]{}
-  - \fancyhead[RE,RO]{\includegraphics[height=0.6cm]{./assets/images/stratebi_alt.png}}
-  - \fancyfoot[LE,LO]{}
-  - \fancyfoot[CO,CE]{}
-  - \fancyfoot[RE,RO]{\thepage}
-  - \renewcommand\contentsname{Índice}
+  - '\usepackage{xcolor}'
+  - '\usepackage{hyperref}'
+  - '\usepackage{fancyhdr}'
+  - '\usepackage{graphicx}'
+  - '\usepackage[es-ES]{datetime2}'
+  - '\pagestyle{fancy}'
+  - '\fancyhead[LO,LE]{\leftmark}'
+  - '\fancyhead[CO,CE]{}'
+  - '\fancyhead[RE,RO]{\includegraphics[height=0.6cm]{./assets/images/stratebi.png}}'
+  - '\fancyfoot[LE,LO]{}'
+  - '\fancyfoot[CO,CE]{}'
+  - '\fancyfoot[RE,RO]{\thepage}'
+  - '\renewcommand\contentsname{Índice}'
 ---
 
 \hypersetup{linkcolor=black}
@@ -44,8 +45,7 @@ header-includes:
 
 # Introducción
 
-El siguiente documento presenta un manual de uso de la personalización de LinceBI para Pentaho BI
-Server.
+El siguiente documento presenta un manual de uso de LinceBI, basado en Pentaho BI Server.
 
 ## Soporte para navegadores
 
@@ -62,8 +62,8 @@ Server.
 
 ## /Login
 
-Lo primero que el usuario verá al entrar en la personalización es la siguiente vista, en la que se
-le ofrecerá iniciar sesión.
+Lo primero que el usuario verá al entrar en LinceBI es la siguiente vista, en la que se le ofrecerá
+iniciar sesión.
 
 ![](./assets/images/xl_login.png){width=512px}
 ![](./assets/images/sm_login.png){width=128px}
@@ -74,13 +74,12 @@ le ofrecerá iniciar sesión.
 
 ### Pestañas
 
-Esta es la vista inicial de la personalización, en ella se presenta una navegación por pestañas que
-muestran los archivos que el administrador y el usuario han elegido.
+Esta es la vista inicial de LinceBI, en ella se presenta una navegación por pestañas que muestran
+los archivos que el administrador y el usuario han elegido.
 
 Por defecto, las dos únicas pestañas que aparecen son "Global" e "Inicio", en la primera es el
-administrador quien elige los archivos que se muestran haciendo click en el icono de la bola del
-mundo en el buscador, y en la segunda es el usuario quien hace esto haciendo click en el icono de la
-casa.
+administrador quien elige los archivos que se muestran a todos los usuarios y en la segunda es el
+usuario quien elige los archivos que exclusivamente desea ver.
 
 Tanto el administrador como el usuario pueden arrastrar en su respectiva pestaña los archivos para
 que se muestren en el orden que desee.
@@ -130,10 +129,10 @@ de perfil o desde el menú de opciones superior.
 
 En ella el usuario puede actualizar su imagen e introducir su nombre, email, teléfono y dirección.
 
-Estos datos podrán ser utilizados posteriormente en otras vistas de la personalización o plugins de
-Pentaho BI Server.
+Estos datos podrán ser utilizados posteriormente en otras vistas o plugins de LinceBI.
 
-![](./assets/images/xl_home_navbar_options.png){width=512px}\
+![](./assets/images/xl_home_navbar_options.png){width=512px}
+![](./assets/images/sm_home_navbar_options.png){width=128px}
 
 ![](./assets/images/xl_profile.png){width=512px}
 ![](./assets/images/sm_profile.png){width=128px}
@@ -144,8 +143,8 @@ Pentaho BI Server.
 
 La última vista propia implementada es administración, que puede ser accedida desde el menú lateral.
 
-En ella el administrador podrá acceder a distintas secciones para gestionar Pentaho BI Server, como
-la gestión de fuentes de datos, programaciones o marketplace, así como vaciar las cachés del
+En ella el administrador podrá acceder a distintas secciones para gestionar la plataforma, como la
+gestión de fuentes de datos, programaciones o marketplace, así como vaciar las cachés del
 servidor.
 
 ![](./assets/images/xl_administration.png){width=512px}
