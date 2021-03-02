@@ -8,15 +8,17 @@
 		<roles>Administrator</roles>
 		<password><%= %x(/usr/share/biserver/bin/hash.sh "${DEFAULT_ADMIN_PASSWORD}") %></password>
 		<userSettings>
+			<name>MANTLE_SHOW_HIDDEN_FILES</name>
+			<value>true</value>
+		</userSettings>
+		<userSettings>
+			<name>MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS</name>
+			<value>true</value>
+		</userSettings>
+		<userSettings>
 			<name>lincebi.name</name>
 			<value>Admin</value>
 		</userSettings>
-		<!--
-		<userSettings>
-			<name>lincebi.avatar</name>
-			<value></value>
-		</userSettings>
-		-->
 		<userSettings>
 			<name>lincebi.show_menu_bar</name>
 			<value>true</value>
@@ -30,12 +32,51 @@
 			<value>false</value>
 		</userSettings>
 		<userSettings>
-			<name>MANTLE_SHOW_HIDDEN_FILES</name>
-			<value>true</value>
-		</userSettings>
-		<userSettings>
-			<name>MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS</name>
-			<value>true</value>
+			<name>lincebi.tabs</name>
+			<value>
+				[
+					{
+						"type": "tag",
+						"name": "Example 1",
+						"color": "#5e35b1",
+						"icon": { "prefix": "fas", "iconName": "book" },
+						"isRemovable": true,
+						"isDraggable": true,
+						"isContentDraggable": false,
+						"sort": { "asc": false, "selected": "title" }
+					},
+					{
+						"type": "tag",
+						"name": "Example 2",
+						"color": "#00897b",
+						"icon": { "prefix": "fas", "iconName": "hands-helping" },
+						"isRemovable": true,
+						"isDraggable": true,
+						"isContentDraggable": false,
+						"sort": { "asc": false, "selected": "title" }
+					},
+					{
+						"type": "tag",
+						"name": "Example 3",
+						"color": "#ffb300",
+						"icon": { "prefix": "fas", "iconName": "medkit" },
+						"isRemovable": true,
+						"isDraggable": true,
+						"isContentDraggable": false,
+						"sort": { "asc": false, "selected": "title" }
+					},
+					{
+						"type": "tag",
+						"name": "Example 4",
+						"color": "#1e88e5",
+						"icon": { "prefix": "fas", "iconName": "rocket" },
+						"isRemovable": true,
+						"isDraggable": true,
+						"isContentDraggable": false,
+						"sort": { "asc": false, "selected": "title" }
+					}
+				]
+			</value>
 		</userSettings>
 		<userSettings>
 			<name>home</name>
