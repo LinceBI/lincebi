@@ -109,6 +109,12 @@
 	<filter>
 		<filter-name>Pentaho Web Context Filter</filter-name>
 		<filter-class>org.pentaho.platform.web.http.filters.PentahoWebContextFilter</filter-class>
+		<%- if ENV['CAS_ENABLED'] == 'true' -%>
+		<init-param>
+			<param-name>ssoEnabled</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<%- end -%>
 	</filter>
 
 	<!-- insert additional filters -->
@@ -223,6 +229,12 @@
 	<listener>
 		<listener-class>org.pentaho.platform.web.http.context.PentahoSystemReadyListener</listener-class>
 	</listener>
+
+	<%- if ENV['CAS_ENABLED'] == 'true' -%>
+	<listener>
+		<listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>  
+	</listener>
+	<%- end -%>
 
 	<servlet>
 		<servlet-name>ViewAction</servlet-name>
@@ -537,7 +549,7 @@
 
 	<session-config>
 		<tracking-mode>COOKIE</tracking-mode>
-		<session-timeout>120</session-timeout>
+		<session-timeout><%= ENV['COOKIE_SESSION_TIMEOUT'] %></session-timeout>
 	</session-config>
 
 	<mime-mapping>
