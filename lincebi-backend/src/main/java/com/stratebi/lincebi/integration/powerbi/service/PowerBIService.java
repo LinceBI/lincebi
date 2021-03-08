@@ -7,8 +7,8 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -176,6 +176,7 @@ public class PowerBIService {
 		final String uri = "https://api.powerbi.com/v1.0/myorg/GenerateToken";
 
 		RestTemplate restTemplate = new RestTemplate();
+		ObjectMapper mapper = new ObjectMapper();
 
 		// Create request header
 		HttpHeaders headers = new HttpHeaders();
@@ -183,53 +184,43 @@ public class PowerBIService {
 		headers.put("Authorization", Arrays.asList("Bearer " + accessToken));
 
 		// Create request body
-		JsonObject requestBody = new JsonObject();
+		ObjectNode requestBody = mapper.createObjectNode();
 
 		// Add dataset id in body
-		JsonArray jsonDatasets = new JsonArray();
+		ArrayNode jsonDatasets = requestBody.putArray("datasets");
 		for (String datasetId : datasetIds) {
-			JsonObject jsonDataset = new JsonObject();
-			jsonDataset.addProperty("id", datasetId);
-			jsonDatasets.add(jsonDataset);
+			ObjectNode jsonDataset = jsonDatasets.addObject();
+			jsonDataset.put("id", datasetId);
 		}
-		requestBody.add("datasets", jsonDatasets);
 
 		// Add report id in body
-		JsonArray jsonReports = new JsonArray();
+		ArrayNode jsonReports = requestBody.putArray("reports");
 		for (String reportId : reportIds) {
-			JsonObject jsonReport = new JsonObject();
-			jsonReport.addProperty("id", reportId);
-			jsonReport.addProperty("allowEdit", false);
-			jsonReports.add(jsonReport);
+			ObjectNode jsonReport = jsonReports.addObject();
+			jsonReport.put("id", reportId);
+			jsonReport.put("allowEdit", false);
 		}
-		requestBody.add("reports", jsonReports);
 
 		// Add target workspace id in body
-		JsonArray jsonWorkspaces = new JsonArray();
+		ArrayNode jsonWorkspaces = requestBody.putArray("targetWorkspaces");
 		for (String targetWorkspaceId : targetWorkspaceIds) {
-			JsonObject jsonWorkspace = new JsonObject();
-			jsonWorkspace.addProperty("id", targetWorkspaceId);
-			jsonWorkspaces.add(jsonWorkspace);
+			ObjectNode jsonWorkspace = jsonWorkspaces.addObject();
+			jsonWorkspace.put("id", targetWorkspaceId);
 		}
-		requestBody.add("targetWorkspaces", jsonWorkspaces);
 
 		// Add identity in body
-		JsonArray jsonIdentities = new JsonArray();
-		JsonObject jsonIdentity = new JsonObject();
+		ArrayNode jsonIdentities = requestBody.putArray("identities");
+		ObjectNode jsonIdentity = jsonIdentities.addObject();
 		String username = BIServerService.getUser();
-		jsonIdentity.addProperty("username", username);
-		JsonArray jsonIdentityRoles = new JsonArray();
+		jsonIdentity.put("username", username);
+		ArrayNode jsonIdentityRoles = jsonIdentity.putArray("roles");
 		for (String role : BIServerService.getRoles()) {
 			jsonIdentityRoles.add(role);
 		}
-		jsonIdentity.add("roles", jsonIdentityRoles);
-		JsonArray jsonIdentityDatasets = new JsonArray();
+		ArrayNode jsonIdentityDatasets = jsonIdentity.putArray("datasets");
 		for (String datasetId : datasetIds) {
 			jsonIdentityDatasets.add(datasetId);
 		}
-		jsonIdentity.add("datasets", jsonIdentityDatasets);
-		jsonIdentities.add(jsonIdentity);
-		requestBody.add("identities", jsonIdentities);
 
 		// Add (body, header) to HTTP entity
 		HttpEntity<String> httpEntity = new HttpEntity<>(requestBody.toString(), headers);
@@ -240,7 +231,6 @@ public class PowerBIService {
 		String responseBody = response.getBody();
 
 		// Convert responseBody string into TokenConfig class object
-		ObjectMapper mapper = new ObjectMapper();
 		TokenConfig embedToken = mapper.readValue(responseBody, TokenConfig.class);
 
 		if (PowerBIService.LOGGER.isDebugEnabled()) {
