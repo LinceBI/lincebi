@@ -26,12 +26,12 @@ dependencies {
 	implementation("org.springframework:spring-web:5.3.3")
 	implementation("org.thymeleaf:thymeleaf:3.0.12.RELEASE")
 
-	compileOnly("org.pentaho:commons-database-model:8.3.0.19-1132") { isTransitive = false }
-	compileOnly("org.pentaho:pentaho-metadata:8.3.0.19-1132") { isTransitive = false }
-	compileOnly("pentaho:pentaho-platform-api:8.3.0.19-1132") { isTransitive = false }
-	compileOnly("pentaho:pentaho-platform-core:8.3.0.19-1132") { isTransitive = false }
-	compileOnly("pentaho:pentaho-platform-extensions:8.3.0.19-1132") { isTransitive = false }
-	compileOnly("pentaho:pentaho-platform-repository:8.3.0.19-1132") { isTransitive = false }
+	compileOnly("org.pentaho:commons-database-model:8.3.0.21-1196") { isTransitive = false }
+	compileOnly("org.pentaho:pentaho-metadata:8.3.0.21-1196") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-api:8.3.0.21-1196") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-core:8.3.0.21-1196") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-extensions:8.3.0.21-1196") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-repository:8.3.0.21-1196") { isTransitive = false }
 
 	testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
