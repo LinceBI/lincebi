@@ -38,35 +38,35 @@ public class PowerBIConfig {
 
 		for (Map.Entry<String, String> var : env.entrySet()) {
 			String varKey = var.getKey();
-			Pattern varKeyPattern = Pattern.compile("^INTEGRATION_POWERBI_([A-Z0-9_]+)_CLIENT_ID$");
+			Pattern varKeyPattern = Pattern.compile("^POWERBI_([A-Z0-9_]+)_CLIENT_ID$");
 			Matcher varKeyMatcher = varKeyPattern.matcher(varKey);
 
 			if (varKeyMatcher.find() && varKeyMatcher.groupCount() > 0) {
 				String name = varKeyMatcher.group(1);
 				PowerBIConfig config = new PowerBIConfig();
 
-				String clientId = env.get("INTEGRATION_POWERBI_" + name + "_CLIENT_ID");
+				String clientId = env.get("POWERBI_" + name + "_CLIENT_ID");
 				if (clientId != null) config.clientId = clientId;
 
-				String authenticationType = env.get("INTEGRATION_POWERBI_" + name + "_AUTHENTICATION_TYPE");
+				String authenticationType = env.get("POWERBI_" + name + "_AUTHENTICATION_TYPE");
 				if (authenticationType != null) config.authenticationType = authenticationType;
 
-				String serviceprincipalTenantId = env.get("INTEGRATION_POWERBI_" + name + "_SERVICEPRINCIPAL_TENANT_ID");
+				String serviceprincipalTenantId = env.get("POWERBI_" + name + "_SERVICEPRINCIPAL_TENANT_ID");
 				if (serviceprincipalTenantId != null) config.serviceprincipalTenantId = serviceprincipalTenantId;
 
-				String serviceprincipalClientSecret = env.get("INTEGRATION_POWERBI_" + name + "_SERVICEPRINCIPAL_CLIENT_SECRET");
+				String serviceprincipalClientSecret = env.get("POWERBI_" + name + "_SERVICEPRINCIPAL_CLIENT_SECRET");
 				if (serviceprincipalClientSecret != null) config.serviceprincipalClientSecret = serviceprincipalClientSecret;
 
-				String masteruserUsername = env.get("INTEGRATION_POWERBI_" + name + "_MASTERUSER_USERNAME");
+				String masteruserUsername = env.get("POWERBI_" + name + "_MASTERUSER_USERNAME");
 				if (masteruserUsername != null) config.masteruserUsername = masteruserUsername;
 
-				String masteruserPassword = env.get("INTEGRATION_POWERBI_" + name + "_MASTERUSER_PASSWORD");
+				String masteruserPassword = env.get("POWERBI_" + name + "_MASTERUSER_PASSWORD");
 				if (masteruserPassword != null) config.masteruserPassword = masteruserPassword;
 
-				String authorityUrl = env.get("INTEGRATION_POWERBI_" + name + "_AUTHORITY_URL");
+				String authorityUrl = env.get("POWERBI_" + name + "_AUTHORITY_URL");
 				if (authorityUrl != null) config.authorityUrl = authorityUrl;
 
-				String scopeUrl = env.get("INTEGRATION_POWERBI_" + name + "_SCOPE_URL");
+				String scopeUrl = env.get("POWERBI_" + name + "_SCOPE_URL");
 				if (scopeUrl != null) config.scopeUrl = scopeUrl;
 
 				PowerBIConfig.put(name.toLowerCase(), config);
