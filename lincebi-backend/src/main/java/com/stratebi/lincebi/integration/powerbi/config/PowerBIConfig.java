@@ -19,7 +19,7 @@ public class PowerBIConfig {
 	// - For authentication with app secret choose ServicePrincipal as AuthenticationType.
 	// - For authentication with master user credential choose MasterUser as AuthenticationType.
 	// More details here: https://aka.ms/EmbedServicePrincipal
-	public String authenticationType = "";
+	public String authenticationType = "ServicePrincipal";
 
 	// Enter ServicePrincipal credentials
 	public String serviceprincipalTenantId = "";
