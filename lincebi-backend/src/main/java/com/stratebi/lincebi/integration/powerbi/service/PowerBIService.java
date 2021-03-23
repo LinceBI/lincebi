@@ -16,7 +16,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriUtils;
 
+import com.stratebi.lincebi.integration.powerbi.model.AvailableFeature;
 import com.stratebi.lincebi.integration.powerbi.model.EmbedConfig;
 import com.stratebi.lincebi.integration.powerbi.model.ReportConfig;
 import com.stratebi.lincebi.integration.powerbi.model.TokenConfig;
@@ -226,7 +228,7 @@ public class PowerBIService {
 		HttpEntity<String> httpEntity = new HttpEntity<>(requestBody.toString(), headers);
 
 		// Call the API
-		ResponseEntity<String> response = restTemplate.postForEntity(uri, httpEntity, String.class);
+		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.POST, httpEntity, String.class);
 		HttpHeaders responseHeader = response.getHeaders();
 		String responseBody = response.getBody();
 
@@ -249,6 +251,46 @@ public class PowerBIService {
 		}
 
 		return embedToken;
+	}
+
+	public static AvailableFeature getAvailableFeature(String accessToken, String featureName) throws JsonMappingException, JsonProcessingException {
+		final String uri = "https://api.powerbi.com/v1.0/myorg/availableFeatures(featureName='" + UriUtils.encodeQueryParam(featureName, "UTF-8") + "')";
+
+		RestTemplate restTemplate = new RestTemplate();
+		ObjectMapper mapper = new ObjectMapper();
+
+		// Create request header
+		HttpHeaders headers = new HttpHeaders();
+		headers.put("Content-Type", Arrays.asList("application/json"));
+		headers.put("Authorization", Arrays.asList("Bearer " + accessToken));
+
+		// Add (body, header) to HTTP entity
+		HttpEntity<String> httpEntity = new HttpEntity<>(null, headers);
+
+		// Call the API
+		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, httpEntity, String.class);
+		HttpHeaders responseHeader = response.getHeaders();
+		String responseBody = response.getBody();
+
+		// Convert responseBody string into TokenConfig class object
+		AvailableFeature availableFeature = mapper.readValue(responseBody, AvailableFeature.class);
+
+		if (PowerBIService.LOGGER.isDebugEnabled()) {
+			// Get the request id
+			List<String> reqIdList = responseHeader.get("RequestId");
+
+			// Log progress
+			PowerBIService.LOGGER.debug("Retrieved available feature: {}", featureName);
+
+			// Log Request id
+			if ((reqIdList != null) && !reqIdList.isEmpty()) {
+				for (String reqId : reqIdList) {
+					PowerBIService.LOGGER.debug("Request id: {}", reqId);
+				}
+			}
+		}
+
+		return availableFeature;
 	}
 
 }

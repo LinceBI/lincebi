@@ -19,6 +19,7 @@ import org.thymeleaf.context.Context;
 
 import com.stratebi.lincebi.integration.powerbi.cache.EmbedConfigCache;
 import com.stratebi.lincebi.integration.powerbi.config.PowerBIConfig;
+import com.stratebi.lincebi.integration.powerbi.model.AvailableFeature;
 import com.stratebi.lincebi.integration.powerbi.model.EmbedConfig;
 import com.stratebi.lincebi.integration.powerbi.service.AzureADService;
 import com.stratebi.lincebi.integration.powerbi.service.BIServerService;
@@ -164,19 +165,73 @@ public class EmbedController {
 	}
 
 	@GET
-	@Path("/clear-cache")
-	@Produces({ MediaType.TEXT_PLAIN })
+	@Path("/get-available-feature")
+	@Produces({ MediaType.APPLICATION_JSON })
 	@Facet(name = "Unsupported")
-	public Response clearCacheController() {
+	public Response getAvailableFeature(
+		@QueryParam("configName") @DefaultValue("default") String configName,
+		@QueryParam("featureName") String featureName
+	) {
+		if (!BIServerService.isAdmin()) {
+			EmbedController.LOGGER.error("Unauthorized user");
+			return Response.serverError().type(MediaType.TEXT_HTML).build();
+		}
+
+		PowerBIConfig config = PowerBIConfig.get(configName);
+		if (config == null) {
+			EmbedController.LOGGER.error("Invalid config");
+			return Response.serverError().type(MediaType.TEXT_HTML).build();
+		}
+
+		if (featureName == null || featureName.isEmpty()) {
+			EmbedController.LOGGER.error("Invalid feature name");
+			return Response.serverError().type(MediaType.TEXT_HTML).build();
+		}
+
+		AvailableFeature availableFeature;
+		String accessToken;
+
 		try {
-			if (BIServerService.isAdmin()) {
-				EmbedController.CACHE.clear();
-			}
+			accessToken = AzureADService.getAccessToken(config);
+		} catch (InterruptedException ex) {
+			EmbedController.LOGGER.error(ex.getMessage());
+			Thread.currentThread().interrupt();
+			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		} catch (Exception ex) {
 			EmbedController.LOGGER.error(ex.getMessage());
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
 
+		try {
+			availableFeature = PowerBIService.getAvailableFeature(accessToken, featureName);
+		} catch (Exception ex) {
+			EmbedController.LOGGER.error(ex.getMessage());
+			return Response.serverError().type(MediaType.TEXT_HTML).build();
+		}
+
+		String response;
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			response = mapper.writeValueAsString(availableFeature);
+		} catch (Exception ex) {
+			EmbedController.LOGGER.error(ex.getMessage());
+			return Response.serverError().type(MediaType.TEXT_HTML).build();
+		}
+
+		return Response.ok(response).build();
+	}
+
+	@GET
+	@Path("/clear-cache")
+	@Produces({ MediaType.TEXT_PLAIN })
+	@Facet(name = "Unsupported")
+	public Response clearCacheController() {
+		if (!BIServerService.isAdmin()) {
+			EmbedController.LOGGER.error("Unauthorized user");
+			return Response.serverError().type(MediaType.TEXT_HTML).build();
+		}
+
+		EmbedController.CACHE.clear();
 		return Response.noContent().build();
 	}
 
