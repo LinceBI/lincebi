@@ -8,10 +8,10 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "~1.2.34",
-    "@fortawesome/free-brands-svg-icons": "~5.15.2",
-    "@fortawesome/free-regular-svg-icons": "~5.15.2",
-    "@fortawesome/free-solid-svg-icons": "~5.15.2",
+    "@fortawesome/fontawesome-svg-core": "~1.2.35",
+    "@fortawesome/free-brands-svg-icons": "~5.15.3",
+    "@fortawesome/free-regular-svg-icons": "~5.15.3",
+    "@fortawesome/free-solid-svg-icons": "~5.15.3",
     "@fortawesome/vue-fontawesome": "~2.0.2",
     "@lincebi/frontend-common": "file:../common",
     "bootstrap": "~4.6.0",
@@ -20,12 +20,12 @@
     "lodash": "~4.17.21",
     "unfetch": "~4.2.0",
     "vue": "~2.6.12",
-    "vue-i18n": "~8.23.0"
+    "vue-i18n": "~8.24.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.11",
-    "@vue/cli-plugin-eslint": "~4.5.11",
-    "@vue/cli-service": "~4.5.11",
+    "@vue/cli-plugin-babel": "~4.5.12",
+    "@vue/cli-plugin-eslint": "~4.5.12",
+    "@vue/cli-service": "~4.5.12",
     "@vue/eslint-config-prettier": "~6.0.0",
     "babel-eslint": "~10.1.0",
     "eslint": "~6.8.0",
