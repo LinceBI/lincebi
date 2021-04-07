@@ -16,7 +16,7 @@
     "@lincebi/frontend-common": "file:../common",
     "bootstrap": "~4.6.0",
     "bootstrap-vue": "~2.21.2",
-    "core-js": "~3.9.1",
+    "core-js": "~3.10.0",
     "lodash": "~4.17.21",
     "unfetch": "~4.2.0",
     "vue": "~2.6.12",
