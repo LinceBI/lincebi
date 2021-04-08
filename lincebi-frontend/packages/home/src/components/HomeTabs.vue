@@ -240,6 +240,8 @@ import { library as faLibrary } from '@fortawesome/fontawesome-svg-core';
 
 import fuzzyEquals from '@lincebi/frontend-common/src/fuzzyEquals';
 import generateSvg from '@lincebi/frontend-common/src/generateSvg';
+import isSmallScreen from '@lincebi/frontend-common/src/isSmallScreen';
+import isTouchDevice from '@lincebi/frontend-common/src/isTouchDevice';
 import move from '@lincebi/frontend-common/src/move';
 import safeJSON from '@lincebi/frontend-common/src/safeJSON';
 import stringCompare from '@lincebi/frontend-common/src/stringCompare';
@@ -483,8 +485,8 @@ export default {
 				this.sortables.set(
 					$homeTabList,
 					Sortable.create($homeTabList, {
-						forceFallback: this.isTouchDevice,
-						delay: this.isTouchDevice ? 100 : 10,
+						forceFallback: isTouchDevice,
+						delay: isTouchDevice ? 100 : 10,
 						animation: 150,
 						draggable: '.home-tab.draggable',
 						onEnd: (event) => (this.tabIndex = event.newIndex),
@@ -600,7 +602,10 @@ export default {
 				: generateSvg(file.path, 0);
 		},
 		onFileOpenClick(file) {
-			if (file.properties.embedded === 'true') {
+			const embedded =
+				file.properties.embedded === 'true' ||
+				(file.properties.embedded !== 'false' && !isSmallScreen);
+			if (embedded) {
 				router
 					.push({
 						name: 'perspective',
@@ -615,7 +620,10 @@ export default {
 			}
 		},
 		onFileEditClick(file) {
-			if (file.properties.embedded === 'true') {
+			const embedded =
+				file.properties.embedded === 'true' ||
+				(file.properties.embedded !== 'false' && !isSmallScreen);
+			if (embedded) {
 				router
 					.push({
 						name: 'perspective',
