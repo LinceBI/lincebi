@@ -15,6 +15,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriUtils;
 
@@ -224,11 +225,21 @@ public class PowerBIService {
 			jsonIdentityDatasets.add(datasetId);
 		}
 
-		// Add (body, header) to HTTP entity
-		HttpEntity<String> httpEntity = new HttpEntity<>(requestBody.toString(), headers);
-
 		// Call the API
-		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.POST, httpEntity, String.class);
+		ResponseEntity<String> response;
+		try {
+			HttpEntity<String> httpEntity = new HttpEntity<>(requestBody.toString(), headers);
+			response = restTemplate.exchange(uri, HttpMethod.POST, httpEntity, String.class);
+		} catch (HttpStatusCodeException ex) {
+			// Try without RLS if the API returns an error
+			if (ex.getRawStatusCode() == 400) {
+				requestBody.remove("identities");
+				HttpEntity<String> httpEntity = new HttpEntity<>(requestBody.toString(), headers);
+				response = restTemplate.exchange(uri, HttpMethod.POST, httpEntity, String.class);
+			} else {
+				throw ex;
+			}
+		}
 		HttpHeaders responseHeader = response.getHeaders();
 		String responseBody = response.getBody();
 
