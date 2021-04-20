@@ -16,12 +16,12 @@
     "@lincebi/frontend-common": "file:../common",
     "bootstrap": "~4.6.0",
     "bootstrap-vue": "~2.21.2",
-    "core-js": "~3.10.0",
+    "core-js": "~3.10.2",
     "lodash": "~4.17.21",
     "sortablejs": "~1.13.0",
     "unfetch": "~4.2.0",
     "vue": "~2.6.12",
-    "vue-i18n": "~8.24.2",
+    "vue-i18n": "~8.24.3",
     "vue-router": "~3.5.1",
     "vue-router-multi-view": "~0.1.0",
     "vue-tour": "~2.0.0",
@@ -40,7 +40,7 @@
     "eslint-plugin-vue": "~6.2.2",
     "prettier": "~2.2.1",
     "rimraf": "~3.0.2",
-    "sass": "~1.32.8",
+    "sass": "~1.32.11",
     "sass-loader": "~10.1.1",
     "vue-template-compiler": "~2.6.12"
   }
