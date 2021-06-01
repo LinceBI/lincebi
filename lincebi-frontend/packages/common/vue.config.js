@@ -1,5 +1,7 @@
 module.exports = {
-	publicPath: './',
+	outputDir: 'dist',
+	publicPath: '.',
+	assetsDir: '',
 	indexPath: 'index.jsp',
 	integrity: true,
 	productionSourceMap: false,

@@ -1,8 +1,8 @@
 module.exports = {
 	root: true,
-	parserOptions: { parser: 'babel-eslint' },
-	extends: ['plugin:vue/recommended', '@vue/prettier/recommended'],
 	env: { node: true },
+	extends: ['plugin:vue/recommended', '@vue/prettier/recommended'],
+	parserOptions: { parser: '@babel/eslint-parser' },
 	rules: {
 		'no-console': ['warn', { allow: ['warn', 'error'] }],
 		'prettier/prettier': ['error', { singleQuote: true, useTabs: true }],
