@@ -26,7 +26,7 @@ module.exports = {
 					priority: -10,
 				},
 				fontawesome: {
-					test: /(\/node_modules\/@fortawesome\/.+?-svg-icons\/)|(\/fontawesome\/)/,
+					test: /(\/node_modules\/@fortawesome\/)|(\/fontawesome\/)/,
 					name: 'fontawesome',
 					chunks: 'all',
 					enforce: true,
