@@ -19,6 +19,8 @@ services:
     image: "repo.stratebi.com/lincebi/biserver:8.3"
     networks:
       - "biserver"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - "../lincebi-bundle/build/lincebi.zip:/etc/biserver.init.d/10_lincebi.zip:ro"
       - "./biserver.init.d/30_language-pack-es.sh:/etc/biserver.init.d/30_language-pack-es.sh:ro"
