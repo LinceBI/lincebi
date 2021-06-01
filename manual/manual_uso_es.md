@@ -30,17 +30,21 @@ header-includes:
   - '\usepackage{fancyhdr}'
   - '\usepackage{graphicx}'
   - '\usepackage[es-ES]{datetime2}'
-  - '\pagestyle{fancy}'
-  - '\fancyhead[LO,LE]{\leftmark}'
-  - '\fancyhead[CO,CE]{}'
-  - '\fancyhead[RE,RO]{\includegraphics[height=0.6cm]{./assets/images/stratebi.png}}'
-  - '\fancyfoot[LE,LO]{}'
-  - '\fancyfoot[CO,CE]{}'
-  - '\fancyfoot[RE,RO]{\thepage}'
-  - '\renewcommand\contentsname{Índice}'
 ---
 
+\pagestyle{fancy}
+
+\fancyhead[LO,LE]{\leftmark}
+\fancyhead[CO,CE]{}
+\fancyhead[RE,RO]{\includegraphics[width=0.6cm]{./assets/images/stratebi.png}}
+
+\fancyfoot[LE,LO]{}
+\fancyfoot[CO,CE]{}
+\fancyfoot[RE,RO]{\thepage}
+
 \hypersetup{linkcolor=black}
+
+\renewcommand\contentsname{Índice}
 \tableofcontents
 
 # Introducción

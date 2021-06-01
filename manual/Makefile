@@ -28,15 +28,10 @@ build: $(TARGET_PDF) $(TARGET_DOCX)
 %.pdf: %.docx
 	'$(SOFFICE)' --headless --convert-to pdf '$<'
 
-#%.pdf: %.md
-#	'$(PANDOC)' '$<' \
-#		--pdf-engine=xelatex \
-#		--output='$@'
-
 %.docx: %.md
+	# Enable TOC with "--table-of-contents" option
 	'$(PANDOC)' '$<' \
 		--reference-doc='$(PANDOC_REFERENCE_DOCX)' \
-		--table-of-contents \
 		--output='$@'
 
 ##################################################
