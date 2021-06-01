@@ -38,7 +38,7 @@ dependencies {
 }
 
 tasks.build {
-	finalizedBy("copyDependencies")
+	dependsOn("copyDependencies")
 }
 
 tasks.register<Copy>("copyDependencies") {
