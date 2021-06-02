@@ -32,9 +32,11 @@ export default {
 			staticSearchParams: '',
 			// It is recommended to add to this list all properties which are directly or indirectly used.
 			mantleWindowProperties: [
-				'HOME_FOLDER',
 				'enableSave',
 				'executeCommand',
+				'HOME_FOLDER',
+				// Causes an exception in reportviewer.js from pentaho-platform-plugin-reporting.
+				// 'mantle_addHandler',
 				'mantle_getPerspectives',
 				'mantle_initialized',
 				'mantle_openRepositoryFile',
@@ -238,6 +240,19 @@ export default {
 							.catch(() => {});
 					}
 				}, 1000);
+
+				// Redirect to root route when all tabs are closed.
+				mantleWindow.mantle_addHandler('GenericEvent', (event) => {
+					if (event.eventSubType === 'tabClosing') {
+						setTimeout(() => {
+							const sel = '.pentaho-tab-deck-panel iframe[id^=frame_]';
+							const tab = mantleWindow.document.querySelector(sel);
+							if (tab === null) {
+								router.push({ name: 'root' }).catch(() => {});
+							}
+						}, 100);
+					}
+				});
 
 				// Populate initial STSearch repository.
 				if (!this.isRepositoryLoading) {
