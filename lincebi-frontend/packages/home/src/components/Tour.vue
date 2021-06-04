@@ -67,7 +67,12 @@ export default {
 			const stepDefaults = {
 				params: {
 					placement: 'bottom',
-					modifiers: { preventOverflow: { boundariesElement: 'window' } },
+					modifiers: [
+						{
+							name: 'preventOverflow',
+							options: { boundariesElement: 'window' },
+						},
+					],
 					eventsEnabled: false,
 					onCreate: this.onCreateStep,
 					onUpdate: this.onUpdateStep,
