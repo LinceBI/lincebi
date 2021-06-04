@@ -18,11 +18,7 @@
 			class="item-icon fa-fw"
 			:icon="item.icon"
 		/>
-		<b-img
-			v-else-if="typeof item.img !== 'undefined'"
-			class="item-img"
-			:src="item.img"
-		/>
+		<b-img v-else-if="typeof item.img !== 'undefined'" class="item-img" :src="item.img" />
 		<span class="lbl">{{ item.name }}</span>
 	</b-link>
 </template>

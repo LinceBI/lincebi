@@ -44,9 +44,9 @@ export default async (metadata, { locale = getLocale() } = {}) => {
 	}
 
 	const contextPath = await getContextPath();
-	const endpoint = `${contextPath}plugin/lincebi/api/file-metadata/set?${searchParams.stringify(
-		{ locale }
-	)}`;
+	const endpoint = `${contextPath}plugin/lincebi/api/file-metadata/set?${searchParams.stringify({
+		locale,
+	})}`;
 	const response = await fetch(endpoint, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },

@@ -1,26 +1,15 @@
 <template>
 	<b-navbar class="navbar shadow" toggleable="lg" variant="light">
 		<navbar-sidebar-toggle />
-		<b-navbar-brand
-			class="navbar-logo mr-0 mr-lg-3 p-0"
-			data-v-step="navbar-welcome"
-			href="#/"
-		>
-			<b-img
-				class="h-100 w-auto"
-				src="@lincebi/frontend-common/src/assets/img/logo.svg"
-			/>
+		<b-navbar-brand class="navbar-logo mr-0 mr-lg-3 p-0" data-v-step="navbar-welcome" href="#/">
+			<b-img class="h-100 w-auto" src="@lincebi/frontend-common/src/assets/img/logo.svg" />
 		</b-navbar-brand>
 		<b-navbar-toggle :target="`nav-collapse-${uniqueId}`">
 			<template slot="default">
 				<font-awesome-icon :icon="['fas', 'bars']" />
 			</template>
 		</b-navbar-toggle>
-		<b-collapse
-			:id="`nav-collapse-${uniqueId}`"
-			v-model="navbarExpanded"
-			is-nav
-		>
+		<b-collapse :id="`nav-collapse-${uniqueId}`" v-model="navbarExpanded" is-nav>
 			<b-navbar-nav class="nav-section">
 				<navbar-profile class="nav-element" data-v-step="navbar-profile" />
 			</b-navbar-nav>

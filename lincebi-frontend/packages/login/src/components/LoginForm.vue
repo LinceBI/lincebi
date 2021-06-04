@@ -6,12 +6,7 @@
 				src="@lincebi/frontend-common/src/assets/img/logo.svg"
 			/>
 			<b-form-group :label="$t('username.label')">
-				<b-form-input
-					v-model="form.j_username"
-					type="text"
-					autofocus
-					required
-				/>
+				<b-form-input v-model="form.j_username" type="text" autofocus required />
 			</b-form-group>
 			<b-form-group :label="$t('password.label')">
 				<b-form-input v-model="form.j_password" type="password" required />

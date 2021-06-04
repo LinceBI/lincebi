@@ -66,19 +66,12 @@ export class Node {
 	}
 
 	squaredDistanceTo(node) {
-		return (
-			(node.x - this.x) * (node.x - this.x) +
-			(node.y - this.y) * (node.y - this.y)
-		);
+		return (node.x - this.x) * (node.x - this.x) + (node.y - this.y) * (node.y - this.y);
 	}
 
 	collideTo(node) {
-		node.vx =
-			(node.m * node.vx) / (this.m + node.m) +
-			(this.m * this.vx) / (this.m + node.m);
-		node.vy =
-			(node.m * node.vy) / (this.m + node.m) +
-			(this.m * this.vy) / (this.m + node.m);
+		node.vx = (node.m * node.vx) / (this.m + node.m) + (this.m * this.vx) / (this.m + node.m);
+		node.vy = (node.m * node.vy) / (this.m + node.m) + (this.m * this.vy) / (this.m + node.m);
 		this.reset();
 	}
 

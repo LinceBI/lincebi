@@ -20,17 +20,9 @@
 						class="item-icon fa-fw"
 						:icon="item.icon"
 					/>
-					<b-img
-						v-else-if="typeof item.img !== 'undefined'"
-						class="item-img"
-						:src="item.img"
-					/>
+					<b-img v-else-if="typeof item.img !== 'undefined'" class="item-img" :src="item.img" />
 				</template>
-				<sidebar-subitem
-					v-for="(subitem, index) in item.subitems"
-					:key="index"
-					:item="subitem"
-				/>
+				<sidebar-subitem v-for="(subitem, index) in item.subitems" :key="index" :item="subitem" />
 			</b-nav-item-dropdown>
 		</div>
 		<div v-else>
@@ -41,11 +33,7 @@
 					class="item-icon fa-fw"
 					:icon="item.icon"
 				/>
-				<b-img
-					v-else-if="typeof item.img !== 'undefined'"
-					class="item-img"
-					:src="item.img"
-				/>
+				<b-img v-else-if="typeof item.img !== 'undefined'" class="item-img" :src="item.img" />
 			</b-nav-item>
 		</div>
 	</div>

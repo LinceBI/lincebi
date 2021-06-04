@@ -1,10 +1,7 @@
 <template>
 	<b-nav-text class="navbar-profile">
 		<b-link class="user-avatar" href="#/profile">
-			<b-img
-				class="user-avatar-img"
-				:src="userSettings[`${namespace}.avatar`]"
-			/>
+			<b-img class="user-avatar-img" :src="userSettings[`${namespace}.avatar`]" />
 		</b-link>
 		<span class="user-text">
 			{{ userSettings[`${namespace}.name`] || userId }}

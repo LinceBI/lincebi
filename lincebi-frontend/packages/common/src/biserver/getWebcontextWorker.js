@@ -22,10 +22,9 @@ const getWebcontextWorker = async () => {
 
 	if (response.status === 200) {
 		const webcontextBody = await response.text();
-		const webcontextBlob = new Blob(
-			[webcontextHeader, webcontextBody, webcontextFooter],
-			{ type: 'text/javascript' }
-		);
+		const webcontextBlob = new Blob([webcontextHeader, webcontextBody, webcontextFooter], {
+			type: 'text/javascript',
+		});
 		return new Worker(window.URL.createObjectURL(webcontextBlob));
 	}
 

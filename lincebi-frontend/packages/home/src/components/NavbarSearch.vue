@@ -7,12 +7,7 @@
 	>
 		<b-input-group class="w-100">
 			<b-input-group-prepend v-if="categories.some((i) => i.enabled)">
-				<b-dropdown
-					class="categories-dropdown"
-					variant="primary"
-					no-caret
-					right
-				>
+				<b-dropdown class="categories-dropdown" variant="primary" no-caret right>
 					<template slot="button-content">
 						<font-awesome-icon :icon="['fas', 'layer-group']" />
 						<span class="lbl d-none d-sm-inline">
@@ -30,10 +25,7 @@
 					</b-dropdown-item>
 				</b-dropdown>
 			</b-input-group-prepend>
-			<b-form-input
-				v-model="searchTerms"
-				:placeholder="$t('navbar.search.placeholder')"
-			/>
+			<b-form-input v-model="searchTerms" :placeholder="$t('navbar.search.placeholder')" />
 			<b-input-group-append>
 				<b-button variant="primary" type="submit">
 					<font-awesome-icon :icon="['fas', 'search']" />

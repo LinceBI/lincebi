@@ -21,11 +21,7 @@
 					@click="tabIndex = index"
 					@keyup.enter="tabIndex = index"
 				>
-					<font-awesome-icon
-						v-if="tab.icon"
-						:icon="tab.icon"
-						class="fa-fw mr-2"
-					/>
+					<font-awesome-icon v-if="tab.icon" :icon="tab.icon" class="fa-fw mr-2" />
 					<span class="text-truncate">
 						{{ tab.name }}
 					</span>
@@ -74,11 +70,7 @@
 			<div v-if="currentTab.sort" class="home-card-order">
 				<div class="input-group input-group-sm">
 					<select v-model="currentTab.sort.selected" class="form-control">
-						<option
-							v-for="option in sort.options"
-							:key="option.value"
-							:value="option.value"
-						>
+						<option v-for="option in sort.options" :key="option.value" :value="option.value">
 							{{ option.text }}
 						</option>
 					</select>
@@ -90,10 +82,7 @@
 							@keyup.enter="currentTab.sort.asc = !currentTab.sort.asc"
 						>
 							<font-awesome-icon
-								:icon="[
-									'fas',
-									`sort-amount-${currentTab.sort.asc ? 'up' : 'down'}`,
-								]"
+								:icon="['fas', `sort-amount-${currentTab.sort.asc ? 'up' : 'down'}`]"
 							/>
 						</button>
 					</div>
@@ -320,11 +309,7 @@ export default {
 			},
 			set(tabs) {
 				// Filter fixed tabs.
-				this.localTabs = differenceWith(
-					tabs,
-					this.fixedTabs,
-					(a, b) => a.name === b.name
-				);
+				this.localTabs = differenceWith(tabs, this.fixedTabs, (a, b) => a.name === b.name);
 
 				// Update remote tabs.
 				store.dispatch('updateUserSettings', {
@@ -357,10 +342,7 @@ export default {
 		},
 		// Fetch remote tabs.
 		remoteTabs() {
-			return safeJSON.parse(
-				store.state.userSettings[`${this.namespace}.tabs`],
-				[]
-			);
+			return safeJSON.parse(store.state.userSettings[`${this.namespace}.tabs`], []);
 		},
 		currentTab() {
 			return this.tabIndex >= 0 && this.tabIndex < this.tabs.length
@@ -396,9 +378,7 @@ export default {
 						if (
 							!file.isFolder &&
 							file.properties.tags &&
-							file.properties.tags.some((tag) =>
-								fuzzyEquals(tag.value, this.currentTab.name)
-							)
+							file.properties.tags.some((tag) => fuzzyEquals(tag.value, this.currentTab.name))
 						) {
 							files.push(file);
 						}
@@ -412,20 +392,10 @@ export default {
 					});
 					const fallback = this.sort.options[0];
 					files.sort((a, b) => {
-						const comparison = stringCompare(
-							a[option.value],
-							b[option.value],
-							option.type,
-							asc
-						);
+						const comparison = stringCompare(a[option.value], b[option.value], option.type, asc);
 
 						if (comparison === 0 && option !== fallback) {
-							return stringCompare(
-								a[fallback.value],
-								b[fallback.value],
-								fallback.type,
-								asc
-							);
+							return stringCompare(a[fallback.value], b[fallback.value], fallback.type, asc);
 						}
 
 						return comparison;
@@ -492,11 +462,7 @@ export default {
 						onEnd: (event) => (this.tabIndex = event.newIndex),
 						onMove: (event) => event.related.classList.contains('draggable'),
 						onUpdate: (event) => {
-							this.tabs = move(
-								this.tabs.slice(),
-								event.oldIndex,
-								event.newIndex
-							);
+							this.tabs = move(this.tabs.slice(), event.oldIndex, event.newIndex);
 						},
 					})
 				);
@@ -516,11 +482,7 @@ export default {
 							handle: '.drag-handle',
 							onMove: (event) => event.related.classList.contains('draggable'),
 							onUpdate: (event) => {
-								this.files = move(
-									this.files.slice(),
-									event.oldIndex,
-									event.newIndex
-								);
+								this.files = move(this.files.slice(), event.oldIndex, event.newIndex);
 							},
 						})
 					);
@@ -583,9 +545,7 @@ export default {
 			}
 		},
 		getTabStyle(tab, index) {
-			return index === this.tabIndex
-				? { backgroundColor: tab.color }
-				: { color: tab.color };
+			return index === this.tabIndex ? { backgroundColor: tab.color } : { color: tab.color };
 		},
 		getFileIconName(file) {
 			const faDefs = faLibrary.definitions;
@@ -597,9 +557,7 @@ export default {
 			return `text-${this.getFileIconName(file)}`;
 		},
 		getFileThumbnail(file) {
-			return file.properties.thumbnail
-				? file.properties.thumbnail
-				: generateSvg(file.path, 0);
+			return file.properties.thumbnail ? file.properties.thumbnail : generateSvg(file.path, 0);
 		},
 		onFileOpenClick(file) {
 			const embedded =

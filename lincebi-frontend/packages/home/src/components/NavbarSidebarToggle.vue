@@ -4,9 +4,7 @@
 		type="button"
 		@click="sidebarExpanded = !sidebarExpanded"
 	>
-		<font-awesome-icon
-			:icon="['fas', `chevron-${sidebarExpanded ? 'left' : 'right'}`]"
-		/>
+		<font-awesome-icon :icon="['fas', `chevron-${sidebarExpanded ? 'left' : 'right'}`]" />
 	</button>
 </template>
 

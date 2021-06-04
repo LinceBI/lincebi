@@ -4,10 +4,7 @@
 			<b-row>
 				<b-col lg="4" class="d-flex justify-content-center align-items-center">
 					<label class="avatar">
-						<b-img
-							class="avatar-image"
-							:src="userSettings[`${namespace}.avatar`]"
-						/>
+						<b-img class="avatar-image" :src="userSettings[`${namespace}.avatar`]" />
 						<div class="avatar-overlay">
 							<font-awesome-icon class="icon" :icon="['fas', 'pencil-alt']" />
 						</div>

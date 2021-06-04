@@ -4,11 +4,7 @@
 			<font-awesome-icon :icon="['fas', 'cog']" />
 			<span class="lbl d-lg-none">{{ $t('navbar.settings') }}</span>
 		</template>
-		<navbar-dropdown-item
-			:text="$t('navbar.profile')"
-			:icon="['fas', 'user']"
-			href="#/profile"
-		/>
+		<navbar-dropdown-item :text="$t('navbar.profile')" :icon="['fas', 'user']" href="#/profile" />
 		<b-dropdown-divider />
 		<navbar-dropdown-item
 			:text="$t('navbar.showMenuBar')"
@@ -82,10 +78,7 @@ export default {
 				const key = 'MANTLE_SHOW_HIDDEN_FILES';
 				const value = show ? 'true' : 'false';
 				await store.dispatch('updateUserSettings', { [key]: value });
-				eventBus.$emitWhenAvailable(
-					'mantle-perspective-reload',
-					'browser.perspective'
-				);
+				eventBus.$emitWhenAvailable('mantle-perspective-reload', 'browser.perspective');
 			},
 		},
 		showDescriptionsForTooltips: {
@@ -98,10 +91,7 @@ export default {
 				const key = 'MANTLE_SHOW_DESCRIPTIONS_FOR_TOOLTIPS';
 				const value = show ? 'true' : 'false';
 				store.dispatch('updateUserSettings', { [key]: value });
-				eventBus.$emitWhenAvailable(
-					'mantle-perspective-reload',
-					'browser.perspective'
-				);
+				eventBus.$emitWhenAvailable('mantle-perspective-reload', 'browser.perspective');
 			},
 		},
 	},

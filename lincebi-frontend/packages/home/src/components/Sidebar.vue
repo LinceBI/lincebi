@@ -1,8 +1,5 @@
 <template>
-	<b-nav
-		:class="{ sidebar: true, shadow: true, show: sidebarExpanded }"
-		vertical
-	>
+	<b-nav :class="{ sidebar: true, shadow: true, show: sidebarExpanded }" vertical>
 		<sidebar-item v-for="(item, index) in sidebar" :key="index" :item="item" />
 	</b-nav>
 </template>
@@ -218,11 +215,7 @@ export default {
 									})
 									.catch(() => {});
 								eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {
-									mantleWindow.openURL(
-										'Webdetails CDE',
-										'Webdetails CDE',
-										'api/repos/wcdf/new'
-									);
+									mantleWindow.openURL('Webdetails CDE', 'Webdetails CDE', 'api/repos/wcdf/new');
 								});
 							},
 						},
@@ -332,9 +325,7 @@ export default {
 									'mantle-perspective-invoke',
 									'search.perspective',
 									async (perspectiveWindow) => {
-										const STSearch = await waitFor(
-											() => perspectiveWindow.STSearch
-										);
+										const STSearch = await waitFor(() => perspectiveWindow.STSearch);
 										await STSearch.applyPreset('favorites');
 									}
 								);
@@ -356,9 +347,7 @@ export default {
 									'mantle-perspective-invoke',
 									'search.perspective',
 									async (perspectiveWindow) => {
-										const STSearch = await waitFor(
-											() => perspectiveWindow.STSearch
-										);
+										const STSearch = await waitFor(() => perspectiveWindow.STSearch);
 										await STSearch.applyPreset('recents');
 									}
 								);

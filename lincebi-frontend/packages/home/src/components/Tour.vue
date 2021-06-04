@@ -8,12 +8,7 @@
 		@focusin.stop.prevent
 		@keydown.tab.stop.prevent
 	>
-		<v-tour
-			name="tour"
-			:options="options"
-			:steps="steps"
-			:callbacks="callbacks"
-		/>
+		<v-tour name="tour" :options="options" :steps="steps" :callbacks="callbacks" />
 		<div class="v-tour--overlay">
 			<div ref="spotlight" class="v-tour--spotlight"></div>
 		</div>

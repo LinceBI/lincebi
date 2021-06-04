@@ -64,9 +64,7 @@ export const setRepositoryFile = (state, file) => {
 
 	for (const filePathFragment of splittedFilePath) {
 		currentPath += filePathFragment;
-		currentLocation = currentLocation.children.find(
-			(child) => child.path === currentPath
-		);
+		currentLocation = currentLocation.children.find((child) => child.path === currentPath);
 		if (typeof currentLocation === 'undefined') {
 			console.error('Cannot update repository file:', file);
 			return;

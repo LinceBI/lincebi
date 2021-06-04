@@ -8,12 +8,7 @@
 		@dismiss-count-down="countDownChanged"
 	>
 		<p>{{ errorMessage }}</p>
-		<b-progress
-			variant="danger"
-			height="4px"
-			:max="dismissSecs"
-			:value="dismissCountDown"
-		/>
+		<b-progress variant="danger" height="4px" :max="dismissSecs" :value="dismissCountDown" />
 	</b-alert>
 </template>
 
@@ -39,9 +34,7 @@ export default {
 			return this.code !== null;
 		},
 		errorMessage() {
-			return this.code in this.messages
-				? this.messages[this.code]
-				: this.messages['0'];
+			return this.code in this.messages ? this.messages[this.code] : this.messages['0'];
 		},
 	},
 	mounted() {

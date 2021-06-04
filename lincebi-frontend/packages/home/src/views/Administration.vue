@@ -1,21 +1,13 @@
 <template>
 	<b-container class="administration py-5 px-4">
 		<b-list-group class="mb-4">
-			<b-list-group-item
-				v-if="canAdminister"
-				button
-				@click="openAdministration()"
-			>
+			<b-list-group-item v-if="canAdminister" button @click="openAdministration()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'tools']" />
 				<span class="lbl">
 					{{ $t('administration.administration') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item
-				v-if="hasDataAccess"
-				button
-				@click="openManageDatasources()"
-			>
+			<b-list-group-item v-if="hasDataAccess" button @click="openManageDatasources()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'database']" />
 				<span class="lbl">
 					{{ $t('administration.manageDatasources') }}
@@ -38,9 +30,7 @@
 				</span>
 			</b-list-group-item>
 			<b-list-group-item
-				v-if="
-					canAdminister && overlays.has('startup.cda.toolsmenu.cdaCacheManager')
-				"
+				v-if="canAdminister && overlays.has('startup.cda.toolsmenu.cdaCacheManager')"
 				button
 				@click="openManageCdaCache()"
 			>
@@ -50,9 +40,7 @@
 				</span>
 			</b-list-group-item>
 			<b-list-group-item
-				v-if="
-					overlays.has('startup.saiku-adhoc.viewmenu.statistics-saiku-adhoc')
-				"
+				v-if="overlays.has('startup.saiku-adhoc.viewmenu.statistics-saiku-adhoc')"
 				button
 				@click="openStreportStats()"
 			>
@@ -63,41 +51,25 @@
 			</b-list-group-item>
 		</b-list-group>
 		<b-list-group class="mb-4">
-			<b-list-group-item
-				v-if="canAdminister"
-				button
-				@click="systemRefresh('systemSettings')"
-			>
+			<b-list-group-item v-if="canAdminister" button @click="systemRefresh('systemSettings')">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">
 					{{ $t('administration.refreshSystemSettings') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item
-				v-if="canAdminister"
-				button
-				@click="systemRefresh('metadata')"
-			>
+			<b-list-group-item v-if="canAdminister" button @click="systemRefresh('metadata')">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">
 					{{ $t('administration.refreshReportingMetadata') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item
-				v-if="canAdminister"
-				button
-				@click="systemRefresh('globalActions')"
-			>
+			<b-list-group-item v-if="canAdminister" button @click="systemRefresh('globalActions')">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">
 					{{ $t('administration.refreshGlobalVariables') }}
 				</span>
 			</b-list-group-item>
-			<b-list-group-item
-				v-if="canAdminister"
-				button
-				@click="systemRefresh('mondrianSchemaCache')"
-			>
+			<b-list-group-item v-if="canAdminister" button @click="systemRefresh('mondrianSchemaCache')">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
 				<span class="lbl">
 					{{ $t('administration.refreshMondrianSchemaCache') }}

@@ -123,10 +123,7 @@ export default {
 		async invokeInMantleWindow(fn, reqFns = this.mantleWindowProperties) {
 			const mantleWindow = await waitFor(() => {
 				const mantleWindow = this.retrieveMantleWindow();
-				if (
-					typeof mantleWindow !== 'undefined' &&
-					reqFns.every((reqFn) => reqFn in mantleWindow)
-				) {
+				if (typeof mantleWindow !== 'undefined' && reqFns.every((reqFn) => reqFn in mantleWindow)) {
 					return mantleWindow;
 				}
 			});
@@ -195,14 +192,8 @@ export default {
 				});
 
 				// Set menu bar and toolbar state.
-				mantleWindow.document.body.classList.toggle(
-					'show-menu-bar',
-					this.showMenuBar
-				);
-				mantleWindow.document.body.classList.toggle(
-					'show-tool-bar',
-					this.showToolBar
-				);
+				mantleWindow.document.body.classList.toggle('show-menu-bar', this.showMenuBar);
+				mantleWindow.document.body.classList.toggle('show-tool-bar', this.showToolBar);
 
 				// Update route when perspective changes.
 				mantleWindow.setInterval(() => {
@@ -212,11 +203,7 @@ export default {
 					const visiblePerspectiveFrame = mantleWindow
 						.mantle_getPerspectives()
 						.map((p) => mantleWindow.document.getElementById(p))
-						.find(
-							(f) =>
-								f instanceof mantleWindow.HTMLIFrameElement &&
-								f.offsetParent !== null
-						);
+						.find((f) => f instanceof mantleWindow.HTMLIFrameElement && f.offsetParent !== null);
 
 					let visiblePerspective;
 					if (visiblePerspectiveFrame) {

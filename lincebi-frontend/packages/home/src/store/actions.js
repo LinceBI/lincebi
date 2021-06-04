@@ -86,9 +86,7 @@ export const updateRepositoryFile = async ({ commit, state }, file) => {
 };
 
 export const fetchGlobalUserSettings = async ({ commit }) => {
-	const fetchedSettings = await getGlobalUserSettings(
-		Object.keys(defaultGlobalUserSettings)
-	);
+	const fetchedSettings = await getGlobalUserSettings(Object.keys(defaultGlobalUserSettings));
 	Object.entries(fetchedSettings).forEach(([key, value]) => {
 		if (value === null) {
 			fetchedSettings[key] = defaultGlobalUserSettings[key];
@@ -98,9 +96,7 @@ export const fetchGlobalUserSettings = async ({ commit }) => {
 };
 
 export const fetchUserSettings = async ({ commit }) => {
-	const fetchedSettings = await getUserSettings(
-		Object.keys(defaultUserSettings)
-	);
+	const fetchedSettings = await getUserSettings(Object.keys(defaultUserSettings));
 	Object.entries(fetchedSettings).forEach(([key, value]) => {
 		if (value === null) {
 			fetchedSettings[key] = defaultUserSettings[key];
@@ -120,9 +116,7 @@ export const updateUserSettings = async ({ commit }, settings) => {
 };
 
 export const resetGlobalUserSettings = async ({ commit }) => {
-	const updatedSettings = await setGlobalUserSettings(
-		defaultGlobalUserSettings
-	);
+	const updatedSettings = await setGlobalUserSettings(defaultGlobalUserSettings);
 	commit('setGlobalUserSettings', updatedSettings);
 };
 
