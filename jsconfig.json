@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"module": "commonjs",
-		"target": "es2020"
+		"target": "esnext"
 	},
-	"include": ["lincebi-frontend/packages/*/src/**/*"]
+	"include": ["./lincebi-frontend/packages/*/src/**/*"]
 }
