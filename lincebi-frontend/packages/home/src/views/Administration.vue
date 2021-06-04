@@ -40,6 +40,16 @@
 				</span>
 			</b-list-group-item>
 			<b-list-group-item
+				v-if="overlays.has('startup.saiku-adhoc.toolsmenu.configuration-saiku-adhoc')"
+				button
+				@click="openStreportConf()"
+			>
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'chart-bar']" />
+				<span class="lbl">
+					{{ $t('administration.openStreportConf') }}
+				</span>
+			</b-list-group-item>
+			<b-list-group-item
 				v-if="overlays.has('startup.saiku-adhoc.viewmenu.statistics-saiku-adhoc')"
 				button
 				@click="openStreportStats()"
@@ -158,6 +168,18 @@ export default {
 			eventBus.$emitWhenAvailable(
 				'mantle-home-command',
 				this.overlays.get('startup.cda.toolsmenu.cdaCacheManager')
+			);
+		},
+		async openStreportConf() {
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'opened.perspective' },
+				})
+				.catch(() => {});
+			eventBus.$emitWhenAvailable(
+				'mantle-home-command',
+				this.overlays.get('startup.saiku-adhoc.toolsmenu.configuration-saiku-adhoc')
 			);
 		},
 		async openStreportStats() {

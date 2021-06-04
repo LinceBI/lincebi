@@ -65,6 +65,7 @@
     "schedules": "Programaciones",
     "marketplace": "Marketplace",
     "manageCdaCache": "Administar caché de CDA",
+    "openStreportConf": "Abrir configuración de STReport",
     "openStreportStats": "Abrir estadísticas de STReport",
     "refreshSystemSettings": "Actualizar configuración del sistema",
     "refreshReportingMetadata": "Actualizar reporte de metadatos",
