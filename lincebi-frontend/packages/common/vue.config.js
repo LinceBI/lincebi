@@ -3,7 +3,7 @@ module.exports = {
 	publicPath: '.',
 	assetsDir: '',
 	indexPath: 'index.jsp',
-	integrity: true,
+	integrity: process.env.NODE_ENV === 'production',
 	productionSourceMap: false,
 	devServer: {
 		public: 'localhost:8443',
