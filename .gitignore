@@ -9,6 +9,9 @@ node_modules/
 .gradle/
 gradle-app.setting
 
+# Secrets
+.env
+
 # VSCode
 .vscode/
 
