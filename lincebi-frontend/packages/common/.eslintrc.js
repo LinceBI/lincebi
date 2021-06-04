@@ -5,6 +5,5 @@ module.exports = {
 	parserOptions: { parser: '@babel/eslint-parser' },
 	rules: {
 		'no-console': ['warn', { allow: ['warn', 'error'] }],
-		'prettier/prettier': ['error', { singleQuote: true, useTabs: true }],
 	},
 };
