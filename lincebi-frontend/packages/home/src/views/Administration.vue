@@ -44,7 +44,7 @@
 				button
 				@click="openStreportConf()"
 			>
-				<font-awesome-icon class="fa-fw" :icon="['fas', 'chart-bar']" />
+				<font-awesome-icon class="fa-fw" :icon="['fac', 'tool-streport']" />
 				<span class="lbl">
 					{{ $t('administration.openStreportConf') }}
 				</span>
@@ -54,7 +54,7 @@
 				button
 				@click="openStreportStats()"
 			>
-				<font-awesome-icon class="fa-fw" :icon="['fas', 'chart-bar']" />
+				<font-awesome-icon class="fa-fw" :icon="['fac', 'tool-streport']" />
 				<span class="lbl">
 					{{ $t('administration.openStreportStats') }}
 				</span>
