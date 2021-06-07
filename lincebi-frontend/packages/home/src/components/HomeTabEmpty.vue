@@ -41,7 +41,7 @@ export default {
 	flex-direction: column;
 
 	text-align: center;
-	font-weight: bold;
+	font-weight: 700;
 	color: map-get($theme-colors, 'secondary');
 
 	.icon {
