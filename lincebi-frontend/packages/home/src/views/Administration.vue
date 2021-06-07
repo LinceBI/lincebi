@@ -1,5 +1,5 @@
 <template>
-	<b-container class="administration py-5 px-4">
+	<b-container class="administration p-4">
 		<b-list-group class="mb-4">
 			<b-list-group-item v-if="canAdminister" button @click="openAdministration()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'tools']" />
