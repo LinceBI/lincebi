@@ -59,10 +59,18 @@ module.exports = {
 				return options;
 			});
 
-		// Disable HTML comments removal.
+		// Minify HTML while keeping comments.
 		config.plugin('html').tap((args) => {
-			if (args.length > 0 && args[0].minify) {
-				args[0].minify.removeComments = false;
+			if (args.length > 0) {
+				args[0].minify = {
+					collapseWhitespace: true,
+					keepClosingSlash: true,
+					removeComments: false,
+					removeRedundantAttributes: true,
+					removeScriptTypeAttributes: true,
+					removeStyleLinkTypeAttributes: true,
+					useShortDoctype: true,
+				};
 			}
 			return args;
 		});
