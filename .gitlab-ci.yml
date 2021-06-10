@@ -24,13 +24,20 @@ stages:
     - "./lincebi-frontend/build/"
 
 .cache: &cache
-  key: "${CI_COMMIT_REF_SLUG}"
+  key:
+    prefix: "${CI_COMMIT_REF_SLUG}"
+    files:
+      - "./lincebi-backend/gradle.lockfile"
+      - "./lincebi-frontend/package-lock.json"
+      - "./lincebi-frontend/packages/common/package-lock.json"
+      - "./lincebi-frontend/packages/home/package-lock.json"
+      - "./lincebi-frontend/packages/login/package-lock.json"
   paths:
     - "./.gradle/"
     - "./lincebi-frontend/node_modules/"
-    - "./lincebi-frontend/packages/login/node_modules/"
-    - "./lincebi-frontend/packages/home/node_modules/"
     - "./lincebi-frontend/packages/common/node_modules/"
+    - "./lincebi-frontend/packages/home/node_modules/"
+    - "./lincebi-frontend/packages/login/node_modules/"
 
 .regex:
   # Semantic Versioning 2.0.0 regex (from: https://github.com/npm/node-semver/).
