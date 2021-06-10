@@ -5,6 +5,7 @@ import stopAllWindows from '@lincebi/frontend-common/src/stopAllWindows';
 
 import Administration from '@/views/Administration.vue';
 import Home from '@/views/Home.vue';
+import New from '@/views/New.vue';
 import Perspective from '@/views/Perspective.vue';
 import Profile from '@/views/Profile.vue';
 
@@ -21,6 +22,11 @@ export default new Router({
 			path: '/home',
 			name: 'home',
 			component: Home,
+		},
+		{
+			path: '/new',
+			name: 'new',
+			component: New,
 		},
 		{
 			path: '/profile',

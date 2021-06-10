@@ -8,7 +8,13 @@
 		@focusin.stop.prevent
 		@keydown.tab.stop.prevent
 	>
-		<v-tour name="tour" :options="options" :steps="steps" :callbacks="callbacks" />
+		<v-tour
+			name="tour"
+			:options="options"
+			:steps="steps"
+			:callbacks="callbacks"
+			@targetNotFound="onTargetNotFound"
+		/>
 		<div class="v-tour--overlay">
 			<div ref="spotlight" class="v-tour--spotlight"></div>
 		</div>
@@ -16,14 +22,10 @@
 </template>
 
 <script>
-import defaultsDeep from 'lodash/defaultsDeep';
 import throttle from 'lodash/throttle';
 
 import eventBus from '@/eventBus';
 import router from '@/router';
-
-const EVENT_OPTS_RESIZE = { passive: true, capture: false };
-const EVENT_OPTS_SCROLL = { passive: true, capture: true };
 
 export default {
 	name: 'Tour',
@@ -31,16 +33,13 @@ export default {
 		return {
 			popper: null,
 			step: null,
-			startCount: 0,
 		};
 	},
 	computed: {
 		options() {
-			this.startCount;
-
 			return {
 				highlight: true,
-				stopOnTargetNotFound: true,
+				stopOnTargetNotFound: false,
 				useKeyboardNavigation: true,
 				labels: {
 					buttonSkip: this.$t('tour.labels.skip'),
@@ -57,172 +56,236 @@ export default {
 			};
 		},
 		steps() {
-			this.startCount;
-
-			const stepDefaults = {
-				params: {
-					placement: 'bottom',
-					modifiers: [
-						{
-							name: 'preventOverflow',
-							options: { boundariesElement: 'window' },
-						},
-					],
-					eventsEnabled: false,
-					onCreate: this.onCreateStep,
-					onUpdate: this.onUpdateStep,
-				},
-			};
-
 			const steps = [
 				{
 					target: '[data-v-step="navbar-welcome"]',
 					header: { title: this.$t('tour.steps.navbarWelcome.title') },
 					content: this.$t('tour.steps.navbarWelcome.content'),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+					},
 				},
 				{
 					target: '[data-v-step="navbar-profile"]',
 					header: { title: this.$t('tour.steps.navbarProfile.title') },
 					content: this.$t('tour.steps.navbarProfile.content'),
-					callback: () => this.expandNavbar(),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+						eventBus.$emit('navbar-show');
+					},
 				},
 				{
 					target: '[data-v-step="navbar-search"]',
 					header: { title: this.$t('tour.steps.navbarSearch.title') },
 					content: this.$t('tour.steps.navbarSearch.content'),
-					callback: () => this.expandNavbar(),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+						eventBus.$emit('navbar-show');
+					},
 				},
 				{
 					target: '[data-v-step="navbar-settings"]',
 					header: { title: this.$t('tour.steps.navbarSettings.title') },
 					content: this.$t('tour.steps.navbarSettings.content'),
-					callback: () => this.expandNavbar(),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+						eventBus.$emit('navbar-show');
+					},
 				},
 				{
 					target: '[data-v-step="home-tab-global"]',
 					header: { title: this.$t('tour.steps.homeTabGlobal.title') },
 					content: this.$t('tour.steps.homeTabGlobal.content'),
-					callback: () => this.goPage('home'),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+					},
 				},
 				{
 					target: '[data-v-step="home-tab-home"]',
 					header: { title: this.$t('tour.steps.homeTabHome.title') },
 					content: this.$t('tour.steps.homeTabHome.content'),
-					callback: () => this.goPage('home'),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+					},
 				},
 				{
 					target: '[data-v-step="home-tab-new"]',
 					header: { title: this.$t('tour.steps.homeTabNew.title') },
 					content: this.$t('tour.steps.homeTabNew.content'),
-					callback: () => this.goPage('home'),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+					},
 				},
 				{
 					target: '[data-v-step="sidebar-home"]',
 					header: { title: this.$t('tour.steps.sidebarHome.title') },
 					content: this.$t('tour.steps.sidebarHome.content'),
-					callback: () => this.expandSidebar(),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+						eventBus.$emit('sidebar-show');
+					},
 				},
 				{
 					target: '[data-v-step="sidebar-tools"]',
 					header: { title: this.$t('tour.steps.sidebarTools.title') },
 					content: this.$t('tour.steps.sidebarTools.content'),
-					callback: () => this.expandSidebar(),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+						eventBus.$emit('sidebar-show');
+					},
 				},
 				{
-					target: '[data-v-step="sidebar-tool-stpivot"]',
-					header: { title: this.$t('tour.steps.sidebarToolStpivot.title') },
-					content: this.$t('tour.steps.sidebarToolStpivot.content'),
-					callback: () => this.expandSidebarDropdown('tools'),
-				},
-				{
-					target: '[data-v-step="sidebar-tool-stolap"]',
-					header: { title: this.$t('tour.steps.sidebarToolStolap.title') },
-					content: this.$t('tour.steps.sidebarToolStolap.content'),
-					callback: () => this.expandSidebarDropdown('tools'),
-				},
-				{
-					target: '[data-v-step="sidebar-tool-streport"]',
-					header: { title: this.$t('tour.steps.sidebarToolStreport.title') },
-					content: this.$t('tour.steps.sidebarToolStreport.content'),
-					callback: () => this.expandSidebarDropdown('tools'),
-				},
-				{
-					target: '[data-v-step="sidebar-tool-stdashboard"]',
-					header: { title: this.$t('tour.steps.sidebarToolStdashboard.title') },
-					content: this.$t('tour.steps.sidebarToolStdashboard.content'),
-					callback: () => this.expandSidebarDropdown('tools'),
-				},
-				{
-					target: '[data-v-step="sidebar-tool-stagile"]',
+					target: '[data-v-step="new-tool-stagile"]',
 					header: { title: this.$t('tour.steps.sidebarToolStagile.title') },
 					content: this.$t('tour.steps.sidebarToolStagile.content'),
-					callback: () => this.expandSidebarDropdown('tools'),
+					before: async () => {
+						router.push({ name: 'new' }).catch(() => {});
+					},
 				},
 				{
-					target: '[data-v-step="sidebar-tool-stcard"]',
+					target: '[data-v-step="new-tool-stcard"]',
 					header: { title: this.$t('tour.steps.sidebarToolStcard.title') },
 					content: this.$t('tour.steps.sidebarToolStcard.content'),
-					callback: () => this.expandSidebarDropdown('tools'),
+					before: async () => {
+						router.push({ name: 'new' }).catch(() => {});
+					},
 				},
 				{
-					target: '[data-v-step="sidebar-tool-cde"]',
+					target: '[data-v-step="new-tool-stdashboard"]',
+					header: { title: this.$t('tour.steps.sidebarToolStdashboard.title') },
+					content: this.$t('tour.steps.sidebarToolStdashboard.content'),
+					before: async () => {
+						router.push({ name: 'new' }).catch(() => {});
+					},
+				},
+				{
+					target: '[data-v-step="new-tool-stolap"]',
+					header: { title: this.$t('tour.steps.sidebarToolStolap.title') },
+					content: this.$t('tour.steps.sidebarToolStolap.content'),
+					before: async () => {
+						router.push({ name: 'new' }).catch(() => {});
+					},
+				},
+				{
+					target: '[data-v-step="new-tool-stpivot"]',
+					header: { title: this.$t('tour.steps.sidebarToolStpivot.title') },
+					content: this.$t('tour.steps.sidebarToolStpivot.content'),
+					before: async () => {
+						router.push({ name: 'new' }).catch(() => {});
+					},
+				},
+				{
+					target: '[data-v-step="new-tool-streport"]',
+					header: { title: this.$t('tour.steps.sidebarToolStreport.title') },
+					content: this.$t('tour.steps.sidebarToolStreport.content'),
+					before: async () => {
+						router.push({ name: 'new' }).catch(() => {});
+					},
+				},
+				{
+					target: '[data-v-step="new-tool-cde"]',
 					header: { title: this.$t('tour.steps.sidebarToolCde.title') },
 					content: this.$t('tour.steps.sidebarToolCde.content'),
-					callback: () => this.expandSidebarDropdown('tools'),
+					before: async () => {
+						router.push({ name: 'new' }).catch(() => {});
+					},
 				},
 				{
-					target: '[data-v-step="sidebar-tool-jpivot"]',
+					target: '[data-v-step="new-tool-jpivot"]',
 					header: { title: this.$t('tour.steps.sidebarToolJpivot.title') },
 					content: this.$t('tour.steps.sidebarToolJpivot.content'),
-					callback: () => this.expandSidebarDropdown('tools'),
+					before: async () => {
+						router.push({ name: 'new' }).catch(() => {});
+					},
 				},
 				{
 					target: '[data-v-step="sidebar-opened"]',
 					header: { title: this.$t('tour.steps.sidebarOpened.title') },
 					content: this.$t('tour.steps.sidebarOpened.content'),
-					callback: () => this.expandSidebar(),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+						eventBus.$emit('sidebar-show');
+					},
 				},
 				{
 					target: '[data-v-step="sidebar-browser"]',
 					header: { title: this.$t('tour.steps.sidebarBrowser.title') },
 					content: this.$t('tour.steps.sidebarBrowser.content'),
-					callback: () => this.expandSidebar(),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+						eventBus.$emit('sidebar-show');
+					},
 				},
 				{
 					target: '[data-v-step="sidebar-search"]',
 					header: { title: this.$t('tour.steps.sidebarSearch.title') },
 					content: this.$t('tour.steps.sidebarSearch.content'),
-					callback: () => this.expandSidebar(),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+						eventBus.$emit('sidebar-show');
+					},
 				},
 				{
 					target: '[data-v-step="sidebar-datasources"]',
 					header: { title: this.$t('tour.steps.sidebarDatasources.title') },
 					content: this.$t('tour.steps.sidebarDatasources.content'),
-					callback: () => this.expandSidebar(),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+						eventBus.$emit('sidebar-show');
+					},
 				},
 				{
 					target: '[data-v-step="sidebar-administration"]',
 					header: { title: this.$t('tour.steps.sidebarAdministration.title') },
 					content: this.$t('tour.steps.sidebarAdministration.content'),
-					callback: () => this.expandSidebar(),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+						eventBus.$emit('sidebar-show');
+					},
 				},
 				{
 					target: '[data-v-step="sidebar-locales"]',
 					header: { title: this.$t('tour.steps.sidebarLocales.title') },
 					content: this.$t('tour.steps.sidebarLocales.content'),
-					callback: () => this.expandSidebar(),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+						eventBus.$emit('sidebar-show');
+					},
 				},
 				{
 					target: '[data-v-step="sidebar-logout"]',
 					header: { title: this.$t('tour.steps.sidebarLogout.title') },
 					content: this.$t('tour.steps.sidebarLogout.content'),
-					callback: () => this.expandSidebar(),
+					before: async () => {
+						router.push({ name: 'home' }).catch(() => {});
+						eventBus.$emit('sidebar-show');
+					},
 				},
-			]
-				// Filter all steps with a non-existent target.
-				.filter((step) => document.querySelector(step.target) !== null)
-				// Set default values.
-				.map((step) => defaultsDeep(step, stepDefaults));
+			];
+
+			for (let i = 0; i < steps.length; i++) {
+				const step = steps[i];
+
+				step.__index = i;
+
+				const __params = step.params;
+				step.params = {
+					enableScrolling: false,
+					...__params,
+				};
+
+				const __before = step.before;
+				step.before = async function () {
+					await __before();
+
+					setTimeout(() => {
+						const $target = document.querySelector(this.target);
+						if ($target !== null) {
+							$target.scrollIntoView({ behavior: 'smooth' });
+						}
+					}, 100);
+				};
+			}
 
 			return steps;
 		},
@@ -249,55 +312,40 @@ export default {
 	},
 	methods: {
 		onStartTour() {
-			// Force steps recalculation.
-			this.startCount++;
-
-			if (this.steps.length <= 0) return;
-
-			this.popper = null;
 			this.step = this.steps[0];
 			this.addEventListeners();
 			eventBus.$emit('tour-started');
 		},
 		onStopTour() {
-			this.popper = null;
 			this.step = null;
 			this.removeEventListeners();
 			eventBus.$emit('tour-stopped');
 		},
-		onCreateStep(data) {
-			// Store Popper.js instance.
-			this.popper = data.instance;
-			// This class will be removed on first update
-			// (avoids visual glitches on first reposition).
-			document.body.classList.add('v-tour--hide-step');
-		},
-		onUpdateStep() {
-			document.body.classList.remove('v-tour--hide-step');
-		},
 		onPreviousStep(currentStepIndex) {
 			const previousStepIndex = currentStepIndex - 1;
 			if (previousStepIndex < 0) return;
-			this.step = this.steps[previousStepIndex];
-			if (typeof this.step.callback === 'function') {
-				this.step.callback.call(this);
+			const step = this.steps[previousStepIndex];
+			if (document.querySelector(step.target) !== null) {
+				this.step = step;
 			}
 		},
 		onNextStep(currentStepIndex) {
 			const nextStepIndex = currentStepIndex + 1;
 			if (nextStepIndex >= this.steps.length) return;
-			this.step = this.steps[nextStepIndex];
-			if (typeof this.step.callback === 'function') {
-				this.step.callback.call(this);
+			const step = this.steps[nextStepIndex];
+			if (document.querySelector(step.target) !== null) {
+				this.step = step;
+			}
+		},
+		onTargetNotFound(step) {
+			if (step.__index - this.step.__index > 0) {
+				this.$tours.tour.nextStep();
+			} else {
+				this.$tours.tour.previousStep();
 			}
 		},
 		reposition: throttle(
 			function () {
-				// Update popper position.
-				if (this.popper) {
-					this.popper.update();
-				}
-
 				// Update spotlight size and position.
 				if (this.$refs.spotlight) {
 					let top = 0;
@@ -331,29 +379,13 @@ export default {
 			50,
 			{ leading: false, trailing: true }
 		),
-		expandNavbar() {
-			eventBus.$emit('navbar-show');
-			eventBus.$emit('sidebar-item-hide');
-		},
-		expandSidebar() {
-			eventBus.$emit('sidebar-show');
-			eventBus.$emit('sidebar-item-hide');
-		},
-		expandSidebarDropdown(id) {
-			eventBus.$emit('sidebar-show');
-			eventBus.$emit('sidebar-item-hide');
-			eventBus.$emit(`sidebar-item-${id}-show`);
-		},
-		goPage(name) {
-			router.push({ name }).catch(() => {});
-		},
 		addEventListeners() {
-			window.addEventListener('resize', this.reposition, EVENT_OPTS_RESIZE);
-			window.addEventListener('scroll', this.reposition, EVENT_OPTS_SCROLL);
+			window.addEventListener('resize', this.reposition, { passive: true, capture: false });
+			window.addEventListener('scroll', this.reposition, { passive: true, capture: true });
 		},
 		removeEventListeners() {
-			window.removeEventListener('resize', this.reposition, EVENT_OPTS_RESIZE);
-			window.removeEventListener('scroll', this.reposition, EVENT_OPTS_SCROLL);
+			window.removeEventListener('resize', this.reposition, { passive: true, capture: false });
+			window.removeEventListener('scroll', this.reposition, { passive: true, capture: true });
 		},
 	},
 };

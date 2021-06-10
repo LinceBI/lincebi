@@ -51,6 +51,10 @@
       "modified": "Modification date"
     }
   },
+  "new": {
+    "lincebiTools": "LinceBI tools",
+    "otherTools": "Other tools"
+  },
   "profile": {
     "name": { "label": "Name:", "placeholder": "Name..." },
     "email": { "label": "Email:", "placeholder": "Email..." },
