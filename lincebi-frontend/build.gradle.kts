@@ -1,5 +1,9 @@
 tasks.register<Sync>("build") {
-	dependsOn("npmRunBuild")
+	if (!File("${projectDir}/packages/login/dist/").exists() ||
+		!File("${projectDir}/packages/home/dist/").exists()
+	) {
+		dependsOn("npmRunBuild")
+	}
 
 	from("${projectDir}/packages/login/dist/", {
 		into("/Login/")
