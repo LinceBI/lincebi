@@ -22,15 +22,14 @@ stages:
     - "./lincebi-bundle/build/"
     - "./lincebi-backend/build/"
     - "./lincebi-frontend/build/"
+    - "./lincebi-frontend/packages/*/build/"
 
 .cache: &cache
   key: "${CI_COMMIT_REF_SLUG}"
   paths:
     - "./.gradle/"
     - "./lincebi-frontend/node_modules/"
-    - "./lincebi-frontend/packages/login/node_modules/"
-    - "./lincebi-frontend/packages/home/node_modules/"
-    - "./lincebi-frontend/packages/common/node_modules/"
+    - "./lincebi-frontend/packages/*/node_modules/"
 
 .regex:
   # Semantic Versioning 2.0.0 regex (from: https://github.com/npm/node-semver/).

@@ -1,15 +1,15 @@
 tasks.register<Sync>("build") {
-	if (!File("${projectDir}/packages/login/dist/").exists() ||
-		!File("${projectDir}/packages/home/dist/").exists()
+	if (!File("${projectDir}/packages/login/build/").exists() ||
+		!File("${projectDir}/packages/home/build/").exists()
 	) {
 		dependsOn("npmRunBuild")
 	}
 
-	from("${projectDir}/packages/login/dist/", {
+	from("${projectDir}/packages/login/build/", {
 		into("/Login/")
 	})
 
-	from("${projectDir}/packages/home/dist/", {
+	from("${projectDir}/packages/home/build/", {
 		into("/Home/")
 	})
 
@@ -18,8 +18,8 @@ tasks.register<Sync>("build") {
 
 tasks.register<Delete>("clean") {
 	delete("${buildDir}/")
-	delete("${projectDir}/packages/login/dist/")
-	delete("${projectDir}/packages/home/dist/")
+	delete("${projectDir}/packages/login/build/")
+	delete("${projectDir}/packages/home/build/")
 }
 
 tasks.register<Exec>("npmRunBuild") {
