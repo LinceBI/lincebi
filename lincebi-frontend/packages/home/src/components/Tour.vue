@@ -31,12 +31,14 @@ export default {
 	name: 'Tour',
 	data() {
 		return {
-			popper: null,
 			step: null,
 		};
 	},
 	computed: {
 		options() {
+			// Force recalculation.
+			this.step;
+
 			return {
 				highlight: true,
 				stopOnTargetNotFound: false,
@@ -56,6 +58,9 @@ export default {
 			};
 		},
 		steps() {
+			// Force recalculation.
+			this.step;
+
 			const steps = [
 				{
 					target: '[data-v-step="navbar-welcome"]',
