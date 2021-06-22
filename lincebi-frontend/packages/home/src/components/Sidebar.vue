@@ -245,20 +245,13 @@ export default {
 
 <style scoped lang="scss">
 .sidebar {
+	display: none;
+	width: rem(50);
+
 	background-color: map-get($theme-colors, 'primary');
 
-	position: relative;
-	$sidebar-width: rem(50);
-	width: $sidebar-width;
-	left: -$sidebar-width;
-	margin-right: -$sidebar-width;
-
-	// It's pretty, but also very slow.
-	// transition: left 0.35s ease, margin-right 0.35s ease;
-
 	&.show {
-		left: 0;
-		margin-right: 0;
+		display: block;
 	}
 }
 </style>
