@@ -362,8 +362,9 @@ export default {
 						const $target = document.querySelector(this.step.target);
 						if ($target !== null) {
 							const rect = $target.getBoundingClientRect();
-							top = rect.top - 4;
-							left = rect.left - 4;
+							const win = $target.ownerDocument.defaultView;
+							top = rect.top + win.pageYOffset - 4;
+							left = rect.left + win.pageXOffset - 4;
 							height = rect.height + 8;
 							width = rect.width + 8;
 						}
@@ -412,9 +413,9 @@ export default {
 		display: block;
 		position: absolute;
 		overflow: hidden;
+		height: 100vh;
+		width: 100vw;
 		top: 0;
-		right: 0;
-		bottom: 0;
 		left: 0;
 		background-color: rgba(0, 0, 0, 0.5);
 		mix-blend-mode: hard-light;
