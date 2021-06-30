@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+	<title th:text="${name}">Power BI report</title>
+</head>
+
+<body>
+	<script>
+		(() => {
+			'use strict';
+
+			const redirectUri = window.sessionStorage.getItem('redirectUri');
+			const redirectUriHash = window.location.hash;
+
+			if (redirectUri && redirectUriHash) {
+				window.sessionStorage.removeItem('redirectUri');
+				window.location.replace(`${redirectUri}${redirectUriHash}`);
+			}
+		})();
+	</script>
+</body>
+
+</html>

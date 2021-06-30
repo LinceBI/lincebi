@@ -23,5 +23,6 @@
 	<bean class="com.stratebi.lincebi.globalusersettings.importhandler.GlobalUserSettingsImportHandler" />
 
 	<bean class="com.stratebi.lincebi.integration.powerbi.controller.EmbedController" />
+	<bean class="com.stratebi.lincebi.integration.powerbi.controller.ProController" />
 
 </beans>
