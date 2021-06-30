@@ -38,18 +38,20 @@
 
 <body>
 	<script th:inline="javascript">
-		(function() {
+		(() => {
 			'use strict';
 
-			var models = window['powerbi-client'].models;
-			var embedConfig = JSON.parse(/*[[${embedConfig}]]*/'');
+			const { service, factories, models } = window['powerbi-client'];
+			const powerbiInstance = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
 
-			for (var i = 0; i < embedConfig.embedReports.length; i++) {
-				var embedReport = embedConfig.embedReports[i];
-				var $container = document.createElement('div');
+			const embedConfig = JSON.parse(/*[[${embedConfig}]]*/'');
+
+			embedConfig.embedReports.forEach((embedReport) => {
+				const $container = document.createElement('div');
 				$container.className = 'report';
 				document.body.appendChild($container);
-				powerbi.embed($container, {
+
+				powerbiInstance.embed($container, {
 					type: 'report',
 					id: embedReport.id,
 					embedUrl: embedReport.embedUrl,
@@ -58,7 +60,7 @@
 					permissions: models.Permissions.Read,
 					viewMode: models.ViewMode.View
 				});
-			}
+			});
 		})();
 	</script>
 </body>
