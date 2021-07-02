@@ -62,21 +62,4 @@ public class ProController {
 		return Response.ok(response).build();
 	}
 
-	@GET
-	@Path("/auth")
-	@Produces({ MediaType.TEXT_HTML })
-	@Facet(name = "Unsupported")
-	public Response authController() {
-		String response;
-		try {
-			Context context = new Context();
-			response = ProController.TEMPLATE_ENGINE.process("auth", context);
-		} catch (Exception ex) {
-			ProController.LOGGER.error(ex.getMessage());
-			return Response.serverError().type(MediaType.TEXT_HTML).build();
-		}
-
-		return Response.ok(response).build();
-	}
-
 }

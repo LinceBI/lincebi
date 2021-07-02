@@ -51,11 +51,9 @@
 				auth: {
 					clientId,
 					navigateToLoginRequestUrl: false,
-					redirectUri: new URL(`${window.location.origin}${window.location.pathname}/../auth`).href,
+					redirectUri: `${window.location.origin}${window.location.pathname}`,
 				}
 			});
-
-			await msalInstance.handleRedirectPromise();
 
 			let accessToken;
 			const scopes = ['https://analysis.windows.net/powerbi/api/Report.Read.All'];
@@ -67,8 +65,7 @@
 					account: accounts[0],
 				}));
 			} else {
-				window.sessionStorage.setItem('redirectUri', window.location.href);
-				({ accessToken } = await msalInstance.loginRedirect({
+				({ accessToken } = await msalInstance.loginPopup({
 					scopes,
 				}));
 			}
