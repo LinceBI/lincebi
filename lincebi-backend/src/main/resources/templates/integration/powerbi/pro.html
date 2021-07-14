@@ -70,7 +70,7 @@
 					account: accounts[0],
 				}));
 			} else {
-				({ accessToken } = await msalInstance.loginPopup({
+				({ accessToken } = await msalInstance.acquireTokenPopup({
 					scopes,
 				}));
 			}
