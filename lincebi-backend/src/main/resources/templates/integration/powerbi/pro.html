@@ -50,6 +50,9 @@
 
 			const { PublicClientApplication } = window['msal'];
 			const msalInstance = new PublicClientApplication({
+				system: {
+					asyncPopups: true,
+				},
 				auth: {
 					clientId,
 					navigateToLoginRequestUrl: false,
