@@ -47,15 +47,15 @@
 
 			const embedConfig = JSON.parse(/*[[${embedConfig}]]*/'');
 
-			embedConfig.embedReports.forEach((embedReport) => {
+			embedConfig.reports.forEach((report) => {
 				const $container = document.createElement('div');
 				$container.className = 'report';
 				document.body.appendChild($container);
 
 				powerbiInstance.embed($container, {
 					type: 'report',
-					id: embedReport.id,
-					embedUrl: embedReport.embedUrl,
+					id: report.id,
+					embedUrl: report.embedUrl,
 					tokenType: models.TokenType.Embed,
 					accessToken: embedConfig.embedToken.token,
 					permissions: models.Permissions.Read,

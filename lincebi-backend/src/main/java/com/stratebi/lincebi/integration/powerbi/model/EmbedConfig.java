@@ -7,29 +7,42 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class EmbedConfig {
 
 	@JsonProperty("embedToken")
-	private TokenConfig embedToken;
+	private EmbedToken embedToken;
 
-	@JsonProperty("embedReports")
-	private List<ReportConfig> embedReports;
+	@JsonProperty("reports")
+	private List<Report> reports;
 
+	@JsonProperty("datasets")
+	private List<Dataset> datasets;
+	
 	@JsonProperty("embedToken")
-	public TokenConfig getEmbedToken() {
+	public EmbedToken getEmbedToken() {
 		return this.embedToken;
 	}
 
 	@JsonProperty("embedToken")
-	public void setEmbedToken(TokenConfig embedToken) {
+	public void setEmbedToken(EmbedToken embedToken) {
 		this.embedToken = embedToken;
 	}
 
-	@JsonProperty("embedReports")
-	public List<ReportConfig> getEmbedReports() {
-		return this.embedReports;
+	@JsonProperty("reports")
+	public List<Report> getReports() {
+		return this.reports;
 	}
 
-	@JsonProperty("embedReports")
-	public void setEmbedReports(List<ReportConfig> embedReports) {
-		this.embedReports = embedReports;
+	@JsonProperty("reports")
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
+
+	@JsonProperty("datasets")
+	public List<Dataset> getDatasets() {
+		return this.datasets;
+	}
+
+	@JsonProperty("datasets")
+	public void setDatasets(List<Dataset> datasets) {
+		this.datasets = datasets;
 	}
 
 }
