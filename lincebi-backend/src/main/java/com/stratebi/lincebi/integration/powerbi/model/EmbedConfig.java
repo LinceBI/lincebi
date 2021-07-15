@@ -1,6 +1,6 @@
 package com.stratebi.lincebi.integration.powerbi.model;
 
-import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,10 +10,10 @@ public class EmbedConfig {
 	private EmbedToken embedToken;
 
 	@JsonProperty("reports")
-	private List<Report> reports;
+	private Set<Report> reports;
 
 	@JsonProperty("datasets")
-	private List<Dataset> datasets;
+	private Set<Dataset> datasets;
 	
 	@JsonProperty("embedToken")
 	public EmbedToken getEmbedToken() {
@@ -26,22 +26,22 @@ public class EmbedConfig {
 	}
 
 	@JsonProperty("reports")
-	public List<Report> getReports() {
+	public Set<Report> getReports() {
 		return this.reports;
 	}
 
 	@JsonProperty("reports")
-	public void setReports(List<Report> reports) {
+	public void setReports(Set<Report> reports) {
 		this.reports = reports;
 	}
 
 	@JsonProperty("datasets")
-	public List<Dataset> getDatasets() {
+	public Set<Dataset> getDatasets() {
 		return this.datasets;
 	}
 
 	@JsonProperty("datasets")
-	public void setDatasets(List<Dataset> datasets) {
+	public void setDatasets(Set<Dataset> datasets) {
 		this.datasets = datasets;
 	}
 

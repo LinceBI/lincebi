@@ -1,6 +1,6 @@
 package com.stratebi.lincebi.integration.powerbi.controller;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -45,8 +45,8 @@ public class EmbedController {
 	public Response getInfoController(
 		@QueryParam("configName") @DefaultValue("default") String configName,
 		@QueryParam("workspaceId") String workspaceId,
-		@QueryParam("reportId") List<String> reportIds,
-		@QueryParam("datasetId") List<String> datasetIds
+		@QueryParam("reportId") Set<String> reportIds,
+		@QueryParam("datasetId") Set<String> datasetIds
 	) {
 		PowerBIConfig config = PowerBIConfig.get(configName);
 		if (config == null) {
@@ -107,8 +107,8 @@ public class EmbedController {
 	public Response getHTMLController(
 		@QueryParam("configName") @DefaultValue("default") String configName,
 		@QueryParam("workspaceId") String workspaceId,
-		@QueryParam("reportId") List<String> reportIds,
-		@QueryParam("datasetId") List<String> datasetIds
+		@QueryParam("reportId") Set<String> reportIds,
+		@QueryParam("datasetId") Set<String> datasetIds
 	) {
 		PowerBIConfig config = PowerBIConfig.get(configName);
 		if (config == null) {

@@ -1,8 +1,9 @@
 package com.stratebi.lincebi.integration.powerbi.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -202,7 +203,7 @@ public class PowerBIService {
 	 * @throws JsonProcessingException
 	 */
 	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, String reportId) throws JsonMappingException, JsonProcessingException {
-		return PowerBIService.getEmbedConfig(accessToken, workspaceId, new ArrayList<String>(Arrays.asList(reportId)), new ArrayList<String>());
+		return PowerBIService.getEmbedConfig(accessToken, workspaceId, new HashSet<String>(Arrays.asList(reportId)), new HashSet<String>());
 	}
 
 	/**
@@ -210,13 +211,13 @@ public class PowerBIService {
 	 *
 	 * @param {string}       accessToken
 	 * @param {string}       workspaceId
-	 * @param {List<string>} reportIds
+	 * @param {Set<string>}  reportIds
 	 * @return EmbedConfig object
 	 * @throws JsonMappingException
 	 * @throws JsonProcessingException
 	 */
-	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, List<String> reportIds) throws JsonMappingException, JsonProcessingException {
-		return PowerBIService.getEmbedConfig(accessToken, workspaceId, reportIds, new ArrayList<String>());
+	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, Set<String> reportIds) throws JsonMappingException, JsonProcessingException {
+		return PowerBIService.getEmbedConfig(accessToken, workspaceId, reportIds, new HashSet<String>());
 	}
 
 	/**
@@ -224,13 +225,13 @@ public class PowerBIService {
 	 *
 	 * @param {string}       accessToken
 	 * @param {string}       workspaceId
-	 * @param {List<string>} reportIds
-	 * @param {List<string>} datasetIds
+	 * @param {Set<string>}  reportIds
+	 * @param {Set<string>}  datasetIds
 	 * @return EmbedConfig object
 	 * @throws JsonMappingException
 	 * @throws JsonProcessingException
 	 */
-	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, List<String> reportIds, List<String> datasetIds) throws JsonMappingException, JsonProcessingException {
+	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, Set<String> reportIds, Set<String> datasetIds) throws JsonMappingException, JsonProcessingException {
 		if ((workspaceId == null) || workspaceId.isEmpty()) {
 			throw new RuntimeException("Empty workspace id");
 		}
@@ -242,10 +243,10 @@ public class PowerBIService {
 		// Create embedding configuration object
 		EmbedConfig embedConfig = new EmbedConfig();
 
-		List<Report> reports = new ArrayList<Report>();
+		Set<Report> reports = new HashSet<Report>();
 		embedConfig.setReports(reports);
 
-		List<Dataset> datasets = new ArrayList<Dataset>();
+		Set<Dataset> datasets = new HashSet<Dataset>();
 		embedConfig.setDatasets(datasets);
 
 		for (String reportId : reportIds) {
@@ -276,13 +277,13 @@ public class PowerBIService {
 	 * Get embed token for multiple reports and datasets
 	 *
 	 * @param {string}       accessToken
-	 * @param {List<string>} reportIds
-	 * @param {List<string>} datasetIds
+	 * @param {Set<string>}  reportIds
+	 * @param {Set<string>}  datasetIds
 	 * @return EmbedToken object
 	 * @throws JsonMappingException
 	 * @throws JsonProcessingException
 	 */
-	public static EmbedToken getEmbedToken(String accessToken, List<Report> reports, List<Dataset> datasets) throws JsonMappingException, JsonProcessingException {
+	public static EmbedToken getEmbedToken(String accessToken, Set<Report> reports, Set<Dataset> datasets) throws JsonMappingException, JsonProcessingException {
 		final String endpointUrl = "https://api.powerbi.com/v1.0/myorg/GenerateToken";
 
 		ObjectMapper mapper = new ObjectMapper();
