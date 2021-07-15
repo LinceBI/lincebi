@@ -1,3 +1,5 @@
+<!-- Based on https://github.com/pakastin/nodegarden -->
+
 <template>
 	<div
 		ref="container"
@@ -11,9 +13,6 @@
 </template>
 
 <script>
-/*
- * Based on: https://github.com/pakastin/nodegarden
- */
 const defaultTo = (value, defaultValue) => {
 	return typeof value === 'undefined' ? defaultValue : value;
 };
@@ -88,7 +87,7 @@ export default {
 			width: 0,
 			height: 0,
 			ctx: null,
-			nodes: [],
+			nodes: null,
 			mouseNode: null,
 			maxNodes: 200,
 			colors: {
@@ -101,6 +100,7 @@ export default {
 	mounted() {
 		this.$nextTick(() => {
 			this.mounted = true;
+
 			this.ctx = this.$refs.canvas.getContext('2d');
 			this.nodes = [];
 
@@ -116,8 +116,10 @@ export default {
 			this.mouseNode.y = Number.MAX_SAFE_INTEGER;
 			this.nodes.unshift(this.mouseNode);
 
-			this.resize();
-			this.render();
+			setTimeout(() => {
+				this.resize();
+				this.render();
+			}, 10);
 
 			window.addEventListener('resize', this.resize);
 		});
@@ -128,8 +130,8 @@ export default {
 	},
 	methods: {
 		render() {
-			if (this.mounted) {
-				requestAnimationFrame(this.render);
+			if (!this.mounted) {
+				return;
 			}
 
 			// Clear canvas.
@@ -193,6 +195,8 @@ export default {
 				this.nodes[i].render();
 				this.nodes[i].update();
 			}
+
+			requestAnimationFrame(this.render);
 		},
 		resize() {
 			// If retina screen, scale canvas.
