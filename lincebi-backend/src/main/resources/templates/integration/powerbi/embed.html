@@ -42,10 +42,10 @@
 		(() => {
 			'use strict';
 
+			const embedConfig = JSON.parse(/*[[${embedConfig}]]*/'');
+
 			const { service, factories, models } = window['powerbi-client'];
 			const powerbiInstance = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
-
-			const embedConfig = JSON.parse(/*[[${embedConfig}]]*/'');
 
 			embedConfig.reports.forEach((report) => {
 				const $container = document.createElement('div');

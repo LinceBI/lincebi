@@ -64,41 +64,50 @@
 			const scopes = ['https://analysis.windows.net/powerbi/api/Report.Read.All'];
 			const accounts = msalInstance.getAllAccounts();
 
-			if (accounts.length > 0) {
-				({ accessToken } = await msalInstance.acquireTokenSilent({
-					scopes,
-					account: accounts[0],
-				}));
-			} else {
-				({ accessToken } = await msalInstance.acquireTokenPopup({
-					scopes,
-				}));
+			try {
+				if (accounts.length > 0) {
+					({ accessToken } = await msalInstance.acquireTokenSilent({
+						scopes,
+						account: accounts[0],
+					}));
+				} else {
+					({ accessToken } = await msalInstance.acquireTokenPopup({
+						scopes,
+					}));
+				}
+			} catch (error) {
+				alert(`Authentication error:\n${error.message}`);
+				throw error;
 			}
 
 			const { service, factories, models } = window['powerbi-client'];
 			const powerbiInstance = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
 
 			reportIds.forEach(async (reportId) => {
-				const $container = document.createElement('div');
-				$container.className = 'report';
-				document.body.appendChild($container);
-
 				const response = await fetch(`https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/reports/${reportIds[0]}`, {
 					method: 'GET',
 					headers: { Authorization: `Bearer ${accessToken}` },
 				});
 
-				const { embedUrl } = await response.json();
+				if (response.status >= 200 && response.status < 400) {
+					const $container = document.createElement('div');
+					$container.className = 'report';
+					document.body.appendChild($container);
 
-				const report = powerbiInstance.embed($container, {
-					type: 'report',
-					id: reportId,
-					embedUrl,
-					tokenType: models.TokenType.Aad,
-					accessToken,
-					permissions: models.Permissions.Read,
-					viewMode: models.ViewMode.View
-				});
+					const { embedUrl } = await response.json();
+
+					powerbiInstance.embed($container, {
+						type: 'report',
+						id: reportId,
+						embedUrl,
+						tokenType: models.TokenType.Aad,
+						accessToken,
+						permissions: models.Permissions.Read,
+						viewMode: models.ViewMode.View
+					});
+				} else {
+					alert(`Error loading report with id ${reportId}`);
+				}
 			});
 		})();
 	</script>
