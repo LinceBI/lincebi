@@ -341,8 +341,8 @@ public class PowerBIService {
 		HttpHeaders resHeader = response.getHeaders();
 		String resBody = response.getBody();
 
-		// Convert resBody string into Token class object
-		EmbedToken token = mapper.readValue(resBody, EmbedToken.class);
+		// Convert resBody string into EmbedToken class object
+		EmbedToken embedToken = mapper.readValue(resBody, EmbedToken.class);
 
 		if (PowerBIService.LOGGER.isDebugEnabled()) {
 			// Log request id
@@ -354,10 +354,10 @@ public class PowerBIService {
 			}
 
 			// Log response
-			PowerBIService.LOGGER.info("Retrieved embed token: {}", token);
+			PowerBIService.LOGGER.info("Retrieved embed token: {}", embedToken);
 		}
 
-		return token;
+		return embedToken;
 	}
 
 }
