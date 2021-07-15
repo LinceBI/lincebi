@@ -65,7 +65,7 @@
 			:icon="['far', 'file-alt']"
 			:text="$t('home.filesWillAppearHere')"
 		/>
-		<!-- Normal content -->
+		<!-- Main content -->
 		<div v-else class="home-tab-content">
 			<div v-if="currentTab.sort" class="home-card-order">
 				<div class="input-group input-group-sm">
@@ -458,9 +458,11 @@ export default {
 						forceFallback: isTouchDevice,
 						delay: isTouchDevice ? 100 : 10,
 						animation: 150,
-						draggable: '.home-tab.draggable',
+						filter: '.nav-item:not(.draggable)',
 						onEnd: (event) => (this.tabIndex = event.newIndex),
-						onMove: (event) => event.related.classList.contains('draggable'),
+						onMove: (event) =>
+							event.dragged.classList.contains('draggable') &&
+							event.related.classList.contains('draggable'),
 						onUpdate: (event) => {
 							this.tabs = move(this.tabs.slice(), event.oldIndex, event.newIndex);
 						},
