@@ -14,16 +14,16 @@ repositories {
 }
 
 dependencies {
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.12.4")
-	implementation("com.microsoft.azure:msal4j:1.10.1")
-	implementation("com.networknt:json-schema-validator:1.0.57")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.12.5")
+	implementation("com.microsoft.azure:msal4j:1.11.0")
+	implementation("com.networknt:json-schema-validator:1.0.58")
 	implementation("commons-io:commons-io:2.11.0")
 	implementation("jakarta.ws.rs:jakarta.ws.rs-api:2.1.6")
 	implementation("jakarta.xml.bind:jakarta.xml.bind-api:2.3.3")
 	implementation("org.apache.commons:commons-lang3:3.12.0")
 	implementation("org.codehaus.enunciate:enunciate-core-annotations:1.31")
-	implementation("org.ehcache:ehcache:3.9.4")
-	implementation("org.slf4j:slf4j-log4j12:1.7.31")
+	implementation("org.ehcache:ehcache:3.9.6")
+	implementation("org.slf4j:slf4j-log4j12:1.7.32")
 	implementation("org.springframework:spring-web:5.3.9")
 	implementation("org.thymeleaf:thymeleaf:3.0.12.RELEASE")
 
