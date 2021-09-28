@@ -6,9 +6,16 @@ module.exports = {
 	integrity: process.env.NODE_ENV === 'production',
 	productionSourceMap: false,
 	devServer: {
-		public: 'localhost:8443',
+		host: '0.0.0.0',
+		allowedHosts: 'all',
+		client: {
+			webSocketURL: {
+				protocol: 'wss',
+				hostname: '0.0.0.0',
+				port: 8443,
+			},
+		},
 		historyApiFallback: false,
-		disableHostCheck: true,
 	},
 	chainWebpack: (config) => {
 		config.optimization.splitChunks({

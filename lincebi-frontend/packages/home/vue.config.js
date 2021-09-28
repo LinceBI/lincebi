@@ -4,6 +4,15 @@ const vueConfigCommon = require('@lincebi/frontend-common/vue.config.js');
 module.exports = merge(vueConfigCommon, {
 	devServer: {
 		port: 8082,
-		sockPath: '/sockjs-home',
+		client: {
+			webSocketURL: {
+				pathname: '/ws-home',
+			},
+		},
+		webSocketServer: {
+			options: {
+				path: '/ws-home',
+			},
+		},
 	},
 });
