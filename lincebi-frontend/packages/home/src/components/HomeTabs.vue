@@ -102,15 +102,11 @@
 					@keyup.enter="onFileOpenClick(file)"
 				>
 					<div class="card-container">
-						<img
-							class="card-img"
-							:src="getFileThumbnail(file)"
-							:alt="file.title"
-							@contextmenu.stop.prevent
-						/>
+						<img class="card-img" :src="getFileThumbnail(file)" @contextmenu.stop.prevent />
 						<div
 							:id="`card-body-${uniqueId}-${file.id}`"
 							class="card-body"
+							:title="file.title"
 							@click.stop.prevent
 							@keyup.enter.stop.prevent
 						>
@@ -119,7 +115,7 @@
 									:class="['fa-fw', 'mr-1', getFileColorClass(file)]"
 									:icon="['fac', getFileIconName(file)]"
 								/>
-								{{ truncate(file.title, 50) }}
+								{{ file.title }}
 							</h5>
 						</div>
 						<div class="card-toolbar">
@@ -784,9 +780,18 @@ export default {
 						background-color: rgba(map-get($theme-colors, 'light'), 0.9);
 
 						.card-title {
+							display: -moz-box;
+							display: -webkit-box;
 							font-size: rem(16);
 							line-height: rem(22);
-							word-break: break-all;
+							line-clamp: 2;
+							-moz-line-clamp: 2;
+							-webkit-line-clamp: 2;
+							line-clamp: 2;
+							-moz-box-orient: vertical;
+							-webkit-box-orient: vertical;
+							box-orient: horizontal;
+							overflow: hidden;
 						}
 					}
 
