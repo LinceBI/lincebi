@@ -24,8 +24,6 @@ public class AzureADService {
 
 	/**
 	 * Acquires access token for the based on config values
-	 *
-	 * @return AccessToken
 	 */
 	public static String getAccessToken(PowerBIConfig config) throws MalformedURLException, InterruptedException, ExecutionException {
 		if (config.authenticationType.equalsIgnoreCase("MasterUser")) {
@@ -39,11 +37,6 @@ public class AzureADService {
 
 	/**
 	 * Acquires access token for the given clientId and app secret
-	 *
-	 * @param clientId
-	 * @param tenantId
-	 * @param appSecret
-	 * @return AccessToken
 	 */
 	public static String getAccessTokenUsingServicePrincipal(PowerBIConfig config) throws MalformedURLException, InterruptedException, ExecutionException {
 		// Build Confidential Client App
@@ -74,11 +67,6 @@ public class AzureADService {
 
 	/**
 	 * Acquires access token for the given clientId and user credentials
-	 *
-	 * @param clientId
-	 * @param username
-	 * @param password
-	 * @return AccessToken
 	 */
 	public static String getAccessTokenUsingMasterUser(PowerBIConfig config) throws MalformedURLException, InterruptedException, ExecutionException {
 		// Build Public Client App

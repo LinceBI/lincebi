@@ -34,12 +34,6 @@ public class PowerBIService {
 
 	/**
 	 * Get an available feature
-	 *
-	 * @param {string} accessToken
-	 * @param {string} featureName
-	 * @return AvailableFeature object
-	 * @throws JsonMappingException
-	 * @throws JsonProcessingException
 	 */
 	public static AvailableFeature getAvailableFeature(String accessToken, String featureName) throws JsonMappingException, JsonProcessingException {
 		StringBuilder urlStringBuilder = new StringBuilder("https://api.powerbi.com/v1.0/myorg/availableFeatures(featureName='");
@@ -86,13 +80,6 @@ public class PowerBIService {
 
 	/**
 	 * Get a report for a single workspace
-	 *
-	 * @param {string} accessToken
-	 * @param {string} workspaceId
-	 * @param {string} reportId
-	 * @return Report object
-	 * @throws JsonMappingException
-	 * @throws JsonProcessingException
 	 */
 	public static Report getReport(String accessToken, String workspaceId, String reportId) throws JsonMappingException, JsonProcessingException {
 		StringBuilder urlStringBuilder = new StringBuilder("https://api.powerbi.com/v1.0/myorg/groups/");
@@ -140,13 +127,6 @@ public class PowerBIService {
 
 	/**
 	 * Get a dataset for a single workspace
-	 *
-	 * @param {string} accessToken
-	 * @param {string} workspaceId
-	 * @param {string} datasetId
-	 * @return Dataset object
-	 * @throws JsonMappingException
-	 * @throws JsonProcessingException
 	 */
 	public static Dataset getDataset(String accessToken, String workspaceId, String datasetId) throws JsonMappingException, JsonProcessingException {
 		StringBuilder urlStringBuilder = new StringBuilder("https://api.powerbi.com/v1.0/myorg/groups/");
@@ -194,13 +174,6 @@ public class PowerBIService {
 
 	/**
 	 * Get embed params for a report for a single workspace
-	 *
-	 * @param {string} accessToken
-	 * @param {string} workspaceId
-	 * @param {string} reportId
-	 * @return EmbedConfig object
-	 * @throws JsonMappingException
-	 * @throws JsonProcessingException
 	 */
 	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, String reportId) throws JsonMappingException, JsonProcessingException {
 		return PowerBIService.getEmbedConfig(accessToken, workspaceId, new HashSet<String>(Arrays.asList(reportId)), new HashSet<String>());
@@ -208,13 +181,6 @@ public class PowerBIService {
 
 	/**
 	 * Get embed params for multiple reports for a single workspace
-	 *
-	 * @param {string}       accessToken
-	 * @param {string}       workspaceId
-	 * @param {Set<string>}  reportIds
-	 * @return EmbedConfig object
-	 * @throws JsonMappingException
-	 * @throws JsonProcessingException
 	 */
 	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, Set<String> reportIds) throws JsonMappingException, JsonProcessingException {
 		return PowerBIService.getEmbedConfig(accessToken, workspaceId, reportIds, new HashSet<String>());
@@ -222,14 +188,6 @@ public class PowerBIService {
 
 	/**
 	 * Get embed params for multiple reports for a single workspace
-	 *
-	 * @param {string}       accessToken
-	 * @param {string}       workspaceId
-	 * @param {Set<string>}  reportIds
-	 * @param {Set<string>}  datasetIds
-	 * @return EmbedConfig object
-	 * @throws JsonMappingException
-	 * @throws JsonProcessingException
 	 */
 	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, Set<String> reportIds, Set<String> datasetIds) throws JsonMappingException, JsonProcessingException {
 		if ((workspaceId == null) || workspaceId.isEmpty()) {
@@ -275,13 +233,6 @@ public class PowerBIService {
 
 	/**
 	 * Get embed token for multiple reports and datasets
-	 *
-	 * @param {string}       accessToken
-	 * @param {Set<string>}  reportIds
-	 * @param {Set<string>}  datasetIds
-	 * @return EmbedToken object
-	 * @throws JsonMappingException
-	 * @throws JsonProcessingException
 	 */
 	public static EmbedToken getEmbedToken(String accessToken, Set<Report> reports, Set<Dataset> datasets) throws JsonMappingException, JsonProcessingException {
 		final String endpointUrl = "https://api.powerbi.com/v1.0/myorg/GenerateToken";
