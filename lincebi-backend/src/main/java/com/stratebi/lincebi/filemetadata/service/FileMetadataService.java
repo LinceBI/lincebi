@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -68,10 +69,10 @@ public class FileMetadataService {
 		"/public/plugin-samples"
 	);
 	// Transform every forbidden path into a regex
-	private static final List<Pattern> FORBIDDEN_PATHS_PATTERNS = new ArrayList<Pattern>();
+	private static final List<Pattern> FORBIDDEN_PATHS_PATTERNS = new ArrayList<>();
 	static {
 		for (String path : FileMetadataService.FORBIDDEN_PATHS) {
-			Pattern pattern = Pattern.compile("^" + Pattern.quote(path) + "(?:\\/.*)?$");
+			Pattern pattern = Pattern.compile("^" + Pattern.quote(path) + "(?:/.*)?$");
 			FileMetadataService.FORBIDDEN_PATHS_PATTERNS.add(pattern);
 		}
 	}
@@ -191,7 +192,7 @@ public class FileMetadataService {
 			fileMetadataTree.setIsHidden(isHidden);
 
 			if (!isFolder) {
-				Map<String, String> fileMetadataTreeProperties = new HashMap<String, String>();
+				Map<String, String> fileMetadataTreeProperties = new HashMap<>();
 				Map<String, Properties> localePropertiesMap = repositoryFile.getLocalePropertiesMap();
 				if (localePropertiesMap != null) {
 					// Default locale properties
@@ -255,7 +256,6 @@ public class FileMetadataService {
 					modified = FileMetadataService.DATEFORMAT.format(modifiedDate);
 				} else {
 					modified = created;
-					modifiedDate = createdDate;
 				}
 				fileMetadataTree.setModified(modified);
 
@@ -292,7 +292,7 @@ public class FileMetadataService {
 				boolean isReadonly = !this.canWriteFile(path);
 				fileMetadataTree.setIsReadonly(isReadonly);
 			} else {
-				List<FileMetadataTree> fileMetadataChildren = new ArrayList<FileMetadataTree>();
+				List<FileMetadataTree> fileMetadataChildren = new ArrayList<>();
 				List<RepositoryFileTree> repositoryFileTreeChildren = repositoryFileTree.getChildren();
 				for (RepositoryFileTree repositoryFileTreeChild : repositoryFileTreeChildren) {
 					FileMetadataTree fileMetadataChild = this.getFileMetadata(repositoryFileTreeChild, locale);
@@ -367,7 +367,7 @@ public class FileMetadataService {
 
 			Map<String, String> fileMetadataTreeProperties = fileMetadataTree.hasProperties()
 				? fileMetadataTree.getProperties()
-				: new HashMap<String, String>();
+				: new HashMap<>();
 
 			if (fileMetadataTree.hasTitle()) {
 				String title = fileMetadataTree.getTitle();
@@ -380,32 +380,32 @@ public class FileMetadataService {
 			}
 
 			if (fileMetadataTree.hasIsFavorite()) {
-				Set<RepositoryFile> fileSet = new HashSet<>(Arrays.asList(repositoryFile));
+				Set<RepositoryFile> fileSet = new HashSet<>(Collections.singletonList(repositoryFile));
 				boolean isFavorite = fileMetadataTree.getIsFavorite();
 				this.toggleFileListUserSetting(FileMetadataService.FAVORITES_USER_SETTING, fileSet, isFavorite, false);
 			}
 
 			if (fileMetadataTree.hasIsRecent()) {
-				Set<RepositoryFile> fileSet = new HashSet<>(Arrays.asList(repositoryFile));
+				Set<RepositoryFile> fileSet = new HashSet<>(Collections.singletonList(repositoryFile));
 				boolean isRecent = fileMetadataTree.getIsRecent();
 				this.toggleFileListUserSetting(FileMetadataService.RECENTS_USER_SETTING, fileSet, isRecent, false);
 			}
 
 			if (fileMetadataTree.hasIsHome()) {
-				Set<RepositoryFile> fileSet = new HashSet<>(Arrays.asList(repositoryFile));
+				Set<RepositoryFile> fileSet = new HashSet<>(Collections.singletonList(repositoryFile));
 				boolean isHome = fileMetadataTree.getIsHome();
 				this.toggleFileListUserSetting(FileMetadataService.HOME_USER_SETTING, fileSet, isHome, false);
 			}
 
 			if (fileMetadataTree.hasIsGlobal()) {
-				Set<RepositoryFile> fileSet = new HashSet<>(Arrays.asList(repositoryFile));
+				Set<RepositoryFile> fileSet = new HashSet<>(Collections.singletonList(repositoryFile));
 				boolean isGlobal = fileMetadataTree.getIsGlobal();
 				this.toggleFileListUserSetting(FileMetadataService.GLOBAL_USER_SETTING, fileSet, isGlobal, true);
 			}
 
 			if (fileMetadataTreeProperties.size() > 0) {
-				List<StringKeyStringValueDto> defaultLocaleProperties = new ArrayList<StringKeyStringValueDto>();
-				List<StringKeyStringValueDto> localeProperties = new ArrayList<StringKeyStringValueDto>();
+				List<StringKeyStringValueDto> defaultLocaleProperties = new ArrayList<>();
+				List<StringKeyStringValueDto> localeProperties = new ArrayList<>();
 				for (Map.Entry<String, String> localeProperty : fileMetadataTreeProperties.entrySet()) {
 					String localePropertyKey = localeProperty.getKey();
 					String localePropertyValue = localeProperty.getValue();
@@ -456,10 +456,10 @@ public class FileMetadataService {
 	}
 
 	private Map<String, Map<String, String>> getExtensionPerspectivesMap() {
-		Map<String, Map<String, String>> extensionPerspectivesMap = new HashMap<String, Map<String, String>>();
+		Map<String, Map<String, String>> extensionPerspectivesMap = new HashMap<>();
 
 		for (String contentType : this.pluginManager.getContentTypes()) {
-			Map<String, String> perspectivesMap = new HashMap<String, String>();
+			Map<String, String> perspectivesMap = new HashMap<>();
 
 			IContentInfo contentInfo = this.pluginManager.getContentTypeInfo(contentType);
 			String fileExtension = contentInfo.getExtension();
@@ -521,7 +521,7 @@ public class FileMetadataService {
 	}
 
 	private Set<RepositoryFile> getFileListUserSetting(String settingName, boolean isGlobal) {
-		Set<RepositoryFile> repositoryFileSet = new HashSet<RepositoryFile>();
+		Set<RepositoryFile> repositoryFileSet = new HashSet<>();
 
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -552,7 +552,7 @@ public class FileMetadataService {
 
 		ObjectMapper mapper = new ObjectMapper();
 
-		List<FileMetadataPath> fileMetadataPathList = new ArrayList<FileMetadataPath>();
+		List<FileMetadataPath> fileMetadataPathList = new ArrayList<>();
 		for (RepositoryFile repositoryFile : repositoryFileSet) {
 			FileMetadataPath fileMetadataPath = new FileMetadataPath();
 			fileMetadataPath.setFullPath(repositoryFile.getPath());

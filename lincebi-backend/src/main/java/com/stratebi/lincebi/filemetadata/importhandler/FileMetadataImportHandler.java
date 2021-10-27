@@ -47,7 +47,7 @@ public class FileMetadataImportHandler implements IPlatformImportHandler {
 
 	public FileMetadataImportHandler() {
 		this.fileService = new FileService();
-		this.mimeTypes = new ArrayList<IMimeType>();
+		this.mimeTypes = new ArrayList<>();
 		this.mimeTypes.add(new MimeType("application/vnd.pentaho.file-metadata", "pfm"));
 	}
 
@@ -72,7 +72,7 @@ public class FileMetadataImportHandler implements IPlatformImportHandler {
 					parentRepositoryFile = this.fileService.getRepository().getFile(parentRepositoryFilePath);
 				}
 
-				List<StringKeyStringValueDto> localeProperties = new ArrayList<StringKeyStringValueDto>();
+				List<StringKeyStringValueDto> localeProperties = new ArrayList<>();
 
 				InputStream inputStream = fileBundle.getInputStream();
 				PropertyResourceBundle rb = new PropertyResourceBundle(inputStream);
@@ -105,13 +105,13 @@ public class FileMetadataImportHandler implements IPlatformImportHandler {
 		return RepositoryFilenameUtils.concat(importPath, localeFilePath + parentFileName);
 	}
 
-	class FileMetadataImportSource {
+	static class FileMetadataImportSource {
 		private ZipInputStream zipInputStream;
 		private List<IRepositoryFileBundle> localeFiles;
 
 		private FileMetadataImportSource(final ZipInputStream zipInputStream) {
 			this.zipInputStream = zipInputStream;
-			this.localeFiles = new ArrayList<IRepositoryFileBundle>();
+			this.localeFiles = new ArrayList<>();
 			this.initialize();
 		}
 

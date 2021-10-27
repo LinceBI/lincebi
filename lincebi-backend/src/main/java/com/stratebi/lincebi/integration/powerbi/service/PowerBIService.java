@@ -1,6 +1,6 @@
 package com.stratebi.lincebi.integration.powerbi.service;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,8 +42,8 @@ public class PowerBIService {
 
 		// Request headers
 		HttpHeaders reqHeader = new HttpHeaders();
-		reqHeader.put("Content-Type", Arrays.asList("application/json"));
-		reqHeader.put("Authorization", Arrays.asList("Bearer " + accessToken));
+		reqHeader.put("Content-Type", Collections.singletonList("application/json"));
+		reqHeader.put("Authorization", Collections.singletonList("Bearer " + accessToken));
 
 		// HTTP entity object, holds header and body
 		HttpEntity<String> reqEntity = new HttpEntity<>(reqHeader);
@@ -89,8 +89,8 @@ public class PowerBIService {
 
 		// Request headers
 		HttpHeaders reqHeader = new HttpHeaders();
-		reqHeader.put("Content-Type", Arrays.asList("application/json"));
-		reqHeader.put("Authorization", Arrays.asList("Bearer " + accessToken));
+		reqHeader.put("Content-Type", Collections.singletonList("application/json"));
+		reqHeader.put("Authorization", Collections.singletonList("Bearer " + accessToken));
 
 		// HTTP entity object, holds header and body
 		HttpEntity<String> reqEntity = new HttpEntity<>(reqHeader);
@@ -136,8 +136,8 @@ public class PowerBIService {
 
 		// Request headers
 		HttpHeaders reqHeader = new HttpHeaders();
-		reqHeader.put("Content-Type", Arrays.asList("application/json"));
-		reqHeader.put("Authorization", Arrays.asList("Bearer " + accessToken));
+		reqHeader.put("Content-Type", Collections.singletonList("application/json"));
+		reqHeader.put("Authorization", Collections.singletonList("Bearer " + accessToken));
 
 		// HTTP entity object, holds header and body
 		HttpEntity<String> reqEntity = new HttpEntity<>(reqHeader);
@@ -176,14 +176,14 @@ public class PowerBIService {
 	 * Get embed params for a report for a single workspace
 	 */
 	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, String reportId) throws JsonMappingException, JsonProcessingException {
-		return PowerBIService.getEmbedConfig(accessToken, workspaceId, new HashSet<String>(Arrays.asList(reportId)), new HashSet<String>());
+		return PowerBIService.getEmbedConfig(accessToken, workspaceId, new HashSet<>(Collections.singletonList(reportId)), new HashSet<>());
 	}
 
 	/**
 	 * Get embed params for multiple reports for a single workspace
 	 */
 	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, Set<String> reportIds) throws JsonMappingException, JsonProcessingException {
-		return PowerBIService.getEmbedConfig(accessToken, workspaceId, reportIds, new HashSet<String>());
+		return PowerBIService.getEmbedConfig(accessToken, workspaceId, reportIds, new HashSet<>());
 	}
 
 	/**
@@ -201,10 +201,10 @@ public class PowerBIService {
 		// Create embedding configuration object
 		EmbedConfig embedConfig = new EmbedConfig();
 
-		Set<Report> reports = new HashSet<Report>();
+		Set<Report> reports = new HashSet<>();
 		embedConfig.setReports(reports);
 
-		Set<Dataset> datasets = new HashSet<Dataset>();
+		Set<Dataset> datasets = new HashSet<>();
 		embedConfig.setDatasets(datasets);
 
 		for (String reportId : reportIds) {
@@ -241,8 +241,8 @@ public class PowerBIService {
 
 		// Request headers
 		HttpHeaders reqHeader = new HttpHeaders();
-		reqHeader.put("Content-Type", Arrays.asList("application/json"));
-		reqHeader.put("Authorization", Arrays.asList("Bearer " + accessToken));
+		reqHeader.put("Content-Type", Collections.singletonList("application/json"));
+		reqHeader.put("Authorization", Collections.singletonList("Bearer " + accessToken));
 
 		// Request body
 		ObjectNode reqBody = mapper.createObjectNode();

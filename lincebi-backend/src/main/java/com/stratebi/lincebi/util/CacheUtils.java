@@ -5,7 +5,7 @@ import java.util.TreeSet;
 public class CacheUtils {
 
 	public static String getCacheKey(Object... objs) {
-		TreeSet<String> keys = new TreeSet<String>();
+		TreeSet<String> keys = new TreeSet<>();
 
 		for (Object obj : objs) {
 			if (obj instanceof Iterable<?>) {

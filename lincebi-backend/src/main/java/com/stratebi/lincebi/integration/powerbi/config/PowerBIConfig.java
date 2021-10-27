@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class PowerBIConfig {
 
-	private static final Map<String, PowerBIConfig> CONFIGS = new HashMap<String, PowerBIConfig>();
+	private static final Map<String, PowerBIConfig> CONFIGS = new HashMap<>();
 
 	// Application id / Client id
 	public String clientId = "";

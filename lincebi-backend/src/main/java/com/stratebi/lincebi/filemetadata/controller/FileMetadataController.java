@@ -72,7 +72,7 @@ public class FileMetadataController {
 
 				FileMetadataService fileMetadataService = new FileMetadataService();
 				List<FileMetadataPath> fileMetadataPathList = Arrays.asList(mapper.treeToValue(jsonInput, FileMetadataPath[].class));
-				List<FileMetadataTree> fileMetadataTreeList = new ArrayList<FileMetadataTree>();
+				List<FileMetadataTree> fileMetadataTreeList = new ArrayList<>();
 
 				for (FileMetadataPath fileMetadataPath : fileMetadataPathList) {
 					FileMetadataTree fileMetadataTree = fileMetadataService.getFileMetadata(fileMetadataPath, locale, showHidden, depth);
@@ -114,7 +114,7 @@ public class FileMetadataController {
 
 			FileMetadataService fileMetadataService = new FileMetadataService();
 			List<FileMetadataTree> fileMetadataTreeList = Arrays.asList(mapper.treeToValue(jsonInput, FileMetadataTree[].class));
-			List<FileMetadataPath> fileMetadataPathList = new ArrayList<FileMetadataPath>();
+			List<FileMetadataPath> fileMetadataPathList = new ArrayList<>();
 
 			for (FileMetadataTree fileMetadataTree : fileMetadataTreeList) {
 				FileMetadataPath fileMetadataPath = fileMetadataService.setFileMetadata(fileMetadataTree, locale);

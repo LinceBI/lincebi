@@ -35,7 +35,7 @@ public class GlobalUserSettingsImportHandler implements IPlatformImportHandler {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUserSettingsImportHandler.class);
 
 	private static final String EXPORT_MANIFEST_FILENAME = "exportManifest.xml";
-	private static final Pattern EXPORT_MANIFEST_PATTERN = Pattern.compile("^(?:.*\\/)?" + Pattern.quote(GlobalUserSettingsImportHandler.EXPORT_MANIFEST_FILENAME) + "$");
+	private static final Pattern EXPORT_MANIFEST_PATTERN = Pattern.compile("^(?:.*/)?" + Pattern.quote(GlobalUserSettingsImportHandler.EXPORT_MANIFEST_FILENAME) + "$");
 
 	static {
 		// Register import handler
@@ -48,7 +48,7 @@ public class GlobalUserSettingsImportHandler implements IPlatformImportHandler {
 
 	public GlobalUserSettingsImportHandler() {
 		this.settingService = PentahoSystem.get(IUserSettingService.class);
-		this.mimeTypes = new ArrayList<IMimeType>();
+		this.mimeTypes = new ArrayList<>();
 		this.mimeTypes.add(new MimeType("application/vnd.pentaho.global-user-settings", "pgus"));
 	}
 
@@ -87,13 +87,13 @@ public class GlobalUserSettingsImportHandler implements IPlatformImportHandler {
 		return manifest;
 	}
 
-	public class GlobalUserSettingsImportSource {
+	static class GlobalUserSettingsImportSource {
 		private ZipInputStream zipInputStream;
 		private List<IRepositoryFileBundle> manifestFiles;
 
 		public GlobalUserSettingsImportSource(final ZipInputStream zipInputStream) {
 			this.zipInputStream = zipInputStream;
-			this.manifestFiles = new ArrayList<IRepositoryFileBundle>();
+			this.manifestFiles = new ArrayList<>();
 			this.initialize();
 		}
 

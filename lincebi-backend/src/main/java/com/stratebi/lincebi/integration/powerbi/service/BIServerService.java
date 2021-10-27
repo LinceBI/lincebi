@@ -1,6 +1,6 @@
 package com.stratebi.lincebi.integration.powerbi.service;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.pentaho.platform.api.engine.IAuthorizationPolicy;
@@ -41,7 +41,7 @@ public class BIServerService {
 			roles = roleListService.getRolesForUser(null, BIServerService.getUser());
 		} catch (Throwable ex) {
 			BIServerService.LOGGER.error(ex.getMessage());
-			roles = Arrays.asList(BIServerService.ANONYMOUS_ROLE);
+			roles = Collections.singletonList(BIServerService.ANONYMOUS_ROLE);
 		}
 		return roles;
 	}

@@ -24,12 +24,7 @@ public class LifecycleListener implements IPluginLifecycleListener, IPlatformRea
 
 	private static final String DEFAULT_CONTENT_FOLDER = "system/default-content";
 
-	private static final FilenameFilter FILE_FILTER = new FilenameFilter() {
-		@Override
-		public boolean accept(File dir, String name) {
-			return name.endsWith(".pgus") || name.endsWith(".pfm");
-		}
-	};
+	private static final FilenameFilter FILE_FILTER = (dir, name) -> name.endsWith(".pgus") || name.endsWith(".pfm");
 
 	@Override
 	public void init() throws PluginLifecycleException {
@@ -47,31 +42,25 @@ public class LifecycleListener implements IPluginLifecycleListener, IPlatformRea
 	public void ready() throws PluginLifecycleException {
 		Thread defaultContentLoaderThread = this.getThreadByName(LifecycleListener.DEFAULT_CONTENT_LOADER_THREAD_NAME);
 
-		Runnable runnable = new Runnable() {
-			@Override
-			public void run() {
-				try {
-					if (defaultContentLoaderThread != null) {
-						// Wait for default content loader thread
-						defaultContentLoaderThread.join();
-					}
-
-					SecurityHelper.getInstance().runAsSystem(new Callable<Void>() {
-						@Override
-						public Void call() throws Exception {
-							String solutionPath = PentahoSystem.getApplicationContext().getSolutionPath(LifecycleListener.DEFAULT_CONTENT_FOLDER);
-							File directory = new File(solutionPath);
-
-							IPlatformImporter importer = PentahoSystem.get(IPlatformImporter.class);
-							ArchiveLoader archiveLoader = new ArchiveLoader(importer);
-							archiveLoader.loadAll(directory, LifecycleListener.FILE_FILTER);
-
-							return null;
-						}
-					});
-				} catch (Exception ex) {
-					LifecycleListener.LOGGER.error(ex.getMessage());
+		Runnable runnable = () -> {
+			try {
+				if (defaultContentLoaderThread != null) {
+					// Wait for default content loader thread
+					defaultContentLoaderThread.join();
 				}
+
+				SecurityHelper.getInstance().runAsSystem((Callable<Void>) () -> {
+					String solutionPath = PentahoSystem.getApplicationContext().getSolutionPath(LifecycleListener.DEFAULT_CONTENT_FOLDER);
+					File directory = new File(solutionPath);
+
+					IPlatformImporter importer = PentahoSystem.get(IPlatformImporter.class);
+					ArchiveLoader archiveLoader = new ArchiveLoader(importer);
+					archiveLoader.loadAll(directory, LifecycleListener.FILE_FILTER);
+
+					return null;
+				});
+			} catch (Exception ex) {
+				LifecycleListener.LOGGER.error(ex.getMessage());
 			}
 		};
 

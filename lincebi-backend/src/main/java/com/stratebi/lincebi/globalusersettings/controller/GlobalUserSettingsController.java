@@ -36,7 +36,7 @@ public class GlobalUserSettingsController {
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Facet(name = "Unsupported")
 	public ArrayList<Setting> listController() {
-		ArrayList<Setting> settings = new ArrayList<Setting>();
+		ArrayList<Setting> settings = new ArrayList<>();
 
 		try {
 			IUserSettingService settingsService = GlobalUserSettingsController.getSettingService();
