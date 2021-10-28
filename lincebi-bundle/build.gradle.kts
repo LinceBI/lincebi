@@ -14,6 +14,7 @@ tasks.register<Zip>("build") {
 	})
 
 	from("${project(":${rootProject.name}-backend").buildDir}/libs/", {
+		include("*-bundle.jar")
 		into("/pentaho-solutions/system/lincebi/lib/")
 	})
 
@@ -24,6 +25,11 @@ tasks.register<Zip>("build") {
 
 tasks.register<Delete>("clean") {
 	delete("${buildDir}/")
+}
+
+tasks.withType<AbstractArchiveTask>().configureEach {
+	isPreserveFileTimestamps = false
+	isReproducibleFileOrder = true
 }
 
 publishing {

@@ -74,3 +74,8 @@ tasks.shadowJar {
 tasks.test {
 	useJUnitPlatform()
 }
+
+tasks.withType<AbstractArchiveTask>().configureEach {
+	isPreserveFileTimestamps = false
+	isReproducibleFileOrder = true
+}

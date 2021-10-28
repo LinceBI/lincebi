@@ -23,7 +23,12 @@ tasks.register<Delete>("clean") {
 }
 
 tasks.register<Exec>("npmRunBuild") {
-	dependsOn("npmInstall")
+	if (!File("${projectDir}/node_modules/").exists() ||
+		!File("${projectDir}/packages/login/node_modules/").exists() ||
+		!File("${projectDir}/packages/home/node_modules/").exists()
+	) {
+		dependsOn("npmInstall")
+	}
 
 	commandLine("npm", "run", "build")
 
@@ -34,4 +39,9 @@ tasks.register<Exec>("npmInstall") {
 	commandLine("npm", "install")
 
 	outputs.upToDateWhen { false }
+}
+
+tasks.withType<AbstractArchiveTask>().configureEach {
+	isPreserveFileTimestamps = false
+	isReproducibleFileOrder = true
 }
