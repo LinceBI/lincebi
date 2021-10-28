@@ -1,5 +1,6 @@
 plugins {
-	id("java-library")
+	id("java")
+	id("com.github.johnrengelman.shadow") version "7.1.0"
 }
 
 group = "${project.property("group")}"
@@ -41,13 +42,33 @@ dependencies {
 }
 
 tasks.build {
-	dependsOn("copyDependencies")
+	dependsOn("shadowJar")
 }
 
-tasks.register<Copy>("copyDependencies") {
-	from(configurations.runtimeClasspath)
+tasks.shadowJar {
+	archiveClassifier.set("bundle")
+	mergeServiceFiles()
 
-	into("${buildDir}/libs/")
+	val prefix = "${project.property("group")}.shaded"
+	fun shade(path : String) { relocate(path, "${prefix}.${path}") }
+
+	shade("com.fasterxml")
+	shade("com.microsoft")
+	shade("com.networknt")
+	shade("com.nimbusds")
+	shade("javassist")
+	shade("net.jcip")
+	shade("net.minidev")
+	shade("ognl")
+	shade("org.apache")
+	shade("org.attoparser")
+	shade("org.codehaus")
+	shade("org.ehcache")
+	shade("org.objectweb")
+	shade("org.springframework")
+	shade("org.terracotta")
+	shade("org.thymeleaf")
+	shade("org.unbescape")
 }
 
 tasks.test {
