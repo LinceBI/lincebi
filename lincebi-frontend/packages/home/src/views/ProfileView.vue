@@ -1,5 +1,5 @@
 <template>
-	<b-form class="profile p-4" @submit.prevent="onSubmit">
+	<b-form class="profile-view p-4" @submit.prevent="onSubmit">
 		<b-container>
 			<b-row>
 				<b-col lg="4" class="d-flex justify-content-center align-items-center">
@@ -66,7 +66,7 @@ import imageToDataURI from '@lincebi/frontend-common/src/imageToDataURI';
 import store from '@/store';
 
 export default {
-	name: 'Profile',
+	name: 'ProfileView',
 	computed: {
 		userSettings() {
 			return store.state.userSettings;
@@ -105,7 +105,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.profile {
+.profile-view {
 	min-width: rem(256);
 
 	.avatar {

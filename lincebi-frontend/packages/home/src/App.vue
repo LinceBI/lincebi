@@ -1,9 +1,9 @@
 <template>
 	<div class="app">
-		<navbar class="app-navbar" />
-		<sidebar class="app-sidebar" />
+		<navbar-panel class="app-navbar" />
+		<sidebar-panel class="app-sidebar" />
 		<router-multi-view class="app-content" />
-		<tour v-if="!onboarded" class="app-tour" />
+		<app-tour v-if="!onboarded" class="app-tour" />
 	</div>
 </template>
 
@@ -11,16 +11,16 @@
 import eventBus from '@/eventBus';
 import store from '@/store';
 
-import Navbar from '@/components/Navbar.vue';
-import Sidebar from '@/components/Sidebar.vue';
-import Tour from '@/components/Tour.vue';
+import NavbarPanel from '@/components/NavbarPanel.vue';
+import SidebarPanel from '@/components/SidebarPanel.vue';
+import AppTour from '@/components/AppTour.vue';
 
 export default {
 	name: 'App',
 	components: {
-		Navbar,
-		Sidebar,
-		Tour,
+		NavbarPanel,
+		SidebarPanel,
+		AppTour,
 	},
 	computed: {
 		onboarded: {

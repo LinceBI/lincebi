@@ -1,5 +1,5 @@
 <template>
-	<div class="new p-4">
+	<div class="new-view p-4">
 		<div v-for="(group, groupIndex) in groups" :key="group.id">
 			<div class="new-card-deck-name">{{ group.name }}</div>
 			<div class="new-card-deck card-deck">
@@ -35,7 +35,7 @@ import router from '@/router';
 import store from '@/store';
 
 export default {
-	name: 'New',
+	name: 'NewView',
 	computed: {
 		overlays() {
 			return store.state.overlays;
@@ -263,7 +263,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.new {
+.new-view {
 	min-width: rem(256);
 
 	.new-card-deck-name {

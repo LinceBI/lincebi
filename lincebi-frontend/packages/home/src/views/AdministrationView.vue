@@ -1,5 +1,5 @@
 <template>
-	<b-container class="administration p-4">
+	<b-container class="administration-view p-4">
 		<b-list-group class="mb-4">
 			<b-list-group-item v-if="canAdminister" button @click="openAdministration()">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'tools']" />
@@ -104,7 +104,7 @@ import router from '@/router';
 import store from '@/store';
 
 export default {
-	name: 'Administration',
+	name: 'AdministrationView',
 	computed: {
 		canAdminister() {
 			return store.state.canAdminister;
@@ -229,7 +229,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.administration {
+.administration-view {
 	min-width: rem(256);
 }
 </style>

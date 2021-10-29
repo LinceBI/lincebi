@@ -1,5 +1,5 @@
 <template>
-	<div class="home">
+	<div class="home-view">
 		<home-slider class="home-slider" />
 		<home-tabs class="home-tabs" />
 	</div>
@@ -10,7 +10,7 @@ import HomeSlider from '@/components/HomeSlider.vue';
 import HomeTabs from '@/components/HomeTabs.vue';
 
 export default {
-	name: 'Home',
+	name: 'HomeView',
 	components: {
 		HomeSlider,
 		HomeTabs,
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home {
+.home-view {
 	display: flex;
 	flex-grow: 1;
 	flex-shrink: 1;

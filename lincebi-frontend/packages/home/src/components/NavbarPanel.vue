@@ -1,5 +1,5 @@
 <template>
-	<b-navbar class="navbar shadow" toggleable="lg" variant="light">
+	<b-navbar class="navbar-panel shadow" toggleable="lg" variant="light">
 		<navbar-sidebar-toggle />
 		<b-navbar-brand class="navbar-logo mr-0 mr-lg-3 p-0" data-v-step="navbar-welcome" href="#/">
 			<b-img class="h-100 w-auto" src="@lincebi/frontend-common/src/assets/img/logo.svg" />
@@ -31,7 +31,7 @@ import NavbarSidebarToggle from '@/components/NavbarSidebarToggle.vue';
 import NavbarProfile from '@/components/NavbarProfile.vue';
 
 export default {
-	name: 'Navbar',
+	name: 'NavbarPanel',
 	components: {
 		NavbarSearch,
 		NavbarSettings,
@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.navbar {
+.navbar-panel {
 	.navbar-logo {
 		height: rem(40);
 	}

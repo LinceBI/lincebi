@@ -3,11 +3,11 @@ import Router from 'vue-router';
 
 import stopAllWindows from '@lincebi/frontend-common/src/stopAllWindows';
 
-import Administration from '@/views/Administration.vue';
-import Home from '@/views/Home.vue';
-import New from '@/views/New.vue';
-import Perspective from '@/views/Perspective.vue';
-import Profile from '@/views/Profile.vue';
+import AdministrationView from '@/views/AdministrationView.vue';
+import HomeView from '@/views/HomeView.vue';
+import NewView from '@/views/NewView.vue';
+import PerspectiveView from '@/views/PerspectiveView.vue';
+import ProfileView from '@/views/ProfileView.vue';
 
 Vue.use(Router);
 
@@ -21,27 +21,27 @@ export default new Router({
 		{
 			path: '/home',
 			name: 'home',
-			component: Home,
+			component: HomeView,
 		},
 		{
 			path: '/new',
 			name: 'new',
-			component: New,
+			component: NewView,
 		},
 		{
 			path: '/profile',
 			name: 'profile',
-			component: Profile,
+			component: ProfileView,
 		},
 		{
 			path: '/administration',
 			name: 'administration',
-			component: Administration,
+			component: AdministrationView,
 		},
 		{
 			path: '/p/:perspective',
 			name: 'perspective',
-			component: Perspective,
+			component: PerspectiveView,
 			props: (route) => ({
 				perspective: route.params.perspective,
 			}),

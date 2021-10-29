@@ -1,7 +1,7 @@
 <template>
 	<iframe
 		ref="mantle"
-		class="perspective"
+		class="perspective-view"
 		:src="`../BridgeHome?${staticSearchParams}`"
 		:sandbox="isSanboxed ? sandboxAllowed.join(' ') : false"
 		@load="handleMantleLoad"
@@ -20,7 +20,7 @@ import router from '@/router';
 import store from '@/store';
 
 export default {
-	name: 'Perspective',
+	name: 'PerspectiveView',
 	props: {
 		perspective: {
 			type: String,
@@ -257,7 +257,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.perspective {
+.perspective-view {
 	display: block;
 	height: 100%;
 	width: 100%;

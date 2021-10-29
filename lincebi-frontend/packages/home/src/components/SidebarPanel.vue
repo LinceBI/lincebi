@@ -1,5 +1,5 @@
 <template>
-	<b-nav :class="{ sidebar: true, shadow: true, show: sidebarExpanded }" vertical>
+	<b-nav :class="{ 'sidebar-panel': true, shadow: true, show: sidebarExpanded }" vertical>
 		<sidebar-item v-for="(item, index) in sidebar" :key="index" :item="item" />
 	</b-nav>
 </template>
@@ -14,7 +14,7 @@ import store from '@/store';
 import SidebarItem from '@/components/SidebarItem.vue';
 
 export default {
-	name: 'Sidebar',
+	name: 'SidebarPanel',
 	components: {
 		SidebarItem,
 	},
@@ -244,7 +244,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.sidebar {
+.sidebar-panel {
 	display: none;
 	width: rem(50);
 

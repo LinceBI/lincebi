@@ -1,7 +1,7 @@
 <template>
 	<div
-		ref="tour"
-		class="tour"
+		ref="appTour"
+		class="app-tour"
 		tabindex="-1"
 		@click.stop.prevent
 		@focus.stop.prevent
@@ -28,7 +28,7 @@ import eventBus from '@/eventBus';
 import router from '@/router';
 
 export default {
-	name: 'Tour',
+	name: 'AppTour',
 	data() {
 		return {
 			step: null,
@@ -378,8 +378,8 @@ export default {
 				}
 
 				// Restore focus on tour element.
-				if (this.$refs.tour) {
-					this.$refs.tour.focus();
+				if (this.$refs.appTour) {
+					this.$refs.appTour.focus();
 				}
 			},
 			50,
