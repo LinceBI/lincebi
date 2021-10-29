@@ -1,9 +1,11 @@
+@use 'sass:math';
+
 @function em($pxval, $base: $em-base) {
-	@return ($pxval / $base) * 1em;
+	@return math.div($pxval, $base) * 1em;
 }
 
 @function rem($pxval, $base: $em-base) {
-	@return ($pxval / $base) * 1rem;
+	@return math.div($pxval, $base) * 1rem;
 }
 
 /// A small function allowing skipping base64 encoding
@@ -16,7 +18,7 @@
 	$encoded: '';
 	$slice: 2000;
 	$index: 0;
-	$loops: ceil(str-length($svg) / $slice);
+	$loops: math.ceil(math.div(str-length($svg), $slice));
 
 	@for $i from 1 through $loops {
 		$chunk: str-slice($svg, $index, $index + $slice - 1);
