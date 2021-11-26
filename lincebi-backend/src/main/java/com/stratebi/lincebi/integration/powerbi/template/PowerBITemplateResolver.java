@@ -6,7 +6,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 public class PowerBITemplateResolver extends ClassLoaderTemplateResolver {
 
 	public PowerBITemplateResolver() {
-		this.setPrefix("/templates/integration/powerbi/");
+		this.setPrefix("/WEB-INF/templates/integration/powerbi/");
 		this.setSuffix(".html");
 		this.setTemplateMode(TemplateMode.HTML);
 		this.setCharacterEncoding("UTF-8");
