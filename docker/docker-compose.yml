@@ -50,7 +50,7 @@ services:
       - "postgres"
 
   postgres:
-    image: "docker.io/postgres:13"
+    image: "docker.io/postgres:14"
     networks:
       - "biserver"
     ports:

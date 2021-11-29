@@ -1,5 +1,5 @@
 plugins {
-	id("nebula.dependency-lock") version "12.1.0"
+	id("nebula.dependency-lock") version "12.1.6"
 }
 
 subprojects {
