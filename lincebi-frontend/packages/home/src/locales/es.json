@@ -103,6 +103,7 @@
       "sidebarToolStpivot": { "title": "STPivot", "content": "STPivot es un visor OLAP para análisis multidimensional." },
       "sidebarToolStolap": { "title": "STOlap", "content": "STOlap es un visor analítico open source desarrollado por Stratebi." },
       "sidebarToolStreport": { "title": "STReport", "content": "STReport es una herramienta para crear, modificar y visualizar informes." },
+      "sidebarToolStpanels": { "title": "STPanels", "content": "STPanels es una herramienta para crear cuadros de mando." },
       "sidebarToolStdashboard": { "title": "STDashboard", "content": "STDashboard es una herramienta para crear cuadros de mando." },
       "sidebarToolStagile": { "title": "STAgile", "content": "STAgile es una herramienta para crear cuadros de mando." },
       "sidebarToolStcard": { "title": "STCard", "content": "STCard es una herramienta para crear, gestionar y analizar scorecards." },

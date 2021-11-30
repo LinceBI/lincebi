@@ -172,6 +172,14 @@ export default {
 					},
 				},
 				{
+					target: '[data-v-step="new-tool-stpanels"]',
+					header: { title: this.$t('tour.steps.sidebarToolStpanels.title') },
+					content: this.$t('tour.steps.sidebarToolStpanels.content'),
+					before: async () => {
+						router.push({ name: 'new' }).catch(() => {});
+					},
+				},
+				{
 					target: '[data-v-step="new-tool-stpivot"]',
 					header: { title: this.$t('tour.steps.sidebarToolStpivot.title') },
 					content: this.$t('tour.steps.sidebarToolStpivot.content'),

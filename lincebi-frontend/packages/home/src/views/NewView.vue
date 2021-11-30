@@ -104,6 +104,25 @@ export default {
 							},
 						},
 						{
+							enabled: this.overlays.has('launch.launch-new-stpanels'),
+							id: 'tool-stpanels',
+							name: 'STPanels',
+							icon: ['fac', 'tool-stpanels'],
+							color: '#000000',
+							click: () => {
+								router
+									.push({
+										name: 'perspective',
+										params: { perspective: 'opened.perspective' },
+									})
+									.catch(() => {});
+								eventBus.$emitWhenAvailable(
+									'mantle-home-command',
+									this.overlays.get('launch.launch-new-stpanels')
+								);
+							},
+						},
+						{
 							enabled: this.overlays.has('launch.stdashboardButton'),
 							id: 'tool-stdashboard',
 							name: 'STDashboard',
