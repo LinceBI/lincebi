@@ -39,13 +39,13 @@ public class EmbedController {
 	private static final PowerBITemplateEngine TEMPLATE_ENGINE = new PowerBITemplateEngine();
 
 	@GET
-	@Path("/get-info")
+	@Path("/info")
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Facet(name = "Unsupported")
 	public Response getInfoController(
 		@QueryParam("configName") @DefaultValue("default") String configName,
 		@QueryParam("workspaceId") String workspaceId,
-		@QueryParam("reportId") Set<String> reportIds,
+		@QueryParam("reportId") String reportId,
 		@QueryParam("datasetId") Set<String> datasetIds
 	) {
 		PowerBIConfig config = PowerBIConfig.get(configName);
@@ -54,13 +54,13 @@ public class EmbedController {
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
 
-		if (!UUIDUtils.isGUID(workspaceId) || !UUIDUtils.isGUID(reportIds) || !UUIDUtils.isGUID(datasetIds)) {
+		if (!UUIDUtils.isGUID(workspaceId) || !UUIDUtils.isGUID(reportId) || !UUIDUtils.isGUID(datasetIds)) {
 			EmbedController.LOGGER.error("Invalid id");
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
 
 		EmbedConfig embedConfig;
-		String embedConfigCacheKey = CacheUtils.getCacheKey(workspaceId, reportIds, datasetIds);
+		String embedConfigCacheKey = CacheUtils.getCacheKey(workspaceId, reportId, datasetIds);
 
 		if (EmbedController.CACHE.containsKey(embedConfigCacheKey)) {
 			embedConfig = EmbedController.CACHE.get(embedConfigCacheKey);
@@ -79,7 +79,7 @@ public class EmbedController {
 			}
 
 			try {
-				embedConfig = PowerBIService.getEmbedConfig(accessToken, workspaceId, reportIds, datasetIds);
+				embedConfig = PowerBIService.getEmbedConfig(accessToken, workspaceId, reportId, datasetIds);
 			} catch (Exception ex) {
 				EmbedController.LOGGER.error(ex.getMessage());
 				return Response.serverError().type(MediaType.TEXT_HTML).build();
@@ -101,14 +101,15 @@ public class EmbedController {
 	}
 
 	@GET
-	@Path("/get-html")
+	@Path("/html")
 	@Produces({ MediaType.TEXT_HTML })
 	@Facet(name = "Unsupported")
 	public Response getHTMLController(
 		@QueryParam("configName") @DefaultValue("default") String configName,
 		@QueryParam("workspaceId") String workspaceId,
-		@QueryParam("reportId") Set<String> reportIds,
-		@QueryParam("datasetId") Set<String> datasetIds
+		@QueryParam("reportId") String reportId,
+		@QueryParam("datasetId") Set<String> datasetIds,
+		@QueryParam("pageName") String pageName
 	) {
 		PowerBIConfig config = PowerBIConfig.get(configName);
 		if (config == null) {
@@ -116,13 +117,13 @@ public class EmbedController {
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
 
-		if (!UUIDUtils.isGUID(workspaceId) || !UUIDUtils.isGUID(reportIds) || !UUIDUtils.isGUID(datasetIds)) {
+		if (!UUIDUtils.isGUID(workspaceId) || !UUIDUtils.isGUID(reportId) || !UUIDUtils.isGUID(datasetIds)) {
 			EmbedController.LOGGER.error("Invalid id");
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
 
 		EmbedConfig embedConfig;
-		String embedConfigCacheKey = CacheUtils.getCacheKey(workspaceId, reportIds, datasetIds);
+		String embedConfigCacheKey = CacheUtils.getCacheKey(workspaceId, reportId, datasetIds);
 
 		if (EmbedController.CACHE.containsKey(embedConfigCacheKey)) {
 			embedConfig = EmbedController.CACHE.get(embedConfigCacheKey);
@@ -141,7 +142,7 @@ public class EmbedController {
 			}
 
 			try {
-				embedConfig = PowerBIService.getEmbedConfig(accessToken, workspaceId, reportIds, datasetIds);
+				embedConfig = PowerBIService.getEmbedConfig(accessToken, workspaceId, reportId, datasetIds);
 			} catch (Exception ex) {
 				EmbedController.LOGGER.error(ex.getMessage());
 				return Response.serverError().type(MediaType.TEXT_HTML).build();
@@ -155,6 +156,7 @@ public class EmbedController {
 			ObjectMapper mapper = new ObjectMapper();
 			Context context = new Context();
 			context.setVariable("embedConfig", mapper.writeValueAsString(embedConfig));
+			context.setVariable("pageName", pageName);
 			response = EmbedController.TEMPLATE_ENGINE.process("embed", context);
 		} catch (Exception ex) {
 			EmbedController.LOGGER.error(ex.getMessage());
@@ -165,7 +167,7 @@ public class EmbedController {
 	}
 
 	@GET
-	@Path("/get-available-feature")
+	@Path("/available-feature")
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Facet(name = "Unsupported")
 	public Response getAvailableFeature(

@@ -175,15 +175,8 @@ public class PowerBIService {
 	/**
 	 * Get embed params for a report for a single workspace
 	 */
-	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, String reportId) throws JsonMappingException, JsonProcessingException {
-		return PowerBIService.getEmbedConfig(accessToken, workspaceId, new HashSet<>(Collections.singletonList(reportId)), new HashSet<>());
-	}
-
-	/**
-	 * Get embed params for multiple reports for a single workspace
-	 */
-	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, Set<String> reportIds) throws JsonMappingException, JsonProcessingException {
-		return PowerBIService.getEmbedConfig(accessToken, workspaceId, reportIds, new HashSet<>());
+	public static EmbedConfig getEmbedConfig(String accessToken, String workspaceId, String reportId, Set<String> datasetIds) throws JsonMappingException, JsonProcessingException {
+		return PowerBIService.getEmbedConfig(accessToken, workspaceId, new HashSet<>(Collections.singletonList(reportId)), datasetIds);
 	}
 
 	/**
