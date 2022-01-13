@@ -23,13 +23,13 @@ https://*:8443 {
 	}
 
 	# Webpack Dev Server (@lincebi/frontend-login)
-	handle_path /pentaho/Login/* {
+	handle_path /lincebi/Login/* {
 		reverse_proxy http://host.docker.internal:8081
 	}
 	reverse_proxy /ws-login ws://host.docker.internal:8081
 
 	# Webpack Dev Server (@lincebi/frontend-home)
-	handle_path /pentaho/Home/* {
+	handle_path /lincebi/Home/* {
 		reverse_proxy http://host.docker.internal:8082
 	}
 	reverse_proxy /ws-home ws://host.docker.internal:8082

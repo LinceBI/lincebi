@@ -33,6 +33,7 @@ services:
       FQSU_PROTOCOL: "https"
       FQSU_DOMAIN: "localhost"
       FQSU_PORT: "8443"
+      WEBAPP_PENTAHO_DIRNAME: "lincebi"
       DEFAULT_ADMIN_PASSWORD: "password"
       STORAGE_TYPE: "postgres"
       POSTGRES_HOST: "postgres"
