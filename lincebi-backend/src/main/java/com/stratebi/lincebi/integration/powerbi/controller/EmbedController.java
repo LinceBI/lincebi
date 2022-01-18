@@ -1,5 +1,6 @@
 package com.stratebi.lincebi.integration.powerbi.controller;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.ws.rs.DefaultValue;
@@ -59,8 +60,11 @@ public class EmbedController {
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
 
+		String user = BIServerService.getUser();
+		List<String> roles = BIServerService.getRoles();
+
 		EmbedConfig embedConfig;
-		String embedConfigCacheKey = CacheUtils.getCacheKey(workspaceId, reportId, datasetIds);
+		String embedConfigCacheKey = CacheUtils.getCacheKey(user, roles, workspaceId, reportId, datasetIds);
 
 		if (EmbedController.CACHE.containsKey(embedConfigCacheKey)) {
 			embedConfig = EmbedController.CACHE.get(embedConfigCacheKey);
@@ -122,8 +126,11 @@ public class EmbedController {
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
 
+		String user = BIServerService.getUser();
+		List<String> roles = BIServerService.getRoles();
+
 		EmbedConfig embedConfig;
-		String embedConfigCacheKey = CacheUtils.getCacheKey(workspaceId, reportId, datasetIds);
+		String embedConfigCacheKey = CacheUtils.getCacheKey(user, roles, workspaceId, reportId, datasetIds);
 
 		if (EmbedController.CACHE.containsKey(embedConfigCacheKey)) {
 			embedConfig = EmbedController.CACHE.get(embedConfigCacheKey);
