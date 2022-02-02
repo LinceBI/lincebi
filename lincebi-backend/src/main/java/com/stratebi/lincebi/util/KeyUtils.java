@@ -2,9 +2,9 @@ package com.stratebi.lincebi.util;
 
 import java.util.TreeSet;
 
-public class CacheUtils {
+public class KeyUtils {
 
-	public static String getCacheKey(Object... objs) {
+	public static String getKeyName(Object... objs) {
 		TreeSet<String> keys = new TreeSet<>();
 
 		for (Object obj : objs) {

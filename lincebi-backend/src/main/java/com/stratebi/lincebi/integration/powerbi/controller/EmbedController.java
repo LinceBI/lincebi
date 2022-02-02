@@ -26,7 +26,7 @@ import com.stratebi.lincebi.integration.powerbi.service.AzureADService;
 import com.stratebi.lincebi.integration.powerbi.service.BIServerService;
 import com.stratebi.lincebi.integration.powerbi.service.PowerBIService;
 import com.stratebi.lincebi.integration.powerbi.template.PowerBITemplateEngine;
-import com.stratebi.lincebi.util.CacheUtils;
+import com.stratebi.lincebi.util.KeyUtils;
 import com.stratebi.lincebi.util.UUIDUtils;
 
 @Path("/lincebi/api/integration/powerbi/embed")
@@ -64,7 +64,7 @@ public class EmbedController {
 		List<String> roles = BIServerService.getRoles();
 
 		EmbedConfig embedConfig;
-		String embedConfigCacheKey = CacheUtils.getCacheKey(user, roles, workspaceId, reportId, datasetIds);
+		String embedConfigCacheKey = KeyUtils.getKeyName(user, roles, workspaceId, reportId, datasetIds);
 
 		if (EmbedController.CACHE.containsKey(embedConfigCacheKey)) {
 			embedConfig = EmbedController.CACHE.get(embedConfigCacheKey);
@@ -130,7 +130,7 @@ public class EmbedController {
 		List<String> roles = BIServerService.getRoles();
 
 		EmbedConfig embedConfig;
-		String embedConfigCacheKey = CacheUtils.getCacheKey(user, roles, workspaceId, reportId, datasetIds);
+		String embedConfigCacheKey = KeyUtils.getKeyName(user, roles, workspaceId, reportId, datasetIds);
 
 		if (EmbedController.CACHE.containsKey(embedConfigCacheKey)) {
 			embedConfig = EmbedController.CACHE.get(embedConfigCacheKey);

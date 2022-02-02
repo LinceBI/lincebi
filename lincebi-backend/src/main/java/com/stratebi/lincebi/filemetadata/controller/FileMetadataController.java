@@ -29,7 +29,7 @@ import com.stratebi.lincebi.filemetadata.model.FileMetadataTree;
 import com.stratebi.lincebi.filemetadata.schema.FileMetadataPathArraySchema;
 import com.stratebi.lincebi.filemetadata.schema.FileMetadataTreeArraySchema;
 import com.stratebi.lincebi.filemetadata.service.FileMetadataService;
-import com.stratebi.lincebi.util.CacheUtils;
+import com.stratebi.lincebi.util.KeyUtils;
 
 @Path("/lincebi/api/file-metadata")
 @Facet(name = "Unsupported")
@@ -56,7 +56,7 @@ public class FileMetadataController {
 	) {
 		try {
 			String response;
-			String cacheKey = CacheUtils.getCacheKey(locale, showHidden, depth, input);
+			String cacheKey = KeyUtils.getKeyName(locale, showHidden, depth, input);
 
 			if (FileMetadataController.CACHE.containsKey(cacheKey)) {
 				response = FileMetadataController.CACHE.get(cacheKey);
