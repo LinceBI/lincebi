@@ -11,7 +11,11 @@ import org.pentaho.platform.engine.core.system.PentahoSessionHolder;
 import org.pentaho.platform.engine.core.system.PentahoSystem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -40,7 +44,7 @@ public class PushService {
 
 	public static List<Registration> list() throws JsonProcessingException {
 		Map<String, Registration> registrations = PushService.getRegistrations();
-		return new ArrayList<Registration>(registrations.values());
+		return new ArrayList<>(registrations.values());
 	}
 
 	public static void register(Registration registration) throws JsonProcessingException {
@@ -73,11 +77,14 @@ public class PushService {
 
 			HttpEntity<String> reqEntity = new HttpEntity<>(reqBody.toString(), reqHeader);
 
-			RestTemplate restTemplate = new RestTemplate();
-			ResponseEntity<String> response = restTemplate.exchange(endpointUrl, HttpMethod.POST, reqEntity, String.class);
-
-			if (response.getStatusCode() == HttpStatus.UNAUTHORIZED || response.getStatusCode() == HttpStatus.GONE) {
-				PushService.unregister(registration);
+			try {
+				RestTemplate restTemplate = new RestTemplate();
+				restTemplate.exchange(endpointUrl, HttpMethod.POST, reqEntity, String.class);
+			} catch (HttpStatusCodeException ex) {
+				PushService.LOGGER.error(ex.getMessage());
+				if (ex.getStatusCode() == HttpStatus.UNAUTHORIZED || ex.getStatusCode() == HttpStatus.GONE) {
+					PushService.unregister(registration);
+				}
 			}
 		}
 	}
