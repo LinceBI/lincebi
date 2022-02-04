@@ -34,9 +34,6 @@ export default {
 		overlays() {
 			return store.state.overlays;
 		},
-		locales() {
-			return store.state.locales;
-		},
 		sidebarExpanded: {
 			get() {
 				return store.state.sidebarExpanded;
@@ -175,48 +172,53 @@ export default {
 					href: '#/administration',
 				},
 				{
-					enabled: this.locales.size > 1,
+					enabled: true,
 					id: 'locales',
 					name: this.$t('sidebar.locales'),
 					icon: ['fas', 'globe-europe'],
 					subitems: [
 						{
-							enabled: this.locales.has('en'),
+							enabled: true,
+							id: 'locale-arabic',
+							name: this.$t('locales.arabic'),
+							click: async () => {
+								await store.dispatch('updateLocale', 'ar');
+								await store.dispatch('fetchRepository');
+							},
+						},
+						{
+							enabled: true,
+							id: 'locale-catalan',
+							name: this.$t('locales.catalan'),
+							click: async () => {
+								await store.dispatch('updateLocale', 'ca');
+								await store.dispatch('fetchRepository');
+							},
+						},
+						{
+							enabled: true,
 							id: 'locale-english',
 							name: this.$t('locales.english'),
-							img: require('@/assets/img/locales/en.svg'),
 							click: async () => {
 								await store.dispatch('updateLocale', 'en');
 								await store.dispatch('fetchRepository');
 							},
 						},
 						{
-							enabled: this.locales.has('es'),
+							enabled: true,
 							id: 'locale-spanish',
 							name: this.$t('locales.spanish'),
-							img: require('@/assets/img/locales/es.svg'),
 							click: async () => {
 								await store.dispatch('updateLocale', 'es');
 								await store.dispatch('fetchRepository');
 							},
 						},
 						{
-							enabled: this.locales.has('pt_PT'),
+							enabled: true,
 							id: 'locale-portuguese',
 							name: this.$t('locales.portuguese'),
-							img: require('@/assets/img/locales/pt.svg'),
 							click: async () => {
 								await store.dispatch('updateLocale', 'pt_PT');
-								await store.dispatch('fetchRepository');
-							},
-						},
-						{
-							enabled: this.locales.has('ca'),
-							id: 'locale-catalan',
-							name: this.$t('locales.catalan'),
-							img: require('@/assets/img/locales/ca.svg'),
-							click: async () => {
-								await store.dispatch('updateLocale', 'ca');
 								await store.dispatch('fetchRepository');
 							},
 						},

@@ -1,4 +1,5 @@
 {
+  "__meta__": { "lang": "ca", "dir": "ltr" },
   "username": { "label": "Usuari:" },
   "password": { "label": "Contrasenya:" },
   "getCredentialsHere": "Obtingui el seu usuari i contrasenya aquí.",

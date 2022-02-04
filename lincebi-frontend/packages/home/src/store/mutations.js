@@ -33,15 +33,12 @@ export const setOverlays = (state, overlays) => {
 	state.overlays = overlays;
 };
 
-export const setLocales = (state, locales) => {
-	state.locales = locales;
-};
-
 export const setLocale = (state, locale) => {
-	if (state.locales.has(locale) && i18n.availableLocales.includes(locale)) {
+	if (i18n.availableLocales.includes(locale)) {
 		state.locale = locale;
 		i18n.locale = locale;
-		document.documentElement.lang = locale;
+		document.documentElement.lang = i18n.messages[locale].__meta__.lang;
+		document.documentElement.dir = i18n.messages[locale].__meta__.dir;
 		replaceParameter('locale', locale);
 	} else {
 		console.warn(`Cannot set locale "${locale}"`);

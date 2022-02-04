@@ -1,11 +1,13 @@
 {
+  "__meta__": { "lang": "ca", "dir": "ltr" },
   "locales": {
+    "arabic": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
     "catalan": "Català",
-    "english": "Anglès",
-    "french": "Francès",
-    "german": "Alemany",
-    "portuguese": "Portuguès",
-    "spanish": "Espanyol"
+    "english": "English",
+    "french": "Français",
+    "german": "Deutsch",
+    "portuguese": "Português",
+    "spanish": "Español"
   },
   "navbar": {
     "categories": "Categories",

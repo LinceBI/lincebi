@@ -46,9 +46,7 @@ export default {
 				store.dispatch('fetchHasDataAccess'),
 				store.dispatch('fetchPerspectives'),
 				store.dispatch('fetchOverlays'),
-				store.dispatch('fetchLocales').then(() => {
-					store.dispatch('fetchLocale');
-				}),
+				store.dispatch('fetchLocale'),
 				store.dispatch('fetchGlobalUserSettings'),
 				store.dispatch('fetchUserSettings'),
 			]);

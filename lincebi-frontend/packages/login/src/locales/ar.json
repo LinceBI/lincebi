@@ -1,5 +1,5 @@
 {
-  "__meta__": { "lang": "en", "dir": "ltr" },
+  "__meta__": { "lang": "ar", "dir": "rtl" },
   "username": { "label": "Username:" },
   "password": { "label": "Password:" },
   "getCredentialsHere": "Get your user and password here.",
