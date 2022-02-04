@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 
 @Path("/lincebi/api/push")
@@ -23,18 +25,18 @@ public class PushController {
 	@Path("/list")
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Facet(name = "Unsupported")
-	public Response listController() {
+	public Response listController(@QueryParam("username") String username) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			List<Registration> registrations = PushService.list();
+			List<Registration> registrations = PushService.list(username);
 			String response = mapper.writeValueAsString(registrations);
-
 			return Response.ok(response).build();
 		} catch (Exception ex) {
-			PushController.LOGGER.error(ex.getMessage());
+			StringWriter sw = new StringWriter();
+			ex.printStackTrace(new PrintWriter(sw));
+			PushController.LOGGER.error(sw.toString());
+			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
-
-		return Response.serverError().build();
 	}
 
 	@POST
@@ -42,18 +44,21 @@ public class PushController {
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.TEXT_PLAIN })
 	@Facet(name = "Unsupported")
-	public Response registerController(String rawRegistration) {
+	public Response registerController(
+		@QueryParam("username") String username,
+		String rawRegistration
+	) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			Registration registration = mapper.readValue(rawRegistration, Registration.class);
-			PushService.register(registration);
-
+			PushService.register(username, registration);
 			return Response.noContent().build();
 		} catch (Exception ex) {
-			PushController.LOGGER.error(ex.getMessage());
+			StringWriter sw = new StringWriter();
+			ex.printStackTrace(new PrintWriter(sw));
+			PushController.LOGGER.error(sw.toString());
+			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
-
-		return Response.serverError().build();
 	}
 
 	@POST
@@ -61,18 +66,21 @@ public class PushController {
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.TEXT_PLAIN })
 	@Facet(name = "Unsupported")
-	public Response unregisterController(String rawRegistration) {
+	public Response unregisterController(
+		@QueryParam("username") String username,
+		String rawRegistration
+	) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			Registration registration = mapper.readValue(rawRegistration, Registration.class);
-			PushService.unregister(registration);
-
+			PushService.unregister(username, registration);
 			return Response.noContent().build();
 		} catch (Exception ex) {
-			PushController.LOGGER.error(ex.getMessage());
+			StringWriter sw = new StringWriter();
+			ex.printStackTrace(new PrintWriter(sw));
+			PushController.LOGGER.error(sw.toString());
+			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
-
-		return Response.serverError().build();
 	}
 
 	@POST
@@ -80,18 +88,21 @@ public class PushController {
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.TEXT_PLAIN })
 	@Facet(name = "Unsupported")
-	public Response notifyController(String rawNotification) {
+	public Response notifyController(
+		@QueryParam("username") String username,
+		String rawNotification
+	) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			Notification notification = mapper.readValue(rawNotification, Notification.class);
-			PushService.notify(notification);
-
+			PushService.notify(username, notification);
 			return Response.noContent().build();
 		} catch (Exception ex) {
-			PushController.LOGGER.error(ex.getMessage());
+			StringWriter sw = new StringWriter();
+			ex.printStackTrace(new PrintWriter(sw));
+			PushController.LOGGER.error(sw.toString());
+			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
-
-		return Response.serverError().build();
 	}
 
 }
