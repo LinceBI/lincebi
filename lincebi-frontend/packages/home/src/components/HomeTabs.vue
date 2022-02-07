@@ -175,7 +175,7 @@
 			@ok="handleNewTabModalOk"
 		>
 			<form ref="new-tab-form" @submit.stop.prevent="handleNewTabFormSubmit">
-				<b-form-group :label="$t('home.tabName.label')">
+				<b-form-group :label="$t('home.tabName.label')" label-class="d-flex">
 					<b-form-input
 						ref="new-tab-name"
 						v-model="newTab.name"
@@ -191,10 +191,10 @@
 						</option>
 					</b-form-datalist>
 				</b-form-group>
-				<b-form-group :label="$t('home.tabColor.label')">
+				<b-form-group :label="$t('home.tabColor.label')" label-class="d-flex">
 					<b-form-color-swatch v-model="newTab.color" />
 				</b-form-group>
-				<b-form-group :label="$t('home.tabIcon.label')">
+				<b-form-group :label="$t('home.tabIcon.label')" label-class="d-flex">
 					<b-form-icon-swatch v-model="newTab.icon" />
 				</b-form-group>
 			</form>

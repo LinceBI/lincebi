@@ -81,6 +81,7 @@ export default {
 
 <style scoped lang="scss">
 .icon-swatch {
+	display: flex;
 	flex-wrap: wrap;
 
 	.icon {

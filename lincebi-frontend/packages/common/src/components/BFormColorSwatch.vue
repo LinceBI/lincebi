@@ -58,6 +58,7 @@ export default {
 
 <style scoped lang="scss">
 .color-swatch {
+	display: flex;
 	flex-wrap: wrap;
 
 	.color {
