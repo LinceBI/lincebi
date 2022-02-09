@@ -40,9 +40,8 @@
 </template>
 
 <script>
-import i18n from '@/i18n';
-
 import eventBus from '@/eventBus';
+import i18n from '@/i18n';
 
 import SidebarSubitem from '@/components/SidebarSubitem.vue';
 
