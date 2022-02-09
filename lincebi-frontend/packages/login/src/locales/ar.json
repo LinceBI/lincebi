@@ -1,13 +1,20 @@
 {
-  "__meta__": { "lang": "ar", "dir": "rtl" },
-  "username": { "label": "Username:" },
-  "password": { "label": "Password:" },
-  "getCredentialsHere": "Get your user and password here.",
-  "signIn": "Sign in",
+  "__meta__": {
+    "lang": "ar",
+    "dir": "rtl"
+  },
+  "username": {
+    "label": "اسم المستخدم:"
+  },
+  "password": {
+    "label": "شعار:"
+  },
+  "getCredentialsHere": "احصل على المستخدم وكلمة المرور هنا.",
+  "signIn": "تسجيل الدخول",
   "footer": "",
   "errors": {
-    "unknownError": "A login error occurred. Please try again.",
-    "authenticationFailure": "A login error occurred. Please try again.",
-    "sessionReuseDetected": "A login error occurred. Please try again."
+    "unknownError": "حدث خطأ في تسجيل الدخول. الرجاء المحاولة مرة أخرى.",
+    "authenticationFailure": "حدث خطأ في تسجيل الدخول. الرجاء المحاولة مرة أخرى.",
+    "sessionReuseDetected": "حدث خطأ في تسجيل الدخول. الرجاء المحاولة مرة أخرى."
   }
 }

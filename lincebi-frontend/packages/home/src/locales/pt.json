@@ -1,5 +1,8 @@
 {
-  "__meta__": { "lang": "pt", "dir": "ltr" },
+  "__meta__": {
+    "lang": "pt",
+    "dir": "ltr"
+  },
   "locales": {
     "arabic": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
     "catalan": "Català",
@@ -11,7 +14,10 @@
   },
   "navbar": {
     "categories": "Categorias",
-    "search": { "label": "Procurar:", "placeholder": "Procurar..." },
+    "search": {
+      "label": "Procurar:",
+      "placeholder": "Procurar..."
+    },
     "settings": "Configurações",
     "profile": "Perfil",
     "showMenuBar": "Mostrar barra de menus",
@@ -36,9 +42,18 @@
     "useButtonToCreateTab": "Use o botão + para criar uma nova aba",
     "filesWillAppearHere": "Arquivos selecionados aparecerão aqui",
     "createTab": "Criar aba",
-    "tabName": { "label": "Nome da aba", "placeholder": "Nome da aba..." },
-    "tabColor": { "label": "Cor da aba", "placeholder": "Cor da aba..." },
-    "tabIcon": { "label": "Ícone da aba", "placeholder": "Ícone da aba..." },
+    "tabName": {
+      "label": "Nome da aba",
+      "placeholder": "Nome da aba..."
+    },
+    "tabColor": {
+      "label": "Cor da aba",
+      "placeholder": "Cor da aba..."
+    },
+    "tabIcon": {
+      "label": "Ícone da aba",
+      "placeholder": "Ícone da aba..."
+    },
     "deleteTab": "Deletar aba",
     "tabWillBeDeleted": "A aba \"{name}\" será deletada.",
     "delete": "Deletar",
@@ -58,11 +73,26 @@
     "otherTools": "Outras ferramentas"
   },
   "profile": {
-    "name": { "label": "Nome:", "placeholder": "Nome..." },
-    "email": { "label": "Email:", "placeholder": "Email..." },
-    "phone": { "label": "Telefone:", "placeholder": "Telefone..." },
-    "address": { "label": "Endereço:", "placeholder": "Endereço..." },
-    "avatar": { "label": "Avatar:", "placeholder": "Avatar..." },
+    "name": {
+      "label": "Nome:",
+      "placeholder": "Nome..."
+    },
+    "email": {
+      "label": "Email:",
+      "placeholder": "Email..."
+    },
+    "phone": {
+      "label": "Telefone:",
+      "placeholder": "Telefone..."
+    },
+    "address": {
+      "label": "Endereço:",
+      "placeholder": "Endereço..."
+    },
+    "avatar": {
+      "label": "Avatar:",
+      "placeholder": "Avatar..."
+    },
     "save": "Salvar"
   },
   "administration": {
@@ -93,31 +123,106 @@
       "stop": "Finalizar Tour"
     },
     "steps": {
-      "navbarWelcome": { "title": "Vamos começar", "content": "Descubra! <strong>LinceBI</strong>!" },
-      "navbarProfile": { "title": "Perfil", "content": "Visualize e edite seu perfil." },
-      "navbarSearch": { "title": "Procurar", "content": "Procurar qualquer arquivo." },
-      "navbarSettings": { "title": "Opções", "content": "Acesse as opções gerais da plataforma." },
-      "homeTabGlobal": { "title": "Aba global", "content": "Na aba global aparecerão, para todos os usuários, os arquivos que o administrador selecionar." },
-      "homeTabHome": { "title": "Aba de início", "content": "Na aba de início aparecerão apenas os arquivos que você selecionar." },
-      "homeTabNew": { "title": "Nova aba", "content": "As abas adicionais mostrarão os arquivos identificados com o nome da aba." },
-      "sidebarHome": { "title": "Início", "content": "Volte para a página inicial." },
-      "sidebarTools": { "title": "Ferramentas", "content": "Crie um novo arquivo com alguma das ferramentas instaladas." },
-      "sidebarToolStpivot": { "title": "STPivot", "content": "STPivot é um visualizador OLAP para análises multidimensionais." },
-      "sidebarToolStolap": { "title": "STOlap", "content": "STOlap é um visualizador analítico open source desenvolvido por Stratebi." },
-      "sidebarToolStreport": { "title": "STReport", "content": "STReport é uma ferramenta para criar, modificar e visualizar relatórios." },
-      "sidebarToolStpanels": { "title": "STPanels", "content": "STPanels é uma ferramenta para criar dashboards." },
-      "sidebarToolStdashboard": { "title": "STDashboard", "content": "STDashboard é uma ferramenta para criar dashboards." },
-      "sidebarToolStagile": { "title": "STAgile", "content": "STAgile é uma ferramenta para criar dashboards." },
-      "sidebarToolStcard": { "title": "STCard", "content": "STCard é uma ferramenta para criar, gerenciar e analizar painéis de desempenho." },
-      "sidebarToolCde": { "title": "CDE", "content": "CDE é uma ferramenta padrão que Pentaho incorpora para criar dashboards." },
-      "sidebarToolJpivot": { "title": "JPivot", "content": "JPivot é o visualizador OLAP próprio de Pentaho." },
-      "sidebarOpened": { "title": "Abertos", "content": "Visualizar os arquivos abertos atualmente." },
-      "sidebarBrowser": { "title": "Explorador", "content": "O Explorador de arquivos permitirá navegar pelos arquivos." },
-      "sidebarSearch": { "title": "Procurar", "content": "O Procurar permitirá encontrar qualquer arquivo." },
-      "sidebarDatasources": { "title": "Fontes de dados", "content": "Administre as fontes de dados, os esquemas de Mondrian e os metadados de relatório." },
-      "sidebarAdministration": { "title": "Administração", "content": "A página de administração permite acessar as opções específicas dos administradores." },
-      "sidebarLocales": { "title": "Idiomas", "content": "O idioma da interface é selecionado automaticamente, porém poderá selecionar aqui o idioma desejado." },
-      "sidebarLogout": { "title": "Sair", "content": "Feche a sessão atual." }
+      "navbarWelcome": {
+        "title": "Vamos começar",
+        "content": "Descubra! <strong>LinceBI</strong>!"
+      },
+      "navbarProfile": {
+        "title": "Perfil",
+        "content": "Visualize e edite seu perfil."
+      },
+      "navbarSearch": {
+        "title": "Procurar",
+        "content": "Procurar qualquer arquivo."
+      },
+      "navbarSettings": {
+        "title": "Opções",
+        "content": "Acesse as opções gerais da plataforma."
+      },
+      "homeTabGlobal": {
+        "title": "Aba global",
+        "content": "Na aba global aparecerão, para todos os usuários, os arquivos que o administrador selecionar."
+      },
+      "homeTabHome": {
+        "title": "Aba de início",
+        "content": "Na aba de início aparecerão apenas os arquivos que você selecionar."
+      },
+      "homeTabNew": {
+        "title": "Nova aba",
+        "content": "As abas adicionais mostrarão os arquivos identificados com o nome da aba."
+      },
+      "sidebarHome": {
+        "title": "Início",
+        "content": "Volte para a página inicial."
+      },
+      "sidebarTools": {
+        "title": "Ferramentas",
+        "content": "Crie um novo arquivo com alguma das ferramentas instaladas."
+      },
+      "sidebarToolStpivot": {
+        "title": "STPivot",
+        "content": "STPivot é um visualizador OLAP para análises multidimensionais."
+      },
+      "sidebarToolStolap": {
+        "title": "STOlap",
+        "content": "STOlap é um visualizador analítico open source desenvolvido por Stratebi."
+      },
+      "sidebarToolStreport": {
+        "title": "STReport",
+        "content": "STReport é uma ferramenta para criar, modificar e visualizar relatórios."
+      },
+      "sidebarToolStpanels": {
+        "title": "STPanels",
+        "content": "STPanels é uma ferramenta para criar dashboards."
+      },
+      "sidebarToolStdashboard": {
+        "title": "STDashboard",
+        "content": "STDashboard é uma ferramenta para criar dashboards."
+      },
+      "sidebarToolStagile": {
+        "title": "STAgile",
+        "content": "STAgile é uma ferramenta para criar dashboards."
+      },
+      "sidebarToolStcard": {
+        "title": "STCard",
+        "content": "STCard é uma ferramenta para criar, gerenciar e analizar painéis de desempenho."
+      },
+      "sidebarToolCde": {
+        "title": "CDE",
+        "content": "CDE é uma ferramenta padrão que Pentaho incorpora para criar dashboards."
+      },
+      "sidebarToolJpivot": {
+        "title": "JPivot",
+        "content": "JPivot é o visualizador OLAP próprio de Pentaho."
+      },
+      "sidebarOpened": {
+        "title": "Abertos",
+        "content": "Visualizar os arquivos abertos atualmente."
+      },
+      "sidebarBrowser": {
+        "title": "Explorador",
+        "content": "O Explorador de arquivos permitirá navegar pelos arquivos."
+      },
+      "sidebarSearch": {
+        "title": "Procurar",
+        "content": "O Procurar permitirá encontrar qualquer arquivo."
+      },
+      "sidebarDatasources": {
+        "title": "Fontes de dados",
+        "content": "Administre as fontes de dados, os esquemas de Mondrian e os metadados de relatório."
+      },
+      "sidebarAdministration": {
+        "title": "Administração",
+        "content": "A página de administração permite acessar as opções específicas dos administradores."
+      },
+      "sidebarLocales": {
+        "title": "Idiomas",
+        "content": "O idioma da interface é selecionado automaticamente, porém poderá selecionar aqui o idioma desejado."
+      },
+      "sidebarLogout": {
+        "title": "Sair",
+        "content": "Feche a sessão atual."
+      }
     }
   }
 }

@@ -1,5 +1,8 @@
 {
-  "__meta__": { "lang": "ar", "dir": "rtl" },
+  "__meta__": {
+    "lang": "ar",
+    "dir": "rtl"
+  },
   "locales": {
     "arabic": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
     "catalan": "Català",
@@ -10,114 +13,216 @@
     "spanish": "Español"
   },
   "navbar": {
-    "categories": "Categories",
-    "search": { "label": "Search:", "placeholder": "Search..." },
-    "settings": "Settings",
-    "profile": "Profile",
-    "showMenuBar": "Show menu bar",
-    "showToolBar": "Show tool bar",
-    "showHiddenFiles": "Show hidden files",
-    "showDescriptionsForTooltips": "Use descriptions for tooltips"
+    "categories": "فئات",
+    "search": {
+      "label": "بحث:",
+      "placeholder": "بحث..."
+    },
+    "settings": "اعدادات",
+    "profile": "ملف تعريف",
+    "showMenuBar": "إظهار شريط القوائم",
+    "showToolBar": "إظهار شريط الأدوات",
+    "showHiddenFiles": "إظهار الملفات المخفية",
+    "showDescriptionsForTooltips": "استخدام أوصاف تلميحات الأدوات"
   },
   "sidebar": {
-    "home": "Home",
-    "tools": "Tools",
-    "opened": "Opened",
-    "browser": "Browser",
-    "search": "Search",
-    "favorites": "Favorites",
-    "recents": "Recents",
-    "datasources": "Manage datasources",
-    "administration": "Administration",
-    "locales": "Languages",
-    "logout": "Logout"
+    "home": "وطن",
+    "tools": "ادوات",
+    "opened": "فتح",
+    "browser": "المستعرض",
+    "search": "بحث",
+    "favorites": "المفضله",
+    "recents": "الأحدث",
+    "datasources": "إدارة مصادر البيانات",
+    "administration": "إدارة",
+    "locales": "اللغات",
+    "logout": "الخروج"
   },
   "home": {
-    "useButtonToCreateTab": "Use the + button to create a new tab",
-    "filesWillAppearHere": "Files you tag will appear here",
-    "createTab": "Create tab",
-    "tabName": { "label": "Tab name", "placeholder": "Tab name..." },
-    "tabColor": { "label": "Tab color", "placeholder": "Tab color..." },
-    "tabIcon": { "label": "Tab icon", "placeholder": "Tab icon..." },
-    "deleteTab": "Delete tab",
-    "tabWillBeDeleted": "The tab \"{name}\" will be deleted.",
-    "delete": "Delete",
-    "create": "Create",
-    "cancel": "Cancel",
-    "global": "Global",
-    "home": "Home",
+    "useButtonToCreateTab": "استخدم الزر + لإنشاء علامة تبويب جديدة",
+    "filesWillAppearHere": "ستظهر الملفات التي تقوم بالإشارة هنا",
+    "createTab": "إنشاء علامة تبويب",
+    "tabName": {
+      "label": "اسم علامة التبويب",
+      "placeholder": "اسم علامة التبويب..."
+    },
+    "tabColor": {
+      "label": "لون علامة التبويب",
+      "placeholder": "لون علامة التبويب..."
+    },
+    "tabIcon": {
+      "label": "رمز علامة التبويب",
+      "placeholder": "رمز علامة التبويب..."
+    },
+    "deleteTab": "حذف علامة التبويب",
+    "tabWillBeDeleted": "سيتم حذف علامة التبويب \"{name}\".",
+    "delete": "حذف",
+    "create": "خلق",
+    "cancel": "إلغاء الأمر",
+    "global": "عالمي",
+    "home": "وطن",
     "sort": {
-      "title": "Title",
-      "extension": "Type",
-      "created": "Creation date",
-      "modified": "Modification date"
+      "title": "عنوان",
+      "extension": "نوع",
+      "created": "تاريخ الإنشاء",
+      "modified": "تاريخ التعديل"
     }
   },
   "new": {
-    "lincebiTools": "LinceBI tools",
-    "otherTools": "Other tools"
+    "lincebiTools": "أدوات LinceBI",
+    "otherTools": "أدوات أخرى"
   },
   "profile": {
-    "name": { "label": "Name:", "placeholder": "Name..." },
-    "email": { "label": "Email:", "placeholder": "Email..." },
-    "phone": { "label": "Phone:", "placeholder": "Phone..." },
-    "address": { "label": "Address:", "placeholder": "Address..." },
-    "avatar": { "label": "Avatar:", "placeholder": "Avatar..." },
-    "save": "Save"
+    "name": {
+      "label": "اسم:",
+      "placeholder": "اسم..."
+    },
+    "email": {
+      "label": "البريد الإلكتروني:",
+      "placeholder": "البريد الإلكتروني..."
+    },
+    "phone": {
+      "label": "الهاتف:",
+      "placeholder": "الهاتف..."
+    },
+    "address": {
+      "label": "عنوان:",
+      "placeholder": "عنوان..."
+    },
+    "avatar": {
+      "label": "الرمزيه:",
+      "placeholder": "الرمزيه..."
+    },
+    "save": "أنقذ"
   },
   "administration": {
-    "administration": "Administration",
-    "manageDatasources": "Manage datasources",
-    "schedules": "Schedules",
-    "marketplace": "Marketplace",
-    "manageCdaCache": "Manage CDA cache",
-    "openStreportConf": "Open STReport configuration",
-    "openStreportStats": "Open STReport statistics",
-    "refreshSystemSettings": "Refresh system settings",
-    "refreshReportingMetadata": "Refresh reporting metadata",
-    "refreshGlobalVariables": "Refresh global variables",
-    "refreshMondrianSchemaCache": "Refresh Mondrian schema cache",
-    "clearCdaCache": "Clear CDA cache",
-    "resourceRefreshSuccess": "Resource successfully refreshed",
-    "resourceRefreshError": "Error while refreshing resource",
-    "cacheClearSuccess": "Cache successfully cleared",
-    "cacheClearError": "Error while clearing cache",
-    "notificationInfo": "Information",
-    "notificationError": "Error"
+    "administration": "إدارة",
+    "manageDatasources": "إدارة مصادر البيانات",
+    "schedules": "جداول",
+    "marketplace": "السوق",
+    "manageCdaCache": "إدارة ذاكرة التخزين المؤقت ل CDA",
+    "openStreportConf": "فتح تكوين تقرير",
+    "openStreportStats": "إحصائيات STReport مفتوحة",
+    "refreshSystemSettings": "تحديث إعدادات النظام",
+    "refreshReportingMetadata": "تحديث بيانات التعريف الخاصة بالإبلاغ",
+    "refreshGlobalVariables": "تحديث المتغيرات العمومية",
+    "refreshMondrianSchemaCache": "تحديث ذاكرة التخزين المؤقت مخطط موندريان",
+    "clearCdaCache": "مسح ذاكرة التخزين المؤقت CDA",
+    "resourceRefreshSuccess": "تم تحديث المورد بنجاح",
+    "resourceRefreshError": "خطأ أثناء تحديث المورد",
+    "cacheClearSuccess": "تم مسح ذاكرة التخزين المؤقت بنجاح",
+    "cacheClearError": "خطأ أثناء مسح ذاكرة التخزين المؤقت",
+    "notificationInfo": "معلومات",
+    "notificationError": "خطأ"
   },
   "tour": {
     "labels": {
-      "skip": "Skip tour",
-      "previous": "Previous",
-      "next": "Next",
-      "stop": "Finish tour"
+      "skip": "تخطي جولة",
+      "previous": "سابق",
+      "next": "مقبل",
+      "stop": "إنهاء الجولة"
     },
     "steps": {
-      "navbarWelcome": { "title": "Let's start", "content": "Discover <strong>LinceBI</strong>!" },
-      "navbarProfile": { "title": "Profile", "content": "Here you can view and edit your profile." },
-      "navbarSearch": { "title": "Search", "content": "Search here for any file in the repository." },
-      "navbarSettings": { "title": "Settings", "content": "Access the general options of the platform." },
-      "homeTabGlobal": { "title": "Global tab", "content": "Files selected by the administrator from the search tool will appear for all users on the global tab." },
-      "homeTabHome": { "title": "Home tab", "content": "Files selected by you from the search tool will appear on the home tab." },
-      "homeTabNew": { "title": "New tab", "content": "Additional tabs will show you the files tagged with the name of that tab." },
-      "sidebarHome": { "title": "Home", "content": "Go back to the home page from here." },
-      "sidebarTools": { "title": "Tools", "content": "Here you can create a new file using one of the installed tools." },
-      "sidebarToolStpivot": { "title": "STPivot", "content": "STPivot is an OLAP viewer for multidimensional analysis." },
-      "sidebarToolStolap": { "title": "STOlap", "content": "STOlap is an open source analytical viewer developed by Stratebi." },
-      "sidebarToolStreport": { "title": "STReport", "content": "STReport is a tool for creating, modifying and displaying reports." },
-      "sidebarToolStpanels": { "title": "STPanels", "content": "STPanels is a tool for creating dashboards." },
-      "sidebarToolStdashboard": { "title": "STDashboard", "content": "STDashboard is a tool for creating dashboards." },
-      "sidebarToolStagile": { "title": "STAgile", "content": "STAgile is a tool for creating dashboards." },
-      "sidebarToolStcard": { "title": "STCard", "content": "STCard is a tool for creating, managing and analyzing scorecards." },
-      "sidebarToolCde": { "title": "CDE", "content": "CDE is Pentaho's built-in tool for creating dashboards." },
-      "sidebarToolJpivot": { "title": "JPivot", "content": "JPivot is Pentaho's built-in OLAP viewer." },
-      "sidebarOpened": { "title": "Opened", "content": "Here you can see the currently open files." },
-      "sidebarBrowser": { "title": "Browser", "content": "The file browser allows you to browse the files in the repository." },
-      "sidebarSearch": { "title": "Search", "content": "The search tool allows you to find any file in the repository." },
-      "sidebarDatasources": { "title": "Datasources", "content": "Manage datasources, Mondrian schemas and report metadata." },
-      "sidebarAdministration": { "title": "Administration", "content": "The administration page allows you to access the platform options restricted to administrators." },
-      "sidebarLocales": { "title": "Languages", "content": "The interface language is automatically selected, but you can choose the one you want from here." },
-      "sidebarLogout": { "title": "Logout", "content": "Close from here the current session." }
+      "navbarWelcome": {
+        "title": "لنبدأ",
+        "content": "اكتشف <strong>لينسيبي</strong>!"
+      },
+      "navbarProfile": {
+        "title": "ملف تعريف",
+        "content": "هنا يمكنك عرض وتعديل ملفك الشخصي."
+      },
+      "navbarSearch": {
+        "title": "بحث",
+        "content": "ابحث هنا عن أي ملف في المستودع."
+      },
+      "navbarSettings": {
+        "title": "اعدادات",
+        "content": "الوصول إلى الخيارات العامة للنظام الأساسي."
+      },
+      "homeTabGlobal": {
+        "title": "علامة التبويب العمومية",
+        "content": "ستظهر الملفات التي حددها المسؤول من أداة البحث لكافة المستخدمين في علامة التبويب العمومية."
+      },
+      "homeTabHome": {
+        "title": "علامة التبويب الصفحة الرئيسية",
+        "content": "ستظهر الملفات التي حددتها من أداة البحث في علامة التبويب الصفحة الرئيسية."
+      },
+      "homeTabNew": {
+        "title": "علامة تبويب جديدة",
+        "content": "علامات تبويب إضافية سوف تظهر لك الملفات الموسومة باسم علامة التبويب تلك."
+      },
+      "sidebarHome": {
+        "title": "وطن",
+        "content": "عد إلى الصفحة الرئيسية من هنا."
+      },
+      "sidebarTools": {
+        "title": "ادوات",
+        "content": "هنا يمكنك إنشاء ملف جديد باستخدام إحدى الأدوات المثبتة."
+      },
+      "sidebarToolStpivot": {
+        "title": "STPivot",
+        "content": "STPivot هو عارض OLAP للتحليل متعدد الأبعاد."
+      },
+      "sidebarToolStolap": {
+        "title": "STOlap",
+        "content": "STOlap هو عارض تحليلي مفتوح المصدر طورته Stratebi."
+      },
+      "sidebarToolStreport": {
+        "title": "STReport",
+        "content": "STReport هو أداة لإنشاء التقارير وتعديلها وعرضها."
+      },
+      "sidebarToolStpanels": {
+        "title": "STPanels",
+        "content": "STPanels هو أداة لإنشاء لوحات المعلومات."
+      },
+      "sidebarToolStdashboard": {
+        "title": "STDashboard",
+        "content": "STDashboard هو أداة لإنشاء لوحات المعلومات."
+      },
+      "sidebarToolStagile": {
+        "title": "STAgile",
+        "content": "STAgile هو أداة لإنشاء لوحات المعلومات."
+      },
+      "sidebarToolStcard": {
+        "title": "STCard",
+        "content": "STCard هي أداة لإنشاء وإدارة وتحليل بطاقات الأداء."
+      },
+      "sidebarToolCde": {
+        "title": "CDE",
+        "content": "CDE هو أداة Pentaho المدمج في لإنشاء لوحات المعلومات."
+      },
+      "sidebarToolJpivot": {
+        "title": "JPivot",
+        "content": "JPivot هو المشاهد المدمج في Pentaho OLAP."
+      },
+      "sidebarOpened": {
+        "title": "فتح",
+        "content": "هنا يمكنك مشاهدة الملفات المفتوحة حاليا."
+      },
+      "sidebarBrowser": {
+        "title": "المستعرض",
+        "content": "متصفح الملفات يسمح لك باستعراض الملفات في المستودع."
+      },
+      "sidebarSearch": {
+        "title": "بحث",
+        "content": "تتيح لك أداة البحث العثور على أي ملف في المستودع."
+      },
+      "sidebarDatasources": {
+        "title": "مصادر البيانات",
+        "content": "إدارة مصادر البيانات ومخططات موندريان وبيانات تعريف التقرير."
+      },
+      "sidebarAdministration": {
+        "title": "إدارة",
+        "content": "تتيح لك صفحة الإدارة الوصول إلى خيارات النظام الأساسي المقيدة للمسؤولين."
+      },
+      "sidebarLocales": {
+        "title": "اللغات",
+        "content": "يتم تحديد لغة الواجهة تلقائيا، ولكن يمكنك اختيار اللغة التي تريدها من هنا."
+      },
+      "sidebarLogout": {
+        "title": "الخروج",
+        "content": "إغلاق من هنا الدورة الحالية."
+      }
     }
   }
 }

@@ -1,7 +1,14 @@
 {
-  "__meta__": { "lang": "pt", "dir": "ltr" },
-  "username": { "label": "Nome de usuário:" },
-  "password": { "label": "Senha:" },
+  "__meta__": {
+    "lang": "pt",
+    "dir": "ltr"
+  },
+  "username": {
+    "label": "Nome de usuário:"
+  },
+  "password": {
+    "label": "Senha:"
+  },
   "getCredentialsHere": "Obtenha seu usuário e senha aqui.",
   "signIn": "Acessar",
   "footer": "",
