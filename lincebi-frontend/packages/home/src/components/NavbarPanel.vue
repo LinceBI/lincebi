@@ -69,7 +69,7 @@ export default {
 		padding: 0;
 
 		.nav-element {
-			margin: 0 0 0 rem(10);
+			margin: 0 rem(5) 0 rem(5);
 		}
 	}
 
