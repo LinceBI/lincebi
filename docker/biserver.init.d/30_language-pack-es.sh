@@ -3,7 +3,7 @@
 set -eu
 export LC_ALL=C
 
-RELEASE='9.1-20.10.13'
+RELEASE='9.2-21.09.13'
 URL="https://repo.stratebi.com/repository/lincebi-raw/pentaho-language-packs/languagePack_es-${RELEASE:?}.zip"
 
 curl -fsSL "${URL:?}" > "${BISERVER_HOME:?}"/"${SOLUTIONS_DIRNAME:?}"/system/language-pack-es.zip
