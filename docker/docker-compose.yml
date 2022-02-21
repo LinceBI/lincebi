@@ -24,7 +24,9 @@ services:
     volumes:
       - "../lincebi-bundle/build/lincebi.zip:/etc/biserver.init.d/10_lincebi.zip:ro"
       - "./biserver.init.d/30_language-pack-es.sh:/etc/biserver.init.d/30_language-pack-es.sh:ro"
+      - "./biserver.init.d/30_language-pack-pt.sh:/etc/biserver.init.d/30_language-pack-pt.sh:ro"
       - "./biserver.init.d/30_stsearch.sh:/etc/biserver.init.d/30_stsearch.sh:ro"
+      - "./biserver.init.d/40_setup-language-packs.sh:/etc/biserver.init.d/40_setup-language-packs.sh:ro"
       - "./biserver.init.d/90_configuration/:/etc/biserver.init.d/90_configuration/:ro"
     environment:
       IS_PROXIED: "true"
