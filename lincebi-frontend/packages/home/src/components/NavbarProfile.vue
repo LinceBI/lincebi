@@ -27,16 +27,17 @@ export default {
 
 <style scoped lang="scss">
 .navbar-profile {
-	.user-avatar {
-		margin: rem(-6) rem(10) rem(-6) 0;
+	.user-avatar,
+	.user-text {
+		margin: rem(-6) rem(5) rem(-6) rem(5);
+	}
 
-		.user-avatar-img {
-			height: rem(32);
-			width: rem(32);
-			border: rem(2) solid rgba(map-get($theme-colors, 'dark'), 0.5);
-			border-radius: 50%;
-			object-fit: cover;
-		}
+	.user-avatar > .user-avatar-img {
+		height: rem(32);
+		width: rem(32);
+		border: rem(2) solid rgba(map-get($theme-colors, 'dark'), 0.5);
+		border-radius: 50%;
+		object-fit: cover;
 	}
 }
 </style>

@@ -56,3 +56,15 @@
 		}
 	}
 }
+
+@mixin sortablejs-rtl-fix() {
+	[dir='rtl'] & {
+		direction: ltr;
+		text-align: left;
+
+		> * {
+			direction: rtl;
+			text-align: right;
+		}
+	}
+}

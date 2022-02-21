@@ -1,7 +1,7 @@
 <template>
 	<div :id="`home-tabs-${uniqueId}`" ref="home-tabs" class="home-tabs">
 		<!-- Tab list -->
-		<ul class="home-tab-list nav nav-fill">
+		<ul ref="home-tab-list" class="home-tab-list nav nav-fill">
 			<!-- Tabs -->
 			<li
 				v-for="(tab, index) in tabs"
@@ -88,7 +88,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="home-card-deck card-deck">
+			<div ref="home-card-deck" class="home-card-deck card-deck">
 				<div
 					v-for="file in files"
 					:key="file.id"
@@ -175,7 +175,7 @@
 			@ok="handleNewTabModalOk"
 		>
 			<form ref="new-tab-form" @submit.stop.prevent="handleNewTabFormSubmit">
-				<b-form-group :label="$t('home.tabName.label')">
+				<b-form-group :label="$t('home.tabName.label')" label-class="d-flex">
 					<b-form-input
 						ref="new-tab-name"
 						v-model="newTab.name"
@@ -191,10 +191,10 @@
 						</option>
 					</b-form-datalist>
 				</b-form-group>
-				<b-form-group :label="$t('home.tabColor.label')">
+				<b-form-group :label="$t('home.tabColor.label')" label-class="d-flex">
 					<b-form-color-swatch v-model="newTab.color" />
 				</b-form-group>
-				<b-form-group :label="$t('home.tabIcon.label')">
+				<b-form-group :label="$t('home.tabIcon.label')" label-class="d-flex">
 					<b-form-icon-swatch v-model="newTab.icon" />
 				</b-form-group>
 			</form>
@@ -233,6 +233,7 @@ import stringCompare from '@lincebi/frontend-common/src/stringCompare';
 import waitFor from '@lincebi/frontend-common/src/waitFor';
 
 import eventBus from '@/eventBus';
+import i18n from '@/i18n';
 import router from '@/router';
 import store from '@/store';
 
@@ -445,9 +446,17 @@ export default {
 		this.$nextTick(() => {
 			const $homeTabs = this.$refs['home-tabs'];
 
+			// Destroy Sortable.js objects that are no longer needed.
+			this.sortables.forEach((sortable, $element) => {
+				if (!$homeTabs.contains($element)) {
+					this.sortables.delete($element);
+					sortable.destroy();
+				}
+			});
+
 			// Create Sortable.js object for "home-tab-list" element if it does not exist on the map.
-			const $homeTabList = $homeTabs.querySelector('.home-tab-list');
-			if (!this.sortables.has($homeTabList)) {
+			const $homeTabList = this.$refs['home-tab-list'];
+			if ($homeTabList && !this.sortables.has($homeTabList)) {
 				this.sortables.set(
 					$homeTabList,
 					Sortable.create($homeTabList, {
@@ -455,7 +464,9 @@ export default {
 						delay: isTouchDevice ? 100 : 10,
 						animation: 150,
 						filter: '.nav-item:not(.draggable)',
-						onEnd: (event) => (this.tabIndex = event.newIndex),
+						onEnd: (event) => {
+							this.tabIndex = event.newIndex;
+						},
 						onMove: (event) =>
 							event.dragged.classList.contains('draggable') &&
 							event.related.classList.contains('draggable'),
@@ -466,34 +477,24 @@ export default {
 				);
 			}
 
-			// Create Sortable.js objects for all "home-card-deck" elements that do not exist on the map.
-			const $homeCardDecks = $homeTabs.querySelectorAll('.home-card-deck');
-			$homeCardDecks.forEach(($homeCardDeck) => {
-				if (!this.sortables.has($homeCardDeck)) {
-					this.sortables.set(
-						$homeCardDeck,
-						Sortable.create($homeCardDeck, {
-							forceFallback: false,
-							delay: 10,
-							animation: 150,
-							draggable: '.home-card.draggable',
-							handle: '.drag-handle',
-							onMove: (event) => event.related.classList.contains('draggable'),
-							onUpdate: (event) => {
-								this.files = move(this.files.slice(), event.oldIndex, event.newIndex);
-							},
-						})
-					);
-				}
-			});
-
-			// Destroy Sortable.js objects that are no longer needed.
-			this.sortables.forEach((sortable, $element) => {
-				if (!$homeTabs.contains($element)) {
-					this.sortables.delete($element);
-					sortable.destroy();
-				}
-			});
+			// Create Sortable.js object for "home-card-deck" element if it does not exist on the map.
+			const $homeCardDeck = this.$refs['home-card-deck'];
+			if ($homeCardDeck && !this.sortables.has($homeCardDeck)) {
+				this.sortables.set(
+					$homeCardDeck,
+					Sortable.create($homeCardDeck, {
+						forceFallback: false,
+						delay: 10,
+						animation: 150,
+						draggable: '.home-card.draggable',
+						handle: '.drag-handle',
+						onMove: (event) => event.related.classList.contains('draggable'),
+						onUpdate: (event) => {
+							this.files = move(this.files.slice(), event.oldIndex, event.newIndex);
+						},
+					})
+				);
+			}
 		});
 	},
 	beforeDestroy() {
@@ -631,6 +632,8 @@ export default {
 
 		box-shadow: $box-shadow;
 
+		@include sortablejs-rtl-fix();
+
 		.home-tab {
 			position: relative;
 			min-width: rem(220);
@@ -730,6 +733,8 @@ export default {
 		}
 
 		.home-card-deck {
+			@include sortablejs-rtl-fix();
+
 			.home-card {
 				margin-bottom: $grid-gutter-width;
 

@@ -1,5 +1,5 @@
 <template>
-	<b-nav-item-dropdown class="navbar-settings" right no-caret>
+	<b-nav-item-dropdown class="navbar-settings" no-caret>
 		<template slot="button-content">
 			<font-awesome-icon :icon="['fas', 'cog']" />
 			<span class="lbl d-lg-none">{{ $t('navbar.settings') }}</span>
@@ -97,3 +97,17 @@ export default {
 	},
 };
 </script>
+
+<style scoped lang="scss">
+.navbar-settings::v-deep {
+	.dropdown-menu {
+		left: inherit;
+		right: 0;
+
+		[dir='rtl'] & {
+			left: 0;
+			right: inherit;
+		}
+	}
+}
+</style>

@@ -1,4 +1,10 @@
 /* Increase margin between icons and labels */
 img + .lbl, .svg-inline--fa + .lbl {
+	margin-right: 0;
 	margin-left: rem(8);
+
+	[dir='rtl'] & {
+		margin-right: rem(8);
+		margin-left: 0;
+	}
 }

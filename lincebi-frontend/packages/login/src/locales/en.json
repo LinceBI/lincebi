@@ -1,6 +1,14 @@
 {
-  "username": { "label": "Username:" },
-  "password": { "label": "Password:" },
+  "__meta__": {
+    "lang": "en",
+    "dir": "ltr"
+  },
+  "username": {
+    "label": "Username:"
+  },
+  "password": {
+    "label": "Password:"
+  },
   "getCredentialsHere": "Get your user and password here.",
   "signIn": "Sign in",
   "footer": "",

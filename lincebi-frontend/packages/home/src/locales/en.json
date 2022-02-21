@@ -1,15 +1,23 @@
 {
+  "__meta__": {
+    "lang": "en",
+    "dir": "ltr"
+  },
   "locales": {
-    "catalan": "Catalan",
+    "arabic": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
+    "catalan": "Català",
     "english": "English",
-    "french": "French",
-    "german": "German",
-    "portuguese": "Portuguese",
-    "spanish": "Spanish"
+    "french": "Français",
+    "german": "Deutsch",
+    "portuguese": "Português",
+    "spanish": "Español"
   },
   "navbar": {
     "categories": "Categories",
-    "search": { "label": "Search:", "placeholder": "Search..." },
+    "search": {
+      "label": "Search:",
+      "placeholder": "Search..."
+    },
     "settings": "Settings",
     "profile": "Profile",
     "showMenuBar": "Show menu bar",
@@ -34,9 +42,18 @@
     "useButtonToCreateTab": "Use the + button to create a new tab",
     "filesWillAppearHere": "Files you tag will appear here",
     "createTab": "Create tab",
-    "tabName": { "label": "Tab name", "placeholder": "Tab name..." },
-    "tabColor": { "label": "Tab color", "placeholder": "Tab color..." },
-    "tabIcon": { "label": "Tab icon", "placeholder": "Tab icon..." },
+    "tabName": {
+      "label": "Tab name",
+      "placeholder": "Tab name..."
+    },
+    "tabColor": {
+      "label": "Tab color",
+      "placeholder": "Tab color..."
+    },
+    "tabIcon": {
+      "label": "Tab icon",
+      "placeholder": "Tab icon..."
+    },
     "deleteTab": "Delete tab",
     "tabWillBeDeleted": "The tab \"{name}\" will be deleted.",
     "delete": "Delete",
@@ -56,11 +73,26 @@
     "otherTools": "Other tools"
   },
   "profile": {
-    "name": { "label": "Name:", "placeholder": "Name..." },
-    "email": { "label": "Email:", "placeholder": "Email..." },
-    "phone": { "label": "Phone:", "placeholder": "Phone..." },
-    "address": { "label": "Address:", "placeholder": "Address..." },
-    "avatar": { "label": "Avatar:", "placeholder": "Avatar..." },
+    "name": {
+      "label": "Name:",
+      "placeholder": "Name..."
+    },
+    "email": {
+      "label": "Email:",
+      "placeholder": "Email..."
+    },
+    "phone": {
+      "label": "Phone:",
+      "placeholder": "Phone..."
+    },
+    "address": {
+      "label": "Address:",
+      "placeholder": "Address..."
+    },
+    "avatar": {
+      "label": "Avatar:",
+      "placeholder": "Avatar..."
+    },
     "save": "Save"
   },
   "administration": {
@@ -91,31 +123,106 @@
       "stop": "Finish tour"
     },
     "steps": {
-      "navbarWelcome": { "title": "Let's start", "content": "Discover <strong>LinceBI</strong>!" },
-      "navbarProfile": { "title": "Profile", "content": "Here you can view and edit your profile." },
-      "navbarSearch": { "title": "Search", "content": "Search here for any file in the repository." },
-      "navbarSettings": { "title": "Settings", "content": "Access the general options of the platform." },
-      "homeTabGlobal": { "title": "Global tab", "content": "Files selected by the administrator from the search tool will appear for all users on the global tab." },
-      "homeTabHome": { "title": "Home tab", "content": "Files selected by you from the search tool will appear on the home tab." },
-      "homeTabNew": { "title": "New tab", "content": "Additional tabs will show you the files tagged with the name of that tab." },
-      "sidebarHome": { "title": "Home", "content": "Go back to the home page from here." },
-      "sidebarTools": { "title": "Tools", "content": "Here you can create a new file using one of the installed tools." },
-      "sidebarToolStpivot": { "title": "STPivot", "content": "STPivot is an OLAP viewer for multidimensional analysis." },
-      "sidebarToolStolap": { "title": "STOlap", "content": "STOlap is an open source analytical viewer developed by Stratebi." },
-      "sidebarToolStreport": { "title": "STReport", "content": "STReport is a tool for creating, modifying and displaying reports." },
-      "sidebarToolStpanels": { "title": "STPanels", "content": "STPanels is a tool for creating dashboards." },
-      "sidebarToolStdashboard": { "title": "STDashboard", "content": "STDashboard is a tool for creating dashboards." },
-      "sidebarToolStagile": { "title": "STAgile", "content": "STAgile is a tool for creating dashboards." },
-      "sidebarToolStcard": { "title": "STCard", "content": "STCard is a tool for creating, managing and analyzing scorecards." },
-      "sidebarToolCde": { "title": "CDE", "content": "CDE is Pentaho's built-in tool for creating dashboards." },
-      "sidebarToolJpivot": { "title": "JPivot", "content": "JPivot is Pentaho's built-in OLAP viewer." },
-      "sidebarOpened": { "title": "Opened", "content": "Here you can see the currently open files." },
-      "sidebarBrowser": { "title": "Browser", "content": "The file browser allows you to browse the files in the repository." },
-      "sidebarSearch": { "title": "Search", "content": "The search tool allows you to find any file in the repository." },
-      "sidebarDatasources": { "title": "Datasources", "content": "Manage datasources, Mondrian schemas and report metadata." },
-      "sidebarAdministration": { "title": "Administration", "content": "The administration page allows you to access the platform options restricted to administrators." },
-      "sidebarLocales": { "title": "Languages", "content": "The interface language is automatically selected, but you can choose the one you want from here." },
-      "sidebarLogout": { "title": "Logout", "content": "Close from here the current session." }
+      "navbarWelcome": {
+        "title": "Let's start",
+        "content": "Discover <strong>LinceBI</strong>!"
+      },
+      "navbarProfile": {
+        "title": "Profile",
+        "content": "Here you can view and edit your profile."
+      },
+      "navbarSearch": {
+        "title": "Search",
+        "content": "Search here for any file in the repository."
+      },
+      "navbarSettings": {
+        "title": "Settings",
+        "content": "Access the general options of the platform."
+      },
+      "homeTabGlobal": {
+        "title": "Global tab",
+        "content": "Files selected by the administrator from the search tool will appear for all users on the global tab."
+      },
+      "homeTabHome": {
+        "title": "Home tab",
+        "content": "Files selected by you from the search tool will appear on the home tab."
+      },
+      "homeTabNew": {
+        "title": "New tab",
+        "content": "Additional tabs will show you the files tagged with the name of that tab."
+      },
+      "sidebarHome": {
+        "title": "Home",
+        "content": "Go back to the home page from here."
+      },
+      "sidebarTools": {
+        "title": "Tools",
+        "content": "Here you can create a new file using one of the installed tools."
+      },
+      "sidebarToolStpivot": {
+        "title": "STPivot",
+        "content": "STPivot is an OLAP viewer for multidimensional analysis."
+      },
+      "sidebarToolStolap": {
+        "title": "STOlap",
+        "content": "STOlap is an open source analytical viewer developed by Stratebi."
+      },
+      "sidebarToolStreport": {
+        "title": "STReport",
+        "content": "STReport is a tool for creating, modifying and displaying reports."
+      },
+      "sidebarToolStpanels": {
+        "title": "STPanels",
+        "content": "STPanels is a tool for creating dashboards."
+      },
+      "sidebarToolStdashboard": {
+        "title": "STDashboard",
+        "content": "STDashboard is a tool for creating dashboards."
+      },
+      "sidebarToolStagile": {
+        "title": "STAgile",
+        "content": "STAgile is a tool for creating dashboards."
+      },
+      "sidebarToolStcard": {
+        "title": "STCard",
+        "content": "STCard is a tool for creating, managing and analyzing scorecards."
+      },
+      "sidebarToolCde": {
+        "title": "CDE",
+        "content": "CDE is Pentaho's built-in tool for creating dashboards."
+      },
+      "sidebarToolJpivot": {
+        "title": "JPivot",
+        "content": "JPivot is Pentaho's built-in OLAP viewer."
+      },
+      "sidebarOpened": {
+        "title": "Opened",
+        "content": "Here you can see the currently open files."
+      },
+      "sidebarBrowser": {
+        "title": "Browser",
+        "content": "The file browser allows you to browse the files in the repository."
+      },
+      "sidebarSearch": {
+        "title": "Search",
+        "content": "The search tool allows you to find any file in the repository."
+      },
+      "sidebarDatasources": {
+        "title": "Datasources",
+        "content": "Manage datasources, Mondrian schemas and report metadata."
+      },
+      "sidebarAdministration": {
+        "title": "Administration",
+        "content": "The administration page allows you to access the platform options restricted to administrators."
+      },
+      "sidebarLocales": {
+        "title": "Languages",
+        "content": "The interface language is automatically selected, but you can choose the one you want from here."
+      },
+      "sidebarLogout": {
+        "title": "Logout",
+        "content": "Close from here the current session."
+      }
     }
   }
 }

@@ -7,7 +7,7 @@
 		@dismissed="dismissCountDown = 0"
 		@dismiss-count-down="countDownChanged"
 	>
-		<p>{{ errorMessage }}</p>
+		<p class="d-flex">{{ errorMessage }}</p>
 		<b-progress variant="danger" height="4px" :max="dismissSecs" :value="dismissCountDown" />
 	</b-alert>
 </template>

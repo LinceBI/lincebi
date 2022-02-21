@@ -5,7 +5,6 @@ import getGlobalUserSettings from '@lincebi/frontend-common/src/biserver/getGlob
 import getHasDataAccess from '@lincebi/frontend-common/src/biserver/getHasDataAccess';
 import getOverlays from '@lincebi/frontend-common/src/biserver/getOverlays';
 import getLocale from '@lincebi/frontend-common/src/biserver/getLocale';
-import getLocales from '@lincebi/frontend-common/src/biserver/getLocales';
 import getPerspectives from '@lincebi/frontend-common/src/biserver/getPerspectives';
 import getRepository from '@lincebi/frontend-common/src/biserver/getRepository';
 import getUserId from '@lincebi/frontend-common/src/biserver/getUserId';
@@ -50,11 +49,6 @@ export const fetchPerspectives = async ({ commit }) => {
 export const fetchOverlays = async ({ commit }) => {
 	const overlays = await getOverlays();
 	commit('setOverlays', overlays);
-};
-
-export const fetchLocales = async ({ commit }) => {
-	const locales = await getLocales();
-	commit('setLocales', locales);
 };
 
 export const fetchLocale = async ({ commit }) => {

@@ -1,15 +1,23 @@
 {
+  "__meta__": {
+    "lang": "es",
+    "dir": "ltr"
+  },
   "locales": {
-    "catalan": "Catalán",
-    "english": "Inglés",
-    "french": "Francés",
-    "german": "Alemán",
-    "portuguese": "Portugués",
+    "arabic": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
+    "catalan": "Català",
+    "english": "English",
+    "french": "Français",
+    "german": "Deutsch",
+    "portuguese": "Português",
     "spanish": "Español"
   },
   "navbar": {
     "categories": "Categorías",
-    "search": { "label": "Buscar:", "placeholder": "Buscar..." },
+    "search": {
+      "label": "Buscar:",
+      "placeholder": "Buscar..."
+    },
     "settings": "Opciones",
     "profile": "Perfil",
     "showMenuBar": "Mostrar barra de menú",
@@ -34,9 +42,18 @@
     "useButtonToCreateTab": "Utilice el botón + para crear una nueva pestaña",
     "filesWillAppearHere": "Los archivos que etiquete aparecerán aquí",
     "createTab": "Crear pestaña",
-    "tabName": { "label": "Nombre de pestaña", "placeholder": "Nombre de pestaña..." },
-    "tabColor": { "label": "Color de pestaña", "placeholder": "Color de pestaña..." },
-    "tabIcon": { "label": "Icono de pestaña", "placeholder": "Icono de pestaña..." },
+    "tabName": {
+      "label": "Nombre de pestaña",
+      "placeholder": "Nombre de pestaña..."
+    },
+    "tabColor": {
+      "label": "Color de pestaña",
+      "placeholder": "Color de pestaña..."
+    },
+    "tabIcon": {
+      "label": "Icono de pestaña",
+      "placeholder": "Icono de pestaña..."
+    },
     "deleteTab": "Eliminar pestaña",
     "tabWillBeDeleted": "La pestaña \"{name}\" será eliminada.",
     "delete": "Eliminar",
@@ -56,11 +73,26 @@
     "otherTools": "Otras herramientas"
   },
   "profile": {
-    "name": { "label": "Nombre:", "placeholder": "Nombre..." },
-    "email": { "label": "Email:", "placeholder": "Email..." },
-    "phone": { "label": "Teléfono:", "placeholder": "Teléfono..." },
-    "address": { "label": "Dirección:", "placeholder": "Dirección..." },
-    "avatar": { "label": "Foto:", "placeholder": "Foto..." },
+    "name": {
+      "label": "Nombre:",
+      "placeholder": "Nombre..."
+    },
+    "email": {
+      "label": "Email:",
+      "placeholder": "Email..."
+    },
+    "phone": {
+      "label": "Teléfono:",
+      "placeholder": "Teléfono..."
+    },
+    "address": {
+      "label": "Dirección:",
+      "placeholder": "Dirección..."
+    },
+    "avatar": {
+      "label": "Foto:",
+      "placeholder": "Foto..."
+    },
     "save": "Guardar"
   },
   "administration": {
@@ -91,31 +123,106 @@
       "stop": "Finalizar tour"
     },
     "steps": {
-      "navbarWelcome": { "title": "Comencemos", "content": "¡Descubra <strong>LinceBI</strong>!" },
-      "navbarProfile": { "title": "Perfil", "content": "Desde aquí podrá ver y editar su perfil." },
-      "navbarSearch": { "title": "Buscar", "content": "Busque desde aquí cualquier archivo del repositorio." },
-      "navbarSettings": { "title": "Opciones", "content": "Acceda a las opciones generales de la plataforma." },
-      "homeTabGlobal": { "title": "Pestaña global", "content": "En la pestaña global aparecerán para todos los usuarios los archivos que el administrador seleccione desde el buscador." },
-      "homeTabHome": { "title": "Pestaña de inicio", "content": "En la pestaña de inicio aparecerán los archivos que solo usted seleccione desde el buscador." },
-      "homeTabNew": { "title": "Nueva pestaña", "content": "Las pestañas adicionales le mostrarán los archivos etiquetados con el nombre de dicha pestaña." },
-      "sidebarHome": { "title": "Inicio", "content": "Vuelva desde aquí a la página de inicio." },
-      "sidebarTools": { "title": "Herramientas", "content": "Cree desde aquí un nuevo archivo con alguna de las herramientas instaladas." },
-      "sidebarToolStpivot": { "title": "STPivot", "content": "STPivot es un visor OLAP para análisis multidimensional." },
-      "sidebarToolStolap": { "title": "STOlap", "content": "STOlap es un visor analítico open source desarrollado por Stratebi." },
-      "sidebarToolStreport": { "title": "STReport", "content": "STReport es una herramienta para crear, modificar y visualizar informes." },
-      "sidebarToolStpanels": { "title": "STPanels", "content": "STPanels es una herramienta para crear cuadros de mando." },
-      "sidebarToolStdashboard": { "title": "STDashboard", "content": "STDashboard es una herramienta para crear cuadros de mando." },
-      "sidebarToolStagile": { "title": "STAgile", "content": "STAgile es una herramienta para crear cuadros de mando." },
-      "sidebarToolStcard": { "title": "STCard", "content": "STCard es una herramienta para crear, gestionar y analizar scorecards." },
-      "sidebarToolCde": { "title": "CDE", "content": "CDE es la herramienta que Pentaho incorpora de serie para crear cuadros de mando." },
-      "sidebarToolJpivot": { "title": "JPivot", "content": "JPivot es el visor OLAP que Pentaho incorpora de serie." },
-      "sidebarOpened": { "title": "Abiertos", "content": "Desde aquí podrá ver los archivos actualmente abiertos." },
-      "sidebarBrowser": { "title": "Explorador", "content": "El explorador de archivos le permitirá navegar por los archivos del repositorio." },
-      "sidebarSearch": { "title": "Buscador", "content": "El buscador le permitirá encontrar cualquier archivo del repositorio." },
-      "sidebarDatasources": { "title": "Fuentes de datos", "content": "Administre las fuentes de datos, los esquemas de Mondrian y los metadatos de informes." },
-      "sidebarAdministration": { "title": "Administración", "content": "La página de administración le permitirá acceder las opciones de la plataforma restringidas a administradores." },
-      "sidebarLocales": { "title": "Idiomas", "content": "El idioma de la interfaz es seleccionado automáticamente, pero desde aquí podrá escoger el que desee." },
-      "sidebarLogout": { "title": "Salir", "content": "Cierre desde aquí la sesión actual." }
+      "navbarWelcome": {
+        "title": "Comencemos",
+        "content": "¡Descubra <strong>LinceBI</strong>!"
+      },
+      "navbarProfile": {
+        "title": "Perfil",
+        "content": "Desde aquí podrá ver y editar su perfil."
+      },
+      "navbarSearch": {
+        "title": "Buscar",
+        "content": "Busque desde aquí cualquier archivo del repositorio."
+      },
+      "navbarSettings": {
+        "title": "Opciones",
+        "content": "Acceda a las opciones generales de la plataforma."
+      },
+      "homeTabGlobal": {
+        "title": "Pestaña global",
+        "content": "En la pestaña global aparecerán para todos los usuarios los archivos que el administrador seleccione desde el buscador."
+      },
+      "homeTabHome": {
+        "title": "Pestaña de inicio",
+        "content": "En la pestaña de inicio aparecerán los archivos que solo usted seleccione desde el buscador."
+      },
+      "homeTabNew": {
+        "title": "Nueva pestaña",
+        "content": "Las pestañas adicionales le mostrarán los archivos etiquetados con el nombre de dicha pestaña."
+      },
+      "sidebarHome": {
+        "title": "Inicio",
+        "content": "Vuelva desde aquí a la página de inicio."
+      },
+      "sidebarTools": {
+        "title": "Herramientas",
+        "content": "Cree desde aquí un nuevo archivo con alguna de las herramientas instaladas."
+      },
+      "sidebarToolStpivot": {
+        "title": "STPivot",
+        "content": "STPivot es un visor OLAP para análisis multidimensional."
+      },
+      "sidebarToolStolap": {
+        "title": "STOlap",
+        "content": "STOlap es un visor analítico open source desarrollado por Stratebi."
+      },
+      "sidebarToolStreport": {
+        "title": "STReport",
+        "content": "STReport es una herramienta para crear, modificar y visualizar informes."
+      },
+      "sidebarToolStpanels": {
+        "title": "STPanels",
+        "content": "STPanels es una herramienta para crear cuadros de mando."
+      },
+      "sidebarToolStdashboard": {
+        "title": "STDashboard",
+        "content": "STDashboard es una herramienta para crear cuadros de mando."
+      },
+      "sidebarToolStagile": {
+        "title": "STAgile",
+        "content": "STAgile es una herramienta para crear cuadros de mando."
+      },
+      "sidebarToolStcard": {
+        "title": "STCard",
+        "content": "STCard es una herramienta para crear, gestionar y analizar scorecards."
+      },
+      "sidebarToolCde": {
+        "title": "CDE",
+        "content": "CDE es la herramienta que Pentaho incorpora de serie para crear cuadros de mando."
+      },
+      "sidebarToolJpivot": {
+        "title": "JPivot",
+        "content": "JPivot es el visor OLAP que Pentaho incorpora de serie."
+      },
+      "sidebarOpened": {
+        "title": "Abiertos",
+        "content": "Desde aquí podrá ver los archivos actualmente abiertos."
+      },
+      "sidebarBrowser": {
+        "title": "Explorador",
+        "content": "El explorador de archivos le permitirá navegar por los archivos del repositorio."
+      },
+      "sidebarSearch": {
+        "title": "Buscador",
+        "content": "El buscador le permitirá encontrar cualquier archivo del repositorio."
+      },
+      "sidebarDatasources": {
+        "title": "Fuentes de datos",
+        "content": "Administre las fuentes de datos, los esquemas de Mondrian y los metadatos de informes."
+      },
+      "sidebarAdministration": {
+        "title": "Administración",
+        "content": "La página de administración le permitirá acceder las opciones de la plataforma restringidas a administradores."
+      },
+      "sidebarLocales": {
+        "title": "Idiomas",
+        "content": "El idioma de la interfaz es seleccionado automáticamente, pero desde aquí podrá escoger el que desee."
+      },
+      "sidebarLogout": {
+        "title": "Salir",
+        "content": "Cierre desde aquí la sesión actual."
+      }
     }
   }
 }

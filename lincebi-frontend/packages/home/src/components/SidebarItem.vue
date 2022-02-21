@@ -9,8 +9,8 @@
 			<b-nav-item-dropdown
 				v-if="item.subitems.some((i) => i.enabled)"
 				ref="dropdown"
-				dropright
 				no-caret
+				:popper-opts="popperOpts"
 				@mouseenter.native="showDropdown"
 				@mouseleave.native="hideDropdown"
 			>
@@ -41,6 +41,7 @@
 
 <script>
 import eventBus from '@/eventBus';
+import i18n from '@/i18n';
 
 import SidebarSubitem from '@/components/SidebarSubitem.vue';
 
@@ -53,6 +54,19 @@ export default {
 		item: {
 			type: Object,
 			default: undefined,
+		},
+	},
+	computed: {
+		popperOpts() {
+			return {
+				placement: 'auto-start',
+				modifiers: {
+					computeStyle: {
+						enabled: true,
+						y: i18n.messages[i18n.locale].__meta__.dir === 'rtl' ? 'left' : 'right',
+					},
+				},
+			};
 		},
 	},
 	created() {
@@ -83,8 +97,6 @@ export default {
 <style scoped lang="scss">
 .sidebar-item::v-deep {
 	.nav-item {
-		position: static;
-
 		.nav-link {
 			padding: rem(8) 0;
 			font-size: rem(20);

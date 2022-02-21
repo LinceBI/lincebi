@@ -65,8 +65,12 @@ export default {
 		height: rem(40);
 	}
 
-	.nav-element {
-		margin: 0 0 0 rem(10);
+	.nav-section {
+		padding: 0;
+
+		.nav-element {
+			margin: 0 rem(5) 0 rem(5);
+		}
 	}
 
 	@include media-breakpoint-down(md) {

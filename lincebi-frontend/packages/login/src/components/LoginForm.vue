@@ -1,6 +1,6 @@
 <template>
 	<div class="login-form p-4 rounded">
-		<b-form @submit.prevent="onSubmit">
+		<b-form class="d-flex flex-column" @submit.prevent="onSubmit">
 			<b-img
 				class="d-block h-auto w-75 mb-4 mx-auto"
 				src="@lincebi/frontend-common/src/assets/img/logo.svg"
@@ -12,7 +12,7 @@
 				<b-form-input v-model="form.j_password" type="password" required />
 			</b-form-group>
 			<login-error class="mb-4" />
-			<b-button class="float-right" type="submit" variant="primary">
+			<b-button class="align-self-end" type="submit" variant="primary">
 				<font-awesome-icon :icon="['fas', 'sign-in-alt']" />
 				<span class="lbl">{{ $t('signIn') }}</span>
 			</b-button>
