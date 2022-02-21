@@ -179,15 +179,6 @@ export default {
 					subitems: [
 						{
 							enabled: true,
-							id: 'locale-arabic',
-							name: this.$t('locales.arabic'),
-							click: async () => {
-								await store.dispatch('updateLocale', 'ar');
-								await store.dispatch('fetchRepository');
-							},
-						},
-						{
-							enabled: true,
 							id: 'locale-catalan',
 							name: this.$t('locales.catalan'),
 							click: async () => {
