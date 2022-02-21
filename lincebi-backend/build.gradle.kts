@@ -18,7 +18,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.core:jackson-annotations:2.13.1")
 	implementation("com.fasterxml.jackson.core:jackson-core:2.13.1")
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.13.1")
-	implementation("com.microsoft.azure:msal4j:1.11.1")
+	implementation("com.microsoft.azure:msal4j:1.11.2")
 	implementation("com.networknt:json-schema-validator:1.0.66")
 	implementation("commons-io:commons-io:2.11.0")
 	implementation("jakarta.ws.rs:jakarta.ws.rs-api:2.1.6")
@@ -26,16 +26,16 @@ dependencies {
 	implementation("org.apache.commons:commons-lang3:3.12.0")
 	implementation("org.codehaus.enunciate:enunciate-core-annotations:1.31")
 	implementation("org.ehcache:ehcache:3.9.9")
-	implementation("org.slf4j:slf4j-reload4j:1.7.35")
-	implementation("org.springframework:spring-web:5.3.15")
+	implementation("org.slf4j:slf4j-reload4j:1.7.36")
+	implementation("org.springframework:spring-web:5.3.16")
 	implementation("org.thymeleaf:thymeleaf:3.0.15.RELEASE")
 
-	compileOnly("org.pentaho:commons-database-model:8.3.0.25-1402") { isTransitive = false }
-	compileOnly("org.pentaho:pentaho-metadata:8.3.0.25-1402") { isTransitive = false }
-	compileOnly("pentaho:pentaho-platform-api:8.3.0.25-1402") { isTransitive = false }
-	compileOnly("pentaho:pentaho-platform-core:8.3.0.25-1402") { isTransitive = false }
-	compileOnly("pentaho:pentaho-platform-extensions:8.3.0.25-1402") { isTransitive = false }
-	compileOnly("pentaho:pentaho-platform-repository:8.3.0.25-1402") { isTransitive = false }
+	compileOnly("org.pentaho:commons-database-model:8.3.0.26-1500") { isTransitive = false }
+	compileOnly("org.pentaho:pentaho-metadata:8.3.0.26-1500") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-api:8.3.0.26-1500") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-core:8.3.0.26-1500") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-extensions:8.3.0.26-1500") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-repository:8.3.0.26-1500") { isTransitive = false }
 
 	testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
