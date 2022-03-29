@@ -3,6 +3,7 @@ import fetch from 'unfetch';
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 
+import ar from '@/locales/ar.json';
 import ca from '@/locales/ca.json';
 import en from '@/locales/en.json';
 import es from '@/locales/es.json';
@@ -14,6 +15,26 @@ const i18n = new VueI18n({
 	locale: process.env.VUE_APP_I18N_LOCALE || navigator.language.slice(0, 2),
 	fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
 	messages: {
+		ar,
+		ar_AE: ar,
+		ar_BH: ar,
+		ar_DZ: ar,
+		ar_EG: ar,
+		ar_IN: ar,
+		ar_IQ: ar,
+		ar_JO: ar,
+		ar_KW: ar,
+		ar_LB: ar,
+		ar_LY: ar,
+		ar_MA: ar,
+		ar_OM: ar,
+		ar_QA: ar,
+		ar_SA: ar,
+		ar_SD: ar,
+		ar_SS: ar,
+		ar_SY: ar,
+		ar_TN: ar,
+		ar_YE: ar,
 		ca,
 		ca_AD: ca,
 		ca_ES: ca,
