@@ -28,7 +28,7 @@
 			<b-form-input v-model="searchTerms" :placeholder="$t('navbar.search.placeholder')" />
 			<b-input-group-append>
 				<b-button variant="primary" type="submit">
-					<font-awesome-icon :icon="['fas', 'search']" />
+					<font-awesome-icon :icon="['fas', 'magnifying-glass']" />
 				</b-button>
 			</b-input-group-append>
 		</b-input-group>

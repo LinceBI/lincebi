@@ -2,7 +2,7 @@
 	<b-container class="administration-view p-4">
 		<b-list-group class="mb-4">
 			<b-list-group-item v-if="canAdminister" button @click="openAdministration()">
-				<font-awesome-icon class="fa-fw" :icon="['fas', 'tools']" />
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'screwdriver-wrench']" />
 				<span class="lbl">
 					{{ $t('administration.administration') }}
 				</span>
@@ -14,7 +14,7 @@
 				</span>
 			</b-list-group-item>
 			<b-list-group-item v-if="canSchedule" button @click="openSchedules()">
-				<font-awesome-icon class="fa-fw" :icon="['fas', 'hourglass-half']" />
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'hourglass']" />
 				<span class="lbl">
 					{{ $t('administration.schedules') }}
 				</span>
@@ -62,31 +62,31 @@
 		</b-list-group>
 		<b-list-group class="mb-4">
 			<b-list-group-item v-if="canAdminister" button @click="systemRefresh('systemSettings')">
-				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'arrows-rotate']" />
 				<span class="lbl">
 					{{ $t('administration.refreshSystemSettings') }}
 				</span>
 			</b-list-group-item>
 			<b-list-group-item v-if="canAdminister" button @click="systemRefresh('metadata')">
-				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'arrows-rotate']" />
 				<span class="lbl">
 					{{ $t('administration.refreshReportingMetadata') }}
 				</span>
 			</b-list-group-item>
 			<b-list-group-item v-if="canAdminister" button @click="systemRefresh('globalActions')">
-				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'arrows-rotate']" />
 				<span class="lbl">
 					{{ $t('administration.refreshGlobalVariables') }}
 				</span>
 			</b-list-group-item>
 			<b-list-group-item v-if="canAdminister" button @click="systemRefresh('mondrianSchemaCache')">
-				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'arrows-rotate']" />
 				<span class="lbl">
 					{{ $t('administration.refreshMondrianSchemaCache') }}
 				</span>
 			</b-list-group-item>
 			<b-list-group-item v-if="canAdminister" button @click="clearCdaCache()">
-				<font-awesome-icon class="fa-fw" :icon="['fas', 'sync']" />
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'arrows-rotate']" />
 				<span class="lbl">
 					{{ $t('administration.clearCdaCache') }}
 				</span>

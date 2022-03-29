@@ -24,7 +24,7 @@ export default {
 		},
 		icon: {
 			type: Array,
-			default: () => ['far', 'check-square'],
+			default: () => ['far', 'square-check'],
 		},
 		iconDisabled: {
 			type: Array,

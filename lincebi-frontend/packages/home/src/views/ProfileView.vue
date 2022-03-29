@@ -6,7 +6,7 @@
 					<label class="avatar">
 						<b-img class="avatar-image" :src="userSettings[`${namespace}.avatar`]" />
 						<div class="avatar-overlay">
-							<font-awesome-icon class="icon" :icon="['fas', 'pencil-alt']" />
+							<font-awesome-icon class="icon" :icon="['fas', 'pencil']" />
 						</div>
 						<input
 							class="avatar-input"

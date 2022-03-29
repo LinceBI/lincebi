@@ -1,7 +1,7 @@
 <template>
 	<b-nav-item-dropdown class="navbar-settings" no-caret>
 		<template slot="button-content">
-			<font-awesome-icon :icon="['fas', 'cog']" />
+			<font-awesome-icon :icon="['fas', 'gear']" />
 			<span class="lbl d-lg-none">{{ $t('navbar.settings') }}</span>
 		</template>
 		<navbar-dropdown-item :text="$t('navbar.profile')" :icon="['fas', 'user']" href="#/profile" />

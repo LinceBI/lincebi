@@ -48,12 +48,12 @@ export default {
 					enabled: true,
 					id: 'home',
 					name: this.$t('sidebar.home'),
-					icon: ['fas', 'home'],
+					icon: ['fas', 'house'],
 					href: '#/',
 				},
 				{
 					enabled: this.canCreate,
-					id: 'tools',
+					id: 'screwdriver-wrench',
 					name: this.$t('sidebar.tools'),
 					icon: ['fas', 'plus'],
 					href: '#/new',
@@ -168,14 +168,14 @@ export default {
 					enabled: this.canAdminister || this.canSchedule || this.hasDataAccess,
 					id: 'administration',
 					name: this.$t('sidebar.administration'),
-					icon: ['fas', 'tools'],
+					icon: ['fas', 'screwdriver-wrench'],
 					href: '#/administration',
 				},
 				{
 					enabled: true,
 					id: 'locales',
 					name: this.$t('sidebar.locales'),
-					icon: ['fas', 'globe-europe'],
+					icon: ['fas', 'earth-europe'],
 					subitems: [
 						{
 							enabled: true,
@@ -237,7 +237,7 @@ export default {
 					enabled: true,
 					id: 'logout',
 					name: this.$t('sidebar.logout'),
-					icon: ['fas', 'sign-out-alt'],
+					icon: ['fas', 'right-from-bracket'],
 					href: '#/logout',
 				},
 			];

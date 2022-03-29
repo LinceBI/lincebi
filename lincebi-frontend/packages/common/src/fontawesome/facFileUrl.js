@@ -3,7 +3,7 @@ import {
 	height,
 	ligatures,
 	svgPathData,
-} from '@fortawesome/free-solid-svg-icons/faExternalLinkAlt';
+} from '@fortawesome/free-solid-svg-icons/faUpRightFromSquare';
 import getFaUnicodeCharacter from './getUnicodeCharacter';
 
 export { width, height, ligatures, svgPathData };

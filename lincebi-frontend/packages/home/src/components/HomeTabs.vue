@@ -32,7 +32,7 @@
 						@click="closeTabModalShow = true"
 						@keyup.enter="closeTabModalShow = true"
 					>
-						<font-awesome-icon :icon="['fas', 'times']" />
+						<font-awesome-icon :icon="['fas', 'xmark']" />
 					</button>
 				</div>
 			</li>
@@ -62,7 +62,7 @@
 		<home-tab-empty
 			v-else-if="files.length === 0"
 			class="home-tab-nofiles"
-			:icon="['far', 'file-alt']"
+			:icon="['far', 'file-lines']"
 			:text="$t('home.filesWillAppearHere')"
 		/>
 		<!-- Main content -->
@@ -136,7 +136,7 @@
 									@click.stop="onFileEditClick(file)"
 									@keyup.enter.stop="onFileEditClick(file)"
 								>
-									<font-awesome-icon :icon="['fas', 'pencil-alt']" />
+									<font-awesome-icon :icon="['fas', 'pencil']" />
 								</div>
 								<div
 									v-if="currentTab.isContentDraggable"
@@ -145,7 +145,7 @@
 									@click.stop.prevent
 									@contextmenu.stop.prevent
 								>
-									<font-awesome-icon :icon="['fas', 'arrows-alt']" />
+									<font-awesome-icon :icon="['fas', 'up-down-left-right']" />
 								</div>
 							</div>
 						</div>
@@ -330,7 +330,7 @@ export default {
 					type: 'home',
 					name: this.$t('home.home'),
 					color: null,
-					icon: { prefix: 'fas', iconName: 'home' },
+					icon: { prefix: 'fas', iconName: 'house' },
 					isRemovable: false,
 					isDraggable: false,
 					isContentDraggable: true,
