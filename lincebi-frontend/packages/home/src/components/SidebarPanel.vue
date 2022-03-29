@@ -53,7 +53,7 @@ export default {
 				},
 				{
 					enabled: this.canCreate,
-					id: 'screwdriver-wrench',
+					id: 'tools',
 					name: this.$t('sidebar.tools'),
 					icon: ['fas', 'plus'],
 					href: '#/new',
