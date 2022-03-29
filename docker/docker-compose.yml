@@ -23,7 +23,9 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       - "../lincebi-bundle/build/lincebi.zip:/etc/biserver.init.d/10_lincebi.zip:ro"
+      - "./biserver.init.d/30_language-pack-ca.sh:/etc/biserver.init.d/30_language-pack-ca.sh:ro"
       - "./biserver.init.d/30_language-pack-es.sh:/etc/biserver.init.d/30_language-pack-es.sh:ro"
+      - "./biserver.init.d/30_language-pack-ko.sh:/etc/biserver.init.d/30_language-pack-ko.sh:ro"
       - "./biserver.init.d/30_language-pack-pt.sh:/etc/biserver.init.d/30_language-pack-pt.sh:ro"
       - "./biserver.init.d/30_stsearch.sh:/etc/biserver.init.d/30_stsearch.sh:ro"
       - "./biserver.init.d/40_setup-language-packs.sh:/etc/biserver.init.d/40_setup-language-packs.sh:ro"
