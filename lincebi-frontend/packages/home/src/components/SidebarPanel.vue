@@ -206,6 +206,15 @@ export default {
 						},
 						{
 							enabled: true,
+							id: 'locale-korean',
+							name: this.$t('locales.korean'),
+							click: async () => {
+								await store.dispatch('updateLocale', 'ko');
+								await store.dispatch('fetchRepository');
+							},
+						},
+						{
+							enabled: true,
 							id: 'locale-spanish',
 							name: this.$t('locales.spanish'),
 							click: async () => {

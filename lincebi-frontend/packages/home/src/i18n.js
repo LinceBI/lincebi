@@ -7,6 +7,7 @@ import ar from '@/locales/ar.json';
 import ca from '@/locales/ca.json';
 import en from '@/locales/en.json';
 import es from '@/locales/es.json';
+import ko from '@/locales/ko.json';
 import pt from '@/locales/pt.json';
 
 Vue.use(VueI18n);
@@ -82,6 +83,9 @@ const i18n = new VueI18n({
 		es_US: es,
 		es_UY: es,
 		es_VE: es,
+		ko,
+		ko_KP: ko,
+		ko_KR: ko,
 		pt,
 		pt_BR: pt,
 		pt_PT: pt,
