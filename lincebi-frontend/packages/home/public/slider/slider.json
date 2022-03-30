@@ -7,9 +7,9 @@
   "slides": [
     {
       "enabled": false,
-      "caption": "Example caption",
-      "text": "Example text",
-      "img": "slider/images/01.png"
+      "caption": "",
+      "text": "",
+      "img": "slider/images/01.webp"
     }
   ]
 }
