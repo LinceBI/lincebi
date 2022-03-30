@@ -7,7 +7,7 @@
 	>
 		<b-input-group class="w-100">
 			<b-input-group-prepend v-if="categories.some((i) => i.enabled)">
-				<b-dropdown class="categories-dropdown" variant="primary" no-caret right>
+				<b-dropdown class="categories-dropdown" variant="primary" no-caret>
 					<template slot="button-content">
 						<font-awesome-icon :icon="['fas', 'layer-group']" />
 						<span class="lbl d-none d-sm-inline">
@@ -125,10 +125,15 @@ export default {
 					height: 100%;
 					padding: rem(10) rem(15);
 
+					.category-text {
+						margin: 0 rem(4);
+						vertical-align: middle;
+					}
+
 					.category-icon {
 						height: 100%;
 						width: auto;
-						margin-right: rem(8);
+						margin: 0 rem(4);
 						vertical-align: middle;
 					}
 				}

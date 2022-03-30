@@ -8,3 +8,14 @@ img + .lbl, .svg-inline--fa + .lbl {
 		margin-left: 0;
 	}
 }
+
+/* Fix RTL support for input groups */
+[dir='rtl'] .input-group {
+	> .input-group-prepend > .btn-group > .btn {
+		border-radius: 0 $border-radius $border-radius 0;
+	}
+
+	> .input-group-append > .btn-group > .btn {
+		border-radius: $border-radius 0 0 $border-radius;
+	}
+}
