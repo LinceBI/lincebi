@@ -35,7 +35,7 @@ Object.keys(i18n.messages).forEach(async (locale) => {
 	}
 });
 
-document.documentElement.lang = i18n.messages[i18n.locale].__meta__.lang;
-document.documentElement.dir = i18n.messages[i18n.locale].__meta__.dir;
+document.documentElement.lang = i18n.messages[i18n.locale]?.__meta__?.lang;
+document.documentElement.dir = i18n.messages[i18n.locale]?.__meta__?.dir;
 
 export default i18n;
