@@ -34,6 +34,7 @@ export const setOverlays = (state, overlays) => {
 };
 
 export const setLocale = (state, locale) => {
+	locale = locale.slice(0, 2).toLowerCase();
 	if (i18n.availableLocales.includes(locale)) {
 		state.locale = locale;
 		i18n.locale = locale;
