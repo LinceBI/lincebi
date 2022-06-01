@@ -1,7 +1,6 @@
 package com.stratebi.lincebi.integration.powerbi.controller;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -47,7 +46,7 @@ public class EmbedController {
 		@QueryParam("configName") @DefaultValue("default") String configName,
 		@QueryParam("workspaceId") String workspaceId,
 		@QueryParam("reportId") String reportId,
-		@QueryParam("datasetId") Set<String> datasetIds
+		@QueryParam("dashboardId") String dashboardId
 	) {
 		PowerBIConfig config = PowerBIConfig.get(configName);
 		if (config == null) {
@@ -55,7 +54,7 @@ public class EmbedController {
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
 
-		if (!UUIDUtils.isGUID(workspaceId) || !UUIDUtils.isGUID(reportId) || !UUIDUtils.isGUID(datasetIds)) {
+		if (!UUIDUtils.isGUID(workspaceId) || (!UUIDUtils.isGUID(reportId) && !UUIDUtils.isGUID(dashboardId))) {
 			EmbedController.LOGGER.error("Invalid id");
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
@@ -64,7 +63,7 @@ public class EmbedController {
 		List<String> roles = BIServerService.getRoles();
 
 		EmbedConfig embedConfig;
-		String embedConfigCacheKey = KeyUtils.getKeyName(user, roles, workspaceId, reportId, datasetIds);
+		String embedConfigCacheKey = KeyUtils.getKeyName(user, roles, workspaceId, reportId, dashboardId);
 
 		if (EmbedController.CACHE.containsKey(embedConfigCacheKey)) {
 			embedConfig = EmbedController.CACHE.get(embedConfigCacheKey);
@@ -83,7 +82,11 @@ public class EmbedController {
 			}
 
 			try {
-				embedConfig = PowerBIService.getEmbedConfig(accessToken, workspaceId, reportId, datasetIds);
+				if (reportId != null) {
+					embedConfig = PowerBIService.getEmbedReportConfig(accessToken, workspaceId, reportId);
+				} else {
+					embedConfig = PowerBIService.getEmbedDasboardConfig(accessToken, workspaceId, dashboardId);
+				}
 			} catch (Exception ex) {
 				EmbedController.LOGGER.error(ex.getMessage());
 				return Response.serverError().type(MediaType.TEXT_HTML).build();
@@ -112,8 +115,8 @@ public class EmbedController {
 		@QueryParam("configName") @DefaultValue("default") String configName,
 		@QueryParam("workspaceId") String workspaceId,
 		@QueryParam("reportId") String reportId,
-		@QueryParam("datasetId") Set<String> datasetIds,
-		@QueryParam("pageName") String pageName
+		@QueryParam("reportPageName") String reportPageName,
+		@QueryParam("dashboardId") String dashboardId
 	) {
 		PowerBIConfig config = PowerBIConfig.get(configName);
 		if (config == null) {
@@ -121,7 +124,7 @@ public class EmbedController {
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
 
-		if (!UUIDUtils.isGUID(workspaceId) || !UUIDUtils.isGUID(reportId) || !UUIDUtils.isGUID(datasetIds)) {
+		if (!UUIDUtils.isGUID(workspaceId) || (!UUIDUtils.isGUID(reportId) && !UUIDUtils.isGUID(dashboardId))) {
 			EmbedController.LOGGER.error("Invalid id");
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
@@ -130,7 +133,7 @@ public class EmbedController {
 		List<String> roles = BIServerService.getRoles();
 
 		EmbedConfig embedConfig;
-		String embedConfigCacheKey = KeyUtils.getKeyName(user, roles, workspaceId, reportId, datasetIds);
+		String embedConfigCacheKey = KeyUtils.getKeyName(user, roles, workspaceId, reportId, dashboardId);
 
 		if (EmbedController.CACHE.containsKey(embedConfigCacheKey)) {
 			embedConfig = EmbedController.CACHE.get(embedConfigCacheKey);
@@ -149,7 +152,11 @@ public class EmbedController {
 			}
 
 			try {
-				embedConfig = PowerBIService.getEmbedConfig(accessToken, workspaceId, reportId, datasetIds);
+				if (reportId != null) {
+					embedConfig = PowerBIService.getEmbedReportConfig(accessToken, workspaceId, reportId);
+				} else {
+					embedConfig = PowerBIService.getEmbedDasboardConfig(accessToken, workspaceId, dashboardId);
+				}
 			} catch (Exception ex) {
 				EmbedController.LOGGER.error(ex.getMessage());
 				return Response.serverError().type(MediaType.TEXT_HTML).build();
@@ -163,7 +170,7 @@ public class EmbedController {
 			ObjectMapper mapper = new ObjectMapper();
 			Context context = new Context();
 			context.setVariable("embedConfig", mapper.writeValueAsString(embedConfig));
-			context.setVariable("pageName", pageName);
+			context.setVariable("reportPageName", reportPageName);
 			response = EmbedController.TEMPLATE_ENGINE.process("embed", context);
 		} catch (Exception ex) {
 			EmbedController.LOGGER.error(ex.getMessage());

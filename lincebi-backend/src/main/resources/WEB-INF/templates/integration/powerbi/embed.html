@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
-	<title>Power BI report</title>
+	<title>Power BI visual</title>
 	<!-- https://www.jsdelivr.com/package/npm/powerbi-client -->
 	<script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.19.1/dist/powerbi.min.js" integrity="sha256-YBQ8JolhxoY4aL7pW0LGbagpxU41jzPJNZzTTTmed3Y=" crossorigin="anonymous"></script>
 	<style>
@@ -12,27 +12,13 @@
 			margin: 0;
 			padding: 0;
 			border: 0;
-			height: 100%;
-			width: 100%;
+			height: 100vh;
+			width: 100vw;
 			box-sizing: border-box;
 		}
 
 		body {
-			display: flex;
-			flex-wrap: wrap;
-		}
-
-		body > .report {
-			flex-grow: 1;
-			width: 100%;
-			min-height: 100%;
-			box-sizing: border-box;
-		}
-
-		@media (min-width: 2152px) {
-			body > .report {
-				width: 50%;
-			}
+			overflow: hidden;
 		}
 	</style>
 </head>
@@ -43,27 +29,54 @@
 			'use strict';
 
 			const embedConfig = JSON.parse(/*[[${embedConfig}]]*/'');
-			const pageName = /*[[${pageName}]]*/'';
+			const reportPageName = /*[[${reportPageName}]]*/'';
 
 			const { service, factories, models } = window['powerbi-client'];
 			const powerbiInstance = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
 
-			const [ report ] = embedConfig.reports;
+			let visualConfig;
+			if (embedConfig.report) {
+				visualConfig = {
+					type: 'report',
+					id: embedConfig.report.id,
+					embedUrl: embedConfig.report.embedUrl,
+					accessToken: embedConfig.embedToken.token,
+					tokenType: models.TokenType.Embed,
+					permissions: models.Permissions.Read,
+					viewMode: models.ViewMode.View,
+					pageName: reportPageName ? reportPageName : undefined,
+				};
+			} else if (embedConfig.dashboard) {
+				visualConfig = {
+					type: 'dashboard',
+					id: embedConfig.dashboard.id,
+					embedUrl: embedConfig.dashboard.embedUrl,
+					accessToken: embedConfig.embedToken.token,
+					tokenType: models.TokenType.Embed,
+					permissions: models.Permissions.Read,
+					viewMode: models.ViewMode.View,
+					pageView: 'fitToWidth',
+				};
+			} else {
+				alert('Undefined visual type');
+				return;
+			}
 
-			const $container = document.createElement('div');
-			$container.className = 'report';
-			document.body.appendChild($container);
+			const visual = powerbiInstance.embed(document.body, visualConfig);
 
-			powerbiInstance.embed($container, {
-				type: 'report',
-				id: report.id,
-				embedUrl: report.embedUrl,
-				accessToken: embedConfig.embedToken.token,
-				tokenType: models.TokenType.Embed,
-				permissions: models.Permissions.Read,
-				viewMode: models.ViewMode.View,
-				pageName: pageName ? pageName : undefined,
-			});
+			if (embedConfig.dashboard) {
+				visual.on('tileClicked', ({ detail }) => {
+					const navigationData = detail.navigationUrl.match(/\/reports\/([0-9A-fa-f-]+)\/(ReportSection[0-9A-Fa-f]+)/);
+					if (!navigationData) return;
+
+					const [, reportId, reportPageName] = navigationData;
+					window.location.search = new URLSearchParams({
+						workspaceId: embedConfig.workspaceId,
+						reportId,
+						reportPageName,
+					}).toString();
+				});
+			}
 		})();
 	</script>
 </body>

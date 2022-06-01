@@ -4,9 +4,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
-	<title>Power BI report</title>
+	<title>Power BI visual</title>
 	<!-- https://www.jsdelivr.com/package/npm/@azure/msal-browser -->
-	<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.23.0/lib/msal-browser.min.js" integrity="sha256-IhhBDv3UyugTV2uYM4EWm9glTgt6OaEIF9I9GP0hunY=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.24.0/lib/msal-browser.min.js" integrity="sha256-WeUBEBko3vaYR69GwOSzh1EKPpDmilyWnIYZLNqZGFQ=" crossorigin="anonymous"></script>
 	<!-- https://www.jsdelivr.com/package/npm/powerbi-client -->
 	<script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.19.1/dist/powerbi.min.js" integrity="sha256-YBQ8JolhxoY4aL7pW0LGbagpxU41jzPJNZzTTTmed3Y=" crossorigin="anonymous"></script>
 	<style>
@@ -14,32 +14,19 @@
 			margin: 0;
 			padding: 0;
 			border: 0;
-			height: 100%;
-			width: 100%;
+			height: 100vh;
+			width: 100vw;
 			box-sizing: border-box;
 		}
 
 		body {
-			display: flex;
-			flex-wrap: wrap;
-		}
-
-		body > .report {
-			flex-grow: 1;
-			width: 100%;
-			min-height: 100%;
-			box-sizing: border-box;
-		}
-
-		@media (min-width: 2152px) {
-			body > .report {
-				width: 50%;
-			}
+			overflow: hidden;
 		}
 	</style>
 </head>
 
 <body>
+	<div id="visual"></div>
 	<script th:inline="javascript">
 		(async () => {
 			'use strict';
@@ -47,7 +34,8 @@
 			const clientId = /*[[${clientId}]]*/'';
 			const workspaceId = /*[[${workspaceId}]]*/'';
 			const reportId = /*[[${reportId}]]*/'';
-			const pageName = /*[[${pageName}]]*/'';
+			const reportPageName = /*[[${reportPageName}]]*/'';
+			const dashboardId = /*[[${dashboardId}]]*/'';
 
 			const { PublicClientApplication } = window['msal'];
 			const msalInstance = new PublicClientApplication({
@@ -78,36 +66,75 @@
 				}
 			} catch (error) {
 				alert(`Authentication error:\n${error.message}`);
-				throw error;
+				return;
 			}
 
 			const { service, factories, models } = window['powerbi-client'];
 			const powerbiInstance = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
 
-			const response = await fetch(`https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/reports/${reportId}`, {
+			let endpointUrl;
+			if (reportId) {
+				endpointUrl = `https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/reports/${reportId}`;
+			} else if (dashboardId) {
+				endpointUrl = `https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/dashboards/${dashboardId}`;
+			} else {
+				alert('Undefined visual type');
+				return;
+			}
+
+			const response = await fetch(endpointUrl, {
 				method: 'GET',
 				headers: { Authorization: `Bearer ${accessToken}` },
 			});
 
 			if (response.status >= 200 && response.status < 400) {
-				const report = await response.json();
+				const data = await response.json();
 
-				const $container = document.createElement('div');
-				$container.className = 'report';
-				document.body.appendChild($container);
+				let visualConfig;
+				if (reportId) {
+					visualConfig = {
+						type: 'report',
+						id: data.id,
+						embedUrl: data.embedUrl,
+						accessToken,
+						tokenType: models.TokenType.Aad,
+						permissions: models.Permissions.Read,
+						viewMode: models.ViewMode.View,
+						pageName: reportPageName ? reportPageName : undefined,
+					};
+				} else if (dashboardId) {
+					visualConfig = {
+						type: 'dashboard',
+						id: data.id,
+						embedUrl: data.embedUrl,
+						accessToken,
+						tokenType: models.TokenType.Embed,
+						permissions: models.Permissions.Read,
+						viewMode: models.ViewMode.View,
+						pageView: 'fitToWidth',
+					};
+				} else {
+					return;
+				}
 
-				powerbiInstance.embed($container, {
-					type: 'report',
-					id: report.id,
-					embedUrl: report.embedUrl,
-					accessToken,
-					tokenType: models.TokenType.Aad,
-					permissions: models.Permissions.Read,
-					viewMode: models.ViewMode.View,
-					pageName: pageName ? pageName : undefined,
+				const visual = powerbiInstance.embed(document.body, visualConfig);
+
+				if (dashboardId) {
+				visual.on('tileClicked', ({ detail }) => {
+					const navigationData = detail.navigationUrl.match(/\/reports\/([0-9A-fa-f-]+)\/(ReportSection[0-9A-Fa-f]+)/);
+					if (!navigationData) return;
+
+					const [, reportId, reportPageName] = navigationData;
+					window.location.search = new URLSearchParams({
+						workspaceId,
+						reportId,
+						reportPageName,
+					}).toString();
 				});
+			}
 			} else {
-				alert(`Error loading report with id ${report.id}`);
+				alert(`Error loading visual:\n${response.status} ${response.statusText}`);
+				return;
 			}
 		})();
 	</script>

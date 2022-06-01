@@ -33,7 +33,8 @@ public class ProController {
 		@QueryParam("configName") @DefaultValue("default") String configName,
 		@QueryParam("workspaceId") String workspaceId,
 		@QueryParam("reportId") String reportId,
-		@QueryParam("pageName") String pageName
+		@QueryParam("reportPageName") String reportPageName,
+		@QueryParam("dashboardId") String dashboardId
 	) {
 		PowerBIConfig config = PowerBIConfig.get(configName);
 		if (config == null) {
@@ -41,7 +42,7 @@ public class ProController {
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
 
-		if (!UUIDUtils.isGUID(workspaceId) || !UUIDUtils.isGUID(reportId)) {
+		if (!UUIDUtils.isGUID(workspaceId) || (!UUIDUtils.isGUID(reportId) && !UUIDUtils.isGUID(dashboardId))) {
 			ProController.LOGGER.error("Invalid id");
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
@@ -52,7 +53,8 @@ public class ProController {
 			context.setVariable("clientId", config.clientId);
 			context.setVariable("workspaceId", workspaceId);
 			context.setVariable("reportId", reportId);
-			context.setVariable("pageName", pageName);
+			context.setVariable("reportPageName", reportPageName);
+			context.setVariable("dashboardId", dashboardId);
 			response = ProController.TEMPLATE_ENGINE.process("pro", context);
 		} catch (Exception ex) {
 			ProController.LOGGER.error(ex.getMessage());

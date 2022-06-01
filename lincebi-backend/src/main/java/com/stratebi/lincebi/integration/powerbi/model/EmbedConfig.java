@@ -9,8 +9,14 @@ public class EmbedConfig {
 	@JsonProperty("embedToken")
 	private EmbedToken embedToken;
 
-	@JsonProperty("reports")
-	private Set<Report> reports;
+	@JsonProperty("workspaceId")
+	private String workspaceId;
+
+	@JsonProperty("report")
+	private Report report;
+
+	@JsonProperty("dashboard")
+	private Dashboard dashboard;
 
 	@JsonProperty("datasets")
 	private Set<Dataset> datasets;
@@ -25,14 +31,34 @@ public class EmbedConfig {
 		this.embedToken = embedToken;
 	}
 
-	@JsonProperty("reports")
-	public Set<Report> getReports() {
-		return this.reports;
+	@JsonProperty("workspaceId")
+	public String getWorkspaceId() {
+		return this.workspaceId;
 	}
 
-	@JsonProperty("reports")
-	public void setReports(Set<Report> reports) {
-		this.reports = reports;
+	@JsonProperty("workspaceId")
+	public void setWorkspaceId(String workspaceId) {
+		this.workspaceId = workspaceId;
+	}
+
+	@JsonProperty("report")
+	public Report getReport() {
+		return this.report;
+	}
+
+	@JsonProperty("report")
+	public void setReport(Report report) {
+		this.report = report;
+	}
+
+	@JsonProperty("dashboard")
+	public Dashboard getDashboard() {
+		return this.dashboard;
+	}
+
+	@JsonProperty("dashboards")
+	public void setDashboard(Dashboard dashboard) {
+		this.dashboard = dashboard;
 	}
 
 	@JsonProperty("datasets")
