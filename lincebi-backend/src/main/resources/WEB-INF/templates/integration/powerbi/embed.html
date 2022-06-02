@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
-	<title>Power BI visual</title>
+	<title>Power BI</title>
 	<!-- https://www.jsdelivr.com/package/npm/powerbi-client -->
 	<script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.19.1/dist/powerbi.min.js" integrity="sha256-YBQ8JolhxoY4aL7pW0LGbagpxU41jzPJNZzTTTmed3Y=" crossorigin="anonymous"></script>
 	<style>
@@ -34,9 +34,10 @@
 			const { service, factories, models } = window['powerbi-client'];
 			const powerbiInstance = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
 
-			let visualConfig;
+			let resourceConfig;
 			if (embedConfig.report) {
-				visualConfig = {
+				document.title = embedConfig.report.name;
+				resourceConfig = {
 					type: 'report',
 					id: embedConfig.report.id,
 					embedUrl: embedConfig.report.embedUrl,
@@ -47,7 +48,8 @@
 					pageName: reportPageName ? reportPageName : undefined,
 				};
 			} else if (embedConfig.dashboard) {
-				visualConfig = {
+				document.title = embedConfig.dashboard.displayName;
+				resourceConfig = {
 					type: 'dashboard',
 					id: embedConfig.dashboard.id,
 					embedUrl: embedConfig.dashboard.embedUrl,
@@ -58,14 +60,14 @@
 					pageView: 'fitToWidth',
 				};
 			} else {
-				alert('Undefined visual type');
+				alert('Undefined resource type');
 				return;
 			}
 
-			const visual = powerbiInstance.embed(document.body, visualConfig);
+			const resource = powerbiInstance.embed(document.body, resourceConfig);
 
 			if (embedConfig.dashboard) {
-				visual.on('tileClicked', ({ detail }) => {
+				resource.on('tileClicked', ({ detail }) => {
 					const navigationData = detail.navigationUrl.match(/\/reports\/([0-9A-fa-f-]+)\/(ReportSection[0-9A-Fa-f]+)/);
 					if (!navigationData) return;
 
