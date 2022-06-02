@@ -108,7 +108,7 @@
 						id: data.id,
 						embedUrl: data.embedUrl,
 						accessToken,
-						tokenType: models.TokenType.Embed,
+						tokenType: models.TokenType.Aad,
 						permissions: models.Permissions.Read,
 						viewMode: models.ViewMode.View,
 						pageView: 'fitToWidth',
@@ -120,18 +120,18 @@
 				const visual = powerbiInstance.embed(document.body, visualConfig);
 
 				if (dashboardId) {
-				visual.on('tileClicked', ({ detail }) => {
-					const navigationData = detail.navigationUrl.match(/\/reports\/([0-9A-fa-f-]+)\/(ReportSection[0-9A-Fa-f]+)/);
-					if (!navigationData) return;
+					visual.on('tileClicked', ({ detail }) => {
+						const navigationData = detail.navigationUrl.match(/\/reports\/([0-9A-fa-f-]+)\/(ReportSection[0-9A-Fa-f]+)/);
+						if (!navigationData) return;
 
-					const [, reportId, reportPageName] = navigationData;
-					window.location.search = new URLSearchParams({
-						workspaceId,
-						reportId,
-						reportPageName,
-					}).toString();
-				});
-			}
+						const [, reportId, reportPageName] = navigationData;
+						window.location.search = new URLSearchParams({
+							workspaceId,
+							reportId,
+							reportPageName,
+						}).toString();
+					});
+				}
 			} else {
 				alert(`Error loading visual:\n${response.status} ${response.statusText}`);
 				return;
