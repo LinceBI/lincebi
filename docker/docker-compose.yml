@@ -16,7 +16,7 @@ services:
       - "caddy-data:/data/"
 
   biserver:
-    image: "repo.stratebi.com/lincebi/biserver:8.3"
+    image: "repo.stratebi.com/lincebi/biserver:9.3"
     networks:
       - "biserver"
     extra_hosts:
