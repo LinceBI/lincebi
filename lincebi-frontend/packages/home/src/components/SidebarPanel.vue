@@ -179,8 +179,8 @@ export default {
 					subitems: [
 						{
 							enabled: true,
-							id: 'locale-arabic',
-							name: this.$t('locales.arabic'),
+							id: 'locale-ar',
+							name: this.$t('locales.ar'),
 							click: async () => {
 								await store.dispatch('updateLocale', 'ar');
 								await store.dispatch('fetchRepository');
@@ -188,8 +188,8 @@ export default {
 						},
 						{
 							enabled: true,
-							id: 'locale-catalan',
-							name: this.$t('locales.catalan'),
+							id: 'locale-ca',
+							name: this.$t('locales.ca'),
 							click: async () => {
 								await store.dispatch('updateLocale', 'ca');
 								await store.dispatch('fetchRepository');
@@ -197,8 +197,8 @@ export default {
 						},
 						{
 							enabled: true,
-							id: 'locale-english',
-							name: this.$t('locales.english'),
+							id: 'locale-en',
+							name: this.$t('locales.en'),
 							click: async () => {
 								await store.dispatch('updateLocale', 'en');
 								await store.dispatch('fetchRepository');
@@ -206,8 +206,8 @@ export default {
 						},
 						{
 							enabled: true,
-							id: 'locale-korean',
-							name: this.$t('locales.korean'),
+							id: 'locale-ko',
+							name: this.$t('locales.ko'),
 							click: async () => {
 								await store.dispatch('updateLocale', 'ko');
 								await store.dispatch('fetchRepository');
@@ -215,8 +215,8 @@ export default {
 						},
 						{
 							enabled: true,
-							id: 'locale-spanish',
-							name: this.$t('locales.spanish'),
+							id: 'locale-es',
+							name: this.$t('locales.es'),
 							click: async () => {
 								await store.dispatch('updateLocale', 'es');
 								await store.dispatch('fetchRepository');
@@ -224,8 +224,17 @@ export default {
 						},
 						{
 							enabled: true,
-							id: 'locale-portuguese',
-							name: this.$t('locales.portuguese'),
+							id: 'locale-pt_BR',
+							name: this.$t('locales.pt_BR'),
+							click: async () => {
+								await store.dispatch('updateLocale', 'pt_BR');
+								await store.dispatch('fetchRepository');
+							},
+						},
+						{
+							enabled: true,
+							id: 'locale-pt_PT',
+							name: this.$t('locales.pt_PT'),
 							click: async () => {
 								await store.dispatch('updateLocale', 'pt_PT');
 								await store.dispatch('fetchRepository');

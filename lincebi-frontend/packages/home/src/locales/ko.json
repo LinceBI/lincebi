@@ -4,14 +4,15 @@
     "dir": "ltr"
   },
   "locales": {
-    "arabic": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
-    "catalan": "Català",
-    "english": "English",
-    "french": "Français",
-    "german": "Deutsch",
-    "korean": "\uD55C\uAD6D\uC5B4",
-    "portuguese": "Português",
-    "spanish": "Español"
+    "ar": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
+    "ca": "Català",
+    "de": "Deutsch",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "ko": "\uD55C\uAD6D\uC5B4",
+    "pt_BR": "Português (BR)",
+    "pt_PT": "Português (PT)"
   },
   "navbar": {
     "categories": "카테고리",
