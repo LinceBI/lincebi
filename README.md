@@ -30,6 +30,7 @@ Descomprimir el contenido del archivo `.zip` sobre una instalación de Pentaho B
  2. En otra terminal, iniciar los dev server de Webpack.
     ```sh
     cd ./lincebi-frontend/
+    npm i
     npm run serve
     ```
 
