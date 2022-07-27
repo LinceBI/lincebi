@@ -99,8 +99,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.navbar-settings::v-deep {
-	.dropdown-menu {
+.navbar-settings {
+	:deep(.dropdown-menu) {
 		left: inherit;
 		right: 0;
 

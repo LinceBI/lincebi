@@ -108,34 +108,32 @@ export default {
 
 <style scoped lang="scss">
 .navbar-search {
-	.categories-dropdown {
-		&::v-deep .dropdown-menu {
-			width: rem(300);
-			padding: 0;
-			border-top: 0;
-			border-left: 0;
+	.categories-dropdown :deep(.dropdown-menu) {
+		width: rem(300);
+		padding: 0;
+		border-top: 0;
+		border-left: 0;
 
-			.category-item {
-				display: inline-block;
-				width: 50%;
-				height: rem(45);
+		.category-item {
+			display: inline-block;
+			width: 50%;
+			height: rem(45);
 
-				.dropdown-item {
-					width: 100%;
+			.dropdown-item {
+				width: 100%;
+				height: 100%;
+				padding: rem(10) rem(15);
+
+				.category-text {
+					margin: 0 rem(4);
+					vertical-align: middle;
+				}
+
+				.category-icon {
 					height: 100%;
-					padding: rem(10) rem(15);
-
-					.category-text {
-						margin: 0 rem(4);
-						vertical-align: middle;
-					}
-
-					.category-icon {
-						height: 100%;
-						width: auto;
-						margin: 0 rem(4);
-						vertical-align: middle;
-					}
+					width: auto;
+					margin: 0 rem(4);
+					vertical-align: middle;
 				}
 			}
 		}

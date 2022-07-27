@@ -59,50 +59,52 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home-slider::v-deep {
+.home-slider {
 	text-shadow: rem(1) rem(1) rem(2) #333;
 
-	.carousel-item {
-		> .carousel-caption {
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			max-height: 100%;
-			width: 100%;
-			padding: rem(20);
-			overflow: auto;
+	:deep() {
+		.carousel-item {
+			> .carousel-caption {
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				max-height: 100%;
+				width: 100%;
+				padding: rem(20);
+				overflow: auto;
+			}
+
+			> img {
+				display: block;
+				margin: 0 auto;
+				object-fit: cover;
+
+				height: rem(160);
+				max-width: map-get($grid-breakpoints, 'xl');
+
+				@include media-breakpoint-up(sm) {
+					height: rem(192);
+				}
+
+				@include media-breakpoint-up(lg) {
+					height: rem(224);
+				}
+
+				@include media-breakpoint-up(xl) {
+					height: rem(256);
+				}
+			}
 		}
 
-		> img {
-			display: block;
-			margin: 0 auto;
-			object-fit: cover;
-
-			height: rem(160);
-			max-width: map-get($grid-breakpoints, 'xl');
-
-			@include media-breakpoint-up(sm) {
-				height: rem(192);
-			}
-
-			@include media-breakpoint-up(lg) {
-				height: rem(224);
-			}
-
-			@include media-breakpoint-up(xl) {
-				height: rem(256);
-			}
+		&,
+		.carousel-item {
+			background-color: map-get($theme-colors, 'light');
 		}
-	}
 
-	&,
-	.carousel-item {
-		background-color: map-get($theme-colors, 'light');
-	}
-
-	.carousel-control-prev,
-	.carousel-control-next {
-		opacity: 0;
+		.carousel-control-prev,
+		.carousel-control-next {
+			opacity: 0;
+		}
 	}
 }
 </style>

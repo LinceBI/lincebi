@@ -95,8 +95,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.sidebar-item::v-deep {
-	.nav-item {
+.sidebar-item {
+	:deep(.nav-item) {
 		.nav-link {
 			padding: rem(8) 0;
 			font-size: rem(20);

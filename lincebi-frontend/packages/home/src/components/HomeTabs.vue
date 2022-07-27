@@ -837,7 +837,7 @@ export default {
 		@include loading();
 	}
 
-	&::v-deep .popover {
+	:deep(.popover) {
 		.arrow::after {
 			border-bottom-color: map-get($theme-colors, 'primary');
 		}
