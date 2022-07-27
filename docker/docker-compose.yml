@@ -14,8 +14,6 @@ services:
     volumes:
       - "./Caddyfile:/etc/caddy/Caddyfile:ro"
       - "caddy-data:/data/"
-    environment:
-      FQSU_DOMAIN: "${FQSU_DOMAIN-localhost}"
 
   biserver:
     image: "repo.stratebi.com/lincebi/biserver:9.3"
@@ -38,7 +36,7 @@ services:
       PROXY_SCHEME: "https"
       PROXY_PORT: "8443"
       FQSU_PROTOCOL: "https"
-      FQSU_DOMAIN: "${FQSU_DOMAIN-localhost}"
+      FQSU_DOMAIN: "localhost"
       FQSU_PORT: "8443"
       WEBAPP_PENTAHO_DIRNAME: "lincebi"
       DEFAULT_ADMIN_PASSWORD: "password"

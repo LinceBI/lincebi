@@ -3,12 +3,18 @@
 	auto_https disable_redirects
 }
 
-http://{$FQSU_DOMAIN}:8080 {
+http://:8080 {
+	tls internal {
+		on_demand
+	}
+
 	redir /* https://{host}:8443{uri} 301
 }
 
-https://{$FQSU_DOMAIN}:8443 {
-	tls internal
+https://:8443 {
+	tls internal {
+		on_demand
+	}
 
 	# Pentaho BI Server
 	reverse_proxy /* {
