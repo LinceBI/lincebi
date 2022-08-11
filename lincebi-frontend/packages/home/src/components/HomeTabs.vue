@@ -464,6 +464,7 @@ export default {
 						delay: isTouchDevice ? 100 : 10,
 						animation: 150,
 						filter: '.nav-item:not(.draggable)',
+						preventOnFilter: false,
 						onEnd: (event) => {
 							this.tabIndex = event.newIndex;
 						},
