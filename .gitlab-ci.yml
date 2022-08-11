@@ -103,7 +103,7 @@ deploy:release:mvn:
         open 'sftp://${USER}:${PASSWORD}@${HOST}:${PORT}';
         put -O /data/initd/ ./10_lincebi-autodeploy.zip; bye;
       EOF
-except:
+  except:
     - *regex_version
 
 deploy:develop:testing:manual:
