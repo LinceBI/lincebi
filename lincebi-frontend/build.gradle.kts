@@ -2,7 +2,7 @@ tasks.register<Sync>("build") {
 	if (!File("${projectDir}/packages/login/build/").exists() ||
 		!File("${projectDir}/packages/home/build/").exists()
 	) {
-		dependsOn("npmRunBuild")
+		dependsOn("pnpmRunBuild")
 	}
 
 	from("${projectDir}/packages/login/build/", {
@@ -22,21 +22,21 @@ tasks.register<Delete>("clean") {
 	delete("${projectDir}/packages/home/build/")
 }
 
-tasks.register<Exec>("npmRunBuild") {
+tasks.register<Exec>("pnpmRunBuild") {
 	if (!File("${projectDir}/node_modules/").exists() ||
 		!File("${projectDir}/packages/login/node_modules/").exists() ||
 		!File("${projectDir}/packages/home/node_modules/").exists()
 	) {
-		dependsOn("npmInstall")
+		dependsOn("pnpmInstall")
 	}
 
-	commandLine("npm", "run", "build")
+	commandLine("pnpm", "run", "build")
 
 	outputs.upToDateWhen { false }
 }
 
-tasks.register<Exec>("npmInstall") {
-	commandLine("npm", "install")
+tasks.register<Exec>("pnpmInstall") {
+	commandLine("pnpm", "install")
 
 	outputs.upToDateWhen { false }
 }

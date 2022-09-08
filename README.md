@@ -4,6 +4,7 @@
 
  * [OpenJDK](https://www.azul.com/downloads/zulu-community/).
  * [Node.js](https://nodejs.org/en/download/package-manager/).
+ * [pnpm](https://pnpm.io).
  * [Docker](https://docs.docker.com/install/).
  * [Docker Compose](https://docs.docker.com/compose/install/).
 
@@ -30,7 +31,7 @@ Descomprimir el contenido del archivo `.zip` sobre una instalación de Pentaho B
  2. En otra terminal, iniciar los dev server de Webpack.
     ```sh
     cd ./lincebi-frontend/
-    npm run serve
+    pnpm run serve
     ```
 
  3. Acceder a [https://localhost:8443](https://localhost:8443) cuando ambos servicios estén en
