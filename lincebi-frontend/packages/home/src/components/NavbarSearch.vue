@@ -109,7 +109,9 @@ export default {
 <style scoped lang="scss">
 .navbar-search {
 	.categories-dropdown :deep(.dropdown-menu) {
-		width: rem(300);
+		position: absolute;
+		width: rem(350);
+		max-width: calc(100vw - rem(30));
 		padding: 0;
 		border-top: 0;
 		border-left: 0;
@@ -120,16 +122,22 @@ export default {
 			height: rem(45);
 
 			.dropdown-item {
+				display: flex;
+				flex-direction: row;
 				width: 100%;
 				height: 100%;
-				padding: rem(10) rem(15);
+				padding: rem(10) rem(5);
 
 				.category-text {
+					display: inline-block;
 					margin: 0 rem(4);
+					overflow: hidden;
+					text-overflow: ellipsis;
 					vertical-align: middle;
 				}
 
 				.category-icon {
+					display: inline-block;
 					height: 100%;
 					width: auto;
 					margin: 0 rem(4);
