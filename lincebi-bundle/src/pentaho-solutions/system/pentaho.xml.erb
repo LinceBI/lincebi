@@ -40,6 +40,18 @@
 	<log-level>INFO</log-level>
 
 	<!--
+	cors-requests-allowed: flag indicating if cross-origin requests are allowed or not.
+	Accepted values are: true | false
+	-->
+	<cors-requests-allowed><%= ENV['CORS_REQUESTS_ALLOWED'] %></cors-requests-allowed>
+
+	<!--
+	cors-requests-allowed-domains: comma separated list of domains allowed to do cross-origin requests to the server.
+	Example: http://domainA.com, http://localhost:1337
+	-->
+	<cors-requests-allowed-domains><%= ENV['CORS_REQUESTS_ALLOWED_DOMAINS'] %></cors-requests-allowed-domains>
+
+	<!--
 	The configuration of publishers, system listeners, and session actions has been moved to
 	the systemListeners.xml, adminPlugins.xml, and sessionStartupActions.xml files which
 	can be found in the "system" folder within your configured pentaho solution directory.
@@ -156,10 +168,10 @@
 
 	<file-upload-defaults>
 		<relative-path>/system/metadata/csvfiles/</relative-path>
-		<!-- max-file-limit is the maximum file size, in bytes, to allow to be uploaded to the server -->
-		<max-file-limit>10000000</max-file-limit>
-		<!-- max-folder-limit is the maximum combined size of all files in the upload folder, in bytes. -->
-		<max-folder-limit>500000000</max-folder-limit>
+		<!-- max-file-limit is the maximum file size in bytes to allow to be uploaded to the server -->
+		<max-file-limit><%= ENV['FILE_UPLOAD_DEFAULTS_MAX_FILE_LIMIT'] %></max-file-limit>
+		<!-- max-folder-limit is the maximum combined size in bytes of all files in the upload folder -->
+		<max-folder-limit><%= ENV['FILE_UPLOAD_DEFAULTS_MAX_FOLDER_LIMIT'] %></max-folder-limit>
 	</file-upload-defaults>
 
 	<default-theme>lincebi</default-theme>
