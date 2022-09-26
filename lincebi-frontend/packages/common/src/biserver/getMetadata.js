@@ -15,7 +15,8 @@ export default async (paths, { locale = getLocale(), depth = 1 } = {}) => {
 		locale = await locale;
 	}
 
-	if (/^en(?:_[A-Z]{2})?$/.test(locale)) {
+	locale = locale.substring(0, 2);
+	if (locale === 'en') {
 		locale = 'default';
 	}
 

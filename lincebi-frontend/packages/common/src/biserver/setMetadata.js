@@ -22,7 +22,8 @@ export default async (metadata, { locale = getLocale() } = {}) => {
 		locale = await locale;
 	}
 
-	if (/^en(?:_[A-Z]{2})?$/.test(locale)) {
+	locale = locale.substring(0, 2);
+	if (locale === 'en') {
 		locale = 'default';
 	}
 
