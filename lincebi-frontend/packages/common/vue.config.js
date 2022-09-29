@@ -1,10 +1,12 @@
+const isProduction = process.env.NODE_ENV === 'production';
+
 module.exports = {
 	outputDir: 'build',
 	publicPath: '.',
 	assetsDir: '',
 	indexPath: 'index.jsp',
-	integrity: process.env.NODE_ENV === 'production',
-	productionSourceMap: false,
+	integrity: isProduction,
+	productionSourceMap: isProduction,
 	devServer: {
 		host: '0.0.0.0',
 		allowedHosts: 'all',
@@ -86,6 +88,7 @@ module.exports = {
 		});
 	},
 	css: {
+		sourceMap: isProduction,
 		loaderOptions: {
 			sass: {
 				additionalData: `

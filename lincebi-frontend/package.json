@@ -7,5 +7,8 @@
     "build": "pnpm -r run build",
     "serve": "pnpm -r run serve",
     "clean": "pnpm -r run clean"
+  },
+  "devDependencies": {
+    "@datadog/datadog-ci": "~1.14.2"
   }
 }

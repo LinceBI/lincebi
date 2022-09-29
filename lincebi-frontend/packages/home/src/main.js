@@ -1,5 +1,6 @@
 import '@lincebi/frontend-common/src/nestedFrameDetector';
 import '@lincebi/frontend-common/src/googleTagManager';
+import '@lincebi/frontend-common/src/datadogBrowserLogs';
 
 import Vue from 'vue';
 

@@ -10,7 +10,7 @@ stages:
 
 .variables_develop: &variables_develop
   <<: *variables
-  ORG_GRADLE_PROJECT_versionSuffix: "-${CI_COMMIT_REF_SLUG}-SNAPSHOT"
+  ORG_GRADLE_PROJECT_versionSuffix: "-${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}-SNAPSHOT"
 
 .variables_release: &variables_release
   <<: *variables
@@ -69,6 +69,8 @@ deploy:develop:mvn:
     <<: *variables_develop
   script:
     - "./gradlew publish"
+    - "./gradlew pnpxDatadogSourcemapsUpload -PdatadogMinifiedPathPrefix=/pentaho/"
+    - "./gradlew pnpxDatadogSourcemapsUpload -PdatadogMinifiedPathPrefix=/lincebi/"
   cache:
     <<: *cache
   except:
@@ -82,6 +84,8 @@ deploy:release:mvn:
     <<: *variables_release
   script:
     - "./gradlew publish"
+    - "./gradlew pnpxDatadogSourcemapsUpload -PdatadogMinifiedPathPrefix=/pentaho/"
+    - "./gradlew pnpxDatadogSourcemapsUpload -PdatadogMinifiedPathPrefix=/lincebi/"
   cache:
     <<: *cache
   only:
