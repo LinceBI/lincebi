@@ -1,3 +1,5 @@
+val gtagId = project.property("gtagId")
+
 tasks.register<Sync>("build") {
 	if (!File("${projectDir}/packages/login/build/").exists() ||
 		!File("${projectDir}/packages/home/build/").exists()
@@ -29,6 +31,10 @@ tasks.register<Exec>("pnpmRunBuild") {
 	) {
 		dependsOn("pnpmInstall")
 	}
+
+	environment(mapOf(
+		"VUE_APP_GTAG_ID" to gtagId
+	))
 
 	commandLine("pnpm", "run", "build")
 

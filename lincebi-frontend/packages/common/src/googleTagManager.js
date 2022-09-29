@@ -14,6 +14,7 @@ if (id) {
 	gtag('config', id, {
 		page_title: 'LinceBI',
 		page_location: window.location.origin,
+		anonymize_ip: true,
 	});
 
 	const script = document.createElement('script');
