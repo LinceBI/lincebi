@@ -51,7 +51,7 @@ tasks.register<Exec>("pnpmRunBuild") {
 
 tasks.register<Exec>("pnpxDatadogSourcemapsUpload") {
 	if (!File("${projectDir}/node_modules/").exists()) {
-		dependsOn("npmInstall")
+		dependsOn("pnpmInstall")
 	}
 
 	environment(mapOf(
