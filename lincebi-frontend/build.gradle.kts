@@ -49,6 +49,26 @@ tasks.register<Exec>("pnpmRunBuild") {
 	outputs.upToDateWhen { false }
 }
 
+tasks.register<Exec>("pnpmRunServe") {
+	if (!File("${projectDir}/node_modules/").exists() ||
+		!File("${projectDir}/packages/login/node_modules/").exists() ||
+		!File("${projectDir}/packages/home/node_modules/").exists()
+	) {
+		dependsOn("pnpmInstall")
+	}
+
+	environment(mapOf(
+		"VUE_APP_VERSION" to version,
+		"VUE_APP_GTAG_ID" to gtagId,
+		"VUE_APP_DATADOG_SITE" to datadogSite,
+		"VUE_APP_DATADOG_CLIENT_TOKEN" to datadogClientToken
+	))
+
+	commandLine("pnpm", "run", "serve")
+
+	outputs.upToDateWhen { false }
+}
+
 tasks.register<Exec>("pnpxDatadogSourcemapsUpload") {
 	if (!File("${projectDir}/node_modules/").exists()) {
 		dependsOn("pnpmInstall")
