@@ -22,7 +22,7 @@
     },
     "settings": "Opcions",
     "profile": "Perfil",
-    "about": "About",
+    "about": "Sobre",
     "showMenuBar": "Mostrar barra de menú",
     "showToolBar": "Mostrar barra d'eines",
     "showHiddenFiles": "Mostrar arxius ocults",
@@ -99,8 +99,8 @@
     "save": "Guardar"
   },
   "about": {
-    "lincebiVersion": "LinceBI version:",
-    "biServerVersion": "BI Server version:"
+    "lincebiVersion": "Versió de LinceBI:",
+    "biServerVersion": "Versió de BI Server:"
   },
   "administration": {
     "administration": "Administració",
