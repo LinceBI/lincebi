@@ -39,6 +39,7 @@ export default {
 	mounted() {
 		this.$nextTick(async () => {
 			await Promise.all([
+				store.dispatch('fetchBiServerVersion'),
 				store.dispatch('fetchUserId'),
 				store.dispatch('fetchCanCreate'),
 				store.dispatch('fetchCanAdminister'),

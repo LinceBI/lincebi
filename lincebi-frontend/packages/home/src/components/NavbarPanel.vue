@@ -2,7 +2,7 @@
 	<b-navbar class="navbar-panel shadow" toggleable="lg" variant="light">
 		<navbar-sidebar-toggle />
 		<b-navbar-brand class="navbar-logo mr-0 mr-lg-3 p-0" data-v-step="navbar-welcome" href="#/">
-			<b-img class="h-100 w-auto" src="@lincebi/frontend-common/src/assets/img/logo.svg" />
+			<b-img class="h-100 w-auto" src="@lincebi/frontend-common/src/assets/img/lincebi.svg" />
 		</b-navbar-brand>
 		<b-navbar-toggle :target="`nav-collapse-${uniqueId}`">
 			<template slot="default">

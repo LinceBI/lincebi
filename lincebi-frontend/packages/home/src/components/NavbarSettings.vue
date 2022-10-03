@@ -26,6 +26,12 @@
 			:enabled="showDescriptionsForTooltips"
 			@click="showDescriptionsForTooltips = !showDescriptionsForTooltips"
 		/>
+		<b-dropdown-divider />
+		<navbar-dropdown-item
+			:text="$t('navbar.about')"
+			:icon="['fas', 'circle-question']"
+			href="#/about"
+		/>
 	</b-nav-item-dropdown>
 </template>
 

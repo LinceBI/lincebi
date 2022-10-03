@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 import stopAllWindows from '@lincebi/frontend-common/src/stopAllWindows';
 
+import AboutView from '@/views/AboutView.vue';
 import AdministrationView from '@/views/AdministrationView.vue';
 import HomeView from '@/views/HomeView.vue';
 import NewView from '@/views/NewView.vue';
@@ -32,6 +33,11 @@ export default new Router({
 			path: '/profile',
 			name: 'profile',
 			component: ProfileView,
+		},
+		{
+			path: '/about',
+			name: 'about',
+			component: AboutView,
 		},
 		{
 			path: '/administration',

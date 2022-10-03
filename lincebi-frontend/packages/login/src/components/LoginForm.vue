@@ -3,7 +3,7 @@
 		<b-form class="d-flex flex-column" @submit.prevent="onSubmit">
 			<b-img
 				class="d-block h-auto w-75 mb-4 mx-auto"
-				src="@lincebi/frontend-common/src/assets/img/logo.svg"
+				src="@lincebi/frontend-common/src/assets/img/lincebi.svg"
 			/>
 			<b-form-group :label="$t('username.label')">
 				<b-form-input v-model="form.j_username" type="text" autofocus required />
