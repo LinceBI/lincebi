@@ -67,7 +67,7 @@ export default {
 					header: { title: this.$t('tour.steps.navbarWelcome.title') },
 					content: this.$t('tour.steps.navbarWelcome.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 					},
 				},
 				{
@@ -75,7 +75,7 @@ export default {
 					header: { title: this.$t('tour.steps.navbarProfile.title') },
 					content: this.$t('tour.steps.navbarProfile.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 						eventBus.$emit('navbar-show');
 					},
 				},
@@ -84,7 +84,7 @@ export default {
 					header: { title: this.$t('tour.steps.navbarSearch.title') },
 					content: this.$t('tour.steps.navbarSearch.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 						eventBus.$emit('navbar-show');
 					},
 				},
@@ -93,7 +93,7 @@ export default {
 					header: { title: this.$t('tour.steps.navbarSettings.title') },
 					content: this.$t('tour.steps.navbarSettings.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 						eventBus.$emit('navbar-show');
 					},
 				},
@@ -102,7 +102,7 @@ export default {
 					header: { title: this.$t('tour.steps.homeTabGlobal.title') },
 					content: this.$t('tour.steps.homeTabGlobal.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 					},
 				},
 				{
@@ -110,7 +110,7 @@ export default {
 					header: { title: this.$t('tour.steps.homeTabHome.title') },
 					content: this.$t('tour.steps.homeTabHome.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 					},
 				},
 				{
@@ -118,7 +118,7 @@ export default {
 					header: { title: this.$t('tour.steps.homeTabNew.title') },
 					content: this.$t('tour.steps.homeTabNew.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 					},
 				},
 				{
@@ -126,7 +126,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarHome.title') },
 					content: this.$t('tour.steps.sidebarHome.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 						eventBus.$emit('sidebar-show');
 					},
 				},
@@ -135,7 +135,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarTools.title') },
 					content: this.$t('tour.steps.sidebarTools.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 						eventBus.$emit('sidebar-show');
 					},
 				},
@@ -144,7 +144,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarToolStagile.title') },
 					content: this.$t('tour.steps.sidebarToolStagile.content'),
 					before: async () => {
-						router.push({ name: 'new' }).catch(() => {});
+						await router.push({ name: 'new' }).catch(() => {});
 					},
 				},
 				{
@@ -152,7 +152,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarToolStcard.title') },
 					content: this.$t('tour.steps.sidebarToolStcard.content'),
 					before: async () => {
-						router.push({ name: 'new' }).catch(() => {});
+						await router.push({ name: 'new' }).catch(() => {});
 					},
 				},
 				{
@@ -160,7 +160,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarToolStdashboard.title') },
 					content: this.$t('tour.steps.sidebarToolStdashboard.content'),
 					before: async () => {
-						router.push({ name: 'new' }).catch(() => {});
+						await router.push({ name: 'new' }).catch(() => {});
 					},
 				},
 				{
@@ -168,7 +168,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarToolStolap.title') },
 					content: this.$t('tour.steps.sidebarToolStolap.content'),
 					before: async () => {
-						router.push({ name: 'new' }).catch(() => {});
+						await router.push({ name: 'new' }).catch(() => {});
 					},
 				},
 				{
@@ -176,7 +176,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarToolStpanels.title') },
 					content: this.$t('tour.steps.sidebarToolStpanels.content'),
 					before: async () => {
-						router.push({ name: 'new' }).catch(() => {});
+						await router.push({ name: 'new' }).catch(() => {});
 					},
 				},
 				{
@@ -184,7 +184,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarToolStpivot.title') },
 					content: this.$t('tour.steps.sidebarToolStpivot.content'),
 					before: async () => {
-						router.push({ name: 'new' }).catch(() => {});
+						await router.push({ name: 'new' }).catch(() => {});
 					},
 				},
 				{
@@ -192,7 +192,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarToolStreport.title') },
 					content: this.$t('tour.steps.sidebarToolStreport.content'),
 					before: async () => {
-						router.push({ name: 'new' }).catch(() => {});
+						await router.push({ name: 'new' }).catch(() => {});
 					},
 				},
 				{
@@ -200,7 +200,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarToolCde.title') },
 					content: this.$t('tour.steps.sidebarToolCde.content'),
 					before: async () => {
-						router.push({ name: 'new' }).catch(() => {});
+						await router.push({ name: 'new' }).catch(() => {});
 					},
 				},
 				{
@@ -208,7 +208,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarToolJpivot.title') },
 					content: this.$t('tour.steps.sidebarToolJpivot.content'),
 					before: async () => {
-						router.push({ name: 'new' }).catch(() => {});
+						await router.push({ name: 'new' }).catch(() => {});
 					},
 				},
 				{
@@ -216,7 +216,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarOpened.title') },
 					content: this.$t('tour.steps.sidebarOpened.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 						eventBus.$emit('sidebar-show');
 					},
 				},
@@ -225,7 +225,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarBrowser.title') },
 					content: this.$t('tour.steps.sidebarBrowser.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 						eventBus.$emit('sidebar-show');
 					},
 				},
@@ -234,7 +234,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarSearch.title') },
 					content: this.$t('tour.steps.sidebarSearch.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 						eventBus.$emit('sidebar-show');
 					},
 				},
@@ -243,7 +243,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarDatasources.title') },
 					content: this.$t('tour.steps.sidebarDatasources.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 						eventBus.$emit('sidebar-show');
 					},
 				},
@@ -252,7 +252,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarAdministration.title') },
 					content: this.$t('tour.steps.sidebarAdministration.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 						eventBus.$emit('sidebar-show');
 					},
 				},
@@ -261,7 +261,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarLocales.title') },
 					content: this.$t('tour.steps.sidebarLocales.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 						eventBus.$emit('sidebar-show');
 					},
 				},
@@ -270,7 +270,7 @@ export default {
 					header: { title: this.$t('tour.steps.sidebarLogout.title') },
 					content: this.$t('tour.steps.sidebarLogout.content'),
 					before: async () => {
-						router.push({ name: 'home' }).catch(() => {});
+						await router.push({ name: 'home' }).catch(() => {});
 						eventBus.$emit('sidebar-show');
 					},
 				},
@@ -291,12 +291,12 @@ export default {
 				step.before = async function () {
 					await __before();
 
-					setTimeout(() => {
-						const $target = document.querySelector(this.target);
-						if ($target !== null) {
-							$target.scrollIntoView({ behavior: 'smooth' });
-						}
-					}, 100);
+					const $target = document.querySelector(this.target);
+					if ($target) {
+						$target.scrollIntoView({ behavior: 'smooth' });
+					} else {
+						this.params.highlight = false;
+					}
 				};
 			}
 
