@@ -99,7 +99,7 @@
     "save": "Salvar"
   },
   "about": {
-    "lincebiVersion": "Versão do LinceBI:",
+    "linceBiVersion": "Versão do LinceBI:",
     "biServerVersion": "Versão do BI Server:"
   },
   "administration": {

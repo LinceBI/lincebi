@@ -99,7 +99,7 @@
     "save": "حفظ"
   },
   "about": {
-    "lincebiVersion": "نسخة LinceBI:",
+    "linceBiVersion": "نسخة LinceBI:",
     "biServerVersion": "نسخة BI Server:"
   },
   "administration": {

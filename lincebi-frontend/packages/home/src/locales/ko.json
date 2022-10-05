@@ -99,7 +99,7 @@
     "save": "저장"
   },
   "about": {
-    "lincebiVersion": "LinceBI 버전:",
+    "linceBiVersion": "LinceBI 버전:",
     "biServerVersion": "BI Server 버전:"
   },
   "administration": {
