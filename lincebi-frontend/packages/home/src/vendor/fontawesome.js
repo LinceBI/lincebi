@@ -34,6 +34,7 @@ Vue.component('FontAwesomeIcon', async () => {
 		import('@fortawesome/free-solid-svg-icons/faChartPie'),
 		import('@fortawesome/free-solid-svg-icons/faChevronLeft'),
 		import('@fortawesome/free-solid-svg-icons/faChevronRight'),
+		import('@fortawesome/free-solid-svg-icons/faCircleQuestion'),
 		import('@fortawesome/free-solid-svg-icons/faClock'),
 		import('@fortawesome/free-solid-svg-icons/faCoins'),
 		import('@fortawesome/free-solid-svg-icons/faDatabase'),

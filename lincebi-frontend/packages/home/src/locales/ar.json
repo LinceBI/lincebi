@@ -22,6 +22,7 @@
     },
     "settings": "اعدادات",
     "profile": "ملف تعريف",
+    "about": "حول",
     "showMenuBar": "إظهار شريط القوائم",
     "showToolBar": "إظهار شريط الأدوات",
     "showHiddenFiles": "إظهار الملفات المخفية",
@@ -96,6 +97,10 @@
       "placeholder": "الرمزيه..."
     },
     "save": "حفظ"
+  },
+  "about": {
+    "lincebiVersion": "نسخة LinceBI:",
+    "biServerVersion": "نسخة BI Server:"
   },
   "administration": {
     "administration": "إدارة",

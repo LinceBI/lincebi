@@ -1,6 +1,8 @@
 import { initialGlobalUserSettings, initialUserSettings } from '@/userSettings';
 
 export default () => ({
+	linceBiVersion: process.env.VUE_APP_VERSION,
+	biServerVersion: '',
 	userId: '',
 	canCreate: false,
 	canAdminister: false,

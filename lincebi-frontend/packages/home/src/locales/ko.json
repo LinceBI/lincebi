@@ -22,6 +22,7 @@
     },
     "settings": "설정",
     "profile": "프로필",
+    "about": "정보",
     "showMenuBar": "메뉴바 표시",
     "showToolBar": "툴바 표시",
     "showHiddenFiles": "숨김 파일 표시",
@@ -96,6 +97,10 @@
       "placeholder": "아바타..."
     },
     "save": "저장"
+  },
+  "about": {
+    "lincebiVersion": "LinceBI 버전:",
+    "biServerVersion": "BI Server 버전:"
   },
   "administration": {
     "administration": "관리",

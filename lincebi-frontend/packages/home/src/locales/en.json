@@ -22,6 +22,7 @@
     },
     "settings": "Settings",
     "profile": "Profile",
+    "about": "About",
     "showMenuBar": "Show menu bar",
     "showToolBar": "Show tool bar",
     "showHiddenFiles": "Show hidden files",
@@ -96,6 +97,10 @@
       "placeholder": "Avatar..."
     },
     "save": "Save"
+  },
+  "about": {
+    "linceBiVersion": "LinceBI version:",
+    "biServerVersion": "BI Server version:"
   },
   "administration": {
     "administration": "Administration",
