@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@lincebi/frontend",
-  "packageManager": "pnpm@7.11.0",
+  "packageManager": "pnpm@7.13.1",
   "scripts": {
     "lint": "pnpm -r run lint",
     "build": "pnpm -r run build",
@@ -9,6 +9,6 @@
     "clean": "pnpm -r run clean"
   },
   "devDependencies": {
-    "@datadog/datadog-ci": "~1.14.2"
+    "@datadog/datadog-ci": "~1.15.0"
   }
 }
