@@ -3,5 +3,8 @@
 		"module": "commonjs",
 		"target": "esnext"
 	},
+	"vueCompilerOptions": {
+		"target": 2.7
+	},
 	"include": ["./lincebi-frontend/packages/*/src/**/*"]
 }
