@@ -73,7 +73,7 @@ export const setRepositoryFile = (state, file) => {
 	}
 
 	// If "isHome" differs, update "home" user setting.
-	if (file.isHome !== currentLocation.isHome) {
+	if ('isHome' in file && file.isHome !== currentLocation.isHome) {
 		const oldHomeFiles = safeJSON.parse(state.userSettings.home, []);
 		const newHomeFiles = file.isHome
 			? [...oldHomeFiles, { fullPath: file.path }]
@@ -82,7 +82,7 @@ export const setRepositoryFile = (state, file) => {
 	}
 
 	// If "isGlobal" differs, update "global" global user setting.
-	if (file.isGlobal !== currentLocation.isGlobal) {
+	if ('isGlobal' in file && file.isGlobal !== currentLocation.isGlobal) {
 		const oldGlobalFiles = safeJSON.parse(state.globalUserSettings.global, []);
 		const newGlobalFiles = file.isGlobal
 			? [...oldGlobalFiles, { fullPath: file.path }]
