@@ -72,22 +72,30 @@ export const setRepositoryFile = (state, file) => {
 		}
 	}
 
-	// If "isHome" differs, update "home" user setting.
-	if ('isHome' in file && file.isHome !== currentLocation.isHome) {
-		const oldHomeFiles = safeJSON.parse(state.userSettings.home, []);
-		const newHomeFiles = file.isHome
-			? [...oldHomeFiles, { fullPath: file.path }]
-			: oldHomeFiles.filter((entry) => entry.fullPath !== file.path);
-		state.userSettings.home = safeJSON.stringify(newHomeFiles, '[]');
+	// If some file properties differ, update global user settings.
+	for (const entry of [{ property: 'isGlobal', setting: 'global' }]) {
+		if (entry.property in file && file[entry.property] !== currentLocation[entry.property]) {
+			const oldFiles = safeJSON.parse(state.globalUserSettings[entry.setting], []);
+			const newFiles = file[entry.property]
+				? [...oldFiles, { fullPath: file.path }]
+				: oldFiles.filter((entry) => entry.fullPath !== file.path);
+			state.globalUserSettings[entry.setting] = safeJSON.stringify(newFiles, '[]');
+		}
 	}
 
-	// If "isGlobal" differs, update "global" global user setting.
-	if ('isGlobal' in file && file.isGlobal !== currentLocation.isGlobal) {
-		const oldGlobalFiles = safeJSON.parse(state.globalUserSettings.global, []);
-		const newGlobalFiles = file.isGlobal
-			? [...oldGlobalFiles, { fullPath: file.path }]
-			: oldGlobalFiles.filter((entry) => entry.fullPath !== file.path);
-		state.globalUserSettings.global = safeJSON.stringify(newGlobalFiles, '[]');
+	// If some file properties differ, update user settings.
+	for (const entry of [
+		{ property: 'isHome', setting: 'home' },
+		{ property: 'isFavorite', setting: 'favorites' },
+		{ property: 'isRecent', setting: 'recent' },
+	]) {
+		if (entry.property in file && file[entry.property] !== currentLocation[entry.property]) {
+			const oldFiles = safeJSON.parse(state.userSettings[entry.setting], []);
+			const newFiles = file[entry.property]
+				? [...oldFiles, { fullPath: file.path }]
+				: oldFiles.filter((entry) => entry.fullPath !== file.path);
+			state.userSettings[entry.setting] = safeJSON.stringify(newFiles, '[]');
+		}
 	}
 
 	// Update repository file.
