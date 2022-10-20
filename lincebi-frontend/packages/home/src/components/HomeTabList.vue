@@ -162,6 +162,9 @@ export default {
 			set(tabs) {
 				// Filter fixed tabs.
 				this.localTabs = differenceWith(tabs, this.fixedTabs, (a, b) => a.name === b.name);
+
+				// Update remote tabs.
+				this.remoteTabs = this.localTabs;
 			},
 		},
 		// Fixed tabs will never be stored server side.
@@ -222,9 +225,6 @@ export default {
 
 				return tab;
 			});
-		},
-		localTabs(localTabs) {
-			this.remoteTabs = localTabs;
 		},
 	},
 	mounted() {
@@ -298,14 +298,12 @@ export default {
 				animation: 150,
 				filter: '.nav-item:not(.draggable)',
 				preventOnFilter: false,
-				onEnd: (event) => {
-					this.tabIndex = event.newIndex;
-				},
 				onMove: (event) =>
 					event.dragged.classList.contains('draggable') &&
 					event.related.classList.contains('draggable'),
 				onUpdate: (event) => {
 					this.tabs = move(this.tabs.slice(), event.oldIndex, event.newIndex);
+					this.tabIndex = event.newIndex;
 				},
 			});
 		},
