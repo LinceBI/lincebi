@@ -105,7 +105,7 @@ export default {
 							enabled: true,
 							id: 'search-favorites',
 							name: this.$t('sidebar.favorites'),
-							icon: ['fas', 'star'],
+							icon: ['fas', 'heart'],
 							click: () => {
 								router
 									.push({

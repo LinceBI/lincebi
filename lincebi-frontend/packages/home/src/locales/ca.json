@@ -63,6 +63,8 @@
     "cancel": "Cancel·lar",
     "global": "Global",
     "home": "Inici",
+    "favorites": "Favorits",
+    "recents": "Recents",
     "sort": {
       "title": "Títol",
       "extension": "Tipus",

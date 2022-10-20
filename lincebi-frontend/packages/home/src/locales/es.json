@@ -63,6 +63,8 @@
     "cancel": "Cancelar",
     "global": "Global",
     "home": "Inicio",
+    "favorites": "Favoritos",
+    "recents": "Recientes",
     "sort": {
       "title": "Título",
       "extension": "Tipo",

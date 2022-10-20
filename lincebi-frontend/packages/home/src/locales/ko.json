@@ -63,6 +63,8 @@
     "cancel": "취소",
     "global": "전역",
     "home": "홈",
+    "favorites": "즐겨찾기",
+    "recents": "최근",
     "sort": {
       "title": "제목",
       "extension": "타입",

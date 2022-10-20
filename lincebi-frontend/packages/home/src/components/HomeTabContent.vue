@@ -93,15 +93,19 @@ export default {
 				}
 
 				if (this.tab.type === 'global') {
-					const setting = store.state.globalUserSettings.global;
+					const setting = store.state.globalUserSettings[this.tab.type];
 					const entries = safeJSON.parse(setting, []);
 					for (const entry of entries) {
 						if (store.getters.repositoryMap.has(entry.fullPath)) {
 							files.push(store.getters.repositoryMap.get(entry.fullPath));
 						}
 					}
-				} else if (this.tab.type === 'home') {
-					const setting = store.state.userSettings.home;
+				} else if (
+					this.tab.type === 'home' ||
+					this.tab.type === 'favorites' ||
+					this.tab.type === 'recent'
+				) {
+					const setting = store.state.userSettings[this.tab.type];
 					const entries = safeJSON.parse(setting, []);
 					for (const entry of entries) {
 						if (store.getters.repositoryMap.has(entry.fullPath)) {
@@ -149,16 +153,20 @@ export default {
 						lastUse: Date.now(),
 					}));
 					store.dispatch('updateGlobalUserSettings', {
-						global: safeJSON.stringify(entries, '[]'),
+						[this.tab.type]: safeJSON.stringify(entries, '[]'),
 					});
-				} else if (this.tab.type === 'home') {
+				} else if (
+					this.tab.type === 'home' ||
+					this.tab.type === 'favorites' ||
+					this.tab.type === 'recent'
+				) {
 					const entries = files.map((file) => ({
 						fullPath: file.path,
 						title: file.title,
 						lastUse: Date.now(),
 					}));
 					store.dispatch('updateUserSettings', {
-						home: safeJSON.stringify(entries, '[]'),
+						[this.tab.type]: safeJSON.stringify(entries, '[]'),
 					});
 				} else if (this.tab.type === 'tag') {
 					// Unimplemented.
