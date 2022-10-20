@@ -42,7 +42,6 @@
     "logout": "Sortida"
   },
   "home": {
-    "useButtonToCreateTab": "Utilitzi el botó + per a crear una nova pestanya",
     "filesWillAppearHere": "Els arxius que etiqueti apareixeran aquí",
     "createTab": "Crear pestanya",
     "tabName": {

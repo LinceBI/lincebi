@@ -42,7 +42,6 @@
     "logout": "Salir"
   },
   "home": {
-    "useButtonToCreateTab": "Utilice el botón + para crear una nueva pestaña",
     "filesWillAppearHere": "Los archivos que etiquete aparecerán aquí",
     "createTab": "Crear pestaña",
     "tabName": {

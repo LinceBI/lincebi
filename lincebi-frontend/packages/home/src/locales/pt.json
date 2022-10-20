@@ -42,7 +42,6 @@
     "logout": "Sair"
   },
   "home": {
-    "useButtonToCreateTab": "Use o botão + para criar uma nova aba",
     "filesWillAppearHere": "Arquivos selecionados aparecerão aqui",
     "createTab": "Criar aba",
     "tabName": {

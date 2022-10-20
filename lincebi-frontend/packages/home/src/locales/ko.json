@@ -42,7 +42,6 @@
     "logout": "로그아웃"
   },
   "home": {
-    "useButtonToCreateTab": "+ 버튼을 사용하여 새 탭을 만듭니다.",
     "filesWillAppearHere": "태그를 지정한 파일이 여기에 표시됩니다.",
     "createTab": "탭 생성",
     "tabName": {

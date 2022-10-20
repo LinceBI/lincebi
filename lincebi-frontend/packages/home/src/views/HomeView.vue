@@ -1,19 +1,29 @@
 <template>
 	<div class="home-view">
 		<home-slider class="home-slider" />
-		<home-tabs class="home-tabs" />
+		<div class="home-tabs">
+			<home-tab-list :tab.sync="tab" />
+			<home-tab-content :tab.sync="tab" />
+		</div>
 	</div>
 </template>
 
 <script>
 import HomeSlider from '@/components/HomeSlider.vue';
-import HomeTabs from '@/components/HomeTabs.vue';
+import HomeTabList from '@/components/HomeTabList';
+import HomeTabContent from '@/components/HomeTabContent';
 
 export default {
 	name: 'HomeView',
 	components: {
 		HomeSlider,
-		HomeTabs,
+		HomeTabList,
+		HomeTabContent,
+	},
+	data() {
+		return {
+			tab: null,
+		};
 	},
 };
 </script>

@@ -42,7 +42,6 @@
     "logout": "الخروج"
   },
   "home": {
-    "useButtonToCreateTab": "استخدم الزر + لإنشاء علامة تبويب جديدة",
     "filesWillAppearHere": "ستظهر الملفات التي تقوم بالإشارة هنا",
     "createTab": "إنشاء علامة تبويب",
     "tabName": {
