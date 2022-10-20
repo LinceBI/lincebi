@@ -222,7 +222,7 @@ export default {
 		flex-basis: calc(#{100% / 1} - #{$grid-gutter-width});
 
 		@for $i from 0 through 10 {
-			@media (min-width: 672px + (320px * $i)) {
+			@media (min-width: (672px + (320px * $i))) {
 				flex-basis: calc(#{100% / ($i + 2)} - #{$grid-gutter-width});
 			}
 		}
