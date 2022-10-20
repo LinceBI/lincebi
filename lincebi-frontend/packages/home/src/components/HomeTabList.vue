@@ -72,7 +72,7 @@
 						autofocus
 					/>
 					<b-form-datalist :id="`new-tab-name-datalist-${uniqueId}`">
-						<option v-for="t in localTabs" :key="t.name">
+						<option v-for="t in storedTabs" :key="t.name">
 							{{ t.name }}
 						</option>
 					</b-form-datalist>
@@ -133,8 +133,8 @@ export default {
 		return {
 			// Selected tab index.
 			tabIndex: 0,
-			// Local tabs are populated with remote tabs.
-			localTabs: [],
+			// Internal tabs are populated with remote tabs.
+			internalStoredTabs: [],
 			// New tab template.
 			newTab: {
 				type: 'tag',
@@ -156,44 +156,40 @@ export default {
 	computed: {
 		tabs: {
 			get() {
-				// Concatenate fixed tabs and local tabs.
-				return [...this.fixedTabs, ...this.localTabs];
+				// Prepend fixed tabs.
+				return [
+					{
+						type: 'global',
+						name: this.$t('home.global'),
+						color: null,
+						icon: { prefix: 'fas', iconName: 'globe' },
+						isRemovable: false,
+						isDraggable: false,
+						isContentDraggable: this.canAdminister,
+						isContentSortable: false,
+					},
+					{
+						type: 'home',
+						name: this.$t('home.home'),
+						color: null,
+						icon: { prefix: 'fas', iconName: 'house' },
+						isRemovable: false,
+						isDraggable: false,
+						isContentDraggable: true,
+						isContentSortable: false,
+					},
+					...this.internalStoredTabs,
+				];
 			},
 			set(tabs) {
 				// Filter fixed tabs.
-				this.localTabs = differenceWith(tabs, this.fixedTabs, (a, b) => a.name === b.name);
+				this.internalStoredTabs = tabs.filter((tab) => tab.type === 'tag');
 
-				// Update remote tabs.
-				this.remoteTabs = this.localTabs;
+				// Update stored tabs.
+				this.storedTabs = this.internalStoredTabs;
 			},
 		},
-		// Fixed tabs will never be stored server side.
-		fixedTabs() {
-			return [
-				{
-					type: 'global',
-					name: this.$t('home.global'),
-					color: null,
-					icon: { prefix: 'fas', iconName: 'globe' },
-					isRemovable: false,
-					isDraggable: false,
-					isContentDraggable: this.canAdminister,
-					isContentSortable: false,
-				},
-				{
-					type: 'home',
-					name: this.$t('home.home'),
-					color: null,
-					icon: { prefix: 'fas', iconName: 'house' },
-					isRemovable: false,
-					isDraggable: false,
-					isContentDraggable: true,
-					isContentSortable: false,
-				},
-			];
-		},
-		// Fetch and set remote tabs.
-		remoteTabs: {
+		storedTabs: {
 			get() {
 				const k = `${this.namespace}.tabs`;
 				return safeJSON.parse(store.state.userSettings[k], []);
@@ -212,11 +208,8 @@ export default {
 		tabIndex(tabIndex) {
 			this.$emit('update:tab', this.tabs[tabIndex]);
 		},
-		tabs(tabs) {
-			this.$emit('update:tab', tabs[this.tabIndex]);
-		},
-		remoteTabs(remoteTabs) {
-			this.localTabs = cloneDeep(remoteTabs).map((tab) => {
+		storedTabs(storedTabs) {
+			this.internalStoredTabs = cloneDeep(storedTabs).map((tab) => {
 				// Replace legacy "sort" property with "isContentSortable".
 				if ('sort' in tab) {
 					tab.isContentSortable = true;
@@ -226,6 +219,9 @@ export default {
 				return tab;
 			});
 		},
+	},
+	created() {
+		this.$emit('update:tab', this.tabs[this.tabIndex]);
 	},
 	mounted() {
 		this.$nextTick(() => {
