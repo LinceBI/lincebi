@@ -1,6 +1,6 @@
 <template>
 	<div class="home-tab-content">
-		<div v-if="tab && !tab.isContentDraggable" class="home-card-order">
+		<div v-if="tab?.isContentSortable" class="home-card-order">
 			<div class="input-group input-group-sm">
 				<select v-model="sort.selected" class="form-control">
 					<option v-for="option in sort.options" :key="option.value" :value="option.value">

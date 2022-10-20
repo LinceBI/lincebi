@@ -144,6 +144,7 @@ export default {
 				isRemovable: true,
 				isDraggable: true,
 				isContentDraggable: false,
+				isContentSortable: true,
 			},
 			// Variables to control the display of modals.
 			newTabModalShow: false,
@@ -174,6 +175,7 @@ export default {
 					isRemovable: false,
 					isDraggable: false,
 					isContentDraggable: this.canAdminister,
+					isContentSortable: false,
 				},
 				{
 					type: 'home',
@@ -183,6 +185,7 @@ export default {
 					isRemovable: false,
 					isDraggable: false,
 					isContentDraggable: true,
+					isContentSortable: false,
 				},
 			];
 		},
@@ -210,7 +213,15 @@ export default {
 			this.$emit('update:tab', tabs[this.tabIndex]);
 		},
 		remoteTabs(remoteTabs) {
-			this.localTabs = remoteTabs;
+			this.localTabs = cloneDeep(remoteTabs).map((tab) => {
+				// Replace legacy "sort" property with "isContentSortable".
+				if ('sort' in tab) {
+					tab.isContentSortable = true;
+					delete tab.sort;
+				}
+
+				return tab;
+			});
 		},
 		localTabs(localTabs) {
 			this.remoteTabs = localTabs;
