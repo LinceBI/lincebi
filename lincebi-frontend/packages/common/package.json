@@ -5,7 +5,7 @@
     "lint": "vue-cli-service lint --no-fix"
   },
   "dependencies": {
-    "@datadog/browser-logs": "~4.21.1",
+    "@datadog/browser-logs": "~4.22.0",
     "@fortawesome/fontawesome-svg-core": "~6.2.0",
     "@fortawesome/free-brands-svg-icons": "~6.2.0",
     "@fortawesome/free-regular-svg-icons": "~6.2.0",
@@ -15,28 +15,28 @@
     "bootstrap-v4-rtl": "~4.6.2-1",
     "bootstrap-vue": "~2.22.0",
     "compressorjs": "~1.1.1",
-    "core-js": "~3.25.5",
+    "core-js": "~3.26.0",
     "jdenticon": "~3.2.0",
     "jquery": "~3.6.1",
     "lodash": "~4.17.21",
     "popper.js": "~1.16.1",
     "unfetch": "~4.2.0",
-    "vue": "~2.7.10"
+    "vue": "~2.7.13"
   },
   "devDependencies": {
-    "@babel/core": "~7.19.3",
+    "@babel/core": "~7.19.6",
     "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-eslint": "~5.0.8",
     "@vue/cli-service": "~5.0.8",
-    "eslint": "~8.24.0",
+    "eslint": "~8.26.0",
     "eslint-config-prettier": "~8.5.0",
     "eslint-plugin-prettier": "~4.2.1",
     "eslint-plugin-vue": "~9.6.0",
     "prettier": "~2.7.1",
     "rimraf": "~3.0.2",
     "sass": "~1.55.0",
-    "sass-loader": "~13.0.2",
-    "vue-template-compiler": "~2.7.10",
+    "sass-loader": "~13.1.0",
+    "vue-template-compiler": "~2.7.13",
     "webpack": "~5.74.0"
   }
 }

@@ -3,12 +3,12 @@
 # This file is expected to be part of source control.
 ch.qos.reload4j:reload4j:1.2.19=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 com.ethlo.time:itu:1.7.0=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-com.fasterxml.jackson.core:jackson-annotations:2.13.4=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-com.fasterxml.jackson.core:jackson-core:2.13.4=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-com.fasterxml.jackson.core:jackson-databind:2.13.4=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-com.fasterxml.jackson:jackson-bom:2.13.4=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+com.fasterxml.jackson.core:jackson-annotations:2.14.0-rc1=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+com.fasterxml.jackson.core:jackson-core:2.14.0-rc1=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+com.fasterxml.jackson.core:jackson-databind:2.14.0-rc1=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+com.fasterxml.jackson:jackson-bom:2.14.0-rc1=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 com.github.stephenc.jcip:jcip-annotations:1.0-1=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-com.microsoft.azure:msal4j:1.13.1=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+com.microsoft.azure:msal4j:1.13.2=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 com.networknt:json-schema-validator:1.0.73=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 com.nimbusds:content-type:2.2=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 com.nimbusds:lang-tag:1.6=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
@@ -31,7 +31,7 @@ org.apache.commons:commons-lang3:3.12.0=compileClasspath,runtimeClasspath,testCo
 org.apiguardian:apiguardian-api:1.1.2=testCompileClasspath
 org.attoparser:attoparser:2.0.5.RELEASE=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 org.codehaus.enunciate:enunciate-core-annotations:1.31=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-org.ehcache:ehcache:3.10.1=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+org.ehcache:ehcache:3.10.2=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 org.glassfish.jaxb:jaxb-runtime:2.4.0-b180830.0438=runtimeClasspath,testRuntimeClasspath
 org.glassfish.jaxb:txw2:2.4.0-b180830.0438=runtimeClasspath,testRuntimeClasspath
 org.javassist:javassist:3.20.0-GA=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath

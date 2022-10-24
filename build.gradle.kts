@@ -1,9 +1,9 @@
 plugins {
-	id("nebula.dependency-lock") version "12.7.1"
+	id("com.netflix.nebula.dependency-lock") version "13.0.0"
 }
 
 subprojects {
-	apply(plugin = "nebula.dependency-lock")
+	apply(plugin = "com.netflix.nebula.dependency-lock")
 
 	tasks.register<DependencyReportTask>("dependenciesForAll")
 }
