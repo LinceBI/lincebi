@@ -4,6 +4,29 @@ import generateSvg from '@lincebi/frontend-common/src/generateSvg';
 export const namespace = 'lincebi';
 
 export const globalUserSettings = {
+	[`${namespace}.globalTabs`]: {
+		initial: '[]',
+		default: JSON.stringify([
+			{
+				type: 'global',
+				name: 't:home.global',
+				color: null,
+				icon: { prefix: 'fas', iconName: 'globe' },
+				isGlobal: true,
+				isRemovable: false,
+				isDraggable: false,
+			},
+			{
+				type: 'home',
+				name: 't:home.home',
+				color: null,
+				icon: { prefix: 'fas', iconName: 'house' },
+				isGlobal: true,
+				isRemovable: false,
+				isDraggable: false,
+			},
+		]),
+	},
 	global: {
 		initial: '[]',
 		default: '[]',

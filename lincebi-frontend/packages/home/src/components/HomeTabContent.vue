@@ -1,6 +1,6 @@
 <template>
 	<div class="home-tab-content">
-		<div v-if="tab?.isContentSortable" class="home-card-order">
+		<div v-if="tab?.type === 'tag'" class="home-card-order">
 			<div class="input-group input-group-sm">
 				<select v-model="sort.selected" class="form-control">
 					<option v-for="option in sort.options" :key="option.value" :value="option.value">
@@ -25,7 +25,7 @@
 				</div>
 			</div>
 		</div>
-		<home-card-deck v-else :files.sync="files" :draggable="tab?.isContentDraggable" />
+		<home-card-deck v-else :files.sync="files" :draggable="tab?.type !== 'tag'" />
 	</div>
 </template>
 
@@ -81,6 +81,9 @@ export default {
 		};
 	},
 	computed: {
+		canAdminister() {
+			return store.state.canAdminister;
+		},
 		isRepositoryLoading() {
 			return store.state.isRepositoryLoading;
 		},

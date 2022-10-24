@@ -9,12 +9,13 @@
 				:class="{
 					'home-tab': true,
 					'nav-item': true,
-					draggable: t.isDraggable,
+					global: t.isGlobal,
+					draggable: t.isDraggable && (!t.isGlobal || canAdminister),
 				}"
 				:data-v-step="`home-tab-${t.type}`"
 			>
 				<div
-					:title="t.name"
+					:title="getTabName(t)"
 					:class="{ 'nav-link': true, active: index === tabIndex }"
 					:style="getTabStyle(t, index)"
 					tabindex="0"
@@ -23,10 +24,10 @@
 				>
 					<font-awesome-icon v-if="t.icon" :icon="t.icon" class="fa-fw mr-2" />
 					<span class="text-truncate">
-						{{ t.name }}
+						{{ getTabName(t) }}
 					</span>
 					<button
-						v-if="t.isRemovable"
+						v-if="t.isRemovable && (!t.isGlobal || canAdminister)"
 						type="button"
 						class="home-tab-close btn"
 						@click="closeTabModalShow = true"
@@ -72,7 +73,7 @@
 						autofocus
 					/>
 					<b-form-datalist :id="`new-tab-name-datalist-${uniqueId}`">
-						<option v-for="t in storedTabs" :key="t.name">
+						<option v-for="t in tabs.filter((t) => t.type === 'tag')" :key="t.name">
 							{{ t.name }}
 						</option>
 					</b-form-datalist>
@@ -83,6 +84,7 @@
 				<b-form-group :label="$t('home.tabIcon.label')" label-class="d-flex">
 					<b-form-icon-swatch v-model="newTab.icon" />
 				</b-form-group>
+				<b-form-checkbox v-if="canAdminister" v-model="newTab.isGlobal">Is global</b-form-checkbox>
 			</form>
 		</b-modal>
 		<!-- Close tab modal -->
@@ -105,6 +107,8 @@
 import Sortable from 'sortablejs';
 
 import cloneDeep from 'lodash/cloneDeep';
+import isEqual from 'lodash/isEqual';
+import partition from 'lodash/partition';
 
 import fuzzyEquals from '@lincebi/frontend-common/src/fuzzyEquals';
 import isTouchDevice from '@lincebi/frontend-common/src/isTouchDevice';
@@ -112,6 +116,7 @@ import move from '@lincebi/frontend-common/src/move';
 import safeJSON from '@lincebi/frontend-common/src/safeJSON';
 
 import store from '@/store';
+import i18n from '@/i18n';
 
 import BFormColorSwatch from '@lincebi/frontend-common/src/components/BFormColorSwatch.vue';
 import BFormIconSwatch from '@lincebi/frontend-common/src/components/BFormIconSwatch.vue';
@@ -131,19 +136,19 @@ export default {
 	data() {
 		return {
 			// Selected tab index.
-			tabIndex: 0,
+			tabIndex: -1,
 			// Internal tabs are populated with remote tabs.
-			internalStoredTabs: [],
+			internalGlobalTabs: [],
+			internalUserTabs: [],
 			// New tab template.
 			newTab: {
 				type: 'tag',
 				name: '',
 				color: null,
 				icon: null,
+				isGlobal: false,
 				isRemovable: true,
 				isDraggable: true,
-				isContentDraggable: false,
-				isContentSortable: true,
 			},
 			// Variables to control the display of modals.
 			newTabModalShow: false,
@@ -155,40 +160,24 @@ export default {
 	computed: {
 		tabs: {
 			get() {
-				// Prepend fixed tabs.
-				return [
-					{
-						type: 'global',
-						name: this.$t('home.global'),
-						color: null,
-						icon: { prefix: 'fas', iconName: 'globe' },
-						isRemovable: false,
-						isDraggable: false,
-						isContentDraggable: this.canAdminister,
-						isContentSortable: false,
-					},
-					{
-						type: 'home',
-						name: this.$t('home.home'),
-						color: null,
-						icon: { prefix: 'fas', iconName: 'house' },
-						isRemovable: false,
-						isDraggable: false,
-						isContentDraggable: true,
-						isContentSortable: false,
-					},
-					...this.internalStoredTabs,
-				];
+				return [...this.internalGlobalTabs, ...this.internalUserTabs];
 			},
 			set(tabs) {
-				// Filter fixed tabs.
-				this.internalStoredTabs = tabs.filter((tab) => tab.type === 'tag');
-
-				// Update stored tabs.
-				this.storedTabs = this.internalStoredTabs;
+				[this.internalGlobalTabs, this.internalUserTabs] = partition(tabs, 'isGlobal');
 			},
 		},
-		storedTabs: {
+		globalTabs: {
+			get() {
+				const k = `${this.namespace}.globalTabs`;
+				return safeJSON.parse(store.state.globalUserSettings[k], []);
+			},
+			set(tabs) {
+				const k = `${this.namespace}.globalTabs`;
+				const v = safeJSON.stringify(tabs, '[]');
+				store.dispatch('updateGlobalUserSettings', { [k]: v });
+			},
+		},
+		userTabs: {
 			get() {
 				const k = `${this.namespace}.tabs`;
 				return safeJSON.parse(store.state.userSettings[k], []);
@@ -207,20 +196,28 @@ export default {
 		tabIndex(tabIndex) {
 			this.$emit('update:tab', this.tabs[tabIndex]);
 		},
-		storedTabs(storedTabs) {
-			this.internalStoredTabs = cloneDeep(storedTabs).map((tab) => {
-				// Replace legacy "sort" property with "isContentSortable".
-				if ('sort' in tab) {
-					tab.isContentSortable = true;
-					delete tab.sort;
-				}
-
-				return tab;
-			});
+		globalTabs(globalTabs) {
+			if (!isEqual(this.internalGlobalTabs, globalTabs)) {
+				this.internalGlobalTabs = globalTabs;
+				this.tabIndex = 0;
+			}
 		},
-	},
-	created() {
-		this.$emit('update:tab', this.tabs[this.tabIndex]);
+		internalGlobalTabs(internalGlobalTabs) {
+			if (!isEqual(this.globalTabs, internalGlobalTabs)) {
+				this.globalTabs = internalGlobalTabs;
+			}
+		},
+		userTabs(userTabs) {
+			if (!isEqual(this.internalUserTabs, userTabs)) {
+				this.internalUserTabs = userTabs;
+				this.tabIndex = 0;
+			}
+		},
+		internalUserTabs(internalUserTabs) {
+			if (!isEqual(this.userTabs, internalUserTabs)) {
+				this.userTabs = internalUserTabs;
+			}
+		},
 	},
 	mounted() {
 		this.$nextTick(() => {
@@ -272,12 +269,19 @@ export default {
 			}
 		},
 		removeTab(removeTabIndex) {
-			this.tabs = this.tabs.filter((tab, index) => {
-				return index !== removeTabIndex || !tab.isRemovable;
+			this.tabs = this.tabs.filter((_, index) => {
+				return index !== removeTabIndex;
 			});
 			if (this.tabIndex > 0 && this.tabIndex >= removeTabIndex) {
 				this.tabIndex--;
 			}
+		},
+		getTabName(tab) {
+			// Replace tab name with translated string.
+			if (tab.name.startsWith('t:')) {
+				return i18n.t(tab.name.replace(/^t:/, ''));
+			}
+			return tab.name;
 		},
 		getTabStyle(tab, index) {
 			return index === this.tabIndex ? { backgroundColor: tab.color } : { color: tab.color };
@@ -293,9 +297,15 @@ export default {
 				animation: 150,
 				filter: '.nav-item:not(.draggable)',
 				preventOnFilter: false,
-				onMove: (event) =>
-					event.dragged.classList.contains('draggable') &&
-					event.related.classList.contains('draggable'),
+				onMove: (event) => {
+					const dcl = event.dragged.classList;
+					const rcl = event.related.classList;
+					return (
+						dcl.contains('draggable') &&
+						rcl.contains('draggable') &&
+						dcl.contains('global') === rcl.contains('global')
+					);
+				},
 				onUpdate: (event) => {
 					this.tabs = move(this.tabs.slice(), event.oldIndex, event.newIndex);
 					this.tabIndex = event.newIndex;
