@@ -105,7 +105,6 @@
 import Sortable from 'sortablejs';
 
 import cloneDeep from 'lodash/cloneDeep';
-import differenceWith from 'lodash/differenceWith';
 
 import fuzzyEquals from '@lincebi/frontend-common/src/fuzzyEquals';
 import isTouchDevice from '@lincebi/frontend-common/src/isTouchDevice';
