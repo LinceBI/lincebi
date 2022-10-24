@@ -92,6 +92,27 @@
 				</span>
 			</b-list-group-item>
 		</b-list-group>
+		<!--
+		<b-list-group class="mb-4">
+			<b-list-group-item
+				v-if="canAdminister"
+				button
+				variant="danger"
+				@click="resetGlobalUserSettings"
+			>
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'arrows-rotate']" />
+				<span class="lbl">
+					{{ $t('administration.resetGlobalUserSettings') }}
+				</span>
+			</b-list-group-item>
+			<b-list-group-item button variant="danger" @click="resetUserSettings">
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'arrows-rotate']" />
+				<span class="lbl">
+					{{ $t('administration.resetUserSettings') }}
+				</span>
+			</b-list-group-item>
+		</b-list-group>
+		-->
 	</b-container>
 </template>
 
@@ -223,6 +244,12 @@ export default {
 					solid: true,
 				});
 			}
+		},
+		async resetGlobalUserSettings() {
+			store.dispatch('resetGlobalUserSettings');
+		},
+		async resetUserSettings() {
+			store.dispatch('resetUserSettings');
 		},
 	},
 };

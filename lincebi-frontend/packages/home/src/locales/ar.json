@@ -116,6 +116,8 @@
     "refreshGlobalVariables": "تحديث المتغيرات العمومية",
     "refreshMondrianSchemaCache": "تحديث ذاكرة التخزين المؤقت مخطط موندريان",
     "clearCdaCache": "مسح ذاكرة التخزين المؤقت CDA",
+    "resetGlobalUserSettings": "Reset global user settings",
+    "resetUserSettings": "Reset user settings",
     "resourceRefreshSuccess": "تم تحديث المورد بنجاح",
     "resourceRefreshError": "خطأ أثناء تحديث المورد",
     "cacheClearSuccess": "تم مسح ذاكرة التخزين المؤقت بنجاح",

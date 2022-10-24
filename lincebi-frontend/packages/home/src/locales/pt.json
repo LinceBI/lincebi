@@ -116,6 +116,8 @@
     "refreshGlobalVariables": "Atualizar variáveis globais",
     "refreshMondrianSchemaCache": "Atualizar Mondrian schema cache",
     "clearCdaCache": "Limpar CDA cache",
+    "resetGlobalUserSettings": "Reset global user settings",
+    "resetUserSettings": "Reset user settings",
     "resourceRefreshSuccess": "Recurso atualizado com sucesso",
     "resourceRefreshError": "Erro ao atualizar recurso",
     "cacheClearSuccess": "Cache limpo com sucesso",

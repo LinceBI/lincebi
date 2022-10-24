@@ -116,6 +116,8 @@
     "refreshGlobalVariables": "Actualizar variables globals",
     "refreshMondrianSchemaCache": "Actualizar caché dels esquemes de Mondrian",
     "clearCdaCache": "Buidar caché de CDA",
+    "resetGlobalUserSettings": "Reset global user settings",
+    "resetUserSettings": "Reset user settings",
     "resourceRefreshSuccess": "Recurs actualitzat amb èxit",
     "resourceRefreshError": "Error en actualitzar el recurs",
     "cacheClearSuccess": "Caché buidada amb èxit",

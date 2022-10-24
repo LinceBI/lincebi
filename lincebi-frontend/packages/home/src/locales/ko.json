@@ -116,6 +116,8 @@
     "refreshGlobalVariables": "글로벌 변수 새로 고침",
     "refreshMondrianSchemaCache": "Mondrian 스키마 캐시 새로 고침",
     "clearCdaCache": "CDA 캐시 클리어",
+    "resetGlobalUserSettings": "Reset global user settings",
+    "resetUserSettings": "Reset user settings",
     "resourceRefreshSuccess": "리소스를 새로 고쳤습니다.",
     "resourceRefreshError": "리소스를 새로 고치는 중 오류 발생",
     "cacheClearSuccess": "캐시가 성공적으로 지워졌습니다.",
