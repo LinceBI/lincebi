@@ -56,6 +56,7 @@
       "label": "Icona de pestanya",
       "placeholder": "Icona de pestanya..."
     },
+    "isGlobal": "Is global",
     "deleteTab": "Eliminar pestanya",
     "tabWillBeDeleted": "La pestanya \"{name}\" serà eliminada.",
     "delete": "Eliminar",

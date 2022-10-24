@@ -56,6 +56,7 @@
       "label": "탭 아이콘",
       "placeholder": "탭 아이콘..."
     },
+    "isGlobal": "Is global",
     "deleteTab": "탭 삭제",
     "tabWillBeDeleted": "탭 \"{name}\" 이 삭제됩니다.",
     "delete": "삭제",

@@ -56,6 +56,7 @@
       "label": "رمز علامة التبويب",
       "placeholder": "رمز علامة التبويب..."
     },
+    "isGlobal": "Is global",
     "deleteTab": "حذف علامة التبويب",
     "tabWillBeDeleted": "سيتم حذف علامة التبويب \"{name}\".",
     "delete": "حذف",

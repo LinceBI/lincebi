@@ -84,7 +84,9 @@
 				<b-form-group :label="$t('home.tabIcon.label')" label-class="d-flex">
 					<b-form-icon-swatch v-model="newTab.icon" />
 				</b-form-group>
-				<b-form-checkbox v-if="canAdminister" v-model="newTab.isGlobal">Is global</b-form-checkbox>
+				<b-form-checkbox v-if="canAdminister" v-model="newTab.isGlobal">
+					{{ $t('home.isGlobal') }}
+				</b-form-checkbox>
 			</form>
 		</b-modal>
 		<!-- Close tab modal -->
