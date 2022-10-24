@@ -25,7 +25,11 @@
 				</div>
 			</div>
 		</div>
-		<home-card-deck v-else :files.sync="files" :draggable="tab?.type !== 'tag'" />
+		<home-card-deck
+			v-else
+			:files.sync="files"
+			:draggable="tab?.type !== 'tag' && (tab?.type !== 'global' || canAdminister)"
+		/>
 	</div>
 </template>
 
