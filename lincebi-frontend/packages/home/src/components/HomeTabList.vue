@@ -223,6 +223,8 @@ export default {
 	},
 	mounted() {
 		this.$nextTick(() => {
+			this.internalGlobalTabs = this.globalTabs;
+			this.internalUserTabs = this.userTabs;
 			this.updateSortable();
 		});
 	},
