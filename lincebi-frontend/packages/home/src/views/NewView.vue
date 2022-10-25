@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import stringCompare from '@lincebi/frontend-common/src/stringCompare';
-
 import eventBus from '@/eventBus';
 import router from '@/router';
 import store from '@/store';
@@ -272,7 +270,7 @@ export default {
 					...group,
 					tools: group.tools
 						.filter((tool) => tool.enabled)
-						.sort((a, b) => stringCompare(a.name, b.name)),
+						.sort((a, b) => a.name.localeCompare(b.name)),
 				}))
 				.filter((group) => group.tools.length > 0);
 		},

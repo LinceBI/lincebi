@@ -9,7 +9,9 @@
 				</select>
 				<div class="input-group-append">
 					<button class="btn btn-primary" type="button" @click="sort.asc = !sort.asc">
-						<font-awesome-icon :icon="['fas', `sort-amount-${sort.asc ? 'up' : 'down'}`]" />
+						<font-awesome-icon
+							:icon="['fas', `arrow-down-${sort.asc ? 'short-wide' : 'wide-short'}`]"
+						/>
 					</button>
 				</div>
 			</div>
@@ -34,9 +36,10 @@
 </template>
 
 <script>
+import orderBy from 'lodash/orderBy';
+
 import fuzzyEquals from '@lincebi/frontend-common/src/fuzzyEquals';
 import safeJSON from '@lincebi/frontend-common/src/safeJSON';
-import stringCompare from '@lincebi/frontend-common/src/stringCompare';
 
 import store from '@/store';
 
@@ -58,27 +61,27 @@ export default {
 			// Sort criteria.
 			sort: {
 				selected: 'title',
-				asc: false,
+				asc: true,
 				options: [
 					{
 						text: this.$t('home.sort.title'),
 						value: 'title',
-						type: String,
+						iteratee: (a) => a.title,
 					},
 					{
 						text: this.$t('home.sort.extension'),
 						value: 'extension',
-						type: String,
+						iteratee: (a) => a.extension,
 					},
 					{
 						text: this.$t('home.sort.created'),
 						value: 'created',
-						type: Date,
+						iteratee: (a) => new Date(a.created),
 					},
 					{
 						text: this.$t('home.sort.modified'),
 						value: 'modified',
-						type: Date,
+						iteratee: (a) => new Date(a.modified),
 					},
 				],
 			},
@@ -93,7 +96,7 @@ export default {
 		},
 		files: {
 			get() {
-				const files = [];
+				let files = [];
 
 				if (!this.tab) {
 					return files;
@@ -130,20 +133,17 @@ export default {
 						}
 					}
 
-					if (this.sort) {
-						const asc = this.sort.asc;
-						const option = this.sort.options.find((options) => {
-							return options.value === this.sort.selected;
-						});
-						const fallback = this.sort.options[0];
-						files.sort((a, b) => {
-							const comparison = stringCompare(a[option.value], b[option.value], option.type, asc);
-							if (comparison === 0 && option !== fallback) {
-								return stringCompare(a[fallback.value], b[fallback.value], fallback.type, asc);
-							}
-							return comparison;
-						});
+					let iteratee;
+					const remIteratees = [];
+					for (const option of this.sort.options) {
+						if (option.value === this.sort.selected) iteratee = option.iteratee;
+						else remIteratees.push(option.iteratee);
 					}
+					files = orderBy(
+						files,
+						[iteratee, ...remIteratees],
+						Array(this.sort.options.length).fill(this.sort.asc ? 'asc' : 'desc')
+					);
 				}
 
 				return files;
