@@ -46,17 +46,14 @@ public class FileMetadataTree {
 	@JsonProperty("isHidden")
 	private Boolean isHidden;
 
+	@JsonProperty("isHome")
+	private Boolean isHome;
+
 	@JsonProperty("isFavorite")
 	private Boolean isFavorite;
 
 	@JsonProperty("isRecent")
 	private Boolean isRecent;
-
-	@JsonProperty("isHome")
-	private Boolean isHome;
-
-	@JsonProperty("isGlobal")
-	private Boolean isGlobal;
 
 	@JsonProperty("isReadonly")
 	private Boolean isReadonly;
@@ -249,6 +246,20 @@ public class FileMetadataTree {
 		return this.isHidden != null;
 	}
 
+	@JsonProperty("isHome")
+	public Boolean getIsHome() {
+		return this.isHome;
+	}
+
+	@JsonProperty("isHome")
+	public void setIsHome(Boolean isHome) {
+		this.isHome = isHome;
+	}
+
+	public boolean hasIsHome() {
+		return this.isHome != null;
+	}
+
 	@JsonProperty("isFavorite")
 	public Boolean getIsFavorite() {
 		return this.isFavorite;
@@ -277,33 +288,6 @@ public class FileMetadataTree {
 		return this.isRecent != null;
 	}
 
-	@JsonProperty("isHome")
-	public Boolean getIsHome() {
-		return this.isHome;
-	}
-
-	@JsonProperty("isHome")
-	public void setIsHome(Boolean isHome) {
-		this.isHome = isHome;
-	}
-
-	public boolean hasIsHome() {
-		return this.isHome != null;
-	}
-
-	@JsonProperty("isGlobal")
-	public Boolean getIsGlobal() {
-		return this.isGlobal;
-	}
-
-	@JsonProperty("isGlobal")
-	public void setIsGlobal(Boolean isGlobal) {
-		this.isGlobal = isGlobal;
-	}
-
-	public boolean hasIsGlobal() {
-		return this.isGlobal != null;
-	}
 
 	@JsonProperty("isReadonly")
 	public Boolean getIsReadonly() {

@@ -56,13 +56,12 @@
       "label": "탭 아이콘",
       "placeholder": "탭 아이콘..."
     },
-    "isGlobal": "Is global",
+    "global": "전역",
     "deleteTab": "탭 삭제",
     "tabWillBeDeleted": "탭 \"{name}\" 이 삭제됩니다.",
     "delete": "삭제",
     "create": "생성",
     "cancel": "취소",
-    "global": "전역",
     "home": "홈",
     "favorites": "즐겨찾기",
     "recents": "최근",
@@ -117,8 +116,6 @@
     "refreshGlobalVariables": "글로벌 변수 새로 고침",
     "refreshMondrianSchemaCache": "Mondrian 스키마 캐시 새로 고침",
     "clearCdaCache": "CDA 캐시 클리어",
-    "resetGlobalUserSettings": "Reset global user settings",
-    "resetUserSettings": "Reset user settings",
     "resourceRefreshSuccess": "리소스를 새로 고쳤습니다.",
     "resourceRefreshError": "리소스를 새로 고치는 중 오류 발생",
     "cacheClearSuccess": "캐시가 성공적으로 지워졌습니다.",
@@ -150,13 +147,13 @@
         "title": "설정",
         "content": "플랫폼의 일반 옵션에 액세스합니다."
       },
-      "homeTabGlobal": {
-        "title": "전역 탭",
-        "content": "검색 도구에서 관리자가 선택한 파일은 전역 탭에 모든 사용자에게 표시됩니다."
-      },
       "homeTabHome": {
         "title": "홈 탭",
-        "content": "검색 도구에서 선택한 파일이 홈 탭에 나타납니다."
+        "content": "검색 도구에서 관리자가 선택한 파일은 홈 탭의 모든 사용자에게 표시됩니다."
+      },
+      "homeTabFavorites": {
+        "title": "즐겨찾기 탭",
+        "content": "검색 도구에서 선택한 파일이 즐겨찾기 탭에 나타납니다."
       },
       "homeTabNew": {
         "title": "추가 탭",

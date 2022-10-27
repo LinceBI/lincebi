@@ -8,15 +8,6 @@ export const globalUserSettings = {
 		initial: '[]',
 		default: JSON.stringify([
 			{
-				type: 'global',
-				name: 't:home.global',
-				color: null,
-				icon: { prefix: 'fas', iconName: 'globe' },
-				isGlobal: true,
-				isRemovable: false,
-				isDraggable: false,
-			},
-			{
 				type: 'home',
 				name: 't:home.home',
 				color: null,
@@ -25,9 +16,22 @@ export const globalUserSettings = {
 				isRemovable: false,
 				isDraggable: false,
 			},
+			{
+				type: 'favorites',
+				name: 't:home.favorites',
+				color: '#cc2328',
+				icon: { prefix: 'fas', iconName: 'heart' },
+				isGlobal: true,
+				isRemovable: false,
+				isDraggable: false,
+			},
 		]),
 	},
-	global: {
+	home: {
+		initial: '[]',
+		default: '[]',
+	},
+	/* DEPRECATED */ global: {
 		initial: '[]',
 		default: '[]',
 	},
@@ -70,11 +74,11 @@ export const userSettings = {
 		initial: 'true',
 		default: 'false',
 	},
-	home: {
+	favorites: {
 		initial: '[]',
 		default: '[]',
 	},
-	favorites: {
+	/* DEPRECATED */ home: {
 		initial: '[]',
 		default: '[]',
 	},
@@ -102,9 +106,6 @@ export const getUserSettings = (propName, isGlobal = false) => {
 };
 
 export const initialGlobalUserSettings = getUserSettings('initial', true);
-
 export const defaultGlobalUserSettings = getUserSettings('default', true);
-
 export const initialUserSettings = getUserSettings('initial', false);
-
 export const defaultUserSettings = getUserSettings('default', false);

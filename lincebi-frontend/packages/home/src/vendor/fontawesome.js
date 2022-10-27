@@ -29,7 +29,6 @@ Vue.component('FontAwesomeIcon', async () => {
 		import('@fortawesome/free-solid-svg-icons/faEarthEurope'),
 		import('@fortawesome/free-solid-svg-icons/faFolderOpen'),
 		import('@fortawesome/free-solid-svg-icons/faGear'),
-		import('@fortawesome/free-solid-svg-icons/faGlobe'),
 		import('@fortawesome/free-solid-svg-icons/faHeart'),
 		import('@fortawesome/free-solid-svg-icons/faHourglass'),
 		import('@fortawesome/free-solid-svg-icons/faHouse'),

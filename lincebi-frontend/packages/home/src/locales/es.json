@@ -56,13 +56,12 @@
       "label": "Icono de pestaña",
       "placeholder": "Icono de pestaña..."
     },
-    "isGlobal": "Es global",
+    "global": "Global",
     "deleteTab": "Eliminar pestaña",
     "tabWillBeDeleted": "La pestaña \"{name}\" será eliminada.",
     "delete": "Eliminar",
     "create": "Crear",
     "cancel": "Cancelar",
-    "global": "Global",
     "home": "Inicio",
     "favorites": "Favoritos",
     "recents": "Recientes",
@@ -117,8 +116,6 @@
     "refreshGlobalVariables": "Actualizar variables globales",
     "refreshMondrianSchemaCache": "Actualizar caché de los esquemas de Mondrian",
     "clearCdaCache": "Vaciar caché de CDA",
-    "resetGlobalUserSettings": "Reset global user settings",
-    "resetUserSettings": "Reset user settings",
     "resourceRefreshSuccess": "Recurso actualizado con éxito",
     "resourceRefreshError": "Error al actualizar el recurso",
     "cacheClearSuccess": "Caché vaciada con éxito",
@@ -150,13 +147,13 @@
         "title": "Opciones",
         "content": "Acceda a las opciones generales de la plataforma."
       },
-      "homeTabGlobal": {
-        "title": "Pestaña global",
-        "content": "En la pestaña global aparecerán para todos los usuarios los archivos que el administrador seleccione desde el buscador."
-      },
       "homeTabHome": {
         "title": "Pestaña de inicio",
-        "content": "En la pestaña de inicio aparecerán los archivos que solo usted seleccione desde el buscador."
+        "content": "En la pestaña de inicio aparecerán para todos los usuarios los archivos que el administrador seleccione desde el buscador."
+      },
+      "homeTabFavorites": {
+        "title": "Pestaña de favoritos",
+        "content": "En la pestaña de favoritos aparecerán los archivos que solo usted seleccione desde el buscador."
       },
       "homeTabNew": {
         "title": "Nueva pestaña",

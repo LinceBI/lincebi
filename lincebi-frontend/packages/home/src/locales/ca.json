@@ -56,13 +56,12 @@
       "label": "Icona de pestanya",
       "placeholder": "Icona de pestanya..."
     },
-    "isGlobal": "Is global",
+    "global": "Global",
     "deleteTab": "Eliminar pestanya",
     "tabWillBeDeleted": "La pestanya \"{name}\" serà eliminada.",
     "delete": "Eliminar",
     "create": "Crear",
     "cancel": "Cancel·lar",
-    "global": "Global",
     "home": "Inici",
     "favorites": "Favorits",
     "recents": "Recents",
@@ -117,8 +116,6 @@
     "refreshGlobalVariables": "Actualizar variables globals",
     "refreshMondrianSchemaCache": "Actualizar caché dels esquemes de Mondrian",
     "clearCdaCache": "Buidar caché de CDA",
-    "resetGlobalUserSettings": "Reset global user settings",
-    "resetUserSettings": "Reset user settings",
     "resourceRefreshSuccess": "Recurs actualitzat amb èxit",
     "resourceRefreshError": "Error en actualitzar el recurs",
     "cacheClearSuccess": "Caché buidada amb èxit",
@@ -150,13 +147,13 @@
         "title": "Opcions",
         "content": "Accedeixi a les opcions generals de la plataforma."
       },
-      "homeTabGlobal": {
-        "title": "Pestanya global",
-        "content": "En la pestanya global apareixeran per a tots els usuaris els arxius que l'administrador seleccioni des del cercador."
-      },
       "homeTabHome": {
         "title": "Pestanya d'inici",
-        "content": "En la pestanya d'inici apareixeran els arxius que només vostè seleccioni des del cercador."
+        "content": "En la pestanya d'inici apareixeran per a tots els usuaris els arxius que l'administrador seleccioni des del cercador."
+      },
+      "homeTabFavorites": {
+        "title": "Pestanya de favorits",
+        "content": "En la pestanya de favorits apareixeran els arxius que només vostè seleccioni des del cercador."
       },
       "homeTabNew": {
         "title": "Nova pestanya",

@@ -98,17 +98,17 @@ export default {
 					},
 				},
 				{
-					target: '[data-v-step="home-tab-global"]',
-					header: { title: this.$t('tour.steps.homeTabGlobal.title') },
-					content: this.$t('tour.steps.homeTabGlobal.content'),
+					target: '[data-v-step="home-tab-home"]',
+					header: { title: this.$t('tour.steps.homeTabHome.title') },
+					content: this.$t('tour.steps.homeTabHome.content'),
 					before: async () => {
 						await router.push({ name: 'home' }).catch(() => {});
 					},
 				},
 				{
-					target: '[data-v-step="home-tab-home"]',
-					header: { title: this.$t('tour.steps.homeTabHome.title') },
-					content: this.$t('tour.steps.homeTabHome.content'),
+					target: '[data-v-step="home-tab-favorites"]',
+					header: { title: this.$t('tour.steps.homeTabFavorites.title') },
+					content: this.$t('tour.steps.homeTabFavorites.content'),
 					before: async () => {
 						await router.push({ name: 'home' }).catch(() => {});
 					},

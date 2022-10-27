@@ -103,28 +103,6 @@ export default {
 						},
 						{
 							enabled: true,
-							id: 'search-favorites',
-							name: this.$t('sidebar.favorites'),
-							icon: ['fas', 'heart'],
-							click: () => {
-								router
-									.push({
-										name: 'perspective',
-										params: { perspective: 'search.perspective' },
-									})
-									.catch(() => {});
-								eventBus.$emitWhenAvailable(
-									'mantle-perspective-invoke',
-									'search.perspective',
-									async (perspectiveWindow) => {
-										const STSearch = await waitFor(() => perspectiveWindow.STSearch);
-										await STSearch.applyPreset('favorites');
-									}
-								);
-							},
-						},
-						{
-							enabled: true,
 							id: 'search-recents',
 							name: this.$t('sidebar.recents'),
 							icon: ['far', 'clock'],

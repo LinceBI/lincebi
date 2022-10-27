@@ -30,7 +30,7 @@
 		<home-card-deck
 			v-else
 			:files.sync="files"
-			:draggable="tab?.type !== 'tag' && (tab?.type !== 'global' || canAdminister)"
+			:draggable="tab?.type !== 'tag' && (tab?.type !== 'home' || canAdminister)"
 		/>
 	</div>
 </template>
@@ -102,7 +102,7 @@ export default {
 					return files;
 				}
 
-				if (this.tab.type === 'global') {
+				if (this.tab.type === 'home') {
 					const setting = store.state.globalUserSettings[this.tab.type];
 					const entries = safeJSON.parse(setting, []);
 					for (const entry of entries) {
@@ -110,11 +110,7 @@ export default {
 							files.push(store.getters.repositoryMap.get(entry.fullPath));
 						}
 					}
-				} else if (
-					this.tab.type === 'home' ||
-					this.tab.type === 'favorites' ||
-					this.tab.type === 'recent'
-				) {
+				} else if (this.tab.type === 'favorites' || this.tab.type === 'recent') {
 					const setting = store.state.userSettings[this.tab.type];
 					const entries = safeJSON.parse(setting, []);
 					for (const entry of entries) {
@@ -153,7 +149,7 @@ export default {
 					return;
 				}
 
-				if (this.tab.type === 'global') {
+				if (this.tab.type === 'home') {
 					const entries = files.map((file) => ({
 						fullPath: file.path,
 						title: file.title,
@@ -162,11 +158,7 @@ export default {
 					store.dispatch('updateGlobalUserSettings', {
 						[this.tab.type]: safeJSON.stringify(entries, '[]'),
 					});
-				} else if (
-					this.tab.type === 'home' ||
-					this.tab.type === 'favorites' ||
-					this.tab.type === 'recent'
-				) {
+				} else if (this.tab.type === 'favorites' || this.tab.type === 'recent') {
 					const entries = files.map((file) => ({
 						fullPath: file.path,
 						title: file.title,

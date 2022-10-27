@@ -85,7 +85,7 @@
 					<b-form-icon-swatch v-model="newTab.icon" />
 				</b-form-group>
 				<b-form-checkbox v-if="canAdminister" v-model="newTab.isGlobal">
-					{{ $t('home.isGlobal') }}
+					{{ $t('home.global') }}
 				</b-form-checkbox>
 			</form>
 		</b-modal>

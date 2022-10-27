@@ -56,13 +56,12 @@
       "label": "رمز علامة التبويب",
       "placeholder": "رمز علامة التبويب..."
     },
-    "isGlobal": "Is global",
+    "global": "عالمي",
     "deleteTab": "حذف علامة التبويب",
     "tabWillBeDeleted": "سيتم حذف علامة التبويب \"{name}\".",
     "delete": "حذف",
     "create": "خلق",
     "cancel": "إلغاء الأمر",
-    "global": "عالمي",
     "home": "الرئيسية",
     "favorites": "المفضله",
     "recents": "الأحدث",
@@ -117,8 +116,6 @@
     "refreshGlobalVariables": "تحديث المتغيرات العمومية",
     "refreshMondrianSchemaCache": "تحديث ذاكرة التخزين المؤقت مخطط موندريان",
     "clearCdaCache": "مسح ذاكرة التخزين المؤقت CDA",
-    "resetGlobalUserSettings": "Reset global user settings",
-    "resetUserSettings": "Reset user settings",
     "resourceRefreshSuccess": "تم تحديث المورد بنجاح",
     "resourceRefreshError": "خطأ أثناء تحديث المورد",
     "cacheClearSuccess": "تم مسح ذاكرة التخزين المؤقت بنجاح",
@@ -150,13 +147,13 @@
         "title": "اعدادات",
         "content": "الوصول إلى الخيارات العامة للنظام الأساسي."
       },
-      "homeTabGlobal": {
-        "title": "علامة التبويب العمومية",
-        "content": "ستظهر الملفات التي حددها المسؤول من أداة البحث لكافة المستخدمين في علامة التبويب العمومية."
-      },
       "homeTabHome": {
         "title": "علامة التبويب الصفحة الرئيسية",
-        "content": "ستظهر الملفات التي حددتها من أداة البحث في علامة التبويب الصفحة الرئيسية."
+        "content": "ستظهر الملفات التي حددها المسؤول من أداة البحث لجميع المستخدمين في علامة التبويب الصفحة الرئيسية."
+      },
+      "homeTabFavorites": {
+        "title": "علامة تبويب المفضلة",
+        "content": "ستظهر الملفات التي حددتها من أداة البحث في علامة التبويب المفضلة."
       },
       "homeTabNew": {
         "title": "علامة تبويب جديدة",

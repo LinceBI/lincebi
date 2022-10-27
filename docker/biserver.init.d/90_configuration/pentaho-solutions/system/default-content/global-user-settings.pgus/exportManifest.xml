@@ -2,7 +2,7 @@
 <ns2:ExportManifest xmlns:ns2="http://www.pentaho.com/schema/">
 	<ExportManifestInformation exportDate="01-01-1970 00:00:00 GMT" exportBy="admin" rootFolder="/" manifestVersion="2" />
 	<ExportManifestGlobalUserSetting>
-		<name>global</name>
+		<name>home</name>
 		<value>
 			[
 				{ "fullPath": "/public/Steel Wheels/Dashboards/CTools_dashboard.wcdf", "title": "CTools Dashboard", "lastUse": 0 },

@@ -56,13 +56,12 @@
       "label": "Ícone da aba",
       "placeholder": "Ícone da aba..."
     },
-    "isGlobal": "Is global",
+    "global": "Global",
     "deleteTab": "Deletar aba",
     "tabWillBeDeleted": "A aba \"{name}\" será deletada.",
     "delete": "Deletar",
     "create": "Criar",
     "cancel": "Cancelar",
-    "global": "Global",
     "home": "Início",
     "favorites": "Favoritos",
     "recents": "Recentes",
@@ -117,8 +116,6 @@
     "refreshGlobalVariables": "Atualizar variáveis globais",
     "refreshMondrianSchemaCache": "Atualizar Mondrian schema cache",
     "clearCdaCache": "Limpar CDA cache",
-    "resetGlobalUserSettings": "Reset global user settings",
-    "resetUserSettings": "Reset user settings",
     "resourceRefreshSuccess": "Recurso atualizado com sucesso",
     "resourceRefreshError": "Erro ao atualizar recurso",
     "cacheClearSuccess": "Cache limpo com sucesso",
@@ -150,13 +147,13 @@
         "title": "Opções",
         "content": "Acesse as opções gerais da plataforma."
       },
-      "homeTabGlobal": {
-        "title": "Aba global",
-        "content": "Na aba global aparecerão, para todos os usuários, os arquivos que o administrador selecionar."
-      },
       "homeTabHome": {
         "title": "Aba de início",
-        "content": "Na aba de início aparecerão apenas os arquivos que você selecionar."
+        "content": "Na aba de início aparecerão, para todos os usuários, os arquivos que o administrador selecionar."
+      },
+      "homeTabFavorites": {
+        "title": "Aba de favoritos",
+        "content": "Na aba de favoritos aparecerão apenas os arquivos que você selecionar."
       },
       "homeTabNew": {
         "title": "Nova aba",

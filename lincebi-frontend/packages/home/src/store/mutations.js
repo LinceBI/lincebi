@@ -73,7 +73,7 @@ export const setRepositoryFile = (state, file) => {
 	}
 
 	// If some file properties differ, update global user settings.
-	for (const entry of [{ property: 'isGlobal', setting: 'global' }]) {
+	for (const entry of [{ property: 'isHome', setting: 'home' }]) {
 		if (entry.property in file && file[entry.property] !== currentLocation[entry.property]) {
 			const oldFiles = safeJSON.parse(state.globalUserSettings[entry.setting], []);
 			const newFiles = file[entry.property]
@@ -85,7 +85,6 @@ export const setRepositoryFile = (state, file) => {
 
 	// If some file properties differ, update user settings.
 	for (const entry of [
-		{ property: 'isHome', setting: 'home' },
 		{ property: 'isFavorite', setting: 'favorites' },
 		{ property: 'isRecent', setting: 'recent' },
 	]) {

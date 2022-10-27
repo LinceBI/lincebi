@@ -55,10 +55,9 @@ public class FileMetadataService {
 	}
 
 	private static final String SHOW_HIDDEN_FILES_USER_SETTING = "MANTLE_SHOW_HIDDEN_FILES";
+	private static final String HOME_USER_SETTING = "home";
 	private static final String FAVORITES_USER_SETTING = "favorites";
 	private static final String RECENTS_USER_SETTING = "recent";
-	private static final String HOME_USER_SETTING = "home";
-	private static final String GLOBAL_USER_SETTING = "global";
 
 	private static final String RUN_OPERATION_ID = "RUN";
 	private static final String EDIT_OPERATION_ID = "EDIT";
@@ -98,10 +97,9 @@ public class FileMetadataService {
 	private Map<String, Map<String, String>> extensionPerspectivesMap;
 
 	private boolean showHiddenFiles;
+	private Set<RepositoryFile> home;
 	private Set<RepositoryFile> favorites;
 	private Set<RepositoryFile> recents;
-	private Set<RepositoryFile> home;
-	private Set<RepositoryFile> global;
 
 	public FileMetadataService() {
 		this.userName = PentahoSessionHolder.getSession().getName();
@@ -118,10 +116,9 @@ public class FileMetadataService {
 		this.extensionPerspectivesMap = this.getExtensionPerspectivesMap();
 
 		this.showHiddenFiles = this.getBooleanUserSetting(FileMetadataService.SHOW_HIDDEN_FILES_USER_SETTING, false);
+		this.home = this.getFileListUserSetting(FileMetadataService.HOME_USER_SETTING, true);
 		this.favorites = this.getFileListUserSetting(FileMetadataService.FAVORITES_USER_SETTING, false);
 		this.recents = this.getFileListUserSetting(FileMetadataService.RECENTS_USER_SETTING, false);
-		this.home = this.getFileListUserSetting(FileMetadataService.HOME_USER_SETTING, false);
-		this.global = this.getFileListUserSetting(FileMetadataService.GLOBAL_USER_SETTING, true);
 	}
 
 	public FileMetadataTree getFileMetadata(FileMetadataPath fileMetadataPath, String locale, String showHidden, int depth) {
@@ -277,17 +274,14 @@ public class FileMetadataService {
 				}
 				fileMetadataTree.setEditUrl(editUrl);
 
+				boolean isHome = this.home.contains(repositoryFile);
+				fileMetadataTree.setIsHome(isHome);
+
 				boolean isFavorite = this.favorites.contains(repositoryFile);
 				fileMetadataTree.setIsFavorite(isFavorite);
 
 				boolean isRecent = this.recents.contains(repositoryFile);
 				fileMetadataTree.setIsRecent(isRecent);
-
-				boolean isHome = this.home.contains(repositoryFile);
-				fileMetadataTree.setIsHome(isHome);
-
-				boolean isGlobal = this.global.contains(repositoryFile);
-				fileMetadataTree.setIsGlobal(isGlobal);
 
 				boolean isReadonly = !this.canWriteFile(path);
 				fileMetadataTree.setIsReadonly(isReadonly);
@@ -356,7 +350,7 @@ public class FileMetadataService {
 				}
 			}
 
-			if (fileMetadataTree.hasIsGlobal() && !this.canAdminister) {
+			if (fileMetadataTree.hasIsHome() && !this.canAdminister) {
 				throw new FileMetadataAdministerException(this.userName);
 			}
 
@@ -379,6 +373,12 @@ public class FileMetadataService {
 				fileMetadataTreeProperties.put(RepositoryFile.FILE_DESCRIPTION, description);
 			}
 
+			if (fileMetadataTree.hasIsHome()) {
+				Set<RepositoryFile> fileSet = new HashSet<>(Collections.singletonList(repositoryFile));
+				boolean isHome = fileMetadataTree.getIsHome();
+				this.toggleFileListUserSetting(FileMetadataService.HOME_USER_SETTING, fileSet, isHome, true);
+			}
+
 			if (fileMetadataTree.hasIsFavorite()) {
 				Set<RepositoryFile> fileSet = new HashSet<>(Collections.singletonList(repositoryFile));
 				boolean isFavorite = fileMetadataTree.getIsFavorite();
@@ -391,17 +391,6 @@ public class FileMetadataService {
 				this.toggleFileListUserSetting(FileMetadataService.RECENTS_USER_SETTING, fileSet, isRecent, false);
 			}
 
-			if (fileMetadataTree.hasIsHome()) {
-				Set<RepositoryFile> fileSet = new HashSet<>(Collections.singletonList(repositoryFile));
-				boolean isHome = fileMetadataTree.getIsHome();
-				this.toggleFileListUserSetting(FileMetadataService.HOME_USER_SETTING, fileSet, isHome, false);
-			}
-
-			if (fileMetadataTree.hasIsGlobal()) {
-				Set<RepositoryFile> fileSet = new HashSet<>(Collections.singletonList(repositoryFile));
-				boolean isGlobal = fileMetadataTree.getIsGlobal();
-				this.toggleFileListUserSetting(FileMetadataService.GLOBAL_USER_SETTING, fileSet, isGlobal, true);
-			}
 
 			if (fileMetadataTreeProperties.size() > 0) {
 				List<StringKeyStringValueDto> defaultLocaleProperties = new ArrayList<>();

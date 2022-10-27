@@ -56,13 +56,12 @@
       "label": "Tab icon",
       "placeholder": "Tab icon..."
     },
-    "isGlobal": "Is global",
+    "global": "Global",
     "deleteTab": "Delete tab",
     "tabWillBeDeleted": "The tab \"{name}\" will be deleted.",
     "delete": "Delete",
     "create": "Create",
     "cancel": "Cancel",
-    "global": "Global",
     "home": "Home",
     "favorites": "Favorites",
     "recents": "Recents",
@@ -150,13 +149,13 @@
         "title": "Settings",
         "content": "Access the general options of the platform."
       },
-      "homeTabGlobal": {
-        "title": "Global tab",
-        "content": "Files selected by the administrator from the search tool will appear for all users on the global tab."
-      },
       "homeTabHome": {
         "title": "Home tab",
-        "content": "Files selected by you from the search tool will appear on the home tab."
+        "content": "Files selected by the administrator from the search tool will appear for all users on the home tab."
+      },
+      "homeTabFavorites": {
+        "title": "Favorites tab",
+        "content": "Files selected by you from the search tool will appear on the favorites tab."
       },
       "homeTabNew": {
         "title": "New tab",

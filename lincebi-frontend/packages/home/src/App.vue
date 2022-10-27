@@ -8,6 +8,10 @@
 </template>
 
 <script>
+import uniqBy from 'lodash/uniqBy';
+
+import safeJSON from '@lincebi/frontend-common/src/safeJSON';
+
 import eventBus from '@/eventBus';
 import store from '@/store';
 
@@ -58,6 +62,28 @@ export default {
 			}
 
 			await store.dispatch('fetchRepository');
+
+			// Check and rename deprecated user settings.
+			{
+				const gs = store.state.globalUserSettings;
+				const us = store.state.userSettings;
+				if (us.home !== '' && us.home !== '[]' && us.home !== gs.home) {
+					const favorites = safeJSON.parse(us.favorites, []);
+					const home = safeJSON.parse(us.home, []);
+					await store.dispatch('updateUserSettings', {
+						favorites: JSON.stringify(uniqBy([...favorites, ...home], 'fullPath')),
+						home: '[]',
+					});
+				}
+				if (gs.global !== '' && gs.global !== '[]') {
+					const home = safeJSON.parse(gs.home, []);
+					const global = safeJSON.parse(gs.global, []);
+					await store.dispatch('updateGlobalUserSettings', {
+						home: JSON.stringify(uniqBy([...home, ...global], 'fullPath')),
+						global: '[]',
+					});
+				}
+			}
 		});
 	},
 };
