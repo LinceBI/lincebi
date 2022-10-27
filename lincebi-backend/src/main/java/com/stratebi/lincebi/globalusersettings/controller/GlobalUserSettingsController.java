@@ -27,6 +27,8 @@ public class GlobalUserSettingsController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUserSettingsController.class);
 
+	private static final byte[] LOCK = new byte[0];
+
 	private static IUserSettingService getSettingService() {
 		return PentahoSystem.get(IUserSettingService.class, PentahoSessionHolder.getSession());
 	}
@@ -36,16 +38,12 @@ public class GlobalUserSettingsController {
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Facet(name = "Unsupported")
 	public ArrayList<Setting> listController() {
-		ArrayList<Setting> settings = new ArrayList<>();
+		IUserSettingService settingsService = GlobalUserSettingsController.getSettingService();
+		List<IUserSetting> globalUserSettings = settingsService.getGlobalUserSettings();
 
-		try {
-			IUserSettingService settingsService = GlobalUserSettingsController.getSettingService();
-			List<IUserSetting> globalUserSettings = settingsService.getGlobalUserSettings();
-			for (IUserSetting globalUserSetting : globalUserSettings) {
-				settings.add(new Setting(globalUserSetting.getSettingName(), globalUserSetting.getSettingValue()));
-			}
-		} catch (Exception ex) {
-			GlobalUserSettingsController.LOGGER.error(ex.getMessage());
+		ArrayList<Setting> settings = new ArrayList<>();
+		for (IUserSetting globalUserSetting : globalUserSettings) {
+			settings.add(new Setting(globalUserSetting.getSettingName(), globalUserSetting.getSettingValue()));
 		}
 
 		return settings;
@@ -77,9 +75,16 @@ public class GlobalUserSettingsController {
 		String settingValue
 	) {
 		IUserSettingService settingsService = GlobalUserSettingsController.getSettingService();
-		settingsService.setGlobalUserSetting(setting, EscapeUtils.escapeJsonOrRaw(settingValue));
 
-		return Response.ok(settingValue).build();
+		synchronized (GlobalUserSettingsController.LOCK) {
+			try {
+				settingsService.setGlobalUserSetting(setting, EscapeUtils.escapeJsonOrRaw(settingValue));
+				return Response.ok(settingValue).build();
+			} catch (Exception ex) {
+				GlobalUserSettingsController.LOGGER.error(ex.getMessage());
+				return Response.serverError().build();
+			}
+		}
 	}
 
 }
