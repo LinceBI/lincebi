@@ -5,26 +5,27 @@
 			<!-- Tabs -->
 			<li
 				v-for="(t, index) in tabs"
-				:key="t.name"
+				:key="getTabKey(t)"
 				:class="{
 					'home-tab': true,
 					'nav-item': true,
 					global: t.isGlobal,
 					draggable: t.isDraggable && (!t.isGlobal || canAdminister),
+					active: index === tabIndex,
 				}"
+				:style="getTabStyle(t, index)"
 				:data-v-step="`home-tab-${t.type}`"
 			>
 				<div
-					:title="getTabName(t)"
-					:class="{ 'nav-link': true, active: index === tabIndex }"
-					:style="getTabStyle(t, index)"
+					:title="getTabDisplayName(t)"
+					class="nav-link"
 					tabindex="0"
 					@click="tabIndex = index"
 					@keyup.enter="tabIndex = index"
 				>
 					<font-awesome-icon v-if="t.icon" :icon="t.icon" class="fa-fw mr-2" />
 					<span class="text-truncate">
-						{{ getTabName(t) }}
+						{{ getTabDisplayName(t) }}
 					</span>
 					<button
 						v-if="t.isRemovable && (!t.isGlobal || canAdminister)"
@@ -73,8 +74,8 @@
 						autofocus
 					/>
 					<b-form-datalist :id="`new-tab-name-datalist-${uniqueId}`">
-						<option v-for="t in tabs.filter((t) => t.type === 'tag')" :key="t.name">
-							{{ t.name }}
+						<option v-for="t in tabs.filter((t) => t.type === 'tag')" :key="getTabKey(t)">
+							{{ getTabDisplayName(t) }}
 						</option>
 					</b-form-datalist>
 				</b-form-group>
@@ -100,7 +101,7 @@
 			centered
 			@ok="handleCloseTabModalOk"
 		>
-			{{ $t('home.tabWillBeDeleted', { name: tab ? truncate(tab.name) : '' }) }}
+			{{ $t('home.tabWillBeDeleted', { name: tab ? getTabDisplayName(tab) : '' }) }}
 		</b-modal>
 	</div>
 </template>
@@ -112,7 +113,6 @@ import cloneDeep from 'lodash/cloneDeep';
 import isEqual from 'lodash/isEqual';
 import partition from 'lodash/partition';
 
-import fuzzyEquals from '@lincebi/frontend-common/src/fuzzyEquals';
 import isTouchDevice from '@lincebi/frontend-common/src/isTouchDevice';
 import move from '@lincebi/frontend-common/src/move';
 import safeJSON from '@lincebi/frontend-common/src/safeJSON';
@@ -195,6 +195,9 @@ export default {
 		},
 	},
 	watch: {
+		tabs(tabs) {
+			this.$emit('update:tab', tabs[this.tabIndex]);
+		},
 		tabIndex(tabIndex) {
 			this.$emit('update:tab', this.tabs[tabIndex]);
 		},
@@ -255,7 +258,7 @@ export default {
 		},
 		createTab(newTab) {
 			const newTabIndex = this.tabs.findIndex((tab) => {
-				return fuzzyEquals(tab.name, newTab.name);
+				return tab.isGlobal === newTab.isGlobal && tab.name === newTab.name;
 			});
 
 			if (newTabIndex === -1) {
@@ -280,7 +283,10 @@ export default {
 				this.tabIndex--;
 			}
 		},
-		getTabName(tab) {
+		getTabKey(tab) {
+			return `${tab.isGlobal ? 'g' : 'u'}:${tab.name}`;
+		},
+		getTabDisplayName(tab) {
 			// Replace tab name with translated string.
 			if (tab.name.startsWith('t:')) {
 				return i18n.t(tab.name.replace(/^t:/, ''));
@@ -354,6 +360,32 @@ export default {
 				max-width: none;
 			}
 
+			color: map-get($theme-colors, 'primary');
+			background-color: transparent;
+
+			&.active {
+				color: map-get($theme-colors, 'light');
+				background-color: map-get($theme-colors, 'primary');
+
+				&::before {
+					background-color: rgba(0, 0, 0, 0.2);
+				}
+
+				.nav-link .home-tab-close {
+					display: block;
+				}
+			}
+
+			&::before {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: rem(10);
+				background-color: currentColor;
+				content: '';
+			}
+
 			.nav-link {
 				position: relative;
 				display: flex;
@@ -365,32 +397,6 @@ export default {
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
-
-				color: map-get($theme-colors, 'primary');
-				background-color: transparent;
-
-				&.active {
-					color: map-get($theme-colors, 'light');
-					background-color: map-get($theme-colors, 'primary');
-
-					&::before {
-						background-color: rgba(0, 0, 0, 0.2);
-					}
-
-					.home-tab-close {
-						display: block;
-					}
-				}
-
-				&::before {
-					position: absolute;
-					top: 0;
-					left: 0;
-					height: 100%;
-					width: rem(10);
-					background-color: currentColor;
-					content: '';
-				}
 
 				.home-tab-close {
 					display: none;
