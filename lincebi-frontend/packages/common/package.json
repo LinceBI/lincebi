@@ -5,7 +5,7 @@
     "lint": "vue-cli-service lint --no-fix"
   },
   "dependencies": {
-    "@datadog/browser-logs": "~4.22.0",
+    "@datadog/browser-logs": "~4.23.3",
     "@fortawesome/fontawesome-svg-core": "~6.2.0",
     "@fortawesome/free-brands-svg-icons": "~6.2.0",
     "@fortawesome/free-regular-svg-icons": "~6.2.0",
@@ -13,7 +13,7 @@
     "@fortawesome/vue-fontawesome": "~2.0.8",
     "bootstrap": "~4.6.2",
     "bootstrap-v4-rtl": "~4.6.2-1",
-    "bootstrap-vue": "~2.22.0",
+    "bootstrap-vue": "~2.23.1",
     "compressorjs": "~1.1.1",
     "core-js": "~3.26.0",
     "jdenticon": "~3.2.0",
@@ -31,7 +31,7 @@
     "eslint": "~8.26.0",
     "eslint-config-prettier": "~8.5.0",
     "eslint-plugin-prettier": "~4.2.1",
-    "eslint-plugin-vue": "~9.6.0",
+    "eslint-plugin-vue": "~9.7.0",
     "prettier": "~2.7.1",
     "rimraf": "~3.0.2",
     "sass": "~1.55.0",
