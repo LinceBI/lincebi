@@ -219,11 +219,11 @@ export default {
 
 		flex-grow: 0;
 		flex-shrink: 1;
-		flex-basis: calc(#{100% / 1} - #{$grid-gutter-width});
+		flex-basis: calc(100% / 1 - #{$grid-gutter-width});
 
 		@for $i from 0 through 10 {
 			@media (min-width: (672px + (320px * $i))) {
-				flex-basis: calc(#{100% / ($i + 2)} - #{$grid-gutter-width});
+				flex-basis: calc(100% / #{$i + 2} - #{$grid-gutter-width});
 			}
 		}
 
@@ -247,7 +247,7 @@ export default {
 
 		.card-container {
 			position: relative;
-			padding-top: (9 / 16) * 100%;
+			padding-top: calc((9 / 16) * 100%);
 			height: 0;
 			width: 100%;
 
