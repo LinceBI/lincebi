@@ -20,6 +20,7 @@ import com.networknt.schema.ValidationMessage;
 import org.codehaus.enunciate.Facet;
 import org.ehcache.Cache;
 import org.pentaho.platform.api.repository2.unified.RepositoryFile;
+import org.pentaho.platform.engine.core.system.PentahoSessionHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,7 +57,9 @@ public class FileMetadataController {
 	) {
 		try {
 			String response;
-			String cacheKey = KeyUtils.getKeyName(locale, showHidden, depth, input);
+
+			String userName = PentahoSessionHolder.getSession().getName();
+			String cacheKey = KeyUtils.getKeyName(userName, locale, showHidden, depth, input);
 
 			if (FileMetadataController.CACHE.containsKey(cacheKey)) {
 				response = FileMetadataController.CACHE.get(cacheKey);
