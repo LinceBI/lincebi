@@ -1,5 +1,5 @@
 <template>
-	<div v-if="$t('footer').length > 0" class="login-footer">
+	<div v-if="icons.length > 0 || $t('footer').length > 0" class="login-footer">
 		<b-img v-for="(icon, index) in icons" :key="index" :item="icon" class="icon" :src="icon" />
 		{{ $t('footer', { year: new Date().getFullYear() }) }}
 	</div>
