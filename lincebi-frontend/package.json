@@ -9,6 +9,6 @@
     "clean": "pnpm -r run clean"
   },
   "devDependencies": {
-    "@datadog/datadog-ci": "~1.17.0"
+    "@datadog/datadog-ci": "~2.3.2"
   }
 }
