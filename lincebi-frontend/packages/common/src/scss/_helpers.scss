@@ -1,3 +1,7 @@
+.font-weight-semibold {
+	font-weight: $font-weight-semibold !important;
+}
+
 /* Increase margin between icons and labels */
 img + .lbl, .svg-inline--fa + .lbl {
 	margin-right: 0;
@@ -6,6 +10,25 @@ img + .lbl, .svg-inline--fa + .lbl {
 	[dir='rtl'] & {
 		margin-right: rem(8);
 		margin-left: 0;
+	}
+}
+
+/* Custom style for tabs */
+.nav-tabs > .nav-item > .nav-link {
+	font-size: $h5-font-size;
+
+	&.active {
+		font-weight: 600;
+		border-bottom: rem(4) solid map-get($theme-colors, 'primary');
+	}
+
+	&:not(.active) {
+		color: lighten(map-get($theme-colors, 'dark'), 20%);
+	}
+
+	&.disabled {
+		cursor: not-allowed;
+		pointer-events: inherit;
 	}
 }
 

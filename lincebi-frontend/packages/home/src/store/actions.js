@@ -14,6 +14,7 @@ import setGlobalUserSettings from '@lincebi/frontend-common/src/biserver/setGlob
 import setLocale from '@lincebi/frontend-common/src/biserver/setLocale';
 import setMetadata from '@lincebi/frontend-common/src/biserver/setMetadata';
 import setUserSettings from '@lincebi/frontend-common/src/biserver/setUserSettings';
+import setFile from '@lincebi/frontend-common/src/biserver/setFile';
 
 import { defaultGlobalUserSettings, defaultUserSettings } from '@/userSettings';
 
@@ -82,6 +83,15 @@ export const updateRepositoryFile = async ({ commit, state }, file) => {
 	const result = await setMetadata([file], { locale: state.locale });
 	if (result !== null && result.length > 0) {
 		commit('setRepositoryFile', file);
+	}
+};
+
+export const createRepositoryFile = async ({ commit, state }, { file, content }) => {
+	if (await setFile(file.path, content)) {
+		const result = await setMetadata([file], { locale: state.locale });
+		if (result !== null && result.length > 0) {
+			commit('setRepositoryFile', file);
+		}
 	}
 };
 

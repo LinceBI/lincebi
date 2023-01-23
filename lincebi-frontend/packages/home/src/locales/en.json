@@ -76,6 +76,68 @@
     "lincebiTools": "LinceBI tools",
     "otherTools": "Other tools"
   },
+  "tools": {
+    "powerbi": {
+      "title": "Embed Power BI report",
+      "subtitle": "Complete and save your report",
+      "manual": "Manual",
+      "automatic": "Automatic",
+      "workspaceId": {
+        "label": "Workspace ID"
+      },
+      "reportId": {
+        "label": "Report ID"
+      },
+      "reportPageName": {
+        "label": "Report page name (optional)"
+      },
+      "filters": {
+        "label": "Filters (optional)"
+      },
+      "location": {
+        "label": "Location",
+        "placeholder": "Location"
+      },
+      "fileName": {
+        "label": "File name",
+        "placeholder": "File name"
+      },
+      "selectALocation": "Select a location",
+      "cancel": "Cancel",
+      "accept": "Accept",
+      "save": "Save",
+      "overwriteModalTitle": "A report with this name already exists",
+      "overwriteModalBody": "Do you want to overwrite the report? This action cannot be reversed.",
+      "submitModalTitle": "Saved report",
+      "submitModalBody": "Report \"{name}\" has been saved.",
+      "doYouNeedHelp": "Do you need help?",
+      "findWorkspaceAndReportId": "The workspace and report ID can be found in the report URL.",
+      "notAvailableYet": "Not availabe yet"
+    },
+    "embed": {
+      "title": "Embed external link",
+      "subtitle": "Complete and save your external link",
+      "url": {
+        "label": "URL"
+      },
+      "location": {
+        "label": "Location",
+        "placeholder": "Location"
+      },
+      "fileName": {
+        "label": "File name",
+        "placeholder": "File name"
+      },
+      "selectALocation": "Select a location",
+      "cancel": "Cancel",
+      "accept": "Accept",
+      "save": "Save",
+      "overwriteModalTitle": "A file with this name already exists",
+      "overwriteModalBody": "Do you want to overwrite the file? This action cannot be reversed.",
+      "submitModalTitle": "Saved file",
+      "submitModalBody": "File \"{name}\" has been saved."
+    }
+  },
   "profile": {
     "name": {
       "label": "Name:",
