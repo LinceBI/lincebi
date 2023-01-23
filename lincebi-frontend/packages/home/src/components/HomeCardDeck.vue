@@ -41,7 +41,7 @@
 							<font-awesome-icon :icon="['fas', 'list']" />
 						</div>
 						<div
-							v-if="file.editUrl"
+							v-if="!file.isReadonly && file.editUrl"
 							class="btn btn-dark"
 							tabindex="0"
 							@click.stop="onFileEditClick(file)"
