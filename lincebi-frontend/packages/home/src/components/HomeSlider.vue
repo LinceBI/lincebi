@@ -29,8 +29,6 @@
 </template>
 
 <script>
-import fetch from 'unfetch';
-
 export default {
 	name: 'HomeSlider',
 	data() {

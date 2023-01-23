@@ -1,5 +1,4 @@
 import cloneDeep from 'lodash/cloneDeep';
-import fetch from 'unfetch';
 
 import getContextPath from './getContextPath';
 import getLocale from './getLocale';

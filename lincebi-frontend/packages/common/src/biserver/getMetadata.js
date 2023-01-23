@@ -1,5 +1,3 @@
-import fetch from 'unfetch';
-
 import getContextPath from './getContextPath';
 import getLocale from './getLocale';
 import safeJSON from '../safeJSON';

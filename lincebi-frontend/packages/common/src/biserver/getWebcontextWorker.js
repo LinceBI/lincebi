@@ -1,5 +1,3 @@
-import fetch from 'unfetch';
-
 let webcontextWorkerPromise = null;
 
 const webcontextHeader = `

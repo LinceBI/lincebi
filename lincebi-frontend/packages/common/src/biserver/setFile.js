@@ -1,4 +1,3 @@
-import fetch from 'unfetch';
 import getContextPath from './getContextPath';
 
 export default async (path, content) => {

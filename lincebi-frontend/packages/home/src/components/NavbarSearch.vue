@@ -36,8 +36,6 @@
 </template>
 
 <script>
-import fetch from 'unfetch';
-
 import waitFor from '@lincebi/frontend-common/src/waitFor';
 
 import eventBus from '@/eventBus';

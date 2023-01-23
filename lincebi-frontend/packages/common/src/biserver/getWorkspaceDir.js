@@ -1,4 +1,3 @@
-import fetch from 'unfetch';
 import getContextPath from './getContextPath';
 
 let workspaceDirPromise = null;

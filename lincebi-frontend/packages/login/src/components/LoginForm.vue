@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import fetch from 'unfetch';
-
 import searchParams from '@lincebi/frontend-common/src/searchParams';
 
 import LoginError from '@/components/LoginError.vue';
