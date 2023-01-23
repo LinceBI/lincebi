@@ -58,23 +58,27 @@ export const setRepository = (state, repository) => {
 };
 
 export const setRepositoryFile = (state, file) => {
-	let currentPath = '';
-	let currentLocation = state.repository;
+	let currentFile = state.repository;
 
-	const splittedFilePath = file.path.replace(/(.+)\/$/, '$1').match(/\/[^/]*/g);
-
-	for (const filePathFragment of splittedFilePath) {
-		currentPath += filePathFragment;
-		currentLocation = currentLocation.children.find((child) => child.path === currentPath);
-		if (typeof currentLocation === 'undefined') {
-			console.error('Cannot update repository file:', file);
-			return;
+	const splitFilePath = file.path.replace(/(.+)\/$/, '$1').match(/\/[^/]*/g);
+	for (let i = 0; i < splitFilePath.length; i++) {
+		let nextFile = currentFile.children.find((child) => child.path.endsWith(splitFilePath[i]));
+		if (typeof nextFile === 'undefined') {
+			const isLast = i === splitFilePath.length - 1;
+			nextFile = {
+				path: splitFilePath.slice(0, i).join(''),
+				name: splitFilePath[i].replace(/^\//, ''),
+				isFolder: !isLast,
+				children: !isLast ? [] : null,
+			};
+			currentFile.children.push(nextFile);
 		}
+		currentFile = nextFile;
 	}
 
 	// If some file properties differ, update global user settings.
 	for (const entry of [{ property: 'isHome', setting: 'home' }]) {
-		if (entry.property in file && file[entry.property] !== currentLocation[entry.property]) {
+		if (entry.property in file && file[entry.property] !== currentFile[entry.property]) {
 			const oldFiles = safeJSON.parse(state.globalUserSettings[entry.setting], []);
 			const newFiles = file[entry.property]
 				? [...oldFiles, { fullPath: file.path }]
@@ -88,7 +92,7 @@ export const setRepositoryFile = (state, file) => {
 		{ property: 'isFavorite', setting: 'favorites' },
 		{ property: 'isRecent', setting: 'recent' },
 	]) {
-		if (entry.property in file && file[entry.property] !== currentLocation[entry.property]) {
+		if (entry.property in file && file[entry.property] !== currentFile[entry.property]) {
 			const oldFiles = safeJSON.parse(state.userSettings[entry.setting], []);
 			const newFiles = file[entry.property]
 				? [...oldFiles, { fullPath: file.path }]
@@ -98,7 +102,7 @@ export const setRepositoryFile = (state, file) => {
 	}
 
 	// Update repository file.
-	mergeWith(currentLocation, file, (objValue, srcValue) => {
+	mergeWith(currentFile, file, (objValue, srcValue) => {
 		if (Array.isArray(objValue)) return srcValue;
 		return undefined;
 	});

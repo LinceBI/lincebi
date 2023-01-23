@@ -10,7 +10,7 @@
 					class="new-card card"
 					tabindex="0"
 					@click="tool.click()"
-					@keyup.enter="tool.click(file)"
+					@keyup.enter="tool.click()"
 				>
 					<div class="card-border" :style="{ backgroundColor: tool.color }"></div>
 					<font-awesome-icon
@@ -199,6 +199,34 @@ export default {
 								eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {
 									mantleWindow.openURL('Webdetails CDE', 'Webdetails CDE', 'api/repos/wcdf/new');
 								});
+							},
+						},
+						{
+							enabled: true,
+							id: 'tool-embed',
+							name: 'URL',
+							icon: ['fac', 'tool-embed'],
+							color: '#2ab7d0',
+							click: () => {
+								router
+									.push({
+										name: 'embed',
+									})
+									.catch(() => {});
+							},
+						},
+						{
+							enabled: true,
+							id: 'tool-powerbi',
+							name: 'Power BI',
+							icon: ['fac', 'tool-powerbi'],
+							color: '#f4d249',
+							click: () => {
+								router
+									.push({
+										name: 'powerbi',
+									})
+									.catch(() => {});
 							},
 						},
 						{

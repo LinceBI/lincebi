@@ -8,7 +8,7 @@ $unicode-range-latin-ext: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
 
 $common-font-path: '../assets/fonts' !default;
 
-/* https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,700,700i&amp;subset=latin-ext */
+/* https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,600,600i,700,700i&amp;subset=latin-ext */
 /* titillium-web-regular-normal-latin */
 @font-face {
 	font-family: 'Titillium Web';
@@ -43,6 +43,42 @@ $common-font-path: '../assets/fonts' !default;
 	font-weight: 400;
 	font-display: swap;
 	src: local('Titillium Web Italic'), local('TitilliumWeb-Italic'), url('#{$common-font-path}/titillium-web-regular-italic-latin-ext.woff2') format('woff2');
+	unicode-range: $unicode-range-latin-ext;
+}
+/* titillium-web-semibold-normal-latin */
+@font-face {
+	font-family: 'Titillium Web';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: local('Titillium Web Semibold'), local('TitilliumWeb-Semibold'), url('#{$common-font-path}/titillium-web-semibold-normal-latin.woff2') format('woff2');
+	unicode-range: $unicode-range-latin;
+}
+/* titillium-web-semibold-normal-latin-ext */
+@font-face {
+	font-family: 'Titillium Web';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: local('Titillium Web Semibold'), local('TitilliumWeb-Semibold'), url('#{$common-font-path}/titillium-web-semibold-normal-latin-ext.woff2') format('woff2');
+	unicode-range: $unicode-range-latin-ext;
+}
+/* titillium-web-semibold-italic-latin */
+@font-face {
+	font-family: 'Titillium Web';
+	font-style: italic;
+	font-weight: 600;
+	font-display: swap;
+	src: local('Titillium Web Semibold'), local('TitilliumWeb-Semibold'), url('#{$common-font-path}/titillium-web-semibold-italic-latin.woff2') format('woff2');
+	unicode-range: $unicode-range-latin;
+}
+/* titillium-web-semibold-italic-latin-ext */
+@font-face {
+	font-family: 'Titillium Web';
+	font-style: italic;
+	font-weight: 600;
+	font-display: swap;
+	src: local('Titillium Web Semibold'), local('TitilliumWeb-Semibold'), url('#{$common-font-path}/titillium-web-semibold-italic-latin-ext.woff2') format('woff2');
 	unicode-range: $unicode-range-latin-ext;
 }
 /* titillium-web-bold-normal-latin */

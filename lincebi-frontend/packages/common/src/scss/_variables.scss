@@ -24,7 +24,9 @@ $theme-colors: map-merge($theme-colors, (
 	"tool-stolap": #993711,
 	"tool-stpanels": #000000,
 	"tool-stpivot": #9aa210,
-	"tool-streport": #e67e22
+	"tool-streport": #e67e22,
+	"tool-embed": #2ab7d0,
+	"tool-powerbi": #f4d249
 ));
 
 /* File colors */
@@ -44,7 +46,14 @@ $theme-colors: map-merge($theme-colors, (
 	"file-xjpivot": map-get($theme-colors, tool-stpivot)
 ));
 
+$font-weight-semibold: 600;
+
 $yiq-text-dark: #495057;
 $yiq-text-light: #f8f9fa;
 
-$enable-shadows: 'true';
+$nav-tabs-border-color: none;
+$nav-tabs-link-active-border-color: none;
+$nav-tabs-link-hover-border-color: none;
+$nav-tabs-link-active-color: inherit;
+
+$enable-shadows: "true";

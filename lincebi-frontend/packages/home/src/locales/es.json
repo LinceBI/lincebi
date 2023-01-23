@@ -76,6 +76,68 @@
     "lincebiTools": "Herramientas de LinceBI",
     "otherTools": "Otras herramientas"
   },
+  "tools": {
+    "powerbi": {
+      "title": "Embeber informe de Power BI",
+      "subtitle": "Completa y guarda tu informe",
+      "manual": "Manual",
+      "automatic": "Automático",
+      "workspaceId": {
+        "label": "ID del área de trabajo"
+      },
+      "reportId": {
+        "label": "ID del informe"
+      },
+      "reportPageName": {
+        "label": "Nombre de página del informe (opcional)"
+      },
+      "filters": {
+        "label": "Filtros (opcional)"
+      },
+      "location": {
+        "label": "Destino",
+        "placeholder": "Destino"
+      },
+      "fileName": {
+        "label": "Nombre de archivo",
+        "placeholder": "Nombre de archivo"
+      },
+      "selectALocation": "Seleccionar un destino",
+      "cancel": "Cancelar",
+      "accept": "Aceptar",
+      "save": "Guardar",
+      "overwriteModalTitle": "Ya existe un informe con este nombre",
+      "overwriteModalBody": "¿Desea sobreescribir el informe? Esta acción no se puede revertir.",
+      "submitModalTitle": "Informe guardado",
+      "submitModalBody": "El informe \"{name}\" ha sido guardado.",
+      "doYouNeedHelp": "¿Necesita ayuda?",
+      "findWorkspaceAndReportId": "Puede encontrar el ID del área de trabajo e informe en la URL del informe.",
+      "notAvailableYet": "Aún no disponible"
+    },
+    "embed": {
+      "title": "Embeber enlace externo",
+      "subtitle": "Completa y guarda tu enlace externo",
+      "url": {
+        "label": "URL"
+      },
+      "location": {
+        "label": "Destino",
+        "placeholder": "Destino"
+      },
+      "fileName": {
+        "label": "Nombre de archivo",
+        "placeholder": "Nombre de archivo"
+      },
+      "selectALocation": "Seleccionar un destino",
+      "cancel": "Cancelar",
+      "accept": "Aceptar",
+      "save": "Guardar",
+      "overwriteModalTitle": "Ya existe un archivo con este nombre",
+      "overwriteModalBody": "¿Desea sobreescribir el archivo? Esta acción no se puede revertir.",
+      "submitModalTitle": "Archivo guardado",
+      "submitModalBody": "El archivo \"{name}\" ha sido guardado."
+    }
+  },
   "profile": {
     "name": {
       "label": "Nombre:",

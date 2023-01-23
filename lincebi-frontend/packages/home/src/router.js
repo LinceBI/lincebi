@@ -9,6 +9,8 @@ import HomeView from '@/views/HomeView.vue';
 import NewView from '@/views/NewView.vue';
 import PerspectiveView from '@/views/PerspectiveView.vue';
 import ProfileView from '@/views/ProfileView.vue';
+import EmbedView from '@/views/EmbedView.vue';
+import PowerBiView from '@/views/PowerBiView.vue';
 
 Vue.use(Router);
 
@@ -67,6 +69,16 @@ export default new Router({
 				stopAllWindows();
 				window.location.href = '../Logout';
 			},
+		},
+		{
+			path: '/t/embed',
+			name: 'embed',
+			component: EmbedView,
+		},
+		{
+			path: '/t/powerbi',
+			name: 'powerbi',
+			component: PowerBiView,
 		},
 	],
 });
