@@ -1,22 +1,6 @@
 package com.stratebi.lincebi.integration.powerbi.controller;
 
-import java.util.List;
-
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.codehaus.enunciate.Facet;
-import org.ehcache.Cache;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.thymeleaf.context.Context;
-
 import com.stratebi.lincebi.integration.powerbi.cache.EmbedConfigCache;
 import com.stratebi.lincebi.integration.powerbi.config.PowerBIConfig;
 import com.stratebi.lincebi.integration.powerbi.model.AvailableFeature;
@@ -27,6 +11,20 @@ import com.stratebi.lincebi.integration.powerbi.service.PowerBIService;
 import com.stratebi.lincebi.integration.powerbi.template.PowerBITemplateEngine;
 import com.stratebi.lincebi.util.KeyUtils;
 import com.stratebi.lincebi.util.UUIDUtils;
+import org.codehaus.enunciate.Facet;
+import org.ehcache.Cache;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.thymeleaf.context.Context;
+
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/lincebi/api/integration/powerbi/embed")
 @Facet(name = "Unsupported")

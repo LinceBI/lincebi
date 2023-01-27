@@ -1,17 +1,5 @@
 package com.stratebi.lincebi.globalusersettings.importhandler;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
-
-import javax.xml.bind.JAXBException;
-
 import org.apache.commons.io.IOUtils;
 import org.pentaho.platform.api.mimetype.IMimeType;
 import org.pentaho.platform.api.repository2.unified.IPlatformImportBundle;
@@ -23,12 +11,23 @@ import org.pentaho.platform.plugin.services.importer.IPlatformImportHandler;
 import org.pentaho.platform.plugin.services.importer.IPlatformImporter;
 import org.pentaho.platform.plugin.services.importer.PlatformImportException;
 import org.pentaho.platform.plugin.services.importexport.ExportManifestUserSetting;
-import org.pentaho.platform.plugin.services.importexport.RepositoryFileBundle;
 import org.pentaho.platform.plugin.services.importexport.ImportSource.IRepositoryFileBundle;
+import org.pentaho.platform.plugin.services.importexport.RepositoryFileBundle;
 import org.pentaho.platform.plugin.services.importexport.exportManifest.ExportManifest;
 import org.pentaho.platform.repository.RepositoryFilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.xml.bind.JAXBException;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class GlobalUserSettingsImportHandler implements IPlatformImportHandler {
 

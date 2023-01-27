@@ -1,22 +1,12 @@
 package com.stratebi.lincebi.filemetadata.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-import java.util.TimeZone;
-import java.util.regex.Pattern;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stratebi.lincebi.filemetadata.exception.FileMetadataAdministerException;
+import com.stratebi.lincebi.filemetadata.exception.FileMetadataReadException;
+import com.stratebi.lincebi.filemetadata.exception.FileMetadataWriteException;
+import com.stratebi.lincebi.filemetadata.model.FileMetadataPath;
+import com.stratebi.lincebi.filemetadata.model.FileMetadataTree;
 import org.pentaho.platform.api.engine.IAuthorizationPolicy;
 import org.pentaho.platform.api.engine.IContentInfo;
 import org.pentaho.platform.api.engine.IPluginManager;
@@ -38,11 +28,20 @@ import org.pentaho.platform.web.http.api.resources.services.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.stratebi.lincebi.filemetadata.exception.FileMetadataAdministerException;
-import com.stratebi.lincebi.filemetadata.exception.FileMetadataReadException;
-import com.stratebi.lincebi.filemetadata.exception.FileMetadataWriteException;
-import com.stratebi.lincebi.filemetadata.model.FileMetadataPath;
-import com.stratebi.lincebi.filemetadata.model.FileMetadataTree;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+import java.util.TimeZone;
+import java.util.regex.Pattern;
 
 public class FileMetadataService {
 
@@ -83,23 +82,23 @@ public class FileMetadataService {
 		"thumbnail"
 	));
 
-	private String userName;
-	private String fullyQualifiedServerUrl;
-	private IPluginManager pluginManager;
-	private IUserSettingService userSettingService;
-	private IAuthorizationPolicy authorizationPolicy;
-	private FileService fileService;
+	private final String userName;
+	private final String fullyQualifiedServerUrl;
+	private final IPluginManager pluginManager;
+	private final IUserSettingService userSettingService;
+	private final IAuthorizationPolicy authorizationPolicy;
+	private final FileService fileService;
 
-	private boolean canRead;
-	private boolean canWrite;
-	private boolean canAdminister;
+	private final boolean canRead;
+	private final boolean canWrite;
+	private final boolean canAdminister;
 
-	private Map<String, Map<String, String>> extensionPerspectivesMap;
+	private final Map<String, Map<String, String>> extensionPerspectivesMap;
 
-	private boolean showHiddenFiles;
-	private Set<RepositoryFile> home;
-	private Set<RepositoryFile> favorites;
-	private Set<RepositoryFile> recents;
+	private final boolean showHiddenFiles;
+	private final Set<RepositoryFile> home;
+	private final Set<RepositoryFile> favorites;
+	private final Set<RepositoryFile> recents;
 
 	public FileMetadataService() {
 		this.userName = PentahoSessionHolder.getSession().getName();

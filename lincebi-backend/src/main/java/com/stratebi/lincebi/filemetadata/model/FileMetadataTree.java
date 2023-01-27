@@ -1,9 +1,9 @@
 package com.stratebi.lincebi.filemetadata.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 import java.util.Map;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class FileMetadataTree {
 

@@ -1,9 +1,21 @@
 package com.stratebi.lincebi.filemetadata.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.networknt.schema.ValidationMessage;
+import com.stratebi.lincebi.filemetadata.cache.FileMetadataCache;
+import com.stratebi.lincebi.filemetadata.model.FileMetadataPath;
+import com.stratebi.lincebi.filemetadata.model.FileMetadataTree;
+import com.stratebi.lincebi.filemetadata.schema.FileMetadataPathArraySchema;
+import com.stratebi.lincebi.filemetadata.schema.FileMetadataTreeArraySchema;
+import com.stratebi.lincebi.filemetadata.service.FileMetadataService;
+import com.stratebi.lincebi.util.KeyUtils;
+import org.codehaus.enunciate.Facet;
+import org.ehcache.Cache;
+import org.pentaho.platform.api.repository2.unified.RepositoryFile;
+import org.pentaho.platform.engine.core.system.PentahoSessionHolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
@@ -13,24 +25,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.networknt.schema.ValidationMessage;
-import org.codehaus.enunciate.Facet;
-import org.ehcache.Cache;
-import org.pentaho.platform.api.repository2.unified.RepositoryFile;
-import org.pentaho.platform.engine.core.system.PentahoSessionHolder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.stratebi.lincebi.filemetadata.cache.FileMetadataCache;
-import com.stratebi.lincebi.filemetadata.model.FileMetadataPath;
-import com.stratebi.lincebi.filemetadata.model.FileMetadataTree;
-import com.stratebi.lincebi.filemetadata.schema.FileMetadataPathArraySchema;
-import com.stratebi.lincebi.filemetadata.schema.FileMetadataTreeArraySchema;
-import com.stratebi.lincebi.filemetadata.service.FileMetadataService;
-import com.stratebi.lincebi.util.KeyUtils;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Path("/lincebi/api/file-metadata")
 @Facet(name = "Unsupported")
@@ -74,7 +71,7 @@ public class FileMetadataController {
 				}
 
 				FileMetadataService fileMetadataService = new FileMetadataService();
-				List<FileMetadataPath> fileMetadataPathList = Arrays.asList(mapper.treeToValue(jsonInput, FileMetadataPath[].class));
+				FileMetadataPath[] fileMetadataPathList = mapper.treeToValue(jsonInput, FileMetadataPath[].class);
 				List<FileMetadataTree> fileMetadataTreeList = new ArrayList<>();
 
 				for (FileMetadataPath fileMetadataPath : fileMetadataPathList) {
@@ -116,7 +113,7 @@ public class FileMetadataController {
 			}
 
 			FileMetadataService fileMetadataService = new FileMetadataService();
-			List<FileMetadataTree> fileMetadataTreeList = Arrays.asList(mapper.treeToValue(jsonInput, FileMetadataTree[].class));
+			FileMetadataTree[] fileMetadataTreeList = mapper.treeToValue(jsonInput, FileMetadataTree[].class);
 			List<FileMetadataPath> fileMetadataPathList = new ArrayList<>();
 
 			for (FileMetadataTree fileMetadataTree : fileMetadataTreeList) {

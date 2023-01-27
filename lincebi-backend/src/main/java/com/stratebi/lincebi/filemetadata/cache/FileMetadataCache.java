@@ -1,7 +1,5 @@
 package com.stratebi.lincebi.filemetadata.cache;
 
-import java.time.Duration;
-
 import org.ehcache.Cache;
 import org.ehcache.CacheManager;
 import org.ehcache.config.CacheConfiguration;
@@ -11,6 +9,8 @@ import org.ehcache.config.builders.CacheManagerBuilder;
 import org.ehcache.config.builders.ExpiryPolicyBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
 import org.ehcache.expiry.ExpiryPolicy;
+
+import java.time.Duration;
 
 public class FileMetadataCache {
 

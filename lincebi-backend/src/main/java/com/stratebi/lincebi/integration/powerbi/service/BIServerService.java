@@ -1,8 +1,5 @@
 package com.stratebi.lincebi.integration.powerbi.service;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.pentaho.platform.api.engine.IAuthorizationPolicy;
 import org.pentaho.platform.api.engine.IPentahoSession;
 import org.pentaho.platform.api.engine.IUserRoleListService;
@@ -11,6 +8,9 @@ import org.pentaho.platform.engine.core.system.PentahoSystem;
 import org.pentaho.platform.security.policy.rolebased.actions.AdministerSecurityAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Service with helper methods to get user and roles

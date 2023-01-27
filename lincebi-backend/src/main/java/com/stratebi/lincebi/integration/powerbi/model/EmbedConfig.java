@@ -1,8 +1,8 @@
 package com.stratebi.lincebi.integration.powerbi.model;
 
-import java.util.Set;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Set;
 
 public class EmbedConfig {
 

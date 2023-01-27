@@ -1,9 +1,6 @@
 package com.stratebi.lincebi.integration.powerbi.cache;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.util.function.Supplier;
-
+import com.stratebi.lincebi.integration.powerbi.model.EmbedConfig;
 import org.ehcache.Cache;
 import org.ehcache.CacheManager;
 import org.ehcache.config.CacheConfiguration;
@@ -13,8 +10,9 @@ import org.ehcache.config.builders.CacheManagerBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
 import org.ehcache.expiry.ExpiryPolicy;
 
-import com.stratebi.lincebi.integration.powerbi.cache.EmbedConfigExpiryPolicy;
-import com.stratebi.lincebi.integration.powerbi.model.EmbedConfig;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.function.Supplier;
 
 public class EmbedConfigCache {
 

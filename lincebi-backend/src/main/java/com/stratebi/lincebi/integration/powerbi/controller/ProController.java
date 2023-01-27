@@ -1,5 +1,13 @@
 package com.stratebi.lincebi.integration.powerbi.controller;
 
+import com.stratebi.lincebi.integration.powerbi.config.PowerBIConfig;
+import com.stratebi.lincebi.integration.powerbi.template.PowerBITemplateEngine;
+import com.stratebi.lincebi.util.UUIDUtils;
+import org.codehaus.enunciate.Facet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.thymeleaf.context.Context;
+
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -7,15 +15,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import org.codehaus.enunciate.Facet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.thymeleaf.context.Context;
-
-import com.stratebi.lincebi.integration.powerbi.config.PowerBIConfig;
-import com.stratebi.lincebi.integration.powerbi.template.PowerBITemplateEngine;
-import com.stratebi.lincebi.util.UUIDUtils;
 
 @Path("/lincebi/api/integration/powerbi/pro")
 @Facet(name = "Unsupported")

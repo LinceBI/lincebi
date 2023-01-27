@@ -1,19 +1,18 @@
 package com.stratebi.lincebi.integration.powerbi.service;
 
-import java.net.MalformedURLException;
-import java.util.Collections;
-import java.util.concurrent.ExecutionException;
-
 import com.microsoft.aad.msal4j.ClientCredentialFactory;
 import com.microsoft.aad.msal4j.ClientCredentialParameters;
 import com.microsoft.aad.msal4j.ConfidentialClientApplication;
 import com.microsoft.aad.msal4j.IAuthenticationResult;
 import com.microsoft.aad.msal4j.PublicClientApplication;
 import com.microsoft.aad.msal4j.UserNamePasswordParameters;
+import com.stratebi.lincebi.integration.powerbi.config.PowerBIConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.stratebi.lincebi.integration.powerbi.config.PowerBIConfig;
+import java.net.MalformedURLException;
+import java.util.Collections;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Service to authenticate using MSAL

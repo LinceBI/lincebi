@@ -1,15 +1,17 @@
 package com.stratebi.lincebi.integration.powerbi.service;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.stratebi.lincebi.integration.powerbi.model.AvailableFeature;
+import com.stratebi.lincebi.integration.powerbi.model.Dashboard;
+import com.stratebi.lincebi.integration.powerbi.model.Dataset;
+import com.stratebi.lincebi.integration.powerbi.model.EmbedConfig;
+import com.stratebi.lincebi.integration.powerbi.model.EmbedToken;
+import com.stratebi.lincebi.integration.powerbi.model.Report;
+import com.stratebi.lincebi.integration.powerbi.model.Tile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -19,13 +21,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriUtils;
 
-import com.stratebi.lincebi.integration.powerbi.model.AvailableFeature;
-import com.stratebi.lincebi.integration.powerbi.model.Dashboard;
-import com.stratebi.lincebi.integration.powerbi.model.Dataset;
-import com.stratebi.lincebi.integration.powerbi.model.Tile;
-import com.stratebi.lincebi.integration.powerbi.model.EmbedConfig;
-import com.stratebi.lincebi.integration.powerbi.model.EmbedToken;
-import com.stratebi.lincebi.integration.powerbi.model.Report;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Service with helper methods to get report's details and multi-resource embed token

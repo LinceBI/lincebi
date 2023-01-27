@@ -1,17 +1,5 @@
 package com.stratebi.lincebi.filemetadata.importhandler;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.PropertyResourceBundle;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
-
 import org.apache.commons.io.IOUtils;
 import org.pentaho.platform.api.mimetype.IMimeType;
 import org.pentaho.platform.api.repository2.unified.IPlatformImportBundle;
@@ -29,6 +17,18 @@ import org.pentaho.platform.repository.RepositoryFilenameUtils;
 import org.pentaho.platform.web.http.api.resources.services.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.PropertyResourceBundle;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class FileMetadataImportHandler implements IPlatformImportHandler {
 

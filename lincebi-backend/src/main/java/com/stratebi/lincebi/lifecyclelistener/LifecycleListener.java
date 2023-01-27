@@ -1,9 +1,5 @@
 package com.stratebi.lincebi.lifecyclelistener;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.util.concurrent.Callable;
-
 import org.pentaho.platform.api.engine.IPlatformReadyListener;
 import org.pentaho.platform.api.engine.IPluginLifecycleListener;
 import org.pentaho.platform.api.engine.PluginLifecycleException;
@@ -13,6 +9,10 @@ import org.pentaho.platform.plugin.services.importer.ArchiveLoader;
 import org.pentaho.platform.plugin.services.importer.IPlatformImporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.concurrent.Callable;
 
 public class LifecycleListener implements IPluginLifecycleListener, IPlatformReadyListener {
 
