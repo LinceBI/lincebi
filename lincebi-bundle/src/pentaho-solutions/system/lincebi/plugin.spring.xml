@@ -16,15 +16,13 @@
 
 	<bean id="api" class="org.pentaho.platform.web.servlet.JAXRSPluginServlet" />
 
+	<bean class="com.stratebi.lincebi.importhandler.LinceBISolutionImportHandler" />
+
 	<bean class="com.stratebi.lincebi.filemetadata.controller.FileMetadataController" />
-	<bean class="com.stratebi.lincebi.filemetadata.importhandler.FileMetadataImportHandler" />
-
 	<bean class="com.stratebi.lincebi.globalusersettings.controller.GlobalUserSettingsController" />
-	<bean class="com.stratebi.lincebi.globalusersettings.importhandler.GlobalUserSettingsImportHandler" />
-
-	<bean class="com.stratebi.lincebi.push.controller.PushController" />
 
 	<bean class="com.stratebi.lincebi.integration.powerbi.controller.EmbedController" />
 	<bean class="com.stratebi.lincebi.integration.powerbi.controller.ProController" />
 
+	<bean class="com.stratebi.lincebi.push.controller.PushController" />
 </beans>
