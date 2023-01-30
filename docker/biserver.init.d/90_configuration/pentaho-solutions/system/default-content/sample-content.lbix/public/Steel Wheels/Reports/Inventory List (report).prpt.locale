@@ -1,0 +1,4 @@
+file.title=Inventory List
+file.description=Scan-able inventory report showing inventory on hand with detailed product descriptions.
+thumbnail=/lincebi/api/repos/\:public\:Steel Wheels\:Reports\:images\:Inventory List (report).png/content
+tags=[{"value":"report"}]

@@ -18,13 +18,13 @@ public class LifecycleListener implements IPluginLifecycleListener, IPlatformRea
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LifecycleListener.class);
 
-	private static final String DEFAULT_LINCEBI_LOADER_THREAD_NAME = "Default LinceBI Loader Thread";
+	private static final String LINCEBI_CONTENT_LOADER_THREAD_NAME = "LinceBI Content Loader Thread";
 	// Extracted from: org/pentaho/platform/plugin/action/defaultcontent/DefaultContentSystemListener.java
 	private static final String DEFAULT_CONTENT_LOADER_THREAD_NAME = "Default Content Loader Thread";
 
 	private static final String DEFAULT_CONTENT_FOLDER = "system/default-content";
 
-	private static final FilenameFilter FILE_FILTER = (dir, name) -> name.endsWith(".pgus") || name.endsWith(".pfm");
+	private static final FilenameFilter LBIX_FILE_FILTER = (dir, name) -> name.endsWith(".lbix");
 
 	@Override
 	public void init() throws PluginLifecycleException {
@@ -55,7 +55,7 @@ public class LifecycleListener implements IPluginLifecycleListener, IPlatformRea
 
 					IPlatformImporter importer = PentahoSystem.get(IPlatformImporter.class);
 					ArchiveLoader archiveLoader = new ArchiveLoader(importer);
-					archiveLoader.loadAll(directory, LifecycleListener.FILE_FILTER);
+					archiveLoader.loadAll(directory, LifecycleListener.LBIX_FILE_FILTER);
 
 					return null;
 				});
@@ -64,10 +64,10 @@ public class LifecycleListener implements IPluginLifecycleListener, IPlatformRea
 			}
 		};
 
-		Thread defaultFileMetadataLoaderThread = new Thread(runnable);
-		defaultFileMetadataLoaderThread.setName(LifecycleListener.DEFAULT_LINCEBI_LOADER_THREAD_NAME);
-		defaultFileMetadataLoaderThread.setDaemon(true);
-		defaultFileMetadataLoaderThread.start();
+		Thread lincebiContentLoaderThread = new Thread(runnable);
+		lincebiContentLoaderThread.setName(LifecycleListener.LINCEBI_CONTENT_LOADER_THREAD_NAME);
+		lincebiContentLoaderThread.setDaemon(true);
+		lincebiContentLoaderThread.start();
 	}
 
 	private Thread getThreadByName(String threadName) {
