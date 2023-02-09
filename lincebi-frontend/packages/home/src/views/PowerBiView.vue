@@ -7,7 +7,7 @@
 						class="card-icon fa-fw"
 						:icon="['fac', 'tool-powerbi']"
 						:style="{
-							color: '#f4d249',
+							color: '#f2c811',
 							fontSize: '4rem',
 							marginBottom: '1rem',
 						}"

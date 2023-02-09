@@ -220,7 +220,7 @@ export default {
 							id: 'tool-powerbi',
 							name: 'Power BI',
 							icon: ['fac', 'tool-powerbi'],
-							color: '#f4d249',
+							color: '#f2c811',
 							click: () => {
 								router
 									.push({
