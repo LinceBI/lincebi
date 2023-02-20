@@ -111,7 +111,12 @@
       "submitModalTitle": "Saved report",
       "submitModalBody": "Report \"{name}\" has been saved.",
       "doYouNeedHelp": "Do you need help?",
-      "findWorkspaceAndReportId": "The workspace and report ID can be found in the report URL.",
+      "findWorkspaceAndReport": {
+        "msg": "The {workspaceId}, {reportId} and {reportPageName} can be found in the report URL.",
+        "workspaceId": "workspace ID",
+        "reportId": "report ID",
+        "reportPageName": "report page name"
+      },
       "notAvailableYet": "Not availabe yet"
     },
     "embed": {

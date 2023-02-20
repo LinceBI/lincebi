@@ -107,11 +107,16 @@
       "accept": "Aceptar",
       "save": "Guardar",
       "overwriteModalTitle": "Ya existe un informe con este nombre",
-      "overwriteModalBody": "¿Desea sobreescribir el informe? Esta acción no se puede revertir.",
+      "overwriteModalBody": "¿Deseas sobreescribir el informe? Esta acción no se puede revertir.",
       "submitModalTitle": "Informe guardado",
       "submitModalBody": "El informe \"{name}\" ha sido guardado.",
-      "doYouNeedHelp": "¿Necesita ayuda?",
-      "findWorkspaceAndReportId": "Puede encontrar el ID del área de trabajo e informe en la URL del informe.",
+      "doYouNeedHelp": "¿Necesitas ayuda?",
+      "findWorkspaceAndReport": {
+        "msg": "Puedes encontrar el {workspaceId}, {reportId} y {reportPageName} en la URL del informe.",
+        "workspaceId": "ID del área de trabajo",
+        "reportId": "ID del informe",
+        "reportPageName": "nombre de página del informe"
+      },
       "notAvailableYet": "Aún no disponible"
     },
     "embed": {
@@ -133,7 +138,7 @@
       "accept": "Aceptar",
       "save": "Guardar",
       "overwriteModalTitle": "Ya existe un archivo con este nombre",
-      "overwriteModalBody": "¿Desea sobreescribir el archivo? Esta acción no se puede revertir.",
+      "overwriteModalBody": "¿Deseas sobreescribir el archivo? Esta acción no se puede revertir.",
       "submitModalTitle": "Archivo guardado",
       "submitModalBody": "El archivo \"{name}\" ha sido guardado."
     }

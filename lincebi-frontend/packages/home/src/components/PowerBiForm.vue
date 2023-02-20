@@ -79,7 +79,23 @@
 						variant="info"
 						:icon="['fas', 'circle-info']"
 					>
-						<p class="mb-2">{{ $t('tools.powerbi.findWorkspaceAndReportId') }}</p>
+						<i18n path="tools.powerbi.findWorkspaceAndReport.msg" tag="p" class="mb-2">
+							<template #workspaceId>
+								<span :style="{ color: '#cd0012' }">{{
+									$t('tools.powerbi.findWorkspaceAndReport.workspaceId')
+								}}</span>
+							</template>
+							<template #reportId>
+								<span :style="{ color: '#019800' }">{{
+									$t('tools.powerbi.findWorkspaceAndReport.reportId')
+								}}</span>
+							</template>
+							<template #reportPageName>
+								<span :style="{ color: '#0035a8' }">{{
+									$t('tools.powerbi.findWorkspaceAndReport.reportPageName')
+								}}</span>
+							</template>
+						</i18n>
 						<b-img class="w-100 h-auto" src="~@/assets/img/powerbi-ids-help.png" />
 					</additional-info>
 				</b-col>
