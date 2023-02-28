@@ -155,12 +155,7 @@ public class LinceBISolutionImportHandler extends SolutionImportHandler implemen
 			String parentFilePath = localeFilePath.substring(0, localeFilePath.length() - LinceBISolutionImportHandler.LOCALE_FILE_EXTENSION.length());
 
 			if (this.fileService.getRepository().getFile(parentFilePath) == null) {
-				try {
-					this.fileService.createFile("UTF-8", parentFilePath, new ByteArrayInputStream(new byte[0]));
-				} catch (Exception ex) {
-					LinceBISolutionImportHandler.LOGGER.error(ex.getMessage());
-					throw new PlatformImportException(ex.getMessage());
-				}
+				continue;
 			}
 
 			List<StringKeyStringValueDto> localeProperties = new ArrayList<>();
