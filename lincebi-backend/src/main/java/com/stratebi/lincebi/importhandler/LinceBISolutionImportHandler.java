@@ -47,11 +47,11 @@ public class LinceBISolutionImportHandler extends SolutionImportHandler implemen
 
 	private static final byte[] LOCK = new byte[0];
 
-	private static final String MANIFEST_FILENAME = "exportManifest.xml";
-	private static final Pattern MANIFEST_FILENAME_PATTERN = Pattern.compile("^(?:.*/)?" + Pattern.quote(LinceBISolutionImportHandler.MANIFEST_FILENAME) + "$");
+	private static final String MANIFEST_FILE_NAME = "exportManifest.xml";
+	private static final Pattern MANIFEST_FILE_PATTERN = Pattern.compile("^(?:.*/)?" + Pattern.quote(LinceBISolutionImportHandler.MANIFEST_FILE_NAME) + "$");
 
-	private static final String LOCALE_EXTENSION = ".locale";
-	private static final Pattern LOCALE_EXTENSION_PATTERN = Pattern.compile("^.+" + Pattern.quote(LinceBISolutionImportHandler.LOCALE_EXTENSION) + "$");
+	private static final String LOCALE_FILE_EXTENSION = ".locale";
+	private static final Pattern LOCALE_FILE_PATTERN = Pattern.compile("^(?:.*/)?(?!index)[^/]+" + Pattern.quote(LinceBISolutionImportHandler.LOCALE_FILE_EXTENSION) + "$");
 
 	static {
 		// Register import handler
@@ -92,9 +92,11 @@ public class LinceBISolutionImportHandler extends SolutionImportHandler implemen
 		try (ZipInputStream zipInputStream = new ZipInputStream(bundleInputStream)) {
 			ZipEntry entry;
 			while ((entry = zipInputStream.getNextEntry()) != null) {
+				if (entry.isDirectory()) continue;
+
 				String entryName = RepositoryFilenameUtils.separatorsToRepository(entry.getName());
-				boolean isManifestFile = !entry.isDirectory() && LinceBISolutionImportHandler.MANIFEST_FILENAME_PATTERN.matcher(entryName).matches();
-				boolean isLocaleFile = !entry.isDirectory() && LinceBISolutionImportHandler.LOCALE_EXTENSION_PATTERN.matcher(entryName).matches();
+				boolean isManifestFile = LinceBISolutionImportHandler.MANIFEST_FILE_PATTERN.matcher(entryName).matches();
+				boolean isLocaleFile = LinceBISolutionImportHandler.LOCALE_FILE_PATTERN.matcher(entryName).matches();
 
 				if (isManifestFile || isLocaleFile) {
 					File tempFile = File.createTempFile("zip", null);
@@ -150,7 +152,7 @@ public class LinceBISolutionImportHandler extends SolutionImportHandler implemen
 				localeFileName = ExportFileNameEncoder.decodeZipFileName(localeFileName);
 			}
 			String localeFilePath = RepositoryFilenameUtils.concat(importPath, RepositoryFilenameUtils.concat(localeFileDirPath, localeFileName));
-			String parentFilePath = localeFilePath.substring(0, localeFilePath.length() - LinceBISolutionImportHandler.LOCALE_EXTENSION.length());
+			String parentFilePath = localeFilePath.substring(0, localeFilePath.length() - LinceBISolutionImportHandler.LOCALE_FILE_EXTENSION.length());
 
 			if (this.fileService.getRepository().getFile(parentFilePath) == null) {
 				try {
