@@ -10,8 +10,8 @@
 
 <script>
 import HomeSlider from '@/components/HomeSlider.vue';
-import HomeTabList from '@/components/HomeTabList';
-import HomeTabContent from '@/components/HomeTabContent';
+import HomeTabList from '@/components/HomeTabList.vue';
+import HomeTabContent from '@/components/HomeTabContent.vue';
 
 export default {
 	name: 'HomeView',

@@ -43,7 +43,7 @@ import safeJSON from '@lincebi/frontend-common/src/safeJSON';
 
 import store from '@/store';
 
-import HomeCardDeck from '@/components/HomeCardDeck';
+import HomeCardDeck from '@/components/HomeCardDeck.vue';
 
 export default {
 	name: 'HomeTabContent',
