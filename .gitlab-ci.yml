@@ -25,7 +25,10 @@ stages:
     - "./lincebi-frontend/packages/*/dist/"
 
 .cache: &cache
-  key: "${CI_COMMIT_REF_SLUG}"
+  key:
+    files:
+      - "./lincebi-backend/gradle.lockfile"
+      - "./lincebi-frontend/pnpm-lock.yaml"
   paths:
     - "./.gradle/"
     - "./lincebi-frontend/node_modules/"
