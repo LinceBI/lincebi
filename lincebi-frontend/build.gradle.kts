@@ -6,18 +6,20 @@ val datadogClientToken = project.property("datadogClientToken")
 val datadogMinifiedPathPrefix = project.property("datadogMinifiedPathPrefix")
 
 tasks.register<Sync>("build") {
-	if (!File("${projectDir}/packages/login/build/").exists() ||
-		!File("${projectDir}/packages/home/build/").exists()
+	if (!File("${projectDir}/packages/login/dist/").exists() ||
+		!File("${projectDir}/packages/home/dist/").exists()
 	) {
 		dependsOn("pnpmRunBuild")
 	}
 
-	from("${projectDir}/packages/login/build/", {
+	from("${projectDir}/packages/login/dist/", {
 		into("/Login/")
+		rename("^(index)\\.html$", "$1.jsp")
 	})
 
-	from("${projectDir}/packages/home/build/", {
+	from("${projectDir}/packages/home/dist/", {
 		into("/Home/")
+		rename("^(index)\\.html$", "$1.jsp")
 	})
 
 	into("${buildDir}/")
@@ -25,8 +27,8 @@ tasks.register<Sync>("build") {
 
 tasks.register<Delete>("clean") {
 	delete("${buildDir}/")
-	delete("${projectDir}/packages/login/build/")
-	delete("${projectDir}/packages/home/build/")
+	delete("${projectDir}/packages/login/dist/")
+	delete("${projectDir}/packages/home/dist/")
 }
 
 tasks.register<Exec>("pnpmRunBuild") {
@@ -38,10 +40,10 @@ tasks.register<Exec>("pnpmRunBuild") {
 	}
 
 	environment(mapOf(
-		"VUE_APP_VERSION" to version,
-		"VUE_APP_GTAG_ID" to gtagId,
-		"VUE_APP_DATADOG_SITE" to datadogSite,
-		"VUE_APP_DATADOG_CLIENT_TOKEN" to datadogClientToken
+		"VITE_VERSION" to version,
+		"VITE_GTAG_ID" to gtagId,
+		"VITE_DATADOG_SITE" to datadogSite,
+		"VITE_DATADOG_CLIENT_TOKEN" to datadogClientToken
 	))
 
 	commandLine("pnpm", "run", "build")
@@ -49,7 +51,7 @@ tasks.register<Exec>("pnpmRunBuild") {
 	outputs.upToDateWhen { false }
 }
 
-tasks.register<Exec>("pnpmRunServe") {
+tasks.register<Exec>("pnpmRunDev") {
 	if (!File("${projectDir}/node_modules/").exists() ||
 		!File("${projectDir}/packages/login/node_modules/").exists() ||
 		!File("${projectDir}/packages/home/node_modules/").exists()
@@ -58,18 +60,18 @@ tasks.register<Exec>("pnpmRunServe") {
 	}
 
 	environment(mapOf(
-		"VUE_APP_VERSION" to version,
-		"VUE_APP_GTAG_ID" to gtagId,
-		"VUE_APP_DATADOG_SITE" to datadogSite,
-		"VUE_APP_DATADOG_CLIENT_TOKEN" to datadogClientToken
+		"VITE_VERSION" to version,
+		"VITE_GTAG_ID" to gtagId,
+		"VITE_DATADOG_SITE" to datadogSite,
+		"VITE_DATADOG_CLIENT_TOKEN" to datadogClientToken
 	))
 
-	commandLine("pnpm", "run", "serve")
+	commandLine("pnpm", "run", "dev")
 
 	outputs.upToDateWhen { false }
 }
 
-tasks.register<Exec>("pnpxDatadogSourcemapsUpload") {
+tasks.register<Exec>("pnpmExecDatadogSourcemapsUpload") {
 	if (!File("${projectDir}/node_modules/").exists()) {
 		dependsOn("pnpmInstall")
 	}
@@ -79,7 +81,7 @@ tasks.register<Exec>("pnpxDatadogSourcemapsUpload") {
 		"DATADOG_API_KEY" to datadogApiKey
 	))
 
-	commandLine("pnpx", "@datadog/datadog-ci", "sourcemaps", "upload", "${buildDir}/",
+	commandLine("pnpm", "exec", "datadog-ci", "sourcemaps", "upload", "${buildDir}/",
 		"--service", "lincebi",
 		"--release-version", version.toLowerCase(),
 		"--minified-path-prefix", datadogMinifiedPathPrefix)

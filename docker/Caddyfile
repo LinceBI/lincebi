@@ -22,15 +22,9 @@ https://:8443 {
 		header_down Set-Cookie "^(.*)$" "$1; SameSite=Strict; Secure"
 	}
 
-	# Webpack Dev Server (@lincebi/frontend-login)
-	handle_path /lincebi/Login/* {
-		reverse_proxy http://host.docker.internal:8081
-	}
-	reverse_proxy /ws-login ws://host.docker.internal:8081
+	# Dev Server (@lincebi/frontend-login)
+	reverse_proxy /lincebi/Login/* http://host.docker.internal:3031
 
-	# Webpack Dev Server (@lincebi/frontend-home)
-	handle_path /lincebi/Home/* {
-		reverse_proxy http://host.docker.internal:8082
-	}
-	reverse_proxy /ws-home ws://host.docker.internal:8082
+	# Dev Server (@lincebi/frontend-home)
+	reverse_proxy /lincebi/Home/* http://host.docker.internal:3032
 }

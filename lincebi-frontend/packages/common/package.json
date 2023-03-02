@@ -1,11 +1,13 @@
 {
   "private": true,
   "name": "@lincebi/frontend-common",
+  "type": "module",
   "scripts": {
-    "lint": "vue-cli-service lint --no-fix"
+    "lint": "eslint --ext .vue,.js,.jsx,.cjs,.mjs --no-fix --ignore-path ./.gitignore ./",
+    "format": "prettier --write ./src/"
   },
   "dependencies": {
-    "@datadog/browser-logs": "~4.34.1",
+    "@datadog/browser-logs": "~4.34.2",
     "@fortawesome/fontawesome-svg-core": "~6.3.0",
     "@fortawesome/free-brands-svg-icons": "~6.3.0",
     "@fortawesome/free-regular-svg-icons": "~6.3.0",
@@ -14,8 +16,7 @@
     "bootstrap": "~4.6.2",
     "bootstrap-v4-rtl": "~4.6.2-1",
     "bootstrap-vue": "~2.23.1",
-    "compressorjs": "~1.1.1",
-    "core-js": "~3.28.0",
+    "compressorjs": "~1.2.1",
     "jdenticon": "~3.2.0",
     "jquery": "~3.6.3",
     "lodash": "~4.17.21",
@@ -23,19 +24,17 @@
     "vue": "~2.7.14"
   },
   "devDependencies": {
-    "@babel/core": "~7.20.12",
-    "@vue/cli-plugin-babel": "~5.0.8",
-    "@vue/cli-plugin-eslint": "~5.0.8",
-    "@vue/cli-service": "~5.0.8",
-    "eslint": "~8.34.0",
+    "@vitejs/plugin-vue2": "~2.2.0",
+    "autoprefixer": "~10.4.13",
+    "eslint": "~8.35.0",
     "eslint-config-prettier": "~8.6.0",
     "eslint-plugin-prettier": "~4.2.1",
     "eslint-plugin-vue": "~9.9.0",
+    "postcss": "~8.4.21",
     "prettier": "~2.8.4",
     "rimraf": "~4.1.2",
     "sass": "~1.58.3",
-    "sass-loader": "~13.2.0",
-    "vue-template-compiler": "~2.7.14",
-    "webpack": "~5.75.0"
+    "vite": "~4.1.4",
+    "vue-template-compiler": "~2.7.14"
   }
 }

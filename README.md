@@ -28,9 +28,9 @@ Descomprimir el contenido del archivo `.zip` sobre una instalación de Pentaho B
     docker-compose up
     ```
 
- 2. En otra terminal, iniciar los dev server de Webpack.
+ 2. En otra terminal, iniciar los dev server.
     ```sh
-    ./gradlew pnpmRunServe
+    ./gradlew pnpmRunDev
     ```
 
  3. Acceder a [https://localhost:8443](https://localhost:8443) cuando ambos servicios estén en

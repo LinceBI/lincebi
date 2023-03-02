@@ -10,8 +10,8 @@ import pt from '@/locales/pt.json';
 
 Vue.use(VueI18n);
 
-let locale = process.env.VUE_APP_I18N_LOCALE || navigator.language.replaceAll('-', '_');
-const fallbackLocale = process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en';
+let locale = import.meta.env.VITE_I18N_LOCALE || navigator.language.replaceAll('-', '_');
+const fallbackLocale = import.meta.env.VITE_I18N_FALLBACK_LOCALE || 'en';
 const messages = {
 	ar,
 	ar_AE: ar,

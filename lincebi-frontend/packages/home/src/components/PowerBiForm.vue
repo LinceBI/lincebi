@@ -96,7 +96,7 @@
 								}}</span>
 							</template>
 						</i18n>
-						<b-img class="w-100 h-auto" src="~@/assets/img/powerbi-ids-help.png" />
+						<b-img class="w-100 h-auto" src="@/assets/img/powerbi-ids-help.png" />
 					</additional-info>
 				</b-col>
 			</b-row>

@@ -30,7 +30,7 @@ body {
 	font-family: 'Titillium Web', $system-sans-serif;
 	font-size: $em-base-px;
 	text-align: inherit;
-	background-image: url('~@/assets/img/background.jpg');
+	background-image: url('@/assets/img/background.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;

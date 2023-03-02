@@ -1,1 +1,1 @@
-module.exports = require('@lincebi/frontend-common/postcss.config.js');
+export { default } from '@lincebi/frontend-common/postcss.config.js';

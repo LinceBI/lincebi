@@ -1,4 +1,4 @@
-const id = process.env.VUE_APP_GTAG_ID;
+const id = import.meta.env.VITE_GTAG_ID;
 const dl = '__dataLayer__';
 
 if (typeof window[dl] === 'undefined') {

@@ -1,14 +1,17 @@
 {
   "private": true,
   "name": "@lincebi/frontend",
-  "packageManager": "pnpm@7.14.2",
+  "packageManager": "pnpm@7.28.0",
+  "type": "module",
   "scripts": {
-    "lint": "pnpm -r run lint",
+    "dev": "pnpm -r run dev",
     "build": "pnpm -r run build",
-    "serve": "pnpm -r run serve",
-    "clean": "pnpm -r run clean"
+    "preview": "pnpm -r run preview",
+    "clean": "pnpm -r run clean",
+    "lint": "pnpm -r run lint",
+    "format": "pnpm -r run format"
   },
   "devDependencies": {
-    "@datadog/datadog-ci": "~2.4.1"
+    "@datadog/datadog-ci": "~2.5.1"
   }
 }

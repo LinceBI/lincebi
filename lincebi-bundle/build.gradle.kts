@@ -20,6 +20,8 @@ tasks.register<Zip>("build") {
 
 	from("${project(":${rootProject.name}-frontend").buildDir}/", {
 		into("/tomcat/webapps/pentaho/")
+		exclude("**/*.js.map")
+		exclude("**/*.css.map")
 	})
 }
 

@@ -22,7 +22,7 @@ stages:
     - "./lincebi-bundle/build/"
     - "./lincebi-backend/build/"
     - "./lincebi-frontend/build/"
-    - "./lincebi-frontend/packages/*/build/"
+    - "./lincebi-frontend/packages/*/dist/"
 
 .cache: &cache
   key: "${CI_COMMIT_REF_SLUG}"
@@ -69,8 +69,8 @@ deploy:develop:mvn:
     <<: *variables_develop
   script:
     - "./gradlew publish"
-    - "./gradlew pnpxDatadogSourcemapsUpload -PdatadogMinifiedPathPrefix=/pentaho/"
-    - "./gradlew pnpxDatadogSourcemapsUpload -PdatadogMinifiedPathPrefix=/lincebi/"
+    - "./gradlew pnpmExecDatadogSourcemapsUpload -PdatadogMinifiedPathPrefix=/pentaho/"
+    - "./gradlew pnpmExecDatadogSourcemapsUpload -PdatadogMinifiedPathPrefix=/lincebi/"
   cache:
     <<: *cache
   except:
@@ -84,8 +84,8 @@ deploy:release:mvn:
     <<: *variables_release
   script:
     - "./gradlew publish"
-    - "./gradlew pnpxDatadogSourcemapsUpload -PdatadogMinifiedPathPrefix=/pentaho/"
-    - "./gradlew pnpxDatadogSourcemapsUpload -PdatadogMinifiedPathPrefix=/lincebi/"
+    - "./gradlew pnpmExecDatadogSourcemapsUpload -PdatadogMinifiedPathPrefix=/pentaho/"
+    - "./gradlew pnpmExecDatadogSourcemapsUpload -PdatadogMinifiedPathPrefix=/lincebi/"
   cache:
     <<: *cache
   only:
