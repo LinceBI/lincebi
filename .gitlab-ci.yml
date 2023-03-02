@@ -98,22 +98,28 @@ deploy:release:mvn:
   script:
     - "mv ./lincebi-bundle/build/lincebi.zip ./10_lincebi-autodeploy.zip"
     - |
-      HOST=${LINCEBI_TESTING_SFTP_HOST:?}
-      PORT=${LINCEBI_TESTING_SFTP_PORT:?}
-      USER=${LINCEBI_TESTING_SFTP_USER:?}
-      PASSWORD=${LINCEBI_TESTING_SFTP_PASSWORD:?}
       lftp <<-EOF
         set sftp:connect-program 'ssh -oStrictHostKeyChecking=no';
-        open 'sftp://${USER}:${PASSWORD}@${HOST}:${PORT}';
-        put -O /data/initd/ ./10_lincebi-autodeploy.zip; bye;
+        open 'sftp://${LINCEBI_TESTING_SFTP_USER:?}:${LINCEBI_TESTING_SFTP_PASSWORD:?}@${LINCEBI_TESTING_SFTP_HOST:?}:${LINCEBI_TESTING_SFTP_PORT:?}';
+        put -O './data/${LINCEBI_TESTING_ENV:?}/init.d/' ./10_lincebi-autodeploy.zip; bye;
       EOF
   except:
     - *regex_version
 
-deploy:develop:testing:manual:
-   extends: ".deploy:develop:testing:template"
-   when: "manual"
+deploy:develop:testing:a:manual:
+  extends: ".deploy:develop:testing:template"
+  when: "manual"
+  variables:
+    LINCEBI_TESTING_ENV: "a"
+  only: ["master"]
 
-deploy:develop:testing:scheduled:
-   extends: ".deploy:develop:testing:template"
-   only: ["schedules"]
+deploy:develop:testing:b:manual:
+  extends: ".deploy:develop:testing:template"
+  when: "manual"
+  variables:
+    LINCEBI_TESTING_ENV: "b"
+  only: ["master", "/^[0-9]+-.+$/"]
+
+deploy:develop:testing:*:scheduled:
+  extends: ".deploy:develop:testing:template"
+  only: ["schedules"]
