@@ -3,14 +3,14 @@ import Router from 'vue-router';
 
 import stopAllWindows from '@lincebi/frontend-common/src/stopAllWindows';
 
-import AboutView from '@/views/AboutView.vue';
-import AdministrationView from '@/views/AdministrationView.vue';
-import HomeView from '@/views/HomeView.vue';
-import NewView from '@/views/NewView.vue';
-import PerspectiveView from '@/views/PerspectiveView.vue';
-import ProfileView from '@/views/ProfileView.vue';
-import EmbedView from '@/views/EmbedView.vue';
-import PowerBiView from '@/views/PowerBiView.vue';
+const AboutView = () => import('@/views/AboutView.vue');
+const AdministrationView = () => import('@/views/AdministrationView.vue');
+const HomeView = () => import('@/views/HomeView.vue');
+const NewView = () => import('@/views/NewView.vue');
+const PerspectiveView = () => import('@/views/PerspectiveView.vue');
+const ProfileView = () => import('@/views/ProfileView.vue');
+const EmbedView = () => import('@/views/EmbedView.vue');
+const PowerBiView = () => import('@/views/PowerBiView.vue');
 
 Vue.use(Router);
 
@@ -27,14 +27,14 @@ export default new Router({
 			component: HomeView,
 		},
 		{
-			path: '/new',
-			name: 'new',
-			component: NewView,
-		},
-		{
 			path: '/profile',
 			name: 'profile',
 			component: ProfileView,
+		},
+		{
+			path: '/administration',
+			name: 'administration',
+			component: AdministrationView,
 		},
 		{
 			path: '/about',
@@ -42,9 +42,19 @@ export default new Router({
 			component: AboutView,
 		},
 		{
-			path: '/administration',
-			name: 'administration',
-			component: AdministrationView,
+			path: '/new',
+			name: 'new',
+			component: NewView,
+		},
+		{
+			path: '/t/embed',
+			name: 'embed',
+			component: EmbedView,
+		},
+		{
+			path: '/t/powerbi',
+			name: 'powerbi',
+			component: PowerBiView,
 		},
 		{
 			path: '/p/:perspective',
@@ -69,16 +79,6 @@ export default new Router({
 				stopAllWindows();
 				window.location.href = '../Logout';
 			},
-		},
-		{
-			path: '/t/embed',
-			name: 'embed',
-			component: EmbedView,
-		},
-		{
-			path: '/t/powerbi',
-			name: 'powerbi',
-			component: PowerBiView,
 		},
 	],
 });
