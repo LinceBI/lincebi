@@ -3,7 +3,8 @@
 		<home-slider class="home-slider" />
 		<div class="home-tabs">
 			<home-tab-list :tab.sync="tab" />
-			<home-tab-content :tab.sync="tab" />
+			<home-tab-content-frame v-if="tab?.type === 'frame'" :tab.sync="tab" />
+			<home-tab-content-deck v-else :tab.sync="tab" />
 		</div>
 	</div>
 </template>
@@ -11,14 +12,16 @@
 <script>
 import HomeSlider from '@/components/HomeSlider.vue';
 import HomeTabList from '@/components/HomeTabList.vue';
-import HomeTabContent from '@/components/HomeTabContent.vue';
+import HomeTabContentDeck from '@/components/HomeTabContentDeck.vue';
+import HomeTabContentFrame from '@/components/HomeTabContentFrame.vue';
 
 export default {
 	name: 'HomeView',
 	components: {
 		HomeSlider,
 		HomeTabList,
-		HomeTabContent,
+		HomeTabContentDeck,
+		HomeTabContentFrame,
 	},
 	data() {
 		return {
