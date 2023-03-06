@@ -36,8 +36,11 @@
 			const reportPageName = /*[[${reportPageName}]]*/'';
 			const dashboardId = /*[[${dashboardId}]]*/'';
 
+			const { service, factories, models } = window['powerbi-client'];
+			const powerbi = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
+
 			const { PublicClientApplication } = window['msal'];
-			const msalInstance = new PublicClientApplication({
+			const msal = new PublicClientApplication({
 				system: {
 					asyncPopups: true,
 				},
@@ -48,18 +51,85 @@
 				}
 			});
 
-			let accessToken;
-			const scopes = ['https://analysis.windows.net/powerbi/api/Report.Read.All'];
-			const accounts = msalInstance.getAllAccounts();
+			const calculateReportLayout = async (report) => {
+				const { width, height } = window.screen;
+				let layout = models.LayoutType.Master;
+				if (Math.min(width, height) < 768) {
+					const mobileLayout = width > height
+						? models.LayoutType.MobileLandscape
+						: models.LayoutType.MobilePortrait;
+					const page = await report.getActivePage();
+					if (await page.hasLayout(mobileLayout)) {
+						layout = mobileLayout;
+					}
+				}
+				return layout;
+			};
 
+			const changeReportLayout = async (report, layout) => {
+				report.config.settings.layoutType = layout;
+				const bookmark = await report.bookmarksManager.capture();
+				report = await loadReport(report.element, report.config);
+				report.bookmarksManager.applyState(bookmark.state);
+				return report;
+			};
+
+			const loadReport = (element, config) => new Promise((resolve, reject) => {
+				try {
+					powerbi.reset(element);
+					const report = powerbi.load(element, config);
+					report.on('loaded', () => resolve(report));
+				} catch (error) {
+					reject(error);
+				}
+			});
+
+			const renderReport = (element, config) => new Promise(async (resolve, reject) => {
+				try {
+					let report = await loadReport(element, config);
+					const currentLayout = report.config.settings.layoutType;
+					const calculatedLayout = await calculateReportLayout(report);
+					if (currentLayout !== calculatedLayout) {
+						report = await changeReportLayout(report, calculatedLayout);
+					}
+					report.render();
+					report.on('rendered', () => resolve(report));
+				} catch (error) {
+					reject(error);
+				}
+			});
+
+			const renderDashboard = (element, config) => new Promise((resolve, reject) => {
+				try {
+					powerbi.reset(element);
+					const dashboard = powerbi.embed(element, config);
+					dashboard.on('tileClicked', ({ detail }) => {
+						const navigationData = detail.navigationUrl.match(/\/reports\/([0-9A-fa-f-]+)\/(ReportSection[0-9A-Fa-f]+)/);
+						if (navigationData) {
+							const [, reportId, reportPageName] = navigationData;
+							window.location.search = new URLSearchParams({ workspaceId, reportId, reportPageName }).toString();
+						}
+					});
+					dashboard.on('loaded', () => resolve(dashboard));
+				} catch (error) {
+					reject(error);
+				}
+			});
+
+			let accessToken;
+			const scopes = [
+				'https://analysis.windows.net/powerbi/api/Report.Read.All',
+				'https://analysis.windows.net/powerbi/api/Dashboard.Read.All',
+			];
+			const accounts = msal.getAllAccounts();
 			try {
 				if (accounts.length > 0) {
-					({ accessToken } = await msalInstance.acquireTokenSilent({
+					({ accessToken } = await msal.acquireTokenSilent({
 						scopes,
 						account: accounts[0],
 					}));
 				} else {
-					({ accessToken } = await msalInstance.acquireTokenPopup({
+					({ accessToken } = await msal.acquireTokenPopup({
 						scopes,
 					}));
 				}
@@ -68,74 +138,55 @@
 				return;
 			}
 
-			const { service, factories, models } = window['powerbi-client'];
-			const powerbiInstance = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
-
-			let endpointUrl;
+			let apiUrl;
 			if (reportId) {
-				endpointUrl = `https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/reports/${reportId}`;
+				apiUrl = `https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/reports/${reportId}`;
 			} else if (dashboardId) {
-				endpointUrl = `https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/dashboards/${dashboardId}`;
-			} else {
-				alert('Undefined resource type');
-				return;
+				apiUrl = `https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/dashboards/${dashboardId}`;
 			}
-
-			const response = await fetch(endpointUrl, {
+			const apiResponse = await fetch(apiUrl, {
 				method: 'GET',
 				headers: { Authorization: `Bearer ${accessToken}` },
 			});
+			if (apiResponse.status < 200 || apiResponse.status > 299) {
+				alert(`Error loading resource:\n${apiResponse.status} ${apiResponse.statusText}`);
+				return;
+			}
+			const apiResponseData = await apiResponse.json();
 
-			if (response.status >= 200 && response.status < 400) {
-				const data = await response.json();
-
-				let resourceConfig;
-				if (reportId) {
-					document.title = data.name;
-					resourceConfig = {
+			if (reportId) {
+				document.title = apiResponseData.name;
+				try {
+					await renderReport(document.body, {
 						type: 'report',
-						id: data.id,
-						embedUrl: data.embedUrl,
+						id: apiResponseData.id,
+						embedUrl: apiResponseData.embedUrl,
 						accessToken,
 						tokenType: models.TokenType.Aad,
 						permissions: models.Permissions.Read,
 						viewMode: models.ViewMode.View,
 						pageName: reportPageName ? reportPageName : undefined,
-					};
-				} else if (dashboardId) {
-					document.title = data.displayName;
-					resourceConfig = {
+						settings: { layoutType: models.LayoutType.Master },
+					});
+				} catch (error) {
+					alert(error.message);
+				}
+			} else if (dashboardId) {
+				document.title = apiResponseData.displayName;
+				try {
+					await renderDashboard(document.body, {
 						type: 'dashboard',
-						id: data.id,
-						embedUrl: data.embedUrl,
+						id: apiResponseData.id,
+						embedUrl: apiResponseData.embedUrl,
 						accessToken,
 						tokenType: models.TokenType.Aad,
 						permissions: models.Permissions.Read,
 						viewMode: models.ViewMode.View,
 						pageView: 'fitToWidth',
-					};
-				} else {
-					return;
-				}
-
-				const resource = powerbiInstance.embed(document.body, resourceConfig);
-
-				if (dashboardId) {
-					resource.on('tileClicked', ({ detail }) => {
-						const navigationData = detail.navigationUrl.match(/\/reports\/([0-9A-fa-f-]+)\/(ReportSection[0-9A-Fa-f]+)/);
-						if (!navigationData) return;
-
-						const [, reportId, reportPageName] = navigationData;
-						window.location.search = new URLSearchParams({
-							workspaceId,
-							reportId,
-							reportPageName,
-						}).toString();
 					});
+				} catch (error) {
+					alert(error.message);
 				}
-			} else {
-				alert(`Error loading resource:\n${response.status} ${response.statusText}`);
-
 			}
 		})();
 	</script>
