@@ -1,6 +1,6 @@
 plugins {
 	id("java")
-	id("com.github.johnrengelman.shadow") version "7.1.2"
+	id("com.github.johnrengelman.shadow") version "8.1.0"
 }
 
 group = "${project.property("group")}"
@@ -18,15 +18,15 @@ dependencies {
 	implementation("com.fasterxml.jackson.core:jackson-annotations:2.14.2")
 	implementation("com.fasterxml.jackson.core:jackson-core:2.14.2")
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.14.2")
-	implementation("com.microsoft.azure:msal4j:1.13.4")
-	implementation("com.networknt:json-schema-validator:1.0.77")
+	implementation("com.microsoft.azure:msal4j:1.13.5")
+	implementation("com.networknt:json-schema-validator:1.0.78")
 	implementation("commons-io:commons-io:2.11.0")
 	implementation("jakarta.ws.rs:jakarta.ws.rs-api:2.1.6")
 	implementation("jakarta.xml.bind:jakarta.xml.bind-api:2.3.3")
 	implementation("org.apache.commons:commons-lang3:3.12.0")
 	implementation("org.codehaus.enunciate:enunciate-core-annotations:1.31")
 	implementation("org.ehcache:ehcache:3.10.8")
-	implementation("org.slf4j:slf4j-reload4j:1.7.36")
+	implementation("org.slf4j:slf4j-reload4j:2.0.6")
 	implementation("org.springframework:spring-web:5.3.25")
 	implementation("org.thymeleaf:thymeleaf:3.1.1.RELEASE")
 

@@ -7,7 +7,7 @@
     "format": "prettier --write ./src/"
   },
   "dependencies": {
-    "@datadog/browser-logs": "~4.34.2",
+    "@datadog/browser-logs": "~4.34.3",
     "@fortawesome/fontawesome-svg-core": "~6.3.0",
     "@fortawesome/free-brands-svg-icons": "~6.3.0",
     "@fortawesome/free-regular-svg-icons": "~6.3.0",
@@ -27,12 +27,12 @@
     "@vitejs/plugin-vue2": "~2.2.0",
     "autoprefixer": "~10.4.13",
     "eslint": "~8.35.0",
-    "eslint-config-prettier": "~8.6.0",
+    "eslint-config-prettier": "~8.7.0",
     "eslint-plugin-prettier": "~4.2.1",
     "eslint-plugin-vue": "~9.9.0",
     "postcss": "~8.4.21",
     "prettier": "~2.8.4",
-    "rimraf": "~4.1.2",
+    "rimraf": "~4.3.1",
     "sass": "~1.58.3",
     "vite": "~4.1.4",
     "vue-template-compiler": "~2.7.14"
