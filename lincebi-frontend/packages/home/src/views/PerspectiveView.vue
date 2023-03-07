@@ -122,9 +122,9 @@ export default {
 		},
 		async invokeInMantleWindow(fn, reqFns = this.mantleWindowProperties) {
 			const mantleWindow = await waitFor(() => {
-				const mantleWindow = this.retrieveMantleWindow();
-				if (typeof mantleWindow !== 'undefined' && reqFns.every((reqFn) => reqFn in mantleWindow)) {
-					return mantleWindow;
+				const mW = this.retrieveMantleWindow();
+				if (typeof mW !== 'undefined' && reqFns.every((reqFn) => reqFn in mW)) {
+					return mW;
 				}
 			});
 			fn.call(mantleWindow, mantleWindow);
@@ -145,14 +145,11 @@ export default {
 		async runHomeCommand(command) {
 			this.invokeInMantleWindow(async (mantleWindow) => {
 				// Mock jQuery calls to prevent errors with plugins that try to use it.
-				// eslint-disable-next-line no-unused-vars
 				const $ = () => new Proxy({}, { get: () => $ });
 				// Mock "Home" and "mantleXulHandler" object so that plugins can use it.
-				// eslint-disable-next-line no-unused-vars
 				const Home = { openFile: mantleWindow.openURL };
-				// eslint-disable-next-line no-unused-vars
 				const mantleXulHandler = { openUrl: mantleWindow.openURL };
-				eval(command);
+				Function('$', 'Home', 'mantleXulHandler', command)($, Home, mantleXulHandler);
 			});
 		},
 		reloadPerspective(perspective) {
