@@ -104,7 +104,8 @@ deploy:release:mvn:
       lftp <<-EOF
         set sftp:connect-program 'ssh -oStrictHostKeyChecking=no';
         open 'sftp://${LINCEBI_TESTING_SFTP_USER:?}:${LINCEBI_TESTING_SFTP_PASSWORD:?}@${LINCEBI_TESTING_SFTP_HOST:?}:${LINCEBI_TESTING_SFTP_PORT:?}';
-        put -O './data/${LINCEBI_TESTING_ENV:?}/init.d/' ./10_lincebi-autodeploy.zip; bye;
+        put -O './data/${LINCEBI_TESTING_ENV:?}/init.d/' ./10_lincebi-autodeploy.zip;
+        bye;
       EOF
   except:
     - *regex_version
