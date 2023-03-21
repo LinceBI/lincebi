@@ -1,9 +1,9 @@
-import { width, height, ligatures, svgPathData } from './facToolStolap';
+import { width, height, ligatures, svgPathData } from './faToolStreport';
 import getFaUnicodeCharacter from './getUnicodeCharacter';
 
 export { width, height, ligatures, svgPathData };
 export const prefix = 'fac';
-export const iconName = 'file-stolap';
+export const iconName = 'file-adhoc';
 export const unicode = getFaUnicodeCharacter();
 export const definition = {
 	prefix,
@@ -11,4 +11,4 @@ export const definition = {
 	icon: [width, height, ligatures, unicode, svgPathData],
 };
 
-export { definition as faFileStolap };
+export { definition as faFileAdhoc };

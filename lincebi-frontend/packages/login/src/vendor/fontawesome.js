@@ -1,27 +1,14 @@
 import Vue from 'vue';
 
+import { config, library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons/faSignInAlt';
+
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
-Vue.component('FontAwesomeIcon', async () => {
-	const [{ FontAwesomeIcon }, { config, library }] = await Promise.all([
-		/* eslint-disable prettier/prettier */
-		import('@fortawesome/vue-fontawesome'),
-		import('@fortawesome/fontawesome-svg-core'),
-		/* eslint-enable */
-	]);
+config.autoAddCss = false;
 
-	config.autoAddCss = false;
+library.add(faSignInAlt);
 
-	const icons = await Promise.all([
-		/* eslint-disable prettier/prettier */
-		import('@fortawesome/free-solid-svg-icons/faKey'),
-		import('@fortawesome/free-solid-svg-icons/faSignInAlt')
-		/* eslint-enable */
-	]);
-
-	icons.map((icon) => {
-		library.add(icon.definition);
-	});
-
-	return FontAwesomeIcon;
-});
+Vue.component('FontAwesomeIcon', FontAwesomeIcon);

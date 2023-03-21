@@ -1,9 +1,9 @@
-import { width, height, ligatures, svgPathData } from './facToolStdashboard';
+import { width, height, ligatures, svgPathData } from './faToolStagile';
 import getFaUnicodeCharacter from './getUnicodeCharacter';
 
 export { width, height, ligatures, svgPathData };
 export const prefix = 'fac';
-export const iconName = 'file-std';
+export const iconName = 'file-sta';
 export const unicode = getFaUnicodeCharacter();
 export const definition = {
 	prefix,
@@ -11,4 +11,4 @@ export const definition = {
 	icon: [width, height, ligatures, unicode, svgPathData],
 };
 
-export { definition as faFileStd };
+export { definition as faFileSta };
