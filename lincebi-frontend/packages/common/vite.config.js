@@ -34,6 +34,22 @@ export default defineConfig(() => ({
 	],
 	build: {
 		sourcemap: 'hidden',
+		rollupOptions: {
+			output: {
+				manualChunks: (id) => {
+					if (/\/node_modules\//.test(id)) {
+						if (/\/lodash\//.test(id)) {
+							return 'lodash';
+						} else if (/\/@fortawesome\//.test(id)) {
+							return 'fontawesome';
+						} else if (/\/bootstrap(-vue|-v4-rtl)?\//.test(id)) {
+							return 'bootstrap';
+						}
+						return 'vendor';
+					}
+				},
+			},
+		},
 	},
 	server: {
 		host: '::',
