@@ -20,7 +20,7 @@
     "bootstrap": "~4.6.2",
     "bootstrap-v4-rtl": "~4.6.2-1",
     "bootstrap-vue": "~2.23.1",
-    "jquery": "~3.6.4",
+    "jquery": "~3.7.0",
     "lodash": "~4.17.21",
     "popper.js": "~1.16.1",
     "sortablejs": "~1.15.0",
@@ -34,15 +34,15 @@
   "devDependencies": {
     "@vitejs/plugin-vue2": "~2.2.0",
     "autoprefixer": "~10.4.14",
-    "eslint": "~8.39.0",
+    "eslint": "~8.45.0",
     "eslint-config-prettier": "~8.8.0",
-    "eslint-plugin-prettier": "~4.2.1",
-    "eslint-plugin-vue": "~9.11.0",
-    "postcss": "~8.4.23",
-    "prettier": "~2.8.8",
-    "rimraf": "~5.0.0",
-    "sass": "~1.62.1",
-    "vite": "~4.3.4",
+    "eslint-plugin-prettier": "~5.0.0",
+    "eslint-plugin-vue": "~9.15.1",
+    "postcss": "~8.4.26",
+    "prettier": "~3.0.0",
+    "rimraf": "~5.0.1",
+    "sass": "~1.63.6",
+    "vite": "~4.4.4",
     "vue-template-compiler": "~2.7.14"
   }
 }
