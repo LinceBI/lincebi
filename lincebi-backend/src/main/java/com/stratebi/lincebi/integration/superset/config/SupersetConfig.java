@@ -27,7 +27,7 @@ public class SupersetConfig {
 
 		for (Map.Entry<String, String> var : env.entrySet()) {
 			String varKey = var.getKey();
-			Pattern varKeyPattern = Pattern.compile("^SUPERSET_([A-Z0-9_]+)_URL$");
+			Pattern varKeyPattern = Pattern.compile("^SUPERSET_([A-Z0-9_]+)_PROVIDER$");
 			Matcher varKeyMatcher = varKeyPattern.matcher(varKey);
 
 			if (varKeyMatcher.find() && varKeyMatcher.groupCount() > 0) {
