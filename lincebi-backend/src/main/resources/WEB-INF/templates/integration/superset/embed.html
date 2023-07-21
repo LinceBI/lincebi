@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+	<title>Superset</title>
+	<!-- https://www.jsdelivr.com/package/npm/@superset-ui/embedded-sdk -->
+	<script src="https://cdn.jsdelivr.net/npm/@superset-ui/embedded-sdk@0.1.0-alpha.9/bundle/index.js" integrity="sha256-FL+sUk5x7ICVRlkOtsvZStIMLVETZFC6u0HIIlQiwwM=" crossorigin="anonymous"></script>
+	<style>
+		html, body, iframe, #dashboard {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			height: 100vh;
+			width: 100vw;
+			box-sizing: border-box;
+		}
+
+		body {
+			overflow: hidden;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="dashboard"></div>
+	<script th:inline="javascript">
+		(() => {
+			'use strict';
+
+			supersetEmbeddedSdk.embedDashboard({
+				id: /*[[${dashboardId}]]*/'',
+				supersetDomain: /*[[${externalUrl}]]*/'',
+				mountPoint: document.getElementById('dashboard'),
+				fetchGuestToken: () => /*[[${guestToken}]]*/'',
+				dashboardUiConfig: { hideTitle: true },
+			});
+		})();
+	</script>
+</body>
+
+</html>

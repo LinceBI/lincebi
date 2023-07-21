@@ -119,6 +119,29 @@
       },
       "notAvailableYet": "Not availabe yet"
     },
+    "superset": {
+      "title": "Embed Superset dashboard",
+      "subtitle": "Complete and save your dashboard",
+      "dashboardId": {
+        "label": "Dashboard ID"
+      },
+      "location": {
+        "label": "Location",
+        "placeholder": "Location"
+      },
+      "fileName": {
+        "label": "File name",
+        "placeholder": "File name"
+      },
+      "selectALocation": "Select a location",
+      "cancel": "Cancel",
+      "accept": "Accept",
+      "save": "Save",
+      "overwriteModalTitle": "A file with this name already exists",
+      "overwriteModalBody": "Do you want to overwrite the file? This action cannot be reversed.",
+      "submitModalTitle": "Saved file",
+      "submitModalBody": "File \"{name}\" has been saved."
+    },
     "embed": {
       "title": "Embed external link",
       "subtitle": "Complete and save your external link",

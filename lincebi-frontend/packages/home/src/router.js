@@ -11,6 +11,7 @@ const PerspectiveView = () => import('@/views/PerspectiveView.vue');
 const ProfileView = () => import('@/views/ProfileView.vue');
 const EmbedView = () => import('@/views/EmbedView.vue');
 const PowerBiView = () => import('@/views/PowerBiView.vue');
+const SupersetView = () => import('@/views/SupersetView.vue');
 
 Vue.use(Router);
 
@@ -55,6 +56,11 @@ export default new Router({
 			path: '/t/powerbi',
 			name: 'powerbi',
 			component: PowerBiView,
+		},
+		{
+			path: '/t/superset',
+			name: 'superset',
+			component: SupersetView,
 		},
 		{
 			path: '/p/:perspective',

@@ -1,12 +1,12 @@
 package com.stratebi.lincebi.integration.powerbi.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stratebi.lincebi.integration.common.service.BIServerService;
 import com.stratebi.lincebi.integration.powerbi.cache.EmbedConfigCache;
 import com.stratebi.lincebi.integration.powerbi.config.PowerBIConfig;
 import com.stratebi.lincebi.integration.powerbi.model.AvailableFeature;
 import com.stratebi.lincebi.integration.powerbi.model.EmbedConfig;
 import com.stratebi.lincebi.integration.powerbi.service.AzureADService;
-import com.stratebi.lincebi.integration.powerbi.service.BIServerService;
 import com.stratebi.lincebi.integration.powerbi.service.PowerBIService;
 import com.stratebi.lincebi.integration.powerbi.template.PowerBITemplateEngine;
 import com.stratebi.lincebi.util.KeyUtils;

@@ -119,6 +119,29 @@
       },
       "notAvailableYet": "Aún no disponible"
     },
+    "superset": {
+      "title": "Embeber cuadro de mando de Superset",
+      "subtitle": "Completa y guarda tu cuadro de mando",
+      "dashboardId": {
+        "label": "ID del cuadro de mando"
+      },
+      "location": {
+        "label": "Destino",
+        "placeholder": "Destino"
+      },
+      "fileName": {
+        "label": "Nombre de archivo",
+        "placeholder": "Nombre de archivo"
+      },
+      "selectALocation": "Seleccionar un destino",
+      "cancel": "Cancelar",
+      "accept": "Aceptar",
+      "save": "Guardar",
+      "overwriteModalTitle": "Ya existe un archivo con este nombre",
+      "overwriteModalBody": "¿Deseas sobreescribir el archivo? Esta acción no se puede revertir.",
+      "submitModalTitle": "Archivo guardado",
+      "submitModalBody": "El archivo \"{name}\" ha sido guardado."
+    },
     "embed": {
       "title": "Embeber enlace externo",
       "subtitle": "Completa y guarda tu enlace externo",

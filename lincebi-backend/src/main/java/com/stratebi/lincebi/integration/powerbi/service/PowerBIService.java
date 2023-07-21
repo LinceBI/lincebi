@@ -2,9 +2,10 @@ package com.stratebi.lincebi.integration.powerbi.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stratebi.lincebi.integration.common.service.BIServerService;
 import com.stratebi.lincebi.integration.powerbi.model.AvailableFeature;
 import com.stratebi.lincebi.integration.powerbi.model.Dashboard;
 import com.stratebi.lincebi.integration.powerbi.model.Dataset;

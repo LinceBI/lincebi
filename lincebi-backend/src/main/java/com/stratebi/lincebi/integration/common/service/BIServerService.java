@@ -1,4 +1,4 @@
-package com.stratebi.lincebi.integration.powerbi.service;
+package com.stratebi.lincebi.integration.common.service;
 
 import org.pentaho.platform.api.engine.IAuthorizationPolicy;
 import org.pentaho.platform.api.engine.IPentahoSession;

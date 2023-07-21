@@ -102,6 +102,7 @@ import { faToolStpanels } from '@lincebi/frontend-common/src/fontawesome/faToolS
 import { faToolStpivot } from '@lincebi/frontend-common/src/fontawesome/faToolStpivot';
 import { faToolStreport } from '@lincebi/frontend-common/src/fontawesome/faToolStreport';
 import { faToolStsearch } from '@lincebi/frontend-common/src/fontawesome/faToolStsearch';
+import { faToolSuperset } from '@lincebi/frontend-common/src/fontawesome/faToolSuperset';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
@@ -198,13 +199,14 @@ library.add(
 	faToolStpivot,
 	faToolStreport,
 	faToolStsearch,
+	faToolSuperset,
 	faTruck,
 	faUpDownLeftRight,
 	faUser,
 	faUsers,
 	faWarehouse,
 	faWindowMaximize,
-	faXmark
+	faXmark,
 );
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon);

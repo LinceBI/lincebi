@@ -230,6 +230,20 @@ export default {
 							},
 						},
 						{
+							enabled: true,
+							id: 'tool-superset',
+							name: 'Superset',
+							icon: ['fac', 'tool-superset'],
+							color: '#484848',
+							click: () => {
+								router
+									.push({
+										name: 'superset',
+									})
+									.catch(() => {});
+							},
+						},
+						{
 							enabled: this.overlays.has('launch.jpivot'),
 							id: 'tool-jpivot',
 							name: 'JPivot',
