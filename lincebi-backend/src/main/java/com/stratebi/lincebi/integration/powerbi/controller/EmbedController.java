@@ -19,6 +19,7 @@ import org.thymeleaf.context.Context;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -235,7 +236,7 @@ public class EmbedController {
 		return Response.ok(response).build();
 	}
 
-	@GET
+	@POST
 	@Path("/clear-cache")
 	@Produces({ MediaType.TEXT_PLAIN })
 	@Facet(name = "Unsupported")
