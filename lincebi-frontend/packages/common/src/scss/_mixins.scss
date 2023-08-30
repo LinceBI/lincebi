@@ -8,7 +8,7 @@
 }
 
 @mixin loading() {
-	$loading-size: rem(30) !default;
+	$loading-size: toRem(30) !default;
 	$loading-size-multiplier: 4 !default;
 	$loading-color: lighten(map-get($theme-colors, dark), 40%) !default;
 	$loading-svg: svg-uri(

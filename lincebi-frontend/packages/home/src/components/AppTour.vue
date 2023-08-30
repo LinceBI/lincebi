@@ -435,7 +435,7 @@ export default {
 			display: block;
 			position: absolute;
 			background-color: rgb(128, 128, 128, 1);
-			border-radius: rem(4);
+			border-radius: toRem(4);
 		}
 	}
 }

@@ -29,13 +29,13 @@ export default {
 .navbar-profile {
 	.user-avatar,
 	.user-text {
-		margin: rem(-6) rem(5) rem(-6) rem(5);
+		margin: rem(-6) toRem(5) rem(-6) toRem(5);
 	}
 
 	.user-avatar > .user-avatar-img {
-		height: rem(32);
-		width: rem(32);
-		border: rem(2) solid rgba(map-get($theme-colors, 'dark'), 0.5);
+		height: toRem(32);
+		width: toRem(32);
+		border: toRem(2) solid rgba(map-get($theme-colors, 'dark'), 0.5);
 		border-radius: 50%;
 		object-fit: cover;
 	}

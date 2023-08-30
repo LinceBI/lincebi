@@ -62,21 +62,21 @@ export default {
 <style scoped lang="scss">
 .navbar-panel {
 	.navbar-logo {
-		height: rem(40);
+		height: toRem(40);
 	}
 
 	.nav-section {
 		padding: 0;
 
 		.nav-element {
-			margin: 0 rem(5) 0 rem(5);
+			margin: 0 toRem(5) 0 toRem(5);
 		}
 	}
 
 	@include media-breakpoint-down(md) {
 		.nav-element {
 			width: 100%;
-			margin: rem(10) 0 0 0;
+			margin: toRem(10) 0 0 0;
 		}
 	}
 }

@@ -244,7 +244,7 @@ export default {
 <style scoped lang="scss">
 .sidebar-panel {
 	display: none;
-	width: rem(50);
+	width: toRem(50);
 
 	background-color: map-get($theme-colors, 'primary');
 

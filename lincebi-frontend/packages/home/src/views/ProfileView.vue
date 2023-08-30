@@ -106,25 +106,25 @@ export default {
 
 <style scoped lang="scss">
 .profile-view {
-	min-width: rem(256);
+	min-width: toRem(256);
 
 	.avatar {
 		display: block;
 		position: relative;
-		margin: 0 auto rem(40) auto;
-		height: rem(256);
-		width: rem(256);
+		margin: 0 auto toRem(40) auto;
+		height: toRem(256);
+		width: toRem(256);
 
 		@include media-breakpoint-down(sm) {
-			height: rem(192);
-			width: rem(192);
+			height: toRem(192);
+			width: toRem(192);
 		}
 
 		.avatar-image {
 			display: block;
 			width: 100%;
 			height: 100%;
-			border: rem(2) solid rgba(map-get($theme-colors, 'dark'), 0.5);
+			border: toRem(2) solid rgba(map-get($theme-colors, 'dark'), 0.5);
 			border-radius: 50%;
 			object-fit: cover;
 		}
@@ -138,7 +138,7 @@ export default {
 			left: 0;
 			width: 100%;
 			height: 100%;
-			font-size: rem(50);
+			font-size: toRem(50);
 			border-radius: 50%;
 			color: rgba(255, 255, 255, 0);
 			background-color: rgba(0, 0, 0, 0);

@@ -38,7 +38,7 @@ export default {
 .embed-view {
 	.form-container {
 		background: #ffffff;
-		border-top: rem(10) solid map-get($theme-colors, 'tool-embed');
+		border-top: toRem(10) solid map-get($theme-colors, 'tool-embed');
 	}
 }
 </style>

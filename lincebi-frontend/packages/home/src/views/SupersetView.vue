@@ -38,7 +38,7 @@ export default {
 .superset-view {
 	.form-container {
 		background: #ffffff;
-		border-top: rem(10) solid map-get($theme-colors, 'tool-superset');
+		border-top: toRem(10) solid map-get($theme-colors, 'tool-superset');
 	}
 }
 </style>

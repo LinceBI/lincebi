@@ -52,13 +52,13 @@ body {
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		padding: rem(10);
+		padding: toRem(10);
 
 		.login-form {
 			display: block;
 			position: relative;
 			width: 100%;
-			max-width: rem(400);
+			max-width: toRem(400);
 			z-index: 1;
 
 			@include media-breakpoint-up(md) {
@@ -69,7 +69,7 @@ body {
 
 	.login-footer {
 		display: block;
-		padding: rem(10);
+		padding: toRem(10);
 		text-align: center;
 		z-index: 1;
 	}

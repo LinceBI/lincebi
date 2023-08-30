@@ -39,14 +39,14 @@ export default {
 
 <style lang="scss" scoped>
 .additional-info {
-	border-left: rem(5) solid;
+	border-left: toRem(5) solid;
 
 	.title {
-		padding-top: rem(15);
+		padding-top: toRem(15);
 	}
 
 	.body {
-		padding: rem(15) 0 rem(15) 0;
+		padding: toRem(15) 0 toRem(15) 0;
 		height: auto;
 	}
 }

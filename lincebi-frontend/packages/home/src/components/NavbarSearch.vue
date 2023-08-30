@@ -108,8 +108,8 @@ export default {
 .navbar-search {
 	.categories-dropdown :deep(.dropdown-menu) {
 		position: absolute;
-		width: rem(350);
-		max-width: calc(100vw - rem(30));
+		width: toRem(350);
+		max-width: calc(100vw - toRem(30));
 		padding: 0;
 		border-top: 0;
 		border-left: 0;
@@ -117,18 +117,18 @@ export default {
 		.category-item {
 			display: inline-block;
 			width: 50%;
-			height: rem(45);
+			height: toRem(45);
 
 			.dropdown-item {
 				display: flex;
 				flex-direction: row;
 				width: 100%;
 				height: 100%;
-				padding: rem(10) rem(5);
+				padding: toRem(10) toRem(5);
 
 				.category-text {
 					display: inline-block;
-					margin: 0 rem(4);
+					margin: 0 toRem(4);
 					overflow: hidden;
 					text-overflow: ellipsis;
 					vertical-align: middle;
@@ -138,7 +138,7 @@ export default {
 					display: inline-block;
 					height: 100%;
 					width: auto;
-					margin: 0 rem(4);
+					margin: 0 toRem(4);
 					vertical-align: middle;
 				}
 			}

@@ -58,7 +58,7 @@ export default {
 
 <style scoped lang="scss">
 .home-slider {
-	text-shadow: rem(1) rem(1) rem(2) #333;
+	text-shadow: toRem(1) toRem(1) toRem(2) #333;
 
 	:deep() {
 		.carousel-item {
@@ -68,7 +68,7 @@ export default {
 				bottom: 0;
 				max-height: 100%;
 				width: 100%;
-				padding: rem(20);
+				padding: toRem(20);
 				overflow: auto;
 			}
 
@@ -77,19 +77,19 @@ export default {
 				margin: 0 auto;
 				object-fit: cover;
 
-				height: rem(160);
+				height: toRem(160);
 				max-width: map-get($grid-breakpoints, 'xl');
 
 				@include media-breakpoint-up(sm) {
-					height: rem(192);
+					height: toRem(192);
 				}
 
 				@include media-breakpoint-up(lg) {
-					height: rem(224);
+					height: toRem(224);
 				}
 
 				@include media-breakpoint-up(xl) {
-					height: rem(256);
+					height: toRem(256);
 				}
 			}
 		}

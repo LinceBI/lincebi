@@ -43,7 +43,7 @@ export default {
 .powerbi-view {
 	.form-container {
 		background: #ffffff;
-		border-top: rem(10) solid map-get($theme-colors, 'tool-powerbi');
+		border-top: toRem(10) solid map-get($theme-colors, 'tool-powerbi');
 
 		.form-tabs ::v-deep .nav-tabs > .nav-item > .nav-link.active {
 			background: #ffffff;

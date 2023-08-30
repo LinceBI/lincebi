@@ -185,10 +185,10 @@ export default {
 	flex-basis: auto;
 	flex-direction: column;
 	position: relative;
-	padding: rem(20);
+	padding: toRem(20);
 
 	.files-order {
-		margin-bottom: rem(20);
+		margin-bottom: toRem(20);
 		align-self: flex-end;
 	}
 
@@ -210,13 +210,13 @@ export default {
 		color: map-get($theme-colors, 'secondary');
 
 		.icon {
-			padding: rem(5);
-			font-size: rem(80);
+			padding: toRem(5);
+			font-size: toRem(80);
 		}
 
 		.text {
-			padding: rem(5);
-			font-size: rem(24);
+			padding: toRem(5);
+			font-size: toRem(24);
 		}
 	}
 }

@@ -323,13 +323,13 @@ export default {
 
 <style scoped lang="scss">
 .new-view {
-	min-width: rem(256);
+	min-width: toRem(256);
 
 	.new-card-deck-name {
-		margin-bottom: rem(20);
-		font-size: rem(24);
+		margin-bottom: toRem(20);
+		font-size: toRem(24);
 		font-weight: 400;
-		line-height: rem(22);
+		line-height: toRem(22);
 	}
 
 	.new-card-deck {
@@ -339,13 +339,13 @@ export default {
 		margin-right: rem(-15);
 
 		.new-card {
-			margin-left: rem(15);
-			margin-right: rem(15);
+			margin-left: toRem(15);
+			margin-right: toRem(15);
 			margin-bottom: $grid-gutter-width;
 
 			flex-grow: 0;
 			flex-shrink: 1;
-			flex-basis: rem(140);
+			flex-basis: toRem(140);
 
 			@for $i from 0 through 10 {
 				@media (min-width: 672px + (320px * $i)) {
@@ -369,24 +369,24 @@ export default {
 			}
 
 			.card-border {
-				height: rem(10);
+				height: toRem(10);
 				width: 100%;
 			}
 
 			.card-icon {
 				margin: 0 auto;
-				padding: rem(15) 0 0;
+				padding: toRem(15) 0 0;
 				width: 50%;
 				height: auto;
 			}
 
 			.card-body {
-				padding: rem(15) rem(10);
+				padding: toRem(15) toRem(10);
 
 				.card-title {
-					font-size: rem(18);
+					font-size: toRem(18);
 					font-weight: 700;
-					line-height: rem(22);
+					line-height: toRem(22);
 					text-align: center;
 					margin: 0 auto;
 				}

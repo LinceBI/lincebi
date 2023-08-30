@@ -68,7 +68,7 @@ export default {
 .sidebar-subitem {
 	display: flex;
 	align-items: center;
-	height: rem(45);
+	height: toRem(45);
 	color: map-get($theme-colors, 'light');
 	background-color: map-get($theme-colors, 'primary');
 

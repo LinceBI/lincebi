@@ -5,10 +5,10 @@
 /* Increase margin between icons and labels */
 img + .lbl, .svg-inline--fa + .lbl {
 	margin-right: 0;
-	margin-left: rem(8);
+	margin-left: toRem(8);
 
 	[dir='rtl'] & {
-		margin-right: rem(8);
+		margin-right: toRem(8);
 		margin-left: 0;
 	}
 }
@@ -19,7 +19,7 @@ img + .lbl, .svg-inline--fa + .lbl {
 
 	&.active {
 		font-weight: 600;
-		border-bottom: rem(4) solid map-get($theme-colors, 'primary');
+		border-bottom: toRem(4) solid map-get($theme-colors, 'primary');
 	}
 
 	&:not(.active) {

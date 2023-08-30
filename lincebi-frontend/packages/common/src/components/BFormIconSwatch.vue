@@ -87,9 +87,9 @@ export default {
 	.icon {
 		flex-grow: 0;
 		margin: 0;
-		padding: rem(6) 0;
-		width: rem(28);
-		height: rem(34);
+		padding: toRem(6) 0;
+		width: toRem(28);
+		height: toRem(34);
 		border: none;
 		border-radius: 0;
 		z-index: 0;
@@ -106,11 +106,11 @@ export default {
 		&:active,
 		&.active {
 			background-color: inherit;
-			box-shadow: 0 0 0 rem(2) rgba(0, 0, 0, 0.5);
+			box-shadow: 0 0 0 toRem(2) rgba(0, 0, 0, 0.5);
 		}
 
 		&.focus {
-			box-shadow: 0 0 0 rem(2) rgba(0, 0, 0, 0.8);
+			box-shadow: 0 0 0 toRem(2) rgba(0, 0, 0, 0.8);
 		}
 
 		&.none {

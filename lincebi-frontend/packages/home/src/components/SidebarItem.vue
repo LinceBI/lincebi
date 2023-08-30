@@ -98,8 +98,8 @@ export default {
 .sidebar-item {
 	:deep(.nav-item) {
 		.nav-link {
-			padding: rem(8) 0;
-			font-size: rem(20);
+			padding: toRem(8) 0;
+			font-size: toRem(20);
 			text-align: center;
 			color: map-get($theme-colors, 'light');
 		}

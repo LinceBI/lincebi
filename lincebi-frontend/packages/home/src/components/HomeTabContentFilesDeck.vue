@@ -256,7 +256,7 @@ export default {
 				left: 0;
 				right: 0;
 				bottom: 0;
-				padding: rem(10);
+				padding: toRem(10);
 				max-height: 50%;
 				overflow: auto;
 
@@ -266,8 +266,8 @@ export default {
 				.card-title {
 					display: -moz-box;
 					display: -webkit-box;
-					font-size: rem(16);
-					line-height: rem(22);
+					font-size: toRem(16);
+					line-height: toRem(22);
 					line-clamp: 2;
 					-moz-line-clamp: 2;
 					-webkit-line-clamp: 2;
@@ -289,8 +289,8 @@ export default {
 
 			.card-toolbar {
 				position: absolute;
-				top: rem(5);
-				right: rem(5);
+				top: toRem(5);
+				right: toRem(5);
 
 				.btn {
 					opacity: 0;

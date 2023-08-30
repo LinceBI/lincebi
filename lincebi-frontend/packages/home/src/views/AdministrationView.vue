@@ -257,6 +257,6 @@ export default {
 
 <style scoped lang="scss">
 .administration-view {
-	min-width: rem(256);
+	min-width: toRem(256);
 }
 </style>

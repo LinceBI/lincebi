@@ -348,8 +348,8 @@ export default {
 
 		.home-tab {
 			position: relative;
-			min-width: rem(220);
-			max-width: rem(448);
+			min-width: toRem(220);
+			max-width: toRem(448);
 			z-index: 10;
 
 			cursor: pointer;
@@ -381,7 +381,7 @@ export default {
 				top: 0;
 				left: 0;
 				height: 100%;
-				width: rem(10);
+				width: toRem(10);
 				background-color: currentColor;
 				content: '';
 			}
@@ -391,8 +391,8 @@ export default {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				padding: 0 rem(50);
-				height: rem(46);
+				padding: 0 toRem(50);
+				height: toRem(46);
 
 				white-space: nowrap;
 				overflow: hidden;
@@ -401,7 +401,7 @@ export default {
 				.home-tab-close {
 					display: none;
 					position: absolute;
-					right: rem(5);
+					right: toRem(5);
 					color: currentColor;
 					z-index: 15;
 				}
@@ -419,13 +419,13 @@ export default {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				padding: 0 rem(20);
-				height: rem(46);
+				padding: 0 toRem(20);
+				height: toRem(46);
 
 				color: map-get($theme-colors, 'primary');
 				background-color: transparent;
 
-				font-size: rem(24);
+				font-size: toRem(24);
 			}
 		}
 	}

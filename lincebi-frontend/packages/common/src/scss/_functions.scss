@@ -1,10 +1,10 @@
 @use 'sass:math';
 
-@function em($pxval, $base: $em-base) {
+@function toEm($pxval, $base: $em-base) {
 	@return math.div($pxval, $base) * 1em;
 }
 
-@function rem($pxval, $base: $em-base) {
+@function toRem($pxval, $base: $em-base) {
 	@return math.div($pxval, $base) * 1rem;
 }
 

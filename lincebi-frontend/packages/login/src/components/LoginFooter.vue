@@ -19,8 +19,8 @@ export default {
 	background: rgba(map-get($theme-colors, 'light'), 0.85);
 
 	.icon {
-		margin: rem(5);
-		height: rem(36);
+		margin: toRem(5);
+		height: toRem(36);
 		width: auto;
 	}
 }

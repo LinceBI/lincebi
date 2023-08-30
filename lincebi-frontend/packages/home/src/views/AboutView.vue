@@ -45,6 +45,6 @@ export default {
 
 <style scoped lang="scss">
 .about-view {
-	max-width: rem(512);
+	max-width: toRem(512);
 }
 </style>
