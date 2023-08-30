@@ -97,7 +97,7 @@ export default {
 										const STSearch = perspectiveWindow.STSearch;
 										// If STSearch has not loaded, no action is required.
 										if (STSearch) await STSearch.resetConfig();
-									}
+									},
 								);
 							},
 						},
@@ -119,7 +119,7 @@ export default {
 									async (perspectiveWindow) => {
 										const STSearch = await waitFor(() => perspectiveWindow.STSearch);
 										await STSearch.applyPreset('recents');
-									}
+									},
 								);
 							},
 						},

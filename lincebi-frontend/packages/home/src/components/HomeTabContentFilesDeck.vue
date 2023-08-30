@@ -183,7 +183,7 @@ export default {
 				async (perspectiveWindow) => {
 					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
 					await STSearch.applyConfig({ 'form-file-path': file.path }, true);
-				}
+				},
 			);
 		},
 		updateSortable() {

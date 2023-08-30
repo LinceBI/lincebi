@@ -7,7 +7,7 @@ const eventBus = new Vue();
 eventBus.$emitWhenAvailable = (eventName, ...args) => {
 	invokeWhen(
 		() => eventBus._events[eventName],
-		() => eventBus.$emit(eventName, ...args)
+		() => eventBus.$emit(eventName, ...args),
 	);
 };
 

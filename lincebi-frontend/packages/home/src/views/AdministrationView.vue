@@ -188,7 +188,7 @@ export default {
 				.catch(() => {});
 			eventBus.$emitWhenAvailable(
 				'mantle-home-command',
-				this.overlays.get('startup.cda.toolsmenu.cdaCacheManager')
+				this.overlays.get('startup.cda.toolsmenu.cdaCacheManager'),
 			);
 		},
 		async openStreportConf() {
@@ -200,7 +200,7 @@ export default {
 				.catch(() => {});
 			eventBus.$emitWhenAvailable(
 				'mantle-home-command',
-				this.overlays.get('startup.saiku-adhoc.toolsmenu.configuration-saiku-adhoc')
+				this.overlays.get('startup.saiku-adhoc.toolsmenu.configuration-saiku-adhoc'),
 			);
 		},
 		async openStreportStats() {
@@ -212,7 +212,7 @@ export default {
 				.catch(() => {});
 			eventBus.$emitWhenAvailable(
 				'mantle-home-command',
-				this.overlays.get('startup.saiku-adhoc.viewmenu.statistics-saiku-adhoc')
+				this.overlays.get('startup.saiku-adhoc.viewmenu.statistics-saiku-adhoc'),
 			);
 		},
 		async systemRefresh(resource) {

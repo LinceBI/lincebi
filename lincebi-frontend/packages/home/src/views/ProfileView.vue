@@ -142,7 +142,9 @@ export default {
 			border-radius: 50%;
 			color: rgba(255, 255, 255, 0);
 			background-color: rgba(0, 0, 0, 0);
-			transition: color 0.1s ease-out, background-color 0.1s ease-out;
+			transition:
+				color 0.1s ease-out,
+				background-color 0.1s ease-out;
 			cursor: pointer;
 		}
 

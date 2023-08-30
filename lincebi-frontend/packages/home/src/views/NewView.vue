@@ -59,7 +59,7 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.overlays.get('launch.stpivot')
+									this.overlays.get('launch.stpivot'),
 								);
 							},
 						},
@@ -78,7 +78,7 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.overlays.get('launch.launch_new_stolap_analytics')
+									this.overlays.get('launch.launch_new_stolap_analytics'),
 								);
 							},
 						},
@@ -97,7 +97,7 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.overlays.get('launch.launch-new-saiku-adhoc')
+									this.overlays.get('launch.launch-new-saiku-adhoc'),
 								);
 							},
 						},
@@ -116,7 +116,7 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.overlays.get('launch.launch-new-stpanels')
+									this.overlays.get('launch.launch-new-stpanels'),
 								);
 							},
 						},
@@ -135,7 +135,7 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.overlays.get('launch.stdashboardButton')
+									this.overlays.get('launch.stdashboardButton'),
 								);
 							},
 						},
@@ -154,7 +154,7 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.overlays.get('launch.launch-new-stagile')
+									this.overlays.get('launch.launch-new-stagile'),
 								);
 							},
 						},
@@ -173,7 +173,7 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.overlays.get('launch.button.stcard')
+									this.overlays.get('launch.button.stcard'),
 								);
 							},
 						},
@@ -258,7 +258,7 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.overlays.get('launch.jpivot')
+									this.overlays.get('launch.jpivot'),
 								);
 							},
 						},
@@ -277,13 +277,13 @@ export default {
 									.catch(() => {});
 								eventBus.$emitWhenAvailable(
 									'mantle-home-command',
-									this.overlays.get('launch.SaikuAnalytics')
+									this.overlays.get('launch.SaikuAnalytics'),
 								);
 							},
 						},
 						{
 							enabled: this.overlays.has(
-								'startup.repositorySynchronizer.toolsmenu.repositorySynchronizer'
+								'startup.repositorySynchronizer.toolsmenu.repositorySynchronizer',
 							),
 							id: 'tool-repository-synchronizer',
 							name: 'Repository Synchronizer',
@@ -300,7 +300,7 @@ export default {
 									mantleWindow.openURL(
 										'Repository Synchronizer',
 										'Repository Synchronizer',
-										'plugin/repositorySynchronizer/api/default'
+										'plugin/repositorySynchronizer/api/default',
 									);
 								});
 							},

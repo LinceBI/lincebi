@@ -4,7 +4,7 @@ export default (
 	condFunc = () => true,
 	invokeFunc = (r) => r,
 	timeoutFunc = (r) => r,
-	{ wait = 50, timeout = 20000 } = {}
+	{ wait = 50, timeout = 20000 } = {},
 ) => {
 	const start = performance.now();
 	const tryInvoke = throttle(() => {

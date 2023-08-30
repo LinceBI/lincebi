@@ -5,7 +5,7 @@ export default async (userSettings) => {
 		...(await Promise.all(
 			Object.entries(userSettings).map(async ([key, value]) => {
 				return { [key]: await setUserSetting(key, value) };
-			})
-		))
+			}),
+		)),
 	);
 };

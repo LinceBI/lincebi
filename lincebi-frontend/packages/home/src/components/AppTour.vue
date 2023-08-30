@@ -391,7 +391,7 @@ export default {
 				}
 			},
 			50,
-			{ leading: false, trailing: true }
+			{ leading: false, trailing: true },
 		),
 		addEventListeners() {
 			window.addEventListener('resize', this.reposition, { passive: true, capture: false });

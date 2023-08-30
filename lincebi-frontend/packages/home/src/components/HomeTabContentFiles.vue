@@ -139,7 +139,7 @@ export default {
 					files = orderBy(
 						files,
 						[iteratee, ...remIteratees],
-						Array(this.sort.options.length).fill(this.sort.asc ? 'asc' : 'desc')
+						Array(this.sort.options.length).fill(this.sort.asc ? 'asc' : 'desc'),
 					);
 				}
 

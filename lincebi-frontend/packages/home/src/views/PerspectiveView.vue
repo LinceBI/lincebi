@@ -133,7 +133,7 @@ export default {
 			this.invokeInMantleWindow(async (mantleWindow) => {
 				const perspectiveWindow = await waitFor(() => {
 					const perspectiveIframe = mantleWindow.document.querySelector(
-						`iframe[id="${perspective}"]`
+						`iframe[id="${perspective}"]`,
 					);
 					if (perspectiveIframe !== null && perspectiveIframe.contentWindow) {
 						return perspectiveIframe.contentWindow;

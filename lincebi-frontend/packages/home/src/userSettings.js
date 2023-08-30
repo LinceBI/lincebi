@@ -101,7 +101,7 @@ export const getUserSettings = (propName, isGlobal = false) => {
 	return Object.assign(
 		...Object.entries(settingsObj).map(([key, value]) => ({
 			[key]: value[propName],
-		}))
+		})),
 	);
 };
 

@@ -74,7 +74,7 @@ export default {
 					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
 					STSearch.resetConfig().doSearch(this.searchTerms).doFocus();
 					event.target.reset();
-				}
+				},
 			);
 		},
 		onReset() {
@@ -97,7 +97,7 @@ export default {
 						'banner-src': `${location.pathname}${category.banner}`,
 						'search-terms': category.tag,
 					});
-				}
+				},
 			);
 		},
 	},
