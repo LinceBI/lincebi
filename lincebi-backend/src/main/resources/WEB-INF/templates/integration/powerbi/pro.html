@@ -50,6 +50,7 @@
 					redirectUri: `${window.location.origin}${window.location.pathname}`,
 				}
 			});
+			await msal.initialize()
 
 			const calculateReportLayout = async (report) => {
 				const { width, height } = window.screen;
