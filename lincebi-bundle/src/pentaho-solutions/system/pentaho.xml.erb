@@ -37,7 +37,7 @@
 	<documentation-url>https://help.pentaho.com/Documentation/9.3/Products/Pentaho_User_Console</documentation-url>
 
 	<log-file>server.log</log-file>
-	<log-level>INFO</log-level>
+	<log-level><%= ENV['LOG_LEVEL_PENTAHO'] %></log-level>
 
 	<!--
 	cors-requests-allowed: flag indicating if cross-origin requests are allowed or not.
