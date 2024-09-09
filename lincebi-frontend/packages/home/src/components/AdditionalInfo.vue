@@ -2,10 +2,7 @@
 	<b-container class="additional-info w-100 text-reset" :class="{ [`border-${variant}`]: true }">
 		<b-row align-h="center" class="title bg-light">
 			<b-col>
-				<font-awesome-icon
-					:class="{ 'card-icon': true, 'fa-fw': true, [`text-${variant}`]: true }"
-					:icon="icon"
-				/>
+				<font-awesome-icon :class="{ 'card-icon': true, 'fa-fw': true, [`text-${variant}`]: true }" :icon="icon" />
 				<span class="lbl font-weight-semibold">{{ title }}</span>
 			</b-col>
 		</b-row>

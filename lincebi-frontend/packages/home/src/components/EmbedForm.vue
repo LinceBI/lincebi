@@ -3,12 +3,7 @@
 		<b-form @submit.prevent="createFilePreflight">
 			<b-row>
 				<b-form-group :label="$t('tools.embed.url.label')" class="col-12">
-					<b-form-input
-						v-model="url"
-						type="text"
-						placeholder="https://example.com"
-						required
-					></b-form-input>
+					<b-form-input v-model="url" type="text" placeholder="https://example.com" required></b-form-input>
 				</b-form-group>
 			</b-row>
 			<b-row>
@@ -35,10 +30,7 @@
 						required
 					></b-form-input>
 					<b-form-datalist :id="`datalist-file-name-${uniqueId}`">
-						<option
-							v-for="child in fileLocation?.children.filter((c) => !c.isFolder)"
-							:key="child.name"
-						>
+						<option v-for="child in fileLocation?.children.filter((c) => !c.isFolder)" :key="child.name">
 							{{ child.name }}
 						</option>
 					</b-form-datalist>

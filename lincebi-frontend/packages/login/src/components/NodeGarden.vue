@@ -1,13 +1,7 @@
 <!-- Based on https://github.com/pakastin/nodegarden -->
 
 <template>
-	<div
-		ref="container"
-		class="node-garden"
-		@click="onClick"
-		@mousemove="onMousemove"
-		@mouseleave="onMouseleave"
-	>
+	<div ref="container" class="node-garden" @click="onClick" @mousemove="onMousemove" @mouseleave="onMouseleave">
 		<canvas ref="canvas" />
 	</div>
 </template>
@@ -32,12 +26,7 @@ export class Node {
 	update() {
 		this.x += this.vx;
 		this.y += this.vy;
-		if (
-			this.x > this.garden.width + 50 ||
-			this.x < -50 ||
-			this.y > this.garden.height + 50 ||
-			this.y < -50
-		) {
+		if (this.x > this.garden.width + 50 || this.x < -50 || this.y > this.garden.height + 50 || this.y < -50) {
 			// If node over screen limits - reset to a init position.
 			this.reset();
 		}

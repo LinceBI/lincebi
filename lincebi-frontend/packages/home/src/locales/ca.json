@@ -1,236 +1,236 @@
 {
-  "__meta__": {
-    "lang": "ca",
-    "dir": "ltr"
-  },
-  "locales": {
-    "ar": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
-    "ca": "Català",
-    "de": "Deutsch",
-    "en": "English",
-    "es": "Español",
-    "fr": "Français",
-    "ko": "\uD55C\uAD6D\uC5B4",
-    "pt_BR": "Português (BR)",
-    "pt_PT": "Português (PT)"
-  },
-  "navbar": {
-    "categories": "Categories",
-    "search": {
-      "label": "Cercar:",
-      "placeholder": "Cercar..."
-    },
-    "settings": "Opcions",
-    "profile": "Perfil",
-    "about": "Sobre",
-    "showMenuBar": "Mostrar barra de menú",
-    "showToolBar": "Mostrar barra d'eines",
-    "showHiddenFiles": "Mostrar arxius ocults",
-    "showDescriptionsForTooltips": "Utilitzar descripcions per a els tooltips"
-  },
-  "sidebar": {
-    "home": "Inici",
-    "tools": "Eines",
-    "opened": "Oberts",
-    "browser": "Explorador",
-    "search": "Cercador",
-    "favorites": "Favorits",
-    "recents": "Recents",
-    "datasources": "Gestionar fonts de dades",
-    "administration": "Administració",
-    "locales": "Idiomes",
-    "logout": "Sortida"
-  },
-  "home": {
-    "filesWillAppearHere": "Els arxius que etiqueti apareixeran aquí",
-    "createTab": "Crear pestanya",
-    "tabName": {
-      "label": "Nom de pestanya",
-      "placeholder": "Nom de pestanya..."
-    },
-    "tabColor": {
-      "label": "Color de pestanya",
-      "placeholder": "Color de pestanya..."
-    },
-    "tabIcon": {
-      "label": "Icona de pestanya",
-      "placeholder": "Icona de pestanya..."
-    },
-    "global": "Global",
-    "deleteTab": "Eliminar pestanya",
-    "tabWillBeDeleted": "La pestanya \"{name}\" serà eliminada.",
-    "delete": "Eliminar",
-    "create": "Crear",
-    "cancel": "Cancel·lar",
-    "home": "Inici",
-    "favorites": "Favorits",
-    "recents": "Recents",
-    "sort": {
-      "title": "Títol",
-      "extension": "Tipus",
-      "created": "Data de creació",
-      "modified": "Data de modificació"
-    }
-  },
-  "new": {
-    "lincebiTools": "Eines de LinceBI",
-    "otherTools": "Altres eines"
-  },
-  "profile": {
-    "name": {
-      "label": "Nom:",
-      "placeholder": "Nom..."
-    },
-    "email": {
-      "label": "Email:",
-      "placeholder": "Email..."
-    },
-    "phone": {
-      "label": "Telèfon:",
-      "placeholder": "Telèfon..."
-    },
-    "address": {
-      "label": "Direcció:",
-      "placeholder": "Direcció..."
-    },
-    "avatar": {
-      "label": "Foto:",
-      "placeholder": "Foto..."
-    },
-    "save": "Guardar"
-  },
-  "about": {
-    "linceBiVersion": "Versió de LinceBI:",
-    "biServerVersion": "Versió de BI Server:"
-  },
-  "administration": {
-    "administration": "Administració",
-    "manageDatasources": "Gestionar fonts de dades",
-    "schedules": "Programacions",
-    "marketplace": "Marketplace",
-    "manageCdaCache": "Administrar caché de CDA",
-    "openStreportConf": "Obrir configuració de STReport",
-    "openStreportStats": "Obrir estadístiques de STReport",
-    "refreshSystemSettings": "Actualitzar configuració del sistema",
-    "refreshReportingMetadata": "Actualitzar report de metadades",
-    "refreshGlobalVariables": "Actualizar variables globals",
-    "refreshMondrianSchemaCache": "Actualizar caché dels esquemes de Mondrian",
-    "clearCdaCache": "Buidar caché de CDA",
-    "resourceRefreshSuccess": "Recurs actualitzat amb èxit",
-    "resourceRefreshError": "Error en actualitzar el recurs",
-    "cacheClearSuccess": "Caché buidada amb èxit",
-    "cacheClearError": "Error al buidar la caché",
-    "notificationInfo": "Informació",
-    "notificationError": "Error"
-  },
-  "tour": {
-    "labels": {
-      "skip": "Ometre tour",
-      "previous": "Anterior",
-      "next": "Següent",
-      "stop": "Finalitzar tour"
-    },
-    "steps": {
-      "navbarWelcome": {
-        "title": "Comencem",
-        "content": "Descobreixi <strong>LinceBI</strong>!"
-      },
-      "navbarProfile": {
-        "title": "Perfil",
-        "content": "Des d'aquí podrà veure i editar el seu perfil."
-      },
-      "navbarSearch": {
-        "title": "Cercar",
-        "content": "Busqui des d'aquí qualsevol arxiu del repositori."
-      },
-      "navbarSettings": {
-        "title": "Opcions",
-        "content": "Accedeixi a les opcions generals de la plataforma."
-      },
-      "homeTabHome": {
-        "title": "Pestanya d'inici",
-        "content": "En la pestanya d'inici apareixeran per a tots els usuaris els arxius que l'administrador seleccioni des del cercador."
-      },
-      "homeTabFavorites": {
-        "title": "Pestanya de favorits",
-        "content": "En la pestanya de favorits apareixeran els arxius que només vostè seleccioni des del cercador."
-      },
-      "homeTabNew": {
-        "title": "Nova pestanya",
-        "content": "Les pestanyes addicionals li mostraran els arxius etiquetats amb el nom d'aquesta pestanya."
-      },
-      "sidebarHome": {
-        "title": "Inici",
-        "content": "Torni des d'aquí a la pàgina d'inici."
-      },
-      "sidebarTools": {
-        "title": "Eines",
-        "content": "Crea des d'aquí un nou arxiu amb alguna de les eines instal·lades."
-      },
-      "sidebarToolStpivot": {
-        "title": "STPivot",
-        "content": "STPivot és un visor OLAP per a anàlisi multidimensional. "
-      },
-      "sidebarToolStolap": {
-        "title": "STOlap",
-        "content": "STOlap és un visor analític open source desenvolupat per Stratebi. "
-      },
-      "sidebarToolStreport": {
-        "title": "STReport",
-        "content": "STReport és una eina per a crear, modificar i visualitzar informes."
-      },
-      "sidebarToolStpanels": {
-        "title": "STPanels",
-        "content": "STPanels és una eina per a crear quadres de comandament."
-      },
-      "sidebarToolStdashboard": {
-        "title": "STDashboard",
-        "content": "STDashboard és una eina per a crear quadres de comandament."
-      },
-      "sidebarToolStagile": {
-        "title": "STAgile",
-        "content": "STAgile és una eina per a crear quadres de comandament."
-      },
-      "sidebarToolStcard": {
-        "title": "STCard",
-        "content": "STCard és una eina per a crear, gestionar i analitzar scorecards."
-      },
-      "sidebarToolCde": {
-        "title": "CDE",
-        "content": "CDE és l'eina que Pentaho incorpora de sèrie per a crear quadres de comandament."
-      },
-      "sidebarToolJpivot": {
-        "title": "JPivot",
-        "content": "JPivot és el visor OLAP integrat de Pentaho."
-      },
-      "sidebarOpened": {
-        "title": "Oberts",
-        "content": "Des d'aquí podrà veure els arxius actualment oberts."
-      },
-      "sidebarBrowser": {
-        "title": "Explorador",
-        "content": "L'explorador d'arxius li permetrà navegar pels arxius del repositori."
-      },
-      "sidebarSearch": {
-        "title": "Cercador",
-        "content": "El cercador li permetrà trobar qualsevol arxiu del repositori."
-      },
-      "sidebarDatasources": {
-        "title": "Fonts de dades",
-        "content": "Administri les fonts de dades, els esquemes de Mondrian i les metadades d'informes."
-      },
-      "sidebarAdministration": {
-        "title": "Administració",
-        "content": "La pàgina d'administració li permetrà accedir les opcions de la plataforma restringides a administradors."
-      },
-      "sidebarLocales": {
-        "title": "Idiomes",
-        "content": "L'idioma de la interfície és seleccionat automàticament, però des d'aquí podrà triar el que desitgi."
-      },
-      "sidebarLogout": {
-        "title": "Sortir",
-        "content": "Tanqui des d'aquí la sessió actual."
-      }
-    }
-  }
+	"__meta__": {
+		"lang": "ca",
+		"dir": "ltr"
+	},
+	"locales": {
+		"ar": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
+		"ca": "Català",
+		"de": "Deutsch",
+		"en": "English",
+		"es": "Español",
+		"fr": "Français",
+		"ko": "\uD55C\uAD6D\uC5B4",
+		"pt_BR": "Português (BR)",
+		"pt_PT": "Português (PT)"
+	},
+	"navbar": {
+		"categories": "Categories",
+		"search": {
+			"label": "Cercar:",
+			"placeholder": "Cercar..."
+		},
+		"settings": "Opcions",
+		"profile": "Perfil",
+		"about": "Sobre",
+		"showMenuBar": "Mostrar barra de menú",
+		"showToolBar": "Mostrar barra d'eines",
+		"showHiddenFiles": "Mostrar arxius ocults",
+		"showDescriptionsForTooltips": "Utilitzar descripcions per a els tooltips"
+	},
+	"sidebar": {
+		"home": "Inici",
+		"tools": "Eines",
+		"opened": "Oberts",
+		"browser": "Explorador",
+		"search": "Cercador",
+		"favorites": "Favorits",
+		"recents": "Recents",
+		"datasources": "Gestionar fonts de dades",
+		"administration": "Administració",
+		"locales": "Idiomes",
+		"logout": "Sortida"
+	},
+	"home": {
+		"filesWillAppearHere": "Els arxius que etiqueti apareixeran aquí",
+		"createTab": "Crear pestanya",
+		"tabName": {
+			"label": "Nom de pestanya",
+			"placeholder": "Nom de pestanya..."
+		},
+		"tabColor": {
+			"label": "Color de pestanya",
+			"placeholder": "Color de pestanya..."
+		},
+		"tabIcon": {
+			"label": "Icona de pestanya",
+			"placeholder": "Icona de pestanya..."
+		},
+		"global": "Global",
+		"deleteTab": "Eliminar pestanya",
+		"tabWillBeDeleted": "La pestanya \"{name}\" serà eliminada.",
+		"delete": "Eliminar",
+		"create": "Crear",
+		"cancel": "Cancel·lar",
+		"home": "Inici",
+		"favorites": "Favorits",
+		"recents": "Recents",
+		"sort": {
+			"title": "Títol",
+			"extension": "Tipus",
+			"created": "Data de creació",
+			"modified": "Data de modificació"
+		}
+	},
+	"new": {
+		"lincebiTools": "Eines de LinceBI",
+		"otherTools": "Altres eines"
+	},
+	"profile": {
+		"name": {
+			"label": "Nom:",
+			"placeholder": "Nom..."
+		},
+		"email": {
+			"label": "Email:",
+			"placeholder": "Email..."
+		},
+		"phone": {
+			"label": "Telèfon:",
+			"placeholder": "Telèfon..."
+		},
+		"address": {
+			"label": "Direcció:",
+			"placeholder": "Direcció..."
+		},
+		"avatar": {
+			"label": "Foto:",
+			"placeholder": "Foto..."
+		},
+		"save": "Guardar"
+	},
+	"about": {
+		"linceBiVersion": "Versió de LinceBI:",
+		"biServerVersion": "Versió de BI Server:"
+	},
+	"administration": {
+		"administration": "Administració",
+		"manageDatasources": "Gestionar fonts de dades",
+		"schedules": "Programacions",
+		"marketplace": "Marketplace",
+		"manageCdaCache": "Administrar caché de CDA",
+		"openStreportConf": "Obrir configuració de STReport",
+		"openStreportStats": "Obrir estadístiques de STReport",
+		"refreshSystemSettings": "Actualitzar configuració del sistema",
+		"refreshReportingMetadata": "Actualitzar report de metadades",
+		"refreshGlobalVariables": "Actualizar variables globals",
+		"refreshMondrianSchemaCache": "Actualizar caché dels esquemes de Mondrian",
+		"clearCdaCache": "Buidar caché de CDA",
+		"resourceRefreshSuccess": "Recurs actualitzat amb èxit",
+		"resourceRefreshError": "Error en actualitzar el recurs",
+		"cacheClearSuccess": "Caché buidada amb èxit",
+		"cacheClearError": "Error al buidar la caché",
+		"notificationInfo": "Informació",
+		"notificationError": "Error"
+	},
+	"tour": {
+		"labels": {
+			"skip": "Ometre tour",
+			"previous": "Anterior",
+			"next": "Següent",
+			"stop": "Finalitzar tour"
+		},
+		"steps": {
+			"navbarWelcome": {
+				"title": "Comencem",
+				"content": "Descobreixi <strong>LinceBI</strong>!"
+			},
+			"navbarProfile": {
+				"title": "Perfil",
+				"content": "Des d'aquí podrà veure i editar el seu perfil."
+			},
+			"navbarSearch": {
+				"title": "Cercar",
+				"content": "Busqui des d'aquí qualsevol arxiu del repositori."
+			},
+			"navbarSettings": {
+				"title": "Opcions",
+				"content": "Accedeixi a les opcions generals de la plataforma."
+			},
+			"homeTabHome": {
+				"title": "Pestanya d'inici",
+				"content": "En la pestanya d'inici apareixeran per a tots els usuaris els arxius que l'administrador seleccioni des del cercador."
+			},
+			"homeTabFavorites": {
+				"title": "Pestanya de favorits",
+				"content": "En la pestanya de favorits apareixeran els arxius que només vostè seleccioni des del cercador."
+			},
+			"homeTabNew": {
+				"title": "Nova pestanya",
+				"content": "Les pestanyes addicionals li mostraran els arxius etiquetats amb el nom d'aquesta pestanya."
+			},
+			"sidebarHome": {
+				"title": "Inici",
+				"content": "Torni des d'aquí a la pàgina d'inici."
+			},
+			"sidebarTools": {
+				"title": "Eines",
+				"content": "Crea des d'aquí un nou arxiu amb alguna de les eines instal·lades."
+			},
+			"sidebarToolStpivot": {
+				"title": "STPivot",
+				"content": "STPivot és un visor OLAP per a anàlisi multidimensional. "
+			},
+			"sidebarToolStolap": {
+				"title": "STOlap",
+				"content": "STOlap és un visor analític open source desenvolupat per Stratebi. "
+			},
+			"sidebarToolStreport": {
+				"title": "STReport",
+				"content": "STReport és una eina per a crear, modificar i visualitzar informes."
+			},
+			"sidebarToolStpanels": {
+				"title": "STPanels",
+				"content": "STPanels és una eina per a crear quadres de comandament."
+			},
+			"sidebarToolStdashboard": {
+				"title": "STDashboard",
+				"content": "STDashboard és una eina per a crear quadres de comandament."
+			},
+			"sidebarToolStagile": {
+				"title": "STAgile",
+				"content": "STAgile és una eina per a crear quadres de comandament."
+			},
+			"sidebarToolStcard": {
+				"title": "STCard",
+				"content": "STCard és una eina per a crear, gestionar i analitzar scorecards."
+			},
+			"sidebarToolCde": {
+				"title": "CDE",
+				"content": "CDE és l'eina que Pentaho incorpora de sèrie per a crear quadres de comandament."
+			},
+			"sidebarToolJpivot": {
+				"title": "JPivot",
+				"content": "JPivot és el visor OLAP integrat de Pentaho."
+			},
+			"sidebarOpened": {
+				"title": "Oberts",
+				"content": "Des d'aquí podrà veure els arxius actualment oberts."
+			},
+			"sidebarBrowser": {
+				"title": "Explorador",
+				"content": "L'explorador d'arxius li permetrà navegar pels arxius del repositori."
+			},
+			"sidebarSearch": {
+				"title": "Cercador",
+				"content": "El cercador li permetrà trobar qualsevol arxiu del repositori."
+			},
+			"sidebarDatasources": {
+				"title": "Fonts de dades",
+				"content": "Administri les fonts de dades, els esquemes de Mondrian i les metadades d'informes."
+			},
+			"sidebarAdministration": {
+				"title": "Administració",
+				"content": "La pàgina d'administració li permetrà accedir les opcions de la plataforma restringides a administradors."
+			},
+			"sidebarLocales": {
+				"title": "Idiomes",
+				"content": "L'idioma de la interfície és seleccionat automàticament, però des d'aquí podrà triar el que desitgi."
+			},
+			"sidebarLogout": {
+				"title": "Sortir",
+				"content": "Tanqui des d'aquí la sessió actual."
+			}
+		}
+	}
 }

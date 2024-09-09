@@ -1,9 +1,5 @@
 <template>
-	<div
-		:id="`home-tab-content-files-deck-${uniqueId}`"
-		ref="deck"
-		class="home-tab-content-files-deck card-deck"
-	>
+	<div :id="`home-tab-content-files-deck-${uniqueId}`" ref="deck" class="home-tab-content-files-deck card-deck">
 		<div
 			v-for="file in files"
 			:key="file.id"
@@ -124,9 +120,7 @@ export default {
 	methods: {
 		getFileIconName(file) {
 			const faDefs = faLibrary.definitions;
-			return faDefs.fac && faDefs.fac[`file-${file.extension}`]
-				? `file-${file.extension}`
-				: 'file-other';
+			return faDefs.fac && faDefs.fac[`file-${file.extension}`] ? `file-${file.extension}` : 'file-other';
 		},
 		getFileColorClass(file) {
 			return `text-${this.getFileIconName(file)}`;
@@ -135,9 +129,7 @@ export default {
 			return file.properties.thumbnail ? file.properties.thumbnail : generateSvg(file.path, 0);
 		},
 		onFileOpenClick(file) {
-			const embedded =
-				file.properties.embedded === 'true' ||
-				(file.properties.embedded !== 'false' && !isSmallScreen);
+			const embedded = file.properties.embedded === 'true' || (file.properties.embedded !== 'false' && !isSmallScreen);
 			if (embedded) {
 				router
 					.push({
@@ -153,9 +145,7 @@ export default {
 			}
 		},
 		onFileEditClick(file) {
-			const embedded =
-				file.properties.embedded === 'true' ||
-				(file.properties.embedded !== 'false' && !isSmallScreen);
+			const embedded = file.properties.embedded === 'true' || (file.properties.embedded !== 'false' && !isSmallScreen);
 			if (embedded) {
 				router
 					.push({
@@ -177,14 +167,10 @@ export default {
 					params: { perspective: 'search.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhenAvailable(
-				'mantle-perspective-invoke',
-				'search.perspective',
-				async (perspectiveWindow) => {
-					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
-					await STSearch.applyConfig({ 'form-file-path': file.path }, true);
-				},
-			);
+			eventBus.$emitWhenAvailable('mantle-perspective-invoke', 'search.perspective', async (perspectiveWindow) => {
+				const STSearch = await waitFor(() => perspectiveWindow.STSearch);
+				await STSearch.applyConfig({ 'form-file-path': file.path }, true);
+			});
 		},
 		updateSortable() {
 			if (this.sortable?.el) {
@@ -296,10 +282,7 @@ export default {
 					opacity: 0;
 					transition: opacity 200ms ease-in;
 
-					@include button-variant(
-						rgba(map-get($theme-colors, 'dark'), 0.6),
-						rgba(map-get($theme-colors, 'dark'), 0.6)
-					);
+					@include button-variant(rgba(map-get($theme-colors, 'dark'), 0.6), rgba(map-get($theme-colors, 'dark'), 0.6));
 				}
 
 				.btn:focus,

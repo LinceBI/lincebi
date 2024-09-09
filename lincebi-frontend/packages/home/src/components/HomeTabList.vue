@@ -311,9 +311,7 @@ export default {
 					const dcl = event.dragged.classList;
 					const rcl = event.related.classList;
 					return (
-						dcl.contains('draggable') &&
-						rcl.contains('draggable') &&
-						dcl.contains('global') === rcl.contains('global')
+						dcl.contains('draggable') && rcl.contains('draggable') && dcl.contains('global') === rcl.contains('global')
 					);
 				},
 				onUpdate: (event) => {

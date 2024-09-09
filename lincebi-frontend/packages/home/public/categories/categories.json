@@ -1,93 +1,93 @@
 [
-  {
-    "enabled": false,
-    "tag": "marketing",
-    "name": "Marketing",
-    "icon": "categories/icons/marketing.svg",
-    "banner": "categories/banners/marketing.webp"
-  },
-  {
-    "enabled": false,
-    "tag": "retail",
-    "name": "Retail",
-    "icon": "categories/icons/retail.svg",
-    "banner": "categories/banners/retail.webp"
-  },
-  {
-    "enabled": false,
-    "tag": "finance",
-    "name": "Finance",
-    "icon": "categories/icons/finance.svg",
-    "banner": "categories/banners/finance.webp"
-  },
-  {
-    "enabled": false,
-    "tag": "ngo",
-    "name": "NGO",
-    "icon": "categories/icons/ngo.svg",
-    "banner": "categories/banners/ngo.webp"
-  },
-  {
-    "enabled": false,
-    "tag": "gov",
-    "name": "GOV",
-    "icon": "categories/icons/gov.svg",
-    "banner": "categories/banners/gov.webp"
-  },
-  {
-    "enabled": false,
-    "tag": "e-commerce",
-    "name": "e-Commerce",
-    "icon": "categories/icons/e-commerce.svg",
-    "banner": "categories/banners/e-commerce.webp"
-  },
-  {
-    "enabled": false,
-    "tag": "telco",
-    "name": "Telco",
-    "icon": "categories/icons/telco.svg",
-    "banner": "categories/banners/telco.webp"
-  },
-  {
-    "enabled": false,
-    "tag": "utilities",
-    "name": "Utilities",
-    "icon": "categories/icons/utilities.svg",
-    "banner": "categories/banners/utilities.webp"
-  },
-  {
-    "enabled": false,
-    "tag": "tourism",
-    "name": "Tourism",
-    "icon": "categories/icons/tourism.svg",
-    "banner": "categories/banners/tourism.webp"
-  },
-  {
-    "enabled": false,
-    "tag": "education",
-    "name": "Education",
-    "icon": "categories/icons/education.svg",
-    "banner": "categories/banners/education.webp"
-  },
-  {
-    "enabled": false,
-    "tag": "health",
-    "name": "Health",
-    "icon": "categories/icons/health.svg",
-    "banner": "categories/banners/health.webp"
-  },
-  {
-    "enabled": false,
-    "tag": "hr",
-    "name": "HR",
-    "icon": "categories/icons/hr.svg",
-    "banner": "categories/banners/hr.webp"
-  },
-  {
-    "enabled": false,
-    "tag": "pharma",
-    "name": "Pharma",
-    "icon": "categories/icons/pharma.svg",
-    "banner": "categories/banners/pharma.webp"
-  }
+	{
+		"enabled": false,
+		"tag": "marketing",
+		"name": "Marketing",
+		"icon": "categories/icons/marketing.svg",
+		"banner": "categories/banners/marketing.webp"
+	},
+	{
+		"enabled": false,
+		"tag": "retail",
+		"name": "Retail",
+		"icon": "categories/icons/retail.svg",
+		"banner": "categories/banners/retail.webp"
+	},
+	{
+		"enabled": false,
+		"tag": "finance",
+		"name": "Finance",
+		"icon": "categories/icons/finance.svg",
+		"banner": "categories/banners/finance.webp"
+	},
+	{
+		"enabled": false,
+		"tag": "ngo",
+		"name": "NGO",
+		"icon": "categories/icons/ngo.svg",
+		"banner": "categories/banners/ngo.webp"
+	},
+	{
+		"enabled": false,
+		"tag": "gov",
+		"name": "GOV",
+		"icon": "categories/icons/gov.svg",
+		"banner": "categories/banners/gov.webp"
+	},
+	{
+		"enabled": false,
+		"tag": "e-commerce",
+		"name": "e-Commerce",
+		"icon": "categories/icons/e-commerce.svg",
+		"banner": "categories/banners/e-commerce.webp"
+	},
+	{
+		"enabled": false,
+		"tag": "telco",
+		"name": "Telco",
+		"icon": "categories/icons/telco.svg",
+		"banner": "categories/banners/telco.webp"
+	},
+	{
+		"enabled": false,
+		"tag": "utilities",
+		"name": "Utilities",
+		"icon": "categories/icons/utilities.svg",
+		"banner": "categories/banners/utilities.webp"
+	},
+	{
+		"enabled": false,
+		"tag": "tourism",
+		"name": "Tourism",
+		"icon": "categories/icons/tourism.svg",
+		"banner": "categories/banners/tourism.webp"
+	},
+	{
+		"enabled": false,
+		"tag": "education",
+		"name": "Education",
+		"icon": "categories/icons/education.svg",
+		"banner": "categories/banners/education.webp"
+	},
+	{
+		"enabled": false,
+		"tag": "health",
+		"name": "Health",
+		"icon": "categories/icons/health.svg",
+		"banner": "categories/banners/health.webp"
+	},
+	{
+		"enabled": false,
+		"tag": "hr",
+		"name": "HR",
+		"icon": "categories/icons/hr.svg",
+		"banner": "categories/banners/hr.webp"
+	},
+	{
+		"enabled": false,
+		"tag": "pharma",
+		"name": "Pharma",
+		"icon": "categories/icons/pharma.svg",
+		"banner": "categories/banners/pharma.webp"
+	}
 ]

@@ -7,12 +7,7 @@
 		required
 		@input="$emit('input', icon)"
 	>
-		<b-form-radio
-			v-for="kI in icons"
-			:key="toString(kI)"
-			:value="kI"
-			:class="{ icon: true, none: kI === null }"
-		>
+		<b-form-radio v-for="kI in icons" :key="toString(kI)" :value="kI" :class="{ icon: true, none: kI === null }">
 			<font-awesome-icon v-if="kI" class="fa-fw" :icon="kI" />
 		</b-form-radio>
 	</b-form-radio-group>

@@ -90,15 +90,11 @@ export default {
 										params: { perspective: 'search.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emit(
-									'mantle-perspective-invoke',
-									'search.perspective',
-									async (perspectiveWindow) => {
-										const STSearch = perspectiveWindow.STSearch;
-										// If STSearch has not loaded, no action is required.
-										if (STSearch) await STSearch.resetConfig();
-									},
-								);
+								eventBus.$emit('mantle-perspective-invoke', 'search.perspective', async (perspectiveWindow) => {
+									const STSearch = perspectiveWindow.STSearch;
+									// If STSearch has not loaded, no action is required.
+									if (STSearch) await STSearch.resetConfig();
+								});
 							},
 						},
 						{

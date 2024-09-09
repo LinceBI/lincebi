@@ -1,10 +1,5 @@
 <template>
-	<b-nav-form
-		class="navbar-search"
-		form-class="w-100"
-		@submit.prevent="onSubmit"
-		@reset.prevent="onReset"
-	>
+	<b-nav-form class="navbar-search" form-class="w-100" @submit.prevent="onSubmit" @reset.prevent="onReset">
 		<b-input-group class="w-100">
 			<b-input-group-prepend v-if="categories.some((i) => i.enabled)">
 				<b-dropdown class="categories-dropdown" variant="primary" no-caret>
@@ -67,15 +62,11 @@ export default {
 					params: { perspective: 'search.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhenAvailable(
-				'mantle-perspective-invoke',
-				'search.perspective',
-				async (perspectiveWindow) => {
-					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
-					STSearch.resetConfig().doSearch(this.searchTerms).doFocus();
-					event.target.reset();
-				},
-			);
+			eventBus.$emitWhenAvailable('mantle-perspective-invoke', 'search.perspective', async (perspectiveWindow) => {
+				const STSearch = await waitFor(() => perspectiveWindow.STSearch);
+				STSearch.resetConfig().doSearch(this.searchTerms).doFocus();
+				event.target.reset();
+			});
 		},
 		onReset() {
 			this.searchTerms = '';
@@ -87,18 +78,14 @@ export default {
 					params: { perspective: 'search.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhenAvailable(
-				'mantle-perspective-invoke',
-				'search.perspective',
-				async (perspectiveWindow) => {
-					const STSearch = await waitFor(() => perspectiveWindow.STSearch);
-					STSearch.applyPreset('category').applyConfig({
-						'banner-title': category.name,
-						'banner-src': `${location.pathname}${category.banner}`,
-						'search-terms': category.tag,
-					});
-				},
-			);
+			eventBus.$emitWhenAvailable('mantle-perspective-invoke', 'search.perspective', async (perspectiveWindow) => {
+				const STSearch = await waitFor(() => perspectiveWindow.STSearch);
+				STSearch.applyPreset('category').applyConfig({
+					'banner-title': category.name,
+					'banner-src': `${location.pathname}${category.banner}`,
+					'search-terms': category.tag,
+				});
+			});
 		},
 	},
 };

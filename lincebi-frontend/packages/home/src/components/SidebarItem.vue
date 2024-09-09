@@ -1,10 +1,5 @@
 <template>
-	<div
-		v-if="item.enabled"
-		class="sidebar-item"
-		:title="item.name"
-		:data-v-step="`sidebar-${item.id}`"
-	>
+	<div v-if="item.enabled" class="sidebar-item" :title="item.name" :data-v-step="`sidebar-${item.id}`">
 		<div v-if="Array.isArray(item.subitems)">
 			<b-nav-item-dropdown
 				v-if="item.subitems.some((i) => i.enabled)"
@@ -15,11 +10,7 @@
 				@mouseleave.native="hideDropdown"
 			>
 				<template slot="button-content">
-					<font-awesome-icon
-						v-if="typeof item.icon !== 'undefined'"
-						class="item-icon fa-fw"
-						:icon="item.icon"
-					/>
+					<font-awesome-icon v-if="typeof item.icon !== 'undefined'" class="item-icon fa-fw" :icon="item.icon" />
 					<b-img v-else-if="typeof item.img !== 'undefined'" class="item-img" :src="item.img" />
 				</template>
 				<sidebar-subitem v-for="(subitem, index) in item.subitems" :key="index" :item="subitem" />

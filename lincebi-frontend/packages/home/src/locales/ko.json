@@ -1,236 +1,236 @@
 {
-  "__meta__": {
-    "lang": "ko",
-    "dir": "ltr"
-  },
-  "locales": {
-    "ar": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
-    "ca": "Català",
-    "de": "Deutsch",
-    "en": "English",
-    "es": "Español",
-    "fr": "Français",
-    "ko": "\uD55C\uAD6D\uC5B4",
-    "pt_BR": "Português (BR)",
-    "pt_PT": "Português (PT)"
-  },
-  "navbar": {
-    "categories": "카테고리",
-    "search": {
-      "label": "검색:",
-      "placeholder": "검색..."
-    },
-    "settings": "설정",
-    "profile": "프로필",
-    "about": "정보",
-    "showMenuBar": "메뉴바 표시",
-    "showToolBar": "툴바 표시",
-    "showHiddenFiles": "숨김 파일 표시",
-    "showDescriptionsForTooltips": "툴팁에 대한 설명 사용"
-  },
-  "sidebar": {
-    "home": "Home",
-    "tools": "도구",
-    "opened": "열린",
-    "browser": "브라우저",
-    "search": "검색",
-    "favorites": "즐겨찾기",
-    "recents": "최근",
-    "datasources": "데이터 소스 관리",
-    "administration": "관리",
-    "locales": "언어",
-    "logout": "로그아웃"
-  },
-  "home": {
-    "filesWillAppearHere": "태그를 지정한 파일이 여기에 표시됩니다.",
-    "createTab": "탭 생성",
-    "tabName": {
-      "label": "탭 명",
-      "placeholder": "탭 명..."
-    },
-    "tabColor": {
-      "label": "탭 색상",
-      "placeholder": "탭 색상..."
-    },
-    "tabIcon": {
-      "label": "탭 아이콘",
-      "placeholder": "탭 아이콘..."
-    },
-    "global": "전역",
-    "deleteTab": "탭 삭제",
-    "tabWillBeDeleted": "탭 \"{name}\" 이 삭제됩니다.",
-    "delete": "삭제",
-    "create": "생성",
-    "cancel": "취소",
-    "home": "홈",
-    "favorites": "즐겨찾기",
-    "recents": "최근",
-    "sort": {
-      "title": "제목",
-      "extension": "타입",
-      "created": "작성일",
-      "modified": "수정일자"
-    }
-  },
-  "new": {
-    "lincebiTools": "LinceBI 툴",
-    "otherTools": "다른 툴"
-  },
-  "profile": {
-    "name": {
-      "label": "프로필:",
-      "placeholder": "프로필..."
-    },
-    "email": {
-      "label": "이메일:",
-      "placeholder": "이메일..."
-    },
-    "phone": {
-      "label": "전화:",
-      "placeholder": "전화..."
-    },
-    "address": {
-      "label": "주소:",
-      "placeholder": "주소..."
-    },
-    "avatar": {
-      "label": "아바타:",
-      "placeholder": "아바타..."
-    },
-    "save": "저장"
-  },
-  "about": {
-    "linceBiVersion": "LinceBI 버전:",
-    "biServerVersion": "BI Server 버전:"
-  },
-  "administration": {
-    "administration": "관리",
-    "manageDatasources": "데이터 소스 관리",
-    "schedules": "스케줄",
-    "marketplace": "시장",
-    "manageCdaCache": "CDA 캐시 관리",
-    "openStreportConf": "STReport 설정 열기",
-    "openStreportStats": "STReport 통계 정보 열기",
-    "refreshSystemSettings": "시스템 설정 새로 고침",
-    "refreshReportingMetadata": "보고서 메타데이터 새로 고침",
-    "refreshGlobalVariables": "글로벌 변수 새로 고침",
-    "refreshMondrianSchemaCache": "Mondrian 스키마 캐시 새로 고침",
-    "clearCdaCache": "CDA 캐시 클리어",
-    "resourceRefreshSuccess": "리소스를 새로 고쳤습니다.",
-    "resourceRefreshError": "리소스를 새로 고치는 중 오류 발생",
-    "cacheClearSuccess": "캐시가 성공적으로 지워졌습니다.",
-    "cacheClearError": "캐시 지우기 중 오류 발생",
-    "notificationInfo": "정보",
-    "notificationError": "오류"
-  },
-  "tour": {
-    "labels": {
-      "skip": "건너뛰기",
-      "previous": "이전",
-      "next": "다음",
-      "stop": "마침"
-    },
-    "steps": {
-      "navbarWelcome": {
-        "title": "시작합시다",
-        "content": "<strong>LinceBI</strong>를 만나보세요!"
-      },
-      "navbarProfile": {
-        "title": "프로필",
-        "content": "여기에서 프로필을 보고 편집할 수 있습니다."
-      },
-      "navbarSearch": {
-        "title": "검색",
-        "content": "저장소에 있는 파일을 여기에서 검색하십시오."
-      },
-      "navbarSettings": {
-        "title": "설정",
-        "content": "플랫폼의 일반 옵션에 액세스합니다."
-      },
-      "homeTabHome": {
-        "title": "홈 탭",
-        "content": "검색 도구에서 관리자가 선택한 파일은 홈 탭의 모든 사용자에게 표시됩니다."
-      },
-      "homeTabFavorites": {
-        "title": "즐겨찾기 탭",
-        "content": "검색 도구에서 선택한 파일이 즐겨찾기 탭에 나타납니다."
-      },
-      "homeTabNew": {
-        "title": "추가 탭",
-        "content": "추가 탭에는 해당 탭의 이름으로 태그가 지정된 파일이 표시됩니다."
-      },
-      "sidebarHome": {
-        "title": "홈",
-        "content": "여기에서 홈 페이지로 돌아가기."
-      },
-      "sidebarTools": {
-        "title": "도구",
-        "content": "여기에서 설치된 도구 중 하나를 사용하여 새 파일을 만들 수 있습니다."
-      },
-      "sidebarToolStpivot": {
-        "title": "STPivot",
-        "content": "STPivot은 다차원 분석을 위한 OLAP 뷰어입니다."
-      },
-      "sidebarToolStolap": {
-        "title": "STOlap",
-        "content": "STOlap은 Stratebi에서 개발한 오픈 소스 분석 뷰어입니다."
-      },
-      "sidebarToolStreport": {
-        "title": "STReport",
-        "content": "STReport는 보고서 작성, 수정 및 표시를 위한 도구입니다."
-      },
-      "sidebarToolStpanels": {
-        "title": "STPanels",
-        "content": "STPanels는 대시보드를 생성하기 위한 도구입니다."
-      },
-      "sidebarToolStdashboard": {
-        "title": "STDashboard",
-        "content": "STDashboard는 대시보드를 생성하기 위한 도구입니다."
-      },
-      "sidebarToolStagile": {
-        "title": "STAgile",
-        "content": "STAgile은 대시보드를 생성하기 위한 도구입니다."
-      },
-      "sidebarToolStcard": {
-        "title": "STCard",
-        "content": "STCard는 스코어카드를 생성, 관리 및 분석하기 위한 도구입니다."
-      },
-      "sidebarToolCde": {
-        "title": "CDE",
-        "content": "CDE는 대시보드 생성을 위한 Pentaho의 기본 제공 도구입니다."
-      },
-      "sidebarToolJpivot": {
-        "title": "JPivot",
-        "content": "JPivot은 Pentaho의 내장 OLAP 뷰어입니다."
-      },
-      "sidebarOpened": {
-        "title": "열린",
-        "content": "여기에서 현재 열려 있는 파일을 볼 수 있습니다."
-      },
-      "sidebarBrowser": {
-        "title": "브라우저",
-        "content": "파일 브라우저를 사용하면 저장소에 있는 파일을 찾아볼 수 있습니다."
-      },
-      "sidebarSearch": {
-        "title": "검색",
-        "content": "검색 도구를 사용하면 저장소에 있는 모든 파일을 찾을 수 있습니다."
-      },
-      "sidebarDatasources": {
-        "title": "데이터 소스",
-        "content": "데이터 소스는 Mondrian 스키마 및 보고서 메타데이터를 관리합니다."
-      },
-      "sidebarAdministration": {
-        "title": "관리",
-        "content": "관리 페이지에서는 관리자로 제한된 플랫폼 옵션에 액세스할 수 있습니다."
-      },
-      "sidebarLocales": {
-        "title": "언어",
-        "content": "인터페이스 언어는 자동으로 선택되지만 여기에서 원하는 언어를 선택할 수 있습니다."
-      },
-      "sidebarLogout": {
-        "title": "로그아웃",
-        "content": "여기에서 현재 세션을 닫습니다."
-      }
-    }
-  }
+	"__meta__": {
+		"lang": "ko",
+		"dir": "ltr"
+	},
+	"locales": {
+		"ar": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
+		"ca": "Català",
+		"de": "Deutsch",
+		"en": "English",
+		"es": "Español",
+		"fr": "Français",
+		"ko": "\uD55C\uAD6D\uC5B4",
+		"pt_BR": "Português (BR)",
+		"pt_PT": "Português (PT)"
+	},
+	"navbar": {
+		"categories": "카테고리",
+		"search": {
+			"label": "검색:",
+			"placeholder": "검색..."
+		},
+		"settings": "설정",
+		"profile": "프로필",
+		"about": "정보",
+		"showMenuBar": "메뉴바 표시",
+		"showToolBar": "툴바 표시",
+		"showHiddenFiles": "숨김 파일 표시",
+		"showDescriptionsForTooltips": "툴팁에 대한 설명 사용"
+	},
+	"sidebar": {
+		"home": "Home",
+		"tools": "도구",
+		"opened": "열린",
+		"browser": "브라우저",
+		"search": "검색",
+		"favorites": "즐겨찾기",
+		"recents": "최근",
+		"datasources": "데이터 소스 관리",
+		"administration": "관리",
+		"locales": "언어",
+		"logout": "로그아웃"
+	},
+	"home": {
+		"filesWillAppearHere": "태그를 지정한 파일이 여기에 표시됩니다.",
+		"createTab": "탭 생성",
+		"tabName": {
+			"label": "탭 명",
+			"placeholder": "탭 명..."
+		},
+		"tabColor": {
+			"label": "탭 색상",
+			"placeholder": "탭 색상..."
+		},
+		"tabIcon": {
+			"label": "탭 아이콘",
+			"placeholder": "탭 아이콘..."
+		},
+		"global": "전역",
+		"deleteTab": "탭 삭제",
+		"tabWillBeDeleted": "탭 \"{name}\" 이 삭제됩니다.",
+		"delete": "삭제",
+		"create": "생성",
+		"cancel": "취소",
+		"home": "홈",
+		"favorites": "즐겨찾기",
+		"recents": "최근",
+		"sort": {
+			"title": "제목",
+			"extension": "타입",
+			"created": "작성일",
+			"modified": "수정일자"
+		}
+	},
+	"new": {
+		"lincebiTools": "LinceBI 툴",
+		"otherTools": "다른 툴"
+	},
+	"profile": {
+		"name": {
+			"label": "프로필:",
+			"placeholder": "프로필..."
+		},
+		"email": {
+			"label": "이메일:",
+			"placeholder": "이메일..."
+		},
+		"phone": {
+			"label": "전화:",
+			"placeholder": "전화..."
+		},
+		"address": {
+			"label": "주소:",
+			"placeholder": "주소..."
+		},
+		"avatar": {
+			"label": "아바타:",
+			"placeholder": "아바타..."
+		},
+		"save": "저장"
+	},
+	"about": {
+		"linceBiVersion": "LinceBI 버전:",
+		"biServerVersion": "BI Server 버전:"
+	},
+	"administration": {
+		"administration": "관리",
+		"manageDatasources": "데이터 소스 관리",
+		"schedules": "스케줄",
+		"marketplace": "시장",
+		"manageCdaCache": "CDA 캐시 관리",
+		"openStreportConf": "STReport 설정 열기",
+		"openStreportStats": "STReport 통계 정보 열기",
+		"refreshSystemSettings": "시스템 설정 새로 고침",
+		"refreshReportingMetadata": "보고서 메타데이터 새로 고침",
+		"refreshGlobalVariables": "글로벌 변수 새로 고침",
+		"refreshMondrianSchemaCache": "Mondrian 스키마 캐시 새로 고침",
+		"clearCdaCache": "CDA 캐시 클리어",
+		"resourceRefreshSuccess": "리소스를 새로 고쳤습니다.",
+		"resourceRefreshError": "리소스를 새로 고치는 중 오류 발생",
+		"cacheClearSuccess": "캐시가 성공적으로 지워졌습니다.",
+		"cacheClearError": "캐시 지우기 중 오류 발생",
+		"notificationInfo": "정보",
+		"notificationError": "오류"
+	},
+	"tour": {
+		"labels": {
+			"skip": "건너뛰기",
+			"previous": "이전",
+			"next": "다음",
+			"stop": "마침"
+		},
+		"steps": {
+			"navbarWelcome": {
+				"title": "시작합시다",
+				"content": "<strong>LinceBI</strong>를 만나보세요!"
+			},
+			"navbarProfile": {
+				"title": "프로필",
+				"content": "여기에서 프로필을 보고 편집할 수 있습니다."
+			},
+			"navbarSearch": {
+				"title": "검색",
+				"content": "저장소에 있는 파일을 여기에서 검색하십시오."
+			},
+			"navbarSettings": {
+				"title": "설정",
+				"content": "플랫폼의 일반 옵션에 액세스합니다."
+			},
+			"homeTabHome": {
+				"title": "홈 탭",
+				"content": "검색 도구에서 관리자가 선택한 파일은 홈 탭의 모든 사용자에게 표시됩니다."
+			},
+			"homeTabFavorites": {
+				"title": "즐겨찾기 탭",
+				"content": "검색 도구에서 선택한 파일이 즐겨찾기 탭에 나타납니다."
+			},
+			"homeTabNew": {
+				"title": "추가 탭",
+				"content": "추가 탭에는 해당 탭의 이름으로 태그가 지정된 파일이 표시됩니다."
+			},
+			"sidebarHome": {
+				"title": "홈",
+				"content": "여기에서 홈 페이지로 돌아가기."
+			},
+			"sidebarTools": {
+				"title": "도구",
+				"content": "여기에서 설치된 도구 중 하나를 사용하여 새 파일을 만들 수 있습니다."
+			},
+			"sidebarToolStpivot": {
+				"title": "STPivot",
+				"content": "STPivot은 다차원 분석을 위한 OLAP 뷰어입니다."
+			},
+			"sidebarToolStolap": {
+				"title": "STOlap",
+				"content": "STOlap은 Stratebi에서 개발한 오픈 소스 분석 뷰어입니다."
+			},
+			"sidebarToolStreport": {
+				"title": "STReport",
+				"content": "STReport는 보고서 작성, 수정 및 표시를 위한 도구입니다."
+			},
+			"sidebarToolStpanels": {
+				"title": "STPanels",
+				"content": "STPanels는 대시보드를 생성하기 위한 도구입니다."
+			},
+			"sidebarToolStdashboard": {
+				"title": "STDashboard",
+				"content": "STDashboard는 대시보드를 생성하기 위한 도구입니다."
+			},
+			"sidebarToolStagile": {
+				"title": "STAgile",
+				"content": "STAgile은 대시보드를 생성하기 위한 도구입니다."
+			},
+			"sidebarToolStcard": {
+				"title": "STCard",
+				"content": "STCard는 스코어카드를 생성, 관리 및 분석하기 위한 도구입니다."
+			},
+			"sidebarToolCde": {
+				"title": "CDE",
+				"content": "CDE는 대시보드 생성을 위한 Pentaho의 기본 제공 도구입니다."
+			},
+			"sidebarToolJpivot": {
+				"title": "JPivot",
+				"content": "JPivot은 Pentaho의 내장 OLAP 뷰어입니다."
+			},
+			"sidebarOpened": {
+				"title": "열린",
+				"content": "여기에서 현재 열려 있는 파일을 볼 수 있습니다."
+			},
+			"sidebarBrowser": {
+				"title": "브라우저",
+				"content": "파일 브라우저를 사용하면 저장소에 있는 파일을 찾아볼 수 있습니다."
+			},
+			"sidebarSearch": {
+				"title": "검색",
+				"content": "검색 도구를 사용하면 저장소에 있는 모든 파일을 찾을 수 있습니다."
+			},
+			"sidebarDatasources": {
+				"title": "데이터 소스",
+				"content": "데이터 소스는 Mondrian 스키마 및 보고서 메타데이터를 관리합니다."
+			},
+			"sidebarAdministration": {
+				"title": "관리",
+				"content": "관리 페이지에서는 관리자로 제한된 플랫폼 옵션에 액세스할 수 있습니다."
+			},
+			"sidebarLocales": {
+				"title": "언어",
+				"content": "인터페이스 언어는 자동으로 선택되지만 여기에서 원하는 언어를 선택할 수 있습니다."
+			},
+			"sidebarLogout": {
+				"title": "로그아웃",
+				"content": "여기에서 현재 세션을 닫습니다."
+			}
+		}
+	}
 }

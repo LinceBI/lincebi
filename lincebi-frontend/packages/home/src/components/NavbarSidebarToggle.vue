@@ -1,9 +1,5 @@
 <template>
-	<button
-		class="navbar-sidebar-toggle navbar-toggler"
-		type="button"
-		@click="sidebarExpanded = !sidebarExpanded"
-	>
+	<button class="navbar-sidebar-toggle navbar-toggler" type="button" @click="sidebarExpanded = !sidebarExpanded">
 		<font-awesome-icon :icon="['fas', `chevron-${sidebarExpanded ? 'left' : 'right'}`]" />
 	</button>
 </template>

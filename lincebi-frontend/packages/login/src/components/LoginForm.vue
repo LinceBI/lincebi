@@ -1,10 +1,7 @@
 <template>
 	<div class="login-form p-4 rounded">
 		<b-form class="d-flex flex-column" @submit.prevent="onSubmit">
-			<b-img
-				class="d-block h-auto w-75 mb-4 mx-auto"
-				src="@lincebi/frontend-common/src/assets/img/lincebi.svg"
-			/>
+			<b-img class="d-block h-auto w-75 mb-4 mx-auto" src="@lincebi/frontend-common/src/assets/img/lincebi.svg" />
 			<b-form-group :label="$t('username.label')">
 				<b-form-input v-model="form.j_username" type="text" autofocus required />
 			</b-form-group>

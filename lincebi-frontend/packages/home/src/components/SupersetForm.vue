@@ -36,10 +36,7 @@
 						required
 					></b-form-input>
 					<b-form-datalist :id="`datalist-file-name-${uniqueId}`">
-						<option
-							v-for="child in fileLocation?.children.filter((c) => !c.isFolder)"
-							:key="child.name"
-						>
+						<option v-for="child in fileLocation?.children.filter((c) => !c.isFolder)" :key="child.name">
 							{{ child.name }}
 						</option>
 					</b-form-datalist>

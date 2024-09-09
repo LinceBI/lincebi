@@ -1,11 +1,5 @@
 <template>
-	<b-form-radio-group
-		v-model="color"
-		class="color-swatch"
-		buttons
-		required
-		@input="$emit('input', color)"
-	>
+	<b-form-radio-group v-model="color" class="color-swatch" buttons required @input="$emit('input', color)">
 		<b-form-radio
 			v-for="kC in colors"
 			:key="kC"

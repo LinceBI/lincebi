@@ -1,15 +1,15 @@
 {
-  "expanded": true,
-  "interval": 5000,
-  "indicators": false,
-  "controls": true,
-  "fade": true,
-  "slides": [
-    {
-      "enabled": false,
-      "caption": "",
-      "text": "",
-      "img": "slider/images/01.webp"
-    }
-  ]
+	"expanded": true,
+	"interval": 5000,
+	"indicators": false,
+	"controls": true,
+	"fade": true,
+	"slides": [
+		{
+			"enabled": false,
+			"caption": "",
+			"text": "",
+			"img": "slider/images/01.webp"
+		}
+	]
 }

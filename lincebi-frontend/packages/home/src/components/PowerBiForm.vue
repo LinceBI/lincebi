@@ -63,10 +63,7 @@
 						required
 					></b-form-input>
 					<b-form-datalist :id="`datalist-file-name-${uniqueId}`">
-						<option
-							v-for="child in fileLocation?.children.filter((c) => !c.isFolder)"
-							:key="child.name"
-						>
+						<option v-for="child in fileLocation?.children.filter((c) => !c.isFolder)" :key="child.name">
 							{{ child.name }}
 						</option>
 					</b-form-datalist>
@@ -74,21 +71,13 @@
 			</b-row>
 			<b-row>
 				<b-col>
-					<additional-info
-						:title="$t('tools.powerbi.doYouNeedHelp')"
-						variant="info"
-						:icon="['fas', 'circle-info']"
-					>
+					<additional-info :title="$t('tools.powerbi.doYouNeedHelp')" variant="info" :icon="['fas', 'circle-info']">
 						<i18n path="tools.powerbi.findWorkspaceAndReport.msg" tag="p" class="mb-2">
 							<template #workspaceId>
-								<span :style="{ color: '#cd0012' }">{{
-									$t('tools.powerbi.findWorkspaceAndReport.workspaceId')
-								}}</span>
+								<span :style="{ color: '#cd0012' }">{{ $t('tools.powerbi.findWorkspaceAndReport.workspaceId') }}</span>
 							</template>
 							<template #reportId>
-								<span :style="{ color: '#019800' }">{{
-									$t('tools.powerbi.findWorkspaceAndReport.reportId')
-								}}</span>
+								<span :style="{ color: '#019800' }">{{ $t('tools.powerbi.findWorkspaceAndReport.reportId') }}</span>
 							</template>
 							<template #reportPageName>
 								<span :style="{ color: '#0035a8' }">{{

@@ -45,13 +45,7 @@ export default {
 			],
 			// We will leave this disabled for now, as it causes problems with some plugins.
 			isSanboxed: false,
-			sandboxAllowed: [
-				'allow-forms',
-				'allow-modals',
-				'allow-popups',
-				'allow-same-origin',
-				'allow-scripts',
-			],
+			sandboxAllowed: ['allow-forms', 'allow-modals', 'allow-popups', 'allow-same-origin', 'allow-scripts'],
 		};
 	},
 	computed: {
@@ -132,9 +126,7 @@ export default {
 		async invokeInPerspectiveWindow(perspective, fn) {
 			this.invokeInMantleWindow(async (mantleWindow) => {
 				const perspectiveWindow = await waitFor(() => {
-					const perspectiveIframe = mantleWindow.document.querySelector(
-						`iframe[id="${perspective}"]`,
-					);
+					const perspectiveIframe = mantleWindow.document.querySelector(`iframe[id="${perspective}"]`);
 					if (perspectiveIframe !== null && perspectiveIframe.contentWindow) {
 						return perspectiveIframe.contentWindow;
 					}

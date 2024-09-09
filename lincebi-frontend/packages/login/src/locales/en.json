@@ -1,20 +1,20 @@
 {
-  "__meta__": {
-    "lang": "en",
-    "dir": "ltr"
-  },
-  "username": {
-    "label": "Username:"
-  },
-  "password": {
-    "label": "Password:"
-  },
-  "getCredentialsHere": "Get your user and password here.",
-  "signIn": "Sign in",
-  "footer": "",
-  "errors": {
-    "unknownError": "A login error occurred. Please try again.",
-    "authenticationFailure": "A login error occurred. Please try again.",
-    "sessionReuseDetected": "A login error occurred. Please try again."
-  }
+	"__meta__": {
+		"lang": "en",
+		"dir": "ltr"
+	},
+	"username": {
+		"label": "Username:"
+	},
+	"password": {
+		"label": "Password:"
+	},
+	"getCredentialsHere": "Get your user and password here.",
+	"signIn": "Sign in",
+	"footer": "",
+	"errors": {
+		"unknownError": "A login error occurred. Please try again.",
+		"authenticationFailure": "A login error occurred. Please try again.",
+		"sessionReuseDetected": "A login error occurred. Please try again."
+	}
 }

@@ -13,11 +13,7 @@
 					@keyup.enter="tool.click()"
 				>
 					<div class="card-border" :style="{ backgroundColor: tool.color }"></div>
-					<font-awesome-icon
-						class="card-icon fa-fw"
-						:icon="tool.icon"
-						:style="{ color: tool.color }"
-					/>
+					<font-awesome-icon class="card-icon fa-fw" :icon="tool.icon" :style="{ color: tool.color }" />
 					<div class="card-body">
 						<div class="card-title">{{ tool.name }}</div>
 					</div>
@@ -57,10 +53,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable(
-									'mantle-home-command',
-									this.overlays.get('launch.stpivot'),
-								);
+								eventBus.$emitWhenAvailable('mantle-home-command', this.overlays.get('launch.stpivot'));
 							},
 						},
 						{
@@ -95,10 +88,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable(
-									'mantle-home-command',
-									this.overlays.get('launch.launch-new-saiku-adhoc'),
-								);
+								eventBus.$emitWhenAvailable('mantle-home-command', this.overlays.get('launch.launch-new-saiku-adhoc'));
 							},
 						},
 						{
@@ -114,10 +104,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable(
-									'mantle-home-command',
-									this.overlays.get('launch.launch-new-stpanels'),
-								);
+								eventBus.$emitWhenAvailable('mantle-home-command', this.overlays.get('launch.launch-new-stpanels'));
 							},
 						},
 						{
@@ -133,10 +120,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable(
-									'mantle-home-command',
-									this.overlays.get('launch.stdashboardButton'),
-								);
+								eventBus.$emitWhenAvailable('mantle-home-command', this.overlays.get('launch.stdashboardButton'));
 							},
 						},
 						{
@@ -152,10 +136,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable(
-									'mantle-home-command',
-									this.overlays.get('launch.launch-new-stagile'),
-								);
+								eventBus.$emitWhenAvailable('mantle-home-command', this.overlays.get('launch.launch-new-stagile'));
 							},
 						},
 						{
@@ -171,10 +152,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable(
-									'mantle-home-command',
-									this.overlays.get('launch.button.stcard'),
-								);
+								eventBus.$emitWhenAvailable('mantle-home-command', this.overlays.get('launch.button.stcard'));
 							},
 						},
 					],
@@ -256,10 +234,7 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable(
-									'mantle-home-command',
-									this.overlays.get('launch.jpivot'),
-								);
+								eventBus.$emitWhenAvailable('mantle-home-command', this.overlays.get('launch.jpivot'));
 							},
 						},
 						{
@@ -275,16 +250,11 @@ export default {
 										params: { perspective: 'opened.perspective' },
 									})
 									.catch(() => {});
-								eventBus.$emitWhenAvailable(
-									'mantle-home-command',
-									this.overlays.get('launch.SaikuAnalytics'),
-								);
+								eventBus.$emitWhenAvailable('mantle-home-command', this.overlays.get('launch.SaikuAnalytics'));
 							},
 						},
 						{
-							enabled: this.overlays.has(
-								'startup.repositorySynchronizer.toolsmenu.repositorySynchronizer',
-							),
+							enabled: this.overlays.has('startup.repositorySynchronizer.toolsmenu.repositorySynchronizer'),
 							id: 'tool-repository-synchronizer',
 							name: 'Repository Synchronizer',
 							icon: ['fac', 'tool-repository-synchronizer'],
@@ -310,9 +280,7 @@ export default {
 			]
 				.map((group) => ({
 					...group,
-					tools: group.tools
-						.filter((tool) => tool.enabled)
-						.sort((a, b) => a.name.localeCompare(b.name)),
+					tools: group.tools.filter((tool) => tool.enabled).sort((a, b) => a.name.localeCompare(b.name)),
 				}))
 				.filter((group) => group.tools.length > 0);
 		},

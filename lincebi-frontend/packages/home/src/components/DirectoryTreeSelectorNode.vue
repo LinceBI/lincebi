@@ -1,10 +1,5 @@
 <template>
-	<li
-		class="directory-tree-selector-node"
-		tabindex="0"
-		@keyup.self.enter="expand()"
-		@keyup.self.space="select()"
-	>
+	<li class="directory-tree-selector-node" tabindex="0" @keyup.self.enter="expand()" @keyup.self.space="select()">
 		<div class="row d-flex align-items-center p-1" :class="{ selected }">
 			<font-awesome-icon
 				v-if="children.length > 0"

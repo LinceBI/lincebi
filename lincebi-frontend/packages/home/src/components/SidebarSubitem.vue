@@ -13,11 +13,7 @@
 		@focus="isFocused = true"
 		@blur="isFocused = false"
 	>
-		<font-awesome-icon
-			v-if="typeof item.icon !== 'undefined'"
-			class="item-icon fa-fw"
-			:icon="item.icon"
-		/>
+		<font-awesome-icon v-if="typeof item.icon !== 'undefined'" class="item-icon fa-fw" :icon="item.icon" />
 		<b-img v-else-if="typeof item.img !== 'undefined'" class="item-img" :src="item.img" />
 		<span class="lbl">{{ item.name }}</span>
 	</b-link>

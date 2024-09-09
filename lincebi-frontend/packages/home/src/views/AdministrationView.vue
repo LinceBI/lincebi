@@ -186,10 +186,7 @@ export default {
 					params: { perspective: 'opened.perspective' },
 				})
 				.catch(() => {});
-			eventBus.$emitWhenAvailable(
-				'mantle-home-command',
-				this.overlays.get('startup.cda.toolsmenu.cdaCacheManager'),
-			);
+			eventBus.$emitWhenAvailable('mantle-home-command', this.overlays.get('startup.cda.toolsmenu.cdaCacheManager'));
 		},
 		async openStreportConf() {
 			router

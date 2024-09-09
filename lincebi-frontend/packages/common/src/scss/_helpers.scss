@@ -3,7 +3,8 @@
 }
 
 /* Increase margin between icons and labels */
-img + .lbl, .svg-inline--fa + .lbl {
+img + .lbl,
+.svg-inline--fa + .lbl {
 	margin-right: 0;
 	margin-left: toRem(8);
 

@@ -16,12 +16,7 @@
 				/>
 			</b-carousel>
 		</b-collapse>
-		<b-button
-			class="p-0 rounded-0"
-			size="sm"
-			variant="light"
-			@click="slider.expanded = !slider.expanded"
-		>
+		<b-button class="p-0 rounded-0" size="sm" variant="light" @click="slider.expanded = !slider.expanded">
 			<font-awesome-icon v-if="slider.expanded" :icon="['fas', 'angle-up']" />
 			<font-awesome-icon v-else :icon="['fas', 'angle-down']" />
 		</b-button>

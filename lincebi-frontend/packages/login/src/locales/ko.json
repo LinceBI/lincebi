@@ -1,20 +1,20 @@
 {
-  "__meta__": {
-    "lang": "ko",
-    "dir": "ltr"
-  },
-  "username": {
-    "label": "아이디:"
-  },
-  "password": {
-    "label": "비밀번호:"
-  },
-  "getCredentialsHere": "아이디와 비밀번호를 입력하세요.",
-  "signIn": "로그인",
-  "footer": "",
-  "errors": {
-    "unknownError": "로그인 오류가 발생했습니다. 다시 시도하십시오.",
-    "authenticationFailure": "로그인 오류가 발생했습니다. 다시 시도하십시오.",
-    "sessionReuseDetected": "로그인 오류가 발생했습니다. 다시 시도하십시오."
-  }
+	"__meta__": {
+		"lang": "ko",
+		"dir": "ltr"
+	},
+	"username": {
+		"label": "아이디:"
+	},
+	"password": {
+		"label": "비밀번호:"
+	},
+	"getCredentialsHere": "아이디와 비밀번호를 입력하세요.",
+	"signIn": "로그인",
+	"footer": "",
+	"errors": {
+		"unknownError": "로그인 오류가 발생했습니다. 다시 시도하십시오.",
+		"authenticationFailure": "로그인 오류가 발생했습니다. 다시 시도하십시오.",
+		"sessionReuseDetected": "로그인 오류가 발생했습니다. 다시 시도하십시오."
+	}
 }

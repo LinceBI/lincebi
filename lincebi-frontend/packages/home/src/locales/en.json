@@ -1,328 +1,328 @@
 {
-  "__meta__": {
-    "lang": "en",
-    "dir": "ltr"
-  },
-  "locales": {
-    "ar": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
-    "ca": "Català",
-    "de": "Deutsch",
-    "en": "English",
-    "es": "Español",
-    "fr": "Français",
-    "ko": "\uD55C\uAD6D\uC5B4",
-    "pt_BR": "Português (BR)",
-    "pt_PT": "Português (PT)"
-  },
-  "navbar": {
-    "categories": "Categories",
-    "search": {
-      "label": "Search:",
-      "placeholder": "Search..."
-    },
-    "settings": "Settings",
-    "profile": "Profile",
-    "about": "About",
-    "showMenuBar": "Show menu bar",
-    "showToolBar": "Show tool bar",
-    "showHiddenFiles": "Show hidden files",
-    "showDescriptionsForTooltips": "Use descriptions for tooltips"
-  },
-  "sidebar": {
-    "home": "Home",
-    "tools": "Tools",
-    "opened": "Opened",
-    "browser": "Browser",
-    "search": "Search",
-    "favorites": "Favorites",
-    "recents": "Recents",
-    "datasources": "Manage datasources",
-    "administration": "Administration",
-    "locales": "Languages",
-    "logout": "Logout"
-  },
-  "home": {
-    "filesWillAppearHere": "Files you tag will appear here",
-    "createTab": "Create tab",
-    "tabName": {
-      "label": "Tab name",
-      "placeholder": "Tab name..."
-    },
-    "tabColor": {
-      "label": "Tab color",
-      "placeholder": "Tab color..."
-    },
-    "tabIcon": {
-      "label": "Tab icon",
-      "placeholder": "Tab icon..."
-    },
-    "global": "Global",
-    "deleteTab": "Delete tab",
-    "tabWillBeDeleted": "The tab \"{name}\" will be deleted.",
-    "delete": "Delete",
-    "create": "Create",
-    "cancel": "Cancel",
-    "home": "Home",
-    "favorites": "Favorites",
-    "recents": "Recents",
-    "sort": {
-      "title": "Title",
-      "extension": "Type",
-      "created": "Creation date",
-      "modified": "Modification date"
-    }
-  },
-  "new": {
-    "lincebiTools": "LinceBI tools",
-    "otherTools": "Other tools"
-  },
-  "tools": {
-    "powerbi": {
-      "title": "Embed Power BI report",
-      "subtitle": "Complete and save your report",
-      "manual": "Manual",
-      "automatic": "Automatic",
-      "workspaceId": {
-        "label": "Workspace ID"
-      },
-      "reportId": {
-        "label": "Report ID"
-      },
-      "reportPageName": {
-        "label": "Report page name (optional)"
-      },
-      "filters": {
-        "label": "Filters (optional)"
-      },
-      "location": {
-        "label": "Location",
-        "placeholder": "Location"
-      },
-      "fileName": {
-        "label": "File name",
-        "placeholder": "File name"
-      },
-      "selectALocation": "Select a location",
-      "cancel": "Cancel",
-      "accept": "Accept",
-      "save": "Save",
-      "overwriteModalTitle": "A report with this name already exists",
-      "overwriteModalBody": "Do you want to overwrite the report? This action cannot be reversed.",
-      "submitModalTitle": "Saved report",
-      "submitModalBody": "Report \"{name}\" has been saved.",
-      "doYouNeedHelp": "Do you need help?",
-      "findWorkspaceAndReport": {
-        "msg": "The {workspaceId}, {reportId} and {reportPageName} can be found in the report URL.",
-        "workspaceId": "workspace ID",
-        "reportId": "report ID",
-        "reportPageName": "report page name"
-      },
-      "notAvailableYet": "Not availabe yet"
-    },
-    "superset": {
-      "title": "Embed Superset dashboard",
-      "subtitle": "Complete and save your dashboard",
-      "dashboardId": {
-        "label": "Dashboard ID"
-      },
-      "location": {
-        "label": "Location",
-        "placeholder": "Location"
-      },
-      "fileName": {
-        "label": "File name",
-        "placeholder": "File name"
-      },
-      "selectALocation": "Select a location",
-      "cancel": "Cancel",
-      "accept": "Accept",
-      "save": "Save",
-      "overwriteModalTitle": "A file with this name already exists",
-      "overwriteModalBody": "Do you want to overwrite the file? This action cannot be reversed.",
-      "submitModalTitle": "Saved file",
-      "submitModalBody": "File \"{name}\" has been saved."
-    },
-    "embed": {
-      "title": "Embed external link",
-      "subtitle": "Complete and save your external link",
-      "url": {
-        "label": "URL"
-      },
-      "location": {
-        "label": "Location",
-        "placeholder": "Location"
-      },
-      "fileName": {
-        "label": "File name",
-        "placeholder": "File name"
-      },
-      "selectALocation": "Select a location",
-      "cancel": "Cancel",
-      "accept": "Accept",
-      "save": "Save",
-      "overwriteModalTitle": "A file with this name already exists",
-      "overwriteModalBody": "Do you want to overwrite the file? This action cannot be reversed.",
-      "submitModalTitle": "Saved file",
-      "submitModalBody": "File \"{name}\" has been saved."
-    }
-  },
-  "profile": {
-    "name": {
-      "label": "Name:",
-      "placeholder": "Name..."
-    },
-    "email": {
-      "label": "Email:",
-      "placeholder": "Email..."
-    },
-    "phone": {
-      "label": "Phone:",
-      "placeholder": "Phone..."
-    },
-    "address": {
-      "label": "Address:",
-      "placeholder": "Address..."
-    },
-    "avatar": {
-      "label": "Avatar:",
-      "placeholder": "Avatar..."
-    },
-    "save": "Save"
-  },
-  "about": {
-    "linceBiVersion": "LinceBI version:",
-    "biServerVersion": "BI Server version:"
-  },
-  "administration": {
-    "administration": "Administration",
-    "manageDatasources": "Manage datasources",
-    "schedules": "Schedules",
-    "marketplace": "Marketplace",
-    "manageCdaCache": "Manage CDA cache",
-    "openStreportConf": "Open STReport configuration",
-    "openStreportStats": "Open STReport statistics",
-    "refreshSystemSettings": "Refresh system settings",
-    "refreshReportingMetadata": "Refresh reporting metadata",
-    "refreshGlobalVariables": "Refresh global variables",
-    "refreshMondrianSchemaCache": "Refresh Mondrian schema cache",
-    "clearCdaCache": "Clear CDA cache",
-    "resetGlobalUserSettings": "Reset global user settings",
-    "resetUserSettings": "Reset user settings",
-    "resourceRefreshSuccess": "Resource successfully refreshed",
-    "resourceRefreshError": "Error while refreshing resource",
-    "cacheClearSuccess": "Cache successfully cleared",
-    "cacheClearError": "Error while clearing cache",
-    "notificationInfo": "Information",
-    "notificationError": "Error"
-  },
-  "tour": {
-    "labels": {
-      "skip": "Skip tour",
-      "previous": "Previous",
-      "next": "Next",
-      "stop": "Finish tour"
-    },
-    "steps": {
-      "navbarWelcome": {
-        "title": "Let's start",
-        "content": "Discover <strong>LinceBI</strong>!"
-      },
-      "navbarProfile": {
-        "title": "Profile",
-        "content": "Here you can view and edit your profile."
-      },
-      "navbarSearch": {
-        "title": "Search",
-        "content": "Search here for any file in the repository."
-      },
-      "navbarSettings": {
-        "title": "Settings",
-        "content": "Access the general options of the platform."
-      },
-      "homeTabHome": {
-        "title": "Home tab",
-        "content": "Files selected by the administrator from the search tool will appear for all users on the home tab."
-      },
-      "homeTabFavorites": {
-        "title": "Favorites tab",
-        "content": "Files selected by you from the search tool will appear on the favorites tab."
-      },
-      "homeTabNew": {
-        "title": "New tab",
-        "content": "Additional tabs will show you the files tagged with the name of that tab."
-      },
-      "sidebarHome": {
-        "title": "Home",
-        "content": "Go back to the home page from here."
-      },
-      "sidebarTools": {
-        "title": "Tools",
-        "content": "Here you can create a new file using one of the installed tools."
-      },
-      "sidebarToolStpivot": {
-        "title": "STPivot",
-        "content": "STPivot is an OLAP viewer for multidimensional analysis."
-      },
-      "sidebarToolStolap": {
-        "title": "STOlap",
-        "content": "STOlap is an open source analytical viewer developed by Stratebi."
-      },
-      "sidebarToolStreport": {
-        "title": "STReport",
-        "content": "STReport is a tool for creating, modifying and displaying reports."
-      },
-      "sidebarToolStpanels": {
-        "title": "STPanels",
-        "content": "STPanels is a tool for creating dashboards."
-      },
-      "sidebarToolStdashboard": {
-        "title": "STDashboard",
-        "content": "STDashboard is a tool for creating dashboards."
-      },
-      "sidebarToolStagile": {
-        "title": "STAgile",
-        "content": "STAgile is a tool for creating dashboards."
-      },
-      "sidebarToolStcard": {
-        "title": "STCard",
-        "content": "STCard is a tool for creating, managing and analyzing scorecards."
-      },
-      "sidebarToolCde": {
-        "title": "CDE",
-        "content": "CDE is Pentaho's built-in tool for creating dashboards."
-      },
-      "sidebarToolJpivot": {
-        "title": "JPivot",
-        "content": "JPivot is Pentaho's built-in OLAP viewer."
-      },
-      "sidebarOpened": {
-        "title": "Opened",
-        "content": "Here you can see the currently open files."
-      },
-      "sidebarBrowser": {
-        "title": "Browser",
-        "content": "The file browser allows you to browse the files in the repository."
-      },
-      "sidebarSearch": {
-        "title": "Search",
-        "content": "The search tool allows you to find any file in the repository."
-      },
-      "sidebarDatasources": {
-        "title": "Datasources",
-        "content": "Manage datasources, Mondrian schemas and report metadata."
-      },
-      "sidebarAdministration": {
-        "title": "Administration",
-        "content": "The administration page allows you to access the platform options restricted to administrators."
-      },
-      "sidebarLocales": {
-        "title": "Languages",
-        "content": "The interface language is automatically selected, but you can choose the one you want from here."
-      },
-      "sidebarLogout": {
-        "title": "Logout",
-        "content": "Close from here the current session."
-      }
-    }
-  }
+	"__meta__": {
+		"lang": "en",
+		"dir": "ltr"
+	},
+	"locales": {
+		"ar": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
+		"ca": "Català",
+		"de": "Deutsch",
+		"en": "English",
+		"es": "Español",
+		"fr": "Français",
+		"ko": "\uD55C\uAD6D\uC5B4",
+		"pt_BR": "Português (BR)",
+		"pt_PT": "Português (PT)"
+	},
+	"navbar": {
+		"categories": "Categories",
+		"search": {
+			"label": "Search:",
+			"placeholder": "Search..."
+		},
+		"settings": "Settings",
+		"profile": "Profile",
+		"about": "About",
+		"showMenuBar": "Show menu bar",
+		"showToolBar": "Show tool bar",
+		"showHiddenFiles": "Show hidden files",
+		"showDescriptionsForTooltips": "Use descriptions for tooltips"
+	},
+	"sidebar": {
+		"home": "Home",
+		"tools": "Tools",
+		"opened": "Opened",
+		"browser": "Browser",
+		"search": "Search",
+		"favorites": "Favorites",
+		"recents": "Recents",
+		"datasources": "Manage datasources",
+		"administration": "Administration",
+		"locales": "Languages",
+		"logout": "Logout"
+	},
+	"home": {
+		"filesWillAppearHere": "Files you tag will appear here",
+		"createTab": "Create tab",
+		"tabName": {
+			"label": "Tab name",
+			"placeholder": "Tab name..."
+		},
+		"tabColor": {
+			"label": "Tab color",
+			"placeholder": "Tab color..."
+		},
+		"tabIcon": {
+			"label": "Tab icon",
+			"placeholder": "Tab icon..."
+		},
+		"global": "Global",
+		"deleteTab": "Delete tab",
+		"tabWillBeDeleted": "The tab \"{name}\" will be deleted.",
+		"delete": "Delete",
+		"create": "Create",
+		"cancel": "Cancel",
+		"home": "Home",
+		"favorites": "Favorites",
+		"recents": "Recents",
+		"sort": {
+			"title": "Title",
+			"extension": "Type",
+			"created": "Creation date",
+			"modified": "Modification date"
+		}
+	},
+	"new": {
+		"lincebiTools": "LinceBI tools",
+		"otherTools": "Other tools"
+	},
+	"tools": {
+		"powerbi": {
+			"title": "Embed Power BI report",
+			"subtitle": "Complete and save your report",
+			"manual": "Manual",
+			"automatic": "Automatic",
+			"workspaceId": {
+				"label": "Workspace ID"
+			},
+			"reportId": {
+				"label": "Report ID"
+			},
+			"reportPageName": {
+				"label": "Report page name (optional)"
+			},
+			"filters": {
+				"label": "Filters (optional)"
+			},
+			"location": {
+				"label": "Location",
+				"placeholder": "Location"
+			},
+			"fileName": {
+				"label": "File name",
+				"placeholder": "File name"
+			},
+			"selectALocation": "Select a location",
+			"cancel": "Cancel",
+			"accept": "Accept",
+			"save": "Save",
+			"overwriteModalTitle": "A report with this name already exists",
+			"overwriteModalBody": "Do you want to overwrite the report? This action cannot be reversed.",
+			"submitModalTitle": "Saved report",
+			"submitModalBody": "Report \"{name}\" has been saved.",
+			"doYouNeedHelp": "Do you need help?",
+			"findWorkspaceAndReport": {
+				"msg": "The {workspaceId}, {reportId} and {reportPageName} can be found in the report URL.",
+				"workspaceId": "workspace ID",
+				"reportId": "report ID",
+				"reportPageName": "report page name"
+			},
+			"notAvailableYet": "Not availabe yet"
+		},
+		"superset": {
+			"title": "Embed Superset dashboard",
+			"subtitle": "Complete and save your dashboard",
+			"dashboardId": {
+				"label": "Dashboard ID"
+			},
+			"location": {
+				"label": "Location",
+				"placeholder": "Location"
+			},
+			"fileName": {
+				"label": "File name",
+				"placeholder": "File name"
+			},
+			"selectALocation": "Select a location",
+			"cancel": "Cancel",
+			"accept": "Accept",
+			"save": "Save",
+			"overwriteModalTitle": "A file with this name already exists",
+			"overwriteModalBody": "Do you want to overwrite the file? This action cannot be reversed.",
+			"submitModalTitle": "Saved file",
+			"submitModalBody": "File \"{name}\" has been saved."
+		},
+		"embed": {
+			"title": "Embed external link",
+			"subtitle": "Complete and save your external link",
+			"url": {
+				"label": "URL"
+			},
+			"location": {
+				"label": "Location",
+				"placeholder": "Location"
+			},
+			"fileName": {
+				"label": "File name",
+				"placeholder": "File name"
+			},
+			"selectALocation": "Select a location",
+			"cancel": "Cancel",
+			"accept": "Accept",
+			"save": "Save",
+			"overwriteModalTitle": "A file with this name already exists",
+			"overwriteModalBody": "Do you want to overwrite the file? This action cannot be reversed.",
+			"submitModalTitle": "Saved file",
+			"submitModalBody": "File \"{name}\" has been saved."
+		}
+	},
+	"profile": {
+		"name": {
+			"label": "Name:",
+			"placeholder": "Name..."
+		},
+		"email": {
+			"label": "Email:",
+			"placeholder": "Email..."
+		},
+		"phone": {
+			"label": "Phone:",
+			"placeholder": "Phone..."
+		},
+		"address": {
+			"label": "Address:",
+			"placeholder": "Address..."
+		},
+		"avatar": {
+			"label": "Avatar:",
+			"placeholder": "Avatar..."
+		},
+		"save": "Save"
+	},
+	"about": {
+		"linceBiVersion": "LinceBI version:",
+		"biServerVersion": "BI Server version:"
+	},
+	"administration": {
+		"administration": "Administration",
+		"manageDatasources": "Manage datasources",
+		"schedules": "Schedules",
+		"marketplace": "Marketplace",
+		"manageCdaCache": "Manage CDA cache",
+		"openStreportConf": "Open STReport configuration",
+		"openStreportStats": "Open STReport statistics",
+		"refreshSystemSettings": "Refresh system settings",
+		"refreshReportingMetadata": "Refresh reporting metadata",
+		"refreshGlobalVariables": "Refresh global variables",
+		"refreshMondrianSchemaCache": "Refresh Mondrian schema cache",
+		"clearCdaCache": "Clear CDA cache",
+		"resetGlobalUserSettings": "Reset global user settings",
+		"resetUserSettings": "Reset user settings",
+		"resourceRefreshSuccess": "Resource successfully refreshed",
+		"resourceRefreshError": "Error while refreshing resource",
+		"cacheClearSuccess": "Cache successfully cleared",
+		"cacheClearError": "Error while clearing cache",
+		"notificationInfo": "Information",
+		"notificationError": "Error"
+	},
+	"tour": {
+		"labels": {
+			"skip": "Skip tour",
+			"previous": "Previous",
+			"next": "Next",
+			"stop": "Finish tour"
+		},
+		"steps": {
+			"navbarWelcome": {
+				"title": "Let's start",
+				"content": "Discover <strong>LinceBI</strong>!"
+			},
+			"navbarProfile": {
+				"title": "Profile",
+				"content": "Here you can view and edit your profile."
+			},
+			"navbarSearch": {
+				"title": "Search",
+				"content": "Search here for any file in the repository."
+			},
+			"navbarSettings": {
+				"title": "Settings",
+				"content": "Access the general options of the platform."
+			},
+			"homeTabHome": {
+				"title": "Home tab",
+				"content": "Files selected by the administrator from the search tool will appear for all users on the home tab."
+			},
+			"homeTabFavorites": {
+				"title": "Favorites tab",
+				"content": "Files selected by you from the search tool will appear on the favorites tab."
+			},
+			"homeTabNew": {
+				"title": "New tab",
+				"content": "Additional tabs will show you the files tagged with the name of that tab."
+			},
+			"sidebarHome": {
+				"title": "Home",
+				"content": "Go back to the home page from here."
+			},
+			"sidebarTools": {
+				"title": "Tools",
+				"content": "Here you can create a new file using one of the installed tools."
+			},
+			"sidebarToolStpivot": {
+				"title": "STPivot",
+				"content": "STPivot is an OLAP viewer for multidimensional analysis."
+			},
+			"sidebarToolStolap": {
+				"title": "STOlap",
+				"content": "STOlap is an open source analytical viewer developed by Stratebi."
+			},
+			"sidebarToolStreport": {
+				"title": "STReport",
+				"content": "STReport is a tool for creating, modifying and displaying reports."
+			},
+			"sidebarToolStpanels": {
+				"title": "STPanels",
+				"content": "STPanels is a tool for creating dashboards."
+			},
+			"sidebarToolStdashboard": {
+				"title": "STDashboard",
+				"content": "STDashboard is a tool for creating dashboards."
+			},
+			"sidebarToolStagile": {
+				"title": "STAgile",
+				"content": "STAgile is a tool for creating dashboards."
+			},
+			"sidebarToolStcard": {
+				"title": "STCard",
+				"content": "STCard is a tool for creating, managing and analyzing scorecards."
+			},
+			"sidebarToolCde": {
+				"title": "CDE",
+				"content": "CDE is Pentaho's built-in tool for creating dashboards."
+			},
+			"sidebarToolJpivot": {
+				"title": "JPivot",
+				"content": "JPivot is Pentaho's built-in OLAP viewer."
+			},
+			"sidebarOpened": {
+				"title": "Opened",
+				"content": "Here you can see the currently open files."
+			},
+			"sidebarBrowser": {
+				"title": "Browser",
+				"content": "The file browser allows you to browse the files in the repository."
+			},
+			"sidebarSearch": {
+				"title": "Search",
+				"content": "The search tool allows you to find any file in the repository."
+			},
+			"sidebarDatasources": {
+				"title": "Datasources",
+				"content": "Manage datasources, Mondrian schemas and report metadata."
+			},
+			"sidebarAdministration": {
+				"title": "Administration",
+				"content": "The administration page allows you to access the platform options restricted to administrators."
+			},
+			"sidebarLocales": {
+				"title": "Languages",
+				"content": "The interface language is automatically selected, but you can choose the one you want from here."
+			},
+			"sidebarLogout": {
+				"title": "Logout",
+				"content": "Close from here the current session."
+			}
+		}
+	}
 }

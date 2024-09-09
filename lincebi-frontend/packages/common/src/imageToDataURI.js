@@ -4,7 +4,6 @@ import fileToDataURI from './fileToDataURI';
 
 export default async (image, options = {}) => {
 	return new Promise((resolve, reject) => {
-		/* eslint-disable-next-line no-new */
 		new Compressor(image, {
 			strict: true,
 			checkOrientation: false,

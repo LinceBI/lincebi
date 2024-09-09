@@ -1,326 +1,326 @@
 {
-  "__meta__": {
-    "lang": "es",
-    "dir": "ltr"
-  },
-  "locales": {
-    "ar": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
-    "ca": "Català",
-    "de": "Deutsch",
-    "en": "English",
-    "es": "Español",
-    "fr": "Français",
-    "ko": "\uD55C\uAD6D\uC5B4",
-    "pt_BR": "Português (BR)",
-    "pt_PT": "Português (PT)"
-  },
-  "navbar": {
-    "categories": "Categorías",
-    "search": {
-      "label": "Buscar:",
-      "placeholder": "Buscar..."
-    },
-    "settings": "Opciones",
-    "profile": "Perfil",
-    "about": "Acerca de",
-    "showMenuBar": "Mostrar barra de menú",
-    "showToolBar": "Mostrar barra de herramientas",
-    "showHiddenFiles": "Mostrar archivos ocultos",
-    "showDescriptionsForTooltips": "Utilizar descripciones para los tooltips"
-  },
-  "sidebar": {
-    "home": "Inicio",
-    "tools": "Herramientas",
-    "opened": "Abiertos",
-    "browser": "Explorador",
-    "search": "Buscador",
-    "favorites": "Favoritos",
-    "recents": "Recientes",
-    "datasources": "Gestionar fuentes de datos",
-    "administration": "Administración",
-    "locales": "Idiomas",
-    "logout": "Salir"
-  },
-  "home": {
-    "filesWillAppearHere": "Los archivos que etiquete aparecerán aquí",
-    "createTab": "Crear pestaña",
-    "tabName": {
-      "label": "Nombre de pestaña",
-      "placeholder": "Nombre de pestaña..."
-    },
-    "tabColor": {
-      "label": "Color de pestaña",
-      "placeholder": "Color de pestaña..."
-    },
-    "tabIcon": {
-      "label": "Icono de pestaña",
-      "placeholder": "Icono de pestaña..."
-    },
-    "global": "Global",
-    "deleteTab": "Eliminar pestaña",
-    "tabWillBeDeleted": "La pestaña \"{name}\" será eliminada.",
-    "delete": "Eliminar",
-    "create": "Crear",
-    "cancel": "Cancelar",
-    "home": "Inicio",
-    "favorites": "Favoritos",
-    "recents": "Recientes",
-    "sort": {
-      "title": "Título",
-      "extension": "Tipo",
-      "created": "Fecha de creación",
-      "modified": "Fecha de modificación"
-    }
-  },
-  "new": {
-    "lincebiTools": "Herramientas de LinceBI",
-    "otherTools": "Otras herramientas"
-  },
-  "tools": {
-    "powerbi": {
-      "title": "Embeber informe de Power BI",
-      "subtitle": "Completa y guarda tu informe",
-      "manual": "Manual",
-      "automatic": "Automático",
-      "workspaceId": {
-        "label": "ID del área de trabajo"
-      },
-      "reportId": {
-        "label": "ID del informe"
-      },
-      "reportPageName": {
-        "label": "Nombre de página del informe (opcional)"
-      },
-      "filters": {
-        "label": "Filtros (opcional)"
-      },
-      "location": {
-        "label": "Destino",
-        "placeholder": "Destino"
-      },
-      "fileName": {
-        "label": "Nombre de archivo",
-        "placeholder": "Nombre de archivo"
-      },
-      "selectALocation": "Seleccionar un destino",
-      "cancel": "Cancelar",
-      "accept": "Aceptar",
-      "save": "Guardar",
-      "overwriteModalTitle": "Ya existe un informe con este nombre",
-      "overwriteModalBody": "¿Deseas sobreescribir el informe? Esta acción no se puede revertir.",
-      "submitModalTitle": "Informe guardado",
-      "submitModalBody": "El informe \"{name}\" ha sido guardado.",
-      "doYouNeedHelp": "¿Necesitas ayuda?",
-      "findWorkspaceAndReport": {
-        "msg": "Puedes encontrar el {workspaceId}, {reportId} y {reportPageName} en la URL del informe.",
-        "workspaceId": "ID del área de trabajo",
-        "reportId": "ID del informe",
-        "reportPageName": "nombre de página del informe"
-      },
-      "notAvailableYet": "Aún no disponible"
-    },
-    "superset": {
-      "title": "Embeber cuadro de mando de Superset",
-      "subtitle": "Completa y guarda tu cuadro de mando",
-      "dashboardId": {
-        "label": "ID del cuadro de mando"
-      },
-      "location": {
-        "label": "Destino",
-        "placeholder": "Destino"
-      },
-      "fileName": {
-        "label": "Nombre de archivo",
-        "placeholder": "Nombre de archivo"
-      },
-      "selectALocation": "Seleccionar un destino",
-      "cancel": "Cancelar",
-      "accept": "Aceptar",
-      "save": "Guardar",
-      "overwriteModalTitle": "Ya existe un archivo con este nombre",
-      "overwriteModalBody": "¿Deseas sobreescribir el archivo? Esta acción no se puede revertir.",
-      "submitModalTitle": "Archivo guardado",
-      "submitModalBody": "El archivo \"{name}\" ha sido guardado."
-    },
-    "embed": {
-      "title": "Embeber enlace externo",
-      "subtitle": "Completa y guarda tu enlace externo",
-      "url": {
-        "label": "URL"
-      },
-      "location": {
-        "label": "Destino",
-        "placeholder": "Destino"
-      },
-      "fileName": {
-        "label": "Nombre de archivo",
-        "placeholder": "Nombre de archivo"
-      },
-      "selectALocation": "Seleccionar un destino",
-      "cancel": "Cancelar",
-      "accept": "Aceptar",
-      "save": "Guardar",
-      "overwriteModalTitle": "Ya existe un archivo con este nombre",
-      "overwriteModalBody": "¿Deseas sobreescribir el archivo? Esta acción no se puede revertir.",
-      "submitModalTitle": "Archivo guardado",
-      "submitModalBody": "El archivo \"{name}\" ha sido guardado."
-    }
-  },
-  "profile": {
-    "name": {
-      "label": "Nombre:",
-      "placeholder": "Nombre..."
-    },
-    "email": {
-      "label": "Email:",
-      "placeholder": "Email..."
-    },
-    "phone": {
-      "label": "Teléfono:",
-      "placeholder": "Teléfono..."
-    },
-    "address": {
-      "label": "Dirección:",
-      "placeholder": "Dirección..."
-    },
-    "avatar": {
-      "label": "Foto:",
-      "placeholder": "Foto..."
-    },
-    "save": "Guardar"
-  },
-  "about": {
-    "linceBiVersion": "Versión de LinceBI:",
-    "biServerVersion": "Versión de BI Server:"
-  },
-  "administration": {
-    "administration": "Administración",
-    "manageDatasources": "Gestionar fuentes de datos",
-    "schedules": "Programaciones",
-    "marketplace": "Marketplace",
-    "manageCdaCache": "Administar caché de CDA",
-    "openStreportConf": "Abrir configuración de STReport",
-    "openStreportStats": "Abrir estadísticas de STReport",
-    "refreshSystemSettings": "Actualizar configuración del sistema",
-    "refreshReportingMetadata": "Actualizar reporte de metadatos",
-    "refreshGlobalVariables": "Actualizar variables globales",
-    "refreshMondrianSchemaCache": "Actualizar caché de los esquemas de Mondrian",
-    "clearCdaCache": "Vaciar caché de CDA",
-    "resourceRefreshSuccess": "Recurso actualizado con éxito",
-    "resourceRefreshError": "Error al actualizar el recurso",
-    "cacheClearSuccess": "Caché vaciada con éxito",
-    "cacheClearError": "Error al vaciar la caché",
-    "notificationInfo": "Información",
-    "notificationError": "Error"
-  },
-  "tour": {
-    "labels": {
-      "skip": "Omitir tour",
-      "previous": "Anterior",
-      "next": "Siguiente",
-      "stop": "Finalizar tour"
-    },
-    "steps": {
-      "navbarWelcome": {
-        "title": "Comencemos",
-        "content": "¡Descubra <strong>LinceBI</strong>!"
-      },
-      "navbarProfile": {
-        "title": "Perfil",
-        "content": "Desde aquí podrá ver y editar su perfil."
-      },
-      "navbarSearch": {
-        "title": "Buscar",
-        "content": "Busque desde aquí cualquier archivo del repositorio."
-      },
-      "navbarSettings": {
-        "title": "Opciones",
-        "content": "Acceda a las opciones generales de la plataforma."
-      },
-      "homeTabHome": {
-        "title": "Pestaña de inicio",
-        "content": "En la pestaña de inicio aparecerán para todos los usuarios los archivos que el administrador seleccione desde el buscador."
-      },
-      "homeTabFavorites": {
-        "title": "Pestaña de favoritos",
-        "content": "En la pestaña de favoritos aparecerán los archivos que solo usted seleccione desde el buscador."
-      },
-      "homeTabNew": {
-        "title": "Nueva pestaña",
-        "content": "Las pestañas adicionales le mostrarán los archivos etiquetados con el nombre de dicha pestaña."
-      },
-      "sidebarHome": {
-        "title": "Inicio",
-        "content": "Vuelva desde aquí a la página de inicio."
-      },
-      "sidebarTools": {
-        "title": "Herramientas",
-        "content": "Cree desde aquí un nuevo archivo con alguna de las herramientas instaladas."
-      },
-      "sidebarToolStpivot": {
-        "title": "STPivot",
-        "content": "STPivot es un visor OLAP para análisis multidimensional."
-      },
-      "sidebarToolStolap": {
-        "title": "STOlap",
-        "content": "STOlap es un visor analítico open source desarrollado por Stratebi."
-      },
-      "sidebarToolStreport": {
-        "title": "STReport",
-        "content": "STReport es una herramienta para crear, modificar y visualizar informes."
-      },
-      "sidebarToolStpanels": {
-        "title": "STPanels",
-        "content": "STPanels es una herramienta para crear cuadros de mando."
-      },
-      "sidebarToolStdashboard": {
-        "title": "STDashboard",
-        "content": "STDashboard es una herramienta para crear cuadros de mando."
-      },
-      "sidebarToolStagile": {
-        "title": "STAgile",
-        "content": "STAgile es una herramienta para crear cuadros de mando."
-      },
-      "sidebarToolStcard": {
-        "title": "STCard",
-        "content": "STCard es una herramienta para crear, gestionar y analizar scorecards."
-      },
-      "sidebarToolCde": {
-        "title": "CDE",
-        "content": "CDE es la herramienta que Pentaho incorpora de serie para crear cuadros de mando."
-      },
-      "sidebarToolJpivot": {
-        "title": "JPivot",
-        "content": "JPivot es el visor OLAP que Pentaho incorpora de serie."
-      },
-      "sidebarOpened": {
-        "title": "Abiertos",
-        "content": "Desde aquí podrá ver los archivos actualmente abiertos."
-      },
-      "sidebarBrowser": {
-        "title": "Explorador",
-        "content": "El explorador de archivos le permitirá navegar por los archivos del repositorio."
-      },
-      "sidebarSearch": {
-        "title": "Buscador",
-        "content": "El buscador le permitirá encontrar cualquier archivo del repositorio."
-      },
-      "sidebarDatasources": {
-        "title": "Fuentes de datos",
-        "content": "Administre las fuentes de datos, los esquemas de Mondrian y los metadatos de informes."
-      },
-      "sidebarAdministration": {
-        "title": "Administración",
-        "content": "La página de administración le permitirá acceder las opciones de la plataforma restringidas a administradores."
-      },
-      "sidebarLocales": {
-        "title": "Idiomas",
-        "content": "El idioma de la interfaz es seleccionado automáticamente, pero desde aquí podrá escoger el que desee."
-      },
-      "sidebarLogout": {
-        "title": "Salir",
-        "content": "Cierre desde aquí la sesión actual."
-      }
-    }
-  }
+	"__meta__": {
+		"lang": "es",
+		"dir": "ltr"
+	},
+	"locales": {
+		"ar": "\u0627\u0644\u0639\u0631\u0628\u064A\u0629",
+		"ca": "Català",
+		"de": "Deutsch",
+		"en": "English",
+		"es": "Español",
+		"fr": "Français",
+		"ko": "\uD55C\uAD6D\uC5B4",
+		"pt_BR": "Português (BR)",
+		"pt_PT": "Português (PT)"
+	},
+	"navbar": {
+		"categories": "Categorías",
+		"search": {
+			"label": "Buscar:",
+			"placeholder": "Buscar..."
+		},
+		"settings": "Opciones",
+		"profile": "Perfil",
+		"about": "Acerca de",
+		"showMenuBar": "Mostrar barra de menú",
+		"showToolBar": "Mostrar barra de herramientas",
+		"showHiddenFiles": "Mostrar archivos ocultos",
+		"showDescriptionsForTooltips": "Utilizar descripciones para los tooltips"
+	},
+	"sidebar": {
+		"home": "Inicio",
+		"tools": "Herramientas",
+		"opened": "Abiertos",
+		"browser": "Explorador",
+		"search": "Buscador",
+		"favorites": "Favoritos",
+		"recents": "Recientes",
+		"datasources": "Gestionar fuentes de datos",
+		"administration": "Administración",
+		"locales": "Idiomas",
+		"logout": "Salir"
+	},
+	"home": {
+		"filesWillAppearHere": "Los archivos que etiquete aparecerán aquí",
+		"createTab": "Crear pestaña",
+		"tabName": {
+			"label": "Nombre de pestaña",
+			"placeholder": "Nombre de pestaña..."
+		},
+		"tabColor": {
+			"label": "Color de pestaña",
+			"placeholder": "Color de pestaña..."
+		},
+		"tabIcon": {
+			"label": "Icono de pestaña",
+			"placeholder": "Icono de pestaña..."
+		},
+		"global": "Global",
+		"deleteTab": "Eliminar pestaña",
+		"tabWillBeDeleted": "La pestaña \"{name}\" será eliminada.",
+		"delete": "Eliminar",
+		"create": "Crear",
+		"cancel": "Cancelar",
+		"home": "Inicio",
+		"favorites": "Favoritos",
+		"recents": "Recientes",
+		"sort": {
+			"title": "Título",
+			"extension": "Tipo",
+			"created": "Fecha de creación",
+			"modified": "Fecha de modificación"
+		}
+	},
+	"new": {
+		"lincebiTools": "Herramientas de LinceBI",
+		"otherTools": "Otras herramientas"
+	},
+	"tools": {
+		"powerbi": {
+			"title": "Embeber informe de Power BI",
+			"subtitle": "Completa y guarda tu informe",
+			"manual": "Manual",
+			"automatic": "Automático",
+			"workspaceId": {
+				"label": "ID del área de trabajo"
+			},
+			"reportId": {
+				"label": "ID del informe"
+			},
+			"reportPageName": {
+				"label": "Nombre de página del informe (opcional)"
+			},
+			"filters": {
+				"label": "Filtros (opcional)"
+			},
+			"location": {
+				"label": "Destino",
+				"placeholder": "Destino"
+			},
+			"fileName": {
+				"label": "Nombre de archivo",
+				"placeholder": "Nombre de archivo"
+			},
+			"selectALocation": "Seleccionar un destino",
+			"cancel": "Cancelar",
+			"accept": "Aceptar",
+			"save": "Guardar",
+			"overwriteModalTitle": "Ya existe un informe con este nombre",
+			"overwriteModalBody": "¿Deseas sobreescribir el informe? Esta acción no se puede revertir.",
+			"submitModalTitle": "Informe guardado",
+			"submitModalBody": "El informe \"{name}\" ha sido guardado.",
+			"doYouNeedHelp": "¿Necesitas ayuda?",
+			"findWorkspaceAndReport": {
+				"msg": "Puedes encontrar el {workspaceId}, {reportId} y {reportPageName} en la URL del informe.",
+				"workspaceId": "ID del área de trabajo",
+				"reportId": "ID del informe",
+				"reportPageName": "nombre de página del informe"
+			},
+			"notAvailableYet": "Aún no disponible"
+		},
+		"superset": {
+			"title": "Embeber cuadro de mando de Superset",
+			"subtitle": "Completa y guarda tu cuadro de mando",
+			"dashboardId": {
+				"label": "ID del cuadro de mando"
+			},
+			"location": {
+				"label": "Destino",
+				"placeholder": "Destino"
+			},
+			"fileName": {
+				"label": "Nombre de archivo",
+				"placeholder": "Nombre de archivo"
+			},
+			"selectALocation": "Seleccionar un destino",
+			"cancel": "Cancelar",
+			"accept": "Aceptar",
+			"save": "Guardar",
+			"overwriteModalTitle": "Ya existe un archivo con este nombre",
+			"overwriteModalBody": "¿Deseas sobreescribir el archivo? Esta acción no se puede revertir.",
+			"submitModalTitle": "Archivo guardado",
+			"submitModalBody": "El archivo \"{name}\" ha sido guardado."
+		},
+		"embed": {
+			"title": "Embeber enlace externo",
+			"subtitle": "Completa y guarda tu enlace externo",
+			"url": {
+				"label": "URL"
+			},
+			"location": {
+				"label": "Destino",
+				"placeholder": "Destino"
+			},
+			"fileName": {
+				"label": "Nombre de archivo",
+				"placeholder": "Nombre de archivo"
+			},
+			"selectALocation": "Seleccionar un destino",
+			"cancel": "Cancelar",
+			"accept": "Aceptar",
+			"save": "Guardar",
+			"overwriteModalTitle": "Ya existe un archivo con este nombre",
+			"overwriteModalBody": "¿Deseas sobreescribir el archivo? Esta acción no se puede revertir.",
+			"submitModalTitle": "Archivo guardado",
+			"submitModalBody": "El archivo \"{name}\" ha sido guardado."
+		}
+	},
+	"profile": {
+		"name": {
+			"label": "Nombre:",
+			"placeholder": "Nombre..."
+		},
+		"email": {
+			"label": "Email:",
+			"placeholder": "Email..."
+		},
+		"phone": {
+			"label": "Teléfono:",
+			"placeholder": "Teléfono..."
+		},
+		"address": {
+			"label": "Dirección:",
+			"placeholder": "Dirección..."
+		},
+		"avatar": {
+			"label": "Foto:",
+			"placeholder": "Foto..."
+		},
+		"save": "Guardar"
+	},
+	"about": {
+		"linceBiVersion": "Versión de LinceBI:",
+		"biServerVersion": "Versión de BI Server:"
+	},
+	"administration": {
+		"administration": "Administración",
+		"manageDatasources": "Gestionar fuentes de datos",
+		"schedules": "Programaciones",
+		"marketplace": "Marketplace",
+		"manageCdaCache": "Administar caché de CDA",
+		"openStreportConf": "Abrir configuración de STReport",
+		"openStreportStats": "Abrir estadísticas de STReport",
+		"refreshSystemSettings": "Actualizar configuración del sistema",
+		"refreshReportingMetadata": "Actualizar reporte de metadatos",
+		"refreshGlobalVariables": "Actualizar variables globales",
+		"refreshMondrianSchemaCache": "Actualizar caché de los esquemas de Mondrian",
+		"clearCdaCache": "Vaciar caché de CDA",
+		"resourceRefreshSuccess": "Recurso actualizado con éxito",
+		"resourceRefreshError": "Error al actualizar el recurso",
+		"cacheClearSuccess": "Caché vaciada con éxito",
+		"cacheClearError": "Error al vaciar la caché",
+		"notificationInfo": "Información",
+		"notificationError": "Error"
+	},
+	"tour": {
+		"labels": {
+			"skip": "Omitir tour",
+			"previous": "Anterior",
+			"next": "Siguiente",
+			"stop": "Finalizar tour"
+		},
+		"steps": {
+			"navbarWelcome": {
+				"title": "Comencemos",
+				"content": "¡Descubra <strong>LinceBI</strong>!"
+			},
+			"navbarProfile": {
+				"title": "Perfil",
+				"content": "Desde aquí podrá ver y editar su perfil."
+			},
+			"navbarSearch": {
+				"title": "Buscar",
+				"content": "Busque desde aquí cualquier archivo del repositorio."
+			},
+			"navbarSettings": {
+				"title": "Opciones",
+				"content": "Acceda a las opciones generales de la plataforma."
+			},
+			"homeTabHome": {
+				"title": "Pestaña de inicio",
+				"content": "En la pestaña de inicio aparecerán para todos los usuarios los archivos que el administrador seleccione desde el buscador."
+			},
+			"homeTabFavorites": {
+				"title": "Pestaña de favoritos",
+				"content": "En la pestaña de favoritos aparecerán los archivos que solo usted seleccione desde el buscador."
+			},
+			"homeTabNew": {
+				"title": "Nueva pestaña",
+				"content": "Las pestañas adicionales le mostrarán los archivos etiquetados con el nombre de dicha pestaña."
+			},
+			"sidebarHome": {
+				"title": "Inicio",
+				"content": "Vuelva desde aquí a la página de inicio."
+			},
+			"sidebarTools": {
+				"title": "Herramientas",
+				"content": "Cree desde aquí un nuevo archivo con alguna de las herramientas instaladas."
+			},
+			"sidebarToolStpivot": {
+				"title": "STPivot",
+				"content": "STPivot es un visor OLAP para análisis multidimensional."
+			},
+			"sidebarToolStolap": {
+				"title": "STOlap",
+				"content": "STOlap es un visor analítico open source desarrollado por Stratebi."
+			},
+			"sidebarToolStreport": {
+				"title": "STReport",
+				"content": "STReport es una herramienta para crear, modificar y visualizar informes."
+			},
+			"sidebarToolStpanels": {
+				"title": "STPanels",
+				"content": "STPanels es una herramienta para crear cuadros de mando."
+			},
+			"sidebarToolStdashboard": {
+				"title": "STDashboard",
+				"content": "STDashboard es una herramienta para crear cuadros de mando."
+			},
+			"sidebarToolStagile": {
+				"title": "STAgile",
+				"content": "STAgile es una herramienta para crear cuadros de mando."
+			},
+			"sidebarToolStcard": {
+				"title": "STCard",
+				"content": "STCard es una herramienta para crear, gestionar y analizar scorecards."
+			},
+			"sidebarToolCde": {
+				"title": "CDE",
+				"content": "CDE es la herramienta que Pentaho incorpora de serie para crear cuadros de mando."
+			},
+			"sidebarToolJpivot": {
+				"title": "JPivot",
+				"content": "JPivot es el visor OLAP que Pentaho incorpora de serie."
+			},
+			"sidebarOpened": {
+				"title": "Abiertos",
+				"content": "Desde aquí podrá ver los archivos actualmente abiertos."
+			},
+			"sidebarBrowser": {
+				"title": "Explorador",
+				"content": "El explorador de archivos le permitirá navegar por los archivos del repositorio."
+			},
+			"sidebarSearch": {
+				"title": "Buscador",
+				"content": "El buscador le permitirá encontrar cualquier archivo del repositorio."
+			},
+			"sidebarDatasources": {
+				"title": "Fuentes de datos",
+				"content": "Administre las fuentes de datos, los esquemas de Mondrian y los metadatos de informes."
+			},
+			"sidebarAdministration": {
+				"title": "Administración",
+				"content": "La página de administración le permitirá acceder las opciones de la plataforma restringidas a administradores."
+			},
+			"sidebarLocales": {
+				"title": "Idiomas",
+				"content": "El idioma de la interfaz es seleccionado automáticamente, pero desde aquí podrá escoger el que desee."
+			},
+			"sidebarLogout": {
+				"title": "Salir",
+				"content": "Cierre desde aquí la sesión actual."
+			}
+		}
+	}
 }

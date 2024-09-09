@@ -6,16 +6,8 @@
 		</template>
 		<navbar-dropdown-item :text="$t('navbar.profile')" :icon="['fas', 'user']" href="#/profile" />
 		<b-dropdown-divider />
-		<navbar-dropdown-item
-			:text="$t('navbar.showMenuBar')"
-			:enabled="showMenuBar"
-			@click="showMenuBar = !showMenuBar"
-		/>
-		<navbar-dropdown-item
-			:text="$t('navbar.showToolBar')"
-			:enabled="showToolBar"
-			@click="showToolBar = !showToolBar"
-		/>
+		<navbar-dropdown-item :text="$t('navbar.showMenuBar')" :enabled="showMenuBar" @click="showMenuBar = !showMenuBar" />
+		<navbar-dropdown-item :text="$t('navbar.showToolBar')" :enabled="showToolBar" @click="showToolBar = !showToolBar" />
 		<navbar-dropdown-item
 			:text="$t('navbar.showHiddenFiles')"
 			:enabled="showHiddenFiles"
@@ -27,11 +19,7 @@
 			@click="showDescriptionsForTooltips = !showDescriptionsForTooltips"
 		/>
 		<b-dropdown-divider />
-		<navbar-dropdown-item
-			:text="$t('navbar.about')"
-			:icon="['fas', 'circle-question']"
-			href="#/about"
-		/>
+		<navbar-dropdown-item :text="$t('navbar.about')" :icon="['fas', 'circle-question']" href="#/about" />
 	</b-nav-item-dropdown>
 </template>
 

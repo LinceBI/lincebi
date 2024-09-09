@@ -9,9 +9,7 @@
 				</select>
 				<div class="input-group-append">
 					<button class="btn btn-primary" type="button" @click="sort.asc = !sort.asc">
-						<font-awesome-icon
-							:icon="['fas', `arrow-down-${sort.asc ? 'short-wide' : 'wide-short'}`]"
-						/>
+						<font-awesome-icon :icon="['fas', `arrow-down-${sort.asc ? 'short-wide' : 'wide-short'}`]" />
 					</button>
 				</div>
 			</div>
