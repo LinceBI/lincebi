@@ -22,11 +22,11 @@ tasks.register<Sync>("build") {
 		rename("^(index)\\.html$", "$1.jsp")
 	})
 
-	into("${buildDir}/")
+	into("${layout.buildDirectory.get().asFile}/")
 }
 
 tasks.register<Delete>("clean") {
-	delete("${buildDir}/")
+	delete("${layout.buildDirectory.get().asFile}/")
 	delete("${projectDir}/packages/login/dist/")
 	delete("${projectDir}/packages/home/dist/")
 }
@@ -81,9 +81,9 @@ tasks.register<Exec>("pnpmExecDatadogSourcemapsUpload") {
 		"DATADOG_API_KEY" to datadogApiKey
 	))
 
-	commandLine("pnpm", "exec", "datadog-ci", "sourcemaps", "upload", "${buildDir}/",
+	commandLine("pnpm", "exec", "datadog-ci", "sourcemaps", "upload", "${layout.buildDirectory.get().asFile}/",
 		"--service", "lincebi",
-		"--release-version", version.toLowerCase(),
+		"--release-version", version.lowercase(),
 		"--minified-path-prefix", datadogMinifiedPathPrefix)
 
 	outputs.upToDateWhen { false }

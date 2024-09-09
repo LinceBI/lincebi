@@ -7,18 +7,18 @@ tasks.register<Zip>("build") {
 	dependsOn(project(":${rootProject.name}-frontend").tasks.named("build"))
 
 	archiveFileName.set("${rootProject.name}.zip")
-	destinationDirectory.set(file("${buildDir}/"))
+	destinationDirectory.set(file("${layout.buildDirectory.get().asFile}/"))
 
 	from("${projectDir}/src/", {
 		into("/")
 	})
 
-	from("${project(":${rootProject.name}-backend").buildDir}/libs/", {
+	from("${project(":${rootProject.name}-backend").layout.buildDirectory.get().asFile}/libs/", {
 		include("*-bundle.jar")
 		into("/pentaho-solutions/system/lincebi/lib/")
 	})
 
-	from("${project(":${rootProject.name}-frontend").buildDir}/", {
+	from("${project(":${rootProject.name}-frontend").layout.buildDirectory.get().asFile}/", {
 		into("/tomcat/webapps/pentaho/")
 		exclude("**/*.js.map")
 		exclude("**/*.css.map")
@@ -26,7 +26,7 @@ tasks.register<Zip>("build") {
 }
 
 tasks.register<Delete>("clean") {
-	delete("${buildDir}/")
+	delete("${layout.buildDirectory.get().asFile}/")
 }
 
 tasks.withType<AbstractArchiveTask>().configureEach {
@@ -40,7 +40,7 @@ publishing {
 			groupId = "${project.property("group")}"
 			artifactId = "${project.property("artifact")}"
 			version = "${project.property("version")}${project.property("versionSuffix")}"
-			artifact("${buildDir}/${rootProject.name}.zip") {
+			artifact("${layout.buildDirectory.get().asFile}/${rootProject.name}.zip") {
 				extension = "zip"
 				builtBy(tasks.named("build"))
 			}

@@ -1,17 +1,22 @@
 {
-  "private": true,
-  "name": "@lincebi/frontend",
-  "packageManager": "pnpm@8.3.1",
-  "type": "module",
-  "scripts": {
-    "dev": "pnpm -r run dev",
-    "build": "pnpm -r run build",
-    "preview": "pnpm -r run preview",
-    "clean": "pnpm -r run clean",
-    "lint": "pnpm -r run lint",
-    "format": "pnpm -r run format"
-  },
-  "devDependencies": {
-    "@datadog/datadog-ci": "~2.19.1"
-  }
+	"private": true,
+	"name": "@lincebi/frontend",
+	"packageManager": "pnpm@8.3.1",
+	"type": "module",
+	"scripts": {
+		"dev": "pnpm -r run dev",
+		"build": "pnpm -r run build",
+		"preview": "pnpm -r run preview",
+		"clean": "pnpm -r run clean",
+		"lint": "run-s lint:*",
+		"lint:eslint": "pnpm -r run lint:eslint",
+		"lint:prettier": "pnpm -r run lint:prettier",
+		"format": "run-s format:*",
+		"format:eslint": "pnpm -r run format:eslint",
+		"format:prettier": "pnpm -r run format:prettier"
+	},
+	"devDependencies": {
+		"@datadog/datadog-ci": "~2.42.0",
+		"npm-run-all2": "~6.2.2"
+	}
 }

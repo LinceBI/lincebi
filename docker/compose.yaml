@@ -1,11 +1,18 @@
-version: "3.9"
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+name: "lincebi"
+
+# https://hub.docker.com/_/caddy
+x-caddy-image: &caddy-image "docker.io/caddy:2"
+# https://github.com/LinceBI/docker-biserver
+x-biserver-image: &biserver-image "repo.stratebi.com/lincebi/biserver:9.3"
+# https://hub.docker.com/_/postgres
+x-postgres-image: &postgres-image "mirror.gcr.io/postgres:16-bookworm"
 
 services:
-
   caddy:
-    image: "docker.io/caddy:2"
+    image: *caddy-image
     networks:
-      - "biserver"
+      - "lincebi"
     ports:
       - "8080:8080/tcp"
       - "8443:8443/tcp"
@@ -16,9 +23,9 @@ services:
       - "caddy-data:/data/"
 
   biserver:
-    image: "repo.stratebi.com/lincebi/biserver:9.3"
+    image: *biserver-image
     networks:
-      - "biserver"
+      - "lincebi"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
@@ -63,12 +70,13 @@ services:
       SUPERSET_DEFAULT_GUEST_FIRSTNAME: "${SUPERSET_DEFAULT_GUEST_FIRSTNAME-}"
       SUPERSET_DEFAULT_GUEST_LASTNAME: "${SUPERSET_DEFAULT_GUEST_LASTNAME-}"
     depends_on:
-      - "postgres"
+      postgres:
+        condition: "service_healthy"
 
   postgres:
-    image: "docker.io/postgres:15"
+    image: *postgres-image
     networks:
-      - "biserver"
+      - "lincebi"
     ports:
       - "127.0.0.1:5432:5432/tcp"
     volumes:
@@ -76,14 +84,18 @@ services:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "password"
-
-networks:
-
-  biserver:
-    driver: "bridge"
-    internal: false
+    healthcheck:
+      test: ["CMD", "pg_isready", "-qU", "postgres"]
+      start_period: "60s"
+      interval: "10s"
+      timeout: "10s"
+      retries: 2
 
 volumes:
-
   caddy-data:
   postgres-data:
+
+networks:
+  lincebi:
+    driver: "bridge"
+    internal: false
