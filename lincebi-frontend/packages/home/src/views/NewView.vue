@@ -303,8 +303,8 @@ export default {
 	.new-card-deck {
 		display: flex;
 		flex-flow: row wrap;
-		margin-left: rem(-15);
-		margin-right: rem(-15);
+		margin-left: toRem(-15);
+		margin-right: toRem(-15);
 
 		.new-card {
 			margin-left: toRem(15);
@@ -317,7 +317,7 @@ export default {
 
 			@for $i from 0 through 10 {
 				@media (min-width: 672px + (320px * $i)) {
-					flex-basis: calc(#{rem(140 + ($i * 4))});
+					flex-basis: calc(#{toRem(140 + ($i * 4))});
 				}
 			}
 

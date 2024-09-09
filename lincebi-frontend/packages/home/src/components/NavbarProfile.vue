@@ -29,7 +29,7 @@ export default {
 .navbar-profile {
 	.user-avatar,
 	.user-text {
-		margin: rem(-6) toRem(5) rem(-6) toRem(5);
+		margin: toRem(-6) toRem(5) toRem(-6) toRem(5);
 	}
 
 	.user-avatar > .user-avatar-img {

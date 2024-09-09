@@ -333,7 +333,7 @@ export default {
 		flex-basis: auto;
 		flex-direction: row;
 
-		max-height: rem(46 * 3);
+		max-height: toRem(46 * 3);
 		overflow-y: auto;
 		overflow-x: hidden;
 
