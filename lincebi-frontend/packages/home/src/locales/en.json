@@ -190,8 +190,9 @@
 		"save": "Save"
 	},
 	"about": {
-		"linceBiVersion": "LinceBI version:",
-		"biServerVersion": "BI Server version:"
+		"lincebiVersion": "LinceBI version:",
+		"biserverVersion": "BI Server version:",
+		"instanceId": "Instance ID:"
 	},
 	"administration": {
 		"administration": "Administration",

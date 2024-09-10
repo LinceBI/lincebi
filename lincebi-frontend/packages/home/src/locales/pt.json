@@ -100,8 +100,9 @@
 		"save": "Salvar"
 	},
 	"about": {
-		"linceBiVersion": "Versão do LinceBI:",
-		"biServerVersion": "Versão do BI Server:"
+		"lincebiVersion": "Versão do LinceBI:",
+		"biserverVersion": "Versão do BI Server:",
+		"instanceId": "ID da instância:"
 	},
 	"administration": {
 		"administration": "Administração",

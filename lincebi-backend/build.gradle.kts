@@ -1,6 +1,6 @@
 plugins {
 	id("java")
-	id("com.github.johnrengelman.shadow") version "8.1.1"
+	id("com.gradleup.shadow") version "8.3.0"
 }
 
 group = "${project.property("group")}"
@@ -30,6 +30,11 @@ dependencies {
 	implementation("org.springframework:spring-web:5.3.29")
 	implementation("org.thymeleaf:thymeleaf:3.1.2.RELEASE")
 
+	compileOnly("javax.jcr:jcr:2.0") { isTransitive = false }
+	compileOnly("org.apache.jackrabbit:jackrabbit-core:2.21.19") { isTransitive = false }
+	compileOnly("org.apache.jackrabbit:jackrabbit-data:2.21.19") { isTransitive = false }
+	compileOnly("org.apache.jackrabbit:jackrabbit-jcr-commons:2.21.19") { isTransitive = false }
+	compileOnly("org.apache.jackrabbit:oak-jackrabbit-api:1.48.0") { isTransitive = false }
 	compileOnly("org.pentaho:commons-database-model:9.3.0.9-874") { isTransitive = false }
 	compileOnly("org.pentaho:pentaho-metadata:9.3.0.9-874") { isTransitive = false }
 	compileOnly("pentaho:pentaho-platform-api:9.3.0.9-874") { isTransitive = false }
@@ -45,6 +50,14 @@ tasks.build {
 	dependsOn("shadowJar")
 }
 
+tasks.jar {
+	manifest {
+		attributes(
+			"Implementation-Version" to version
+		)
+	}
+}
+
 tasks.shadowJar {
 	archiveClassifier.set("bundle")
 	mergeServiceFiles()
@@ -52,28 +65,28 @@ tasks.shadowJar {
 	val prefix = "${project.property("group")}.shaded"
 	fun shade(path : String) { relocate(path, "${prefix}.${path}") }
 
-	shade("com.azure")
-	shade("com.ctc")
+	shade("com.ethlo")
 	shade("com.fasterxml")
 	shade("com.microsoft")
 	shade("com.networknt")
 	shade("com.nimbusds")
-	shade("io.netty")
+	shade("com.sun.istack")
+	shade("com.sun.xml")
 	shade("javassist")
 	shade("net.jcip")
 	shade("net.minidev")
 	shade("ognl")
-	shade("org.apache")
+	shade("org.apache.commons")
+	shade("org.apache.log4j")
 	shade("org.attoparser")
 	shade("org.codehaus")
 	shade("org.ehcache")
+	shade("org.jvnet")
 	shade("org.objectweb")
-	shade("org.reactivestreams")
 	shade("org.springframework")
-	shade("org.terracotta")
 	shade("org.thymeleaf")
 	shade("org.unbescape")
-	shade("reactor")
+	shade("org.yaml")
 }
 
 tasks.test {

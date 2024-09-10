@@ -100,8 +100,9 @@
 		"save": "저장"
 	},
 	"about": {
-		"linceBiVersion": "LinceBI 버전:",
-		"biServerVersion": "BI Server 버전:"
+		"lincebiVersion": "LinceBI 버전:",
+		"biserverVersion": "BI Server 버전:",
+		"instanceId": "인스턴스 ID:"
 	},
 	"administration": {
 		"administration": "관리",

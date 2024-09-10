@@ -5,8 +5,8 @@ import i18n from '@/i18n';
 import replaceParameter from '@lincebi/frontend-common/src/replaceParameter';
 import safeJSON from '@lincebi/frontend-common/src/safeJSON';
 
-export const setBiServerVersion = (state, biServerVersion) => {
-	state.biServerVersion = biServerVersion;
+export const setServerInfo = (state, serverInfo) => {
+	state.serverInfo = serverInfo;
 };
 
 export const setUserId = (state, userId) => {

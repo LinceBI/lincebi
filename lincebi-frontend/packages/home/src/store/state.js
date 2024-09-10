@@ -1,8 +1,7 @@
 import { initialGlobalUserSettings, initialUserSettings } from '@/userSettings';
 
 export default () => ({
-	linceBiVersion: import.meta.env.VITE_VERSION,
-	biServerVersion: '',
+	serverInfo: {},
 	userId: '',
 	canCreate: false,
 	canAdminister: false,

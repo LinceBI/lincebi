@@ -7,18 +7,26 @@
 		</b-row>
 		<b-row>
 			<b-col cols="6" class="text-right">
-				<strong>{{ $t('about.linceBiVersion') }}</strong>
+				<strong>{{ $t('about.lincebiVersion') }}</strong>
 			</b-col>
 			<b-col cols="6" class="d-flex align-items-end text-left">
-				{{ linceBiVersion }}
+				{{ serverInfo.lincebiVersion ?? '' }}
 			</b-col>
 		</b-row>
 		<b-row>
 			<b-col cols="6" class="text-right">
-				<strong>{{ $t('about.biServerVersion') }}</strong>
+				<strong>{{ $t('about.biserverVersion') }}</strong>
 			</b-col>
 			<b-col cols="6" class="d-flex align-items-end text-left">
-				{{ biServerVersion }}
+				{{ serverInfo.biserverVersion ?? '' }}
+			</b-col>
+		</b-row>
+		<b-row>
+			<b-col cols="6" class="text-right">
+				<strong>{{ $t('about.instanceId') }}</strong>
+			</b-col>
+			<b-col cols="6" class="d-flex align-items-end text-left">
+				{{ serverInfo.instanceId ?? '' }}
 			</b-col>
 		</b-row>
 	</b-container>
@@ -30,11 +38,8 @@ import store from '@/store';
 export default {
 	name: 'AboutView',
 	computed: {
-		linceBiVersion() {
-			return store.state.linceBiVersion;
-		},
-		biServerVersion() {
-			return store.state.biServerVersion;
+		serverInfo() {
+			return store.state.serverInfo;
 		},
 	},
 };

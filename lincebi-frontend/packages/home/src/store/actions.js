@@ -7,20 +7,20 @@ import getLocale from '@lincebi/frontend-common/src/biserver/getLocale';
 import getOverlays from '@lincebi/frontend-common/src/biserver/getOverlays';
 import getPerspectives from '@lincebi/frontend-common/src/biserver/getPerspectives';
 import getRepository from '@lincebi/frontend-common/src/biserver/getRepository';
+import getServerInfo from '@lincebi/frontend-common/src/biserver/getServerInfo';
 import getUserId from '@lincebi/frontend-common/src/biserver/getUserId';
 import getUserSettings from '@lincebi/frontend-common/src/biserver/getUserSettings';
-import getBiServerVersion from '@lincebi/frontend-common/src/biserver/getBiServerVersion';
+import setFile from '@lincebi/frontend-common/src/biserver/setFile';
 import setGlobalUserSettings from '@lincebi/frontend-common/src/biserver/setGlobalUserSettings';
 import setLocale from '@lincebi/frontend-common/src/biserver/setLocale';
 import setMetadata from '@lincebi/frontend-common/src/biserver/setMetadata';
 import setUserSettings from '@lincebi/frontend-common/src/biserver/setUserSettings';
-import setFile from '@lincebi/frontend-common/src/biserver/setFile';
 
 import { defaultGlobalUserSettings, defaultUserSettings } from '@/userSettings';
 
-export const fetchBiServerVersion = async ({ commit }) => {
-	const biServerVersion = await getBiServerVersion();
-	commit('setBiServerVersion', biServerVersion);
+export const fetchServerInfo = async ({ commit }) => {
+	const serverInfo = await getServerInfo();
+	commit('setServerInfo', serverInfo);
 };
 
 export const fetchUserId = async ({ commit }) => {

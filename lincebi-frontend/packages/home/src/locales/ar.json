@@ -100,8 +100,9 @@
 		"save": "حفظ"
 	},
 	"about": {
-		"linceBiVersion": "نسخة LinceBI:",
-		"biServerVersion": "نسخة BI Server:"
+		"lincebiVersion": "نسخة LinceBI:",
+		"biserverVersion": "نسخة BI Server:",
+		"instanceId": "معرف المثيل:"
 	},
 	"administration": {
 		"administration": "إدارة",
