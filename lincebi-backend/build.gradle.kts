@@ -35,12 +35,12 @@ dependencies {
 	compileOnly("org.apache.jackrabbit:jackrabbit-data:2.21.19") { isTransitive = false }
 	compileOnly("org.apache.jackrabbit:jackrabbit-jcr-commons:2.21.19") { isTransitive = false }
 	compileOnly("org.apache.jackrabbit:oak-jackrabbit-api:1.48.0") { isTransitive = false }
-	compileOnly("org.pentaho:commons-database-model:9.3.0.9-875") { isTransitive = false }
-	compileOnly("org.pentaho:pentaho-metadata:9.3.0.9-875") { isTransitive = false }
-	compileOnly("pentaho:pentaho-platform-api:9.3.0.9-875") { isTransitive = false }
-	compileOnly("pentaho:pentaho-platform-core:9.3.0.9-875") { isTransitive = false }
-	compileOnly("pentaho:pentaho-platform-extensions:9.3.0.9-875") { isTransitive = false }
-	compileOnly("pentaho:pentaho-platform-repository:9.3.0.9-875") { isTransitive = false }
+	compileOnly("org.pentaho:commons-database-model:9.3.0.9-878") { isTransitive = false }
+	compileOnly("org.pentaho:pentaho-metadata:9.3.0.9-878") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-api:9.3.0.9-878") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-core:9.3.0.9-878") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-extensions:9.3.0.9-878") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-repository:9.3.0.9-878") { isTransitive = false }
 
 	testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.0")
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.0")
