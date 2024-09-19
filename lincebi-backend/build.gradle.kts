@@ -1,6 +1,6 @@
 plugins {
 	id("java")
-	id("com.gradleup.shadow") version "8.3.0"
+	id("com.gradleup.shadow") version "8.3.2"
 }
 
 group = "${project.property("group")}"
@@ -15,11 +15,11 @@ repositories {
 }
 
 dependencies {
-	implementation("com.fasterxml.jackson.core:jackson-annotations:2.16.0")
-	implementation("com.fasterxml.jackson.core:jackson-core:2.16.0")
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.16.0")
+	implementation("com.fasterxml.jackson.core:jackson-annotations:2.17.2")
+	implementation("com.fasterxml.jackson.core:jackson-core:2.17.2")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
 	implementation("com.microsoft.azure:msal4j:1.17.1")
-	implementation("com.networknt:json-schema-validator:1.4.0")
+	implementation("com.networknt:json-schema-validator:1.5.1")
 	implementation("commons-io:commons-io:2.16.1")
 	implementation("jakarta.ws.rs:jakarta.ws.rs-api:2.1.6")
 	implementation("jakarta.xml.bind:jakarta.xml.bind-api:2.3.3")
@@ -27,7 +27,7 @@ dependencies {
 	implementation("org.codehaus.enunciate:enunciate-core-annotations:1.31")
 	implementation("org.ehcache:ehcache:3.10.8")
 	implementation("org.slf4j:slf4j-reload4j:2.0.16")
-	implementation("org.springframework:spring-web:5.3.29")
+	implementation("org.springframework:spring-web:5.3.39")
 	implementation("org.thymeleaf:thymeleaf:3.1.2.RELEASE")
 
 	compileOnly("javax.jcr:jcr:2.0") { isTransitive = false }

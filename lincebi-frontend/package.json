@@ -17,6 +17,6 @@
 	},
 	"devDependencies": {
 		"@datadog/datadog-ci": "~2.42.0",
-		"npm-run-all2": "~6.2.2"
+		"npm-run-all2": "~6.2.3"
 	}
 }
