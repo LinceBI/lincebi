@@ -91,6 +91,16 @@
 					{{ $t('administration.clearCdaCache') }}
 				</span>
 			</b-list-group-item>
+			<b-list-group-item
+				v-if="canAdminister && overlays.has('startup.stpanels.refreshmenu.stpanels-clear-cache')"
+				button
+				@click="clearSTPanelsCache()"
+			>
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'arrows-rotate']" />
+				<span class="lbl">
+					{{ $t('administration.clearSTPanelsCache') }}
+				</span>
+			</b-list-group-item>
 		</b-list-group>
 		<!--
 		<b-list-group class="mb-4">
@@ -118,6 +128,7 @@
 
 <script>
 import clearCdaCache from '@lincebi/frontend-common/src/biserver/clearCdaCache';
+import clearSTPanelsCache from '@lincebi/frontend-common/src/biserver/clearSTPanelsCache';
 import systemRefresh from '@lincebi/frontend-common/src/biserver/systemRefresh';
 
 import eventBus from '@/eventBus';
@@ -229,6 +240,21 @@ export default {
 		},
 		async clearCdaCache() {
 			if (await clearCdaCache()) {
+				this.$bvToast.toast(this.$t('administration.cacheClearSuccess'), {
+					title: this.$t('administration.notificationInfo'),
+					variant: 'success',
+					solid: true,
+				});
+			} else {
+				this.$bvToast.toast(this.$t('administration.cacheClearError'), {
+					title: this.$t('administration.notificationError'),
+					variant: 'danger',
+					solid: true,
+				});
+			}
+		},
+		async clearSTPanelsCache() {
+			if (await clearSTPanelsCache()) {
 				this.$bvToast.toast(this.$t('administration.cacheClearSuccess'), {
 					title: this.$t('administration.notificationInfo'),
 					variant: 'success',

@@ -216,6 +216,7 @@
 		"refreshGlobalVariables": "تحديث المتغيرات العمومية",
 		"refreshMondrianSchemaCache": "تحديث ذاكرة التخزين المؤقت مخطط موندريان",
 		"clearCdaCache": "مسح ذاكرة التخزين المؤقت CDA",
+		"clearSTPanelsCache": "مسح ذاكرة التخزين المؤقت STPanels",
 		"resetGlobalUserSettings": "إعادة تعيين إعدادات المستخدم العالمية",
 		"resetUserSettings": "إعادة تعيين إعدادات المستخدم",
 		"resourceRefreshSuccess": "تم تحديث المورد بنجاح",

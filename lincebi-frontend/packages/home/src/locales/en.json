@@ -216,6 +216,7 @@
 		"refreshGlobalVariables": "Refresh global variables",
 		"refreshMondrianSchemaCache": "Refresh Mondrian schema cache",
 		"clearCdaCache": "Clear CDA cache",
+		"clearSTPanelsCache": "Clear STPanels cache",
 		"resetGlobalUserSettings": "Reset global user settings",
 		"resetUserSettings": "Reset user settings",
 		"resourceRefreshSuccess": "Resource successfully refreshed",

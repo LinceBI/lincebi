@@ -216,6 +216,7 @@
 		"refreshGlobalVariables": "Actualizar variables globales",
 		"refreshMondrianSchemaCache": "Actualizar caché de los esquemas de Mondrian",
 		"clearCdaCache": "Vaciar caché de CDA",
+		"clearSTPanelsCache": "Vaciar caché de STPanels",
 		"resetGlobalUserSettings": "Restablecer opciones globales de usuario",
 		"resetUserSettings": "Restablecer opciones de usuario",
 		"resourceRefreshSuccess": "Recurso actualizado con éxito",
