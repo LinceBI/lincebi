@@ -23,9 +23,12 @@ export default new Router({
 			redirect: { name: 'home' },
 		},
 		{
-			path: '/home',
+			path: '/home/:tabName?',
 			name: 'home',
 			component: HomeView,
+			props: (route) => ({
+				tabName: route.params.tabName,
+			}),
 		},
 		{
 			path: '/profile',

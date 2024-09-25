@@ -13,6 +13,7 @@ export default () => ({
 	locale: 'en',
 	isRepositoryLoading: true,
 	repository: { path: '/', children: [] },
+	settingsLoaded: false,
 	globalUserSettings: initialGlobalUserSettings,
 	userSettings: initialUserSettings,
 	navbarExpanded: false,

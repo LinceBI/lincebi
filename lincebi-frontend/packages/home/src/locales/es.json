@@ -56,7 +56,16 @@
 			"label": "Icono de pestaña",
 			"placeholder": "Icono de pestaña..."
 		},
-		"global": "Global",
+		"tabType": {
+			"label": "Tipo de pestaña",
+			"repositoryFiles": "Archivos de repositorio (etiquetas)",
+			"webPage": "Página web"
+		},
+		"tabUrl": {
+			"label": "URL de pestaña",
+			"placeholder": "E.g.: \"https://example.com\", \"../api/repos/:public:page.html/content\""
+		},
+		"global": "Global (visible para todos los usuarios)",
 		"deleteTab": "Eliminar pestaña",
 		"tabWillBeDeleted": "La pestaña \"{name}\" será eliminada.",
 		"delete": "Eliminar",
@@ -207,6 +216,8 @@
 		"refreshGlobalVariables": "Actualizar variables globales",
 		"refreshMondrianSchemaCache": "Actualizar caché de los esquemas de Mondrian",
 		"clearCdaCache": "Vaciar caché de CDA",
+		"resetGlobalUserSettings": "Restablecer opciones globales de usuario",
+		"resetUserSettings": "Restablecer opciones de usuario",
 		"resourceRefreshSuccess": "Recurso actualizado con éxito",
 		"resourceRefreshError": "Error al actualizar el recurso",
 		"cacheClearSuccess": "Caché vaciada con éxito",

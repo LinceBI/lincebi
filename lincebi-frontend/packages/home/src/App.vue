@@ -56,6 +56,8 @@ export default {
 				store.dispatch('fetchUserSettings'),
 			]);
 
+			store.commit('setSettingsLoaded', true);
+
 			if (!this.onboarded) {
 				eventBus.$emit('tour-start');
 				eventBus.$on('tour-stopped', () => (this.onboarded = true));

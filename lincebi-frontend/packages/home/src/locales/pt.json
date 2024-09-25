@@ -56,7 +56,16 @@
 			"label": "Ícone da aba",
 			"placeholder": "Ícone da aba..."
 		},
-		"global": "Global",
+		"tabType": {
+			"label": "Tipo de aba",
+			"repositoryFiles": "Arquivos do repositório (tags)",
+			"webPage": "Página web"
+		},
+		"tabUrl": {
+			"label": "URL da aba",
+			"placeholder": "Ex.: \"https://example.com\", \"../api/repos/:public:page.html/content\""
+		},
+		"global": "Global (visível para todos os usuários)",
 		"deleteTab": "Deletar aba",
 		"tabWillBeDeleted": "A aba \"{name}\" será deletada.",
 		"delete": "Deletar",
@@ -75,6 +84,96 @@
 	"new": {
 		"lincebiTools": "Ferramentas LinceBI",
 		"otherTools": "Outras ferramentas"
+	},
+	"tools": {
+		"powerbi": {
+			"title": "Incorporar relatório do Power BI",
+			"subtitle": "Complete e salve seu relatório",
+			"manual": "Manual",
+			"automatic": "Automático",
+			"workspaceId": {
+				"label": "ID do workspace"
+			},
+			"reportId": {
+				"label": "ID do relatório"
+			},
+			"reportPageName": {
+				"label": "Nome da página do relatório (opcional)"
+			},
+			"filters": {
+				"label": "Filtros (opcional)"
+			},
+			"location": {
+				"label": "Localização",
+				"placeholder": "Localização"
+			},
+			"fileName": {
+				"label": "Nome do arquivo",
+				"placeholder": "Nome do arquivo"
+			},
+			"selectALocation": "Selecione uma localização",
+			"cancel": "Cancelar",
+			"accept": "Aceitar",
+			"save": "Salvar",
+			"overwriteModalTitle": "Já existe um relatório com este nome",
+			"overwriteModalBody": "Deseja sobrescrever o relatório? Esta ação não pode ser revertida.",
+			"submitModalTitle": "Relatório salvo",
+			"submitModalBody": "O relatório \"{name}\" foi salvo.",
+			"doYouNeedHelp": "Precisa de ajuda?",
+			"findWorkspaceAndReport": {
+				"msg": "O {workspaceId}, {reportId} e {reportPageName} podem ser encontrados na URL do relatório.",
+				"workspaceId": "ID do workspace",
+				"reportId": "ID do relatório",
+				"reportPageName": "nome da página do relatório"
+			},
+			"notAvailableYet": "Ainda não disponível"
+		},
+		"superset": {
+			"title": "Incorporar dashboard do Superset",
+			"subtitle": "Complete e salve seu dashboard",
+			"dashboardId": {
+				"label": "ID do dashboard"
+			},
+			"location": {
+				"label": "Localização",
+				"placeholder": "Localização"
+			},
+			"fileName": {
+				"label": "Nome do arquivo",
+				"placeholder": "Nome do arquivo"
+			},
+			"selectALocation": "Selecione uma localização",
+			"cancel": "Cancelar",
+			"accept": "Aceitar",
+			"save": "Salvar",
+			"overwriteModalTitle": "Já existe um arquivo com este nome",
+			"overwriteModalBody": "Deseja sobrescrever o arquivo? Esta ação não pode ser revertida.",
+			"submitModalTitle": "Arquivo salvo",
+			"submitModalBody": "O arquivo \"{name}\" foi salvo."
+		},
+		"embed": {
+			"title": "Incorporar link externo",
+			"subtitle": "Complete e salve seu link externo",
+			"url": {
+				"label": "URL"
+			},
+			"location": {
+				"label": "Localização",
+				"placeholder": "Localização"
+			},
+			"fileName": {
+				"label": "Nome do arquivo",
+				"placeholder": "Nome do arquivo"
+			},
+			"selectALocation": "Selecione uma localização",
+			"cancel": "Cancelar",
+			"accept": "Aceitar",
+			"save": "Salvar",
+			"overwriteModalTitle": "Já existe um arquivo com este nome",
+			"overwriteModalBody": "Deseja sobrescrever o arquivo? Esta ação não pode ser revertida.",
+			"submitModalTitle": "Arquivo salvo",
+			"submitModalBody": "O arquivo \"{name}\" foi salvo."
+		}
 	},
 	"profile": {
 		"name": {
@@ -117,6 +216,8 @@
 		"refreshGlobalVariables": "Atualizar variáveis globais",
 		"refreshMondrianSchemaCache": "Atualizar Mondrian schema cache",
 		"clearCdaCache": "Limpar CDA cache",
+		"resetGlobalUserSettings": "Redefinir configurações globais do usuário",
+		"resetUserSettings": "Redefinir configurações do usuário",
 		"resourceRefreshSuccess": "Recurso atualizado com sucesso",
 		"resourceRefreshError": "Erro ao atualizar recurso",
 		"cacheClearSuccess": "Cache limpo com sucesso",

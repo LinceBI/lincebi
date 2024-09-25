@@ -2,14 +2,17 @@
 	<div class="home-view">
 		<home-slider class="home-slider" />
 		<div class="home-tabs">
-			<home-tab-list :tab.sync="tab" />
-			<home-tab-content-frame v-if="tab?.type === 'frame'" :tab.sync="tab" />
-			<home-tab-content-files v-else :tab.sync="tab" />
+			<home-tab-list ref="homeTabList" v-model="tab" :initial-tab="tabName" />
+			<home-tab-content-frame v-if="tab?.type === 'frame'" v-model="tab" />
+			<home-tab-content-files v-else v-model="tab" />
 		</div>
 	</div>
 </template>
 
 <script>
+import router from '@/router';
+import store from '@/store';
+
 import HomeSlider from '@/components/HomeSlider.vue';
 import HomeTabList from '@/components/HomeTabList.vue';
 import HomeTabContentFiles from '@/components/HomeTabContentFiles.vue';
@@ -23,10 +26,26 @@ export default {
 		HomeTabContentFiles,
 		HomeTabContentFrame,
 	},
+	props: {
+		tabName: {
+			type: String,
+			default: '',
+		},
+	},
 	data() {
 		return {
 			tab: null,
 		};
+	},
+	watch: {
+		tabName(tabName) {
+			this.$refs.homeTabList.changeTab(tabName);
+		},
+		tab(tab) {
+			if (tab && this.tabName !== tab.name && store.state.settingsLoaded) {
+				router.push({ name: 'home', params: { tabName: tab.name } });
+			}
+		},
 	},
 };
 </script>

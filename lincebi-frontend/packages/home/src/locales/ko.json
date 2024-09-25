@@ -56,7 +56,16 @@
 			"label": "탭 아이콘",
 			"placeholder": "탭 아이콘..."
 		},
-		"global": "전역",
+		"tabType": {
+			"label": "탭 유형",
+			"repositoryFiles": "저장소 파일 (태그)",
+			"webPage": "웹 페이지"
+		},
+		"tabUrl": {
+			"label": "탭 URL",
+			"placeholder": "예: \"https://example.com\", \"../api/repos/:public:page.html/content\""
+		},
+		"global": "전역 (모든 사용자에게 표시)",
 		"deleteTab": "탭 삭제",
 		"tabWillBeDeleted": "탭 \"{name}\" 이 삭제됩니다.",
 		"delete": "삭제",
@@ -75,6 +84,96 @@
 	"new": {
 		"lincebiTools": "LinceBI 툴",
 		"otherTools": "다른 툴"
+	},
+	"tools": {
+		"powerbi": {
+			"title": "Power BI 보고서 삽입",
+			"subtitle": "보고서를 완성하고 저장하세요",
+			"manual": "수동",
+			"automatic": "자동",
+			"workspaceId": {
+				"label": "작업 영역 ID"
+			},
+			"reportId": {
+				"label": "보고서 ID"
+			},
+			"reportPageName": {
+				"label": "보고서 페이지 이름 (선택사항)"
+			},
+			"filters": {
+				"label": "필터 (선택사항)"
+			},
+			"location": {
+				"label": "위치",
+				"placeholder": "위치"
+			},
+			"fileName": {
+				"label": "파일 이름",
+				"placeholder": "파일 이름"
+			},
+			"selectALocation": "위치 선택",
+			"cancel": "취소",
+			"accept": "수락",
+			"save": "저장",
+			"overwriteModalTitle": "같은 이름의 보고서가 이미 존재합니다",
+			"overwriteModalBody": "보고서를 덮어쓰시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+			"submitModalTitle": "저장된 보고서",
+			"submitModalBody": "\"{name}\" 보고서가 저장되었습니다.",
+			"doYouNeedHelp": "도움이 필요하신가요?",
+			"findWorkspaceAndReport": {
+				"msg": "{workspaceId}, {reportId}, {reportPageName}은 보고서 URL에서 찾을 수 있습니다.",
+				"workspaceId": "작업 영역 ID",
+				"reportId": "보고서 ID",
+				"reportPageName": "보고서 페이지 이름"
+			},
+			"notAvailableYet": "아직 사용할 수 없습니다"
+		},
+		"superset": {
+			"title": "Superset 대시보드 삽입",
+			"subtitle": "대시보드를 완성하고 저장하세요",
+			"dashboardId": {
+				"label": "대시보드 ID"
+			},
+			"location": {
+				"label": "위치",
+				"placeholder": "위치"
+			},
+			"fileName": {
+				"label": "파일 이름",
+				"placeholder": "파일 이름"
+			},
+			"selectALocation": "위치 선택",
+			"cancel": "취소",
+			"accept": "수락",
+			"save": "저장",
+			"overwriteModalTitle": "같은 이름의 파일이 이미 존재합니다",
+			"overwriteModalBody": "파일을 덮어쓰시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+			"submitModalTitle": "저장된 파일",
+			"submitModalBody": "\"{name}\" 파일이 저장되었습니다."
+		},
+		"embed": {
+			"title": "외부 링크 삽입",
+			"subtitle": "외부 링크를 완성하고 저장하세요",
+			"url": {
+				"label": "URL"
+			},
+			"location": {
+				"label": "위치",
+				"placeholder": "위치"
+			},
+			"fileName": {
+				"label": "파일 이름",
+				"placeholder": "파일 이름"
+			},
+			"selectALocation": "위치 선택",
+			"cancel": "취소",
+			"accept": "수락",
+			"save": "저장",
+			"overwriteModalTitle": "같은 이름의 파일이 이미 존재합니다",
+			"overwriteModalBody": "파일을 덮어쓰시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+			"submitModalTitle": "저장된 파일",
+			"submitModalBody": "\"{name}\" 파일이 저장되었습니다."
+		}
 	},
 	"profile": {
 		"name": {
@@ -117,6 +216,8 @@
 		"refreshGlobalVariables": "글로벌 변수 새로 고침",
 		"refreshMondrianSchemaCache": "Mondrian 스키마 캐시 새로 고침",
 		"clearCdaCache": "CDA 캐시 클리어",
+		"resetGlobalUserSettings": "전역 사용자 설정 초기화",
+		"resetUserSettings": "사용자 설정 초기화",
 		"resourceRefreshSuccess": "리소스를 새로 고쳤습니다.",
 		"resourceRefreshError": "리소스를 새로 고치는 중 오류 발생",
 		"cacheClearSuccess": "캐시가 성공적으로 지워졌습니다.",

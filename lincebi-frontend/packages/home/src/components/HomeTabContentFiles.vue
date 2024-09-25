@@ -42,6 +42,10 @@ export default {
 	components: {
 		HomeTabContentFilesDeck,
 	},
+	model: {
+		prop: 'tab',
+		event: 'change',
+	},
 	props: {
 		tab: {
 			type: Object,

@@ -12,6 +12,10 @@
 <script>
 export default {
 	name: 'HomeTabContentFrame',
+	model: {
+		prop: 'tab',
+		event: 'change',
+	},
 	props: {
 		tab: {
 			type: Object,

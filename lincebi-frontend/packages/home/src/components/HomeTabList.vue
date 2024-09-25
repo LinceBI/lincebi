@@ -74,7 +74,7 @@
 						autofocus
 					/>
 					<b-form-datalist :id="`new-tab-name-datalist-${uniqueId}`">
-						<option v-for="t in tabs.filter((t) => t.type === 'tag')" :key="getTabKey(t)">
+						<option v-for="t in tabs.filter((t) => t.type === 'tag' || t.type === 'frame')" :key="getTabKey(t)">
 							{{ getTabDisplayName(t) }}
 						</option>
 					</b-form-datalist>
@@ -84,6 +84,15 @@
 				</b-form-group>
 				<b-form-group :label="$t('home.tabIcon.label')" label-class="d-flex">
 					<b-form-icon-swatch v-model="newTab.icon" />
+				</b-form-group>
+				<b-form-group :label="$t('home.tabType.label')" label-class="d-flex">
+					<b-form-select v-model="newTab.type">
+						<b-form-select-option value="tag">{{ $t('home.tabType.repositoryFiles') }}</b-form-select-option>
+						<b-form-select-option value="frame">{{ $t('home.tabType.webPage') }}</b-form-select-option>
+					</b-form-select>
+				</b-form-group>
+				<b-form-group v-if="newTab.type === 'frame'" :label="$t('home.tabUrl.label')" label-class="d-flex">
+					<b-form-input v-model="newTab.data.src" type="text" :placeholder="$t('home.tabUrl.placeholder')" required />
 				</b-form-group>
 				<b-form-checkbox v-if="canAdminister" v-model="newTab.isGlobal">
 					{{ $t('home.global') }}
@@ -113,6 +122,8 @@ import cloneDeep from 'lodash/cloneDeep';
 import isEqual from 'lodash/isEqual';
 import partition from 'lodash/partition';
 
+import fuzzyEquals from '@lincebi/frontend-common/src/fuzzyEquals';
+import invokeWhen from '@lincebi/frontend-common/src/invokeWhen';
 import isTouchDevice from '@lincebi/frontend-common/src/isTouchDevice';
 import move from '@lincebi/frontend-common/src/move';
 import safeJSON from '@lincebi/frontend-common/src/safeJSON';
@@ -129,16 +140,24 @@ export default {
 		BFormColorSwatch,
 		BFormIconSwatch,
 	},
+	model: {
+		prop: 'tab',
+		event: 'change',
+	},
 	props: {
 		tab: {
 			type: Object,
 			default: () => null,
 		},
+		initialTab: {
+			type: String,
+			default: '',
+		},
 	},
 	data() {
 		return {
 			// Selected tab index.
-			tabIndex: -1,
+			tabIndex: 0,
 			// Internal tabs are populated with remote tabs.
 			internalGlobalTabs: [],
 			internalUserTabs: [],
@@ -151,6 +170,7 @@ export default {
 				isGlobal: false,
 				isRemovable: true,
 				isDraggable: true,
+				data: { src: '' },
 			},
 			// Variables to control the display of modals.
 			newTabModalShow: false,
@@ -196,10 +216,10 @@ export default {
 	},
 	watch: {
 		tabs(tabs) {
-			this.$emit('update:tab', tabs[this.tabIndex]);
+			this.$emit('change', tabs[this.tabIndex]);
 		},
 		tabIndex(tabIndex) {
-			this.$emit('update:tab', this.tabs[tabIndex]);
+			this.$emit('change', this.tabs[tabIndex]);
 		},
 		globalTabs(globalTabs) {
 			if (!isEqual(this.internalGlobalTabs, globalTabs)) {
@@ -229,6 +249,12 @@ export default {
 			this.internalGlobalTabs = this.globalTabs;
 			this.internalUserTabs = this.userTabs;
 			this.updateSortable();
+
+			// Do not set the initial tab until the settings have loaded to ensure the tab is found.
+			invokeWhen(
+				() => store.state.settingsLoaded,
+				() => this.changeTab(this.initialTab),
+			);
 		});
 	},
 	updated() {
@@ -241,6 +267,7 @@ export default {
 			this.sortable.destroy();
 		}
 	},
+	expose: ['changeTab'],
 	methods: {
 		handleNewTabModalOk(event) {
 			event.preventDefault();
@@ -266,8 +293,8 @@ export default {
 				this.tabIndex = this.tabs.length - 1;
 			} else {
 				const foundTab = this.tabs[newTabIndex];
-				// Replace tab if type equals tag.
-				if (foundTab.type === 'tag') {
+				// Replace tab if type equals tag or frame.
+				if (foundTab.type === 'tag' || foundTab.type === 'frame') {
 					const updatedTabs = this.tabs.slice();
 					updatedTabs[newTabIndex] = newTab;
 					this.tabs = updatedTabs;
@@ -281,6 +308,15 @@ export default {
 			});
 			if (this.tabIndex > 0 && this.tabIndex >= removeTabIndex) {
 				this.tabIndex--;
+			}
+		},
+		changeTab(tabNameOrIndex) {
+			const tabIndex =
+				typeof tabNameOrIndex === 'string'
+					? this.tabs.findIndex((tab) => fuzzyEquals(tabNameOrIndex, tab.name))
+					: tabNameOrIndex;
+			if (tabIndex > -1 && tabIndex < this.tabs.length) {
+				this.tabIndex = tabIndex;
 			}
 		},
 		getTabKey(tab) {

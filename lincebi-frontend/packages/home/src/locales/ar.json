@@ -56,7 +56,16 @@
 			"label": "رمز علامة التبويب",
 			"placeholder": "رمز علامة التبويب..."
 		},
-		"global": "عالمي",
+		"tabType": {
+			"label": "نوع علامة التبويب",
+			"repositoryFiles": "ملفات المستودع (العلامات)",
+			"webPage": "صفحة ويب"
+		},
+		"tabUrl": {
+			"label": "عنوان URL لعلامة التبويب",
+			"placeholder": "مثال: \"https://example.com\", \"../api/repos/:public:page.html/content\""
+		},
+		"global": "عام (مرئي لجميع المستخدمين)",
 		"deleteTab": "حذف علامة التبويب",
 		"tabWillBeDeleted": "سيتم حذف علامة التبويب \"{name}\".",
 		"delete": "حذف",
@@ -75,6 +84,96 @@
 	"new": {
 		"lincebiTools": "أدوات LinceBI",
 		"otherTools": "أدوات أخرى"
+	},
+	"tools": {
+		"powerbi": {
+			"title": "تضمين تقرير Power BI",
+			"subtitle": "أكمل وحفظ تقريرك",
+			"manual": "يدوي",
+			"automatic": "تلقائي",
+			"workspaceId": {
+				"label": "معرف مساحة العمل"
+			},
+			"reportId": {
+				"label": "معرف التقرير"
+			},
+			"reportPageName": {
+				"label": "اسم صفحة التقرير (اختياري)"
+			},
+			"filters": {
+				"label": "المرشحات (اختياري)"
+			},
+			"location": {
+				"label": "الموقع",
+				"placeholder": "الموقع"
+			},
+			"fileName": {
+				"label": "اسم الملف",
+				"placeholder": "اسم الملف"
+			},
+			"selectALocation": "اختر موقعًا",
+			"cancel": "إلغاء",
+			"accept": "قبول",
+			"save": "حفظ",
+			"overwriteModalTitle": "يوجد بالفعل تقرير بهذا الاسم",
+			"overwriteModalBody": "هل تريد استبدال التقرير؟ لا يمكن التراجع عن هذا الإجراء.",
+			"submitModalTitle": "تم حفظ التقرير",
+			"submitModalBody": "تم حفظ التقرير \"{name}\".",
+			"doYouNeedHelp": "هل تحتاج إلى مساعدة؟",
+			"findWorkspaceAndReport": {
+				"msg": "يمكن العثور على {workspaceId} و{reportId} و{reportPageName} في عنوان URL للتقرير.",
+				"workspaceId": "معرف مساحة العمل",
+				"reportId": "معرف التقرير",
+				"reportPageName": "اسم صفحة التقرير"
+			},
+			"notAvailableYet": "غير متوفر بعد"
+		},
+		"superset": {
+			"title": "تضمين لوحة معلومات Superset",
+			"subtitle": "أكمل واحفظ لوحة المعلومات الخاصة بك",
+			"dashboardId": {
+				"label": "معرف لوحة المعلومات"
+			},
+			"location": {
+				"label": "الموقع",
+				"placeholder": "الموقع"
+			},
+			"fileName": {
+				"label": "اسم الملف",
+				"placeholder": "اسم الملف"
+			},
+			"selectALocation": "اختر موقعًا",
+			"cancel": "إلغاء",
+			"accept": "قبول",
+			"save": "حفظ",
+			"overwriteModalTitle": "يوجد بالفعل ملف بهذا الاسم",
+			"overwriteModalBody": "هل تريد استبدال الملف؟ لا يمكن التراجع عن هذا الإجراء.",
+			"submitModalTitle": "تم حفظ الملف",
+			"submitModalBody": "تم حفظ الملف \"{name}\"."
+		},
+		"embed": {
+			"title": "تضمين رابط خارجي",
+			"subtitle": "أكمل واحفظ الرابط الخارجي الخاص بك",
+			"url": {
+				"label": "URL"
+			},
+			"location": {
+				"label": "الموقع",
+				"placeholder": "الموقع"
+			},
+			"fileName": {
+				"label": "اسم الملف",
+				"placeholder": "اسم الملف"
+			},
+			"selectALocation": "اختر موقعًا",
+			"cancel": "إلغاء",
+			"accept": "قبول",
+			"save": "حفظ",
+			"overwriteModalTitle": "يوجد بالفعل ملف بهذا الاسم",
+			"overwriteModalBody": "هل تريد استبدال الملف؟ لا يمكن التراجع عن هذا الإجراء.",
+			"submitModalTitle": "تم حفظ الملف",
+			"submitModalBody": "تم حفظ الملف \"{name}\"."
+		}
 	},
 	"profile": {
 		"name": {
@@ -117,6 +216,8 @@
 		"refreshGlobalVariables": "تحديث المتغيرات العمومية",
 		"refreshMondrianSchemaCache": "تحديث ذاكرة التخزين المؤقت مخطط موندريان",
 		"clearCdaCache": "مسح ذاكرة التخزين المؤقت CDA",
+		"resetGlobalUserSettings": "إعادة تعيين إعدادات المستخدم العالمية",
+		"resetUserSettings": "إعادة تعيين إعدادات المستخدم",
 		"resourceRefreshSuccess": "تم تحديث المورد بنجاح",
 		"resourceRefreshError": "خطأ أثناء تحديث المورد",
 		"cacheClearSuccess": "تم مسح ذاكرة التخزين المؤقت بنجاح",

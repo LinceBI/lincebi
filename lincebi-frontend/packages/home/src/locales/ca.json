@@ -56,7 +56,16 @@
 			"label": "Icona de pestanya",
 			"placeholder": "Icona de pestanya..."
 		},
-		"global": "Global",
+		"tabType": {
+			"label": "Tipus de pestanya",
+			"repositoryFiles": "Fitxers de repositori (etiquetes)",
+			"webPage": "Pàgina web"
+		},
+		"tabUrl": {
+			"label": "URL de pestanya",
+			"placeholder": "P. ex.: \"https://example.com\", \"../api/repos/:public:page.html/content\""
+		},
+		"global": "Global (visible per a tots els usuaris)",
 		"deleteTab": "Eliminar pestanya",
 		"tabWillBeDeleted": "La pestanya \"{name}\" serà eliminada.",
 		"delete": "Eliminar",
@@ -75,6 +84,96 @@
 	"new": {
 		"lincebiTools": "Eines de LinceBI",
 		"otherTools": "Altres eines"
+	},
+	"tools": {
+		"powerbi": {
+			"title": "Incrusta informe de Power BI",
+			"subtitle": "Completa i desa el teu informe",
+			"manual": "Manual",
+			"automatic": "Automàtic",
+			"workspaceId": {
+				"label": "ID de l'àrea de treball"
+			},
+			"reportId": {
+				"label": "ID de l'informe"
+			},
+			"reportPageName": {
+				"label": "Nom de pàgina de l'informe (opcional)"
+			},
+			"filters": {
+				"label": "Filtres (opcional)"
+			},
+			"location": {
+				"label": "Destinació",
+				"placeholder": "Destinació"
+			},
+			"fileName": {
+				"label": "Nom de fitxer",
+				"placeholder": "Nom de fitxer"
+			},
+			"selectALocation": "Selecciona una destinació",
+			"cancel": "Cancel·la",
+			"accept": "Accepta",
+			"save": "Desa",
+			"overwriteModalTitle": "Ja existeix un informe amb aquest nom",
+			"overwriteModalBody": "Vols sobreescriure l'informe? Aquesta acció no es pot desfer.",
+			"submitModalTitle": "Informe desat",
+			"submitModalBody": "L'informe \"{name}\" ha estat desat.",
+			"doYouNeedHelp": "Necessites ajuda?",
+			"findWorkspaceAndReport": {
+				"msg": "Pots trobar l'{workspaceId}, l'{reportId} i el {reportPageName} a l'URL de l'informe.",
+				"workspaceId": "ID de l'àrea de treball",
+				"reportId": "ID de l'informe",
+				"reportPageName": "nom de pàgina de l'informe"
+			},
+			"notAvailableYet": "Encara no disponible"
+		},
+		"superset": {
+			"title": "Incrusta quadre de comandament de Superset",
+			"subtitle": "Completa i desa el teu quadre de comandament",
+			"dashboardId": {
+				"label": "ID del quadre de comandament"
+			},
+			"location": {
+				"label": "Destinació",
+				"placeholder": "Destinació"
+			},
+			"fileName": {
+				"label": "Nom de fitxer",
+				"placeholder": "Nom de fitxer"
+			},
+			"selectALocation": "Selecciona una destinació",
+			"cancel": "Cancel·la",
+			"accept": "Accepta",
+			"save": "Desa",
+			"overwriteModalTitle": "Ja existeix un fitxer amb aquest nom",
+			"overwriteModalBody": "Vols sobreescriure el fitxer? Aquesta acció no es pot desfer.",
+			"submitModalTitle": "Fitxer desat",
+			"submitModalBody": "El fitxer \"{name}\" ha estat desat."
+		},
+		"embed": {
+			"title": "Incrusta enllaç extern",
+			"subtitle": "Completa i desa el teu enllaç extern",
+			"url": {
+				"label": "URL"
+			},
+			"location": {
+				"label": "Destinació",
+				"placeholder": "Destinació"
+			},
+			"fileName": {
+				"label": "Nom de fitxer",
+				"placeholder": "Nom de fitxer"
+			},
+			"selectALocation": "Selecciona una destinació",
+			"cancel": "Cancel·la",
+			"accept": "Accepta",
+			"save": "Desa",
+			"overwriteModalTitle": "Ja existeix un fitxer amb aquest nom",
+			"overwriteModalBody": "Vols sobreescriure el fitxer? Aquesta acció no es pot desfer.",
+			"submitModalTitle": "Fitxer desat",
+			"submitModalBody": "El fitxer \"{name}\" ha estat desat."
+		}
 	},
 	"profile": {
 		"name": {
@@ -117,6 +216,8 @@
 		"refreshGlobalVariables": "Actualizar variables globals",
 		"refreshMondrianSchemaCache": "Actualizar caché dels esquemes de Mondrian",
 		"clearCdaCache": "Buidar caché de CDA",
+		"resetGlobalUserSettings": "Restableix opcions globals d'usuari",
+		"resetUserSettings": "Restableix opcions d'usuari",
 		"resourceRefreshSuccess": "Recurs actualitzat amb èxit",
 		"resourceRefreshError": "Error en actualitzar el recurs",
 		"cacheClearSuccess": "Caché buidada amb èxit",

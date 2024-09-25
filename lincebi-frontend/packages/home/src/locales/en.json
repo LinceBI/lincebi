@@ -56,7 +56,16 @@
 			"label": "Tab icon",
 			"placeholder": "Tab icon..."
 		},
-		"global": "Global",
+		"tabType": {
+			"label": "Tab type",
+			"repositoryFiles": "Repository files (tags)",
+			"webPage": "Web page"
+		},
+		"tabUrl": {
+			"label": "Tab URL",
+			"placeholder": "E.g.: \"https://example.com\", \"../api/repos/:public:page.html/content\""
+		},
+		"global": "Global (visible to all users)",
 		"deleteTab": "Delete tab",
 		"tabWillBeDeleted": "The tab \"{name}\" will be deleted.",
 		"delete": "Delete",

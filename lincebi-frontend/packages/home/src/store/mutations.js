@@ -108,6 +108,10 @@ export const setRepositoryFile = (state, file) => {
 	});
 };
 
+export const setSettingsLoaded = (state, settingsLoaded) => {
+	state.settingsLoaded = settingsLoaded;
+};
+
 export const setGlobalUserSettings = (state, settings) => {
 	Object.assign(state.globalUserSettings, settings);
 };

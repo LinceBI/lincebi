@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo page</title>
+    <meta name="description" content="Demo page" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css"
+      integrity="sha256-3V/VWRr9ge4h3MEXrYXAFNw/HxncLXt9EB6grMKSdMI="
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header class="container">
+      <hgroup>
+        <h1>Demo page</h1>
+      </hgroup>
+      <hr />
+    </header>
+    <main class="container">
+      <section>
+        <h2>External links:</h2>
+        <ul>
+          <li><a target="_self" href="https://example.com">example.com (self)</a></li>
+          <li><a target="_blank" href="https://example.com">example.com (blank)</a></li>
+          <li><a target="_top" href="https://example.com">example.com (top)</a></li>
+        </ul>
+        <h2>Internal links:</h2>
+        <ul>
+          <li><a target="_top" href="../../../Home/#/about">About page</a></li>
+          <li><a target="_top" href="../../../Home/#/home/t:home.home">Home tab</a></li>
+          <li><a target="_top" href="../../../Home/#/home/t:home.favorites">Favorites tab</a></li>
+          <li><a target="_top" href="../../../Home/#/home/Example 1">Example 1 tab</a></li>
+          <li><a target="_top" href="../../../Home/#/home/Example 2">Example 2 tab</a></li>
+          <li><a target="_top" href="../../../Home/#/home/Example 3">Example 3 tab</a></li>
+          <li><a target="_top" href="../../../Home/#/home/Example 4">Example 4 tab</a></li>
+          <li><a target="_self" href="../:public:Steel Wheels:Dashboards:CTools_dashboard.wcdf/generatedContent">CTools Dashboard (self)</a></li>
+          <li><a target="_blank" href="../:public:Steel Wheels:Dashboards:CTools_dashboard.wcdf/generatedContent">CTools Dashboard (blank)</a></li>
+          <li><a target="_top" href="../:public:Steel Wheels:Dashboards:CTools_dashboard.wcdf/generatedContent">CTools Dashboard (top)</a></li>
+        </ul>
+      </section>
+    </main>
+    <script>
+      // The following code intercepts links with top as target and,
+      // if the origin matches, copies the query params.
+      document.addEventListener("click", (event) => {
+        if (
+          window !== window.top &&
+          event.target instanceof HTMLAnchorElement &&
+          event.target.target === "_top"
+        ) {
+          const topUrl = new URL(window.top.location.href);
+          const anchorUrl = new URL(event.target.href);
+          if (
+            topUrl.origin === anchorUrl.origin &&
+            topUrl.pathname === anchorUrl.pathname
+          ) {
+            event.preventDefault();
+            topUrl.hash = anchorUrl.hash;
+            window.top.location.assign(topUrl.toString());
+          }
+        }
+      }, false);
+    </script>
+  </body>
+</html>
