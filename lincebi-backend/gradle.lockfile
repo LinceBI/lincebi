@@ -64,4 +64,5 @@ pentaho:pentaho-platform-api:9.3.0.9-878=compileClasspath
 pentaho:pentaho-platform-core:9.3.0.9-878=compileClasspath
 pentaho:pentaho-platform-extensions:9.3.0.9-878=compileClasspath
 pentaho:pentaho-platform-repository:9.3.0.9-878=compileClasspath
+pentaho:pentaho-platform-scheduler:9.3.0.9-878=compileClasspath
 empty=annotationProcessor,shadow,testAnnotationProcessor

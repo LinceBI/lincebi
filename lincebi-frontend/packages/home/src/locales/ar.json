@@ -217,6 +217,8 @@
 		"refreshMondrianSchemaCache": "تحديث ذاكرة التخزين المؤقت مخطط موندريان",
 		"clearCdaCache": "مسح ذاكرة التخزين المؤقت CDA",
 		"clearSTPanelsCache": "مسح ذاكرة التخزين المؤقت STPanels",
+		"exportBackup": "تصدير النسخ الاحتياطي للنظام",
+		"importBackup": "استيراد نسخة احتياطية للنظام",
 		"resetGlobalUserSettings": "إعادة تعيين إعدادات المستخدم العالمية",
 		"resetUserSettings": "إعادة تعيين إعدادات المستخدم",
 		"resourceRefreshSuccess": "تم تحديث المورد بنجاح",

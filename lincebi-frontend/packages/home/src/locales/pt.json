@@ -217,6 +217,8 @@
 		"refreshMondrianSchemaCache": "Atualizar Mondrian schema cache",
 		"clearCdaCache": "Limpar CDA cache",
 		"clearSTPanelsCache": "Limpar STPanels cache",
+		"exportBackup": "Exportar cópia de segurança do sistema",
+		"importBackup": "Importar cópia de segurança do sistema",
 		"resetGlobalUserSettings": "Redefinir configurações globais do usuário",
 		"resetUserSettings": "Redefinir configurações do usuário",
 		"resourceRefreshSuccess": "Recurso atualizado com sucesso",

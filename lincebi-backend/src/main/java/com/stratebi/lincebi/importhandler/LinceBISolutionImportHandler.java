@@ -8,6 +8,8 @@ import org.pentaho.platform.api.mimetype.IMimeType;
 import org.pentaho.platform.api.repository2.unified.IPlatformImportBundle;
 import org.pentaho.platform.api.repository2.unified.RepositoryFile;
 import org.pentaho.platform.api.repository2.unified.webservices.StringKeyStringValueDto;
+import org.pentaho.platform.api.scheduler2.IScheduler;
+import org.pentaho.platform.api.scheduler2.Job;
 import org.pentaho.platform.api.usersettings.IUserSettingService;
 import org.pentaho.platform.core.mimetype.MimeType;
 import org.pentaho.platform.engine.core.system.PentahoSystem;
@@ -147,7 +149,7 @@ public class LinceBISolutionImportHandler extends SolutionImportHandler implemen
 		for (IRepositoryFileBundle localeFile : localeFiles) {
 			String localeFileDirPath = localeFile.getPath();
 			String localeFileName = localeFile.getFile().getName();
-			if (manifestFiles.size() > 0) {
+			if (!manifestFiles.isEmpty()) {
 				localeFileDirPath = ExportFileNameEncoder.decodeZipFileName(localeFileDirPath);
 				localeFileName = ExportFileNameEncoder.decodeZipFileName(localeFileName);
 			}
@@ -175,6 +177,17 @@ public class LinceBISolutionImportHandler extends SolutionImportHandler implemen
 				LinceBISolutionImportHandler.LOGGER.error(ex.getMessage());
 				throw new PlatformImportException(ex.getMessage());
 			}
+		}
+
+		try {
+			// Remove duplicated RepositoryGcJob jobs (this problem occurs when the backup
+			// is imported from a different repository and the job has a different ID)
+			IScheduler scheduler = PentahoSystem.get(IScheduler.class, "IScheduler2", null);
+			List<Job> jobs = scheduler.getJobs(job -> job.getJobName().equals("RepositoryGcJob"));
+			for (int i = 1; i < jobs.size(); i++) scheduler.removeJob(jobs.get(i).getJobId());
+		} catch (Exception ex) {
+			LinceBISolutionImportHandler.LOGGER.error(ex.getMessage());
+			throw new PlatformImportException(ex.getMessage());
 		}
 	}
 

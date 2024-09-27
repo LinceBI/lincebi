@@ -32,6 +32,7 @@ import { faCoins } from '@fortawesome/free-solid-svg-icons/faCoins';
 import { faCommentsDollar } from '@fortawesome/free-solid-svg-icons/faCommentsDollar';
 import { faDatabase } from '@fortawesome/free-solid-svg-icons/faDatabase';
 import { faDiagramProject } from '@fortawesome/free-solid-svg-icons/faDiagramProject';
+import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload';
 import { faEarthEurope } from '@fortawesome/free-solid-svg-icons/faEarthEurope';
 import { faFile } from '@fortawesome/free-solid-svg-icons/faFile';
 import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
@@ -63,11 +64,13 @@ import { faSave } from '@fortawesome/free-solid-svg-icons/faSave';
 import { faScaleBalanced } from '@fortawesome/free-solid-svg-icons/faScaleBalanced';
 import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons/faScrewdriverWrench';
 import { faShop } from '@fortawesome/free-solid-svg-icons/faShop';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
 import { faStore } from '@fortawesome/free-solid-svg-icons/faStore';
 import { faSuitcaseMedical } from '@fortawesome/free-solid-svg-icons/faSuitcaseMedical';
 import { faTable } from '@fortawesome/free-solid-svg-icons/faTable';
 import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { faUpDownLeftRight } from '@fortawesome/free-solid-svg-icons/faUpDownLeftRight';
+import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
 import { faWarehouse } from '@fortawesome/free-solid-svg-icons/faWarehouse';
@@ -133,6 +136,7 @@ library.add(
 	faCommentsDollar,
 	faDatabase,
 	faDiagramProject,
+	faDownload,
 	faEarthEurope,
 	faFile,
 	faFileAdhoc,
@@ -178,6 +182,7 @@ library.add(
 	faScaleBalanced,
 	faScrewdriverWrench,
 	faShop,
+	faSpinner,
 	faSquare,
 	faSquareCheck,
 	faStore,
@@ -202,6 +207,7 @@ library.add(
 	faToolSuperset,
 	faTruck,
 	faUpDownLeftRight,
+	faUpload,
 	faUser,
 	faUsers,
 	faWarehouse,

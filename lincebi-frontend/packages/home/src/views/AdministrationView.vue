@@ -102,14 +102,27 @@
 				</span>
 			</b-list-group-item>
 		</b-list-group>
+		<b-list-group class="mb-4">
+			<b-list-group-item v-if="canAdminister" button @click="exportBackup">
+				<font-awesome-icon class="fa-fw" :icon="['fas', 'download']" />
+				<span class="lbl">
+					{{ $t('administration.exportBackup') }}
+				</span>
+			</b-list-group-item>
+			<b-list-group-item v-if="canAdminister" button :disabled="isImportingBackup" @click="importBackup">
+				<font-awesome-icon
+					class="fa-fw"
+					:icon="['fas', isImportingBackup ? 'spinner' : 'upload']"
+					:spin="isImportingBackup"
+				/>
+				<span class="lbl">
+					{{ $t('administration.importBackup') }}
+				</span>
+			</b-list-group-item>
+		</b-list-group>
 		<!--
 		<b-list-group class="mb-4">
-			<b-list-group-item
-				v-if="canAdminister"
-				button
-				variant="danger"
-				@click="resetGlobalUserSettings"
-			>
+			<b-list-group-item v-if="canAdminister" button variant="danger" @click="resetGlobalUserSettings">
 				<font-awesome-icon class="fa-fw" :icon="['fas', 'arrows-rotate']" />
 				<span class="lbl">
 					{{ $t('administration.resetGlobalUserSettings') }}
@@ -130,6 +143,8 @@
 import clearCdaCache from '@lincebi/frontend-common/src/biserver/clearCdaCache';
 import clearSTPanelsCache from '@lincebi/frontend-common/src/biserver/clearSTPanelsCache';
 import systemRefresh from '@lincebi/frontend-common/src/biserver/systemRefresh';
+import exportBackup from '@lincebi/frontend-common/src/biserver/exportBackup';
+import importBackup from '@lincebi/frontend-common/src/biserver/importBackup';
 
 import eventBus from '@/eventBus';
 import router from '@/router';
@@ -137,6 +152,11 @@ import store from '@/store';
 
 export default {
 	name: 'AdministrationView',
+	data() {
+		return {
+			isImportingBackup: false,
+		};
+	},
 	computed: {
 		canAdminister() {
 			return store.state.canAdminister;
@@ -266,6 +286,30 @@ export default {
 					variant: 'danger',
 					solid: true,
 				});
+			}
+		},
+		async exportBackup() {
+			exportBackup();
+		},
+		async importBackup() {
+			try {
+				this.isImportingBackup = true;
+				if (await importBackup()) {
+					this.$bvToast.toast(this.$t('administration.importSuccess'), {
+						title: this.$t('administration.notificationInfo'),
+						variant: 'success',
+						solid: true,
+					});
+				}
+			} catch (error) {
+				console.error(error);
+				this.$bvToast.toast(this.$t('administration.importError'), {
+					title: this.$t('administration.notificationError'),
+					variant: 'danger',
+					solid: true,
+				});
+			} finally {
+				this.isImportingBackup = false;
 			}
 		},
 		async resetGlobalUserSettings() {

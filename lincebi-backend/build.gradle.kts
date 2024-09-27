@@ -41,6 +41,7 @@ dependencies {
 	compileOnly("pentaho:pentaho-platform-core:9.3.0.9-878") { isTransitive = false }
 	compileOnly("pentaho:pentaho-platform-extensions:9.3.0.9-878") { isTransitive = false }
 	compileOnly("pentaho:pentaho-platform-repository:9.3.0.9-878") { isTransitive = false }
+	compileOnly("pentaho:pentaho-platform-scheduler:9.3.0.9-878") { isTransitive = false }
 
 	testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.0")
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.0")

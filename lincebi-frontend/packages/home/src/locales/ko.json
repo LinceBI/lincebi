@@ -217,6 +217,8 @@
 		"refreshMondrianSchemaCache": "Mondrian 스키마 캐시 새로 고침",
 		"clearCdaCache": "CDA 캐시 클리어",
 		"clearSTPanelsCache": "STPanels 캐시 클리어",
+		"exportBackup": "시스템 백업 내보내기",
+		"importBackup": "시스템 백업 가져오기",
 		"resetGlobalUserSettings": "전역 사용자 설정 초기화",
 		"resetUserSettings": "사용자 설정 초기화",
 		"resourceRefreshSuccess": "리소스를 새로 고쳤습니다.",
