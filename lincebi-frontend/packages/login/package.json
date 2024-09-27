@@ -33,7 +33,7 @@
 	"devDependencies": {
 		"@vitejs/plugin-vue2": "~2.3.1",
 		"autoprefixer": "~10.4.20",
-		"eslint": "~9.10.0",
+		"eslint": "~9.11.1",
 		"eslint-config-prettier": "~9.1.0",
 		"eslint-plugin-vue": "~9.28.0",
 		"globals": "~15.9.0",
@@ -41,8 +41,8 @@
 		"postcss": "~8.4.47",
 		"prettier": "~3.3.3",
 		"rimraf": "~6.0.1",
-		"sass": "~1.79.1",
-		"vite": "~5.4.6",
+		"sass": "~1.79.3",
+		"vite": "~5.4.8",
 		"vue-template-compiler": "~2.7.16"
 	}
 }

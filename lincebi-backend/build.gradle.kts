@@ -15,12 +15,12 @@ repositories {
 }
 
 dependencies {
-	implementation("com.fasterxml.jackson.core:jackson-annotations:2.17.2")
-	implementation("com.fasterxml.jackson.core:jackson-core:2.17.2")
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
+	implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.0")
+	implementation("com.fasterxml.jackson.core:jackson-core:2.18.0")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.18.0")
 	implementation("com.microsoft.azure:msal4j:1.17.1")
-	implementation("com.networknt:json-schema-validator:1.5.1")
-	implementation("commons-io:commons-io:2.16.1")
+	implementation("com.networknt:json-schema-validator:1.5.2")
+	implementation("commons-io:commons-io:2.17.0")
 	implementation("jakarta.ws.rs:jakarta.ws.rs-api:2.1.6")
 	implementation("jakarta.xml.bind:jakarta.xml.bind-api:2.3.3")
 	implementation("org.apache.commons:commons-lang3:3.17.0")
@@ -43,8 +43,8 @@ dependencies {
 	compileOnly("pentaho:pentaho-platform-repository:9.3.0.9-878") { isTransitive = false }
 	compileOnly("pentaho:pentaho-platform-scheduler:9.3.0.9-878") { isTransitive = false }
 
-	testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.0")
-	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.0")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.1")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.1")
 }
 
 tasks.build {
