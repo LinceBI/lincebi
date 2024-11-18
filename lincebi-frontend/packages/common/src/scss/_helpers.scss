@@ -43,3 +43,19 @@ img + .lbl,
 		border-radius: $border-radius 0 0 $border-radius;
 	}
 }
+
+.float-start {
+	@include float-left;
+	
+	[dir='rtl'] & {
+		@include float-right;
+	}
+}
+
+.float-end {
+	@include float-right;
+
+	[dir='rtl'] & {
+		@include float-left;
+	}
+}

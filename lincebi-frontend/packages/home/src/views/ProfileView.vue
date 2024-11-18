@@ -50,7 +50,7 @@
 							:placeholder="$t('profile.address.placeholder')"
 						/>
 					</b-form-group>
-					<b-button type="submit" variant="primary" class="float-right">
+					<b-button type="submit" variant="primary" class="float-end">
 						<font-awesome-icon :icon="['fas', 'save']" />
 						<span class="lbl">{{ $t('profile.save') }}</span>
 					</b-button>
