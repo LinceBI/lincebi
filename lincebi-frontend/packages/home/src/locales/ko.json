@@ -196,6 +196,7 @@
 			"label": "아바타:",
 			"placeholder": "아바타..."
 		},
+		"changePassword": "비밀번호를 변경하세요",
 		"save": "저장"
 	},
 	"about": {

@@ -196,6 +196,7 @@
 			"label": "Foto:",
 			"placeholder": "Foto..."
 		},
+		"changePassword": "Cambiar contraseña",
 		"save": "Guardar"
 	},
 	"about": {

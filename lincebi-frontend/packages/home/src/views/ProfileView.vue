@@ -50,6 +50,12 @@
 							:placeholder="$t('profile.address.placeholder')"
 						/>
 					</b-form-group>
+					<b-form-group>
+						<b-button variant="secondary" @click="onPasswordChange">
+							<font-awesome-icon :icon="['fas', 'key']" />
+							<span class="lbl">{{ $t('profile.changePassword') }}</span>
+						</b-button>
+					</b-form-group>
 					<b-button type="submit" variant="primary" class="float-end">
 						<font-awesome-icon :icon="['fas', 'save']" />
 						<span class="lbl">{{ $t('profile.save') }}</span>
@@ -63,6 +69,8 @@
 <script>
 import imageToDataURI from '@lincebi/frontend-common/src/imageToDataURI';
 
+import eventBus from '@/eventBus.js';
+import router from '@/router';
 import store from '@/store';
 
 export default {
@@ -99,6 +107,17 @@ export default {
 					});
 				}
 			}
+		},
+		async onPasswordChange() {
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'browser.perspective' },
+				})
+				.catch(() => {});
+			eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {
+				mantleWindow.mantle_openChangePasswordDialog();
+			});
 		},
 	},
 };

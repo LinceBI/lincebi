@@ -39,6 +39,7 @@ export default {
 				// 'mantle_addHandler',
 				'mantle_getPerspectives',
 				'mantle_initialized',
+				'mantle_openChangePasswordDialog',
 				'mantle_openRepositoryFile',
 				'mantle_setPerspective',
 				'openURL',

@@ -196,6 +196,7 @@
 			"label": "Avatar:",
 			"placeholder": "Avatar..."
 		},
+		"changePassword": "Change password",
 		"save": "Save"
 	},
 	"about": {

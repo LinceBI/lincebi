@@ -49,6 +49,7 @@ import { faHotel } from '@fortawesome/free-solid-svg-icons/faHotel';
 import { faHourglass } from '@fortawesome/free-solid-svg-icons/faHourglass';
 import { faHouse } from '@fortawesome/free-solid-svg-icons/faHouse';
 import { faIndustry } from '@fortawesome/free-solid-svg-icons/faIndustry';
+import { faKey } from '@fortawesome/free-solid-svg-icons/faKey';
 import { faLandmark } from '@fortawesome/free-solid-svg-icons/faLandmark';
 import { faLayerGroup } from '@fortawesome/free-solid-svg-icons/faLayerGroup';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons/faLightbulb';
@@ -167,6 +168,7 @@ library.add(
 	faHourglass,
 	faHouse,
 	faIndustry,
+	faKey,
 	faLandmark,
 	faLayerGroup,
 	faLightbulb,
