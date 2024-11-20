@@ -1,0 +1,71 @@
+dn: dc=example,dc=localhost
+objectClass: domain
+
+dn: ou=groups,dc=example,dc=localhost
+changetype: add
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=users,dc=example,dc=localhost
+changetype: add
+objectClass: top
+objectClass: organizationalUnit
+ou: users
+
+dn: cn=admin,ou=users,dc=example,dc=localhost
+changetype: add
+objectClass: top
+objectClass: inetOrgPerson
+cn: admin
+mail: admin@example.localhost
+givenName: Administrator
+sn: User
+userPassword: password
+
+dn: cn=alice,ou=users,dc=example,dc=localhost
+changetype: add
+objectClass: top
+objectClass: inetOrgPerson
+cn: alice
+mail: alice@example.localhost
+givenName: Alice
+sn: Doherty
+userPassword: password
+
+dn: cn=bob,ou=users,dc=example,dc=localhost
+changetype: add
+objectClass: top
+objectClass: inetOrgPerson
+cn: bob
+mail: bob@example.localhost
+givenName: Bob
+sn: Miller
+userPassword: password
+
+dn: cn=carol,ou=users,dc=example,dc=localhost
+changetype: add
+objectClass: top
+objectClass: inetOrgPerson
+cn: carol
+mail: carol@example.localhost
+givenName: Carol
+sn: Phillips
+userPassword: password
+
+dn: cn=Administrator,ou=groups,dc=example,dc=localhost
+changetype: add
+cn: Administrator
+objectClass: top
+objectClass: groupOfUniqueNames
+uniqueMember: cn=admin,ou=users,dc=example,dc=localhost
+uniqueMember: cn=alice,ou=users,dc=example,dc=localhost
+
+dn: cn=Employee,ou=groups,dc=example,dc=localhost
+changetype: add
+cn: Employee
+objectClass: top
+objectClass: groupOfUniqueNames
+uniqueMember: cn=alice,ou=users,dc=example,dc=localhost
+uniqueMember: cn=bob,ou=users,dc=example,dc=localhost
+uniqueMember: cn=carol,ou=users,dc=example,dc=localhost

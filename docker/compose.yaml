@@ -5,6 +5,8 @@ name: "lincebi"
 x-caddy-image: &caddy-image "docker.io/caddy:2"
 # https://github.com/LinceBI/docker-biserver
 x-biserver-image: &biserver-image "repo.stratebi.com/lincebi/biserver:9.3"
+# https://hub.docker.com/r/bitnami/openldap
+# x-openldap-image: &openldap-image "docker.io/bitnami/openldap:2.6"
 # https://hub.docker.com/_/postgres
 x-postgres-image: &postgres-image "mirror.gcr.io/postgres:16-bookworm"
 
@@ -47,6 +49,17 @@ services:
       FQSU_PORT: "8443"
       WEBAPP_PENTAHO_DIRNAME: "lincebi"
       DEFAULT_ADMIN_PASSWORD: "password"
+      # SECURITY_PROVIDER: "ldap"
+      # LDAP_CONTEXT_SOURCE_PROVIDER_URL: "ldap://openldap:1389"
+      # LDAP_CONTEXT_SOURCE_USER_DN: "cn=admin,dc=example,dc=localhost"
+      # LDAP_CONTEXT_SOURCE_PASSWORD: "password"
+      # LDAP_ALL_AUTHORITIES_SEARCH_SEARCH_BASE: "ou=groups,dc=example,dc=localhost"
+      # LDAP_ALL_AUTHORITIES_SEARCH_SEARCH_FILTER: "(objectClass=groupOfUniqueNames)"
+      # LDAP_ALL_USERNAMES_SEARCH_SEARCH_BASE: "ou=users,dc=example,dc=localhost"
+      # LDAP_ALL_USERNAMES_SEARCH_SEARCH_FILTER: "(objectClass=inetOrgPerson)"
+      # LDAP_USER_SEARCH_SEARCH_FILTER: "(cn={0})"
+      # LDAP_POPULATOR_GROUP_SEARCH_FILTER: "(uniqueMember={0})"
+      # LDAP_ADMIN_ROLE: "cn=Administrator,ou=groups,dc=example,dc=localhost"
       STORAGE_TYPE: "postgres"
       POSTGRES_HOST: "postgres"
       POSTGRES_USER: "postgres"
@@ -70,8 +83,24 @@ services:
       SUPERSET_DEFAULT_GUEST_FIRSTNAME: "${SUPERSET_DEFAULT_GUEST_FIRSTNAME-}"
       SUPERSET_DEFAULT_GUEST_LASTNAME: "${SUPERSET_DEFAULT_GUEST_LASTNAME-}"
     depends_on:
+      # openldap:
+      #   condition: "service_started"
       postgres:
         condition: "service_healthy"
+
+  # openldap:
+  #   image: *openldap-image
+  #   networks:
+  #     - "lincebi"
+  #   volumes:
+  #     - "./bootstrap.ldif:/ldifs/bootstrap.ldif:ro"
+  #     - "openldap-data:/bitnami/openldap/"
+  #   environment:
+  #     LDAP_ROOT: "dc=example,dc=localhost"
+  #     LDAP_ADMIN_USERNAME: "admin"
+  #     LDAP_ADMIN_PASSWORD: "password"
+  #     LDAP_CUSTOM_LDIF_DIR: "/ldifs/"
+  #     LDAP_SKIP_DEFAULT_TREE: "yes"
 
   postgres:
     image: *postgres-image
@@ -93,6 +122,7 @@ services:
 
 volumes:
   caddy-data:
+  # openldap-data:
   postgres-data:
 
 networks:
