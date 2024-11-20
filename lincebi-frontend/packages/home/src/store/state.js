@@ -2,6 +2,7 @@ import { initialGlobalUserSettings, initialUserSettings } from '@/userSettings';
 
 export default () => ({
 	serverInfo: {},
+	authenticationProvider: null,
 	userId: '',
 	canCreate: false,
 	canAdminister: false,

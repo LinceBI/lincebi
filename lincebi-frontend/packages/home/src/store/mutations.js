@@ -9,6 +9,10 @@ export const setServerInfo = (state, serverInfo) => {
 	state.serverInfo = serverInfo;
 };
 
+export const setAuthenticationProvider = (state, authenticationProvider) => {
+	state.authenticationProvider = authenticationProvider;
+};
+
 export const setUserId = (state, userId) => {
 	state.userId = userId;
 };

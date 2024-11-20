@@ -50,7 +50,7 @@
 							:placeholder="$t('profile.address.placeholder')"
 						/>
 					</b-form-group>
-					<b-form-group>
+					<b-form-group v-if="authenticationProvider === 'jackrabbit'">
 						<b-button variant="secondary" @click="onPasswordChange">
 							<font-awesome-icon :icon="['fas', 'key']" />
 							<span class="lbl">{{ $t('profile.changePassword') }}</span>
@@ -76,6 +76,9 @@ import store from '@/store';
 export default {
 	name: 'ProfileView',
 	computed: {
+		authenticationProvider() {
+			return store.state.authenticationProvider;
+		},
 		userSettings() {
 			return store.state.userSettings;
 		},

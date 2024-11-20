@@ -44,6 +44,7 @@ export default {
 		this.$nextTick(async () => {
 			await Promise.all([
 				store.dispatch('fetchServerInfo'),
+				store.dispatch('fetchAuthenticationProvider'),
 				store.dispatch('fetchUserId'),
 				store.dispatch('fetchCanCreate'),
 				store.dispatch('fetchCanAdminister'),

@@ -1,3 +1,4 @@
+import getAuthenticationProvider from '@lincebi/frontend-common/src/biserver/getAuthenticationProvider';
 import getCanAdminister from '@lincebi/frontend-common/src/biserver/getCanAdminister';
 import getCanCreate from '@lincebi/frontend-common/src/biserver/getCanCreate';
 import getCanSchedule from '@lincebi/frontend-common/src/biserver/getCanSchedule';
@@ -21,6 +22,11 @@ import { defaultGlobalUserSettings, defaultUserSettings } from '@/userSettings';
 export const fetchServerInfo = async ({ commit }) => {
 	const serverInfo = await getServerInfo();
 	commit('setServerInfo', serverInfo);
+};
+
+export const fetchAuthenticationProvider = async ({ commit }) => {
+	const authenticationProvider = await getAuthenticationProvider();
+	commit('setAuthenticationProvider', authenticationProvider);
 };
 
 export const fetchUserId = async ({ commit }) => {
