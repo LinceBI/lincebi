@@ -1,25 +1,19 @@
 <template>
 	<div v-if="slider.slides.some((i) => i.enabled)" class="home-slider">
-		<b-collapse v-model="slider.expanded">
-			<b-carousel
-				:interval="slider.interval"
-				:indicators="slider.indicators"
-				:controls="slider.controls"
-				:fade="slider.fade"
-			>
-				<b-carousel-slide
-					v-for="(slide, index) in slider.slides.filter((i) => i.enabled)"
-					:key="index"
-					:caption="slide.caption"
-					:text="slide.text"
-					:img-src="slide.img"
-				/>
-			</b-carousel>
-		</b-collapse>
-		<b-button class="p-0 rounded-0" size="sm" variant="light" @click="slider.expanded = !slider.expanded">
-			<font-awesome-icon v-if="slider.expanded" :icon="['fas', 'angle-up']" />
-			<font-awesome-icon v-else :icon="['fas', 'angle-down']" />
-		</b-button>
+		<b-carousel
+			:interval="slider.interval"
+			:indicators="slider.indicators"
+			:controls="slider.controls"
+			:fade="slider.fade"
+		>
+			<b-carousel-slide
+				v-for="(slide, index) in slider.slides.filter((i) => i.enabled)"
+				:key="index"
+				:caption="slide.caption"
+				:text="slide.text"
+				:img-src="slide.img"
+			/>
+		</b-carousel>
 	</div>
 </template>
 
@@ -29,7 +23,6 @@ export default {
 	data() {
 		return {
 			slider: {
-				expanded: false,
 				interval: 5000,
 				indicators: false,
 				controls: false,
