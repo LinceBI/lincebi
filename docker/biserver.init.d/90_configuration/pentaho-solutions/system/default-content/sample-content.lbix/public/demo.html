@@ -46,17 +46,11 @@
       // The following code intercepts links with top as target and,
       // if the origin matches, copies the query params.
       document.addEventListener("click", (event) => {
-        if (
-          window !== window.top &&
-          event.target instanceof HTMLAnchorElement &&
-          event.target.target === "_top"
-        ) {
+        const anchor = event.target.closest("a");
+        if (window !== window.top && anchor?.target === "_top") {
           const topUrl = new URL(window.top.location.href);
-          const anchorUrl = new URL(event.target.href);
-          if (
-            topUrl.origin === anchorUrl.origin &&
-            topUrl.pathname === anchorUrl.pathname
-          ) {
+          const anchorUrl = new URL(anchor.href);
+          if (topUrl.origin === anchorUrl.origin && topUrl.pathname === anchorUrl.pathname) {
             event.preventDefault();
             topUrl.hash = anchorUrl.hash;
             window.top.location.assign(topUrl.toString());
