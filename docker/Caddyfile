@@ -19,7 +19,6 @@ https://:8443 {
 	# Pentaho BI Server
 	reverse_proxy /* {
 		to http://biserver:8080
-		header_down Set-Cookie "^(.*)$" "$1; SameSite=Strict; Secure"
 	}
 
 	# Dev Server (@lincebi/frontend-login)
