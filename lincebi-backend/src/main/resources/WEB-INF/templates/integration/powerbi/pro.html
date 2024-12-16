@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
 	<title>Power BI</title>
 	<!-- https://www.jsdelivr.com/package/npm/@azure/msal-browser -->
-	<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.24.0/lib/msal-browser.min.js" integrity="sha256-2EPcyfTG5vStWiQg+z6Nja+EO+oHwBC+ugUA13llQUo=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.28.0/lib/msal-browser.min.js" integrity="sha256-p8TgSUTVRRWNccqwwSMm7WR3KBCjhRN49iOa4QrpgF0=" crossorigin="anonymous"></script>
 	<!-- https://www.jsdelivr.com/package/npm/powerbi-client -->
 	<script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.23.1/dist/powerbi.min.js" integrity="sha256-ryaAqfEHe9zeH09FStfIEcPbW1Qjo4BbkFByDRefEtM=" crossorigin="anonymous"></script>
 	<style>
@@ -31,6 +31,7 @@
 			'use strict';
 
 			const clientId = /*[[${clientId}]]*/'';
+			const tenantId = /*[[${tenantId}]]*/'';
 			const workspaceId = /*[[${workspaceId}]]*/'';
 			const reportId = /*[[${reportId}]]*/'';
 			const reportPageName = /*[[${reportPageName}]]*/'';
@@ -46,6 +47,7 @@
 				},
 				auth: {
 					clientId,
+					authority: `https://login.microsoftonline.com/${tenantId}`,
 					navigateToLoginRequestUrl: false,
 					redirectUri: `${window.location.origin}${window.location.pathname}`,
 				}
@@ -166,7 +168,7 @@
 						tokenType: models.TokenType.Aad,
 						permissions: models.Permissions.Read,
 						viewMode: models.ViewMode.View,
-						pageName: reportPageName ? reportPageName : undefined,
+						pageName: reportPageName ?? undefined,
 						settings: { layoutType: models.LayoutType.Master },
 					});
 				} catch (error) {

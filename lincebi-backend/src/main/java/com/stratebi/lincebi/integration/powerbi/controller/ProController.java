@@ -50,6 +50,7 @@ public class ProController {
 		try {
 			Context context = new Context();
 			context.setVariable("clientId", config.clientId);
+			context.setVariable("tenantId", config.serviceprincipalTenantId);
 			context.setVariable("workspaceId", workspaceId);
 			context.setVariable("reportId", reportId);
 			context.setVariable("reportPageName", reportPageName);
