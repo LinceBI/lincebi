@@ -136,35 +136,40 @@
 				}
 			});
 
-			let accessToken;
-			const scopes = [
-				'https://analysis.windows.net/powerbi/api/Report.Read.All',
-				'https://analysis.windows.net/powerbi/api/Dashboard.Read.All',
-			];
-			const accounts = msal.getAllAccounts();
-			if (accounts.length > 0) {
-				try {
-					({ accessToken } = await msal.acquireTokenSilent({
-						scopes,
-						account: accounts[0],
-					}));
-				} catch (error) {
-					console.error(error);
-					alert(error.message);
-					return;
+			const getAccessToken = async () => {
+				let accessToken;
+				const scopes = [
+					'https://analysis.windows.net/powerbi/api/Report.Read.All',
+					'https://analysis.windows.net/powerbi/api/Dashboard.Read.All',
+				];
+				const accounts = msal.getAllAccounts();
+				if (accounts.length > 0) {
+					try {
+						({ accessToken } = await msal.acquireTokenSilent({
+							scopes,
+							account: accounts[0],
+						}));
+					} catch (error) {
+						console.error(error);
+						alert(error.message);
+						return;
+					}
+				} else {
+					try {
+						({ accessToken } = await msal.acquireTokenPopup({ scopes }));
+					} catch (error) {
+						({ accessToken } = await new Promise((resolve) => {
+							const button = document.createElement('button');
+							button.textContent = 'Sign in with Microsoft';
+							button.onclick = async () => resolve(await msal.acquireTokenPopup({ scopes }));
+							document.body.appendChild(button);
+						}));
+					}
 				}
-			} else {
-				try {
-					({ accessToken } = await msal.acquireTokenPopup({ scopes }));
-				} catch (error) {
-					({ accessToken } = await new Promise((resolve) => {
-						const button = document.createElement('button');
-						button.textContent = 'Sign in with Microsoft';
-						button.onclick = async () => resolve(await msal.acquireTokenPopup({ scopes }));
-						document.body.appendChild(button);
-					}));
-				}
-			}
+				return accessToken;
+			};
+
+			const accessToken = await getAccessToken();
 
 			let apiUrl;
 			if (reportId) {
@@ -195,6 +200,7 @@
 						viewMode: models.ViewMode.View,
 						pageName: reportPageName ?? undefined,
 						settings: { layoutType: models.LayoutType.Master },
+						eventHooks: { accessTokenProvider: getAccessToken },
 					});
 				} catch (error) {
 					console.error(error);
@@ -213,6 +219,7 @@
 						permissions: models.Permissions.Read,
 						viewMode: models.ViewMode.View,
 						pageView: 'fitToWidth',
+						eventHooks: { accessTokenProvider: getAccessToken },
 					});
 				} catch (error) {
 					console.error(error);
