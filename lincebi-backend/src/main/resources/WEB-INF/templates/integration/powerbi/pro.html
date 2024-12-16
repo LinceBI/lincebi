@@ -20,7 +20,24 @@
 		}
 
 		body {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			overflow: hidden;
+		}
+
+		button {
+			padding: 0.75em;
+			font-weight: 500;
+			color: #ffffff;
+			background-color: #117865;
+			border: 0;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		button:hover, button:focus {
+			background-color: #0c695a;
 		}
 	</style>
 </head>
@@ -125,20 +142,28 @@
 				'https://analysis.windows.net/powerbi/api/Dashboard.Read.All',
 			];
 			const accounts = msal.getAllAccounts();
-			try {
-				if (accounts.length > 0) {
+			if (accounts.length > 0) {
+				try {
 					({ accessToken } = await msal.acquireTokenSilent({
 						scopes,
 						account: accounts[0],
 					}));
-				} else {
-					({ accessToken } = await msal.acquireTokenPopup({
-						scopes,
+				} catch (error) {
+					console.error(error);
+					alert(error.message);
+					return;
+				}
+			} else {
+				try {
+					({ accessToken } = await msal.acquireTokenPopup({ scopes }));
+				} catch (error) {
+					({ accessToken } = await new Promise((resolve) => {
+						const button = document.createElement('button');
+						button.textContent = 'Sign in with Microsoft';
+						button.onclick = async () => resolve(await msal.acquireTokenPopup({ scopes }));
+						document.body.appendChild(button);
 					}));
 				}
-			} catch (error) {
-				alert(`Authentication error:\n${error.message}`);
-				return;
 			}
 
 			let apiUrl;
@@ -172,7 +197,9 @@
 						settings: { layoutType: models.LayoutType.Master },
 					});
 				} catch (error) {
+					console.error(error);
 					alert(error.message);
+					return;
 				}
 			} else if (dashboardId) {
 				document.title = apiResponseData.displayName;
@@ -188,7 +215,9 @@
 						pageView: 'fitToWidth',
 					});
 				} catch (error) {
+					console.error(error);
 					alert(error.message);
+					return;
 				}
 			}
 		})();
