@@ -21,14 +21,20 @@
 
 		body {
 			display: flex;
+			flex-direction: column;
 			align-items: center;
 			justify-content: center;
 			overflow: hidden;
 		}
 
 		button {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 5px;
 			padding: 0.75em;
-			font-weight: 500;
+			font-weight: 600;
 			color: #ffffff;
 			background-color: #117865;
 			border: 0;
@@ -39,10 +45,27 @@
 		button:hover, button:focus {
 			background-color: #0c695a;
 		}
+
+		button:active {
+			background-color: #0c5c50;
+		}
+
+		button > svg {
+			height: 1em;
+			width: 1em;
+			vertical-align: -0.125em;
+			fill: currentColor;
+		}
 	</style>
 </head>
 
 <body>
+	<svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+		<!-- Font Awesome by @fontawesome - https://fontawesome.com -->
+		<symbol id="fa-microsoft" viewBox="0 0 448 512">
+			<path d="M0 32h214.6v214.6H0V32zm233.4 0H448v214.6H233.4V32zM0 265.4h214.6V480H0V265.4zm233.4 0H448V480H233.4V265.4z" />
+		</symbol>
+	</svg>
 	<script th:inline="javascript">
 		(async () => {
 			'use strict';
@@ -160,8 +183,17 @@
 					} catch (error) {
 						({ accessToken } = await new Promise((resolve) => {
 							const button = document.createElement('button');
-							button.textContent = 'Sign in with Microsoft';
-							button.onclick = async () => resolve(await msal.acquireTokenPopup({ scopes }));
+							const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+							const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+							use.setAttribute('href', '#fa-microsoft');
+							icon.append(use);
+							const text = document.createElement('span');
+							text.textContent = 'Sign in with Microsoft';
+							button.append(icon, text);
+							button.onclick = async () => {
+								resolve(await msal.acquireTokenPopup({ scopes }));
+								button.remove();
+							};
 							document.body.appendChild(button);
 						}));
 					}
