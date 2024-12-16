@@ -46,7 +46,7 @@ img + .lbl,
 
 .float-start {
 	@include float-left;
-	
+
 	[dir='rtl'] & {
 		@include float-right;
 	}
