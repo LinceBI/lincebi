@@ -117,7 +117,7 @@ export default {
 	},
 	methods: {
 		async createFilePreflight() {
-			if (!/^https?:\/\//i.test(this.url)) {
+			if (!/^(?:https?:\/\/|\/|\.)/i.test(this.url)) {
 				this.url = `https://${this.url}`;
 			}
 
