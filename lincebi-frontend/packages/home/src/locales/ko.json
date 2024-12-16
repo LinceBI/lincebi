@@ -103,6 +103,11 @@
 			"filters": {
 				"label": "필터 (선택사항)"
 			},
+			"mode": {
+				"label": "임베드 모드",
+				"customers": "고객을 위한 임베드",
+				"organization": "조직을 위한 임베드"
+			},
 			"location": {
 				"label": "위치",
 				"placeholder": "위치"

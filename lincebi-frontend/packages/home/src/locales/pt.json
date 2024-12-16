@@ -103,6 +103,11 @@
 			"filters": {
 				"label": "Filtros (opcional)"
 			},
+			"mode": {
+				"label": "Modo de incorporação",
+				"customers": "Incorporar para os seus clientes",
+				"organization": "Incorporar para a sua organização"
+			},
 			"location": {
 				"label": "Localização",
 				"placeholder": "Localização"

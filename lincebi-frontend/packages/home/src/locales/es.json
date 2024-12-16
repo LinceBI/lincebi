@@ -103,6 +103,11 @@
 			"filters": {
 				"label": "Filtros (opcional)"
 			},
+			"mode": {
+				"label": "Modo de embebido",
+				"customers": "Embeber para tus clientes",
+				"organization": "Embeber para tu organización"
+			},
 			"location": {
 				"label": "Destino",
 				"placeholder": "Destino"

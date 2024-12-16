@@ -103,6 +103,11 @@
 			"filters": {
 				"label": "Filtres (opcional)"
 			},
+			"mode": {
+				"label": "Mode d'inserció",
+				"customers": "Incrusta per als teus clients",
+				"organization": "Incrusta per a la teva organització"
+			},
 			"location": {
 				"label": "Destinació",
 				"placeholder": "Destinació"

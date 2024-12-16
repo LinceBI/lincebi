@@ -103,6 +103,11 @@
 			"filters": {
 				"label": "Filters (optional)"
 			},
+			"mode": {
+				"label": "Embed mode",
+				"customers": "Embed for your customers",
+				"organization": "Embed for your organization"
+			},
 			"location": {
 				"label": "Location",
 				"placeholder": "Location"

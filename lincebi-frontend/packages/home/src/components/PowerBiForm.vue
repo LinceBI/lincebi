@@ -40,6 +40,14 @@
 				</b-form-group>
 			</b-row>
 			<b-row>
+				<b-form-group :label="$t('tools.powerbi.mode.label')" class="col-sm-12">
+					<b-form-select v-model="mode">
+						<b-form-select-option value="embed">{{ $t('tools.powerbi.mode.customers') }}</b-form-select-option>
+						<b-form-select-option value="pro">{{ $t('tools.powerbi.mode.organization') }}</b-form-select-option>
+					</b-form-select>
+				</b-form-group>
+			</b-row>
+			<b-row>
 				<b-form-group :label="$t('tools.powerbi.location.label')" class="col-12">
 					<b-form-input
 						:value="fileLocation?.path"
@@ -165,6 +173,7 @@ export default {
 			pathModalSelectedLocation: null,
 			overwriteModalShow: false,
 			submitModalShow: false,
+			mode: 'embed',
 		};
 	},
 	computed: {
@@ -191,7 +200,7 @@ export default {
 			};
 			const content = [
 				'[InternetShortcut]',
-				`URL=plugin/lincebi/api/integration/powerbi/embed/html?${new URLSearchParams({
+				`URL=plugin/lincebi/api/integration/powerbi/${this.mode}/html?${new URLSearchParams({
 					workspaceId: this.workspaceId,
 					reportId: this.reportId,
 					reportPageName: this.reportPageName,

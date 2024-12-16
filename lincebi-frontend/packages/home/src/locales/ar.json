@@ -103,6 +103,11 @@
 			"filters": {
 				"label": "المرشحات (اختياري)"
 			},
+			"mode": {
+				"label": "وضع التضمين",
+				"customers": "تضمين لعملائك",
+				"organization": "تضمين لمؤسستك"
+			},
 			"location": {
 				"label": "الموقع",
 				"placeholder": "الموقع"
