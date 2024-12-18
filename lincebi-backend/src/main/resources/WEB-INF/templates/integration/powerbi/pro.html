@@ -92,7 +92,7 @@
 					redirectUri: `${window.location.origin}${window.location.pathname}`,
 				}
 			});
-			await msal.initialize()
+			await msal.initialize();
 
 			const calculateReportLayout = async (report) => {
 				const { width, height } = window.screen;
@@ -159,6 +159,23 @@
 				}
 			});
 
+			const getResourceData = async (url, fallbackUrl, accessToken) => {
+				let resp = await fetch(url, {
+					method: 'GET',
+					headers: { Authorization: `Bearer ${accessToken}` },
+				});
+				if (resp.status < 200 || resp.status > 299) {
+					resp = await fetch(fallbackUrl, {
+						method: 'GET',
+						headers: { Authorization: `Bearer ${accessToken}` },
+					});
+					if (resp.status < 200 || resp.status > 299) {
+						throw new Error(`Error loading resource:\n${resp.status} ${resp.statusText}`);
+					}
+				}
+				return resp.json();
+			};
+
 			const getAccessToken = async () => {
 				let accessToken;
 				const scopes = [
@@ -203,29 +220,34 @@
 
 			const accessToken = await getAccessToken();
 
-			let apiUrl;
-			if (reportId) {
-				apiUrl = `https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/reports/${reportId}`;
-			} else if (dashboardId) {
-				apiUrl = `https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/dashboards/${dashboardId}`;
-			}
-			const apiResponse = await fetch(apiUrl, {
-				method: 'GET',
-				headers: { Authorization: `Bearer ${accessToken}` },
-			});
-			if (apiResponse.status < 200 || apiResponse.status > 299) {
-				alert(`Error loading resource:\n${apiResponse.status} ${apiResponse.statusText}`);
+			let resourceData;
+			try {
+				if (reportId) {
+					resourceData = await getResourceData(
+						`https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/reports/${reportId}`,
+						`https://api.powerbi.com/v1.0/myorg/reports/${reportId}`,
+						accessToken,
+					);
+				} else if (dashboardId) {
+					resourceData = await getResourceData(
+						`https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/dashboards/${dashboardId}`,
+						`https://api.powerbi.com/v1.0/myorg/dashboards/${dashboardId}`,
+						accessToken,
+					);
+				}
+			} catch (error) {
+				console.error(error);
+				alert(error.message);
 				return;
 			}
-			const apiResponseData = await apiResponse.json();
 
 			if (reportId) {
-				document.title = apiResponseData.name;
+				document.title = resourceData.name;
 				try {
 					await renderReport(document.body, {
 						type: 'report',
-						id: apiResponseData.id,
-						embedUrl: apiResponseData.embedUrl,
+						id: resourceData.id,
+						embedUrl: resourceData.embedUrl,
 						accessToken,
 						tokenType: models.TokenType.Aad,
 						permissions: models.Permissions.Read,
@@ -240,12 +262,12 @@
 					return;
 				}
 			} else if (dashboardId) {
-				document.title = apiResponseData.displayName;
+				document.title = resourceData.displayName;
 				try {
 					await renderDashboard(document.body, {
 						type: 'dashboard',
-						id: apiResponseData.id,
-						embedUrl: apiResponseData.embedUrl,
+						id: resourceData.id,
+						embedUrl: resourceData.embedUrl,
 						accessToken,
 						tokenType: models.TokenType.Aad,
 						permissions: models.Permissions.Read,
