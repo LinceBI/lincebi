@@ -1,6 +1,6 @@
 plugins {
 	id("java")
-	id("com.gradleup.shadow") version "8.3.2"
+	id("com.gradleup.shadow") version "8.3.5"
 }
 
 group = "${project.property("group")}"
@@ -15,12 +15,12 @@ repositories {
 }
 
 dependencies {
-	implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.0")
-	implementation("com.fasterxml.jackson.core:jackson-core:2.18.0")
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.18.0")
-	implementation("com.microsoft.azure:msal4j:1.17.1")
-	implementation("com.networknt:json-schema-validator:1.5.2")
-	implementation("commons-io:commons-io:2.17.0")
+	implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.2")
+	implementation("com.fasterxml.jackson.core:jackson-core:2.18.2")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
+	implementation("com.microsoft.azure:msal4j:1.18.0")
+	implementation("com.networknt:json-schema-validator:1.5.5")
+	implementation("commons-io:commons-io:2.18.0")
 	implementation("jakarta.ws.rs:jakarta.ws.rs-api:2.1.6")
 	implementation("jakarta.xml.bind:jakarta.xml.bind-api:2.3.3")
 	implementation("org.apache.commons:commons-lang3:3.17.0")
@@ -28,7 +28,7 @@ dependencies {
 	implementation("org.ehcache:ehcache:3.10.8")
 	implementation("org.slf4j:slf4j-reload4j:2.0.16")
 	implementation("org.springframework:spring-web:5.3.39")
-	implementation("org.thymeleaf:thymeleaf:3.1.2.RELEASE")
+	implementation("org.thymeleaf:thymeleaf:3.1.3.RELEASE")
 
 	compileOnly("javax.jcr:jcr:2.0") { isTransitive = false }
 	compileOnly("org.apache.jackrabbit:jackrabbit-core:2.21.19") { isTransitive = false }
@@ -43,8 +43,8 @@ dependencies {
 	compileOnly("pentaho:pentaho-platform-repository:9.3.0.9-878") { isTransitive = false }
 	compileOnly("pentaho:pentaho-platform-scheduler:9.3.0.9-878") { isTransitive = false }
 
-	testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.1")
-	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.1")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.4")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.4")
 }
 
 tasks.build {

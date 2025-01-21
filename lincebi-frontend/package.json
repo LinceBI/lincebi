@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@lincebi/frontend",
-	"packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b",
+	"packageManager": "pnpm@10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b",
 	"type": "module",
 	"scripts": {
 		"dev": "pnpm -r run dev",
@@ -16,7 +16,7 @@
 		"format:prettier": "pnpm -r run format:prettier"
 	},
 	"devDependencies": {
-		"@datadog/datadog-ci": "~2.43.0",
-		"npm-run-all2": "~6.2.3"
+		"@datadog/datadog-ci": "~2.48.0",
+		"npm-run-all2": "~7.0.2"
 	}
 }
