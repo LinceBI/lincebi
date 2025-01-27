@@ -46,6 +46,15 @@
 							<font-awesome-icon :icon="['fas', 'pencil']" />
 						</div>
 						<div
+							v-if="downloadableExtensions.has(file.extension)"
+							class="btn btn-dark"
+							tabindex="0"
+							@click.stop="onFileDownloadClick(file)"
+							@keyup.enter.stop="onFileDownloadClick(file)"
+						>
+							<font-awesome-icon :icon="['fas', 'file-arrow-down']" />
+						</div>
+						<div
 							v-if="draggable"
 							class="btn btn-dark drag-handle"
 							tabindex="-1"
@@ -81,8 +90,11 @@ import isSmallScreen from '@lincebi/frontend-common/src/isSmallScreen';
 import move from '@lincebi/frontend-common/src/move';
 import waitFor from '@lincebi/frontend-common/src/waitFor';
 
+import getFileResourceUrl from '@lincebi/frontend-common/src/biserver/getFileResourceUrl';
+
 import eventBus from '@/eventBus';
 import router from '@/router';
+import store from '@/store';
 
 export default {
 	name: 'HomeTabContentFilesDeck',
@@ -101,6 +113,11 @@ export default {
 			// Sortable.js object.
 			sortable: null,
 		};
+	},
+	computed: {
+		downloadableExtensions() {
+			return store.state.downloadableExtensions;
+		},
 	},
 	mounted() {
 		this.$nextTick(() => {
@@ -171,6 +188,12 @@ export default {
 				const STSearch = await waitFor(() => perspectiveWindow.STSearch);
 				await STSearch.applyConfig({ 'form-file-path': file.path }, true);
 			});
+		},
+		async onFileDownloadClick(file) {
+			const anchor = document.createElement('a');
+			anchor.setAttribute('href', `${await getFileResourceUrl(file.path)}/inline`);
+			anchor.setAttribute('download', file.name);
+			anchor.click();
 		},
 		updateSortable() {
 			if (this.sortable?.el) {

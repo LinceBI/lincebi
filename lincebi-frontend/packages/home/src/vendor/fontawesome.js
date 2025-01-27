@@ -35,6 +35,7 @@ import { faDiagramProject } from '@fortawesome/free-solid-svg-icons/faDiagramPro
 import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload';
 import { faEarthEurope } from '@fortawesome/free-solid-svg-icons/faEarthEurope';
 import { faFile } from '@fortawesome/free-solid-svg-icons/faFile';
+import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons/faFileArrowDown';
 import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
 import { faFlask } from '@fortawesome/free-solid-svg-icons/faFlask';
 import { faFolder } from '@fortawesome/free-solid-svg-icons/faFolder';
@@ -141,6 +142,7 @@ library.add(
 	faEarthEurope,
 	faFile,
 	faFileAdhoc,
+	faFileArrowDown,
 	faFileCsv,
 	faFileLines,
 	faFileOther,
