@@ -79,7 +79,11 @@
 			"extension": "타입",
 			"created": "작성일",
 			"modified": "수정일자"
-		}
+		},
+		"notificationInfo": "정보",
+		"notificationError": "오류",
+		"reportDownloadInfo": "보고서를 생성하는 중입니다. 잠시 기다려 주세요",
+		"fileDownloadError": "파일을 생성하는 중 오류가 발생했습니다"
 	},
 	"new": {
 		"lincebiTools": "LinceBI 툴",

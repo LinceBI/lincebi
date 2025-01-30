@@ -79,7 +79,11 @@
 			"extension": "نوع",
 			"created": "تاريخ الإنشاء",
 			"modified": "تاريخ التعديل"
-		}
+		},
+		"notificationInfo": "معلومات",
+		"notificationError": "خطأ",
+		"reportDownloadInfo": "إنشاء التقرير، يرجى الانتظار",
+		"fileDownloadError": "خطأ في إنشاء الملف"
 	},
 	"new": {
 		"lincebiTools": "أدوات LinceBI",

@@ -79,7 +79,11 @@
 			"extension": "Tipo",
 			"created": "Fecha de creación",
 			"modified": "Fecha de modificación"
-		}
+		},
+		"notificationInfo": "Información",
+		"notificationError": "Error",
+		"reportDownloadInfo": "Generando informe, por favor espere.",
+		"fileDownloadError": "Error al generar archivo"
 	},
 	"new": {
 		"lincebiTools": "Herramientas de LinceBI",

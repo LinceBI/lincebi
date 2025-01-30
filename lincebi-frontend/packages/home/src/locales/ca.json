@@ -79,7 +79,11 @@
 			"extension": "Tipus",
 			"created": "Data de creació",
 			"modified": "Data de modificació"
-		}
+		},
+		"notificationInfo": "Informació",
+		"notificationError": "Error",
+		"reportDownloadInfo": "S'està generant l'informe, espereu",
+		"fileDownloadError": "Error en generar el fitxer"
 	},
 	"new": {
 		"lincebiTools": "Eines de LinceBI",

@@ -14,7 +14,7 @@ export default () => ({
 	locale: 'en',
 	isRepositoryLoading: true,
 	repository: { path: '/', children: [] },
-	downloadableExtensions: new Set(['pdf']),
+	downloadableExtensions: new Set(['pdf', 'prpt']),
 	settingsLoaded: false,
 	globalUserSettings: initialGlobalUserSettings,
 	userSettings: initialUserSettings,

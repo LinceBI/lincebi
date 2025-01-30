@@ -79,7 +79,11 @@
 			"extension": "Type",
 			"created": "Creation date",
 			"modified": "Modification date"
-		}
+		},
+		"notificationInfo": "Information",
+		"notificationError": "Error",
+		"reportDownloadInfo": "Generating report, please wait",
+		"fileDownloadError": "Error generating file"
 	},
 	"new": {
 		"lincebiTools": "LinceBI tools",

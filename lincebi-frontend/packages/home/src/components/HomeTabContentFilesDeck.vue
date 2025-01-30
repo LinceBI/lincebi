@@ -91,6 +91,7 @@ import move from '@lincebi/frontend-common/src/move';
 import waitFor from '@lincebi/frontend-common/src/waitFor';
 
 import getFileResourceUrl from '@lincebi/frontend-common/src/biserver/getFileResourceUrl';
+import getReportUrl from '@lincebi/frontend-common/src/biserver/getReportUrl';
 
 import eventBus from '@/eventBus';
 import router from '@/router';
@@ -190,10 +191,34 @@ export default {
 			});
 		},
 		async onFileDownloadClick(file) {
-			const anchor = document.createElement('a');
-			anchor.setAttribute('href', `${await getFileResourceUrl(file.path)}/inline`);
-			anchor.setAttribute('download', file.name);
-			anchor.click();
+			let url;
+			let download;
+			if (file.extension === 'prpt') {
+				this.$bvToast.toast(this.$t('home.reportDownloadInfo'), {
+					title: this.$t('home.notificationInfo'),
+					variant: 'info',
+					solid: true,
+				});
+				url = await getReportUrl(file.path, 'pageable/pdf');
+				download = `${file.name.slice(0, -(file.extension.length + 1))}.pdf`;
+			} else {
+				url = `${await getFileResourceUrl(file.path)}/inline`;
+				download = file.name;
+			}
+			if (url) {
+				const anchor = document.createElement('a');
+				anchor.setAttribute('href', url);
+				anchor.setAttribute('target', '_blank');
+				anchor.setAttribute('rel', 'noopener noreferrer');
+				anchor.setAttribute('download', download);
+				anchor.click();
+			} else {
+				this.$bvToast.toast(this.$t('home.fileDownloadError'), {
+					title: this.$t('home.notificationError'),
+					variant: 'danger',
+					solid: true,
+				});
+			}
 		},
 		updateSortable() {
 			if (this.sortable?.el) {
