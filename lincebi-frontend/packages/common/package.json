@@ -11,7 +11,7 @@
 		"format:prettier": "prettier --write ./"
 	},
 	"dependencies": {
-		"@datadog/browser-logs": "~6.0.0",
+		"@datadog/browser-logs": "~6.1.0",
 		"@fortawesome/fontawesome-svg-core": "~6.7.2",
 		"@fortawesome/free-brands-svg-icons": "~6.7.2",
 		"@fortawesome/free-regular-svg-icons": "~6.7.2",
@@ -30,7 +30,7 @@
 	"devDependencies": {
 		"@vitejs/plugin-vue2": "~2.3.3",
 		"autoprefixer": "~10.4.20",
-		"eslint": "~9.18.0",
+		"eslint": "~9.19.0",
 		"eslint-config-prettier": "~10.0.1",
 		"eslint-plugin-vue": "~9.32.0",
 		"globals": "~15.14.0",
@@ -39,7 +39,7 @@
 		"prettier": "~3.4.2",
 		"rimraf": "~6.0.1",
 		"sass": "~1.83.4",
-		"vite": "~5.4.13",
+		"vite": "~5.4.14",
 		"vue-template-compiler": "~2.7.16"
 	}
 }
