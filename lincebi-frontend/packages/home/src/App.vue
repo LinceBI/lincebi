@@ -11,8 +11,10 @@
 import uniqBy from 'lodash/uniqBy';
 
 import safeJSON from '@lincebi/frontend-common/src/safeJSON';
+import safeWindowTop from '@lincebi/frontend-common/src/safeWindowTop';
 
 import eventBus from '@/eventBus';
+import router from '@/router';
 import store from '@/store';
 
 import NavbarPanel from '@/components/NavbarPanel.vue';
@@ -39,6 +41,35 @@ export default {
 				store.dispatch('updateUserSettings', { [key]: value });
 			},
 		},
+	},
+	created() {
+		// Expose mocked "mantle_setPerspective" method to switch perspective.
+		safeWindowTop.mantle_setPerspective = (...args) => {
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: args[0] },
+				})
+				.catch(() => {});
+
+			eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {
+				mantleWindow.mantle_setPerspective(...args);
+			});
+		};
+
+		// Expose mocked "mantle_openRepositoryFile" method to switch perspective.
+		safeWindowTop.mantle_openRepositoryFile = (...args) => {
+			router
+				.push({
+					name: 'perspective',
+					params: { perspective: 'opened.perspective' },
+				})
+				.catch(() => {});
+
+			eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {
+				mantleWindow.mantle_openRepositoryFile(...args);
+			});
+		};
 	},
 	mounted() {
 		this.$nextTick(async () => {

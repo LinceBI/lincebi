@@ -176,6 +176,32 @@ export default {
 		},
 		handleMantleLoad() {
 			this.invokeInMantleWindow((mantleWindow) => {
+				// Wrap "mantle_setPerspective" method to switch perspective.
+				const mantle_setPerspective = mantleWindow.mantle_setPerspective;
+				mantleWindow.mantle_setPerspective = (...args) => {
+					router
+						.push({
+							name: 'perspective',
+							params: { perspective: args[0] },
+						})
+						.catch(() => {});
+
+					return mantle_setPerspective(...args);
+				};
+
+				// Wrap "mantle_openRepositoryFile" method to switch perspective.
+				const mantle_openRepositoryFile = mantleWindow.mantle_openRepositoryFile;
+				mantleWindow.mantle_openRepositoryFile = (...args) => {
+					router
+						.push({
+							name: 'perspective',
+							params: { perspective: 'opened.perspective' },
+						})
+						.catch(() => {});
+
+					return mantle_openRepositoryFile(...args);
+				};
+
 				// Some plugins access these properties using "window.top", so we will expose them.
 				this.mantleWindowProperties.forEach((prop) => {
 					safeWindowTop[prop] = mantleWindow[prop];
