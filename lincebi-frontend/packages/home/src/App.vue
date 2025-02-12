@@ -77,6 +77,7 @@ export default {
 				store.dispatch('fetchServerInfo'),
 				store.dispatch('fetchAuthenticationProvider'),
 				store.dispatch('fetchUserId'),
+				store.dispatch('fetchOwnRoles'),
 				store.dispatch('fetchCanCreate'),
 				store.dispatch('fetchCanAdminister'),
 				store.dispatch('fetchCanSchedule'),

@@ -17,6 +17,7 @@
 				:data-v-step="`home-tab-${t.type}`"
 			>
 				<div
+					v-if="getTabVisibility(t)"
 					:title="getTabDisplayName(t)"
 					class="nav-link"
 					tabindex="0"
@@ -72,6 +73,7 @@
 						:list="`new-tab-name-datalist-${uniqueId}`"
 						required
 						autofocus
+						@change="fillNewTabForm"
 					/>
 					<b-form-datalist :id="`new-tab-name-datalist-${uniqueId}`">
 						<option v-for="t in tabs.filter((t) => t.type === 'tag' || t.type === 'frame')" :key="getTabKey(t)">
@@ -94,9 +96,27 @@
 				<b-form-group v-if="newTab.type === 'frame'" :label="$t('home.tabUrl.label')" label-class="d-flex">
 					<b-form-input v-model="newTab.data.src" type="text" :placeholder="$t('home.tabUrl.placeholder')" required />
 				</b-form-group>
-				<b-form-checkbox v-if="canAdminister" v-model="newTab.isGlobal">
-					{{ $t('home.global') }}
-				</b-form-checkbox>
+				<b-form-group :description="$t('home.tabGlobal.description')">
+					<b-form-checkbox v-if="canAdminister" v-model="newTab.isGlobal">
+						{{ $t('home.tabGlobal.label') }}
+					</b-form-checkbox>
+				</b-form-group>
+				<b-form-group
+					v-if="canAdminister && newTab.isGlobal"
+					:label="$t('home.tabShowForRoles.label')"
+					label-class="d-flex"
+					:description="$t('home.tabShowForUsers.description')"
+				>
+					<b-fixed-tag-input v-model="newTab.showForRoles" text-field="name" value-field="name" :options="allRoles" />
+				</b-form-group>
+				<b-form-group
+					v-if="canAdminister && newTab.isGlobal"
+					:label="$t('home.tabShowForUsers.label')"
+					label-class="d-flex"
+					:description="$t('home.tabShowForUsers.description')"
+				>
+					<b-fixed-tag-input v-model="newTab.showForUsers" text-field="name" value-field="name" :options="allUsers" />
+				</b-form-group>
 			</form>
 		</b-modal>
 		<!-- Close tab modal -->
@@ -130,6 +150,7 @@ import safeJSON from '@lincebi/frontend-common/src/safeJSON';
 
 import BFormColorSwatch from '@lincebi/frontend-common/src/components/BFormColorSwatch.vue';
 import BFormIconSwatch from '@lincebi/frontend-common/src/components/BFormIconSwatch.vue';
+import BFixedTagInput from '@lincebi/frontend-common/src/components/BFixedTagInput.vue';
 
 import store from '@/store';
 import i18n from '@/i18n';
@@ -139,6 +160,7 @@ export default {
 	components: {
 		BFormColorSwatch,
 		BFormIconSwatch,
+		BFixedTagInput,
 	},
 	model: {
 		prop: 'tab',
@@ -170,6 +192,8 @@ export default {
 				isGlobal: false,
 				isRemovable: true,
 				isDraggable: true,
+				showForRoles: [],
+				showForUsers: [],
 				data: { src: '' },
 			},
 			// Variables to control the display of modals.
@@ -210,8 +234,28 @@ export default {
 				store.dispatch('updateUserSettings', { [k]: v });
 			},
 		},
+		userId() {
+			return store.state.userId;
+		},
+		userSettings() {
+			return store.state.userSettings;
+		},
 		canAdminister() {
 			return store.state.canAdminister;
+		},
+		allUsers() {
+			return store.state.allUsers;
+		},
+		allRoles() {
+			return store.state.allRoles;
+		},
+		ownRoles() {
+			return store.state.ownRoles;
+		},
+		showHiddenTabs() {
+			const key = `${this.namespace}.show_hidden_tabs`;
+			const value = this.userSettings[key] === 'true';
+			return value;
 		},
 	},
 	watch: {
@@ -241,6 +285,17 @@ export default {
 		internalUserTabs(internalUserTabs) {
 			if (!isEqual(this.userTabs, internalUserTabs)) {
 				this.userTabs = internalUserTabs;
+			}
+		},
+		showHiddenTabs(showHiddenTabs) {
+			if (!showHiddenTabs && !this.getTabVisibility(this.tabs[this.tabIndex])) {
+				this.tabIndex = 0;
+			}
+		},
+		'newTab.isGlobal'(isGlobal) {
+			if (isGlobal) {
+				store.dispatch('fetchAllUsers');
+				store.dispatch('fetchAllRoles');
 			}
 		},
 	},
@@ -284,13 +339,13 @@ export default {
 			this.removeTab(this.tabIndex);
 		},
 		createTab(newTab) {
-			const newTabIndex = this.tabs.findIndex((tab) => {
-				return tab.isGlobal === newTab.isGlobal && tab.name === newTab.name;
+			let newTabIndex = this.tabs.findIndex((tab) => {
+				return tab.isGlobal === newTab.isGlobal && fuzzyEquals(tab.name, newTab.name);
 			});
 
 			if (newTabIndex === -1) {
 				this.tabs = [...this.tabs, newTab];
-				this.tabIndex = this.tabs.length - 1;
+				newTabIndex = this.tabs.length - 1;
 			} else {
 				const foundTab = this.tabs[newTabIndex];
 				// Replace tab if type equals tag or frame.
@@ -299,6 +354,9 @@ export default {
 					updatedTabs[newTabIndex] = newTab;
 					this.tabs = updatedTabs;
 				}
+			}
+
+			if (this.getTabVisibility(newTab)) {
 				this.tabIndex = newTabIndex;
 			}
 		},
@@ -331,6 +389,20 @@ export default {
 		},
 		getTabStyle(tab, index) {
 			return index === this.tabIndex ? { backgroundColor: tab.color } : { color: tab.color };
+		},
+		getTabVisibility(tab) {
+			return (
+				this.showHiddenTabs ||
+				(!tab.showForRoles?.length && !tab.showForUsers?.length) ||
+				tab.showForRoles?.some((r) => this.ownRoles.some(({ name }) => r === name)) ||
+				tab.showForUsers?.some((u) => u === this.userId)
+			);
+		},
+		fillNewTabForm(tabName) {
+			const tab = this.tabs.find((tab) => tab.name === tabName);
+			if (tab) {
+				this.newTab = cloneDeep(tab);
+			}
 		},
 		updateSortable() {
 			if (this.sortable?.el) {
@@ -408,6 +480,10 @@ export default {
 				.nav-link .home-tab-close {
 					display: block;
 				}
+			}
+
+			&:empty {
+				display: none;
 			}
 
 			&::before {

@@ -25,6 +25,7 @@
 		"about": "Sobre",
 		"showMenuBar": "Mostrar barra de menus",
 		"showToolBar": "Mostrar barra de ferramenta",
+		"showHiddenTabs": "Mostrar abas ocultas",
 		"showHiddenFiles": "Mostrar arquivos ocultos",
 		"showDescriptionsForTooltips": "Mostrar descrições dicas"
 	},
@@ -65,7 +66,18 @@
 			"label": "URL da aba",
 			"placeholder": "Ex.: \"https://example.com\", \"../api/repos/:public:page.html/content\""
 		},
-		"global": "Global (visível para todos os usuários)",
+		"tabGlobal": {
+			"label": "Global",
+			"description": "(Visível para todos ou alguns usuários)"
+		},
+		"tabShowForRoles": {
+			"label": "Visível para os papéis seguintes",
+			"description": "(Qualquer um se estiver vazio)"
+		},
+		"tabShowForUsers": {
+			"label": "Visível para os usuários seguintes",
+			"description": "(Qualquer um se estiver vazio)"
+		},
 		"deleteTab": "Deletar aba",
 		"tabWillBeDeleted": "A aba \"{name}\" será deletada.",
 		"delete": "Deletar",

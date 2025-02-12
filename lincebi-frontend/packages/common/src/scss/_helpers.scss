@@ -44,18 +44,44 @@ img + .lbl,
 	}
 }
 
+/* Fix RTL support for form tags */
+.b-form-tag {
+	gap: toRem(4) !important;
+
+	.b-form-tag-remove {
+		margin-left: 0 !important;
+	}
+}
+
+/* Backport of Bootstrap 5 gap utility class */
+@each $key, $value in $spacers {
+	.gap-#{$key} {
+		gap: $value !important;
+	}
+}
+
+/* max-{width,height} utility classes */
+@each $key, $value in $sizes {
+	.mw-#{$key} {
+		max-width: $value !important;
+	}
+	.mh-#{$key} {
+		max-height: $value !important;
+	}
+}
+
 .float-start {
-	@include float-left;
+	float: left !important;
 
 	[dir='rtl'] & {
-		@include float-right;
+		float: right !important;
 	}
 }
 
 .float-end {
-	@include float-right;
+	float: right !important;
 
 	[dir='rtl'] & {
-		@include float-left;
+		float: left !important;
 	}
 }

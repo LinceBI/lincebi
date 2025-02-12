@@ -66,6 +66,10 @@ export const userSettings = {
 		initial: 'false',
 		default: 'true',
 	},
+	[`${namespace}.show_hidden_tabs`]: {
+		initial: 'false',
+		default: 'false',
+	},
 	[`${namespace}.tabs`]: {
 		initial: '[]',
 		default: '[]',

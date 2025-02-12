@@ -9,6 +9,12 @@
 		<navbar-dropdown-item :text="$t('navbar.showMenuBar')" :enabled="showMenuBar" @click="showMenuBar = !showMenuBar" />
 		<navbar-dropdown-item :text="$t('navbar.showToolBar')" :enabled="showToolBar" @click="showToolBar = !showToolBar" />
 		<navbar-dropdown-item
+			v-if="canAdminister"
+			:text="$t('navbar.showHiddenTabs')"
+			:enabled="showHiddenTabs"
+			@click="showHiddenTabs = !showHiddenTabs"
+		/>
+		<navbar-dropdown-item
 			:text="$t('navbar.showHiddenFiles')"
 			:enabled="showHiddenFiles"
 			@click="showHiddenFiles = !showHiddenFiles"
@@ -38,6 +44,9 @@ export default {
 		userSettings() {
 			return store.state.userSettings;
 		},
+		canAdminister() {
+			return store.state.canAdminister;
+		},
 		showMenuBar: {
 			get() {
 				const key = `${this.namespace}.show_menu_bar`;
@@ -58,6 +67,18 @@ export default {
 			},
 			set(show) {
 				const key = `${this.namespace}.show_tool_bar`;
+				const value = show ? 'true' : 'false';
+				store.dispatch('updateUserSettings', { [key]: value });
+			},
+		},
+		showHiddenTabs: {
+			get() {
+				const key = `${this.namespace}.show_hidden_tabs`;
+				const value = this.userSettings[key] === 'true';
+				return value;
+			},
+			set(show) {
+				const key = `${this.namespace}.show_hidden_tabs`;
 				const value = show ? 'true' : 'false';
 				store.dispatch('updateUserSettings', { [key]: value });
 			},

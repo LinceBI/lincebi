@@ -25,6 +25,7 @@
 		"about": "About",
 		"showMenuBar": "Show menu bar",
 		"showToolBar": "Show tool bar",
+		"showHiddenTabs": "Show hidden tabs",
 		"showHiddenFiles": "Show hidden files",
 		"showDescriptionsForTooltips": "Use descriptions for tooltips"
 	},
@@ -65,7 +66,18 @@
 			"label": "Tab URL",
 			"placeholder": "E.g.: \"https://example.com\", \"../api/repos/:public:page.html/content\""
 		},
-		"global": "Global (visible to all users)",
+		"tabGlobal": {
+			"label": "Global",
+			"description": "(Visible to all or some users)"
+		},
+		"tabShowForRoles": {
+			"label": "Visible for the following roles",
+			"description": "(Any if empty)"
+		},
+		"tabShowForUsers": {
+			"label": "Visible for the following users",
+			"description": "(Any if empty)"
+		},
 		"deleteTab": "Delete tab",
 		"tabWillBeDeleted": "The tab \"{name}\" will be deleted.",
 		"delete": "Delete",

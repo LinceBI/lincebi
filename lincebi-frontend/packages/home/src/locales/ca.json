@@ -25,6 +25,7 @@
 		"about": "Sobre",
 		"showMenuBar": "Mostrar barra de menú",
 		"showToolBar": "Mostrar barra d'eines",
+		"showHiddenTabs": "Mostrar pestanyes ocultes",
 		"showHiddenFiles": "Mostrar arxius ocults",
 		"showDescriptionsForTooltips": "Utilitzar descripcions per a els tooltips"
 	},
@@ -65,7 +66,18 @@
 			"label": "URL de pestanya",
 			"placeholder": "P. ex.: \"https://example.com\", \"../api/repos/:public:page.html/content\""
 		},
-		"global": "Global (visible per a tots els usuaris)",
+		"tabGlobal": {
+			"label": "Global",
+			"description": "(Visible per a tots o alguns usuaris)"
+		},
+		"tabShowForRoles": {
+			"label": "Visible per als rols següents",
+			"description": "(Qualsevol si està buit)"
+		},
+		"tabShowForUsers": {
+			"label": "Visible per als usuaris següents",
+			"description": "(Qualsevol si està buit)"
+		},
 		"deleteTab": "Eliminar pestanya",
 		"tabWillBeDeleted": "La pestanya \"{name}\" serà eliminada.",
 		"delete": "Eliminar",

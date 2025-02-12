@@ -25,11 +25,12 @@
 		"about": "정보",
 		"showMenuBar": "메뉴바 표시",
 		"showToolBar": "툴바 표시",
+		"showHiddenTabs": "숨겨진 탭 표시",
 		"showHiddenFiles": "숨김 파일 표시",
 		"showDescriptionsForTooltips": "툴팁에 대한 설명 사용"
 	},
 	"sidebar": {
-		"home": "Home",
+		"home": "홈",
 		"tools": "도구",
 		"opened": "열린",
 		"browser": "브라우저",
@@ -65,7 +66,18 @@
 			"label": "탭 URL",
 			"placeholder": "예: \"https://example.com\", \"../api/repos/:public:page.html/content\""
 		},
-		"global": "전역 (모든 사용자에게 표시)",
+		"tabGlobal": {
+			"label": "전역",
+			"description": "(모두 또는 일부 사용자에게 보임)"
+		},
+		"tabShowForRoles": {
+			"label": "다음 역할에게 표시",
+			"description": "(비어 있으면 모두에게 보임)"
+		},
+		"tabShowForUsers": {
+			"label": "다음 사용자에게 표시",
+			"description": "(비어 있으면 모두에게 보임)"
+		},
 		"deleteTab": "탭 삭제",
 		"tabWillBeDeleted": "탭 \"{name}\" 이 삭제됩니다.",
 		"delete": "삭제",

@@ -17,6 +17,18 @@ export const setUserId = (state, userId) => {
 	state.userId = userId;
 };
 
+export const setAllUsers = (state, allUsers) => {
+	state.allUsers = allUsers;
+};
+
+export const setAllRoles = (state, allRoles) => {
+	state.allRoles = allRoles;
+};
+
+export const setOwnRoles = (state, ownRoles) => {
+	state.ownRoles = ownRoles;
+};
+
 export const setCanCreate = (state, canCreate) => {
 	state.canCreate = canCreate;
 };

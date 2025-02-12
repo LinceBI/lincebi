@@ -10,6 +10,9 @@ import getPerspectives from '@lincebi/frontend-common/src/biserver/getPerspectiv
 import getRepository from '@lincebi/frontend-common/src/biserver/getRepository';
 import getServerInfo from '@lincebi/frontend-common/src/biserver/getServerInfo';
 import getUserId from '@lincebi/frontend-common/src/biserver/getUserId';
+import getAllUsers from '@lincebi/frontend-common/src/biserver/getAllUsers';
+import getAllRoles from '@lincebi/frontend-common/src/biserver/getAllRoles';
+import getOwnRoles from '@lincebi/frontend-common/src/biserver/getOwnRoles';
 import getUserSettings from '@lincebi/frontend-common/src/biserver/getUserSettings';
 import setFile from '@lincebi/frontend-common/src/biserver/setFile';
 import setGlobalUserSettings from '@lincebi/frontend-common/src/biserver/setGlobalUserSettings';
@@ -32,6 +35,21 @@ export const fetchAuthenticationProvider = async ({ commit }) => {
 export const fetchUserId = async ({ commit }) => {
 	const userId = await getUserId();
 	commit('setUserId', userId);
+};
+
+export const fetchAllUsers = async ({ commit }) => {
+	const allUsers = await getAllUsers();
+	commit('setAllUsers', allUsers);
+};
+
+export const fetchAllRoles = async ({ commit }) => {
+	const allRoles = await getAllRoles();
+	commit('setAllRoles', allRoles);
+};
+
+export const fetchOwnRoles = async ({ commit }) => {
+	const ownRoles = await getOwnRoles();
+	commit('setOwnRoles', ownRoles);
 };
 
 export const fetchCanCreate = async ({ commit }) => {

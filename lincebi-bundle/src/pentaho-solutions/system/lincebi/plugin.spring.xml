@@ -20,6 +20,8 @@
 
 	<bean class="com.stratebi.lincebi.serverinfo.controller.ServerInfoController" />
 
+	<bean class="com.stratebi.lincebi.permissions.controller.PermissionsController" />
+
 	<bean class="com.stratebi.lincebi.filemetadata.controller.FileMetadataController" />
 	<bean class="com.stratebi.lincebi.globalusersettings.controller.GlobalUserSettingsController" />
 

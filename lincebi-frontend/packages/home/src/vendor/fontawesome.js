@@ -22,6 +22,7 @@ import { faBoxArchive } from '@fortawesome/free-solid-svg-icons/faBoxArchive';
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons/faBriefcase';
 import { faBullhorn } from '@fortawesome/free-solid-svg-icons/faBullhorn';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons/faCalendar';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons/faCartShopping';
 import { faChartLine } from '@fortawesome/free-solid-svg-icons/faChartLine';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
@@ -127,6 +128,7 @@ library.add(
 	faBriefcase,
 	faBullhorn,
 	faCalendar,
+	faCaretDown,
 	faCartShopping,
 	faChartLine,
 	faChevronLeft,

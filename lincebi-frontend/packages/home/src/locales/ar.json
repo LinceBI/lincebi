@@ -25,6 +25,7 @@
 		"about": "حول",
 		"showMenuBar": "إظهار شريط القوائم",
 		"showToolBar": "إظهار شريط الأدوات",
+		"showHiddenTabs": "إظهار علامات التبويب المخفية",
 		"showHiddenFiles": "إظهار الملفات المخفية",
 		"showDescriptionsForTooltips": "استخدام أوصاف تلميحات الأدوات"
 	},
@@ -65,7 +66,18 @@
 			"label": "عنوان URL لعلامة التبويب",
 			"placeholder": "مثال: \"https://example.com\", \"../api/repos/:public:page.html/content\""
 		},
-		"global": "عام (مرئي لجميع المستخدمين)",
+		"tabGlobal": {
+			"label": "عام",
+			"description": "(مرئي لكافة المستخدمين أو بعضهم)"
+		},
+		"tabShowForRoles": {
+			"label": "مرئي للأدوار التالية",
+			"description": "(مرئي للجميع إذا كان فارغًا)"
+		},
+		"tabShowForUsers": {
+			"label": "مرئي للمستخدمين التاليين",
+			"description": "(مرئي للجميع إذا كان فارغًا)"
+		},
 		"deleteTab": "حذف علامة التبويب",
 		"tabWillBeDeleted": "سيتم حذف علامة التبويب \"{name}\".",
 		"delete": "حذف",

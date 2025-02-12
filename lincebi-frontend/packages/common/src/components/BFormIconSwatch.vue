@@ -66,6 +66,11 @@ export default {
 			icon: this.value,
 		};
 	},
+	watch: {
+		value(value) {
+			this.icon = value;
+		},
+	},
 	methods: {
 		toString: (icon) => {
 			return icon !== null ? `${icon.prefix}-${icon.iconName}` : null;

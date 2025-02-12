@@ -47,6 +47,11 @@ export default {
 			color: this.value,
 		};
 	},
+	watch: {
+		value(value) {
+			this.color = value;
+		},
+	},
 };
 </script>
 
