@@ -1,6 +1,6 @@
 plugins {
 	id("java")
-	id("com.gradleup.shadow") version "8.3.5"
+	id("com.gradleup.shadow") version "8.3.6"
 }
 
 group = "${project.property("group")}"
@@ -18,7 +18,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.2")
 	implementation("com.fasterxml.jackson.core:jackson-core:2.18.2")
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
-	implementation("com.microsoft.azure:msal4j:1.18.0")
+	implementation("com.microsoft.azure:msal4j:1.19.0")
 	implementation("com.networknt:json-schema-validator:1.5.5")
 	implementation("commons-io:commons-io:2.18.0")
 	implementation("jakarta.ws.rs:jakarta.ws.rs-api:2.1.6")
