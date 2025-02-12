@@ -157,8 +157,8 @@ importers:
         specifier: ~0.1.0
         version: 0.1.0(vue@2.7.16)
       vue-tour:
-        specifier: github:LinceBI/vue-tour#86e5abb
-        version: git+https://git@github.com:LinceBI/vue-tour.git#86e5abb
+        specifier: git+https://github.com/LinceBI/vue-tour.git#86e5abb
+        version: https://codeload.github.com/LinceBI/vue-tour/tar.gz/86e5abb
       vuex:
         specifier: ~3.6.2
         version: 3.6.2(vue@2.7.16)
@@ -2584,8 +2584,8 @@ packages:
   vue-template-compiler@2.7.16:
     resolution: {integrity: sha512-AYbUWAJHLGGQM7+cNTELw+KsOG9nl2CnSv467WobS5Cv9uk3wFcnr1Etsz2sEIHEZvw1U+o9mRlEO6QbZvUPGQ==}
 
-  vue-tour@git+https://git@github.com:LinceBI/vue-tour.git#86e5abb:
-    resolution: {commit: 86e5abb, repo: git@github.com:LinceBI/vue-tour.git, type: git}
+  vue-tour@https://codeload.github.com/LinceBI/vue-tour/tar.gz/86e5abb:
+    resolution: {tarball: https://codeload.github.com/LinceBI/vue-tour/tar.gz/86e5abb}
     version: 2.0.0
 
   vue@2.7.16:
@@ -5543,7 +5543,7 @@ snapshots:
       de-indent: 1.0.2
       he: 1.2.0
 
-  vue-tour@git+https://git@github.com:LinceBI/vue-tour.git#86e5abb:
+  vue-tour@https://codeload.github.com/LinceBI/vue-tour/tar.gz/86e5abb:
     dependencies:
       '@popperjs/core': 2.11.8
       jump.js: 1.0.2

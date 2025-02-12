@@ -32,7 +32,7 @@
 		"vue-i18n": "~8.28.2",
 		"vue-router": "~3.6.5",
 		"vue-router-multi-view": "~0.1.0",
-		"vue-tour": "github:LinceBI/vue-tour#86e5abb",
+		"vue-tour": "git+https://github.com/LinceBI/vue-tour.git#86e5abb",
 		"vuex": "~3.6.2"
 	},
 	"devDependencies": {
