@@ -118,7 +118,7 @@ public class SupersetService {
 		reqHeader.put("Cookie", Collections.singletonList(csrfToken.getCookie()));
 		reqHeader.put("Content-Type", Collections.singletonList("application/json"));
 		reqHeader.put("Accept", Collections.singletonList("application/json"));
-		reqHeader.put("Referer", config.url);
+		reqHeader.put("Referer", Collections.singletonList(config.url));
 
 		// Request body
 		ObjectNode reqBody = mapper.createObjectNode();
