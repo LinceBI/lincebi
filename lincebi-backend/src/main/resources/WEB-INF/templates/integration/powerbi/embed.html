@@ -111,11 +111,13 @@
 						tokenType: models.TokenType.Embed,
 						permissions: models.Permissions.Read,
 						viewMode: models.ViewMode.View,
-						pageName: reportPageName ? reportPageName : undefined,
+						pageName: reportPageName ?? undefined,
 						settings: { layoutType: models.LayoutType.Master },
 					});
 				} catch (error) {
+					console.error(error);
 					alert(error.message);
+					return;
 				}
 			} else if (embedConfig.dashboard) {
 				document.title = embedConfig.dashboard.displayName;
@@ -131,7 +133,9 @@
 						pageView: 'fitToWidth',
 					});
 				} catch (error) {
+					console.error(error);
 					alert(error.message);
+					return;
 				}
 			}
 		})();

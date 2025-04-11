@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
 	<title>Power BI</title>
 	<!-- https://www.jsdelivr.com/package/npm/@azure/msal-browser -->
-	<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@4.2.1/lib/msal-browser.min.js" integrity="sha256-MBf1ZEelh780Wz5YU6e8eRjUq0e32NwJeQAg2sKbhow=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@4.8.0/lib/msal-browser.min.js" integrity="sha256-v9NprukrpkP7+LO//SCxhWSJdde71WAQ9kT490ztFEM=" crossorigin="anonymous"></script>
 	<!-- https://www.jsdelivr.com/package/npm/powerbi-client -->
 	<script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.23.1/dist/powerbi.min.js" integrity="sha256-ryaAqfEHe9zeH09FStfIEcPbW1Qjo4BbkFByDRefEtM=" crossorigin="anonymous"></script>
 	<style>
@@ -236,9 +236,15 @@
 					);
 				}
 			} catch (error) {
-				console.error(error);
-				alert(error.message);
-				return;
+				if (reportId) {
+					const embedUrl = new URL('https://app.powerbi.com/reportEmbed');
+					embedUrl.searchParams.set('reportId', reportId);
+					resourceData = { id: reportId, embedUrl: embedUrl.toString(), name: 'Power BI Report' };
+				} else if (dashboardId) {
+					const embedUrl = new URL('https://app.powerbi.com/dashboardEmbed');
+					embedUrl.searchParams.set('dashboardId', dashboardId);
+					resourceData = { id: dashboardId, embedUrl: embedUrl.toString(), displayName: 'Power BI Dashboard' };
+				}
 			}
 
 			if (reportId) {
