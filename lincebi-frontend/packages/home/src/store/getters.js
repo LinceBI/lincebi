@@ -12,3 +12,15 @@ export const repositoryMap = (state) => {
 	})(state.repository.children);
 	return map;
 };
+
+export const repositoryTags = (_, getters) => {
+	const tags = new Set();
+	for (var [, file] of getters.repositoryMap) {
+		if (Array.isArray(file.properties?.tags)) {
+			for (const tag of file.properties.tags) {
+				tags.add(tag.value);
+			}
+		}
+	}
+	return tags;
+};

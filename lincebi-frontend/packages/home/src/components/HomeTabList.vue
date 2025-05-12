@@ -79,6 +79,12 @@
 						<option v-for="t in tabs.filter((t) => t.type === 'tag' || t.type === 'frame')" :key="getTabKey(t)">
 							{{ getTabDisplayName(t) }}
 						</option>
+						<template v-if="newTab.type === 'tag'">
+							<option>----</option>
+							<option v-for="t in allTags" :key="t">
+								{{ t }}
+							</option>
+						</template>
 					</b-form-datalist>
 				</b-form-group>
 				<b-form-group :label="$t('home.tabColor.label')" label-class="d-flex">
@@ -176,6 +182,7 @@ export default {
 			default: '',
 		},
 	},
+	expose: ['changeTab'],
 	data() {
 		return {
 			// Selected tab index.
@@ -252,6 +259,9 @@ export default {
 		ownRoles() {
 			return store.state.ownRoles;
 		},
+		allTags() {
+			return store.getters.repositoryTags;
+		},
 		showHiddenTabs() {
 			const key = `${this.namespace}.show_hidden_tabs`;
 			const value = this.userSettings[key] === 'true';
@@ -322,7 +332,6 @@ export default {
 			this.sortable.destroy();
 		}
 	},
-	expose: ['changeTab'],
 	methods: {
 		handleNewTabModalOk(event) {
 			event.preventDefault();
