@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@lincebi/frontend",
-	"packageManager": "pnpm@10.3.0+sha512.ee592eda8815a8a293c206bb0917c4bb0ff274c50def7cbc17be05ec641fc2d1b02490ce660061356bd0d126a4d7eb2ec8830e6959fb8a447571c631d5a2442d",
+	"packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39",
 	"type": "module",
 	"scripts": {
 		"dev": "pnpm -r run dev",
@@ -16,7 +16,19 @@
 		"format:prettier": "pnpm -r run format:prettier"
 	},
 	"devDependencies": {
-		"@datadog/datadog-ci": "~2.48.0",
-		"npm-run-all2": "~7.0.2"
+		"@datadog/datadog-ci": "~3.4.0",
+		"npm-run-all2": "~8.0.1"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild"
+		],
+		"ignoredBuiltDependencies": [
+			"@parcel/watcher",
+			"bootstrap-vue",
+			"cpu-features",
+			"protobufjs",
+			"ssh2"
+		]
 	}
 }

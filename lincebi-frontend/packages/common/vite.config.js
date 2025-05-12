@@ -67,7 +67,7 @@ export default defineConfig(() => ({
 			scss: {
 				additionalData: `
 					$common-src-dir: '${srcDir}';
-					@import '@lincebi/frontend-common/src/scss/main';
+					@import '${srcDir}/scss/main';
 				`,
 			},
 		},
