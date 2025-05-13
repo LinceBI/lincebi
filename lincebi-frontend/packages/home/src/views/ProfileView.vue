@@ -115,7 +115,7 @@ export default {
 			router
 				.push({
 					name: 'perspective',
-					params: { perspective: 'browser.perspective' },
+					params: { perspective: 'lincebi.perspective' },
 				})
 				.catch(() => {});
 			eventBus.$emitWhenAvailable('mantle-invoke', (mantleWindow) => {

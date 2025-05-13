@@ -316,7 +316,7 @@ export default {
 			flex-basis: toRem(140);
 
 			@for $i from 0 through 10 {
-				@media (min-width: 672px + (320px * $i)) {
+				@media (min-width: (672px + (320px * $i))) {
 					flex-basis: calc(#{toRem(140 + ($i * 4))});
 				}
 			}

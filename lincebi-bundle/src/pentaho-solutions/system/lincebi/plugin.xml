@@ -5,6 +5,11 @@
 		<static-path url="/lincebi/resources" localFolder="resources" />
 	</static-paths>
 
+	<perspective id="lincebi.perspective" title="${lincebi}" layout-priority="1000"
+		resourcebundle="content/lincebi/resources/messages/messages"
+		content-url="content/lincebi/resources/html/index.html">
+	</perspective>
+
 	<lifecycle-listener class="com.stratebi.lincebi.lifecyclelistener.LifecycleListener" />
 
 </plugin>
