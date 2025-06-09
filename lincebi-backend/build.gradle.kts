@@ -18,8 +18,8 @@ dependencies {
 	implementation("com.fasterxml.jackson.core:jackson-annotations:2.19.0")
 	implementation("com.fasterxml.jackson.core:jackson-core:2.19.0")
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.19.0")
-	implementation("com.microsoft.azure:msal4j:1.20.1")
-	implementation("com.networknt:json-schema-validator:1.5.6")
+	implementation("com.microsoft.azure:msal4j:1.21.0")
+	implementation("com.networknt:json-schema-validator:1.5.7")
 	implementation("commons-io:commons-io:2.19.0")
 	implementation("jakarta.ws.rs:jakarta.ws.rs-api:2.1.6")
 	implementation("jakarta.xml.bind:jakarta.xml.bind-api:2.3.3")
@@ -43,8 +43,8 @@ dependencies {
 	compileOnly("pentaho:pentaho-platform-repository:9.3.0.10-886") { isTransitive = false }
 	compileOnly("pentaho:pentaho-platform-scheduler:9.3.0.10-886") { isTransitive = false }
 
-	testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.2")
-	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.12.2")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.13.1")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.13.1")
 }
 
 tasks.build {

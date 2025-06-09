@@ -16,8 +16,8 @@
 		"format:prettier": "pnpm -r run format:prettier"
 	},
 	"devDependencies": {
-		"@datadog/datadog-ci": "~3.4.0",
-		"npm-run-all2": "~8.0.1"
+		"@datadog/datadog-ci": "~3.7.1",
+		"npm-run-all2": "~8.0.4"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
