@@ -22,5 +22,5 @@ export const repositoryTags = (_, getters) => {
 			}
 		}
 	}
-	return new Set(Array.from(tags).sort());
+	return Array.from(tags).sort();
 };

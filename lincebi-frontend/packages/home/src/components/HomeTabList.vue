@@ -76,12 +76,12 @@
 						@change="fillNewTabForm"
 					/>
 					<b-form-datalist :id="`new-tab-name-datalist-${uniqueId}`">
-						<option v-for="t in tabs.filter((t) => t.type === 'tag' || t.type === 'frame')" :key="getTabKey(t)">
+						<option v-for="t in suggestedTabs" :key="getTabKey(t)">
 							{{ getTabDisplayName(t) }}
 						</option>
-						<template v-if="newTab.type === 'tag'">
+						<template v-if="suggestedTags.length > 0">
 							<option>----</option>
-							<option v-for="t in allTags" :key="t">
+							<option v-for="t in suggestedTags" :key="t">
 								{{ t }}
 							</option>
 						</template>
@@ -261,6 +261,16 @@ export default {
 		},
 		allTags() {
 			return store.getters.repositoryTags;
+		},
+		suggestedTabs() {
+			return this.tabs
+				.filter((tab) => tab.type === 'tag' || tab.type === 'frame')
+				.sort(({name: a}, {name: b}) => a.localeCompare(b));
+		},
+		suggestedTags() {
+			return this.newTab.type == 'tag'
+				? this.allTags.filter((tag) => this.suggestedTabs.every((tab) => !fuzzyEquals(tab.name, tag)))
+				: [];
 		},
 		showHiddenTabs() {
 			const key = `${this.namespace}.show_hidden_tabs`;
