@@ -72,16 +72,16 @@ iniciar sesión.
 ![](./assets/images/xl_login.png){width=512px}
 ![](./assets/images/sm_login.png){width=128px}
 
-######
+----------------
 
 ## /Home
 
 ### Pestañas
 
 Esta es la vista inicial de LinceBI, en ella se presenta una navegación por pestañas que muestran
-los archivos que el administrador y el usuario han elegido.
+los archivos que el administrador y el usuario han elegido o una página web.
 
-Por defecto, las dos únicas pestañas que aparecen son "Global" e "Inicio", en la primera es el
+Por defecto, las dos únicas pestañas que aparecen son "Inicio" y "Favoritos", en la primera es el
 administrador quien elige los archivos que se muestran a todos los usuarios y en la segunda es el
 usuario quien elige los archivos que exclusivamente desea ver.
 
@@ -91,7 +91,7 @@ que se muestren en el orden que desee.
 ![](./assets/images/xl_home.png){width=512px}
 ![](./assets/images/sm_home.png){width=128px}
 
-######
+----------------
 
 El resto de pestañas de ejemplo que se ven en la imagen muestran los archivos del repositorio que
 contienen una etiqueta con el mismo nombre que la pestaña. Estas etiquetas son definidas en el
@@ -106,7 +106,18 @@ color e icono.
 ![](./assets/images/xl_home_tab_new.png){width=512px}
 ![](./assets/images/sm_home_tab_new.png){width=128px}
 
-######
+----------------
+
+Las pestañas también pueden contener una URL arbitraria, mostrando el contenido en un iframe.
+El contenido puede ser una web externa o estar alojado dentro de repositorio de archivos.
+
+![](./assets/images/xl_home_tab_new_web.png){width=512px}
+![](./assets/images/sm_home_tab_new_web.png){width=128px}
+
+![](./assets/images/xl_home_tab_web.png){width=512px}
+![](./assets/images/sm_home_tab_web.png){width=128px}
+
+----------------
 
 ### Buscador
 
@@ -124,7 +135,63 @@ idioma).
 ![](./assets/images/xl_stsearch_edit.png){width=512px}
 ![](./assets/images/sm_stsearch_edit.png){width=128px}
 
-######
+Adicionalmente se puede modificar la configuración por defecto del buscador mediante un archivo de
+configuración en la instalación o mediante parámetros en la URL
+(`/lincebi/content/stsearch/resources/html/index.html?PARAM1=VALUE1&PARAM2=VALUE2&...`)
+
+El archivo de configuración agrupa propiedades, siendo el grupo por defecto `default`, el resto de
+grupos de propiedades pueden aplicarse mediante el parámetro `preset` en la URL del buscador.
+El archivo se encuentra en la ruta:
+
+`./pentaho-solutions/system/stsearch/resources/html/presets.json`
+
+Los parámetros admitidos son los siguientes:
+
+ * **enable-banner**: mostrar banner, por defecto `false`.
+ * **enable-filters**: mostrar filtros, por defecto `true`.
+ * **enable-search-filter**: mostrar filtro de búsqueda, por defecto `true`.
+ * **enable-date-filter**: mostrar filtro de fecha, por defecto `true`.
+ * **enable-folders**: mostrar directorios, por defecto `true`.
+ * **enable-file-tags**: mostrar etiquetas de archivo, por defecto `true`.
+ * **enable-file-form**: mostrar botón de edición de metadatos, por defecto `true`.
+ * **enable-file-home**: mostrar botón de añadir a inicio, por defecto `true`.
+ * **enable-file-favorite**: mostrar botón de añadir a favoritos, por defecto `true`.
+ * **enable-file-open**: mostrar botón de abrir archivo, por defecto `true`.
+ * **enable-file-edit**: mostrar botón de edición de archivo, por defecto `true`.
+ * **banner-src**: URL de imagen de banner, por defecto `../images/stsearch_128h.png`.
+ * **banner-title**: título de imagen de banner, por defecto `STSearch`.
+ * **banner-background**: fondo de banner, por defecto `transparent`.
+ * **search-in-title**: buscar en títulos, por defecto `true`.
+ * **search-in-description**: buscar en descripción, por defecto `true`.
+ * **search-in-tags**: buscar en etiquetas, por defecto `true`.
+ * **search-terms**: valor de términos de búsqueda, por defecto vacío.
+ * **filter-home**: filtrar por archivos en inicio, por defecto `false`.
+ * **filter-favorites**: filtrar por archivos en favoritos, por defecto `false`.
+ * **filter-recents**: filtrar por archivos recientes, por defecto `false`.
+ * **date-min**: valor de filtro de fecha mínima, por defecto vacío.
+ * **date-max**: valor de filtro de fecha máxima, por defecto vacío.
+ * **date-property**: propiedad de fecha, por defecto `created`.
+ * **max-tags**: número máximo de etiquetas por archivo, por defecto `30`.
+ * **page-places**: número de páginas a mostrar, por defecto `5`.
+ * **page-size**: número de archivos por página, por defecto `24`.
+ * **chroot**: no permitir explorar archivos fuera del directorio inicial, por defecto `false`.
+ * **recursive**: mostrar archivos de forma recursiva, por defecto `true`.
+ * **default-folder-path**: directorio inicial, por defecto vacío.
+
+----------------
+
+Es posible embeber el buscador en una pestaña con una configuración específica, para ello se debe
+definir la URL de la siguiente forma:
+
+`../content/stsearch/resources/html/index.html`
+
+![](./assets/images/xl_home_tab_new_search.png){width=512px}
+![](./assets/images/sm_home_tab_new_search.png){width=128px}
+
+![](./assets/images/xl_home_tab_search.png){width=512px}
+![](./assets/images/sm_home_tab_search.png){width=128px}
+
+----------------
 
 ### Perfil
 
@@ -141,7 +208,7 @@ Estos datos podrán ser utilizados posteriormente en otras vistas o plugins de L
 ![](./assets/images/xl_profile.png){width=512px}
 ![](./assets/images/sm_profile.png){width=128px}
 
-######
+----------------
 
 ### Administración
 
@@ -154,7 +221,7 @@ servidor.
 ![](./assets/images/xl_administration.png){width=512px}
 ![](./assets/images/sm_administration.png){width=128px}
 
-######
+----------------
 
 ### Perspectivas estándar
 
