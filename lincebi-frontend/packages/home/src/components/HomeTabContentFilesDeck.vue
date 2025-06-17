@@ -187,7 +187,7 @@ export default {
 				.catch(() => {});
 			eventBus.$emitWhenAvailable('mantle-perspective-invoke', 'search.perspective', async (perspectiveWindow) => {
 				const STSearch = await waitFor(() => perspectiveWindow.STSearch);
-				await STSearch.applyConfig({ 'form-file-path': file.path }, true);
+				await STSearch.resetConfig().applyConfig({ 'form-file-path': file.path }, true);
 			});
 		},
 		async onFileDownloadClick(file) {
