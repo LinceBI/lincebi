@@ -3,7 +3,7 @@ val gtagId = project.property("gtagId")
 val datadogSite = project.property("datadogSite")
 val datadogApiKey = project.property("datadogApiKey")
 val datadogClientToken = project.property("datadogClientToken")
-val datadogMinifiedPathPrefix = project.property("datadogMinifiedPathPrefix")
+val datadogMinifiedPathPrefix = project.property("datadogMinifiedPathPrefix") ?: "/lincebi/"
 
 tasks.register<Sync>("build") {
 	if (!File("${projectDir}/packages/login/dist/").exists() ||

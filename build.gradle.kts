@@ -1,5 +1,5 @@
 plugins {
-	id("com.netflix.nebula.dependency-lock") version "15.2.0"
+	id("com.netflix.nebula.dependency-lock") version "16.0.1"
 }
 
 subprojects {
