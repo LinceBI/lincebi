@@ -28,6 +28,23 @@
 				<div class="card-toolbar">
 					<div class="btn-group btn-group-sm">
 						<div
+							v-if="canAdminister"
+							class="btn btn-dark"
+							tabindex="0"
+							@click.stop="onFileHomeClick(file)"
+							@keyup.enter.stop="onFileHomeClick(file)"
+						>
+							<font-awesome-icon :icon="['fac', file.isHome ? 'home-solid' : 'home-outline']" />
+						</div>
+						<div
+							class="btn btn-dark"
+							tabindex="0"
+							@click.stop="onFileFavoriteClick(file)"
+							@keyup.enter.stop="onFileFavoriteClick(file)"
+						>
+							<font-awesome-icon :icon="[file.isFavorite ? 'fas' : 'far', 'heart']" />
+						</div>
+						<div
 							v-if="!file.isReadonly"
 							class="btn btn-dark"
 							tabindex="0"
@@ -116,6 +133,9 @@ export default {
 		};
 	},
 	computed: {
+		canAdminister() {
+			return store.state.canAdminister;
+		},
 		downloadableExtensions() {
 			return store.state.downloadableExtensions;
 		},
@@ -179,6 +199,7 @@ export default {
 			}
 		},
 		onFileMetadataEditClick(file) {
+			const href = window.location.href;
 			router
 				.push({
 					name: 'perspective',
@@ -187,7 +208,19 @@ export default {
 				.catch(() => {});
 			eventBus.$emitWhenAvailable('mantle-perspective-invoke', 'search.perspective', async (perspectiveWindow) => {
 				const STSearch = await waitFor(() => perspectiveWindow.STSearch);
-				await STSearch.resetConfig().applyConfig({ 'form-file-path': file.path }, true);
+				await STSearch.applyConfig({ 'form-file-path': file.path, 'form-return-href': href }, true);
+			});
+		},
+		onFileHomeClick(file) {
+			store.dispatch('updateRepositoryFile', {
+				path: file.path,
+				isHome: !file.isHome,
+			});
+		},
+		onFileFavoriteClick(file) {
+			store.dispatch('updateRepositoryFile', {
+				path: file.path,
+				isFavorite: !file.isFavorite,
 			});
 		},
 		async onFileDownloadClick(file) {

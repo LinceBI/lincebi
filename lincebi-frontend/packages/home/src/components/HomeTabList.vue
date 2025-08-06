@@ -265,7 +265,7 @@ export default {
 		suggestedTabs() {
 			return this.tabs
 				.filter((tab) => tab.type === 'tag' || tab.type === 'frame')
-				.sort(({name: a}, {name: b}) => a.localeCompare(b));
+				.sort(({ name: a }, { name: b }) => a.localeCompare(b));
 		},
 		suggestedTags() {
 			return this.newTab.type == 'tag'

@@ -64,9 +64,7 @@ export default {
 				.catch(() => {});
 			eventBus.$emitWhenAvailable('mantle-perspective-invoke', 'search.perspective', async (perspectiveWindow) => {
 				const STSearch = await waitFor(() => perspectiveWindow.STSearch);
-				STSearch.resetConfig().applyConfig({
-					'recursive': true,
-				}).doSearch(this.searchTerms).doFocus();
+				STSearch.resetConfig().applyConfig({ recursive: true }).doSearch(this.searchTerms).doFocus();
 				event.target.reset();
 			});
 		},
