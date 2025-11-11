@@ -1,5 +1,7 @@
 <template>
-	<iframe
+	<iframe-keep-alive
+		v-if="tab?.name && tab?.data?.src"
+		:id="tab?.name"
 		class="home-tab-content-frame"
 		:src="tab?.data?.src"
 		:csp="tab?.data?.csp"
@@ -10,8 +12,13 @@
 </template>
 
 <script>
+import IframeKeepAlive from '@lincebi/frontend-common/src/components/IframeKeepAlive.vue';
+
 export default {
 	name: 'HomeTabContentFrame',
+	components: {
+		IframeKeepAlive,
+	},
 	model: {
 		prop: 'tab',
 		event: 'change',
