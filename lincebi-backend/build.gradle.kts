@@ -30,6 +30,7 @@ dependencies {
 	implementation("org.springframework:spring-web:5.3.39")
 	implementation("org.thymeleaf:thymeleaf:3.1.3.RELEASE")
 
+	compileOnly("javax.servlet:javax.servlet-api:3.0.1") { isTransitive = false }
 	compileOnly("javax.jcr:jcr:2.0") { isTransitive = false }
 	compileOnly("org.apache.jackrabbit:jackrabbit-core:2.21.19") { isTransitive = false }
 	compileOnly("org.apache.jackrabbit:jackrabbit-data:2.21.19") { isTransitive = false }

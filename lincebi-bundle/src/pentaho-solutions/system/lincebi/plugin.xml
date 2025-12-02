@@ -10,6 +10,11 @@
 		content-url="content/lincebi/resources/html/index.html">
 	</perspective>
 
+	<content-generator id="url.generatedContent" type="url">
+		<classname>com.stratebi.lincebi.urlaudit.UrlContentGenerator</classname>
+		<title>URL Audit Content Generator</title>
+	</content-generator>
+
 	<lifecycle-listener class="com.stratebi.lincebi.lifecyclelistener.LifecycleListener" />
 
 </plugin>
