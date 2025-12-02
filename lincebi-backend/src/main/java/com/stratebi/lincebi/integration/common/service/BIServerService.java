@@ -9,6 +9,8 @@ import org.pentaho.platform.security.policy.rolebased.actions.AdministerSecurity
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,6 +24,8 @@ public class BIServerService {
 	private static final String ANONYMOUS_USER = "anonymousUser";
 	private static final String ANONYMOUS_ROLE = "Anonymous";
 
+	private static final char[] HEX_CHARS = "0123456789abcdef".toCharArray();
+
 	public static String getUser() {
 		String user;
 		try {
@@ -32,6 +36,36 @@ public class BIServerService {
 			user = BIServerService.ANONYMOUS_USER;
 		}
 		return user;
+	}
+
+	public static String getSessionId() {
+		String sessionId;
+		try {
+			IPentahoSession session = PentahoSessionHolder.getSession();
+			sessionId = session.getId();
+		} catch (Throwable ex) {
+			BIServerService.LOGGER.error(ex.getMessage());
+			sessionId = "";
+		}
+		return sessionId;
+	}
+
+	public static String getSessionHash() {
+		String sessionHash;
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			byte[] hash = digest.digest(BIServerService.getSessionId().getBytes(StandardCharsets.UTF_8));
+			StringBuilder sb = new StringBuilder(12);
+			for (int i = 0; i < sb.capacity() / 2; i++) {
+				sb.append(HEX_CHARS[(hash[i] >> 4) & 0x0F]);
+				sb.append(HEX_CHARS[hash[i] & 0x0F]);
+			}
+			sessionHash = sb.toString();
+		} catch (Throwable ex) {
+			BIServerService.LOGGER.error(ex.getMessage());
+			sessionHash = "e3b0c44298fc";
+		}
+		return sessionHash;
 	}
 
 	public static List<String> getRoles() {

@@ -27,8 +27,10 @@
 
 	<bean class="com.stratebi.lincebi.integration.powerbi.controller.EmbedController" />
 	<bean class="com.stratebi.lincebi.integration.powerbi.controller.ProController" />
-	
+
 	<bean class="com.stratebi.lincebi.integration.superset.controller.EmbedController" />
+
+	<bean class="com.stratebi.lincebi.integration.proxy.controller.ProxyController" />
 
 	<bean class="com.stratebi.lincebi.push.controller.PushController" />
 </beans>

@@ -1,0 +1,13 @@
+<%- if ENV['WEBAPP_PENTAHO_DIRNAME'] != 'pentaho' -%>
+RewriteCond %{REQUEST_PATH} ^/pentaho/.*
+RewriteRule ^/pentaho/(.*) /<%= ENV['WEBAPP_PENTAHO_DIRNAME'] %>/$1 [R=301,L]
+<%- end -%>
+
+<%- if ENV['WEBAPP_PENTAHO_STYLE_DIRNAME'] != 'pentaho-style' -%>
+RewriteCond %{REQUEST_PATH} ^/pentaho-style/.*
+RewriteRule ^/pentaho-style/(.*) /<%= ENV['WEBAPP_PENTAHO_STYLE_DIRNAME'] %>/$1 [R=301,L]
+<%- end -%>
+
+# Redirect trailing slashes on proxy API to non-trailing slash version
+RewriteCond %{REQUEST_URI} ^(.*)/plugin/lincebi/api/integration/proxy/.+/$
+RewriteRule ^(.*)/$ $1 [R=307,L]
