@@ -1,9 +1,10 @@
 package com.stratebi.lincebi.integration.superset.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stratebi.lincebi.integration.common.service.BIServerService;
 import com.stratebi.lincebi.integration.superset.config.SupersetConfig;
 import com.stratebi.lincebi.integration.superset.model.AccessToken;
 import com.stratebi.lincebi.integration.superset.model.CSRFToken;
@@ -128,10 +129,11 @@ public class SupersetService {
 		jsonResource.put("id", dashboardId);
 		jsonResource.put("type", "dashboard");
 
+		String username = BIServerService.getUser();
 		ObjectNode jsonUser = reqBody.putObject("user");
-		jsonUser.put("username", config.guestUsername);
-		jsonUser.put("first_name", config.guestFirstname);
-		jsonUser.put("last_name", config.guestLastname);
+		jsonUser.put("username", username);
+		jsonUser.put("first_name", username);
+		jsonUser.put("last_name", "embedded");
 
 		reqBody.putArray("rls");
 

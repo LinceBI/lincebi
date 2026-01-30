@@ -17,9 +17,6 @@ public class SupersetConfig {
 	public String provider = "";
 	public String username = "";
 	public String password = "";
-	public String guestUsername = "";
-	public String guestFirstname = "";
-	public String guestLastname = "";
 	public int guestTokenExpSec = 300;
 
 	static {
@@ -49,15 +46,6 @@ public class SupersetConfig {
 
 				String password = env.get("SUPERSET_" + name + "_PASSWORD");
 				if (password != null) config.password = password;
-
-				String guestUsername = env.get("SUPERSET_" + name + "_GUEST_USERNAME");
-				if (guestUsername != null) config.guestUsername = guestUsername;
-
-				String guestFirstname = env.get("SUPERSET_" + name + "_GUEST_FIRSTNAME");
-				if (guestFirstname != null) config.guestFirstname = guestFirstname;
-
-				String guestLastname = env.get("SUPERSET_" + name + "_GUEST_LASTNAME");
-				if (guestLastname != null) config.guestLastname = guestLastname;
 
 				String guestTokenExpSec = env.get("SUPERSET_" + name + "_GUEST_TOKEN_EXP_SEC");
 				if (guestTokenExpSec != null) config.guestTokenExpSec = Integer.parseInt(guestTokenExpSec);
