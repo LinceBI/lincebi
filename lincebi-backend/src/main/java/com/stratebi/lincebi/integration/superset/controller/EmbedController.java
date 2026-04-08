@@ -26,6 +26,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/lincebi/api/integration/superset/embed")
 @Facet(name = "Unsupported")
@@ -56,8 +57,11 @@ public class EmbedController {
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
 
+		String user = BIServerService.getUser();
+		List<String> roles = BIServerService.getRoles();
+
 		GuestToken guestToken;
-		String cacheKey = KeyUtils.getKeyName(dashboardId);
+		String cacheKey = KeyUtils.getKeyName(user, roles, dashboardId);
 
 		if (EmbedController.CACHE.containsKey(cacheKey)) {
 			guestToken = EmbedController.CACHE.get(cacheKey);
@@ -109,8 +113,11 @@ public class EmbedController {
 			return Response.serverError().type(MediaType.TEXT_HTML).build();
 		}
 
+		String user = BIServerService.getUser();
+		List<String> roles = BIServerService.getRoles();
+
 		GuestToken guestToken;
-		String cacheKey = KeyUtils.getKeyName(dashboardId);
+		String cacheKey = KeyUtils.getKeyName(user, roles, dashboardId);
 
 		if (EmbedController.CACHE.containsKey(cacheKey)) {
 			guestToken = EmbedController.CACHE.get(cacheKey);
