@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.networknt.schema.ValidationMessage;
 import com.stratebi.lincebi.filemetadata.cache.FileMetadataCache;
 import com.stratebi.lincebi.filemetadata.model.FileMetadataPath;
+import com.stratebi.lincebi.filemetadata.model.FileMetadataThumbnail;
 import com.stratebi.lincebi.filemetadata.model.FileMetadataTree;
 import com.stratebi.lincebi.filemetadata.schema.FileMetadataPathArraySchema;
 import com.stratebi.lincebi.filemetadata.schema.FileMetadataTreeArraySchema;
@@ -18,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -138,6 +140,42 @@ public class FileMetadataController {
 			}
 
 			return Response.ok(response).build();
+		} catch (Exception ex) {
+			FileMetadataController.LOGGER.error(ex.getMessage());
+		}
+
+		return Response.serverError().build();
+	}
+
+	@GET
+	@Path("/thumbnail")
+	@Produces({ "image/png", "image/jpeg", "image/gif", "image/webp", "image/bmp" })
+	@Facet(name = "Unsupported")
+	public Response getThumbnailController(
+		@QueryParam("path") String path,
+		@QueryParam("v") String version
+	) {
+		try {
+			if (path == null || path.isEmpty()) {
+				return Response.status(Response.Status.BAD_REQUEST).build();
+			}
+
+			FileMetadataService fileMetadataService = new FileMetadataService();
+			FileMetadataThumbnail thumbnail = fileMetadataService.getThumbnail(path);
+			if (thumbnail == null) {
+				return Response.status(Response.Status.NOT_FOUND).build();
+			}
+
+			String cacheControl = version != null && !version.isEmpty()
+				? "private, max-age=31536000, immutable"
+				: "private, max-age=300";
+
+			return Response.ok(thumbnail.getBytes())
+				.type(thumbnail.getMimeType())
+				.header("Cache-Control", cacheControl)
+				.header("X-Content-Type-Options", "nosniff")
+				.header("Content-Disposition", "inline; filename=\"thumbnail\"")
+				.build();
 		} catch (Exception ex) {
 			FileMetadataController.LOGGER.error(ex.getMessage());
 		}

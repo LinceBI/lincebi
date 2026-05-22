@@ -6,6 +6,7 @@ import com.stratebi.lincebi.filemetadata.exception.FileMetadataAdministerExcepti
 import com.stratebi.lincebi.filemetadata.exception.FileMetadataReadException;
 import com.stratebi.lincebi.filemetadata.exception.FileMetadataWriteException;
 import com.stratebi.lincebi.filemetadata.model.FileMetadataPath;
+import com.stratebi.lincebi.filemetadata.model.FileMetadataThumbnail;
 import com.stratebi.lincebi.filemetadata.model.FileMetadataTree;
 import org.pentaho.platform.api.engine.IAuthorizationPolicy;
 import org.pentaho.platform.api.engine.IContentInfo;
@@ -28,15 +29,22 @@ import org.pentaho.platform.web.http.api.resources.services.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -82,6 +90,15 @@ public class FileMetadataService {
 		"thumbnail"
 	));
 
+	// MIME types accepted for the thumbnail data URI
+	private static final Set<String> ALLOWED_THUMBNAIL_MIMES = new HashSet<>(Arrays.asList(
+		"image/png",
+		"image/jpeg",
+		"image/gif",
+		"image/webp",
+		"image/bmp"
+	));
+
 	private final String userName;
 	private final String fullyQualifiedServerUrl;
 	private final IPluginManager pluginManager;
@@ -89,16 +106,14 @@ public class FileMetadataService {
 	private final IAuthorizationPolicy authorizationPolicy;
 	private final FileService fileService;
 
-	private final boolean canRead;
-	private final boolean canWrite;
-	private final boolean canAdminister;
-
-	private final Map<String, Map<String, String>> extensionPerspectivesMap;
-
-	private final boolean showHiddenFiles;
-	private final Set<RepositoryFile> home;
-	private final Set<RepositoryFile> favorites;
-	private final Set<RepositoryFile> recents;
+	private Map<String, Map<String, String>> extensionPerspectivesMap;
+	private Set<RepositoryFile> home;
+	private Set<RepositoryFile> favorites;
+	private Set<RepositoryFile> recents;
+	private Boolean canRead;
+	private Boolean canWrite;
+	private Boolean canAdminister;
+	private Boolean showHiddenFiles;
 
 	public FileMetadataService() {
 		this.userName = PentahoSessionHolder.getSession().getName();
@@ -107,24 +122,13 @@ public class FileMetadataService {
 		this.userSettingService = PentahoSystem.get(IUserSettingService.class, PentahoSessionHolder.getSession());
 		this.authorizationPolicy = PentahoSystem.get(IAuthorizationPolicy.class, PentahoSessionHolder.getSession());
 		this.fileService = new FileService();
-
-		this.canRead = this.authorizationPolicy.isAllowed(RepositoryReadAction.NAME);
-		this.canWrite = this.authorizationPolicy.isAllowed(RepositoryCreateAction.NAME);
-		this.canAdminister = this.authorizationPolicy.isAllowed(AdministerSecurityAction.NAME);
-
-		this.extensionPerspectivesMap = this.getExtensionPerspectivesMap();
-
-		this.showHiddenFiles = this.getBooleanUserSetting(FileMetadataService.SHOW_HIDDEN_FILES_USER_SETTING, false);
-		this.home = this.getFileListUserSetting(FileMetadataService.HOME_USER_SETTING, true);
-		this.favorites = this.getFileListUserSetting(FileMetadataService.FAVORITES_USER_SETTING, false);
-		this.recents = this.getFileListUserSetting(FileMetadataService.RECENTS_USER_SETTING, false);
 	}
 
 	public FileMetadataTree getFileMetadata(FileMetadataPath fileMetadataPath, String locale, String showHidden, int depth) {
 		RepositoryFile repositoryFile = this.fileService.getRepository().getFile(fileMetadataPath.getFullPath());
 		if (repositoryFile == null) return null;
 
-		boolean showHiddenBool = showHidden.equals("auto") ? this.showHiddenFiles : showHidden.equals("true");
+		boolean showHiddenBool = showHidden.equals("auto") ? this.isShowHiddenFiles() : showHidden.equals("true");
 
 		RepositoryRequest repositoryRequest = new RepositoryRequest(repositoryFile.getPath(), showHiddenBool, depth, null);
 		repositoryRequest.setTypes(FILES_TYPE_FILTER.FILES_FOLDERS);
@@ -151,7 +155,7 @@ public class FileMetadataService {
 				break getFileMetadata;
 			}
 
-			if (!this.canRead) {
+			if (!this.canRead()) {
 				throw new FileMetadataReadException(this.userName);
 			}
 
@@ -213,6 +217,17 @@ public class FileMetadataService {
 						}
 					}
 				}
+
+				// Rewrite the thumbnail data URI to a URL pointing to the /thumbnail endpoint
+				String thumbnailUrl = fileMetadataTreeProperties.get("thumbnail");
+				if (thumbnailUrl != null && thumbnailUrl.startsWith("data:")) {
+					if (FileMetadataService.isAllowedThumbnail(thumbnailUrl)) {
+						fileMetadataTreeProperties.put("thumbnail", this.buildThumbnailUrl(repositoryFile, thumbnailUrl));
+					} else {
+						fileMetadataTreeProperties.remove("thumbnail");
+					}
+				}
+
 				fileMetadataTree.setProperties(fileMetadataTreeProperties);
 
 				String title;
@@ -253,7 +268,7 @@ public class FileMetadataService {
 				}
 				fileMetadataTree.setModified(modified);
 
-				Map<String, String> perspectivesMap = this.extensionPerspectivesMap.get(extension);
+				Map<String, String> perspectivesMap = this.getExtensionPerspectivesMap().get(extension);
 
 				String openUrl;
 				if (perspectivesMap != null && perspectivesMap.containsKey(FileMetadataService.RUN_OPERATION_ID)) {
@@ -271,13 +286,13 @@ public class FileMetadataService {
 				}
 				fileMetadataTree.setEditUrl(editUrl);
 
-				boolean isHome = this.home.contains(repositoryFile);
+				boolean isHome = this.getHome().contains(repositoryFile);
 				fileMetadataTree.setIsHome(isHome);
 
-				boolean isFavorite = this.favorites.contains(repositoryFile);
+				boolean isFavorite = this.getFavorites().contains(repositoryFile);
 				fileMetadataTree.setIsFavorite(isFavorite);
 
-				boolean isRecent = this.recents.contains(repositoryFile);
+				boolean isRecent = this.getRecents().contains(repositoryFile);
 				fileMetadataTree.setIsRecent(isRecent);
 
 				boolean isReadonly = !this.canWriteFile(path);
@@ -324,7 +339,7 @@ public class FileMetadataService {
 			}
 
 			if (fileMetadataTree.hasTitle()) {
-				if (!this.canWrite) {
+				if (!this.canWrite()) {
 					throw new FileMetadataWriteException(this.userName);
 				} else if (!this.canWriteFile(path)) {
 					throw new FileMetadataWriteException(this.userName, path, "title");
@@ -332,7 +347,7 @@ public class FileMetadataService {
 			}
 
 			if (fileMetadataTree.hasDescription()) {
-				if (!this.canWrite) {
+				if (!this.canWrite()) {
 					throw new FileMetadataWriteException(this.userName);
 				} else if (!this.canWriteFile(path)) {
 					throw new FileMetadataWriteException(this.userName, path, "description");
@@ -340,14 +355,14 @@ public class FileMetadataService {
 			}
 
 			if (fileMetadataTree.hasProperties()) {
-				if (!this.canWrite) {
+				if (!this.canWrite()) {
 					throw new FileMetadataWriteException(this.userName);
 				} else if (!this.canWriteFile(path)) {
 					throw new FileMetadataWriteException(this.userName, path, "properties");
 				}
 			}
 
-			if (fileMetadataTree.hasIsHome() && !this.canAdminister) {
+			if (fileMetadataTree.hasIsHome() && !this.canAdminister()) {
 				throw new FileMetadataAdministerException(this.userName);
 			}
 
@@ -395,6 +410,7 @@ public class FileMetadataService {
 				for (Map.Entry<String, String> localeProperty : fileMetadataTreeProperties.entrySet()) {
 					String localePropertyKey = localeProperty.getKey();
 					String localePropertyValue = localeProperty.getValue();
+					if ("thumbnail".equals(localePropertyKey) && !FileMetadataService.isAllowedThumbnail(localePropertyValue)) continue;
 					StringKeyStringValueDto keyStringValue = new StringKeyStringValueDto(localePropertyKey, localePropertyValue);
 					if (FileMetadataService.GENERIC_LOCALE_PROPERTIES.contains(localePropertyKey)) {
 						defaultLocaleProperties.add(keyStringValue);
@@ -421,27 +437,9 @@ public class FileMetadataService {
 		return null;
 	}
 
-	public boolean isShowHiddenFiles() {
-		return this.showHiddenFiles;
-	}
+	public Map<String, Map<String, String>> getExtensionPerspectivesMap() {
+		if (this.extensionPerspectivesMap != null) return this.extensionPerspectivesMap;
 
-	private boolean isInForbiddenPaths(String path) {
-		for (Pattern pattern : FileMetadataService.FORBIDDEN_PATHS_PATTERNS) {
-			if (pattern.matcher(path).matches()) return true;
-		}
-
-		return false;
-	}
-
-	private boolean canAccessFile(String path, String permissions) {
-		return this.fileService.doGetCanAccess(path, permissions).equals("true");
-	}
-
-	private boolean canWriteFile(String path) {
-		return this.canAccessFile(path, "1");
-	}
-
-	private Map<String, Map<String, String>> getExtensionPerspectivesMap() {
 		Map<String, Map<String, String>> extensionPerspectivesMap = new HashMap<>();
 
 		for (String contentType : this.pluginManager.getContentTypes()) {
@@ -479,11 +477,139 @@ public class FileMetadataService {
 			extensionPerspectivesMap.put(fileExtension, perspectivesMap);
 		}
 
-		return extensionPerspectivesMap;
+		return this.extensionPerspectivesMap = extensionPerspectivesMap;
 	}
 
-	private String getBaseUrlFromPath(String path) {
+	public Set<RepositoryFile> getHome() {
+		if (this.home != null) return this.home;
+		return this.home = this.getFileListUserSetting(FileMetadataService.HOME_USER_SETTING, true);
+	}
+
+	public Set<RepositoryFile> getFavorites() {
+		if (this.favorites != null) return this.favorites;
+		return this.favorites = this.getFileListUserSetting(FileMetadataService.FAVORITES_USER_SETTING, false);
+	}
+
+	public Set<RepositoryFile> getRecents() {
+		if (this.recents != null) return this.recents;
+		return this.recents = this.getFileListUserSetting(FileMetadataService.RECENTS_USER_SETTING, false);
+	}
+
+	public boolean canRead() {
+		if (this.canRead != null) return this.canRead;
+		return this.canRead = this.authorizationPolicy.isAllowed(RepositoryReadAction.NAME);
+	}
+
+	public boolean canWrite() {
+		if (this.canWrite != null) return this.canWrite;
+		return this.canWrite = this.authorizationPolicy.isAllowed(RepositoryCreateAction.NAME);
+	}
+
+	public boolean canAdminister() {
+		if (this.canAdminister != null) return this.canAdminister;
+		return this.canAdminister = this.authorizationPolicy.isAllowed(AdministerSecurityAction.NAME);
+	}
+
+	public boolean isShowHiddenFiles() {
+		if (this.showHiddenFiles != null) return this.showHiddenFiles;
+		return this.showHiddenFiles = this.getBooleanUserSetting(FileMetadataService.SHOW_HIDDEN_FILES_USER_SETTING, false);
+	}
+
+	public boolean isInForbiddenPaths(String path) {
+		for (Pattern pattern : FileMetadataService.FORBIDDEN_PATHS_PATTERNS) {
+			if (pattern.matcher(path).matches()) return true;
+		}
+
+		return false;
+	}
+
+	public boolean canAccessFile(String path, String permissions) {
+		return this.fileService.doGetCanAccess(path, permissions).equals("true");
+	}
+
+	public boolean canWriteFile(String path) {
+		return this.canAccessFile(path, "1");
+	}
+
+	public String getBaseUrlFromPath(String path) {
 		return this.fullyQualifiedServerUrl + "api/repos/" + RepositoryPathEncoder.encodeRepositoryPath(path) + "/";
+	}
+
+	public FileMetadataThumbnail getThumbnail(String path) {
+		try {
+			RepositoryFile repositoryFile = this.fileService.getRepository().getFile(path);
+			if (repositoryFile == null || repositoryFile.isFolder()) return null;
+
+			String canonicalPath = repositoryFile.getPath();
+			if (this.isInForbiddenPaths(canonicalPath)) return null;
+			if (!this.canRead()) throw new FileMetadataReadException(this.userName);
+			if (!this.canAccessFile(canonicalPath, "0")) return null;
+
+			Map<String, Properties> localePropertiesMap = repositoryFile.getLocalePropertiesMap();
+			if (localePropertiesMap == null) return null;
+
+			Properties defaultLocaleProperties = localePropertiesMap.get(RepositoryFile.DEFAULT_LOCALE);
+			if (defaultLocaleProperties == null) return null;
+
+			String thumbnail = defaultLocaleProperties.getProperty("thumbnail");
+			String mimeType = FileMetadataService.parseThumbnailMime(thumbnail);
+			if (mimeType == null || !FileMetadataService.ALLOWED_THUMBNAIL_MIMES.contains(mimeType)) return null;
+
+			String payload = thumbnail.substring(thumbnail.indexOf(',') + 1);
+			byte[] bytes;
+			try {
+				bytes = Base64.getMimeDecoder().decode(payload);
+			} catch (IllegalArgumentException ex) {
+				return null;
+			}
+
+			return new FileMetadataThumbnail(bytes, mimeType);
+		} catch (Exception ex) {
+			FileMetadataService.LOGGER.error(ex.getMessage());
+		}
+
+		return null;
+	}
+
+	private String buildThumbnailUrl(RepositoryFile repositoryFile, String thumbnailDataUri) {
+		String path = repositoryFile.getPath();
+		String encodedPath;
+		try {
+			encodedPath = URLEncoder.encode(path, StandardCharsets.UTF_8.name());
+		} catch (UnsupportedEncodingException ex) {
+			encodedPath = path;
+		}
+		String version = FileMetadataService.shortHash(thumbnailDataUri);
+		return this.fullyQualifiedServerUrl + "plugin/lincebi/api/file-metadata/thumbnail?path=" + encodedPath + "&v=" + version;
+	}
+
+	private static String parseThumbnailMime(String dataUri) {
+		if (dataUri == null || !dataUri.startsWith("data:")) return null;
+		int comma = dataUri.indexOf(',');
+		if (comma < 0) return null;
+		String header = dataUri.substring("data:".length(), comma);
+		if (!header.endsWith(";base64")) return null;
+		return header.substring(0, header.length() - ";base64".length()).toLowerCase(Locale.ROOT);
+	}
+
+	private static boolean isAllowedThumbnail(String dataUri) {
+		String mime = FileMetadataService.parseThumbnailMime(dataUri);
+		return mime != null && FileMetadataService.ALLOWED_THUMBNAIL_MIMES.contains(mime);
+	}
+
+	private static String shortHash(String input) {
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-1");
+			String sample = input.length() <= 256 ? input : input.substring(0, 256);
+			md.update(sample.getBytes(StandardCharsets.UTF_8));
+			md.update(Integer.toString(input.length()).getBytes(StandardCharsets.UTF_8));
+			byte[] digest = md.digest();
+			StringBuilder sb = new StringBuilder(16);
+			for (int i = 0; i < 8; i++) sb.append(String.format("%02x", digest[i]));
+			return sb.toString();
+		} catch (NoSuchAlgorithmException ex) {
+			return Integer.toHexString(input.hashCode());
+		}
 	}
 
 	private IUserSetting getUserSetting(String settingName, String defaultValue, boolean isGlobal) {
