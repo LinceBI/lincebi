@@ -11,7 +11,6 @@ import com.stratebi.lincebi.filemetadata.schema.FileMetadataTreeArraySchema;
 import com.stratebi.lincebi.filemetadata.service.FileMetadataService;
 import com.stratebi.lincebi.util.KeyUtils;
 import org.codehaus.enunciate.Facet;
-import org.ehcache.Cache;
 import org.pentaho.platform.api.repository2.unified.RepositoryFile;
 import org.pentaho.platform.engine.core.system.PentahoSessionHolder;
 import org.slf4j.Logger;
@@ -35,11 +34,10 @@ public class FileMetadataController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileMetadataController.class);
 
-	private static final Cache<String, String> CACHE = FileMetadataCache.getInstance().cache;
-
 	private static final String DEFAULT_LOCALE_QUERY_PARAM = RepositoryFile.DEFAULT_LOCALE;
 	private static final String DEFAULT_SHOW_HIDDEN_QUERY_PARAM = "auto";
 	private static final String DEFAULT_DEPTH_QUERY_PARAM = "1";
+	private static final String DEFAULT_REFRESH_QUERY_PARAM = "false";
 
 	@POST
 	@Path("/get")
@@ -50,39 +48,42 @@ public class FileMetadataController {
 		@DefaultValue(FileMetadataController.DEFAULT_LOCALE_QUERY_PARAM) @QueryParam("locale") String locale,
 		@DefaultValue(FileMetadataController.DEFAULT_SHOW_HIDDEN_QUERY_PARAM) @QueryParam("showHidden") String showHidden,
 		@DefaultValue(FileMetadataController.DEFAULT_DEPTH_QUERY_PARAM) @QueryParam("depth") int depth,
+		@DefaultValue(FileMetadataController.DEFAULT_REFRESH_QUERY_PARAM) @QueryParam("refresh") boolean refresh,
 		String input
 	) {
 		try {
-			String response;
-
 			String userName = PentahoSessionHolder.getSession().getName();
-			String cacheKey = KeyUtils.getKeyName(userName, locale, showHidden, depth, input);
 
-			if (FileMetadataController.CACHE.containsKey(cacheKey)) {
-				response = FileMetadataController.CACHE.get(cacheKey);
-			} else {
-				ObjectMapper mapper = new ObjectMapper();
+			FileMetadataService fileMetadataService = new FileMetadataService();
+			String effectiveShowHidden = "auto".equals(showHidden) ? String.valueOf(fileMetadataService.isShowHiddenFiles()) : showHidden;
+			String cacheKey = KeyUtils.getKeyName(userName, locale, effectiveShowHidden, depth, input);
 
-				JsonNode jsonInput = mapper.readTree(input);
-				Set<ValidationMessage> errors = FileMetadataPathArraySchema.SCHEMA.validate(jsonInput);
-				if (errors.size() > 0) {
-					FileMetadataController.LOGGER.error("Invalid JSON schema");
-					Response.serverError().build();
+			String response = FileMetadataCache.getInstance().getOrCompute(cacheKey, userName, refresh, () -> {
+				try {
+					ObjectMapper mapper = new ObjectMapper();
+
+					JsonNode jsonInput = mapper.readTree(input);
+					Set<ValidationMessage> errors = FileMetadataPathArraySchema.SCHEMA.validate(jsonInput);
+					if (errors.size() > 0) {
+						FileMetadataController.LOGGER.error("Invalid JSON schema");
+						return null;
+					}
+
+					FileMetadataPath[] fileMetadataPathList = mapper.treeToValue(jsonInput, FileMetadataPath[].class);
+					List<FileMetadataTree> fileMetadataTreeList = new ArrayList<>();
+
+					for (FileMetadataPath fileMetadataPath : fileMetadataPathList) {
+						FileMetadataTree fileMetadataTree = fileMetadataService.getFileMetadata(fileMetadataPath, locale, effectiveShowHidden, depth);
+						if (fileMetadataTree != null) fileMetadataTreeList.add(fileMetadataTree);
+					}
+
+					return mapper.writeValueAsString(fileMetadataTreeList);
+				} catch (Exception ex) {
+					throw new RuntimeException(ex);
 				}
+			});
 
-				FileMetadataService fileMetadataService = new FileMetadataService();
-				FileMetadataPath[] fileMetadataPathList = mapper.treeToValue(jsonInput, FileMetadataPath[].class);
-				List<FileMetadataTree> fileMetadataTreeList = new ArrayList<>();
-
-				for (FileMetadataPath fileMetadataPath : fileMetadataPathList) {
-					FileMetadataTree fileMetadataTree = fileMetadataService.getFileMetadata(fileMetadataPath, locale, showHidden, depth);
-					if (fileMetadataTree != null) fileMetadataTreeList.add(fileMetadataTree);
-				}
-
-				response = mapper.writeValueAsString(fileMetadataTreeList);
-				FileMetadataController.CACHE.put(cacheKey, response);
-			}
-
+			if (response == null) return Response.serverError().build();
 			return Response.ok(response).build();
 		} catch (Exception ex) {
 			FileMetadataController.LOGGER.error(ex.getMessage());
@@ -109,20 +110,32 @@ public class FileMetadataController {
 			Set<ValidationMessage> errors = FileMetadataTreeArraySchema.SCHEMA.validate(jsonInput);
 			if (errors.size() > 0) {
 				FileMetadataController.LOGGER.error("Invalid JSON schema");
-				Response.serverError().build();
+				return Response.serverError().build();
 			}
 
 			FileMetadataService fileMetadataService = new FileMetadataService();
 			FileMetadataTree[] fileMetadataTreeList = mapper.treeToValue(jsonInput, FileMetadataTree[].class);
 			List<FileMetadataPath> fileMetadataPathList = new ArrayList<>();
 
+			boolean needsGlobalClear = false;
 			for (FileMetadataTree fileMetadataTree : fileMetadataTreeList) {
 				FileMetadataPath fileMetadataPath = fileMetadataService.setFileMetadata(fileMetadataTree, locale);
 				if (fileMetadataPath != null) fileMetadataPathList.add(fileMetadataPath);
+				boolean perUserOnly = (fileMetadataTree.hasIsFavorite() || fileMetadataTree.hasIsRecent())
+					&& !fileMetadataTree.hasTitle()
+					&& !fileMetadataTree.hasDescription()
+					&& !fileMetadataTree.hasProperties()
+					&& !fileMetadataTree.hasIsHome();
+				if (!perUserOnly) needsGlobalClear = true;
 			}
 
 			response = mapper.writeValueAsString(fileMetadataPathList);
-			FileMetadataController.CACHE.clear();
+			if (needsGlobalClear) {
+				FileMetadataCache.getInstance().clear();
+			} else {
+				String userName = PentahoSessionHolder.getSession().getName();
+				FileMetadataCache.getInstance().clear(userName);
+			}
 
 			return Response.ok(response).build();
 		} catch (Exception ex) {

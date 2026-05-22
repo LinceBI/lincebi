@@ -153,8 +153,6 @@ public class FileMetadataService {
 
 			if (!this.canRead) {
 				throw new FileMetadataReadException(this.userName);
-			} else if (!this.canReadFile(path)) {
-				throw new FileMetadataReadException(this.userName, path);
 			}
 
 			/* ================
@@ -423,6 +421,10 @@ public class FileMetadataService {
 		return null;
 	}
 
+	public boolean isShowHiddenFiles() {
+		return this.showHiddenFiles;
+	}
+
 	private boolean isInForbiddenPaths(String path) {
 		for (Pattern pattern : FileMetadataService.FORBIDDEN_PATHS_PATTERNS) {
 			if (pattern.matcher(path).matches()) return true;
@@ -433,10 +435,6 @@ public class FileMetadataService {
 
 	private boolean canAccessFile(String path, String permissions) {
 		return this.fileService.doGetCanAccess(path, permissions).equals("true");
-	}
-
-	private boolean canReadFile(String path) {
-		return this.canAccessFile(path, "0");
 	}
 
 	private boolean canWriteFile(String path) {
