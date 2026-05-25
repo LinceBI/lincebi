@@ -29,8 +29,6 @@ import org.pentaho.platform.web.http.api.resources.services.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -221,8 +219,8 @@ public class FileMetadataService {
 				// Rewrite the thumbnail data URI to a URL pointing to the /thumbnail endpoint
 				String thumbnailUrl = fileMetadataTreeProperties.get("thumbnail");
 				if (thumbnailUrl != null && thumbnailUrl.startsWith("data:")) {
-					if (FileMetadataService.isAllowedThumbnail(thumbnailUrl)) {
-						fileMetadataTreeProperties.put("thumbnail", this.buildThumbnailUrl(repositoryFile, thumbnailUrl));
+					if (this.isAllowedThumbnail(thumbnailUrl)) {
+						fileMetadataTreeProperties.put("thumbnail", this.buildThumbnailUrl(path, thumbnailUrl));
 					} else {
 						fileMetadataTreeProperties.remove("thumbnail");
 					}
@@ -410,7 +408,7 @@ public class FileMetadataService {
 				for (Map.Entry<String, String> localeProperty : fileMetadataTreeProperties.entrySet()) {
 					String localePropertyKey = localeProperty.getKey();
 					String localePropertyValue = localeProperty.getValue();
-					if ("thumbnail".equals(localePropertyKey) && !FileMetadataService.isAllowedThumbnail(localePropertyValue)) continue;
+					if ("thumbnail".equals(localePropertyKey) && !this.isAllowedThumbnail(localePropertyValue)) continue;
 					StringKeyStringValueDto keyStringValue = new StringKeyStringValueDto(localePropertyKey, localePropertyValue);
 					if (FileMetadataService.GENERIC_LOCALE_PROPERTIES.contains(localePropertyKey)) {
 						defaultLocaleProperties.add(keyStringValue);
@@ -552,7 +550,7 @@ public class FileMetadataService {
 			if (defaultLocaleProperties == null) return null;
 
 			String thumbnail = defaultLocaleProperties.getProperty("thumbnail");
-			String mimeType = FileMetadataService.parseThumbnailMime(thumbnail);
+			String mimeType = this.parseThumbnailMime(thumbnail);
 			if (mimeType == null || !FileMetadataService.ALLOWED_THUMBNAIL_MIMES.contains(mimeType)) return null;
 
 			String payload = thumbnail.substring(thumbnail.indexOf(',') + 1);
@@ -571,19 +569,25 @@ public class FileMetadataService {
 		return null;
 	}
 
-	private String buildThumbnailUrl(RepositoryFile repositoryFile, String thumbnailDataUri) {
-		String path = repositoryFile.getPath();
-		String encodedPath;
+	private String buildThumbnailUrl(String path, String dataUri) {
+		String encodedPath = RepositoryPathEncoder.encodeURIComponent(path);
+		String version;
 		try {
-			encodedPath = URLEncoder.encode(path, StandardCharsets.UTF_8.name());
-		} catch (UnsupportedEncodingException ex) {
-			encodedPath = path;
+			MessageDigest md = MessageDigest.getInstance("SHA-1");
+			String sample = dataUri.length() <= 256 ? dataUri : dataUri.substring(0, 256);
+			md.update(sample.getBytes(StandardCharsets.UTF_8));
+			md.update(Integer.toString(dataUri.length()).getBytes(StandardCharsets.UTF_8));
+			byte[] digest = md.digest();
+			StringBuilder sb = new StringBuilder(16);
+			for (int i = 0; i < 8; i++) sb.append(String.format("%02x", digest[i]));
+			version = sb.toString();
+		} catch (NoSuchAlgorithmException ex) {
+			version = Integer.toHexString(dataUri.hashCode());
 		}
-		String version = FileMetadataService.shortHash(thumbnailDataUri);
 		return this.fullyQualifiedServerUrl + "plugin/lincebi/api/file-metadata/thumbnail?path=" + encodedPath + "&v=" + version;
 	}
 
-	private static String parseThumbnailMime(String dataUri) {
+	private String parseThumbnailMime(String dataUri) {
 		if (dataUri == null || !dataUri.startsWith("data:")) return null;
 		int comma = dataUri.indexOf(',');
 		if (comma < 0) return null;
@@ -592,24 +596,9 @@ public class FileMetadataService {
 		return header.substring(0, header.length() - ";base64".length()).toLowerCase(Locale.ROOT);
 	}
 
-	private static boolean isAllowedThumbnail(String dataUri) {
-		String mime = FileMetadataService.parseThumbnailMime(dataUri);
+	private boolean isAllowedThumbnail(String dataUri) {
+		String mime = this.parseThumbnailMime(dataUri);
 		return mime != null && FileMetadataService.ALLOWED_THUMBNAIL_MIMES.contains(mime);
-	}
-
-	private static String shortHash(String input) {
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-1");
-			String sample = input.length() <= 256 ? input : input.substring(0, 256);
-			md.update(sample.getBytes(StandardCharsets.UTF_8));
-			md.update(Integer.toString(input.length()).getBytes(StandardCharsets.UTF_8));
-			byte[] digest = md.digest();
-			StringBuilder sb = new StringBuilder(16);
-			for (int i = 0; i < 8; i++) sb.append(String.format("%02x", digest[i]));
-			return sb.toString();
-		} catch (NoSuchAlgorithmException ex) {
-			return Integer.toHexString(input.hashCode());
-		}
 	}
 
 	private IUserSetting getUserSetting(String settingName, String defaultValue, boolean isGlobal) {
