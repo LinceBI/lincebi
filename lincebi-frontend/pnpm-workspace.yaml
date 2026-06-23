@@ -1,2 +1,9 @@
 packages:
-  - 'packages/*'
+  - "packages/*"
+minimumReleaseAge: 10080
+trustPolicy: "no-downgrade"
+strictDepBuilds: true
+allowBuilds:
+  "esbuild": true
+  "bootstrap-vue": false
+  "@parcel/watcher": false

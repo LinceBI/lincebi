@@ -1,14 +1,14 @@
 package com.stratebi.lincebi.filemetadata.schema;
 
-import com.networknt.schema.JsonSchema;
-import com.networknt.schema.JsonSchemaFactory;
-import com.networknt.schema.SpecVersion;
+import com.networknt.schema.Schema;
+import com.networknt.schema.SchemaRegistry;
+import com.networknt.schema.SpecificationVersion;
 
 public class FileMetadataTreeArraySchema {
 
-	private static final JsonSchemaFactory FACTORY = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V7);
+	private static final SchemaRegistry FACTORY = SchemaRegistry.withDefaultDialect(SpecificationVersion.DRAFT_7);
 
-	public static final JsonSchema SCHEMA = FACTORY.getSchema((""
+	public static final Schema SCHEMA = FACTORY.getSchema((""
 		+ "{"
 		+ "  `$id`: `http://lincebi.com/schemas/file-metadata/set.json`,"
 		+ "  `$schema`: `http://json-schema.org/draft-07/schema#`,"

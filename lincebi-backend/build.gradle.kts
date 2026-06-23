@@ -1,6 +1,6 @@
 plugins {
 	id("java")
-	id("com.gradleup.shadow") version "8.3.9"
+	id("com.gradleup.shadow") version "9.4.2"
 }
 
 group = "${project.property("group")}"
@@ -15,20 +15,20 @@ repositories {
 }
 
 dependencies {
-	implementation("com.fasterxml.jackson.core:jackson-annotations:2.19.0")
-	implementation("com.fasterxml.jackson.core:jackson-core:2.19.0")
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.19.0")
-	implementation("com.microsoft.azure:msal4j:1.22.0")
-	implementation("com.networknt:json-schema-validator:1.5.8")
-	implementation("commons-io:commons-io:2.20.0")
+	implementation("com.fasterxml.jackson.core:jackson-annotations:2.22")
+	implementation("com.fasterxml.jackson.core:jackson-core:2.22.0")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.22.0")
+	implementation("com.microsoft.azure:msal4j:1.25.0")
+	implementation("com.networknt:json-schema-validator:2.0.2")
+	implementation("commons-io:commons-io:2.22.0")
 	implementation("jakarta.ws.rs:jakarta.ws.rs-api:2.1.6")
 	implementation("jakarta.xml.bind:jakarta.xml.bind-api:2.3.3")
-	implementation("org.apache.commons:commons-lang3:3.18.0")
+	implementation("org.apache.commons:commons-lang3:3.20.0")
 	implementation("org.codehaus.enunciate:enunciate-core-annotations:1.31")
-	implementation("org.ehcache:ehcache:3.10.8")
-	implementation("org.slf4j:slf4j-reload4j:2.0.17")
+	implementation("org.ehcache:ehcache:3.11.1")
+	implementation("org.slf4j:slf4j-reload4j:2.0.18")
 	implementation("org.springframework:spring-web:5.3.39")
-	implementation("org.thymeleaf:thymeleaf:3.1.3.RELEASE")
+	implementation("org.thymeleaf:thymeleaf:3.1.5.RELEASE")
 
 	compileOnly("javax.servlet:javax.servlet-api:3.0.1") { isTransitive = false }
 	compileOnly("javax.jcr:jcr:2.0") { isTransitive = false }
@@ -44,8 +44,8 @@ dependencies {
 	compileOnly("pentaho:pentaho-platform-repository:9.3.0.10-886") { isTransitive = false }
 	compileOnly("pentaho:pentaho-platform-scheduler:9.3.0.10-886") { isTransitive = false }
 
-	testImplementation("org.junit.jupiter:junit-jupiter-api:5.13.4")
-	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.13.4")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.14.4")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.14.4")
 }
 
 tasks.build {

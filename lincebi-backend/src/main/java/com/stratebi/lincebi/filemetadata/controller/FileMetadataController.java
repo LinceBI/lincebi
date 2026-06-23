@@ -2,7 +2,7 @@ package com.stratebi.lincebi.filemetadata.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.networknt.schema.ValidationMessage;
+import com.networknt.schema.Error;
 import com.stratebi.lincebi.filemetadata.cache.FileMetadataCache;
 import com.stratebi.lincebi.filemetadata.model.FileMetadataPath;
 import com.stratebi.lincebi.filemetadata.model.FileMetadataThumbnail;
@@ -28,7 +28,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Path("/lincebi/api/file-metadata")
 @Facet(name = "Unsupported")
@@ -65,7 +64,7 @@ public class FileMetadataController {
 					ObjectMapper mapper = new ObjectMapper();
 
 					JsonNode jsonInput = mapper.readTree(input);
-					Set<ValidationMessage> errors = FileMetadataPathArraySchema.SCHEMA.validate(jsonInput);
+					List<Error> errors = FileMetadataPathArraySchema.SCHEMA.validate(jsonInput);
 					if (errors.size() > 0) {
 						FileMetadataController.LOGGER.error("Invalid JSON schema");
 						return null;
@@ -109,7 +108,7 @@ public class FileMetadataController {
 			ObjectMapper mapper = new ObjectMapper();
 
 			JsonNode jsonInput = mapper.readTree(input);
-			Set<ValidationMessage> errors = FileMetadataTreeArraySchema.SCHEMA.validate(jsonInput);
+			List<Error> errors = FileMetadataTreeArraySchema.SCHEMA.validate(jsonInput);
 			if (errors.size() > 0) {
 				FileMetadataController.LOGGER.error("Invalid JSON schema");
 				return Response.serverError().build();
