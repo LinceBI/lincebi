@@ -170,6 +170,7 @@ public class EmbedController {
 			Context context = new Context();
 			context.setVariable("embedConfig", mapper.writeValueAsString(embedConfig));
 			context.setVariable("reportPageName", reportPageName);
+			context.setVariable("loadTimeoutMs", config.loadTimeoutMs);
 			response = EmbedController.TEMPLATE_ENGINE.process("embed", context);
 		} catch (Exception ex) {
 			EmbedController.LOGGER.error(ex.getMessage());

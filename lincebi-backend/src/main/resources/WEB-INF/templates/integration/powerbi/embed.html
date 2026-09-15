@@ -1,24 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
 	<title>Power BI</title>
 	<!-- https://www.jsdelivr.com/package/npm/powerbi-client -->
-	<script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.23.10/dist/powerbi.min.js" integrity="sha256-VzkhHHJhveF94i4Q4OWvlW8jWU7ZPGL+SnOGbd6uD5s=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.24.1/dist/powerbi.min.js" integrity="sha256-WNgFGJhWT8Lt09f0Ike2d8Cg/V/Hevo5XRl3f2GnsrY=" crossorigin="anonymous"></script>
 	<style>
+		* {
+			box-sizing: border-box;
+		}
+
 		html, body, iframe {
 			margin: 0;
 			padding: 0;
 			border: 0;
 			height: 100vh;
-			width: 100vw;
-			box-sizing: border-box;
+			width: 100%;
 		}
 
 		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
 			overflow: hidden;
+			font-family: system-ui, sans-serif;
+			color: #333333;
+		}
+
+		button {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 5px;
+			padding: 0.75em;
+			font-weight: 600;
+			color: #ffffff;
+			background-color: #117865;
+			border: 0;
+			border-radius: 5px;
+			cursor: pointer;
+
+			&:hover, &:focus {
+				background-color: #0c695a;
+			}
+
+			&:active {
+				background-color: #0c5c50;
+			}
+
+			&:disabled {
+				cursor: default;
+				opacity: 0.6;
+			}
+
+			> svg {
+				height: 1em;
+				width: 1em;
+				vertical-align: -0.125em;
+				fill: currentColor;
+			}
+		}
+
+		.error-page {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 1em;
+			padding: 2em;
+			max-width: 40em;
+			text-align: center;
+
+			> h1 {
+				margin: 0;
+				font-size: 1.25em;
+			}
+
+			> p {
+				margin: 0;
+				color: #666666;
+			}
 		}
 	</style>
 </head>
@@ -30,113 +95,181 @@
 
 			const embedConfig = JSON.parse(/*[[${embedConfig}]]*/'');
 			const reportPageName = /*[[${reportPageName}]]*/'';
+			const loadTimeoutMs = /*[[${loadTimeoutMs}]]*/60000;
 
-			const { service, factories, models } = window['powerbi-client'];
-			const powerbi = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
-
-			const calculateReportLayout = async (report) => {
-				const { width, height } = window.screen;
-				let layout = models.LayoutType.Master;
-				if (Math.min(width, height) < 768) {
-					const mobileLayout = width > height
-						? models.LayoutType.MobileLandscape
-						: models.LayoutType.MobilePortrait;
-					const page = await report.getActivePage();
-					if (await page.hasLayout(mobileLayout)) {
-						layout = mobileLayout;
-					}
-				}
-				return layout;
+			const withTimeout = (promise, ms, message) => {
+				let timer;
+				const timeout = new Promise((_, reject) => {
+					timer = setTimeout(() => reject(new Error(message)), ms);
+				});
+				return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
 			};
 
-			const changeReportLayout = async (report, layout) => {
-				report.config.settings.layoutType = layout;
-				const bookmark = await report.bookmarksManager.capture();
-				report = await loadReport(report.element, report.config);
-				report.bookmarksManager.applyState(bookmark.state);
-				return report;
+			const showError = (message) => {
+				document.title = 'Error';
+				const container = document.createElement('div');
+				container.className = 'error-page';
+				const heading = document.createElement('h1');
+				heading.textContent = 'Unable to load content';
+				const detail = document.createElement('p');
+				detail.textContent = message;
+				const retry = document.createElement('button');
+				retry.type = 'button';
+				retry.textContent = 'Retry';
+				retry.addEventListener('click', () => window.location.reload());
+				container.append(heading, detail, retry);
+				document.body.replaceChildren(container);
 			};
 
-			const loadReport = (element, config) => new Promise((resolve, reject) => {
-				try {
-					powerbi.reset(element);
-					const report = powerbi.load(element, config);
-					report.on('loaded', () => resolve(report));
-				} catch (error) {
-					reject(error);
+			try {
+				const powerbiLib = window['powerbi-client'];
+				if (!powerbiLib) {
+					throw new Error('powerbi-client SDK failed to load');
 				}
-			});
 
-			const renderReport = (element, config) => new Promise(async (resolve, reject) => {
-				try {
-					let report = await loadReport(element, config);
-					const currentLayout = report.config.settings.layoutType;
-					const calculatedLayout = await calculateReportLayout(report);
-					if (currentLayout !== calculatedLayout) {
-						report = await changeReportLayout(report, calculatedLayout);
-					}
-					report.render();
-					report.on('rendered', () => resolve(report));
-				} catch (error) {
-					reject(error);
-				}
-			});
+				const { service, factories, models } = powerbiLib;
+				const powerbi = new service.Service(
+					factories.hpmFactory,
+					factories.wpmpFactory,
+					factories.routerFactory,
+				);
 
-			const renderDashboard = (element, config) => new Promise((resolve, reject) => {
-				try {
-					powerbi.reset(element);
-					const dashboard = powerbi.embed(element, config);
-					dashboard.on('tileClicked', ({ detail }) => {
-						const navigationData = detail.navigationUrl.match(/\/reports\/([0-9A-fa-f-]+)\/(ReportSection[0-9A-Fa-f]+)/);
-						if (navigationData) {
-							const workspaceId = embedConfig.workspaceId;
-							const [, reportId, reportPageName] = navigationData;
-							window.location.search = new URLSearchParams({ workspaceId, reportId, reportPageName }).toString();
+				const calculateReportLayout = async (report) => {
+					const { width, height } = window.screen;
+					let layout = models.LayoutType.Master;
+					if (Math.min(width, height) < 768) {
+						const mobileLayout = width > height
+							? models.LayoutType.MobileLandscape
+							: models.LayoutType.MobilePortrait;
+						const page = await report.getActivePage();
+						if (await page.hasLayout(mobileLayout)) {
+							layout = mobileLayout;
 						}
-					});
-					dashboard.on('loaded', () => resolve(dashboard));
-				} catch (error) {
-					reject(error);
-				}
-			});
+					}
+					return layout;
+				};
 
-			if (embedConfig.report) {
-				document.title = embedConfig.report.name;
-				try {
-					await renderReport(document.body, {
-						type: 'report',
+				const changeReportLayout = async (report, layout) => {
+					report.config.settings.layoutType = layout;
+					const bookmark = await report.bookmarksManager.capture();
+					report = await loadReport(report.element, report.config);
+					report.bookmarksManager.applyState(bookmark.state);
+					return report;
+				};
+
+				const loadReport = (element, config) => new Promise((resolve, reject) => {
+					try {
+						powerbi.reset(element);
+						const report = powerbi.load(element, config);
+						report.on('loaded', () => resolve(report));
+						report.on('error', (event) => reject(new Error(event.detail?.message || 'Failed to load report')));
+					} catch (error) {
+						reject(error);
+					}
+				});
+
+				const renderReport = (element, config) => new Promise((resolve, reject) => {
+					(async () => {
+						try {
+							let report = await loadReport(element, config);
+							const currentLayout = report.config.settings.layoutType;
+							const calculatedLayout = await calculateReportLayout(report);
+							if (currentLayout !== calculatedLayout) {
+								report = await changeReportLayout(report, calculatedLayout);
+							}
+							report.on('rendered', () => resolve(report));
+							report.on('error', (event) => reject(new Error(event.detail?.message || 'Failed to render report')));
+							report.render();
+						} catch (error) {
+							reject(error);
+						}
+					})();
+				});
+
+				const renderDashboard = (element, config) => new Promise((resolve, reject) => {
+					try {
+						powerbi.reset(element);
+						const dashboard = powerbi.embed(element, config);
+						dashboard.on('tileClicked', ({ detail }) => {
+							const navigationData = detail.navigationUrl?.match(/\/reports\/([0-9A-Fa-f-]+)\/(ReportSection[0-9A-Fa-f]+)/);
+							if (navigationData) {
+								const workspaceId = embedConfig.workspaceId;
+								const [, reportId, reportPageName] = navigationData;
+								window.location.search = new URLSearchParams({ workspaceId, reportId, reportPageName }).toString();
+							}
+						});
+						dashboard.on('loaded', () => resolve(dashboard));
+						dashboard.on('error', (event) => reject(new Error(event.detail?.message || 'Failed to load dashboard')));
+					} catch (error) {
+						reject(error);
+					}
+				});
+
+				let resourceData;
+				let embedType;
+				if (embedConfig.report) {
+					embedType = 'report';
+					resourceData = {
 						id: embedConfig.report.id,
 						embedUrl: embedConfig.report.embedUrl,
-						accessToken: embedConfig.embedToken.token,
-						tokenType: models.TokenType.Embed,
-						permissions: models.Permissions.Read,
-						viewMode: models.ViewMode.View,
-						pageName: reportPageName ?? undefined,
-						settings: { layoutType: models.LayoutType.Master },
-					});
-				} catch (error) {
-					console.error(error);
-					alert(error.message);
-					return;
-				}
-			} else if (embedConfig.dashboard) {
-				document.title = embedConfig.dashboard.displayName;
-				try {
-					await renderDashboard(document.body, {
-						type: 'dashboard',
+						name: embedConfig.report.name,
+					};
+				} else if (embedConfig.dashboard) {
+					embedType = 'dashboard';
+					resourceData = {
 						id: embedConfig.dashboard.id,
 						embedUrl: embedConfig.dashboard.embedUrl,
-						accessToken: embedConfig.embedToken.token,
-						tokenType: models.TokenType.Embed,
-						permissions: models.Permissions.Read,
-						viewMode: models.ViewMode.View,
-						pageView: 'fitToWidth',
-					});
-				} catch (error) {
-					console.error(error);
-					alert(error.message);
-					return;
+						displayName: embedConfig.dashboard.displayName,
+					};
+				} else {
+					throw new Error('Unknown embed type');
 				}
+
+				const accessToken = embedConfig.embedToken.token;
+				const tokenType = models.TokenType.Embed;
+
+				switch (embedType) {
+					case 'report':
+						document.title = `${resourceData.name} - Report`;
+						await withTimeout(
+							renderReport(document.body, {
+								type: 'report',
+								id: resourceData.id,
+								embedUrl: resourceData.embedUrl,
+								permissions: models.Permissions.Read,
+								viewMode: models.ViewMode.View,
+								pageName: reportPageName || undefined,
+								settings: { layoutType: models.LayoutType.Master },
+								accessToken,
+								tokenType,
+							}),
+							loadTimeoutMs,
+							`The report took too long to load (over ${loadTimeoutMs / 1000} seconds). Please try again later.`,
+						);
+						break;
+					case 'dashboard':
+						document.title = `${resourceData.displayName} - Dashboard`;
+						await withTimeout(
+							renderDashboard(document.body, {
+								type: 'dashboard',
+								id: resourceData.id,
+								embedUrl: resourceData.embedUrl,
+								permissions: models.Permissions.Read,
+								viewMode: models.ViewMode.View,
+								pageView: 'fitToWidth',
+								accessToken,
+								tokenType,
+							}),
+							loadTimeoutMs,
+							`The dashboard took too long to load (over ${loadTimeoutMs / 1000} seconds). Please try again later.`,
+						);
+						break;
+					default:
+						throw new Error('Unknown embed type');
+				}
+			} catch (error) {
+				console.error(error);
+				showError(error.message);
 			}
 		})();
 	</script>

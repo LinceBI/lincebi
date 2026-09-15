@@ -29,6 +29,9 @@ public class PowerBIConfig {
 	public String masteruserUsername = "";
 	public String masteruserPassword = "";
 
+	// Milliseconds the browser waits for a report or dashboard to load before showing an error
+	public long loadTimeoutMs = 60 * 1000;
+
 	// DO NOT CHANGE
 	public String authorityUrl = "https://login.microsoftonline.com/";
 	public String scopeUrl = "https://analysis.windows.net/powerbi/api/.default";
@@ -68,6 +71,16 @@ public class PowerBIConfig {
 
 				String scopeUrl = env.get("POWERBI_" + name + "_SCOPE_URL");
 				if (scopeUrl != null) config.scopeUrl = scopeUrl;
+
+				String loadTimeoutMs = env.get("POWERBI_" + name + "_LOAD_TIMEOUT_MS");
+				if (loadTimeoutMs != null) {
+					try {
+						long value = Long.parseLong(loadTimeoutMs.trim());
+						if (value > 0) config.loadTimeoutMs = value;
+					} catch (NumberFormatException ex) {
+						// Keep the default load timeout on an invalid value
+					}
+				}
 
 				PowerBIConfig.put(name.toLowerCase(), config);
 			}

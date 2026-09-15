@@ -35,6 +35,19 @@ public class ProController {
 		@QueryParam("reportPageName") String reportPageName,
 		@QueryParam("dashboardId") String dashboardId
 	) {
+		if (workspaceId == null && reportId == null && dashboardId == null) {
+			String response;
+			try {
+				Context context = new Context();
+				response = ProController.TEMPLATE_ENGINE.process("pro-redirect", context);
+			} catch (Exception ex) {
+				ProController.LOGGER.error(ex.getMessage());
+				return Response.serverError().type(MediaType.TEXT_HTML).build();
+			}
+
+			return Response.ok(response).build();
+		}
+
 		PowerBIConfig config = PowerBIConfig.get(configName);
 		if (config == null) {
 			ProController.LOGGER.error("Invalid config");
@@ -55,6 +68,7 @@ public class ProController {
 			context.setVariable("reportId", reportId);
 			context.setVariable("reportPageName", reportPageName);
 			context.setVariable("dashboardId", dashboardId);
+			context.setVariable("loadTimeoutMs", config.loadTimeoutMs);
 			response = ProController.TEMPLATE_ENGINE.process("pro", context);
 		} catch (Exception ex) {
 			ProController.LOGGER.error(ex.getMessage());

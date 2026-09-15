@@ -18,7 +18,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.core:jackson-annotations:2.22")
 	implementation("com.fasterxml.jackson.core:jackson-core:2.22.0")
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.22.0")
-	implementation("com.microsoft.azure:msal4j:1.25.0")
+	implementation("com.microsoft.azure:msal4j:1.25.1")
 	implementation("com.networknt:json-schema-validator:2.0.2")
 	implementation("commons-io:commons-io:2.22.0")
 	implementation("jakarta.ws.rs:jakarta.ws.rs-api:2.1.6")
