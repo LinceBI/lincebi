@@ -16,38 +16,52 @@ import { faArrowDownShortWide as fasArrowDownShortWide } from '@fortawesome/free
 import { faArrowDownWideShort as fasArrowDownWideShort } from '@fortawesome/free-solid-svg-icons/faArrowDownWideShort';
 import { faArrowRotateLeft as fasArrowRotateLeft } from '@fortawesome/free-solid-svg-icons/faArrowRotateLeft';
 import { faArrowsRotate as fasArrowsRotate } from '@fortawesome/free-solid-svg-icons/faArrowsRotate';
+import { faArrowTrendUp as fasArrowTrendUp } from '@fortawesome/free-solid-svg-icons/faArrowTrendUp';
 import { faAward as fasAward } from '@fortawesome/free-solid-svg-icons/faAward';
 import { faBars as fasBars } from '@fortawesome/free-solid-svg-icons/faBars';
+import { faBolt as fasBolt } from '@fortawesome/free-solid-svg-icons/faBolt';
 import { faBook as fasBook } from '@fortawesome/free-solid-svg-icons/faBook';
 import { faBookmark as fasBookmark } from '@fortawesome/free-solid-svg-icons/faBookmark';
 import { faBoxArchive as fasBoxArchive } from '@fortawesome/free-solid-svg-icons/faBoxArchive';
+import { faBoxesStacked as fasBoxesStacked } from '@fortawesome/free-solid-svg-icons/faBoxesStacked';
 import { faBriefcase as fasBriefcase } from '@fortawesome/free-solid-svg-icons/faBriefcase';
+import { faBuilding as fasBuilding } from '@fortawesome/free-solid-svg-icons/faBuilding';
 import { faBullhorn as fasBullhorn } from '@fortawesome/free-solid-svg-icons/faBullhorn';
+import { faBullseye as fasBullseye } from '@fortawesome/free-solid-svg-icons/faBullseye';
+import { faCalculator as fasCalculator } from '@fortawesome/free-solid-svg-icons/faCalculator';
 import { faCalendar as fasCalendar } from '@fortawesome/free-solid-svg-icons/faCalendar';
 import { faCaretDown as fasCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import { faCartShopping as fasCartShopping } from '@fortawesome/free-solid-svg-icons/faCartShopping';
+import { faChartBar as fasChartBar } from '@fortawesome/free-solid-svg-icons/faChartBar';
 import { faChartLine as fasChartLine } from '@fortawesome/free-solid-svg-icons/faChartLine';
+import { faChartPie as fasChartPie } from '@fortawesome/free-solid-svg-icons/faChartPie';
 import { faChevronLeft as fasChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { faChevronRight as fasChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import { faCircleInfo as fasCircleInfo } from '@fortawesome/free-solid-svg-icons/faCircleInfo';
 import { faCircleQuestion as fasCircleQuestion } from '@fortawesome/free-solid-svg-icons/faCircleQuestion';
+import { faClock as fasClock } from '@fortawesome/free-solid-svg-icons/faClock';
 import { faCoins as fasCoins } from '@fortawesome/free-solid-svg-icons/faCoins';
 import { faCommentsDollar as fasCommentsDollar } from '@fortawesome/free-solid-svg-icons/faCommentsDollar';
 import { faDatabase as fasDatabase } from '@fortawesome/free-solid-svg-icons/faDatabase';
 import { faDiagramProject as fasDiagramProject } from '@fortawesome/free-solid-svg-icons/faDiagramProject';
 import { faDownload as fasDownload } from '@fortawesome/free-solid-svg-icons/faDownload';
 import { faEarthEurope as fasEarthEurope } from '@fortawesome/free-solid-svg-icons/faEarthEurope';
+import { faEnvelope as fasEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import { faFile as fasFile } from '@fortawesome/free-solid-svg-icons/faFile';
 import { faFileArrowDown as fasFileArrowDown } from '@fortawesome/free-solid-svg-icons/faFileArrowDown';
+import { faFileLines as fasFileLines } from '@fortawesome/free-solid-svg-icons/faFileLines';
 import { faFilter as fasFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
+import { faFlag as fasFlag } from '@fortawesome/free-solid-svg-icons/faFlag';
 import { faFlask as fasFlask } from '@fortawesome/free-solid-svg-icons/faFlask';
 import { faFolder as fasFolder } from '@fortawesome/free-solid-svg-icons/faFolder';
 import { faFolderClosed as fasFolderClosed } from '@fortawesome/free-solid-svg-icons/faFolderClosed';
 import { faFolderOpen as fasFolderOpen } from '@fortawesome/free-solid-svg-icons/faFolderOpen';
 import { faGauge as fasGauge } from '@fortawesome/free-solid-svg-icons/faGauge';
 import { faGear as fasGear } from '@fortawesome/free-solid-svg-icons/faGear';
+import { faGlobe as fasGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
 import { faGraduationCap as fasGraduationCap } from '@fortawesome/free-solid-svg-icons/faGraduationCap';
 import { faHandshake as fasHandshake } from '@fortawesome/free-solid-svg-icons/faHandshake';
+import { faHeadset as fasHeadset } from '@fortawesome/free-solid-svg-icons/faHeadset';
 import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faHotel as fasHotel } from '@fortawesome/free-solid-svg-icons/faHotel';
 import { faHourglass as fasHourglass } from '@fortawesome/free-solid-svg-icons/faHourglass';
@@ -55,29 +69,42 @@ import { faHouse as fasHouse } from '@fortawesome/free-solid-svg-icons/faHouse';
 import { faIndustry as fasIndustry } from '@fortawesome/free-solid-svg-icons/faIndustry';
 import { faKey as fasKey } from '@fortawesome/free-solid-svg-icons/faKey';
 import { faLandmark as fasLandmark } from '@fortawesome/free-solid-svg-icons/faLandmark';
+import { faLaptop as fasLaptop } from '@fortawesome/free-solid-svg-icons/faLaptop';
 import { faLayerGroup as fasLayerGroup } from '@fortawesome/free-solid-svg-icons/faLayerGroup';
+import { faLeaf as fasLeaf } from '@fortawesome/free-solid-svg-icons/faLeaf';
 import { faLightbulb as fasLightbulb } from '@fortawesome/free-solid-svg-icons/faLightbulb';
 import { faList as fasList } from '@fortawesome/free-solid-svg-icons/faList';
+import { faListCheck as fasListCheck } from '@fortawesome/free-solid-svg-icons/faListCheck';
 import { faMagnifyingGlass as fasMagnifyingGlass } from '@fortawesome/free-solid-svg-icons/faMagnifyingGlass';
 import { faMapLocation as fasMapLocation } from '@fortawesome/free-solid-svg-icons/faMapLocation';
+import { faMoneyBill as fasMoneyBill } from '@fortawesome/free-solid-svg-icons/faMoneyBill';
 import { faPaperclip as fasPaperclip } from '@fortawesome/free-solid-svg-icons/faPaperclip';
 import { faPencil as fasPencil } from '@fortawesome/free-solid-svg-icons/faPencil';
+import { faPlane as fasPlane } from '@fortawesome/free-solid-svg-icons/faPlane';
 import { faPlus as fasPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faReceipt as fasReceipt } from '@fortawesome/free-solid-svg-icons/faReceipt';
 import { faRightFromBracket as fasRightFromBracket } from '@fortawesome/free-solid-svg-icons/faRightFromBracket';
 import { faRocket as fasRocket } from '@fortawesome/free-solid-svg-icons/faRocket';
 import { faSave as fasSave } from '@fortawesome/free-solid-svg-icons/faSave';
 import { faScaleBalanced as fasScaleBalanced } from '@fortawesome/free-solid-svg-icons/faScaleBalanced';
 import { faScrewdriverWrench as fasScrewdriverWrench } from '@fortawesome/free-solid-svg-icons/faScrewdriverWrench';
+import { faShieldHalved as fasShieldHalved } from '@fortawesome/free-solid-svg-icons/faShieldHalved';
 import { faShop as fasShop } from '@fortawesome/free-solid-svg-icons/faShop';
+import { faSitemap as fasSitemap } from '@fortawesome/free-solid-svg-icons/faSitemap';
 import { faSpinner as fasSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
+import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons/faStar';
 import { faStore as fasStore } from '@fortawesome/free-solid-svg-icons/faStore';
 import { faSuitcaseMedical as fasSuitcaseMedical } from '@fortawesome/free-solid-svg-icons/faSuitcaseMedical';
 import { faTable as fasTable } from '@fortawesome/free-solid-svg-icons/faTable';
+import { faTag as fasTag } from '@fortawesome/free-solid-svg-icons/faTag';
+import { faTriangleExclamation as fasTriangleExclamation } from '@fortawesome/free-solid-svg-icons/faTriangleExclamation';
 import { faTruck as fasTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { faUpDownLeftRight as fasUpDownLeftRight } from '@fortawesome/free-solid-svg-icons/faUpDownLeftRight';
 import { faUpload as fasUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
 import { faUser as fasUser } from '@fortawesome/free-solid-svg-icons/faUser';
 import { faUsers as fasUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
+import { faUserTie as fasUserTie } from '@fortawesome/free-solid-svg-icons/faUserTie';
+import { faWallet as fasWallet } from '@fortawesome/free-solid-svg-icons/faWallet';
 import { faWarehouse as fasWarehouse } from '@fortawesome/free-solid-svg-icons/faWarehouse';
 import { faXmark as fasXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
 
@@ -163,38 +190,52 @@ library.add(
 	fasArrowDownWideShort,
 	fasArrowRotateLeft,
 	fasArrowsRotate,
+	fasArrowTrendUp,
 	fasAward,
 	fasBars,
+	fasBolt,
 	fasBook,
 	fasBookmark,
 	fasBoxArchive,
+	fasBoxesStacked,
 	fasBriefcase,
+	fasBuilding,
 	fasBullhorn,
+	fasBullseye,
+	fasCalculator,
 	fasCalendar,
 	fasCaretDown,
 	fasCartShopping,
+	fasChartBar,
 	fasChartLine,
+	fasChartPie,
 	fasChevronLeft,
 	fasChevronRight,
 	fasCircleInfo,
 	fasCircleQuestion,
+	fasClock,
 	fasCoins,
 	fasCommentsDollar,
 	fasDatabase,
 	fasDiagramProject,
 	fasDownload,
 	fasEarthEurope,
+	fasEnvelope,
 	fasFile,
 	fasFileArrowDown,
+	fasFileLines,
 	fasFilter,
+	fasFlag,
 	fasFlask,
 	fasFolder,
 	fasFolderClosed,
 	fasFolderOpen,
 	fasGauge,
 	fasGear,
+	fasGlobe,
 	fasGraduationCap,
 	fasHandshake,
+	fasHeadset,
 	fasHeart,
 	fasHotel,
 	fasHourglass,
@@ -202,29 +243,42 @@ library.add(
 	fasIndustry,
 	fasKey,
 	fasLandmark,
+	fasLaptop,
 	fasLayerGroup,
+	fasLeaf,
 	fasLightbulb,
 	fasList,
+	fasListCheck,
 	fasMagnifyingGlass,
 	fasMapLocation,
+	fasMoneyBill,
 	fasPaperclip,
 	fasPencil,
+	fasPlane,
 	fasPlus,
+	fasReceipt,
 	fasRightFromBracket,
 	fasRocket,
 	fasSave,
 	fasScaleBalanced,
 	fasScrewdriverWrench,
+	fasShieldHalved,
 	fasShop,
+	fasSitemap,
 	fasSpinner,
+	fasStar,
 	fasStore,
 	fasSuitcaseMedical,
 	fasTable,
+	fasTag,
+	fasTriangleExclamation,
 	fasTruck,
 	fasUpDownLeftRight,
 	fasUpload,
 	fasUser,
 	fasUsers,
+	fasUserTie,
+	fasWallet,
 	fasWarehouse,
 	fasXmark,
 );
