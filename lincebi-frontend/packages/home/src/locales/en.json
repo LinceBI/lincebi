@@ -60,11 +60,12 @@
 		"tabType": {
 			"label": "Tab type",
 			"repositoryFiles": "Repository files (tags)",
-			"webPage": "Web page"
+			"webPage": "Web page or file"
 		},
 		"tabUrl": {
 			"label": "Tab URL",
-			"placeholder": "E.g.: \"https://example.com\", \"../api/repos/:public:page.html/content\""
+			"placeholder": "E.g.: \"https://example.com\", \"../api/repos/:public:page.html/content\"",
+			"selectFile": "Select a repository file"
 		},
 		"tabGlobal": {
 			"label": "Global",

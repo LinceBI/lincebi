@@ -60,11 +60,12 @@
 		"tabType": {
 			"label": "탭 유형",
 			"repositoryFiles": "저장소 파일 (태그)",
-			"webPage": "웹 페이지"
+			"webPage": "웹 페이지 또는 파일"
 		},
 		"tabUrl": {
 			"label": "탭 URL",
-			"placeholder": "예: \"https://example.com\", \"../api/repos/:public:page.html/content\""
+			"placeholder": "예: \"https://example.com\", \"../api/repos/:public:page.html/content\"",
+			"selectFile": "저장소 파일 선택"
 		},
 		"tabGlobal": {
 			"label": "전역",

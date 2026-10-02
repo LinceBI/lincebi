@@ -100,8 +100,6 @@
 <script>
 import Sortable from 'sortablejs';
 
-import { library as faLibrary } from '@fortawesome/fontawesome-svg-core';
-
 import generateSvg from '@lincebi/frontend-common/src/generateSvg';
 import isSmallScreen from '@lincebi/frontend-common/src/isSmallScreen';
 import move from '@lincebi/frontend-common/src/move';
@@ -111,6 +109,7 @@ import getFileResourceUrl from '@lincebi/frontend-common/src/biserver/getFileRes
 import getReportUrl from '@lincebi/frontend-common/src/biserver/getReportUrl';
 
 import eventBus from '@/eventBus';
+import { getFileColorClass, getFileIconName } from '@/fileIcons';
 import router from '@/router';
 import store from '@/store';
 
@@ -156,13 +155,8 @@ export default {
 		}
 	},
 	methods: {
-		getFileIconName(file) {
-			const faDefs = faLibrary.definitions;
-			return faDefs.fac && faDefs.fac[`file-${file.extension}`] ? `file-${file.extension}` : 'file-other';
-		},
-		getFileColorClass(file) {
-			return `text-${this.getFileIconName(file)}`;
-		},
+		getFileIconName,
+		getFileColorClass,
 		getFileThumbnail(file) {
 			return file.properties.thumbnail ? file.properties.thumbnail : generateSvg(file.path, 0);
 		},

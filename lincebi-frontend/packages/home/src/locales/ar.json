@@ -60,11 +60,12 @@
 		"tabType": {
 			"label": "نوع علامة التبويب",
 			"repositoryFiles": "ملفات المستودع (العلامات)",
-			"webPage": "صفحة ويب"
+			"webPage": "صفحة ويب أو ملف"
 		},
 		"tabUrl": {
 			"label": "عنوان URL لعلامة التبويب",
-			"placeholder": "مثال: \"https://example.com\", \"../api/repos/:public:page.html/content\""
+			"placeholder": "مثال: \"https://example.com\", \"../api/repos/:public:page.html/content\"",
+			"selectFile": "اختيار ملف من المستودع"
 		},
 		"tabGlobal": {
 			"label": "عام",

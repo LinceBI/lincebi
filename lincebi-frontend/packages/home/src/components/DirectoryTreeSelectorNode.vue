@@ -1,8 +1,18 @@
 <template>
-	<li class="directory-tree-selector-node" tabindex="0" @keyup.self.enter="expand()" @keyup.self.space="select()">
-		<div class="row d-flex align-items-center p-1" :class="{ selected }">
+	<li
+		class="directory-tree-selector-node"
+		tabindex="0"
+		@keyup.self.enter="directory.isFolder ? expand() : select()"
+		@keyup.self.space="select()"
+	>
+		<div class="node d-flex align-items-center p-1" :class="{ selected }">
 			<font-awesome-icon
-				v-if="children.length > 0"
+				v-if="!directory.isFolder"
+				:class="['fa-fw', getFileColorClass(directory)]"
+				:icon="['fac', getFileIconName(directory)]"
+			/>
+			<font-awesome-icon
+				v-else-if="children.length > 0"
 				class="fa-fw"
 				:icon="['fas', expanded ? 'folder-open' : 'folder-closed']"
 				@click="expand()"
@@ -16,6 +26,7 @@
 				:key="child.path"
 				:directory="child"
 				:select-event-name="selectEventName"
+				:select-files="selectFiles"
 			/>
 		</ul>
 	</li>
@@ -25,6 +36,7 @@
 import uniqueId from 'lodash/uniqueId';
 
 import eventBus from '@/eventBus';
+import { getFileColorClass, getFileIconName } from '@/fileIcons';
 
 export default {
 	name: 'DirectoryTreeSelectorNode',
@@ -41,6 +53,10 @@ export default {
 			type: String,
 			default: `directory-tree-selector-select-${uniqueId()}`,
 		},
+		selectFiles: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -50,16 +66,26 @@ export default {
 	},
 	computed: {
 		children() {
-			return this.directory.children.filter((c) => c.isFolder);
+			return this.directory.children?.filter((c) => c.isFolder || this.selectFiles) ?? [];
 		},
 	},
 	created() {
-		eventBus.$on(this.selectEventName, (directory) => {
-			this.selected = directory.path === this.directory.path;
-		});
+		eventBus.$on(this.selectEventName, this.onSelect);
+	},
+	beforeDestroy() {
+		eventBus.$off(this.selectEventName, this.onSelect);
 	},
 	methods: {
+		getFileIconName,
+		getFileColorClass,
+		onSelect(directory) {
+			this.selected = directory.path === this.directory.path;
+		},
 		select() {
+			if (this.selectFiles && this.directory.isFolder) {
+				this.expand();
+				return;
+			}
 			eventBus.$emit(this.selectEventName, this.directory);
 		},
 		expand() {
@@ -73,7 +99,7 @@ export default {
 .directory-tree-selector-node {
 	list-style-type: none;
 
-	.row {
+	.node {
 		width: 100%;
 		cursor: pointer;
 

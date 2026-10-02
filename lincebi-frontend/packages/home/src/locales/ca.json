@@ -60,11 +60,12 @@
 		"tabType": {
 			"label": "Tipus de pestanya",
 			"repositoryFiles": "Fitxers de repositori (etiquetes)",
-			"webPage": "Pàgina web"
+			"webPage": "Pàgina web o fitxer"
 		},
 		"tabUrl": {
 			"label": "URL de pestanya",
-			"placeholder": "P. ex.: \"https://example.com\", \"../api/repos/:public:page.html/content\""
+			"placeholder": "P. ex.: \"https://example.com\", \"../api/repos/:public:page.html/content\"",
+			"selectFile": "Seleccionar un fitxer del repositori"
 		},
 		"tabGlobal": {
 			"label": "Global",

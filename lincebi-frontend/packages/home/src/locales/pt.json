@@ -60,11 +60,12 @@
 		"tabType": {
 			"label": "Tipo de aba",
 			"repositoryFiles": "Arquivos do repositório (tags)",
-			"webPage": "Página web"
+			"webPage": "Página web ou arquivo"
 		},
 		"tabUrl": {
 			"label": "URL da aba",
-			"placeholder": "Ex.: \"https://example.com\", \"../api/repos/:public:page.html/content\""
+			"placeholder": "Ex.: \"https://example.com\", \"../api/repos/:public:page.html/content\"",
+			"selectFile": "Selecionar um arquivo do repositório"
 		},
 		"tabGlobal": {
 			"label": "Global",

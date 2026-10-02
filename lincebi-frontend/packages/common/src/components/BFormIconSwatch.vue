@@ -122,6 +122,11 @@ export default {
 	.icon {
 		flex-grow: 0;
 		margin: 0;
+
+		[dir='rtl'] & {
+			margin: 0;
+		}
+
 		padding: toRem(6) 0;
 		width: toRem(28);
 		height: toRem(34);

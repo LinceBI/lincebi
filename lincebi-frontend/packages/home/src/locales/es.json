@@ -60,11 +60,12 @@
 		"tabType": {
 			"label": "Tipo de pestaña",
 			"repositoryFiles": "Archivos de repositorio (etiquetas)",
-			"webPage": "Página web"
+			"webPage": "Página web o archivo"
 		},
 		"tabUrl": {
 			"label": "URL de pestaña",
-			"placeholder": "E.g.: \"https://example.com\", \"../api/repos/:public:page.html/content\""
+			"placeholder": "E.g.: \"https://example.com\", \"../api/repos/:public:page.html/content\"",
+			"selectFile": "Seleccionar un archivo del repositorio"
 		},
 		"tabGlobal": {
 			"label": "Global",

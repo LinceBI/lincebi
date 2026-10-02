@@ -40,7 +40,7 @@
 					<button
 						v-else-if="t.type === 'home' && homeTabReplacement && canAdminister"
 						type="button"
-						class="home-tab-close btn"
+						class="home-tab-close home-tab-restore btn"
 						:title="$t('home.restoreHomeTab')"
 						@click="restoreHomeTabModalShow = true"
 						@keyup.enter="restoreHomeTabModalShow = true"
@@ -72,6 +72,7 @@
 			:cancel-title="$t('home.cancel')"
 			centered
 			@ok="handleNewTabModalOk"
+			@hidden="newTabFileTreeShow = false"
 		>
 			<form ref="new-tab-form" @submit.stop.prevent="handleNewTabFormSubmit">
 				<b-form-group :label="$t('home.tabName.label')" label-class="d-flex">
@@ -113,7 +114,33 @@
 					</b-form-select>
 				</b-form-group>
 				<b-form-group v-if="newTab.type === 'frame'" :label="$t('home.tabUrl.label')" label-class="d-flex">
-					<b-form-input v-model="newTab.data.src" type="text" :placeholder="$t('home.tabUrl.placeholder')" required />
+					<b-input-group>
+						<b-form-input
+							v-model="newTab.data.src"
+							type="text"
+							dir="auto"
+							:placeholder="$t('home.tabUrl.placeholder')"
+							required
+						/>
+						<b-input-group-append>
+							<b-button
+								variant="outline-secondary"
+								:pressed.sync="newTabFileTreeShow"
+								:title="$t('home.tabUrl.selectFile')"
+							>
+								<font-awesome-icon :icon="['fas', 'folder-open']" />
+							</b-button>
+						</b-input-group-append>
+					</b-input-group>
+					<directory-tree-selector
+						v-if="newTabFileTreeShow"
+						class="mt-2 p-1 border rounded"
+						:root="repository"
+						:select-event-name="`new-tab-file-select-${uniqueId}`"
+						select-files
+						max-height="250px"
+						@input="selectNewTabFile"
+					/>
 				</b-form-group>
 				<b-form-group :description="$t('home.tabGlobal.description')">
 					<b-form-checkbox v-if="canAdminister" v-model="newTab.isGlobal">
@@ -196,6 +223,8 @@ import BFixedTagInput from '@lincebi/frontend-common/src/components/BFixedTagInp
 import store from '@/store';
 import i18n from '@/i18n';
 
+import DirectoryTreeSelector from '@/components/DirectoryTreeSelector.vue';
+
 const createNewTab = () => ({
 	type: 'tag',
 	name: '',
@@ -215,6 +244,7 @@ export default {
 		BFormColorSwatch,
 		BFormIconSwatch,
 		BFixedTagInput,
+		DirectoryTreeSelector,
 	},
 	model: {
 		prop: 'tab',
@@ -241,6 +271,7 @@ export default {
 			// New tab template.
 			newTab: createNewTab(),
 			newTabReplacesHome: false,
+			newTabFileTreeShow: false,
 			// Variables to control the display of modals.
 			newTabModalShow: false,
 			closeTabModalShow: false,
@@ -307,6 +338,9 @@ export default {
 		},
 		ownRoles() {
 			return store.state.ownRoles;
+		},
+		repository() {
+			return store.state.repository;
 		},
 		allTags() {
 			return store.getters.repositoryTags;
@@ -500,6 +534,12 @@ export default {
 				tab.showForUsers?.some((u) => u === this.userId)
 			);
 		},
+		selectNewTabFile(file) {
+			const index = file.openUrl?.indexOf('api/repos/') ?? -1;
+			if (index > -1) {
+				this.newTab.data.src = `../${file.openUrl.slice(index)}`;
+			}
+		},
 		fillNewTabForm(tabName) {
 			const tab = this.suggestedTabs.find((tab) => this.getTabDisplayName(tab) === tabName);
 			if (tab) {
@@ -620,6 +660,15 @@ export default {
 					right: toRem(5);
 					color: currentColor;
 					z-index: 15;
+
+					[dir='rtl'] & {
+						right: auto;
+						left: toRem(5);
+					}
+
+					[dir='rtl'] &.home-tab-restore {
+						transform: scaleX(-1);
+					}
 				}
 			}
 		}

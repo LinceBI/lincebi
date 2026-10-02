@@ -5,6 +5,7 @@
 			:key="child.path"
 			:directory="child"
 			:select-event-name="selectEventName"
+			:select-files="selectFiles"
 		/>
 	</ul>
 </template>
@@ -40,17 +41,29 @@ export default {
 			type: String,
 			default: `directory-tree-selector-select-${uniqueId()}`,
 		},
+		selectFiles: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	created() {
-		eventBus.$on(this.selectEventName, (directory) => {
+		eventBus.$on(this.selectEventName, this.onSelect);
+	},
+	beforeDestroy() {
+		eventBus.$off(this.selectEventName, this.onSelect);
+	},
+	methods: {
+		onSelect(directory) {
 			this.$emit('input', directory);
-		});
+		},
 	},
 };
 </script>
 
 <style lang="scss" scoped>
 .directory-tree-selector {
+	margin-bottom: 0;
+	padding: 0;
 	overflow: auto;
 }
 </style>
