@@ -29,8 +29,8 @@ public class PowerBIConfig {
 	public String masteruserUsername = "";
 	public String masteruserPassword = "";
 
-	// Milliseconds the browser waits for a report or dashboard to load before showing an error
-	public long loadTimeoutMs = 60 * 1000;
+	// Milliseconds the browser waits for a report or dashboard to load before showing an error (0 disables the timeout)
+	public long loadTimeoutMs = 0;
 
 	// DO NOT CHANGE
 	public String authorityUrl = "https://login.microsoftonline.com/";
@@ -73,18 +73,25 @@ public class PowerBIConfig {
 				if (scopeUrl != null) config.scopeUrl = scopeUrl;
 
 				String loadTimeoutMs = env.get("POWERBI_" + name + "_LOAD_TIMEOUT_MS");
-				if (loadTimeoutMs != null) {
-					try {
-						long value = Long.parseLong(loadTimeoutMs.trim());
-						if (value > 0) config.loadTimeoutMs = value;
-					} catch (NumberFormatException ex) {
-						// Keep the default load timeout on an invalid value
-					}
-				}
+				config.loadTimeoutMs = PowerBIConfig.parseLoadTimeoutMs(loadTimeoutMs, config.loadTimeoutMs);
 
 				PowerBIConfig.put(name.toLowerCase(), config);
 			}
 		}
+	}
+
+	/**
+	 * Returns the load timeout of the given value
+	 */
+	public static long parseLoadTimeoutMs(String value, long fallback) {
+		if (value == null) return fallback;
+		try {
+			long parsed = Long.parseLong(value.trim());
+			if (parsed >= 0 && parsed <= Integer.MAX_VALUE) return parsed;
+		} catch (NumberFormatException ex) {
+			// Keep the fallback load timeout on an invalid value
+		}
+		return fallback;
 	}
 
 	public static PowerBIConfig put(String name, PowerBIConfig value) {

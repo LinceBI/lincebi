@@ -116,6 +116,10 @@
 			"reportPageName": {
 				"label": "Nombre de página del informe (opcional)"
 			},
+			"loadTimeout": {
+				"label": "Tiempo máximo de carga en segundos (opcional)",
+				"description": "Si se deja vacío, se usa el valor predeterminado del servidor. El valor 0 desactiva el tiempo máximo."
+			},
 			"filters": {
 				"label": "Filtros (opcional)"
 			},

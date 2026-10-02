@@ -106,9 +106,10 @@
 			const reportId = /*[[${reportId}]]*/'';
 			const reportPageName = /*[[${reportPageName}]]*/'';
 			const dashboardId = /*[[${dashboardId}]]*/'';
-			const loadTimeoutMs = /*[[${loadTimeoutMs}]]*/60000;
+			const loadTimeoutMs = /*[[${loadTimeoutMs}]]*/0;
 
 			const withTimeout = (promise, ms, message) => {
+				if (ms <= 0) return promise;
 				let timer;
 				const timeout = new Promise((_, reject) => {
 					timer = setTimeout(() => reject(new Error(message)), ms);
@@ -205,7 +206,12 @@
 							const navigationData = detail.navigationUrl?.match(/\/reports\/([0-9A-Fa-f-]+)\/(ReportSection[0-9A-Fa-f]+)/);
 							if (navigationData) {
 								const [, reportId, reportPageName] = navigationData;
-								window.location.search = new URLSearchParams({ workspaceId, reportId, reportPageName }).toString();
+								const params = new URLSearchParams(window.location.search);
+								params.delete('dashboardId');
+								params.set('workspaceId', workspaceId);
+								params.set('reportId', reportId);
+								params.set('reportPageName', reportPageName);
+								window.location.search = params.toString();
 							}
 						});
 						dashboard.on('loaded', () => resolve(dashboard));

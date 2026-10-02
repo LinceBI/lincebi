@@ -33,7 +33,8 @@ public class ProController {
 		@QueryParam("workspaceId") String workspaceId,
 		@QueryParam("reportId") String reportId,
 		@QueryParam("reportPageName") String reportPageName,
-		@QueryParam("dashboardId") String dashboardId
+		@QueryParam("dashboardId") String dashboardId,
+		@QueryParam("loadTimeoutMs") String loadTimeoutMs
 	) {
 		if (workspaceId == null && reportId == null && dashboardId == null) {
 			String response;
@@ -68,7 +69,7 @@ public class ProController {
 			context.setVariable("reportId", reportId);
 			context.setVariable("reportPageName", reportPageName);
 			context.setVariable("dashboardId", dashboardId);
-			context.setVariable("loadTimeoutMs", config.loadTimeoutMs);
+			context.setVariable("loadTimeoutMs", PowerBIConfig.parseLoadTimeoutMs(loadTimeoutMs, config.loadTimeoutMs));
 			response = ProController.TEMPLATE_ENGINE.process("pro", context);
 		} catch (Exception ex) {
 			ProController.LOGGER.error(ex.getMessage());

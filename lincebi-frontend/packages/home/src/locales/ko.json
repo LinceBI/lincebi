@@ -116,6 +116,10 @@
 			"reportPageName": {
 				"label": "보고서 페이지 이름 (선택사항)"
 			},
+			"loadTimeout": {
+				"label": "로드 제한 시간(초) (선택사항)",
+				"description": "비워 두면 서버 기본값이 사용됩니다. 값 0은 제한 시간을 비활성화합니다."
+			},
 			"filters": {
 				"label": "필터 (선택사항)"
 			},

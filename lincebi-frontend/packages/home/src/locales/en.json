@@ -116,6 +116,10 @@
 			"reportPageName": {
 				"label": "Report page name (optional)"
 			},
+			"loadTimeout": {
+				"label": "Load timeout in seconds (optional)",
+				"description": "If the field is empty, the server default applies. The value 0 disables the timeout."
+			},
 			"filters": {
 				"label": "Filters (optional)"
 			},

@@ -40,11 +40,18 @@
 				</b-form-group>
 			</b-row>
 			<b-row>
-				<b-form-group :label="$t('tools.powerbi.mode.label')" class="col-sm-12">
+				<b-form-group :label="$t('tools.powerbi.mode.label')" class="col-sm-6">
 					<b-form-select v-model="mode">
 						<b-form-select-option value="embed">{{ $t('tools.powerbi.mode.customers') }}</b-form-select-option>
 						<b-form-select-option value="pro">{{ $t('tools.powerbi.mode.organization') }}</b-form-select-option>
 					</b-form-select>
+				</b-form-group>
+				<b-form-group
+					:label="$t('tools.powerbi.loadTimeout.label')"
+					:description="$t('tools.powerbi.loadTimeout.description')"
+					class="col-sm-6"
+				>
+					<b-form-input v-model="loadTimeoutSeconds" type="number" min="0" max="2147483" step="1"></b-form-input>
 				</b-form-group>
 			</b-row>
 			<b-row>
@@ -167,6 +174,7 @@ export default {
 			workspaceId: '',
 			reportId: '',
 			reportPageName: '',
+			loadTimeoutSeconds: '',
 			fileLocation: null,
 			fileName: '',
 			pathModalShow: false,
@@ -198,13 +206,17 @@ export default {
 			const file = {
 				path: `${this.fileLocation.path}/${this.fileName}`,
 			};
+			const params = new URLSearchParams({
+				workspaceId: this.workspaceId,
+				reportId: this.reportId,
+				reportPageName: this.reportPageName,
+			});
+			if (this.loadTimeoutSeconds !== '') {
+				params.set('loadTimeoutMs', String(this.loadTimeoutSeconds * 1000));
+			}
 			const content = [
 				'[InternetShortcut]',
-				`URL=plugin/lincebi/api/integration/powerbi/${this.mode}/html?${new URLSearchParams({
-					workspaceId: this.workspaceId,
-					reportId: this.reportId,
-					reportPageName: this.reportPageName,
-				})}`,
+				`URL=plugin/lincebi/api/integration/powerbi/${this.mode}/html?${params}`,
 			].join('\n');
 
 			await store.dispatch('createRepositoryFile', { file, content });
@@ -214,6 +226,7 @@ export default {
 		resetForm() {
 			this.reportId = '';
 			this.reportPageName = '';
+			this.loadTimeoutSeconds = '';
 			this.fileName = '';
 		},
 	},

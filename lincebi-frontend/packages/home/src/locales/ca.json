@@ -116,6 +116,10 @@
 			"reportPageName": {
 				"label": "Nom de pàgina de l'informe (opcional)"
 			},
+			"loadTimeout": {
+				"label": "Temps màxim de càrrega en segons (opcional)",
+				"description": "Si es deixa buit, s'utilitza el valor predeterminat del servidor. El valor 0 desactiva el temps màxim."
+			},
 			"filters": {
 				"label": "Filtres (opcional)"
 			},

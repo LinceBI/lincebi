@@ -115,7 +115,8 @@ public class EmbedController {
 		@QueryParam("workspaceId") String workspaceId,
 		@QueryParam("reportId") String reportId,
 		@QueryParam("reportPageName") String reportPageName,
-		@QueryParam("dashboardId") String dashboardId
+		@QueryParam("dashboardId") String dashboardId,
+		@QueryParam("loadTimeoutMs") String loadTimeoutMs
 	) {
 		PowerBIConfig config = PowerBIConfig.get(configName);
 		if (config == null) {
@@ -170,7 +171,7 @@ public class EmbedController {
 			Context context = new Context();
 			context.setVariable("embedConfig", mapper.writeValueAsString(embedConfig));
 			context.setVariable("reportPageName", reportPageName);
-			context.setVariable("loadTimeoutMs", config.loadTimeoutMs);
+			context.setVariable("loadTimeoutMs", PowerBIConfig.parseLoadTimeoutMs(loadTimeoutMs, config.loadTimeoutMs));
 			response = EmbedController.TEMPLATE_ENGINE.process("embed", context);
 		} catch (Exception ex) {
 			EmbedController.LOGGER.error(ex.getMessage());

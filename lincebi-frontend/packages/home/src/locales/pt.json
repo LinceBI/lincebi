@@ -116,6 +116,10 @@
 			"reportPageName": {
 				"label": "Nome da página do relatório (opcional)"
 			},
+			"loadTimeout": {
+				"label": "Tempo limite de carregamento em segundos (opcional)",
+				"description": "Se ficar vazio, é usado o valor padrão do servidor. O valor 0 desativa o tempo limite."
+			},
 			"filters": {
 				"label": "Filtros (opcional)"
 			},
