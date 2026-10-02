@@ -13,20 +13,20 @@
 					draggable: t.isDraggable && (!t.isGlobal || canAdminister),
 					active: index === tabIndex,
 				}"
-				:style="getTabStyle(t, index)"
+				:style="getTabStyle(resolveTab(t), index)"
 				:data-v-step="`home-tab-${t.type}`"
 			>
 				<div
 					v-if="getTabVisibility(t)"
-					:title="getTabDisplayName(t)"
+					:title="getTabDisplayName(resolveTab(t))"
 					class="nav-link"
 					tabindex="0"
 					@click="tabIndex = index"
 					@keyup.enter="tabIndex = index"
 				>
-					<font-awesome-icon v-if="t.icon" :icon="t.icon" class="fa-fw mr-2" />
+					<font-awesome-icon v-if="resolveTab(t).icon" :icon="resolveTab(t).icon" class="fa-fw mr-2" />
 					<span class="text-truncate">
-						{{ getTabDisplayName(t) }}
+						{{ getTabDisplayName(resolveTab(t)) }}
 					</span>
 					<button
 						v-if="t.isRemovable && (!t.isGlobal || canAdminister)"
@@ -36,6 +36,16 @@
 						@keyup.enter="closeTabModalShow = true"
 					>
 						<font-awesome-icon :icon="['fas', 'xmark']" />
+					</button>
+					<button
+						v-else-if="t.type === 'home' && homeTabReplacement && canAdminister"
+						type="button"
+						class="home-tab-close btn"
+						:title="$t('home.restoreHomeTab')"
+						@click="restoreHomeTabModalShow = true"
+						@keyup.enter="restoreHomeTabModalShow = true"
+					>
+						<font-awesome-icon :icon="['fas', 'arrow-rotate-left']" />
 					</button>
 				</div>
 			</li>
@@ -76,9 +86,12 @@
 						@change="fillNewTabForm"
 					/>
 					<b-form-datalist :id="`new-tab-name-datalist-${uniqueId}`">
-						<option v-for="t in suggestedTabs" :key="getTabKey(t)">
-							{{ getTabDisplayName(t) }}
-						</option>
+						<option
+							v-for="t in suggestedTabs"
+							:key="t.isHomeTabReplacement ? 'home' : getTabKey(t)"
+							:value="getTabDisplayName(t)"
+							:label="getTabSuggestionLabel(t)"
+						></option>
 						<template v-if="suggestedTags.length > 0">
 							<option>----</option>
 							<option v-for="t in suggestedTags" :key="t">
@@ -107,8 +120,13 @@
 						{{ $t('home.tabGlobal.label') }}
 					</b-form-checkbox>
 				</b-form-group>
+				<b-form-group v-if="canAdminister && newTab.isGlobal" :description="$t('home.tabReplaceHome.description')">
+					<b-form-checkbox v-model="newTabReplacesHome">
+						{{ $t('home.tabReplaceHome.label') }}
+					</b-form-checkbox>
+				</b-form-group>
 				<b-form-group
-					v-if="canAdminister && newTab.isGlobal"
+					v-if="canAdminister && newTab.isGlobal && !newTabReplacesHome"
 					:label="$t('home.tabShowForRoles.label')"
 					label-class="d-flex"
 					:description="$t('home.tabShowForUsers.description')"
@@ -116,7 +134,7 @@
 					<b-fixed-tag-input v-model="newTab.showForRoles" text-field="name" value-field="name" :options="allRoles" />
 				</b-form-group>
 				<b-form-group
-					v-if="canAdminister && newTab.isGlobal"
+					v-if="canAdminister && newTab.isGlobal && !newTabReplacesHome"
 					:label="$t('home.tabShowForUsers.label')"
 					label-class="d-flex"
 					:description="$t('home.tabShowForUsers.description')"
@@ -137,6 +155,23 @@
 			@ok="handleCloseTabModalOk"
 		>
 			{{ $t('home.tabWillBeDeleted', { name: tab ? getTabDisplayName(tab) : '' }) }}
+		</b-modal>
+		<!-- Restore Home tab modal -->
+		<b-modal
+			v-model="restoreHomeTabModalShow"
+			:title="$t('home.restoreHomeTab')"
+			ok-variant="primary"
+			:ok-title="$t('home.restore')"
+			cancel-variant="secondary"
+			:cancel-title="$t('home.cancel')"
+			centered
+			@ok="handleRestoreHomeTabModalOk"
+		>
+			{{
+				$t('home.homeTabWillBeRestored', {
+					name: homeTabReplacement ? getTabDisplayName(homeTabReplacement) : '',
+				})
+			}}
 		</b-modal>
 	</div>
 </template>
@@ -160,6 +195,19 @@ import BFixedTagInput from '@lincebi/frontend-common/src/components/BFixedTagInp
 
 import store from '@/store';
 import i18n from '@/i18n';
+
+const createNewTab = () => ({
+	type: 'tag',
+	name: '',
+	color: null,
+	icon: null,
+	isGlobal: false,
+	isRemovable: true,
+	isDraggable: true,
+	showForRoles: [],
+	showForUsers: [],
+	data: { src: '' },
+});
 
 export default {
 	name: 'HomeTabList',
@@ -191,21 +239,12 @@ export default {
 			internalGlobalTabs: [],
 			internalUserTabs: [],
 			// New tab template.
-			newTab: {
-				type: 'tag',
-				name: '',
-				color: null,
-				icon: null,
-				isGlobal: false,
-				isRemovable: true,
-				isDraggable: true,
-				showForRoles: [],
-				showForUsers: [],
-				data: { src: '' },
-			},
+			newTab: createNewTab(),
+			newTabReplacesHome: false,
 			// Variables to control the display of modals.
 			newTabModalShow: false,
 			closeTabModalShow: false,
+			restoreHomeTabModalShow: false,
 			// Sortable.js object.
 			sortable: null,
 		};
@@ -241,6 +280,16 @@ export default {
 				store.dispatch('updateUserSettings', { [k]: v });
 			},
 		},
+		homeTabReplacement: {
+			get() {
+				return store.getters.homeTabReplacement;
+			},
+			set(tab) {
+				const k = `${this.namespace}.homeTabReplacement`;
+				const v = tab ? safeJSON.stringify(tab, '') : '';
+				store.dispatch('updateGlobalUserSettings', { [k]: v });
+			},
+		},
 		userId() {
 			return store.state.userId;
 		},
@@ -263,9 +312,14 @@ export default {
 			return store.getters.repositoryTags;
 		},
 		suggestedTabs() {
-			return this.tabs
+			const tabs = this.tabs
 				.filter((tab) => tab.type === 'tag' || tab.type === 'frame')
+				.filter((tab) => !tab.isGlobal || this.canAdminister)
 				.sort(({ name: a }, { name: b }) => a.localeCompare(b));
+			if (this.canAdminister && this.homeTabReplacement) {
+				tabs.unshift({ ...this.homeTabReplacement, isGlobal: true, isHomeTabReplacement: true });
+			}
+			return tabs;
 		},
 		suggestedTags() {
 			return this.newTab.type == 'tag'
@@ -349,13 +403,21 @@ export default {
 		},
 		handleNewTabFormSubmit() {
 			if (this.$refs['new-tab-form'].reportValidity()) {
-				this.createTab(cloneDeep(this.newTab));
+				if (this.canAdminister && this.newTab.isGlobal && this.newTabReplacesHome) {
+					this.replaceHomeTab(cloneDeep(this.newTab));
+				} else {
+					this.createTab(cloneDeep(this.newTab));
+				}
 				this.newTabModalShow = false;
 				this.newTab.name = '';
+				this.newTabReplacesHome = false;
 			}
 		},
 		handleCloseTabModalOk() {
 			this.removeTab(this.tabIndex);
+		},
+		handleRestoreHomeTabModalOk() {
+			this.homeTabReplacement = null;
 		},
 		createTab(newTab) {
 			let newTabIndex = this.tabs.findIndex((tab) => {
@@ -396,6 +458,18 @@ export default {
 				this.tabIndex = tabIndex;
 			}
 		},
+		resolveTab(tab) {
+			return store.getters.resolveTab(tab);
+		},
+		replaceHomeTab(newTab) {
+			const { type, name, color, icon, data } = newTab;
+			this.homeTabReplacement = { type, name, color, icon, data };
+
+			const homeTabIndex = this.tabs.findIndex((tab) => tab.type === 'home');
+			if (homeTabIndex > -1) {
+				this.tabIndex = homeTabIndex;
+			}
+		},
 		getTabKey(tab) {
 			return `${tab.isGlobal ? 'g' : 'u'}:${tab.name}`;
 		},
@@ -405,6 +479,15 @@ export default {
 				return i18n.t(tab.name.replace(/^t:/, ''));
 			}
 			return tab.name;
+		},
+		getTabSuggestionLabel(tab) {
+			if (tab.isHomeTabReplacement) {
+				return `${this.getTabDisplayName(tab)} (${i18n.t('home.home')})`;
+			}
+			if (tab.isGlobal) {
+				return `${this.getTabDisplayName(tab)} (${i18n.t('home.tabGlobal.label')})`;
+			}
+			return undefined;
 		},
 		getTabStyle(tab, index) {
 			return index === this.tabIndex ? { backgroundColor: tab.color } : { color: tab.color };
@@ -418,9 +501,13 @@ export default {
 			);
 		},
 		fillNewTabForm(tabName) {
-			const tab = this.tabs.find((tab) => tab.name === tabName);
+			const tab = this.suggestedTabs.find((tab) => this.getTabDisplayName(tab) === tabName);
 			if (tab) {
-				this.newTab = cloneDeep(tab);
+				const { isHomeTabReplacement, ...values } = cloneDeep(tab);
+				// Older tabs do not have all the properties of the form.
+				const defaults = createNewTab();
+				this.newTab = { ...defaults, ...values, data: { ...defaults.data, ...values.data } };
+				this.newTabReplacesHome = Boolean(isHomeTabReplacement);
 			}
 		},
 		updateSortable() {

@@ -70,6 +70,10 @@
 			"label": "Global",
 			"description": "(Visível para todos ou alguns usuários)"
 		},
+		"tabReplaceHome": {
+			"label": "Substituir a aba Início",
+			"description": "(Visível para todos os usuários. A aba Início original pode ser restaurada depois)"
+		},
 		"tabShowForRoles": {
 			"label": "Visível para os papéis seguintes",
 			"description": "(Qualquer um se estiver vazio)"
@@ -81,6 +85,9 @@
 		"deleteTab": "Deletar aba",
 		"tabWillBeDeleted": "A aba \"{name}\" será deletada.",
 		"delete": "Deletar",
+		"restoreHomeTab": "Restaurar a aba Início",
+		"homeTabWillBeRestored": "A aba \"{name}\" será substituída pela aba Início original.",
+		"restore": "Restaurar",
 		"create": "Criar",
 		"cancel": "Cancelar",
 		"home": "Início",

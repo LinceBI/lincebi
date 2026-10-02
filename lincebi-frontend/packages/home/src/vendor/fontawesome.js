@@ -14,6 +14,7 @@ import { faAngleDown as fasAngleDown } from '@fortawesome/free-solid-svg-icons/f
 import { faAngleUp as fasAngleUp } from '@fortawesome/free-solid-svg-icons/faAngleUp';
 import { faArrowDownShortWide as fasArrowDownShortWide } from '@fortawesome/free-solid-svg-icons/faArrowDownShortWide';
 import { faArrowDownWideShort as fasArrowDownWideShort } from '@fortawesome/free-solid-svg-icons/faArrowDownWideShort';
+import { faArrowRotateLeft as fasArrowRotateLeft } from '@fortawesome/free-solid-svg-icons/faArrowRotateLeft';
 import { faArrowsRotate as fasArrowsRotate } from '@fortawesome/free-solid-svg-icons/faArrowsRotate';
 import { faAward as fasAward } from '@fortawesome/free-solid-svg-icons/faAward';
 import { faBars as fasBars } from '@fortawesome/free-solid-svg-icons/faBars';
@@ -160,6 +161,7 @@ library.add(
 	fasAngleUp,
 	fasArrowDownShortWide,
 	fasArrowDownWideShort,
+	fasArrowRotateLeft,
 	fasArrowsRotate,
 	fasAward,
 	fasBars,

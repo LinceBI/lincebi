@@ -27,6 +27,10 @@ export const globalUserSettings = {
 			},
 		]),
 	},
+	[`${namespace}.homeTabReplacement`]: {
+		initial: '',
+		default: '',
+	},
 	home: {
 		initial: '[]',
 		default: '[]',

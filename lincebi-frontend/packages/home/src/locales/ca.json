@@ -70,6 +70,10 @@
 			"label": "Global",
 			"description": "(Visible per a tots o alguns usuaris)"
 		},
+		"tabReplaceHome": {
+			"label": "Substituir la pestanya Inici",
+			"description": "(Visible per a tots els usuaris. La pestanya Inici original es pot restaurar més tard)"
+		},
 		"tabShowForRoles": {
 			"label": "Visible per als rols següents",
 			"description": "(Qualsevol si està buit)"
@@ -81,6 +85,9 @@
 		"deleteTab": "Eliminar pestanya",
 		"tabWillBeDeleted": "La pestanya \"{name}\" serà eliminada.",
 		"delete": "Eliminar",
+		"restoreHomeTab": "Restaurar la pestanya Inici",
+		"homeTabWillBeRestored": "La pestanya \"{name}\" serà substituïda per la pestanya Inici original.",
+		"restore": "Restaurar",
 		"create": "Crear",
 		"cancel": "Cancel·lar",
 		"home": "Inici",

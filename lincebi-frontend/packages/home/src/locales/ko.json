@@ -70,6 +70,10 @@
 			"label": "전역",
 			"description": "(모두 또는 일부 사용자에게 보임)"
 		},
+		"tabReplaceHome": {
+			"label": "홈 탭 대체",
+			"description": "(모든 사용자에게 보임. 원래 홈 탭은 나중에 복원할 수 있음)"
+		},
 		"tabShowForRoles": {
 			"label": "다음 역할에게 표시",
 			"description": "(비어 있으면 모두에게 보임)"
@@ -81,6 +85,9 @@
 		"deleteTab": "탭 삭제",
 		"tabWillBeDeleted": "탭 \"{name}\" 이 삭제됩니다.",
 		"delete": "삭제",
+		"restoreHomeTab": "홈 탭 복원",
+		"homeTabWillBeRestored": "탭 \"{name}\" 이 원래 홈 탭으로 대체됩니다.",
+		"restore": "복원",
 		"create": "생성",
 		"cancel": "취소",
 		"home": "홈",

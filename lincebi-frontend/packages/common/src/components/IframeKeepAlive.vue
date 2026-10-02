@@ -29,6 +29,9 @@ export default {
 			this.unloadIframe(oldId);
 			this.loadIframe(newId);
 		},
+		src() {
+			this.updateIframeSrc(iframes.get(this.id));
+		},
 	},
 	mounted() {
 		this.loadIframe(this.id);
@@ -47,6 +50,7 @@ export default {
 
 			if (iframe) {
 				this.iframe = iframe;
+				this.updateIframeSrc(iframe);
 			} else {
 				this.iframe = document.createElement('iframe');
 				this.iframe.style.position = 'fixed';
@@ -65,6 +69,12 @@ export default {
 			}
 
 			this.resizeIframe();
+		},
+		updateIframeSrc(iframe) {
+			// Compare with the attribute, because navigation inside the iframe does not change it.
+			if (iframe && iframe.getAttribute('src') !== this.src) {
+				iframe.src = this.src;
+			}
 		},
 		unloadIframe(id) {
 			const iframe = iframes.get(id);

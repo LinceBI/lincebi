@@ -70,6 +70,10 @@
 			"label": "Global",
 			"description": "(Visible para todos o algunos usuarios)"
 		},
+		"tabReplaceHome": {
+			"label": "Reemplazar la pestaña Inicio",
+			"description": "(Visible para todos los usuarios. La pestaña Inicio original se puede restaurar más tarde)"
+		},
 		"tabShowForRoles": {
 			"label": "Visible para los siguientes roles",
 			"description": "(Cualquiera si está vacío)"
@@ -81,6 +85,9 @@
 		"deleteTab": "Eliminar pestaña",
 		"tabWillBeDeleted": "La pestaña \"{name}\" será eliminada.",
 		"delete": "Eliminar",
+		"restoreHomeTab": "Restaurar la pestaña Inicio",
+		"homeTabWillBeRestored": "La pestaña \"{name}\" será reemplazada por la pestaña Inicio original.",
+		"restore": "Restaurar",
 		"create": "Crear",
 		"cancel": "Cancelar",
 		"home": "Inicio",

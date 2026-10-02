@@ -10,8 +10,8 @@
 		</b-button>
 		<div class="home-tabs">
 			<home-tab-list ref="homeTabList" v-model="tab" :initial-tab="tabName" />
-			<home-tab-content-frame v-if="tab?.type === 'frame'" v-model="tab" />
-			<home-tab-content-files v-else v-model="tab" />
+			<home-tab-content-frame v-if="contentTab?.type === 'frame'" :tab="contentTab" />
+			<home-tab-content-files v-else :tab="contentTab" />
 		</div>
 	</div>
 </template>
@@ -46,6 +46,11 @@ export default {
 			bannerExpanded: true,
 			tab: null,
 		};
+	},
+	computed: {
+		contentTab() {
+			return store.getters.resolveTab(this.tab);
+		},
 	},
 	watch: {
 		tabName(tabName) {

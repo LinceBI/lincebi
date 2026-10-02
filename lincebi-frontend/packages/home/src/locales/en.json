@@ -70,6 +70,10 @@
 			"label": "Global",
 			"description": "(Visible to all or some users)"
 		},
+		"tabReplaceHome": {
+			"label": "Replace the Home tab",
+			"description": "(Visible to all users. The original Home tab can be restored later)"
+		},
 		"tabShowForRoles": {
 			"label": "Visible for the following roles",
 			"description": "(Any if empty)"
@@ -81,6 +85,9 @@
 		"deleteTab": "Delete tab",
 		"tabWillBeDeleted": "The tab \"{name}\" will be deleted.",
 		"delete": "Delete",
+		"restoreHomeTab": "Restore the Home tab",
+		"homeTabWillBeRestored": "The tab \"{name}\" will be replaced by the original Home tab.",
+		"restore": "Restore",
 		"create": "Create",
 		"cancel": "Cancel",
 		"home": "Home",
