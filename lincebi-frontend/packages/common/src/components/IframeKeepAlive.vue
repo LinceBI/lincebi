@@ -63,7 +63,7 @@ export default {
 			this.iframe.style.display = 'block';
 
 			for (const [key, value] of Object.entries(this.$attrs)) {
-				if (typeof value !== "undefined") {
+				if (typeof value !== 'undefined') {
 					this.iframe.setAttribute(key, String(value));
 				}
 			}

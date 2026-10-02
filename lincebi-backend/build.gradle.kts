@@ -1,6 +1,6 @@
 plugins {
 	id("java")
-	id("com.gradleup.shadow") version "9.4.2"
+	id("com.gradleup.shadow") version "9.6.1"
 }
 
 group = "${project.property("group")}"
@@ -16,17 +16,17 @@ repositories {
 
 dependencies {
 	implementation("com.fasterxml.jackson.core:jackson-annotations:2.22")
-	implementation("com.fasterxml.jackson.core:jackson-core:2.22.0")
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.22.0")
-	implementation("com.microsoft.azure:msal4j:1.25.1")
-	implementation("com.networknt:json-schema-validator:2.0.2")
+	implementation("com.fasterxml.jackson.core:jackson-core:2.22.3")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.22.3")
+	implementation("com.microsoft.azure:msal4j:1.26.0")
+	implementation("com.networknt:json-schema-validator:2.0.7")
 	implementation("commons-io:commons-io:2.22.0")
 	implementation("jakarta.ws.rs:jakarta.ws.rs-api:2.1.6")
 	implementation("jakarta.xml.bind:jakarta.xml.bind-api:2.3.3")
 	implementation("org.apache.commons:commons-lang3:3.20.0")
 	implementation("org.codehaus.enunciate:enunciate-core-annotations:1.31")
 	implementation("org.ehcache:ehcache:3.11.1")
-	implementation("org.slf4j:slf4j-reload4j:2.0.18")
+	implementation("org.slf4j:slf4j-reload4j:2.0.20")
 	implementation("org.springframework:spring-web:5.3.39")
 	implementation("org.thymeleaf:thymeleaf:3.1.5.RELEASE")
 
@@ -63,6 +63,10 @@ tasks.jar {
 tasks.shadowJar {
 	archiveClassifier.set("bundle")
 	mergeServiceFiles()
+
+	filesMatching(listOf("META-INF/services/**", "META-INF/*.kotlin_module")) {
+		duplicatesStrategy = DuplicatesStrategy.INCLUDE
+	}
 
 	val prefix = "${project.property("group")}.shaded"
 	fun shade(path : String) { relocate(path, "${prefix}.${path}") }

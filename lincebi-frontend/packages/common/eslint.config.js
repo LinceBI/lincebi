@@ -3,6 +3,9 @@ import eslintPluginVue from 'eslint-plugin-vue';
 import globals from 'globals';
 
 export default [
+	{
+		ignores: ['node_modules/**', 'dist/**'],
+	},
 	...eslintPluginVue.configs['flat/vue2-recommended'],
 	eslintConfigPrettier,
 	{
@@ -14,6 +17,5 @@ export default [
 		rules: {
 			'no-console': ['error', { allow: ['trace', 'debug', 'info', 'warn', 'error'] }],
 		},
-		ignores: ['node_modules/**', 'dist/**'],
 	},
 ];
